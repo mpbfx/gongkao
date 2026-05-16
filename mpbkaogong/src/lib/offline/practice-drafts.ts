@@ -10,12 +10,21 @@ export type PracticeSubmitDraft = {
   savedAt: string;
 };
 
+export type PracticeScratchDraft = {
+  dataUrl: string;
+  mimeType: string;
+  width: number;
+  height: number;
+  updatedAt: string;
+};
+
 export type PracticeDraft = {
   sessionId: string;
   currentIndex: number;
   answers: Record<string, string>;
   elapsedSeconds: number;
   timeSpentByQuestionId: Record<string, number>;
+  scratchByQuestionId: Record<string, PracticeScratchDraft>;
   pendingSubmit?: PracticeSubmitDraft | null;
   updatedAt: string;
 };

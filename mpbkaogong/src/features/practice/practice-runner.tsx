@@ -33,6 +33,7 @@ import {
   clearPracticeDraft,
   getPracticeDraft,
   savePracticeDraft,
+  type PracticeScratchDraft,
   type PracticeSubmitDraft,
 } from "@/lib/offline/practice-drafts";
 import { cn } from "@/lib/utils";
@@ -174,6 +175,7 @@ export function PracticeRunner({
   const [submitResult, setSubmitResult] = useState<SubmitResult | null>(null);
   const [isDraftReady, setIsDraftReady] = useState(false);
   const [hasPendingSubmit, setHasPendingSubmit] = useState(false);
+  const [scratchByQuestionId, setScratchByQuestionId] = useState<Record<string, PracticeScratchDraft>>({});
   const [showAnswerSheet, setShowAnswerSheet] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [isOnline, setIsOnline] = useState(() =>
@@ -187,6 +189,7 @@ export function PracticeRunner({
   const completionRate = questions.length > 0 ? answeredCount / questions.length : 0;
   const isResultMode = initialSession.status === "SUBMITTED" || isMemorizeMode || Boolean(submitResult);
   const isPracticePaused = !isResultMode && isPaused;
+  const currentScratch = scratchByQuestionId[question.id] ?? null;
   const resultByQuestionId = useMemo(() => {
     const map = new Map<
       string,
@@ -280,7 +283,36 @@ export function PracticeRunner({
     });
   }
 
+  function saveLocalPracticeDraft(
+    nextScratchByQuestionId = scratchByQuestionId,
+    pendingSubmit: PracticeSubmitDraft | null = hasPendingSubmit ? buildSubmitDraft() : null
+  ) {
+    return savePracticeDraft({
+      sessionId: initialSession.id,
+      currentIndex,
+      answers,
+      elapsedSeconds,
+      timeSpentByQuestionId,
+      scratchByQuestionId: nextScratchByQuestionId,
+      pendingSubmit,
+    });
+  }
+
+  function updateCurrentScratch(value: PracticeScratchDraft | null) {
+    const nextScratchByQuestionId = { ...scratchByQuestionId };
+
+    if (value) {
+      nextScratchByQuestionId[question.id] = value;
+    } else {
+      delete nextScratchByQuestionId[question.id];
+    }
+
+    setScratchByQuestionId(nextScratchByQuestionId);
+    void saveLocalPracticeDraft(nextScratchByQuestionId);
+  }
+
   function goToQuestion(index: number) {
+    void saveLocalPracticeDraft();
     setShowDraftCanvas(false);
     setShowAnswerSheet(false);
     setCurrentIndex(Math.min(Math.max(index, 0), Math.max(questions.length - 1, 0)));
@@ -325,7 +357,11 @@ export function PracticeRunner({
       setSubmitResult(payload.data);
       setHasPendingSubmit(false);
       setShowSubmitDialog(false);
-      await clearPracticeDraft(initialSession.id);
+      if (Object.keys(scratchByQuestionId).length > 0) {
+        await saveLocalPracticeDraft(scratchByQuestionId, null);
+      } else {
+        await clearPracticeDraft(initialSession.id);
+      }
     } catch {
       await savePendingSubmitDraft();
       setSubmitError("提交失败，答案已保留，请稍后重试。");
@@ -504,11 +540,6 @@ export function PracticeRunner({
     let cancelled = false;
 
     async function restoreDraft() {
-      if (isResultMode) {
-        setIsDraftReady(true);
-        return;
-      }
-
       const draft = await getPracticeDraft(initialSession.id);
 
       if (cancelled) {
@@ -517,6 +548,16 @@ export function PracticeRunner({
 
       if (draft) {
         const questionIds = new Set(questions.map((item) => item.id));
+        const restoredScratch = Object.fromEntries(
+          Object.entries(draft.scratchByQuestionId ?? {}).filter(([questionId]) => questionIds.has(questionId))
+        );
+        setScratchByQuestionId(restoredScratch);
+
+        if (isResultMode) {
+          setIsDraftReady(true);
+          return;
+        }
+
         const restoredAnswers = Object.fromEntries(
           Object.entries(draft.answers).filter(([questionId]) => questionIds.has(questionId))
         );
@@ -553,6 +594,7 @@ export function PracticeRunner({
         answers,
         elapsedSeconds,
         timeSpentByQuestionId,
+        scratchByQuestionId,
         pendingSubmit: hasPendingSubmit
           ? {
               elapsedSeconds,
@@ -577,6 +619,7 @@ export function PracticeRunner({
     isDraftReady,
     isResultMode,
     questions,
+    scratchByQuestionId,
     timeSpentByQuestionId,
   ]);
 
@@ -599,6 +642,7 @@ export function PracticeRunner({
       answers,
       elapsedSeconds,
       timeSpentByQuestionId,
+      scratchByQuestionId,
       pendingSubmit: buildSubmitDraft(),
     });
     setHasPendingSubmit(true);
@@ -751,15 +795,6 @@ export function PracticeRunner({
           <CardContent className="flex min-h-0 flex-1 flex-col gap-3 overflow-hidden">
             {answerSheetContent}
           </CardContent>
-          {!isResultMode ? (
-            <CardFooter className="flex flex-col gap-2">
-              <Button type="button" className="w-full" onClick={() => setShowSubmitDialog(true)}>
-                <Send data-icon="inline-start" />
-                提交练习
-              </Button>
-              {submitError ? <p className="text-xs text-destructive">{submitError}</p> : null}
-            </CardFooter>
-          ) : null}
         </Card>
       </aside>
 
@@ -807,17 +842,17 @@ export function PracticeRunner({
               <span className="hidden md:inline">{isPracticePaused ? "继续" : "暂停"}</span>
             </Button>
           ) : null}
-          {!isResultMode ? (
+          {!isResultMode || currentScratch ? (
             <Button
               type="button"
               variant="outline"
               size="sm"
               className="h-10 w-10 shrink-0 px-0 md:w-auto md:px-3"
-              aria-label="草稿"
+              aria-label={isResultMode ? "查看草稿" : "草稿"}
               onClick={() => setShowDraftCanvas(true)}
             >
               <PencilLine data-icon="inline-start" />
-              <span className="hidden md:inline">草稿</span>
+              <span className="hidden md:inline">{isResultMode ? "草稿回看" : "草稿"}</span>
             </Button>
           ) : null}
           <Button
@@ -897,7 +932,15 @@ export function PracticeRunner({
         </div>
       ) : null}
 
-      <DraftCanvas open={showDraftCanvas} onClose={() => setShowDraftCanvas(false)} />
+      <DraftCanvas
+        open={showDraftCanvas}
+        value={currentScratch}
+        readOnly={isResultMode}
+        questionLabel={`第 ${currentIndex + 1} 题`}
+        variant="overlay"
+        onChange={updateCurrentScratch}
+        onClose={() => setShowDraftCanvas(false)}
+      />
     </main>
   );
 }
