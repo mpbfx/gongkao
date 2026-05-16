@@ -7,9 +7,10 @@ import {
   ChevronLeft,
   ChevronRight,
   Grid3X3,
-  ListChecks,
   LoaderCircle,
+  Pause,
   PencilLine,
+  Play,
   Send,
   WifiOff,
 } from "lucide-react";
@@ -172,9 +173,9 @@ export function PracticeRunner({
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [submitResult, setSubmitResult] = useState<SubmitResult | null>(null);
   const [isDraftReady, setIsDraftReady] = useState(false);
-  const [lastSavedAt, setLastSavedAt] = useState<string | null>(null);
   const [hasPendingSubmit, setHasPendingSubmit] = useState(false);
   const [showAnswerSheet, setShowAnswerSheet] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
   const [isOnline, setIsOnline] = useState(() =>
     typeof window === "undefined" ? true : window.navigator.onLine
   );
@@ -185,6 +186,7 @@ export function PracticeRunner({
   const answeredCount = Object.values(answers).filter((answer) => normalizeAnswer(answer).length > 0).length;
   const completionRate = questions.length > 0 ? answeredCount / questions.length : 0;
   const isResultMode = initialSession.status === "SUBMITTED" || isMemorizeMode || Boolean(submitResult);
+  const isPracticePaused = !isResultMode && isPaused;
   const resultByQuestionId = useMemo(() => {
     const map = new Map<
       string,
@@ -233,7 +235,7 @@ export function PracticeRunner({
   const currentResult = resultByQuestionId.get(question.id);
 
   useEffect(() => {
-    if (isResultMode) {
+    if (isResultMode || isPracticePaused) {
       return;
     }
 
@@ -246,10 +248,10 @@ export function PracticeRunner({
     }, 1000);
 
     return () => window.clearInterval(timer);
-  }, [isResultMode, question.id]);
+  }, [isResultMode, isPracticePaused, question.id]);
 
   function updateAnswer(value: string) {
-    if (isResultMode) {
+    if (isResultMode || isPracticePaused) {
       return;
     }
 
@@ -282,6 +284,14 @@ export function PracticeRunner({
     setShowDraftCanvas(false);
     setShowAnswerSheet(false);
     setCurrentIndex(Math.min(Math.max(index, 0), Math.max(questions.length - 1, 0)));
+  }
+
+  function togglePause() {
+    if (isResultMode) {
+      return;
+    }
+
+    setIsPaused((current) => !current);
   }
 
   async function submitPractice() {
@@ -472,7 +482,9 @@ export function PracticeRunner({
     ? resultSummary
       ? `正确率 ${resultSummary.accuracy ?? "0.00"}%`
       : "结果回看"
-    : formatSeconds(elapsedSeconds);
+    : isPracticePaused
+      ? "已暂停"
+      : formatSeconds(elapsedSeconds);
 
   useEffect(() => {
     function updateOnlineState() {
@@ -517,7 +529,6 @@ export function PracticeRunner({
         setCurrentIndex(Math.min(Math.max(draft.currentIndex, 0), Math.max(questions.length - 1, 0)));
         setElapsedSeconds(draft.elapsedSeconds);
         setHasPendingSubmit(Boolean(draft.pendingSubmit));
-        setLastSavedAt(draft.updatedAt);
       }
 
       setIsDraftReady(true);
@@ -553,7 +564,7 @@ export function PracticeRunner({
               savedAt: new Date().toISOString(),
             }
           : null,
-      }).then(() => setLastSavedAt(new Date().toISOString()));
+      });
     }, 400);
 
     return () => window.clearTimeout(saveTimer);
@@ -591,22 +602,19 @@ export function PracticeRunner({
       pendingSubmit: buildSubmitDraft(),
     });
     setHasPendingSubmit(true);
-    setLastSavedAt(new Date().toISOString());
   }
 
   return (
     <main className="mx-auto flex w-full max-w-7xl flex-1 flex-col gap-4 px-4 py-4 pb-44 md:px-6 lg:grid lg:grid-cols-[1fr_320px] lg:items-start lg:pb-28">
-      {!isResultMode && (!isOnline || hasPendingSubmit || lastSavedAt) ? (
+      {!isResultMode && (!isOnline || hasPendingSubmit) ? (
         <div className="lg:col-span-2">
           <Alert>
             {!isOnline ? <WifiOff aria-hidden="true" /> : <Check aria-hidden="true" />}
-            <AlertTitle>{!isOnline ? "网络不稳定" : hasPendingSubmit ? "提交草稿已保留" : "本地进度已保存"}</AlertTitle>
+            <AlertTitle>{!isOnline ? "网络不稳定" : "提交草稿已保留"}</AlertTitle>
             <AlertDescription>
               {!isOnline
                 ? "当前答案会继续保存到本地，网络恢复后可再次提交。"
-                : hasPendingSubmit
-                  ? "上次提交没有完成，答案和提交草稿仍在本地，可直接重试提交。"
-                  : `刷新页面后会恢复到当前进度${lastSavedAt ? `，最近保存 ${new Date(lastSavedAt).toLocaleTimeString("zh-CN")}` : ""}。`}
+                : "上次提交没有完成，答案和提交草稿仍在本地，可直接重试提交。"}
             </AlertDescription>
           </Alert>
         </div>
@@ -623,15 +631,9 @@ export function PracticeRunner({
                   {question.sectionName ? ` · ${question.sectionName}` : ""}
                 </CardDescription>
               </div>
-              <div className="flex flex-wrap gap-2">
-                <Badge variant={isResultMode ? "secondary" : "outline"}>
-                  {reviewMode ? "历史回看" : isMemorizeMode ? "背题模式" : isResultMode ? "结果态" : "答题中"}
-                </Badge>
-                <Badge variant="outline">{formatSeconds(elapsedSeconds)}</Badge>
-              </div>
             </div>
           </CardHeader>
-          <CardContent className="flex flex-col gap-4">
+          <CardContent className="relative flex flex-col gap-4">
             {question.materialHtml ? (
               <div className="rounded-lg bg-muted p-3">
                 {question.material?.title ? (
@@ -651,14 +653,15 @@ export function PracticeRunner({
                   <button
                     key={option.id}
                     type="button"
-                    disabled={isResultMode}
+                    disabled={isResultMode || isPracticePaused}
                     className={cn(
                       "flex min-h-12 w-full items-start gap-3 rounded-lg border bg-card px-3 py-3 text-left text-sm transition-colors",
                       "focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none",
                       state === "selected" && "border-primary bg-primary text-primary-foreground",
                       state === "correct" && "border-primary bg-secondary",
                       state === "wrong" && "border-destructive bg-destructive/10 text-destructive",
-                      isResultMode && "disabled:opacity-100"
+                      isResultMode && "disabled:opacity-100",
+                      isPracticePaused && "opacity-40"
                     )}
                     onClick={() => updateAnswer(option.value)}
                   >
@@ -701,6 +704,17 @@ export function PracticeRunner({
                 </AlertDescription>
               </Alert>
             ) : null}
+            {isPracticePaused ? (
+              <div className="absolute inset-0 grid place-items-center bg-card/90 p-6 backdrop-blur-sm">
+                <div className="flex flex-col items-center gap-3 text-center">
+                  <Badge variant="secondary">已暂停</Badge>
+                  <Button type="button" onClick={togglePause}>
+                    <Play data-icon="inline-start" />
+                    继续答题
+                  </Button>
+                </div>
+              </div>
+            ) : null}
           </CardContent>
         </Card>
       </section>
@@ -734,13 +748,6 @@ export function PracticeRunner({
         ) : null}
 
         <Card className="hidden lg:flex lg:min-h-0 lg:flex-1 lg:flex-col">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <ListChecks aria-hidden="true" />
-              题号导航
-            </CardTitle>
-            <CardDescription>按模块折叠，滚动查看全部题号。</CardDescription>
-          </CardHeader>
           <CardContent className="flex min-h-0 flex-1 flex-col gap-3 overflow-hidden">
             {answerSheetContent}
           </CardContent>
@@ -756,7 +763,7 @@ export function PracticeRunner({
         </Card>
       </aside>
 
-      <div className="fixed inset-x-0 bottom-16 z-30 border-t bg-background/95 p-2 shadow-sm backdrop-blur lg:bottom-0 lg:left-64 lg:p-3">
+      <div className="fixed inset-x-0 bottom-16 z-30 border-t bg-background/95 p-2 shadow-sm backdrop-blur lg:bottom-0 lg:left-[var(--app-sidebar-width)] lg:p-3">
         <div className="mx-auto flex max-w-7xl items-center gap-2">
           <Button
             type="button"
@@ -787,6 +794,19 @@ export function PracticeRunner({
             <ChevronRight data-icon="inline-end" />
           </Button>
           <div className="hidden h-8 w-px shrink-0 bg-border md:block" />
+          {!isResultMode ? (
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              className="h-10 w-10 shrink-0 px-0 md:w-auto md:px-3"
+              aria-label={isPracticePaused ? "继续答题" : "暂停答题"}
+              onClick={togglePause}
+            >
+              {isPracticePaused ? <Play data-icon="inline-start" /> : <Pause data-icon="inline-start" />}
+              <span className="hidden md:inline">{isPracticePaused ? "继续" : "暂停"}</span>
+            </Button>
+          ) : null}
           {!isResultMode ? (
             <Button
               type="button"
