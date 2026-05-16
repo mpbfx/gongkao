@@ -263,7 +263,47 @@ POST /api/agent/tutor/questions/{questionId}
 
 是否把 Agent 输出持久化，是后续需要单独拍板的设计决策。
 
-## 9. 成功指标
+## 9. 技术架构建议
+
+第一版 Agent 采用“Next.js 单体内置 Agent 服务层 + LangGraph.js 编排”的架构，不单独拆 Python Agent 服务。
+
+推荐技术栈：
+
+- **LangGraph.js**：作为 Agent 核心编排框架，承载状态图、工具节点、条件分支、checkpoint 和 human-in-the-loop 扩展点。
+- **LangSmith**：作为 Agent tracing、debug、数据集回放和评测平台。
+- **OpenAI Responses API**：作为默认模型调用接口，支持工具调用和结构化输出。
+- **Vercel AI SDK**：用于前端讲题助教的 streaming UI 和消息流适配，不承载核心业务决策。
+- **Zod**：定义 Agent 输入、输出、工具参数和结构化结果 schema。
+- **Prisma / MySQL**：继续作为用户、练习、错题、推荐记录的业务数据源。
+- **Qdrant 或其他向量库**：后续用于相似题检索、错因案例检索和知识点 RAG；第一版不是必须依赖。
+
+推荐目录：
+
+```txt
+src/server/agent/
+  graph/
+    coach-graph.ts
+    tutor-graph.ts
+    state.ts
+  tools/
+    get-user-practice-stats.ts
+    get-question-context.ts
+    create-practice-session.ts
+    search-similar-questions.ts
+  prompts/
+    coach.ts
+    tutor.ts
+  schemas/
+    coach-output.ts
+    tutor-output.ts
+  evals/
+    coach-cases.test.ts
+    tutor-cases.test.ts
+```
+
+学习教练 Agent 使用规则推荐引擎主导，LangGraph.js 编排数据获取、薄弱点分析、推荐动作生成和自然语言解释。讲题助教 Agent 使用 LangGraph.js 编排题目上下文获取、讲解生成、追问建议和安全边界检查。
+
+## 10. 成功指标
 
 学习教练 Agent：
 
@@ -279,7 +319,7 @@ POST /api/agent/tutor/questions/{questionId}
 - 用户反馈“有帮助”比例。
 - 错题后续解决率。
 
-## 10. MVP 范围
+## 11. MVP 范围
 
 第一阶段：
 
@@ -301,9 +341,10 @@ POST /api/agent/tutor/questions/{questionId}
 - 个性化复习节奏。
 - 多轮学习计划执行追踪。
 
-## 11. 待决策问题
+## 12. 待决策问题
 
 - 第一版讲题助教是否允许在未提交时提供“提示但不泄露答案”？
 - Agent 输出是否需要持久化到数据库？
 - 学习教练诊断周期采用近 7 天、近 20 场，还是二者结合？
 - 推荐训练是否允许自动创建练习会话，还是必须用户确认后创建？
+- LangGraph checkpoint 第一版是否持久化到数据库，还是仅保留 LangSmith trace 和业务结果？

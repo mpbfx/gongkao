@@ -46,6 +46,13 @@ function configureContext(context: CanvasRenderingContext2D, tool: DraftTool) {
   context.globalCompositeOperation = tool === "eraser" ? "destination-out" : "source-over";
 }
 
+function drawWithInkMode(context: CanvasRenderingContext2D, draw: () => void) {
+  const previousCompositeOperation = context.globalCompositeOperation;
+  context.globalCompositeOperation = "source-over";
+  draw();
+  context.globalCompositeOperation = previousCompositeOperation;
+}
+
 function exportCanvas(canvas: HTMLCanvasElement): DraftCanvasValue | null {
   const context = canvas.getContext("2d");
 
@@ -119,9 +126,14 @@ export function DraftCanvas({
   const saveTimerRef = useRef<number | null>(null);
   const restoreKeyRef = useRef<string | null>(null);
   const undoStackRef = useRef<ImageData[]>([]);
+  const toolRef = useRef<DraftTool>("pen");
   const [isDrawing, setIsDrawing] = useState(false);
   const [tool, setTool] = useState<DraftTool>("pen");
   const [undoCount, setUndoCount] = useState(0);
+
+  useEffect(() => {
+    toolRef.current = tool;
+  }, [tool]);
 
   const emitChange = useCallback(() => {
     const canvas = canvasRef.current;
@@ -184,10 +196,12 @@ export function DraftCanvas({
         return;
       }
 
-      if (previous.width > 0 && previous.height > 0) {
-        context.setTransform(1, 0, 0, 1, 0, 0);
-        context.drawImage(previous, 0, 0, canvas.width, canvas.height);
-      }
+      drawWithInkMode(context, () => {
+        if (previous.width > 0 && previous.height > 0) {
+          context.setTransform(1, 0, 0, 1, 0, 0);
+          context.drawImage(previous, 0, 0, canvas.width, canvas.height);
+        }
+      });
 
       context.setTransform(ratio, 0, 0, ratio, 0, 0);
       configureContext(context, tool);
@@ -234,11 +248,13 @@ export function DraftCanvas({
     const image = new Image();
     image.onload = () => {
       context.clearRect(0, 0, canvas.width, canvas.height);
-      context.drawImage(image, 0, 0, canvas.width / (window.devicePixelRatio || 1), canvas.height / (window.devicePixelRatio || 1));
-      configureContext(context, tool);
+      drawWithInkMode(context, () => {
+        context.drawImage(image, 0, 0, canvas.width / (window.devicePixelRatio || 1), canvas.height / (window.devicePixelRatio || 1));
+      });
+      configureContext(context, toolRef.current);
     };
     image.src = value.dataUrl;
-  }, [open, tool, value?.dataUrl]);
+  }, [open, value?.dataUrl]);
 
   if (!open) {
     return null;
@@ -362,8 +378,8 @@ export function DraftCanvas({
   return (
     <div className="pointer-events-none fixed inset-x-0 bottom-28 top-16 z-40 md:bottom-24 lg:left-[var(--app-sidebar-width)] lg:right-[320px] lg:top-20">
       <div className="relative mx-auto h-full max-w-5xl">
-        <div className="pointer-events-auto absolute right-2 top-1/2 z-10 flex -translate-y-1/2 flex-col items-center gap-1 rounded-md border bg-background/90 p-1 shadow-sm lg:-right-2">
-          <div className="hidden max-w-16 truncate px-1 py-1 text-center text-[0.7rem] text-muted-foreground sm:block">
+        <div className="pointer-events-auto absolute bottom-4 right-3 z-10 flex items-center gap-1 rounded-md border bg-background/90 p-1 shadow-sm lg:right-0">
+          <div className="hidden max-w-16 truncate px-1 text-center text-[0.7rem] text-muted-foreground sm:block">
             {questionLabel ?? "草稿"}
           </div>
           {!isReadonly ? (
