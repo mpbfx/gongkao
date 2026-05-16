@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="公考题库">
+  <rect width="512" height="512" rx="96" fill="#111111"/>
+  <rect x="118" y="92" width="276" height="328" rx="28" fill="#ffffff"/>
+  <path d="M170 164h172M170 222h172M170 280h104" fill="none" stroke="#111111" stroke-width="28" stroke-linecap="round"/>
+  <path d="M316 310l30 30 58-70" fill="none" stroke="#111111" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
