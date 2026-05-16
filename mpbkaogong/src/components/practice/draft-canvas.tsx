@@ -1,6 +1,6 @@
 "use client";
 
-import { Eraser, PenLine, RotateCcw, Trash2, X } from "lucide-react";
+import { Eraser, GripVertical, PenLine, RotateCcw, Trash2, X } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -26,6 +26,16 @@ type DraftCanvasProps = {
 };
 
 type DraftTool = "pen" | "eraser";
+
+type ToolbarPosition = {
+  x: number;
+  y: number;
+};
+
+type DragState = {
+  offsetX: number;
+  offsetY: number;
+};
 
 const MAX_DATA_URL_LENGTH = 1_000_000;
 
@@ -116,24 +126,92 @@ export function DraftCanvas({
   open,
   value,
   readOnly = false,
-  questionLabel,
   variant = "overlay",
   onChange,
   onClear,
   onClose,
 }: DraftCanvasProps) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const layerRef = useRef<HTMLDivElement | null>(null);
+  const toolbarRef = useRef<HTMLDivElement | null>(null);
   const saveTimerRef = useRef<number | null>(null);
   const restoreKeyRef = useRef<string | null>(null);
   const undoStackRef = useRef<ImageData[]>([]);
   const toolRef = useRef<DraftTool>("pen");
+  const dragStateRef = useRef<DragState | null>(null);
   const [isDrawing, setIsDrawing] = useState(false);
   const [tool, setTool] = useState<DraftTool>("pen");
   const [undoCount, setUndoCount] = useState(0);
+  const [toolbarPosition, setToolbarPosition] = useState<ToolbarPosition | null>(null);
 
   useEffect(() => {
     toolRef.current = tool;
   }, [tool]);
+
+  const clampToolbarPosition = useCallback((x: number, y: number) => {
+    const layer = layerRef.current;
+    const toolbar = toolbarRef.current;
+
+    if (!layer || !toolbar) {
+      return { x, y };
+    }
+
+    const layerRect = layer.getBoundingClientRect();
+    const toolbarRect = toolbar.getBoundingClientRect();
+    const maxX = Math.max(0, layerRect.width - toolbarRect.width);
+    const maxY = Math.max(0, layerRect.height - toolbarRect.height);
+
+    return {
+      x: Math.min(Math.max(0, x), maxX),
+      y: Math.min(Math.max(0, y), maxY),
+    };
+  }, []);
+
+  const resetToolbarPosition = useCallback(() => {
+    const layer = layerRef.current;
+    const toolbar = toolbarRef.current;
+
+    if (!layer || !toolbar) {
+      return;
+    }
+
+    const layerRect = layer.getBoundingClientRect();
+    const toolbarRect = toolbar.getBoundingClientRect();
+
+    setToolbarPosition(
+      clampToolbarPosition(layerRect.width - toolbarRect.width - 12, layerRect.height - toolbarRect.height - 16)
+    );
+  }, [clampToolbarPosition]);
+
+  useEffect(() => {
+    if (!open) {
+      return;
+    }
+
+    if (!toolbarPosition) {
+      window.requestAnimationFrame(resetToolbarPosition);
+    }
+  }, [open, resetToolbarPosition, toolbarPosition]);
+
+  useEffect(() => {
+    if (!open) {
+      return;
+    }
+
+    const handleResize = () => {
+      setToolbarPosition((position) => {
+        if (!position) {
+          return position;
+        }
+
+        return clampToolbarPosition(position.x, position.y);
+      });
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, [clampToolbarPosition, open]);
 
   const emitChange = useCallback(() => {
     const canvas = canvasRef.current;
@@ -372,16 +450,69 @@ export function DraftCanvas({
     onClose();
   }
 
+  function startDraggingToolbar(event: React.PointerEvent<HTMLButtonElement>) {
+    const layer = layerRef.current;
+    const toolbar = toolbarRef.current;
+
+    if (!layer || !toolbar) {
+      return;
+    }
+
+    event.preventDefault();
+    event.currentTarget.setPointerCapture(event.pointerId);
+
+    const toolbarRect = toolbar.getBoundingClientRect();
+    dragStateRef.current = {
+      offsetX: event.clientX - toolbarRect.left,
+      offsetY: event.clientY - toolbarRect.top,
+    };
+  }
+
+  function dragToolbar(event: React.PointerEvent<HTMLButtonElement>) {
+    const layer = layerRef.current;
+    const dragState = dragStateRef.current;
+
+    if (!layer || !dragState) {
+      return;
+    }
+
+    const layerRect = layer.getBoundingClientRect();
+    const nextX = event.clientX - layerRect.left - dragState.offsetX;
+    const nextY = event.clientY - layerRect.top - dragState.offsetY;
+
+    setToolbarPosition(clampToolbarPosition(nextX, nextY));
+  }
+
+  function stopDraggingToolbar(event: React.PointerEvent<HTMLButtonElement>) {
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    }
+
+    dragStateRef.current = null;
+  }
+
   const isReadonly = readOnly || variant !== "overlay";
   const hasUndo = undoCount > 0;
 
   return (
-    <div className="pointer-events-none fixed inset-x-0 bottom-28 top-16 z-40 md:bottom-24 lg:left-[var(--app-sidebar-width)] lg:right-[320px] lg:top-20">
-      <div className="relative mx-auto h-full max-w-5xl">
-        <div className="pointer-events-auto absolute bottom-4 right-3 z-10 flex items-center gap-1 rounded-md border bg-background/90 p-1 shadow-sm lg:right-0">
-          <div className="hidden max-w-16 truncate px-1 text-center text-[0.7rem] text-muted-foreground sm:block">
-            {questionLabel ?? "草稿"}
-          </div>
+    <div ref={layerRef} className="pointer-events-none absolute inset-0 z-20">
+      <div className="relative h-full min-h-full">
+        <div
+          ref={toolbarRef}
+          className="pointer-events-auto absolute z-10 flex items-center gap-1 rounded-md border bg-background/90 p-1 shadow-sm"
+          style={toolbarPosition ? { left: toolbarPosition.x, top: toolbarPosition.y } : { bottom: 16, right: 12 }}
+        >
+          <button
+            type="button"
+            className="grid size-7 cursor-grab place-items-center rounded-md text-muted-foreground outline-none hover:bg-muted active:cursor-grabbing focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+            aria-label="拖动草稿工具栏"
+            onPointerDown={startDraggingToolbar}
+            onPointerMove={dragToolbar}
+            onPointerCancel={stopDraggingToolbar}
+            onPointerUp={stopDraggingToolbar}
+          >
+            <GripVertical className="size-3.5" aria-hidden="true" />
+          </button>
           {!isReadonly ? (
             <>
               <Button
