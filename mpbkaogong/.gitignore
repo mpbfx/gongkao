@@ -1,0 +1,30 @@
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+
+# Dependencies and package-manager noise
+node_modules/
+**/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build / test artifacts
+.cache/
+coverage/
+.next/
+out/
+dist/
+build/
+tsconfig.tsbuildinfo
+
+# SaDuck scraping materials kept locally, not part of the product repo
+docs/scraping/
+tools/saduck-scraper/
+
+# Secrets / local env
+.env
+.env.*
+!.env.example
