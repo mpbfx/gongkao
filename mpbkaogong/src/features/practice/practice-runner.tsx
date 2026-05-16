@@ -6,6 +6,8 @@ import {
   Check,
   ChevronLeft,
   ChevronRight,
+  Grid3X3,
+  ListChecks,
   LoaderCircle,
   PencilLine,
   Send,
@@ -172,6 +174,7 @@ export function PracticeRunner({
   const [isDraftReady, setIsDraftReady] = useState(false);
   const [lastSavedAt, setLastSavedAt] = useState<string | null>(null);
   const [hasPendingSubmit, setHasPendingSubmit] = useState(false);
+  const [showAnswerSheet, setShowAnswerSheet] = useState(false);
   const [isOnline, setIsOnline] = useState(() =>
     typeof window === "undefined" ? true : window.navigator.onLine
   );
@@ -209,6 +212,24 @@ export function PracticeRunner({
 
     return map;
   }, [initialSession.userAnswers, questions, submitResult]);
+  const answerGroups = useMemo(() => {
+    const groups = new Map<
+      string,
+      Array<{
+        question: PracticeQuestion;
+        index: number;
+      }>
+    >();
+
+    questions.forEach((item, index) => {
+      const sectionName = item.sectionName ?? "综合";
+      const group = groups.get(sectionName) ?? [];
+      group.push({ question: item, index });
+      groups.set(sectionName, group);
+    });
+
+    return Array.from(groups.entries()).map(([name, items]) => ({ name, items }));
+  }, [questions]);
   const currentResult = resultByQuestionId.get(question.id);
 
   useEffect(() => {
@@ -259,6 +280,7 @@ export function PracticeRunner({
 
   function goToQuestion(index: number) {
     setShowDraftCanvas(false);
+    setShowAnswerSheet(false);
     setCurrentIndex(Math.min(Math.max(index, 0), Math.max(questions.length - 1, 0)));
   }
 
@@ -340,6 +362,117 @@ export function PracticeRunner({
           elapsedSeconds: initialSession.elapsedSeconds,
         }
       : null;
+
+  function questionStatus(item: PracticeQuestion) {
+    const result = resultByQuestionId.get(item.id);
+    const isAnswered = normalizeAnswer(isResultMode ? result?.answer : answers[item.id]).length > 0;
+
+    if (!isResultMode) {
+      return isAnswered ? "answered" : "default";
+    }
+
+    if (result?.isCorrect === true) {
+      return "correct";
+    }
+
+    if (result?.isCorrect === false) {
+      return "wrong";
+    }
+
+    return isAnswered ? "answered" : "default";
+  }
+
+  function answerButtonClassName(item: PracticeQuestion, index: number) {
+    const status = questionStatus(item);
+
+    return cn(
+      "grid size-9 shrink-0 place-items-center rounded-md border text-xs font-medium transition-colors",
+      "focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none",
+      index === currentIndex && "border-primary ring-2 ring-primary/20",
+      !isResultMode && status === "answered" && "bg-primary text-primary-foreground",
+      isResultMode && status === "answered" && "bg-primary text-primary-foreground",
+      isResultMode && status === "correct" && "border-primary bg-secondary",
+      isResultMode && status === "wrong" && "border-destructive bg-destructive/10 text-destructive"
+    );
+  }
+
+  const answerLegend = isResultMode
+    ? [
+        { label: "正确", className: "border-primary bg-secondary" },
+        { label: "错误", className: "border-destructive bg-destructive/10" },
+        { label: "未答", className: "bg-background" },
+      ]
+    : [
+        { label: "已答", className: "bg-primary" },
+        { label: "未答", className: "bg-background" },
+        { label: "当前", className: "border-primary ring-2 ring-primary/20" },
+      ];
+
+  const answerSheetContent = (
+    <>
+      <div className="flex shrink-0 items-center justify-between gap-3">
+        <div className="min-w-0">
+          <div className="flex items-center gap-2 font-medium">
+            <Grid3X3 className="size-4" aria-hidden="true" />
+            答题卡
+          </div>
+          <p className="mt-1 text-sm text-muted-foreground">
+            {isMemorizeMode ? `共 ${questions.length} 题` : `已答 ${answeredCount} / ${questions.length}`}
+          </p>
+        </div>
+        <Badge variant="outline">{Math.round(completionRate * 100)}%</Badge>
+      </div>
+      <div className="h-1.5 shrink-0 overflow-hidden rounded-full bg-muted">
+        <div className="h-full rounded-full bg-primary" style={{ width: `${Math.round(completionRate * 100)}%` }} />
+      </div>
+      <div className="flex shrink-0 flex-wrap gap-x-3 gap-y-2 text-xs text-muted-foreground">
+        {answerLegend.map((item) => (
+          <span key={item.label} className="inline-flex items-center gap-1.5">
+            <span className={cn("size-2.5 rounded-sm border", item.className)} />
+            {item.label}
+          </span>
+        ))}
+      </div>
+      <div className="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto pr-1">
+        {answerGroups.map((group) => {
+          const currentGroup = group.items.some((item) => item.index === currentIndex);
+
+          return (
+            <details key={group.name} open={currentGroup || answerGroups.length <= 3} className="group">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-2 rounded-md px-1 py-1 text-sm font-medium hover:bg-muted">
+                <span className="truncate">{group.name}</span>
+                <span className="text-xs text-muted-foreground">{group.items.length} 题</span>
+              </summary>
+              <div className="mt-2 grid grid-cols-[repeat(auto-fill,minmax(2.25rem,1fr))] gap-2">
+                {group.items.map(({ question: item, index }) => (
+                  <button
+                    key={`${group.name}-${item.id}-${index}`}
+                    type="button"
+                    className={answerButtonClassName(item, index)}
+                    title={stripHtml(item.titleHtml)}
+                    aria-label={`第 ${index + 1} 题`}
+                    aria-current={index === currentIndex ? "true" : undefined}
+                    onClick={() => goToQuestion(index)}
+                  >
+                    {index + 1}
+                  </button>
+                ))}
+              </div>
+            </details>
+          );
+        })}
+      </div>
+    </>
+  );
+
+  const actionBarPrimaryText = isResultMode
+    ? `第 ${currentIndex + 1} / ${questions.length} 题`
+    : `已答 ${answeredCount} / ${questions.length}`;
+  const actionBarSecondaryText = isResultMode
+    ? resultSummary
+      ? `正确率 ${resultSummary.accuracy ?? "0.00"}%`
+      : "结果回看"
+    : formatSeconds(elapsedSeconds);
 
   useEffect(() => {
     function updateOnlineState() {
@@ -462,7 +595,7 @@ export function PracticeRunner({
   }
 
   return (
-    <main className="mx-auto flex w-full max-w-7xl flex-1 flex-col gap-4 px-4 py-4 pb-32 md:px-6 lg:grid lg:grid-cols-[1fr_320px] lg:items-start lg:pb-8">
+    <main className="mx-auto flex w-full max-w-7xl flex-1 flex-col gap-4 px-4 py-4 pb-44 md:px-6 lg:grid lg:grid-cols-[1fr_320px] lg:items-start lg:pb-28">
       {!isResultMode && (!isOnline || hasPendingSubmit || lastSavedAt) ? (
         <div className="lg:col-span-2">
           <Alert>
@@ -495,12 +628,6 @@ export function PracticeRunner({
                   {reviewMode ? "历史回看" : isMemorizeMode ? "背题模式" : isResultMode ? "结果态" : "答题中"}
                 </Badge>
                 <Badge variant="outline">{formatSeconds(elapsedSeconds)}</Badge>
-                {!isResultMode ? (
-                  <Button type="button" variant="outline" size="sm" onClick={() => setShowDraftCanvas(true)}>
-                    <PencilLine data-icon="inline-start" />
-                    草稿
-                  </Button>
-                ) : null}
               </div>
             </div>
           </CardHeader>
@@ -575,30 +702,10 @@ export function PracticeRunner({
               </Alert>
             ) : null}
           </CardContent>
-          <CardFooter className="flex items-center justify-between gap-2">
-            <Button
-              type="button"
-              variant="outline"
-              disabled={currentIndex === 0}
-              onClick={() => goToQuestion(currentIndex - 1)}
-            >
-              <ChevronLeft data-icon="inline-start" />
-              上一题
-            </Button>
-            <Button
-              type="button"
-              variant="outline"
-              disabled={currentIndex === questions.length - 1}
-              onClick={() => goToQuestion(currentIndex + 1)}
-            >
-              下一题
-              <ChevronRight data-icon="inline-end" />
-            </Button>
-          </CardFooter>
         </Card>
       </section>
 
-      <aside className="flex flex-col gap-4 lg:sticky lg:top-20">
+      <aside className="flex flex-col gap-4 lg:sticky lg:top-20 lg:h-[calc(100dvh-6rem)] lg:min-h-0">
         {resultSummary ? (
           <Card>
             <CardHeader>
@@ -626,38 +733,16 @@ export function PracticeRunner({
           </Card>
         ) : null}
 
-        <Card>
+        <Card className="hidden lg:flex lg:min-h-0 lg:flex-1 lg:flex-col">
           <CardHeader>
-            <CardTitle>答题卡</CardTitle>
-            <CardDescription>
-              {isMemorizeMode ? `共 ${questions.length} 题` : `已答 ${answeredCount} / ${questions.length}`}
-            </CardDescription>
+            <CardTitle className="flex items-center gap-2">
+              <ListChecks aria-hidden="true" />
+              题号导航
+            </CardTitle>
+            <CardDescription>按模块折叠，滚动查看全部题号。</CardDescription>
           </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-5 gap-2">
-              {questions.map((item, index) => {
-                const result = resultByQuestionId.get(item.id);
-                const isAnswered = normalizeAnswer(isResultMode ? result?.answer : answers[item.id]).length > 0;
-
-                return (
-                  <button
-                    key={item.id}
-                    type="button"
-                    className={cn(
-                      "grid size-10 place-items-center rounded-lg border text-sm font-medium",
-                      index === currentIndex && "border-primary",
-                      !isResultMode && isAnswered && "bg-primary text-primary-foreground",
-                      isResultMode && result?.isCorrect === true && "bg-secondary",
-                      isResultMode && result?.isCorrect === false && "bg-destructive/10 text-destructive"
-                    )}
-                    title={stripHtml(item.titleHtml)}
-                    onClick={() => goToQuestion(index)}
-                  >
-                    {index + 1}
-                  </button>
-                );
-              })}
-            </div>
+          <CardContent className="flex min-h-0 flex-1 flex-col gap-3 overflow-hidden">
+            {answerSheetContent}
           </CardContent>
           {!isResultMode ? (
             <CardFooter className="flex flex-col gap-2">
@@ -671,29 +756,91 @@ export function PracticeRunner({
         </Card>
       </aside>
 
-      {!isResultMode ? (
-        <div className="fixed inset-x-0 bottom-16 border-t bg-background p-3 lg:hidden">
-          <div className="mx-auto flex max-w-7xl items-center gap-3">
-            <div className="min-w-0 flex-1 text-sm">
-              <div className="font-medium">
-                已答 {answeredCount} / {questions.length}
-              </div>
-              <div className="text-muted-foreground">{formatSeconds(elapsedSeconds)}</div>
-            </div>
-            <Button type="button" variant="outline" onClick={() => setShowDraftCanvas(true)}>
+      <div className="fixed inset-x-0 bottom-16 z-30 border-t bg-background/95 p-2 shadow-sm backdrop-blur lg:bottom-0 lg:left-64 lg:p-3">
+        <div className="mx-auto flex max-w-7xl items-center gap-2">
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            className="h-10 w-10 shrink-0 px-0 sm:w-auto sm:px-3"
+            aria-label="上一题"
+            disabled={currentIndex === 0}
+            onClick={() => goToQuestion(currentIndex - 1)}
+          >
+            <ChevronLeft data-icon="inline-start" />
+            <span className="hidden sm:inline">上一题</span>
+          </Button>
+          <div className="min-w-0 flex-1 text-center text-xs sm:text-sm">
+            <div className="truncate font-medium">{actionBarPrimaryText}</div>
+            <div className="truncate text-muted-foreground">{actionBarSecondaryText}</div>
+          </div>
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            className="h-10 w-10 shrink-0 px-0 sm:w-auto sm:px-3"
+            aria-label="下一题"
+            disabled={currentIndex === questions.length - 1}
+            onClick={() => goToQuestion(currentIndex + 1)}
+          >
+            <span className="hidden sm:inline">下一题</span>
+            <ChevronRight data-icon="inline-end" />
+          </Button>
+          <div className="hidden h-8 w-px shrink-0 bg-border md:block" />
+          {!isResultMode ? (
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              className="h-10 w-10 shrink-0 px-0 md:w-auto md:px-3"
+              aria-label="草稿"
+              onClick={() => setShowDraftCanvas(true)}
+            >
               <PencilLine data-icon="inline-start" />
-              草稿
+              <span className="hidden md:inline">草稿</span>
             </Button>
-            <Button type="button" onClick={() => setShowSubmitDialog(true)}>
+          ) : null}
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            className="h-10 w-10 shrink-0 px-0 lg:hidden"
+            aria-label="答题卡"
+            onClick={() => setShowAnswerSheet(true)}
+          >
+            <Grid3X3 data-icon="inline-start" />
+          </Button>
+          {!isResultMode ? (
+            <Button
+              type="button"
+              size="sm"
+              className="h-10 w-10 shrink-0 px-0 sm:w-auto sm:px-3"
+              aria-label="提交"
+              onClick={() => setShowSubmitDialog(true)}
+            >
               <Send data-icon="inline-start" />
-              提交
+              <span className="hidden sm:inline">提交</span>
             </Button>
+          ) : null}
+        </div>
+      </div>
+
+      {showAnswerSheet ? (
+        <div className="fixed inset-0 z-40 flex items-end bg-background/70 p-0 backdrop-blur-sm lg:hidden">
+          <div className="max-h-[82vh] w-full rounded-t-xl border bg-card p-4 shadow-lg">
+            <div className="mx-auto mb-3 h-1 w-10 rounded-full bg-muted-foreground/30" />
+            <div className="flex max-h-[calc(82vh-2rem)] flex-col gap-3 overflow-hidden">
+              {answerSheetContent}
+              <Button type="button" variant="outline" className="w-full" onClick={() => setShowAnswerSheet(false)}>
+                收起答题卡
+              </Button>
+            </div>
           </div>
         </div>
       ) : null}
 
       {showSubmitDialog ? (
-        <div className="fixed inset-0 grid place-items-center bg-background/80 p-4 backdrop-blur-sm">
+        <div className="fixed inset-0 z-50 grid place-items-center bg-background/80 p-4 backdrop-blur-sm">
           <Card className="w-full max-w-md">
             <CardHeader>
               <CardTitle>{completionRate < 0.5 ? "完成率不足 50%" : "确认提交练习"}</CardTitle>
