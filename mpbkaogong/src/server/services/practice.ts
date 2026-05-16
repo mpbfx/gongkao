@@ -60,6 +60,44 @@ function getSessionModel(
   );
 }
 
+function paperQuestionForAnswer(
+  answer: {
+    question: {
+      tag?: { name: string } | null;
+      paperQuestions?: Array<{
+        paperId: string;
+        sectionName: string | null;
+        sortOrder: number;
+      }>;
+    };
+  },
+  paperId?: string | null
+) {
+  if (!paperId) {
+    return null;
+  }
+
+  return answer.question.paperQuestions?.find((item) => item.paperId === paperId) ?? null;
+}
+
+function sectionNameForAnswer(
+  answer: {
+    question: {
+      tag?: { name: string } | null;
+      paperQuestions?: Array<{
+        paperId: string;
+        sectionName: string | null;
+        sortOrder: number;
+      }>;
+    };
+  },
+  paperId?: string | null
+) {
+  const paperQuestion = paperQuestionForAnswer(answer, paperId);
+
+  return paperQuestion?.sectionName ?? answer.question.tag?.name ?? "综合";
+}
+
 export function sessionSummary(session: {
   id: string;
   title: string;
@@ -300,6 +338,7 @@ export async function getPracticeSessionDetail(user: AuthenticatedUser, sessionI
     model: getSessionModel(session.answers, session.paperId),
     questions: session.answers.map((answer) => ({
       sortOrder: answer.sortOrder,
+      sectionName: sectionNameForAnswer(answer, session.paperId),
       ...toQuestionDto(answer.question, includeAnswer),
     })),
     userAnswers: session.answers.map((answer) => ({

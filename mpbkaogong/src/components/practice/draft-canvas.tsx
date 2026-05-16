@@ -137,7 +137,7 @@ export function DraftCanvas({ open, onClose }: DraftCanvasProps) {
   }
 
   return (
-    <div className="fixed inset-0 bg-background/85 p-3 backdrop-blur-sm lg:p-6">
+    <div className="fixed inset-0 z-50 bg-background/85 p-3 backdrop-blur-sm lg:p-6">
       <div className="mx-auto flex h-full max-w-5xl flex-col overflow-hidden rounded-lg border bg-card shadow-lg">
         <div className="flex items-center justify-between gap-3 border-b px-3 py-2">
           <div className="min-w-0">

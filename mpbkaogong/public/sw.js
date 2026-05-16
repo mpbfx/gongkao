@@ -1,5 +1,17 @@
-const CACHE_NAME = "saduck-shell-v1";
+const CACHE_NAME = "saduck-shell-v2";
 const SHELL_URLS = ["/", "/icons/icon.svg", "/icons/maskable-icon.svg", "/manifest.webmanifest"];
+
+async function fetchAndCache(request) {
+  const response = await fetch(request);
+
+  if (response.ok) {
+    const copy = response.clone();
+    const cache = await caches.open(CACHE_NAME);
+    await cache.put(request, copy);
+  }
+
+  return response;
+}
 
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(SHELL_URLS)));
@@ -28,18 +40,22 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  if (["font", "image", "script", "style"].includes(request.destination)) {
+  if (url.pathname.startsWith("/_next/") || ["script", "style"].includes(request.destination)) {
+    event.respondWith(fetchAndCache(request).catch(() => caches.match(request)));
+    return;
+  }
+
+  if (["font", "image"].includes(request.destination)) {
     event.respondWith(
       caches.match(request).then((cached) => {
+        const nextResponse = fetchAndCache(request).catch(() => cached);
+
         if (cached) {
+          event.waitUntil(nextResponse);
           return cached;
         }
 
-        return fetch(request).then((response) => {
-          const copy = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(request, copy));
-          return response;
-        });
+        return nextResponse;
       })
     );
   }
