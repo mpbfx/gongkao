@@ -20,6 +20,8 @@
 - 用户答案。
 - 错题本。
 - 练习统计。
+- Agent 推荐、讲题消息和反馈。
+- Agent 后台配置。
 - 后台录题和批量导入。
 
 设计原则：
@@ -53,6 +55,13 @@ erDiagram
   PracticeSession ||--o{ PracticeAnswer : contains
   Question ||--o{ PracticeAnswer : answered
   Question ||--o{ WrongQuestion : wrong_as
+
+  User ||--o{ AgentRecommendation : receives
+  PracticeSession ||--o{ AgentRecommendation : produces
+  User ||--o{ AgentTutorMessage : asks
+  Question ||--o{ AgentTutorMessage : explains
+  User ||--o{ AgentFeedback : gives
+  AgentConfig ||--o{ AgentRecommendation : influences
 ```
 
 ## 3. 枚举设计
@@ -569,7 +578,143 @@ Auth.js Prisma Adapter 需要以下表：
 - `accuracy`
 - `lastPracticedAt`
 
-## 15. 导入与审计表
+## 15. Agent 业务结果表
+
+第一版只持久化 Agent 业务结果，不持久化完整模型过程。
+
+不入业务库的内容：
+
+- chain-of-thought。
+- LangGraph checkpoint。
+- LangSmith trace。
+- 完整 prompt 调试包。
+- 模型中间步骤。
+
+### AgentConfig
+
+用途：保存后台可配置的 Agent 参数。
+
+字段：
+
+- `id`
+- `key`
+- `valueJson`
+- `description`
+- `updatedByUserId`
+- `createdAt`
+- `updatedAt`
+
+说明：
+
+- `key` 唯一，例如 `coach.diagnosisWindow`。
+- `valueJson` 保存结构化配置，例如 `recentSessionLimit`、`recentDays`、`minAnswersPerTag`、`maxRecommendations`、`slowTimeMultiplier`。
+- 服务层必须提供代码默认值，配置缺失或非法时不能阻塞 Agent 运行。
+- 第一版默认诊断窗口为近 20 场已提交练习 + 近 7 天趋势。
+
+唯一约束：
+
+- `key`
+
+索引：
+
+- `updatedByUserId`
+- `updatedAt`
+
+### AgentRecommendation
+
+用途：保存学习教练 Agent 给用户生成的训练推荐。
+
+字段：
+
+- `id`
+- `userId`
+- `sourceSessionId`
+- `type`
+- `title`
+- `configSnapshotJson`
+- `evidenceJson`
+- `actionJson`
+- `confidence`
+- `status`
+- `clickedAt`
+- `startedSessionId`
+- `completedAt`
+- `createdAt`
+- `updatedAt`
+
+说明：
+
+- `sourceSessionId` 可关联触发推荐的练习会话。
+- `configSnapshotJson` 保存本次推荐使用的关键配置快照，例如诊断窗口和阈值，便于后续评估。
+- `actionJson` 保存可执行动作，例如专项练习、错题练习或背题模式的参数。
+- `status` 可使用 `PENDING`、`CLICKED`、`STARTED`、`COMPLETED`、`DISMISSED`。
+- 不保存模型推理过程，只保存用户可见推荐和可评估状态。
+- 推荐生成时不创建练习会话；用户点击推荐动作后再创建 `PracticeSession`，并写入 `startedSessionId`。
+
+索引：
+
+- `userId`
+- `sourceSessionId`
+- `status`
+- `createdAt`
+
+### AgentTutorMessage
+
+用途：保存讲题助教 Agent 的单题问答业务结果。
+
+字段：
+
+- `id`
+- `userId`
+- `questionId`
+- `sessionId`
+- `role`
+- `content`
+- `metadataJson`
+- `createdAt`
+
+说明：
+
+- `role` 可使用 `USER` 或 `ASSISTANT`。
+- `content` 保存用户问题或助教回答。
+- `metadataJson` 只保存业务元数据，例如快捷追问、回答结构、是否缺少官方解析。
+- 不保存完整 prompt、模型中间步骤或 chain-of-thought。
+
+索引：
+
+- `userId`
+- `questionId`
+- `sessionId`
+- `createdAt`
+
+### AgentFeedback
+
+用途：保存用户对推荐或讲题回答的反馈。
+
+字段：
+
+- `id`
+- `userId`
+- `targetType`
+- `targetId`
+- `rating`
+- `reason`
+- `createdAt`
+
+说明：
+
+- `targetType` 可使用 `RECOMMENDATION` 或 `TUTOR_MESSAGE`。
+- `rating` 可使用 `HELPFUL`、`NOT_HELPFUL` 或 `NEUTRAL`。
+- `reason` 保存用户选择的原因标签或短文本。
+
+索引：
+
+- `userId`
+- `targetType + targetId`
+- `rating`
+- `createdAt`
+
+## 16. 导入与审计表
 
 ### ImportJob
 
@@ -594,7 +739,7 @@ Auth.js Prisma Adapter 需要以下表：
 - 后台批量导入题目、试卷、分类。
 - 失败时可追踪错误。
 
-## 16. 关键索引汇总
+## 17. 关键索引汇总
 
 题库查询：
 
@@ -625,7 +770,15 @@ Auth.js Prisma Adapter 需要以下表：
 - `UserTagStats.userId + tagId`
 - `UserStatsSnapshot.userId + snapshotAt`
 
-## 17. 删除与归档策略
+Agent 查询：
+
+- `AgentConfig.key`
+- `AgentRecommendation.userId + createdAt`
+- `AgentRecommendation.userId + status`
+- `AgentTutorMessage.userId + questionId`
+- `AgentFeedback.targetType + targetId`
+
+## 18. 删除与归档策略
 
 题库内容：
 
@@ -644,7 +797,13 @@ Auth.js Prisma Adapter 需要以下表：
 - 保留最近 90 天详细错误。
 - 长期只保留摘要。
 
-## 18. Prisma Schema 草案
+Agent 数据：
+
+- Agent 业务结果跟随用户数据归属。
+- 用户删除账号时级联删除推荐、讲题消息和反馈。
+- LangSmith trace 不作为业务数据，不承担用户可见历史的唯一来源。
+
+## 19. Prisma Schema 草案
 
 以下 schema 是第一版落地草案，后续可按实际开发继续细化。
 
@@ -717,6 +876,9 @@ model User {
   wrongQuestions    WrongQuestion[]
   statsSnapshots    UserStatsSnapshot[]
   tagStats          UserTagStats[]
+  agentRecommendations AgentRecommendation[]
+  agentTutorMessages   AgentTutorMessage[]
+  agentFeedback        AgentFeedback[]
   importJobs        ImportJob[]
 }
 
@@ -834,6 +996,7 @@ model Question {
   practiceAnswers PracticeAnswer[]
   wrongQuestions  WrongQuestion[]
   dailyQuestions  DailyPracticeQuestion[]
+  agentTutorMessages AgentTutorMessage[]
 
   @@index([tagId])
   @@index([materialId])
@@ -949,6 +1112,9 @@ model PracticeSession {
   user    User             @relation(fields: [userId], references: [id], onDelete: Cascade)
   paper   Paper?           @relation(fields: [paperId], references: [id])
   answers PracticeAnswer[]
+  sourceAgentRecommendations  AgentRecommendation[] @relation("AgentRecommendationSource")
+  startedAgentRecommendations AgentRecommendation[] @relation("AgentRecommendationStarted")
+  agentTutorMessages          AgentTutorMessage[]
 
   @@index([userId])
   @@index([mode])
@@ -1046,6 +1212,83 @@ model UserTagStats {
   @@index([lastPracticedAt])
 }
 
+model AgentConfig {
+  id              String   @id @default(cuid())
+  key             String   @unique
+  valueJson       Json
+  description     String?
+  updatedByUserId String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([updatedByUserId])
+  @@index([updatedAt])
+}
+
+model AgentRecommendation {
+  id               String    @id @default(cuid())
+  userId           String
+  sourceSessionId  String?
+  type             String
+  title            String
+  configSnapshotJson Json?
+  evidenceJson     Json?
+  actionJson       Json
+  confidence       String
+  status           String    @default("PENDING")
+  clickedAt        DateTime?
+  startedSessionId String?
+  completedAt      DateTime?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  user          User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  sourceSession PracticeSession? @relation("AgentRecommendationSource", fields: [sourceSessionId], references: [id])
+  startedSession PracticeSession? @relation("AgentRecommendationStarted", fields: [startedSessionId], references: [id])
+
+  @@index([userId])
+  @@index([sourceSessionId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model AgentTutorMessage {
+  id           String   @id @default(cuid())
+  userId       String
+  questionId   String
+  sessionId    String?
+  role         String
+  content      String   @db.Text
+  metadataJson Json?
+  createdAt    DateTime @default(now())
+
+  user     User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  question Question         @relation(fields: [questionId], references: [id])
+  session  PracticeSession? @relation(fields: [sessionId], references: [id])
+
+  @@index([userId])
+  @@index([questionId])
+  @@index([sessionId])
+  @@index([createdAt])
+}
+
+model AgentFeedback {
+  id         String   @id @default(cuid())
+  userId     String
+  targetType String
+  targetId   String
+  rating     String
+  reason     String?
+  createdAt  DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([targetType, targetId])
+  @@index([rating])
+  @@index([createdAt])
+}
+
 model ImportJob {
   id          String   @id @default(cuid())
   userId      String
@@ -1067,7 +1310,7 @@ model ImportJob {
 }
 ```
 
-## 19. 后续待确认
+## 20. 后续待确认
 
 开发前需要再确认：
 
@@ -1077,3 +1320,4 @@ model ImportJob {
 - 是否需要收藏题目；如果需要，可新增 `FavoriteQuestion`。
 - 是否需要题目评论/笔记；如果需要，可新增 `QuestionNote`。
 - 是否需要全文搜索；第一版可用 MySQL，后期接 Meilisearch。
+- Agent 业务结果保留周期和用户导出/删除策略。
