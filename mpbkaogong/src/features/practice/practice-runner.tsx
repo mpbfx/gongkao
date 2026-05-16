@@ -751,6 +751,15 @@ export function PracticeRunner({
                 </AlertDescription>
               </Alert>
             ) : null}
+            <DraftCanvas
+              open={showDraftCanvas}
+              value={currentScratch}
+              readOnly={isResultMode}
+              questionLabel={`第 ${currentIndex + 1} 题`}
+              variant="overlay"
+              onChange={updateCurrentScratch}
+              onClose={() => setShowDraftCanvas(false)}
+            />
             {isPracticePaused ? (
               <div className="absolute inset-0 grid place-items-center bg-card/90 p-6 backdrop-blur-sm">
                 <div className="flex flex-col items-center gap-3 text-center">
@@ -935,15 +944,6 @@ export function PracticeRunner({
         </div>
       ) : null}
 
-      <DraftCanvas
-        open={showDraftCanvas}
-        value={currentScratch}
-        readOnly={isResultMode}
-        questionLabel={`第 ${currentIndex + 1} 题`}
-        variant="overlay"
-        onChange={updateCurrentScratch}
-        onClose={() => setShowDraftCanvas(false)}
-      />
     </main>
   );
 }
