@@ -1,6 +1,6 @@
 "use client";
 
-import { Eraser, Eye, EyeOff, PenLine, RotateCcw, Trash2, X } from "lucide-react";
+import { PenLine, Trash2, X } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -13,9 +13,6 @@ export type DraftCanvasValue = {
   height: number;
   updatedAt: string;
 };
-
-type DraftTool = "pen" | "eraser";
-type DraftBackground = "transparent" | "paper";
 
 type DraftCanvasProps = {
   open: boolean;
@@ -39,12 +36,12 @@ function getPoint(event: React.PointerEvent<HTMLCanvasElement>, canvas: HTMLCanv
   };
 }
 
-function configureContext(context: CanvasRenderingContext2D, tool: DraftTool) {
+function configureContext(context: CanvasRenderingContext2D) {
   context.lineCap = "round";
   context.lineJoin = "round";
-  context.lineWidth = tool === "eraser" ? 18 : 3;
+  context.lineWidth = 3;
   context.strokeStyle = "hsl(0 0% 12%)";
-  context.globalCompositeOperation = tool === "eraser" ? "destination-out" : "source-over";
+  context.globalCompositeOperation = "source-over";
 }
 
 function exportCanvas(canvas: HTMLCanvasElement): DraftCanvasValue | null {
@@ -121,10 +118,6 @@ export function DraftCanvas({
   const restoreKeyRef = useRef<string | null>(null);
   const undoStackRef = useRef<ImageData[]>([]);
   const [isDrawing, setIsDrawing] = useState(false);
-  const [tool, setTool] = useState<DraftTool>("pen");
-  const [background, setBackground] = useState<DraftBackground>("transparent");
-  const [isDimmed, setIsDimmed] = useState(false);
-  const [undoCount, setUndoCount] = useState(0);
 
   const emitChange = useCallback(() => {
     const canvas = canvasRef.current;
@@ -187,19 +180,20 @@ export function DraftCanvas({
         return;
       }
 
-      context.setTransform(ratio, 0, 0, ratio, 0, 0);
-      configureContext(context, tool);
-
       if (previous.width > 0 && previous.height > 0) {
-        context.drawImage(previous, 0, 0, rect.width, rect.height);
+        context.setTransform(1, 0, 0, 1, 0, 0);
+        context.drawImage(previous, 0, 0, canvas.width, canvas.height);
       }
+
+      context.setTransform(ratio, 0, 0, ratio, 0, 0);
+      configureContext(context);
     };
 
     resize();
     window.addEventListener("resize", resize);
 
     return () => window.removeEventListener("resize", resize);
-  }, [open, tool]);
+  }, [open]);
 
   useEffect(() => {
     if (!open) {
@@ -226,7 +220,6 @@ export function DraftCanvas({
 
     restoreKeyRef.current = restoreKey;
     undoStackRef.current = [];
-    setUndoCount(0);
     context.clearRect(0, 0, canvas.width, canvas.height);
 
     if (!value?.dataUrl) {
@@ -237,23 +230,10 @@ export function DraftCanvas({
     image.onload = () => {
       context.clearRect(0, 0, canvas.width, canvas.height);
       context.drawImage(image, 0, 0, canvas.width / (window.devicePixelRatio || 1), canvas.height / (window.devicePixelRatio || 1));
-      configureContext(context, tool);
+      configureContext(context);
     };
     image.src = value.dataUrl;
-  }, [open, tool, value?.dataUrl]);
-
-  useEffect(() => {
-    if (!open) {
-      return;
-    }
-
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-
-    return () => {
-      document.body.style.overflow = previousOverflow;
-    };
-  }, [open]);
+  }, [open, value?.dataUrl]);
 
   if (!open) {
     return null;
@@ -267,7 +247,6 @@ export function DraftCanvas({
     }
 
     undoStackRef.current = [...undoStackRef.current.slice(-9), context.getImageData(0, 0, canvas.width, canvas.height)];
-    setUndoCount(undoStackRef.current.length);
   }
 
   function clearCanvas() {
@@ -288,25 +267,6 @@ export function DraftCanvas({
     onChange?.(null);
   }
 
-  function undo() {
-    if (readOnly) {
-      return;
-    }
-
-    const canvas = canvasRef.current;
-    const context = canvas?.getContext("2d");
-    const previous = undoStackRef.current.pop();
-
-    if (!canvas || !context || !previous) {
-      return;
-    }
-
-    context.putImageData(previous, 0, 0);
-    configureContext(context, tool);
-    setUndoCount(undoStackRef.current.length);
-    scheduleChange();
-  }
-
   function startDrawing(event: React.PointerEvent<HTMLCanvasElement>) {
     if (readOnly) {
       return;
@@ -322,7 +282,7 @@ export function DraftCanvas({
 
     pushUndoSnapshot(canvas);
     canvas.setPointerCapture(event.pointerId);
-    configureContext(context, tool);
+    configureContext(context);
     context.beginPath();
     context.moveTo(point.x, point.y);
     setIsDrawing(true);
@@ -369,87 +329,34 @@ export function DraftCanvas({
     onClose();
   }
 
-  const hasUndo = undoCount > 0;
-  const isPaper = background === "paper";
   const isReadonly = readOnly || variant !== "overlay";
 
   return (
-    <div className="fixed inset-x-0 bottom-28 top-16 z-40 px-3 md:bottom-24 lg:left-[var(--app-sidebar-width)] lg:right-[calc(320px_+_1.5rem)] lg:top-20 lg:px-6">
-      <div
-        className={cn(
-          "mx-auto flex h-full max-w-5xl flex-col overflow-hidden rounded-lg border shadow-lg",
-          isPaper ? "bg-card" : isDimmed ? "bg-background/55 backdrop-blur-[2px]" : "bg-background/20 backdrop-blur-[1px]"
-        )}
-      >
-        <div className="flex flex-wrap items-center justify-between gap-2 border-b bg-card/95 px-3 py-2 backdrop-blur">
-          <div className="min-w-0">
-            <div className="truncate text-sm font-medium">草稿纸{questionLabel ? ` · ${questionLabel}` : ""}</div>
-            <div className="text-xs text-muted-foreground">{isReadonly ? "只读回看" : "笔迹会按题自动保存"}</div>
+    <div className="pointer-events-none fixed inset-x-0 bottom-28 top-16 z-40 md:bottom-24 lg:left-[var(--app-sidebar-width)] lg:right-[320px] lg:top-20">
+      <div className="relative mx-auto h-full max-w-5xl">
+        <div className="pointer-events-auto absolute right-3 top-3 z-10 flex items-center gap-1 rounded-md border bg-background/90 p-1 shadow-sm lg:right-0">
+          <div className="hidden max-w-28 truncate px-2 text-xs text-muted-foreground sm:block">
+            {questionLabel ?? "草稿"}
           </div>
-          <div className="flex shrink-0 flex-wrap justify-end gap-1.5">
-            {!isReadonly ? (
-              <>
-                <Button
-                  type="button"
-                  variant={tool === "pen" ? "secondary" : "ghost"}
-                  size="icon-sm"
-                  aria-label="画笔"
-                  onClick={() => setTool("pen")}
-                >
-                  <PenLine data-icon="icon" />
-                </Button>
-                <Button
-                  type="button"
-                  variant={tool === "eraser" ? "secondary" : "ghost"}
-                  size="icon-sm"
-                  aria-label="橡皮"
-                  onClick={() => setTool("eraser")}
-                >
-                  <Eraser data-icon="icon" />
-                </Button>
-                <Button
-                  type="button"
-                  variant="ghost"
-                  size="icon-sm"
-                  aria-label="撤销"
-                  disabled={!hasUndo}
-                  onClick={undo}
-                >
-                  <RotateCcw data-icon="icon" />
-                </Button>
-                <Button type="button" variant="ghost" size="icon-sm" aria-label="清空草稿" onClick={clearCanvas}>
-                  <Trash2 data-icon="icon" />
-                </Button>
-              </>
-            ) : null}
-            <Button
-              type="button"
-              variant={isDimmed ? "secondary" : "ghost"}
-              size="icon-sm"
-              aria-label={isDimmed ? "降低遮罩" : "增强遮罩"}
-              onClick={() => setIsDimmed((current) => !current)}
-            >
-              {isDimmed ? <Eye data-icon="icon" /> : <EyeOff data-icon="icon" />}
-            </Button>
-            <Button
-              type="button"
-              variant={isPaper ? "secondary" : "ghost"}
-              size="sm"
-              onClick={() => setBackground((current) => (current === "paper" ? "transparent" : "paper"))}
-            >
-              {isPaper ? "白底" : "透明"}
-            </Button>
-            <Button type="button" variant="ghost" size="icon-sm" aria-label="关闭草稿纸" onClick={closeCanvas}>
-              <X data-icon="icon" />
-            </Button>
-          </div>
+          {!isReadonly ? (
+            <>
+              <Button type="button" variant="secondary" size="icon-sm" aria-label="画笔">
+                <PenLine data-icon="icon" />
+              </Button>
+              <Button type="button" variant="ghost" size="icon-sm" aria-label="清空草稿" onClick={clearCanvas}>
+                <Trash2 data-icon="icon" />
+              </Button>
+            </>
+          ) : null}
+          <Button type="button" variant="ghost" size="icon-sm" aria-label="关闭草稿纸" onClick={closeCanvas}>
+            <X data-icon="icon" />
+          </Button>
         </div>
         <canvas
           ref={canvasRef}
           className={cn(
-            "min-h-0 flex-1 touch-none",
-            isPaper ? "bg-background" : "bg-[radial-gradient(circle_at_1px_1px,rgba(120,120,120,0.22)_1px,transparent_0)] [background-size:18px_18px]",
-            isReadonly && "cursor-default"
+            "pointer-events-auto h-full w-full touch-none bg-transparent",
+            isReadonly && "pointer-events-none"
           )}
           aria-label="草稿纸画布"
           onPointerDown={startDrawing}

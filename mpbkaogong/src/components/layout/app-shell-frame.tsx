@@ -10,8 +10,14 @@ import {
   PanelLeftOpen,
   User,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
+import {
+  APP_HEADER_CHANGE_EVENT,
+  AppHeaderContext,
+  type AppHeaderContent,
+  type AppHeaderWindow,
+} from "@/components/layout/app-header-context";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
@@ -32,10 +38,23 @@ export function AppShellFrame({
   userMenu: React.ReactNode;
 }) {
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [header, setHeader] = useState<AppHeaderContent | null>(() =>
+    typeof window === "undefined" ? null : ((window as AppHeaderWindow).__saduckAppHeader ?? null)
+  );
+  const headerContextValue = useMemo(() => ({ setHeader }), []);
 
   function toggleSidebar() {
     setIsCollapsed((current) => !current);
   }
+
+  useEffect(() => {
+    function handleHeaderChange(event: Event) {
+      setHeader((event as CustomEvent<AppHeaderContent | null>).detail ?? null);
+    }
+
+    window.addEventListener(APP_HEADER_CHANGE_EVENT, handleHeaderChange);
+    return () => window.removeEventListener(APP_HEADER_CHANGE_EVENT, handleHeaderChange);
+  }, []);
 
   return (
     <div
@@ -97,14 +116,20 @@ export function AppShellFrame({
         </div>
       </aside>
 
-      <div className="flex min-h-dvh flex-col transition-[padding] duration-200 lg:pl-[var(--app-sidebar-width)]">
-        <header className="sticky top-0 border-b bg-background/95 backdrop-blur">
+      <AppHeaderContext.Provider value={headerContextValue}>
+        <div className="flex min-h-dvh flex-col transition-[padding] duration-200 lg:pl-[var(--app-sidebar-width)]">
+        <header className="sticky top-0 z-30 border-b bg-background/95 backdrop-blur">
           <div className="flex h-14 items-center justify-between px-4 md:px-6">
-            <div className="flex items-center gap-2">
+            <div className="flex min-w-0 items-center gap-2">
               <div className="grid size-8 place-items-center rounded-lg bg-primary text-sm text-primary-foreground lg:hidden">
                 题
               </div>
-              <span className="font-medium">题库工作台</span>
+              <div className="flex min-w-0 flex-col">
+                <span className="truncate font-medium leading-tight">{header?.title ?? "题库工作台"}</span>
+                {header?.subtitle ? (
+                  <span className="truncate text-xs leading-tight text-muted-foreground">{header.subtitle}</span>
+                ) : null}
+              </div>
             </div>
             {userMenu}
           </div>
@@ -134,6 +159,7 @@ export function AppShellFrame({
           </div>
         </nav>
       </div>
+      </AppHeaderContext.Provider>
 
     </div>
   );
