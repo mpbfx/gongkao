@@ -191,6 +191,48 @@ server/
 - Repository：Prisma 查询封装。
 - Policy：权限、会员、资源归属校验。
 
+### 4.3 Agent 架构
+
+Agent 能力作为现有 Next.js 单体后端的一个服务域实现，不在第一版拆分独立 Python 服务。
+
+核心技术栈：
+
+- LangGraph.js：Agent 核心编排框架，用于状态图、工具节点、条件分支、checkpoint 和 human-in-the-loop 扩展点。
+- LangSmith：Agent tracing、debug、数据集回放和评测。
+- OpenAI Responses API：默认模型调用接口，用于讲题、诊断表达和结构化输出。
+- Vercel AI SDK：前端 streaming UI 和消息流适配。
+- Zod：Agent 工具参数、状态和输出 schema。
+- Prisma / MySQL：Agent 读取练习、错题、统计等业务数据，并写入推荐记录、反馈和讲题记录。
+
+推荐目录：
+
+```txt
+server/
+  agent/
+    graph/
+      coach-graph.ts
+      tutor-graph.ts
+      state.ts
+    tools/
+      get-user-practice-stats.ts
+      get-question-context.ts
+      create-practice-session.ts
+    prompts/
+      coach.ts
+      tutor.ts
+    schemas/
+      coach-output.ts
+      tutor-output.ts
+```
+
+架构原则：
+
+- 学习教练 Agent 由规则推荐引擎主导，LLM 只负责解释和表达。
+- 讲题助教 Agent 可以使用 LLM 生成讲解，但必须受题目上下文、官方答案和输出 schema 约束。
+- Agent 工具只能通过服务层访问业务数据，不直接在 prompt 中拼接未授权数据。
+- Agent 输出进入业务流程前必须通过 Zod 校验。
+- LangSmith trace 用于调试和评测，不作为业务事实来源。
+
 ## 5. 认证与权限
 
 认证方案：
