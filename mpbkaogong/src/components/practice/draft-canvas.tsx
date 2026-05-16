@@ -1,6 +1,6 @@
 "use client";
 
-import { PenLine, Trash2, X } from "lucide-react";
+import { Eraser, PenLine, RotateCcw, Trash2, X } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -25,6 +25,8 @@ type DraftCanvasProps = {
   onClose: () => void;
 };
 
+type DraftTool = "pen" | "eraser";
+
 const MAX_DATA_URL_LENGTH = 1_000_000;
 
 function getPoint(event: React.PointerEvent<HTMLCanvasElement>, canvas: HTMLCanvasElement) {
@@ -36,12 +38,12 @@ function getPoint(event: React.PointerEvent<HTMLCanvasElement>, canvas: HTMLCanv
   };
 }
 
-function configureContext(context: CanvasRenderingContext2D) {
+function configureContext(context: CanvasRenderingContext2D, tool: DraftTool) {
   context.lineCap = "round";
   context.lineJoin = "round";
-  context.lineWidth = 3;
+  context.lineWidth = tool === "eraser" ? 22 : 3;
   context.strokeStyle = "hsl(0 0% 12%)";
-  context.globalCompositeOperation = "source-over";
+  context.globalCompositeOperation = tool === "eraser" ? "destination-out" : "source-over";
 }
 
 function exportCanvas(canvas: HTMLCanvasElement): DraftCanvasValue | null {
@@ -118,6 +120,8 @@ export function DraftCanvas({
   const restoreKeyRef = useRef<string | null>(null);
   const undoStackRef = useRef<ImageData[]>([]);
   const [isDrawing, setIsDrawing] = useState(false);
+  const [tool, setTool] = useState<DraftTool>("pen");
+  const [undoCount, setUndoCount] = useState(0);
 
   const emitChange = useCallback(() => {
     const canvas = canvasRef.current;
@@ -186,14 +190,14 @@ export function DraftCanvas({
       }
 
       context.setTransform(ratio, 0, 0, ratio, 0, 0);
-      configureContext(context);
+      configureContext(context, tool);
     };
 
     resize();
     window.addEventListener("resize", resize);
 
     return () => window.removeEventListener("resize", resize);
-  }, [open]);
+  }, [open, tool]);
 
   useEffect(() => {
     if (!open) {
@@ -220,6 +224,7 @@ export function DraftCanvas({
 
     restoreKeyRef.current = restoreKey;
     undoStackRef.current = [];
+    setUndoCount(0);
     context.clearRect(0, 0, canvas.width, canvas.height);
 
     if (!value?.dataUrl) {
@@ -230,10 +235,10 @@ export function DraftCanvas({
     image.onload = () => {
       context.clearRect(0, 0, canvas.width, canvas.height);
       context.drawImage(image, 0, 0, canvas.width / (window.devicePixelRatio || 1), canvas.height / (window.devicePixelRatio || 1));
-      configureContext(context);
+      configureContext(context, tool);
     };
     image.src = value.dataUrl;
-  }, [open, value?.dataUrl]);
+  }, [open, tool, value?.dataUrl]);
 
   if (!open) {
     return null;
@@ -247,6 +252,7 @@ export function DraftCanvas({
     }
 
     undoStackRef.current = [...undoStackRef.current.slice(-9), context.getImageData(0, 0, canvas.width, canvas.height)];
+    setUndoCount(undoStackRef.current.length);
   }
 
   function clearCanvas() {
@@ -267,6 +273,27 @@ export function DraftCanvas({
     onChange?.(null);
   }
 
+  function undo() {
+    if (readOnly) {
+      return;
+    }
+
+    const canvas = canvasRef.current;
+    const context = canvas?.getContext("2d");
+    const previous = undoStackRef.current.pop();
+
+    if (!canvas || !context || !previous) {
+      return;
+    }
+
+    context.setTransform(1, 0, 0, 1, 0, 0);
+    context.putImageData(previous, 0, 0);
+    context.setTransform(window.devicePixelRatio || 1, 0, 0, window.devicePixelRatio || 1, 0, 0);
+    configureContext(context, tool);
+    setUndoCount(undoStackRef.current.length);
+    scheduleChange();
+  }
+
   function startDrawing(event: React.PointerEvent<HTMLCanvasElement>) {
     if (readOnly) {
       return;
@@ -282,7 +309,7 @@ export function DraftCanvas({
 
     pushUndoSnapshot(canvas);
     canvas.setPointerCapture(event.pointerId);
-    configureContext(context);
+    configureContext(context, tool);
     context.beginPath();
     context.moveTo(point.x, point.y);
     setIsDrawing(true);
@@ -330,18 +357,44 @@ export function DraftCanvas({
   }
 
   const isReadonly = readOnly || variant !== "overlay";
+  const hasUndo = undoCount > 0;
 
   return (
     <div className="pointer-events-none fixed inset-x-0 bottom-28 top-16 z-40 md:bottom-24 lg:left-[var(--app-sidebar-width)] lg:right-[320px] lg:top-20">
       <div className="relative mx-auto h-full max-w-5xl">
-        <div className="pointer-events-auto absolute right-3 top-3 z-10 flex items-center gap-1 rounded-md border bg-background/90 p-1 shadow-sm lg:right-0">
-          <div className="hidden max-w-28 truncate px-2 text-xs text-muted-foreground sm:block">
+        <div className="pointer-events-auto absolute right-2 top-1/2 z-10 flex -translate-y-1/2 flex-col items-center gap-1 rounded-md border bg-background/90 p-1 shadow-sm lg:-right-2">
+          <div className="hidden max-w-16 truncate px-1 py-1 text-center text-[0.7rem] text-muted-foreground sm:block">
             {questionLabel ?? "草稿"}
           </div>
           {!isReadonly ? (
             <>
-              <Button type="button" variant="secondary" size="icon-sm" aria-label="画笔">
+              <Button
+                type="button"
+                variant={tool === "pen" ? "secondary" : "ghost"}
+                size="icon-sm"
+                aria-label="画笔"
+                onClick={() => setTool("pen")}
+              >
                 <PenLine data-icon="icon" />
+              </Button>
+              <Button
+                type="button"
+                variant={tool === "eraser" ? "secondary" : "ghost"}
+                size="icon-sm"
+                aria-label="橡皮"
+                onClick={() => setTool("eraser")}
+              >
+                <Eraser data-icon="icon" />
+              </Button>
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon-sm"
+                aria-label="撤销"
+                disabled={!hasUndo}
+                onClick={undo}
+              >
+                <RotateCcw data-icon="icon" />
               </Button>
               <Button type="button" variant="ghost" size="icon-sm" aria-label="清空草稿" onClick={clearCanvas}>
                 <Trash2 data-icon="icon" />
