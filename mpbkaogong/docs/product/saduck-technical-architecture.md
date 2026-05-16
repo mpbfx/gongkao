@@ -342,6 +342,14 @@ sequenceDiagram
 ```ts
 type PracticeMode = "exam" | "practice" | "review" | "memorize";
 
+type PracticeScratchDraft = {
+  dataUrl: string;
+  mimeType: string;
+  width: number;
+  height: number;
+  updatedAt: string;
+};
+
 type PracticeRuntimeState = {
   sessionId: string;
   mode: PracticeMode;
@@ -349,6 +357,7 @@ type PracticeRuntimeState = {
   elapsedSeconds: number;
   answers: Record<string, UserAnswer>;
   questionTimeSpent: Record<string, number>;
+  scratchByQuestionId: Record<string, PracticeScratchDraft>;
   submitted: boolean;
   draftEnabled: boolean;
 };
@@ -357,7 +366,7 @@ type PracticeRuntimeState = {
 状态保存策略：
 
 - 服务端保存已创建的练习会话。
-- 前端 IndexedDB 保存进行中的答题进度。
+- 前端 IndexedDB 保存进行中的答题进度和按题草稿纸。
 - 用户提交时以服务端为准。
 - 断网或刷新后优先恢复本地未提交状态。
 
