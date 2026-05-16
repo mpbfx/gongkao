@@ -1,7 +1,6 @@
 import { Boxes, FileUp, HelpCircle, LayoutDashboard, ScrollText } from "lucide-react";
 import Link from "next/link";
 
-import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 
@@ -45,7 +44,6 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
           })}
         </nav>
         <div className="flex flex-col gap-2 p-3">
-          <Badge variant="outline">Phase 7</Badge>
           <Link href="/" className="text-sm text-muted-foreground hover:text-foreground">
             返回前台
           </Link>
