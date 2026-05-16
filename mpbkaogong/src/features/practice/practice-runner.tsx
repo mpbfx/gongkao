@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 
+import { useAppHeader } from "@/components/layout/app-header-context";
 import { DraftCanvas } from "@/components/practice/draft-canvas";
 import { RichHtml } from "@/components/question/rich-html";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
@@ -181,6 +182,7 @@ export function PracticeRunner({
   const [isOnline, setIsOnline] = useState(() =>
     typeof window === "undefined" ? true : window.navigator.onLine
   );
+  const appHeader = useAppHeader();
 
   const questions = initialSession.questions;
   const question = questions[currentIndex];
@@ -521,6 +523,18 @@ export function PracticeRunner({
     : isPracticePaused
       ? "已暂停"
       : formatSeconds(elapsedSeconds);
+  const headerSubtitle = `第 ${currentIndex + 1} / ${questions.length} 题${
+    question.sectionName ? ` · ${question.sectionName}` : ""
+  }`;
+
+  useEffect(() => {
+    appHeader?.setHeader({
+      title: initialSession.title,
+      subtitle: headerSubtitle,
+    });
+
+    return () => appHeader?.setHeader(null);
+  }, [appHeader, headerSubtitle, initialSession.title]);
 
   useEffect(() => {
     function updateOnlineState() {
@@ -666,18 +680,7 @@ export function PracticeRunner({
 
       <section className="flex min-w-0 flex-col gap-4">
         <Card>
-          <CardHeader>
-            <div className="flex flex-wrap items-start justify-between gap-3">
-              <div className="flex flex-col gap-1">
-                <CardTitle>{initialSession.title}</CardTitle>
-                <CardDescription>
-                  第 {currentIndex + 1} / {questions.length} 题
-                  {question.sectionName ? ` · ${question.sectionName}` : ""}
-                </CardDescription>
-              </div>
-            </div>
-          </CardHeader>
-          <CardContent className="relative flex flex-col gap-4">
+          <CardContent className="relative flex flex-col gap-4 pt-1">
             {question.materialHtml ? (
               <div className="rounded-lg bg-muted p-3">
                 {question.material?.title ? (
