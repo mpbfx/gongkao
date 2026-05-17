@@ -29,7 +29,7 @@ export default async function SpecialPracticePage() {
         <PageHeader
           eyebrow="专项提分"
           title="按知识点组一套更精准的练习"
-          description="选择知识点、题量和难度，系统会生成一组适合集中突破的训练。"
+          description="选择知识点和题量，系统会生成一组适合集中突破的训练。"
           actions={<DailyPracticeAction dailyPractice={dailyPractice} className="w-full md:w-auto" />}
         />
 

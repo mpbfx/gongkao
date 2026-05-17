@@ -9,6 +9,35 @@ type TagRow = {
   isMaterialOnly: boolean;
 };
 
+const hiddenStudentTagSlugs = new Set(["common-sense", "verbal", "judgement"]);
+
+const rootSortOrderByName = new Map([
+  ["常识判断", 10],
+  ["言语理解", 20],
+  ["数量关系", 30],
+  ["判断推理", 40],
+  ["资料分析", 50],
+]);
+
+const fallbackParentNameByTagName = new Map([
+  ["政治理论", "常识判断"],
+  ["公文", "常识判断"],
+  ["历史", "常识判断"],
+  ["管理", "常识判断"],
+  ["新思想", "常识判断"],
+  ["病语", "言语理解"],
+  ["歧义句", "言语理解"],
+  ["逻辑题空", "言语理解"],
+  ["不定方程", "数量关系"],
+  ["方阵问题", "数量关系"],
+  ["星期日期", "数量关系"],
+  ["牛吃草", "数量关系"],
+  ["集合推理", "判断推理"],
+  ["图像推理", "判断推理"],
+  ["论证缺陷", "判断推理"],
+  ["综合分析", "资料分析"],
+]);
+
 export type TagTreeNode = {
   id: string;
   name: string;
@@ -17,6 +46,26 @@ export type TagTreeNode = {
   questionCount: number;
   children: TagTreeNode[];
 };
+
+function normalizeStudentTags(tags: TagRow[]) {
+  const visibleTags = tags.filter((tag) => !hiddenStudentTagSlugs.has(tag.slug));
+  const rootIdByName = new Map(
+    visibleTags.filter((tag) => !tag.parentId).map((tag) => [tag.name, tag.id])
+  );
+
+  return visibleTags
+    .map((tag) => {
+      const fallbackParentName = !tag.parentId ? fallbackParentNameByTagName.get(tag.name) : undefined;
+      const fallbackParentId = fallbackParentName ? rootIdByName.get(fallbackParentName) : undefined;
+
+      return {
+        ...tag,
+        parentId: fallbackParentId && fallbackParentId !== tag.id ? fallbackParentId : tag.parentId,
+        sortOrder: rootSortOrderByName.get(tag.name) ?? tag.sortOrder,
+      };
+    })
+    .toSorted((first, second) => first.sortOrder - second.sortOrder || first.name.localeCompare(second.name, "zh-CN"));
+}
 
 export async function listActiveTagsTree() {
   const [tags, questions] = await Promise.all([
@@ -42,6 +91,7 @@ export async function listActiveTagsTree() {
     }),
   ]);
 
+  const normalizedTags = normalizeStudentTags(tags);
   const directCounts = new Map<string, number>();
   for (const question of questions) {
     if (question.tagId) {
@@ -50,7 +100,7 @@ export async function listActiveTagsTree() {
   }
 
   const nodeById = new Map<string, TagTreeNode>();
-  for (const tag of tags) {
+  for (const tag of normalizedTags) {
     nodeById.set(tag.id, {
       id: tag.id,
       name: tag.name,
@@ -62,7 +112,7 @@ export async function listActiveTagsTree() {
   }
 
   const roots: TagTreeNode[] = [];
-  for (const tag of tags) {
+  for (const tag of normalizedTags) {
     const node = nodeById.get(tag.id);
 
     if (!node) {
@@ -92,7 +142,7 @@ export async function listActiveTagsTree() {
 }
 
 export async function listActiveTagsFlat() {
-  return prisma.questionTag.findMany({
+  const tags = await prisma.questionTag.findMany({
     where: { isActive: true },
     orderBy: [{ sortOrder: "asc" }, { name: "asc" }],
     select: {
@@ -103,5 +153,7 @@ export async function listActiveTagsFlat() {
       sortOrder: true,
       isMaterialOnly: true,
     },
-  }) satisfies Promise<TagRow[]>;
+  });
+
+  return normalizeStudentTags(tags) satisfies TagRow[];
 }

@@ -357,6 +357,11 @@ async function main() {
     },
   });
 
+  if (process.env.SEED_DEMO_CONTENT !== "true") {
+    console.log("Seeded demo/admin users. Skipped demo question content.");
+    return;
+  }
+
   for (const tag of tags) {
     await prisma.questionTag.upsert({
       where: { slug: tag.slug },
@@ -509,4 +514,3 @@ main()
     await prisma.$disconnect();
     process.exit(1);
   });
-

@@ -52,13 +52,6 @@ type VisibleTagNode = Omit<TagNode, "children"> & {
   children: VisibleTagNode[];
 };
 
-const difficulties = [
-  { label: "不限", value: "" },
-  { label: "易", value: "EASY" },
-  { label: "中", value: "MEDIUM" },
-  { label: "难", value: "HARD" },
-];
-
 function flattenTags(tags: TagNode[]) {
   const result: TagNode[] = [];
 
@@ -190,7 +183,6 @@ export function SpecialPracticeBuilder({ tags }: { tags: TagNode[] }) {
   const router = useRouter();
   const flatTags = useMemo(() => flattenTags(tags), [tags]);
   const tagById = useMemo(() => new Map(flatTags.map((tag) => [tag.id, tag])), [flatTags]);
-  const [difficulty, setDifficulty] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [expanded, setExpanded] = useState<Set<string>>(() => new Set());
   const [selected, setSelected] = useState<Record<string, number>>({});
@@ -268,7 +260,6 @@ export function SpecialPracticeBuilder({ tags }: { tags: TagNode[] }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           mode: "SPECIAL",
-          difficulty: difficulty || null,
           reqs: Object.entries(selected).map(([tagId, num]) => ({ tagId, num })),
         }),
       });
@@ -292,7 +283,6 @@ export function SpecialPracticeBuilder({ tags }: { tags: TagNode[] }) {
     }
   }
 
-  const difficultyLabel = difficulties.find((item) => item.value === difficulty)?.label ?? "不限";
   const startDisabled = isPending || selectedCount === 0 || hasMaterialMix;
 
   return (
@@ -302,34 +292,6 @@ export function SpecialPracticeBuilder({ tags }: { tags: TagNode[] }) {
           <CardHeader>
             <div className="flex flex-wrap items-center gap-2">
               <Badge variant="info">第 1 步</Badge>
-              <CardTitle>选择难度</CardTitle>
-            </div>
-            <CardDescription>默认不限难度；需要冲刺时再收窄为易、中、难。</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-4 rounded-lg border bg-muted p-1" role="group" aria-label="选择难度">
-              {difficulties.map((item) => (
-                <button
-                  key={item.value || "ALL"}
-                  type="button"
-                  aria-pressed={difficulty === item.value}
-                  className={cn(
-                    "h-11 rounded-md text-sm transition-colors outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 lg:h-8",
-                    difficulty === item.value && "bg-background shadow-sm"
-                  )}
-                  onClick={() => setDifficulty(item.value)}
-                >
-                  {item.label}
-                </button>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <div className="flex flex-wrap items-center gap-2">
-              <Badge variant="info">第 2 步</Badge>
               <CardTitle>选择知识点</CardTitle>
             </div>
             <CardDescription>
@@ -384,11 +346,11 @@ export function SpecialPracticeBuilder({ tags }: { tags: TagNode[] }) {
         <Card className="border-primary/20">
           <CardHeader>
             <div className="flex flex-wrap items-center gap-2">
-              <Badge variant="info">第 3 步</Badge>
+              <Badge variant="info">第 2 步</Badge>
               <CardTitle>确认题量</CardTitle>
             </div>
             <CardDescription>
-              已选 {selectedCount} 类 · 预计 {totalCount} 题 · 难度 {difficultyLabel}
+              已选 {selectedCount} 类 · 预计 {totalCount} 题
             </CardDescription>
           </CardHeader>
           <CardContent className="flex flex-col gap-4">
@@ -469,7 +431,7 @@ export function SpecialPracticeBuilder({ tags }: { tags: TagNode[] }) {
             <div className="text-sm font-medium">
               已选 {selectedCount} 类 · {totalCount} 题
             </div>
-            <div className="text-xs text-muted-foreground">难度 {difficultyLabel}</div>
+            <div className="text-xs text-muted-foreground">按当前知识点组卷</div>
           </div>
           <Button type="button" disabled={startDisabled} onClick={startSpecialPractice}>
             {isPending ? <LoaderCircle data-icon="inline-start" className="animate-spin" /> : <Play data-icon="inline-start" />}
