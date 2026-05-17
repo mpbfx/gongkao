@@ -1,0 +1,1151 @@
+- generic [ref=e1]:
+  - button "Open Next.js Dev Tools" [ref=e25] [cursor=pointer]:
+    - img [ref=e26]
+  - alert [ref=e29]
+  - generic [ref=e30]:
+    - link "跳到主要内容" [ref=e1518] [cursor=pointer]:
+      - /url: "#main-content"
+    - complementary [ref=e32]:
+      - generic [ref=e33]:
+        - generic [ref=e34]: 题
+        - generic [ref=e35]:
+          - generic [ref=e36]: 公考题库
+          - generic [ref=e37]: Question Bank
+      - separator [ref=e38]
+      - navigation [ref=e39]:
+        - link "首页" [ref=e40] [cursor=pointer]:
+          - /url: /
+          - img [ref=e41]
+          - generic [ref=e44]: 首页
+        - link "试卷" [ref=e45] [cursor=pointer]:
+          - /url: /question-bank/papers
+          - img [ref=e46]
+          - generic [ref=e49]: 试卷
+        - link "专项" [ref=e50] [cursor=pointer]:
+          - /url: /question-bank/special
+          - img [ref=e51]
+          - generic [ref=e53]: 专项
+        - link "错题" [ref=e54] [cursor=pointer]:
+          - /url: /question-bank/wrong
+          - img [ref=e55]
+          - generic [ref=e58]: 错题
+        - link "记录" [ref=e59] [cursor=pointer]:
+          - /url: /question-bank/records
+          - img [ref=e60]
+          - generic [ref=e62]: 记录
+        - link "我的" [ref=e63] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e64]
+          - generic [ref=e67]: 我的
+      - button "收起侧栏" [ref=e69] [cursor=pointer]:
+        - img
+        - text: 收起
+    - generic [ref=e70]:
+      - banner [ref=e71]:
+        - generic [ref=e72]:
+          - generic [ref=e75]: 题库工作台
+          - generic [ref=e76]:
+            - generic [ref=e78]: D
+            - generic [ref=e79]: Demo User
+            - button "退出登录" [ref=e1519] [cursor=pointer]:
+              - img
+      - main [ref=e83]:
+        - generic [ref=e84]:
+          - generic [ref=e85]:
+            - generic [ref=e86]: 错题本
+            - generic [ref=e87]:
+              - heading "错题复盘工作台" [level=1] [ref=e1520]
+              - paragraph [ref=e89]: 先定位最该处理的错题，再在固定详情面板里看解析、错因和助教追问。
+          - generic [ref=e90]:
+            - link "错因报告" [ref=e1521] [cursor=pointer]:
+              - /url: /question-bank/wrong/insights
+              - img
+              - text: 错因报告
+            - link "包含已掌握" [ref=e1522] [cursor=pointer]:
+              - /url: /question-bank/wrong?includeResolved=true
+              - img
+              - text: 包含已掌握
+        - generic [ref=e93]:
+          - generic [ref=e94]:
+            - img [ref=e96]
+            - generic [ref=e98]:
+              - generic [ref=e99]: 未掌握
+              - generic [ref=e100]: "42"
+              - generic [ref=e101]: 下一组错题练习来源
+          - generic [ref=e102]:
+            - img [ref=e104]
+            - generic [ref=e107]:
+              - generic [ref=e108]: 已掌握
+              - generic [ref=e109]: "5"
+              - generic [ref=e110]: 累计标记掌握
+          - generic [ref=e111]:
+            - img [ref=e113]
+            - generic [ref=e117]:
+              - generic [ref=e118]: 知识点
+              - generic [ref=e119]: "19"
+              - generic [ref=e120]: 理论政策
+          - generic [ref=e121]:
+            - img [ref=e123]
+            - generic [ref=e127]:
+              - generic [ref=e128]: 重复错误
+              - generic [ref=e129]: "8"
+              - generic [ref=e130]: 错 2 次及以上
+        - generic [ref=e1523]:
+          - generic [ref=e1524]:
+            - generic [ref=e1525]:
+              - generic [ref=e1526]:
+                - generic [ref=e1527]:
+                  - heading "今日复盘队列" [level=2] [ref=e1528]
+                  - generic [ref=e1529]: 42 道未掌握
+                - paragraph [ref=e1530]: 先处理重复错误和未分析错题；点开列表项后，右侧会固定展示题目详情和助教追问。
+              - generic [ref=e1531]:
+                - button "开始练习" [ref=e1532] [cursor=pointer]:
+                  - img
+                  - text: 开始练习
+                - button "背题" [ref=e1533] [cursor=pointer]:
+                  - img
+                  - text: 背题
+            - generic [ref=e1534]:
+              - generic [ref=e1535]:
+                - generic [ref=e1536]: 重复错误
+                - generic [ref=e1537]: "8"
+              - generic [ref=e1538]:
+                - generic [ref=e1539]: 未分析
+                - generic [ref=e1540]: "37"
+              - generic [ref=e1541]:
+                - generic [ref=e1542]: 主导错因
+                - generic [ref=e1543]: 知识点不会
+          - generic [ref=e1544]:
+            - generic [ref=e1545]:
+              - img [ref=e1546]
+              - text: 筛选错题
+            - generic [ref=e1548]:
+              - link "全部" [ref=e1549] [cursor=pointer]:
+                - /url: /question-bank/wrong
+              - link "未分析" [ref=e1550] [cursor=pointer]:
+                - /url: /question-bank/wrong?analysis=unanalyzed
+              - link "已分析" [ref=e1551] [cursor=pointer]:
+                - /url: /question-bank/wrong?analysis=analyzed
+              - link "只看未掌握" [ref=e1552] [cursor=pointer]:
+                - /url: /question-bank/wrong?includeResolved=true
+                - img
+                - text: 只看未掌握
+            - link "知识点不会 · 5" [ref=e1554] [cursor=pointer]:
+              - /url: /question-bank/wrong?mistakeCause=CONCEPT_GAP&analysis=analyzed
+            - generic [ref=e1555]:
+              - link "理论政策 / 知识点不会 · 2" [ref=e1556] [cursor=pointer]:
+                - /url: /question-bank/wrong?tagId=saduck_tag_b3ec7a626eca&mistakeCause=CONCEPT_GAP&analysis=analyzed
+              - link "常识判断 / 知识点不会 · 1" [ref=e1557] [cursor=pointer]:
+                - /url: /question-bank/wrong?tagId=seed_tag_common_sense&mistakeCause=CONCEPT_GAP&analysis=analyzed
+              - link "计算问题 / 知识点不会 · 1" [ref=e1558] [cursor=pointer]:
+                - /url: /question-bank/wrong?tagId=saduck_tag_056dc7c255e3&mistakeCause=CONCEPT_GAP&analysis=analyzed
+              - link "自然科技 / 知识点不会 · 1" [ref=e1559] [cursor=pointer]:
+                - /url: /question-bank/wrong?tagId=saduck_tag_df196e2a7822&mistakeCause=CONCEPT_GAP&analysis=analyzed
+          - generic [ref=e1560]:
+            - generic [ref=e1561]:
+              - generic [ref=e1562]:
+                - generic [ref=e1563]:
+                  - heading "错题列表" [level=2] [ref=e1564]
+                  - paragraph [ref=e1565]: 只保留扫描信息，详情和助教固定在右侧。
+                - generic [ref=e1566]: 42 道
+              - generic [ref=e1567]:
+                - generic [ref=e1568]:
+                  - generic [ref=e1569]:
+                    - generic [ref=e1570]:
+                      - heading "理论政策" [level=3] [ref=e1571]
+                      - paragraph [ref=e1572]: 11 道可见 · 11 道未掌握
+                    - generic [ref=e1573]:
+                      - button "练" [ref=e1574] [cursor=pointer]:
+                        - img
+                        - text: 练
+                      - button "背" [ref=e1575] [cursor=pointer]:
+                        - img
+                        - text: 背
+                  - generic [ref=e1576]:
+                    - button "4 未掌握 知识点不会 推进中国式现代化是一个系统工程，需要统筹兼顾、系统谋划、整体推进，正确处理好一系列重大关系。下列与之相关的表述正确的有（ ）。①活力与秩序：中国式现代化应当而且能够实现活而不乱、活跃有序的动态平衡②守正与创新：守正才能不迷失方向、不犯颠覆性错误，创新才能把握时代、引领时代③战略与策略：要增强策略的前瞻性，准确把握事物发展的必然趋势，以科学的战略预见未来、引领未来④效率与公平：中国式现代化既要创造比资本主义更高的效率，又要更有效地维护社会公平，更好实现效率与公平相兼顾、相促进、相统一 05/17 17:55 我的答案：1 正确：2" [ref=e1577] [cursor=pointer]:
+                      - generic [ref=e1578]: "4"
+                      - generic [ref=e1579]:
+                        - generic [ref=e1580]:
+                          - generic [ref=e1581]: 未掌握
+                          - generic [ref=e1582]: 知识点不会
+                        - paragraph [ref=e1583]: 推进中国式现代化是一个系统工程，需要统筹兼顾、系统谋划、整体推进，正确处理好一系列重大关系。下列与之相关的表述正确的有（ ）。①活力与秩序：中国式现代化应当而且能够实现活而不乱、活跃有序的动态平衡②守正与创新：守正才能不迷失方向、不犯颠覆性错误，创新才能把握时代、引领时代③战略与策略：要增强策略的前瞻性，准确把握事物发展的必然趋势，以科学的战略预见未来、引领未来④效率与公平：中国式现代化既要创造比资本主义更高的效率，又要更有效地维护社会公平，更好实现效率与公平相兼顾、相促进、相统一
+                        - generic [ref=e1584]:
+                          - generic [ref=e1585]:
+                            - img [ref=e1586]
+                            - text: 05/17 17:55
+                          - generic [ref=e1589]: 我的答案：1
+                          - generic [ref=e1590]: 正确：2
+                      - img [ref=e1591]
+                    - button "1 未掌握 知识点不会 建设教育强国，基点在基础教育。基础教育搞得越扎实，教育强国步伐就越稳、后劲就越足。关于加强基础教育，下列举措正确的有几项？①提升寄宿制学校办学条件和管理水平，办好必要的乡村小规模学校②统筹推进市域内高中阶段学校多样化发展，加快扩大普通高中教育资源供给③强化家庭教育主阵地作用，健全学校家庭社会协同育人机制④建立基础教育各学段学龄人口变化监测预警制度，优化中小学和幼儿园布局⑤深入开展县域义务教育优质均衡督导评估，有序推进市域义务教育优质均衡发展 05/16 23:55 我的答案：1 正确：0" [active] [ref=e1593] [cursor=pointer]:
+                      - generic [ref=e1594]: "1"
+                      - generic [ref=e1595]:
+                        - generic [ref=e1596]:
+                          - generic [ref=e1597]: 未掌握
+                          - generic [ref=e1598]: 知识点不会
+                        - paragraph [ref=e1599]: 建设教育强国，基点在基础教育。基础教育搞得越扎实，教育强国步伐就越稳、后劲就越足。关于加强基础教育，下列举措正确的有几项？①提升寄宿制学校办学条件和管理水平，办好必要的乡村小规模学校②统筹推进市域内高中阶段学校多样化发展，加快扩大普通高中教育资源供给③强化家庭教育主阵地作用，健全学校家庭社会协同育人机制④建立基础教育各学段学龄人口变化监测预警制度，优化中小学和幼儿园布局⑤深入开展县域义务教育优质均衡督导评估，有序推进市域义务教育优质均衡发展
+                        - generic [ref=e1600]:
+                          - generic [ref=e1601]:
+                            - img [ref=e1602]
+                            - text: 05/16 23:55
+                          - generic [ref=e1605]: 我的答案：1
+                          - generic [ref=e1606]: 正确：0
+                      - img [ref=e1607]
+                    - button "1 未掌握 未分析 城乡融合发展是中国式现代化的必然要求。关于城乡融合发展，下列说法正确的有几项？①要把乡村振兴战略这篇大文章做好，必须走城乡融合发展之路②在现代化进程中，如何处理好工农关系、城乡关系，在一定程度上决定着现代化的成败③要顺应城乡融合发展大趋势，破除妨碍城乡要素平等交换、双向流动的制度壁垒④振兴乡村，不能就乡村论乡村，还是要强化以工补农、以城带乡，加快形成工农互促、城乡互补、协调发展、共同繁荣的新型工农城乡关系 05/16 23:55 我的答案：2 正确：3" [ref=e1609] [cursor=pointer]:
+                      - generic [ref=e1610]: "1"
+                      - generic [ref=e1611]:
+                        - generic [ref=e1612]:
+                          - generic [ref=e1613]: 未掌握
+                          - generic [ref=e1614]: 未分析
+                        - paragraph [ref=e1615]: 城乡融合发展是中国式现代化的必然要求。关于城乡融合发展，下列说法正确的有几项？①要把乡村振兴战略这篇大文章做好，必须走城乡融合发展之路②在现代化进程中，如何处理好工农关系、城乡关系，在一定程度上决定着现代化的成败③要顺应城乡融合发展大趋势，破除妨碍城乡要素平等交换、双向流动的制度壁垒④振兴乡村，不能就乡村论乡村，还是要强化以工补农、以城带乡，加快形成工农互促、城乡互补、协调发展、共同繁荣的新型工农城乡关系
+                        - generic [ref=e1616]:
+                          - generic [ref=e1617]:
+                            - img [ref=e1618]
+                            - text: 05/16 23:55
+                          - generic [ref=e1621]: 我的答案：2
+                          - generic [ref=e1622]: 正确：3
+                      - img [ref=e1623]
+                    - button "1 未掌握 未分析 习近平总书记指出，要推动公共文化服务标准化、均等化，坚持政府主导、社会参与、重心下移、共建共享，完善公共文化服务体系，提高基本公共文化服务的覆盖面和适用性。关于完善公共文化服务体系，下列举措正确的有几项？①做好文化馆、乡镇（街道）综合文化站、村（社区）综合性文化服务中心等的规划建设②推动优质文化资源向沿海发达地区集中，促进公共文化服务差异化发展③实施全国智慧图书馆体系建设、公共文化云建设等项目④实施广播电视惠民工程，完善农村文化基础设施网络⑤推动各民族文化的传承保护和创新交融，提升民族地区公共文化服务水平 05/16 23:55 我的答案：1 正确：2" [ref=e1625] [cursor=pointer]:
+                      - generic [ref=e1626]: "1"
+                      - generic [ref=e1627]:
+                        - generic [ref=e1628]:
+                          - generic [ref=e1629]: 未掌握
+                          - generic [ref=e1630]: 未分析
+                        - paragraph [ref=e1631]: 习近平总书记指出，要推动公共文化服务标准化、均等化，坚持政府主导、社会参与、重心下移、共建共享，完善公共文化服务体系，提高基本公共文化服务的覆盖面和适用性。关于完善公共文化服务体系，下列举措正确的有几项？①做好文化馆、乡镇（街道）综合文化站、村（社区）综合性文化服务中心等的规划建设②推动优质文化资源向沿海发达地区集中，促进公共文化服务差异化发展③实施全国智慧图书馆体系建设、公共文化云建设等项目④实施广播电视惠民工程，完善农村文化基础设施网络⑤推动各民族文化的传承保护和创新交融，提升民族地区公共文化服务水平
+                        - generic [ref=e1632]:
+                          - generic [ref=e1633]:
+                            - img [ref=e1634]
+                            - text: 05/16 23:55
+                          - generic [ref=e1637]: 我的答案：1
+                          - generic [ref=e1638]: 正确：2
+                      - img [ref=e1639]
+                    - button "1 未掌握 未分析 习近平总书记指出，讲好中国故事，传播好中国声音，展示真实、立体、全面的中国，是加强我国国际传播能力建设的重要任务。关于加强我国国际传播能力建设，下列表述正确的是：①要提升国际传播体系稳定性，防范国际传播格局重构②要全面提升国际传播效能，建强适应新时代国际传播需要的专门人才队伍③要倡导和平的国际舆论环境，不参与国际舆论斗争，塑造谦逊谦和的大国形象④推动走出去、请进来管理便利化，扩大国际人文交流合作 05/16 23:55 我的答案：2 正确：1" [ref=e1641] [cursor=pointer]:
+                      - generic [ref=e1642]: "1"
+                      - generic [ref=e1643]:
+                        - generic [ref=e1644]:
+                          - generic [ref=e1645]: 未掌握
+                          - generic [ref=e1646]: 未分析
+                        - paragraph [ref=e1647]: 习近平总书记指出，讲好中国故事，传播好中国声音，展示真实、立体、全面的中国，是加强我国国际传播能力建设的重要任务。关于加强我国国际传播能力建设，下列表述正确的是：①要提升国际传播体系稳定性，防范国际传播格局重构②要全面提升国际传播效能，建强适应新时代国际传播需要的专门人才队伍③要倡导和平的国际舆论环境，不参与国际舆论斗争，塑造谦逊谦和的大国形象④推动走出去、请进来管理便利化，扩大国际人文交流合作
+                        - generic [ref=e1648]:
+                          - generic [ref=e1649]:
+                            - img [ref=e1650]
+                            - text: 05/16 23:55
+                          - generic [ref=e1653]: 我的答案：2
+                          - generic [ref=e1654]: 正确：1
+                      - img [ref=e1655]
+                    - button "1 未掌握 未分析 习近平总书记强调，要坚持以铸牢中华民族共同体意识为主线，不断推进民族团结进步事业，推动党的民族工作高质量发展。关于铸牢中华民族共同体意识，下列说法正确的有几项?①广泛交往交流交融是推进中华民族共同体建设的重要途径②加强对青少年的历史文化教育，全面推广普及国家通用语言文字，全面推行使用国家统编教材③要坚持和完善民族区域自治制度，逐步完善相关法律法规和差别化区域支持政策，依法保障各族群众合法权益④要引导各族群众不断增强对伟大祖国、中华民族、中华文化、中国共产党、中国特色社会主义的认同 05/16 23:55 我的答案：1 正确：3" [ref=e1657] [cursor=pointer]:
+                      - generic [ref=e1658]: "1"
+                      - generic [ref=e1659]:
+                        - generic [ref=e1660]:
+                          - generic [ref=e1661]: 未掌握
+                          - generic [ref=e1662]: 未分析
+                        - paragraph [ref=e1663]: 习近平总书记强调，要坚持以铸牢中华民族共同体意识为主线，不断推进民族团结进步事业，推动党的民族工作高质量发展。关于铸牢中华民族共同体意识，下列说法正确的有几项?①广泛交往交流交融是推进中华民族共同体建设的重要途径②加强对青少年的历史文化教育，全面推广普及国家通用语言文字，全面推行使用国家统编教材③要坚持和完善民族区域自治制度，逐步完善相关法律法规和差别化区域支持政策，依法保障各族群众合法权益④要引导各族群众不断增强对伟大祖国、中华民族、中华文化、中国共产党、中国特色社会主义的认同
+                        - generic [ref=e1664]:
+                          - generic [ref=e1665]:
+                            - img [ref=e1666]
+                            - text: 05/16 23:55
+                          - generic [ref=e1669]: 我的答案：1
+                          - generic [ref=e1670]: 正确：3
+                      - img [ref=e1671]
+                    - button "1 未掌握 未分析 制定“十五五”规划建议，系统谋划“十五五”时期经济社会发展，是实现党的二十大描绘的宏伟蓝图、分阶段有步骤推进中国式现代化的需要，意义重大。关于“十五五”规划建议，下列表述正确的有几项？①适度超前建设新型基础设施，推进信息通信网络、全国一体化算力网、重大科技基础设施等建设和集约高效利用②推动量子科技、生物制造、第六代移动通信等成为新的经济增长点③建设法治经济、信用经济，打造市场化法治化国际化一流营商环境④健全与常住人口相匹配的公共资源配置机制，加强县域基本公共服务供给统筹 05/16 23:55 我的答案：2 正确：3" [ref=e1673] [cursor=pointer]:
+                      - generic [ref=e1674]: "1"
+                      - generic [ref=e1675]:
+                        - generic [ref=e1676]:
+                          - generic [ref=e1677]: 未掌握
+                          - generic [ref=e1678]: 未分析
+                        - paragraph [ref=e1679]: 制定“十五五”规划建议，系统谋划“十五五”时期经济社会发展，是实现党的二十大描绘的宏伟蓝图、分阶段有步骤推进中国式现代化的需要，意义重大。关于“十五五”规划建议，下列表述正确的有几项？①适度超前建设新型基础设施，推进信息通信网络、全国一体化算力网、重大科技基础设施等建设和集约高效利用②推动量子科技、生物制造、第六代移动通信等成为新的经济增长点③建设法治经济、信用经济，打造市场化法治化国际化一流营商环境④健全与常住人口相匹配的公共资源配置机制，加强县域基本公共服务供给统筹
+                        - generic [ref=e1680]:
+                          - generic [ref=e1681]:
+                            - img [ref=e1682]
+                            - text: 05/16 23:55
+                          - generic [ref=e1685]: 我的答案：2
+                          - generic [ref=e1686]: 正确：3
+                      - img [ref=e1687]
+                    - button "2 未掌握 未分析 习近平总书记指出，中国愿同世界各国一道，把握信息革命发展的历史主动，携手构建网络空间命运共同体，让互联网更好造福人民、造福世界。关于构建网络空间命运共同体，下列表述正确的是：①尊重网络主权，维护网络安全，共同构建和平、安全、开放、合作的网络空间②全球网络主要由跨国公司提供，网络空间未来应由跨国公司携手经营③倡导发展优先，构建更加普惠繁荣的网络空间④保障数据安全，建立单边、保密的国际互联网治理体系⑤深化网络安全务实合作，有力打击网络违法犯罪行为 05/16 23:55 我的答案：1 正确：0" [ref=e1689] [cursor=pointer]:
+                      - generic [ref=e1690]: "2"
+                      - generic [ref=e1691]:
+                        - generic [ref=e1692]:
+                          - generic [ref=e1693]: 未掌握
+                          - generic [ref=e1694]: 未分析
+                        - paragraph [ref=e1695]: 习近平总书记指出，中国愿同世界各国一道，把握信息革命发展的历史主动，携手构建网络空间命运共同体，让互联网更好造福人民、造福世界。关于构建网络空间命运共同体，下列表述正确的是：①尊重网络主权，维护网络安全，共同构建和平、安全、开放、合作的网络空间②全球网络主要由跨国公司提供，网络空间未来应由跨国公司携手经营③倡导发展优先，构建更加普惠繁荣的网络空间④保障数据安全，建立单边、保密的国际互联网治理体系⑤深化网络安全务实合作，有力打击网络违法犯罪行为
+                        - generic [ref=e1696]:
+                          - generic [ref=e1697]:
+                            - img [ref=e1698]
+                            - text: 05/16 23:55
+                          - generic [ref=e1701]: 我的答案：1
+                          - generic [ref=e1702]: 正确：0
+                      - img [ref=e1703]
+                    - button "3 未掌握 未分析 党的十八大以来，以习近平同志为核心的党中央坚定不移推进全面从严治党，取得一系列理论创新、实践创新、制度创新成果，构建起全面从严治党体系，开辟了百年大党自我革命新境界。下列关于全面从严治党的表述不准确的是（ ）。 05/16 23:55 我的答案：3 正确：2" [ref=e1705] [cursor=pointer]:
+                      - generic [ref=e1706]: "3"
+                      - generic [ref=e1707]:
+                        - generic [ref=e1708]:
+                          - generic [ref=e1709]: 未掌握
+                          - generic [ref=e1710]: 未分析
+                        - paragraph [ref=e1711]: 党的十八大以来，以习近平同志为核心的党中央坚定不移推进全面从严治党，取得一系列理论创新、实践创新、制度创新成果，构建起全面从严治党体系，开辟了百年大党自我革命新境界。下列关于全面从严治党的表述不准确的是（ ）。
+                        - generic [ref=e1712]:
+                          - generic [ref=e1713]:
+                            - img [ref=e1714]
+                            - text: 05/16 23:55
+                          - generic [ref=e1717]: 我的答案：3
+                          - generic [ref=e1718]: 正确：2
+                      - img [ref=e1719]
+                    - button "3 未掌握 未分析 习近平总书记强调，要推动森林“水库、钱库、粮库、碳库”更好联动，实现生态效益、经济效益、社会效益相统一。下列表述与这一要求相契合的有几项？①手中有粮，心中不慌②绿水青山就是金山银山③增绿就是增优势，护林就是护财富④环境就是民生，青山就是美丽，蓝天也是幸福 05/16 23:55 我的答案：1 正确：2" [ref=e1721] [cursor=pointer]:
+                      - generic [ref=e1722]: "3"
+                      - generic [ref=e1723]:
+                        - generic [ref=e1724]:
+                          - generic [ref=e1725]: 未掌握
+                          - generic [ref=e1726]: 未分析
+                        - paragraph [ref=e1727]: 习近平总书记强调，要推动森林“水库、钱库、粮库、碳库”更好联动，实现生态效益、经济效益、社会效益相统一。下列表述与这一要求相契合的有几项？①手中有粮，心中不慌②绿水青山就是金山银山③增绿就是增优势，护林就是护财富④环境就是民生，青山就是美丽，蓝天也是幸福
+                        - generic [ref=e1728]:
+                          - generic [ref=e1729]:
+                            - img [ref=e1730]
+                            - text: 05/16 23:55
+                          - generic [ref=e1733]: 我的答案：1
+                          - generic [ref=e1734]: 正确：2
+                      - img [ref=e1735]
+                    - button "3 未掌握 未分析 党的二十届四中全会指出，“十五五”时期是基本实现社会主义现代化夯实基础、全面发力的关键时期，在基本实现社会主义现代化进程中具有承前启后的重要地位。关于“十五五”规划，下列说法正确的是： 05/16 23:55 我的答案：2 正确：0" [ref=e1737] [cursor=pointer]:
+                      - generic [ref=e1738]: "3"
+                      - generic [ref=e1739]:
+                        - generic [ref=e1740]:
+                          - generic [ref=e1741]: 未掌握
+                          - generic [ref=e1742]: 未分析
+                        - paragraph [ref=e1743]: 党的二十届四中全会指出，“十五五”时期是基本实现社会主义现代化夯实基础、全面发力的关键时期，在基本实现社会主义现代化进程中具有承前启后的重要地位。关于“十五五”规划，下列说法正确的是：
+                        - generic [ref=e1744]:
+                          - generic [ref=e1745]:
+                            - img [ref=e1746]
+                            - text: 05/16 23:55
+                          - generic [ref=e1749]: 我的答案：2
+                          - generic [ref=e1750]: 正确：0
+                      - img [ref=e1751]
+                - generic [ref=e1753]:
+                  - generic [ref=e1754]:
+                    - generic [ref=e1755]:
+                      - heading "资料分析" [level=3] [ref=e1756]
+                      - paragraph [ref=e1757]: 5 道可见 · 5 道未掌握
+                    - generic [ref=e1758]:
+                      - button "练" [ref=e1759] [cursor=pointer]:
+                        - img
+                        - text: 练
+                      - button "背" [ref=e1760] [cursor=pointer]:
+                        - img
+                        - text: 背
+                  - generic [ref=e1761]:
+                    - button "1 未掌握 未分析 2018-2024年，变化趋势与以下折线图相符的指标是： 05/16 23:53 我的答案：1 正确：3" [ref=e1762] [cursor=pointer]:
+                      - generic [ref=e1763]: "1"
+                      - generic [ref=e1764]:
+                        - generic [ref=e1765]:
+                          - generic [ref=e1766]: 未掌握
+                          - generic [ref=e1767]: 未分析
+                        - paragraph [ref=e1768]: 2018-2024年，变化趋势与以下折线图相符的指标是：
+                        - generic [ref=e1769]:
+                          - generic [ref=e1770]:
+                            - img [ref=e1771]
+                            - text: 05/16 23:53
+                          - generic [ref=e1774]: 我的答案：1
+                          - generic [ref=e1775]: 正确：3
+                      - img [ref=e1776]
+                    - button "1 未掌握 未分析 2019年，我国养老机构数量的增长速度约为65岁及以上老年人口增长速度的： 05/16 23:53 我的答案：1 正确：2" [ref=e1778] [cursor=pointer]:
+                      - generic [ref=e1779]: "1"
+                      - generic [ref=e1780]:
+                        - generic [ref=e1781]:
+                          - generic [ref=e1782]: 未掌握
+                          - generic [ref=e1783]: 未分析
+                        - paragraph [ref=e1784]: 2019年，我国养老机构数量的增长速度约为65岁及以上老年人口增长速度的：
+                        - generic [ref=e1785]:
+                          - generic [ref=e1786]:
+                            - img [ref=e1787]
+                            - text: 05/16 23:53
+                          - generic [ref=e1790]: 我的答案：1
+                          - generic [ref=e1791]: 正确：2
+                      - img [ref=e1792]
+                    - button "1 未掌握 未分析 能够从上述资料中推出的是： 05/16 23:53 我的答案：2 正确：3" [ref=e1794] [cursor=pointer]:
+                      - generic [ref=e1795]: "1"
+                      - generic [ref=e1796]:
+                        - generic [ref=e1797]:
+                          - generic [ref=e1798]: 未掌握
+                          - generic [ref=e1799]: 未分析
+                        - paragraph [ref=e1800]: 能够从上述资料中推出的是：
+                        - generic [ref=e1801]:
+                          - generic [ref=e1802]:
+                            - img [ref=e1803]
+                            - text: 05/16 23:53
+                          - generic [ref=e1806]: 我的答案：2
+                          - generic [ref=e1807]: 正确：3
+                      - img [ref=e1808]
+                    - button "1 未掌握 未分析 2025年1-4月，再融资债券发行额占地方政府债券累计发行额的比重在下列哪个范围内？ 05/16 23:53 我的答案：0 正确：2" [ref=e1810] [cursor=pointer]:
+                      - generic [ref=e1811]: "1"
+                      - generic [ref=e1812]:
+                        - generic [ref=e1813]:
+                          - generic [ref=e1814]: 未掌握
+                          - generic [ref=e1815]: 未分析
+                        - paragraph [ref=e1816]: 2025年1-4月，再融资债券发行额占地方政府债券累计发行额的比重在下列哪个范围内？
+                        - generic [ref=e1817]:
+                          - generic [ref=e1818]:
+                            - img [ref=e1819]
+                            - text: 05/16 23:53
+                          - generic [ref=e1822]: 我的答案：0
+                          - generic [ref=e1823]: 正确：2
+                      - img [ref=e1824]
+                    - button "1 未掌握 未分析 2025年6月，地方政府债券投资者总持有额的环比增量约为： 05/16 23:45 我的答案：1 正确：2" [ref=e1826] [cursor=pointer]:
+                      - generic [ref=e1827]: "1"
+                      - generic [ref=e1828]:
+                        - generic [ref=e1829]:
+                          - generic [ref=e1830]: 未掌握
+                          - generic [ref=e1831]: 未分析
+                        - paragraph [ref=e1832]: 2025年6月，地方政府债券投资者总持有额的环比增量约为：
+                        - generic [ref=e1833]:
+                          - generic [ref=e1834]:
+                            - img [ref=e1835]
+                            - text: 05/16 23:45
+                          - generic [ref=e1838]: 我的答案：1
+                          - generic [ref=e1839]: 正确：2
+                      - img [ref=e1840]
+                - generic [ref=e1842]:
+                  - generic [ref=e1843]:
+                    - generic [ref=e1844]:
+                      - heading "中心理解" [level=3] [ref=e1845]
+                      - paragraph [ref=e1846]: 3 道可见 · 3 道未掌握
+                    - generic [ref=e1847]:
+                      - button "练" [ref=e1848] [cursor=pointer]:
+                        - img
+                        - text: 练
+                      - button "背" [ref=e1849] [cursor=pointer]:
+                        - img
+                        - text: 背
+                  - generic [ref=e1850]:
+                    - button "1 未掌握 未分析 在深度学习的过程中，实际确定误差并非易事。为解决这一问题，当前深度学习领域应用“损失函数”实现误差最小化，即在人工智能的学习过程中，找到能够最小化损失函数值的参数。但损失函数的形式会随具体情况而有所不同，难以全面掌握其特性，因此需要引入微分。微分主要用于分析某个变量的变化如何影响函数的值。通过对损失函数进行微分，可以明了参数变化时损失函数值的变化，进而调整参数值，让损失函数的值尽可能小。在针对性地进行编程后，人工智能能够自动完成上述任务。对这段文字概括最恰当的是： 05/16 23:55 我的答案：1 正确：0" [ref=e1851] [cursor=pointer]:
+                      - generic [ref=e1852]: "1"
+                      - generic [ref=e1853]:
+                        - generic [ref=e1854]:
+                          - generic [ref=e1855]: 未掌握
+                          - generic [ref=e1856]: 未分析
+                        - paragraph [ref=e1857]: 在深度学习的过程中，实际确定误差并非易事。为解决这一问题，当前深度学习领域应用“损失函数”实现误差最小化，即在人工智能的学习过程中，找到能够最小化损失函数值的参数。但损失函数的形式会随具体情况而有所不同，难以全面掌握其特性，因此需要引入微分。微分主要用于分析某个变量的变化如何影响函数的值。通过对损失函数进行微分，可以明了参数变化时损失函数值的变化，进而调整参数值，让损失函数的值尽可能小。在针对性地进行编程后，人工智能能够自动完成上述任务。对这段文字概括最恰当的是：
+                        - generic [ref=e1858]:
+                          - generic [ref=e1859]:
+                            - img [ref=e1860]
+                            - text: 05/16 23:55
+                          - generic [ref=e1863]: 我的答案：1
+                          - generic [ref=e1864]: 正确：0
+                      - img [ref=e1865]
+                    - button "1 未掌握 未分析 在我国，对农业生产造成重大危害的多数昆虫都具有迁飞性。草地贪夜蛾、黏虫等具有“春夏北迁，秋冬南迁”的习性。由于昆虫个体小、重量轻，飞行能力有限，远距离迁飞主要借助气流运载。季风、台风、西太平洋副热带高压的位置与强度变化等因素都会对害虫的迁飞扩散产生重要影响。每年春夏，害虫大军从中南半岛等地随西南季风迁飞入我国，之后又随西南季风或东南季风暖湿气流继续北上。到了秋冬，草地贪夜蛾、黏虫等为逃避低温环境，只好迁回温暖的南方。这是昆虫逃避不良环境条件的一种生存对策。这段文字重在说明害虫大军迁飞的： 05/16 23:55 我的答案：0 正确：1" [ref=e1867] [cursor=pointer]:
+                      - generic [ref=e1868]: "1"
+                      - generic [ref=e1869]:
+                        - generic [ref=e1870]:
+                          - generic [ref=e1871]: 未掌握
+                          - generic [ref=e1872]: 未分析
+                        - paragraph [ref=e1873]: 在我国，对农业生产造成重大危害的多数昆虫都具有迁飞性。草地贪夜蛾、黏虫等具有“春夏北迁，秋冬南迁”的习性。由于昆虫个体小、重量轻，飞行能力有限，远距离迁飞主要借助气流运载。季风、台风、西太平洋副热带高压的位置与强度变化等因素都会对害虫的迁飞扩散产生重要影响。每年春夏，害虫大军从中南半岛等地随西南季风迁飞入我国，之后又随西南季风或东南季风暖湿气流继续北上。到了秋冬，草地贪夜蛾、黏虫等为逃避低温环境，只好迁回温暖的南方。这是昆虫逃避不良环境条件的一种生存对策。这段文字重在说明害虫大军迁飞的：
+                        - generic [ref=e1874]:
+                          - generic [ref=e1875]:
+                            - img [ref=e1876]
+                            - text: 05/16 23:55
+                          - generic [ref=e1879]: 我的答案：0
+                          - generic [ref=e1880]: 正确：1
+                      - img [ref=e1881]
+                    - button "1 未掌握 未分析 智能社会的演进模糊了社会心态与社会行为的边界，呈现出线上线下虚实共生、心态风险与行动风险交织缠绕的特征，这对社会心态的治理策略与治理工具提出了新的挑战。社交软件的分享机制与算法推荐规律，都以对人类心理特征的精准利用为前提。此类技术往往把复杂的人类互动过程简化为点赞、转发等二元化的态度立场或简单行为，虽然便利了个体表达观点，却可能导致网络行为高度两极化，让许多事实错误但情绪饱满的虚假信息快速传播，成为网络空间治理的一大顽疾。这段文字意在强调： 05/16 23:55 我的答案：1 正确：0" [ref=e1883] [cursor=pointer]:
+                      - generic [ref=e1884]: "1"
+                      - generic [ref=e1885]:
+                        - generic [ref=e1886]:
+                          - generic [ref=e1887]: 未掌握
+                          - generic [ref=e1888]: 未分析
+                        - paragraph [ref=e1889]: 智能社会的演进模糊了社会心态与社会行为的边界，呈现出线上线下虚实共生、心态风险与行动风险交织缠绕的特征，这对社会心态的治理策略与治理工具提出了新的挑战。社交软件的分享机制与算法推荐规律，都以对人类心理特征的精准利用为前提。此类技术往往把复杂的人类互动过程简化为点赞、转发等二元化的态度立场或简单行为，虽然便利了个体表达观点，却可能导致网络行为高度两极化，让许多事实错误但情绪饱满的虚假信息快速传播，成为网络空间治理的一大顽疾。这段文字意在强调：
+                        - generic [ref=e1890]:
+                          - generic [ref=e1891]:
+                            - img [ref=e1892]
+                            - text: 05/16 23:55
+                          - generic [ref=e1895]: 我的答案：1
+                          - generic [ref=e1896]: 正确：0
+                      - img [ref=e1897]
+                - generic [ref=e1899]:
+                  - generic [ref=e1900]:
+                    - generic [ref=e1901]:
+                      - heading "自然科技" [level=3] [ref=e1902]
+                      - paragraph [ref=e1903]: 3 道可见 · 3 道未掌握
+                    - generic [ref=e1904]:
+                      - button "练" [ref=e1905] [cursor=pointer]:
+                        - img
+                        - text: 练
+                      - button "背" [ref=e1906] [cursor=pointer]:
+                        - img
+                        - text: 背
+                  - generic [ref=e1907]:
+                    - button "1 未掌握 未分析 咖啡因是一种中枢神经兴奋剂，能够暂时驱走睡意并恢复精力，咖啡、茶和能量饮料中都含有咖啡因成分。下列有关说法正确的是（ ）。 05/16 23:55 我的答案：2 正确：0" [ref=e1908] [cursor=pointer]:
+                      - generic [ref=e1909]: "1"
+                      - generic [ref=e1910]:
+                        - generic [ref=e1911]:
+                          - generic [ref=e1912]: 未掌握
+                          - generic [ref=e1913]: 未分析
+                        - paragraph [ref=e1914]: 咖啡因是一种中枢神经兴奋剂，能够暂时驱走睡意并恢复精力，咖啡、茶和能量饮料中都含有咖啡因成分。下列有关说法正确的是（ ）。
+                        - generic [ref=e1915]:
+                          - generic [ref=e1916]:
+                            - img [ref=e1917]
+                            - text: 05/16 23:55
+                          - generic [ref=e1920]: 我的答案：2
+                          - generic [ref=e1921]: 正确：0
+                      - img [ref=e1922]
+                    - button "1 未掌握 知识点不会 下列异常的体检指标，与其关联的疾病最不可能对应的是（ ）。 05/16 23:55 我的答案：3 正确：1" [ref=e1924] [cursor=pointer]:
+                      - generic [ref=e1925]: "1"
+                      - generic [ref=e1926]:
+                        - generic [ref=e1927]:
+                          - generic [ref=e1928]: 未掌握
+                          - generic [ref=e1929]: 知识点不会
+                        - paragraph [ref=e1930]: 下列异常的体检指标，与其关联的疾病最不可能对应的是（ ）。
+                        - generic [ref=e1931]:
+                          - generic [ref=e1932]:
+                            - img [ref=e1933]
+                            - text: 05/16 23:55
+                          - generic [ref=e1936]: 我的答案：3
+                          - generic [ref=e1937]: 正确：1
+                      - img [ref=e1938]
+                    - button "2 未掌握 未分析 若将一个弹簧拉力器的一端固定在天花板上，握住另一端用力缓慢竖直下拉，假设弹簧具有一定的质量且均匀分布，则弹簧拉力器最可能断裂的位置是（ ）。 05/16 23:53 我的答案：1 正确：0" [ref=e1940] [cursor=pointer]:
+                      - generic [ref=e1941]: "2"
+                      - generic [ref=e1942]:
+                        - generic [ref=e1943]:
+                          - generic [ref=e1944]: 未掌握
+                          - generic [ref=e1945]: 未分析
+                        - paragraph [ref=e1946]: 若将一个弹簧拉力器的一端固定在天花板上，握住另一端用力缓慢竖直下拉，假设弹簧具有一定的质量且均匀分布，则弹簧拉力器最可能断裂的位置是（ ）。
+                        - generic [ref=e1947]:
+                          - generic [ref=e1948]:
+                            - img [ref=e1949]
+                            - text: 05/16 23:53
+                          - generic [ref=e1952]: 我的答案：1
+                          - generic [ref=e1953]: 正确：0
+                      - img [ref=e1954]
+                - generic [ref=e1956]:
+                  - generic [ref=e1957]:
+                    - generic [ref=e1958]:
+                      - heading "语句排序" [level=3] [ref=e1959]
+                      - paragraph [ref=e1960]: 2 道可见 · 2 道未掌握
+                    - generic [ref=e1961]:
+                      - button "练" [ref=e1962] [cursor=pointer]:
+                        - img
+                        - text: 练
+                      - button "背" [ref=e1963] [cursor=pointer]:
+                        - img
+                        - text: 背
+                  - generic [ref=e1964]:
+                    - button "1 未掌握 未分析 ①如今，有些文字砖在未被发现前就已经消匿了，尽量多地发现并解读文字砖，成为了钩沉历史的重要途径②我国古代的很多国家工程都实行“物勒工名”制③砖上的文字记录了长城修建者的信息，甚至还有远隔百里千里之外的地名④在今天河北、北京、山西等地的明长城上有一些带有文字的砖，它们被称为长城文字砖⑤长城文字砖上的每个文字都是史书之外的鲜活符号，为我们解锁那段历史提供了秘钥⑥透过文字砖，我们可以辨识出某段长城是由谁修造的，还可通过上面的地名探察明朝国防的客兵制度将以上6个句子重新排列，语序正确的是： 05/16 23:55 我的答案：0 正确：3" [ref=e1965] [cursor=pointer]:
+                      - generic [ref=e1966]: "1"
+                      - generic [ref=e1967]:
+                        - generic [ref=e1968]:
+                          - generic [ref=e1969]: 未掌握
+                          - generic [ref=e1970]: 未分析
+                        - paragraph [ref=e1971]: ①如今，有些文字砖在未被发现前就已经消匿了，尽量多地发现并解读文字砖，成为了钩沉历史的重要途径②我国古代的很多国家工程都实行“物勒工名”制③砖上的文字记录了长城修建者的信息，甚至还有远隔百里千里之外的地名④在今天河北、北京、山西等地的明长城上有一些带有文字的砖，它们被称为长城文字砖⑤长城文字砖上的每个文字都是史书之外的鲜活符号，为我们解锁那段历史提供了秘钥⑥透过文字砖，我们可以辨识出某段长城是由谁修造的，还可通过上面的地名探察明朝国防的客兵制度将以上6个句子重新排列，语序正确的是：
+                        - generic [ref=e1972]:
+                          - generic [ref=e1973]:
+                            - img [ref=e1974]
+                            - text: 05/16 23:55
+                          - generic [ref=e1977]: 我的答案：0
+                          - generic [ref=e1978]: 正确：3
+                      - img [ref=e1979]
+                    - button "1 未掌握 未分析 ①一段时间里，长视频葆有一种艺术优越感，认为台网联动就是把影视作品切成片段挪到网上②这种长短阵营划分实际上是专业作品和民间段子的区分③但在当今短视频崛起的网络视频生态中，长视频不可再孤芳自赏，而应打开视野，与更多短视频及受众进行联结交流④剧场化不是让长视频成为网络视听阵营的“孤勇者”，而是在精品化战略基础上思考如何利用短视频为作品铺垫引流⑤的确，长视频是一种综合艺术，包括文学、戏剧、音乐、歌舞等多种艺术元素⑥网络视频原无长短之分，只因短视频的崛起，专业生产的影视作品才以长视频的概念区别于用户生产模式的短视频将以上6个句子重新排列，语序正确的是： 05/16 23:53 我的答案：0 正确：1" [ref=e1981] [cursor=pointer]:
+                      - generic [ref=e1982]: "1"
+                      - generic [ref=e1983]:
+                        - generic [ref=e1984]:
+                          - generic [ref=e1985]: 未掌握
+                          - generic [ref=e1986]: 未分析
+                        - paragraph [ref=e1987]: ①一段时间里，长视频葆有一种艺术优越感，认为台网联动就是把影视作品切成片段挪到网上②这种长短阵营划分实际上是专业作品和民间段子的区分③但在当今短视频崛起的网络视频生态中，长视频不可再孤芳自赏，而应打开视野，与更多短视频及受众进行联结交流④剧场化不是让长视频成为网络视听阵营的“孤勇者”，而是在精品化战略基础上思考如何利用短视频为作品铺垫引流⑤的确，长视频是一种综合艺术，包括文学、戏剧、音乐、歌舞等多种艺术元素⑥网络视频原无长短之分，只因短视频的崛起，专业生产的影视作品才以长视频的概念区别于用户生产模式的短视频将以上6个句子重新排列，语序正确的是：
+                        - generic [ref=e1988]:
+                          - generic [ref=e1989]:
+                            - img [ref=e1990]
+                            - text: 05/16 23:53
+                          - generic [ref=e1993]: 我的答案：0
+                          - generic [ref=e1994]: 正确：1
+                      - img [ref=e1995]
+                - generic [ref=e1997]:
+                  - generic [ref=e1998]:
+                    - generic [ref=e1999]:
+                      - heading "人文历史" [level=3] [ref=e2000]
+                      - paragraph [ref=e2001]: 2 道可见 · 2 道未掌握
+                    - generic [ref=e2002]:
+                      - button "练" [ref=e2003] [cursor=pointer]:
+                        - img
+                        - text: 练
+                      - button "背" [ref=e2004] [cursor=pointer]:
+                        - img
+                        - text: 背
+                  - generic [ref=e2005]:
+                    - button "1 未掌握 未分析 《黄帝内经》中“是故圣人不治已病治未病”的思想是中医养生的重要理念，倡导通过饮食、运动、情志调节等方式增强体质，未病先防。下列古诗词中描述的行为不符合“治未病”理念的是（ ）。 05/16 23:55 我的答案：1 正确：2" [ref=e2006] [cursor=pointer]:
+                      - generic [ref=e2007]: "1"
+                      - generic [ref=e2008]:
+                        - generic [ref=e2009]:
+                          - generic [ref=e2010]: 未掌握
+                          - generic [ref=e2011]: 未分析
+                        - paragraph [ref=e2012]: 《黄帝内经》中“是故圣人不治已病治未病”的思想是中医养生的重要理念，倡导通过饮食、运动、情志调节等方式增强体质，未病先防。下列古诗词中描述的行为不符合“治未病”理念的是（ ）。
+                        - generic [ref=e2013]:
+                          - generic [ref=e2014]:
+                            - img [ref=e2015]
+                            - text: 05/16 23:55
+                          - generic [ref=e2018]: 我的答案：1
+                          - generic [ref=e2019]: 正确：2
+                      - img [ref=e2020]
+                    - 'button "2 未掌握 未分析 关于我国考古发现，下列说法错误的是: 05/16 23:55 我的答案：2 正确：1" [ref=e2022] [cursor=pointer]':
+                      - generic [ref=e2023]: "2"
+                      - generic [ref=e2024]:
+                        - generic [ref=e2025]:
+                          - generic [ref=e2026]: 未掌握
+                          - generic [ref=e2027]: 未分析
+                        - paragraph [ref=e2028]: "关于我国考古发现，下列说法错误的是:"
+                        - generic [ref=e2029]:
+                          - generic [ref=e2030]:
+                            - img [ref=e2031]
+                            - text: 05/16 23:55
+                          - generic [ref=e2034]: 我的答案：2
+                          - generic [ref=e2035]: 正确：1
+                      - img [ref=e2036]
+                - generic [ref=e2038]:
+                  - generic [ref=e2039]:
+                    - generic [ref=e2040]:
+                      - heading "经济" [level=3] [ref=e2041]
+                      - paragraph [ref=e2042]: 2 道可见 · 2 道未掌握
+                    - generic [ref=e2043]:
+                      - button "练" [ref=e2044] [cursor=pointer]:
+                        - img
+                        - text: 练
+                      - button "背" [ref=e2045] [cursor=pointer]:
+                        - img
+                        - text: 背
+                  - generic [ref=e2046]:
+                    - button "1 未掌握 未分析 关于金融知识，下列说法错误的是： 05/16 23:55 我的答案：3 正确：1" [ref=e2047] [cursor=pointer]:
+                      - generic [ref=e2048]: "1"
+                      - generic [ref=e2049]:
+                        - generic [ref=e2050]:
+                          - generic [ref=e2051]: 未掌握
+                          - generic [ref=e2052]: 未分析
+                        - paragraph [ref=e2053]: 关于金融知识，下列说法错误的是：
+                        - generic [ref=e2054]:
+                          - generic [ref=e2055]:
+                            - img [ref=e2056]
+                            - text: 05/16 23:55
+                          - generic [ref=e2059]: 我的答案：3
+                          - generic [ref=e2060]: 正确：1
+                      - img [ref=e2061]
+                    - button "1 未掌握 未分析 关于社会保险，下列说法正确的是： 05/16 23:55 我的答案：1 正确：0" [ref=e2063] [cursor=pointer]:
+                      - generic [ref=e2064]: "1"
+                      - generic [ref=e2065]:
+                        - generic [ref=e2066]:
+                          - generic [ref=e2067]: 未掌握
+                          - generic [ref=e2068]: 未分析
+                        - paragraph [ref=e2069]: 关于社会保险，下列说法正确的是：
+                        - generic [ref=e2070]:
+                          - generic [ref=e2071]:
+                            - img [ref=e2072]
+                            - text: 05/16 23:55
+                          - generic [ref=e2075]: 我的答案：1
+                          - generic [ref=e2076]: 正确：0
+                      - img [ref=e2077]
+                - generic [ref=e2079]:
+                  - generic [ref=e2080]:
+                    - generic [ref=e2081]:
+                      - heading "马克思主义" [level=3] [ref=e2082]
+                      - paragraph [ref=e2083]: 2 道可见 · 2 道未掌握
+                    - generic [ref=e2084]:
+                      - button "练" [ref=e2085] [cursor=pointer]:
+                        - img
+                        - text: 练
+                      - button "背" [ref=e2086] [cursor=pointer]:
+                        - img
+                        - text: 背
+                  - generic [ref=e2087]:
+                    - button "1 未掌握 未分析 唯物辩证法认为，事物是普遍联系的，事物及事物各要素相互影响、相互制约，整个世界是相互联系的整体，也是相互作用的系统。下列有关说法正确的是：①系统的功能等于各个部分功能的简单相加②系统思维就是在确认事物普遍联系的基础上，具体揭示对象的系统存在、系统关系及其规律的观点和方法③系统是一个静态和复杂的整体，由不同要素无序构成④对于外来作用，系统能作为一个统一体作出反应，而不管这种外来作用直接作用于系统的哪一个部分⑤系统的相关性特征集中体现为事物之间、事物内部诸要素之间的相互作用 05/16 23:55 我的答案：2 正确：3" [ref=e2088] [cursor=pointer]:
+                      - generic [ref=e2089]: "1"
+                      - generic [ref=e2090]:
+                        - generic [ref=e2091]:
+                          - generic [ref=e2092]: 未掌握
+                          - generic [ref=e2093]: 未分析
+                        - paragraph [ref=e2094]: 唯物辩证法认为，事物是普遍联系的，事物及事物各要素相互影响、相互制约，整个世界是相互联系的整体，也是相互作用的系统。下列有关说法正确的是：①系统的功能等于各个部分功能的简单相加②系统思维就是在确认事物普遍联系的基础上，具体揭示对象的系统存在、系统关系及其规律的观点和方法③系统是一个静态和复杂的整体，由不同要素无序构成④对于外来作用，系统能作为一个统一体作出反应，而不管这种外来作用直接作用于系统的哪一个部分⑤系统的相关性特征集中体现为事物之间、事物内部诸要素之间的相互作用
+                        - generic [ref=e2095]:
+                          - generic [ref=e2096]:
+                            - img [ref=e2097]
+                            - text: 05/16 23:55
+                          - generic [ref=e2100]: 我的答案：2
+                          - generic [ref=e2101]: 正确：3
+                      - img [ref=e2102]
+                    - button "1 未掌握 未分析 习近平总书记曾说：“我们要有钉钉子的精神，钉钉子往往不是一锤子就能钉好的，而是要一锤一锤接着敲，直到把钉子钉实钉牢，钉牢一颗再钉下一颗，不断钉下去，必然大有成效。如果东一榔头西一棒子，结果很可能是一颗钉子都钉不上、钉不牢。”这句话最能体现的哲学原理是：①量变与质变辩证统一②肯定与否定辩证统一③主要矛盾与次要矛盾辩证统一④尊重客观规律与发挥主观能动性辩证统一 05/16 23:55 我的答案：1 正确：3" [ref=e2104] [cursor=pointer]:
+                      - generic [ref=e2105]: "1"
+                      - generic [ref=e2106]:
+                        - generic [ref=e2107]:
+                          - generic [ref=e2108]: 未掌握
+                          - generic [ref=e2109]: 未分析
+                        - paragraph [ref=e2110]: 习近平总书记曾说：“我们要有钉钉子的精神，钉钉子往往不是一锤子就能钉好的，而是要一锤一锤接着敲，直到把钉子钉实钉牢，钉牢一颗再钉下一颗，不断钉下去，必然大有成效。如果东一榔头西一棒子，结果很可能是一颗钉子都钉不上、钉不牢。”这句话最能体现的哲学原理是：①量变与质变辩证统一②肯定与否定辩证统一③主要矛盾与次要矛盾辩证统一④尊重客观规律与发挥主观能动性辩证统一
+                        - generic [ref=e2111]:
+                          - generic [ref=e2112]:
+                            - img [ref=e2113]
+                            - text: 05/16 23:55
+                          - generic [ref=e2116]: 我的答案：1
+                          - generic [ref=e2117]: 正确：3
+                      - img [ref=e2118]
+                - generic [ref=e2120]:
+                  - generic [ref=e2121]:
+                    - generic [ref=e2122]:
+                      - heading "常识判断" [level=3] [ref=e2123]
+                      - paragraph [ref=e2124]: 2 道可见 · 2 道未掌握
+                    - generic [ref=e2125]:
+                      - button "练" [ref=e2126] [cursor=pointer]:
+                        - img
+                        - text: 练
+                      - button "背" [ref=e2127] [cursor=pointer]:
+                        - img
+                        - text: 背
+                  - generic [ref=e2128]:
+                    - button "1 未掌握 知识点不会 行政机关作出影响公民权利义务的决定时，通常应遵循哪项原则？ 05/16 15:51 我的答案：B 正确：C" [ref=e2129] [cursor=pointer]:
+                      - generic [ref=e2130]: "1"
+                      - generic [ref=e2131]:
+                        - generic [ref=e2132]:
+                          - generic [ref=e2133]: 未掌握
+                          - generic [ref=e2134]: 知识点不会
+                        - paragraph [ref=e2135]: 行政机关作出影响公民权利义务的决定时，通常应遵循哪项原则？
+                        - generic [ref=e2136]:
+                          - generic [ref=e2137]:
+                            - img [ref=e2138]
+                            - text: 05/16 15:51
+                          - generic [ref=e2141]: 我的答案：B
+                          - generic [ref=e2142]: 正确：C
+                      - img [ref=e2143]
+                    - button "1 未掌握 未分析 下列关于我国宪法的说法，正确的是哪一项？ 05/16 15:51 我的答案：D 正确：A" [ref=e2145] [cursor=pointer]:
+                      - generic [ref=e2146]: "1"
+                      - generic [ref=e2147]:
+                        - generic [ref=e2148]:
+                          - generic [ref=e2149]: 未掌握
+                          - generic [ref=e2150]: 未分析
+                        - paragraph [ref=e2151]: 下列关于我国宪法的说法，正确的是哪一项？
+                        - generic [ref=e2152]:
+                          - generic [ref=e2153]:
+                            - img [ref=e2154]
+                            - text: 05/16 15:51
+                          - generic [ref=e2157]: 我的答案：D
+                          - generic [ref=e2158]: 正确：A
+                      - img [ref=e2159]
+                - generic [ref=e2161]:
+                  - generic [ref=e2162]:
+                    - generic [ref=e2163]:
+                      - heading "加强削弱" [level=3] [ref=e2164]
+                      - paragraph [ref=e2165]: 1 道可见 · 1 道未掌握
+                    - generic [ref=e2166]:
+                      - button "练" [ref=e2167] [cursor=pointer]:
+                        - img
+                        - text: 练
+                      - button "背" [ref=e2168] [cursor=pointer]:
+                        - img
+                        - text: 背
+                  - button "1 未掌握 未分析 鱼通过鳃的呼吸作用，从水中吸收钙离子，进入耳石囊内与碳酸根离子结合形成碳酸钙、随后沉积形成耳石，它具有维持鱼身平衡及辅助听觉的作用。鱼耳石的日周轮、年轮和产卵轮等时间记号，记录了鱼类生长过程中的环境信息。通过分析鱼耳石形态和化学组成等方式，我们可以了解鱼类生活史特征及其栖息环境的变化。以下哪项如果为真，最能加强上述论证？ 05/16 23:55 我的答案：2 正确：3" [ref=e2170] [cursor=pointer]:
+                    - generic [ref=e2171]: "1"
+                    - generic [ref=e2172]:
+                      - generic [ref=e2173]:
+                        - generic [ref=e2174]: 未掌握
+                        - generic [ref=e2175]: 未分析
+                      - paragraph [ref=e2176]: 鱼通过鳃的呼吸作用，从水中吸收钙离子，进入耳石囊内与碳酸根离子结合形成碳酸钙、随后沉积形成耳石，它具有维持鱼身平衡及辅助听觉的作用。鱼耳石的日周轮、年轮和产卵轮等时间记号，记录了鱼类生长过程中的环境信息。通过分析鱼耳石形态和化学组成等方式，我们可以了解鱼类生活史特征及其栖息环境的变化。以下哪项如果为真，最能加强上述论证？
+                      - generic [ref=e2177]:
+                        - generic [ref=e2178]:
+                          - img [ref=e2179]
+                          - text: 05/16 23:55
+                        - generic [ref=e2182]: 我的答案：2
+                        - generic [ref=e2183]: 正确：3
+                    - img [ref=e2184]
+                - generic [ref=e2186]:
+                  - generic [ref=e2187]:
+                    - generic [ref=e2188]:
+                      - heading "图形推理" [level=3] [ref=e2189]
+                      - paragraph [ref=e2190]: 1 道可见 · 1 道未掌握
+                    - generic [ref=e2191]:
+                      - button "练" [ref=e2192] [cursor=pointer]:
+                        - img
+                        - text: 练
+                      - button "背" [ref=e2193] [cursor=pointer]:
+                        - img
+                        - text: 背
+                  - button "1 未掌握 未分析 把下面的六个图形分为两类，使每一类图形都有各自的共同特征或规律，分类正确的一项是： 05/16 23:55 我的答案：1 正确：2" [ref=e2195] [cursor=pointer]:
+                    - generic [ref=e2196]: "1"
+                    - generic [ref=e2197]:
+                      - generic [ref=e2198]:
+                        - generic [ref=e2199]: 未掌握
+                        - generic [ref=e2200]: 未分析
+                      - paragraph [ref=e2201]: 把下面的六个图形分为两类，使每一类图形都有各自的共同特征或规律，分类正确的一项是：
+                      - generic [ref=e2202]:
+                        - generic [ref=e2203]:
+                          - img [ref=e2204]
+                          - text: 05/16 23:55
+                        - generic [ref=e2207]: 我的答案：1
+                        - generic [ref=e2208]: 正确：2
+                    - img [ref=e2209]
+                - generic [ref=e2211]:
+                  - generic [ref=e2212]:
+                    - generic [ref=e2213]:
+                      - heading "和差倍比" [level=3] [ref=e2214]
+                      - paragraph [ref=e2215]: 1 道可见 · 1 道未掌握
+                    - generic [ref=e2216]:
+                      - button "练" [ref=e2217] [cursor=pointer]:
+                        - img
+                        - text: 练
+                      - button "背" [ref=e2218] [cursor=pointer]:
+                        - img
+                        - text: 背
+                  - button "1 未掌握 未分析 一家三口去旅游，拍摄单人照、合照一共68张。合照的数量比单人照的两倍少一张；合照中，全家福占了三分之二，且孩子出现的次数为爸爸妈妈出现次数之和的一半；孩子的单人照比爸爸、妈妈单人照数量之和多1张。那么孩子出现的照片一共有： 05/16 23:55 我的答案：2 正确：0" [ref=e2220] [cursor=pointer]:
+                    - generic [ref=e2221]: "1"
+                    - generic [ref=e2222]:
+                      - generic [ref=e2223]:
+                        - generic [ref=e2224]: 未掌握
+                        - generic [ref=e2225]: 未分析
+                      - paragraph [ref=e2226]: 一家三口去旅游，拍摄单人照、合照一共68张。合照的数量比单人照的两倍少一张；合照中，全家福占了三分之二，且孩子出现的次数为爸爸妈妈出现次数之和的一半；孩子的单人照比爸爸、妈妈单人照数量之和多1张。那么孩子出现的照片一共有：
+                      - generic [ref=e2227]:
+                        - generic [ref=e2228]:
+                          - img [ref=e2229]
+                          - text: 05/16 23:55
+                        - generic [ref=e2232]: 我的答案：2
+                        - generic [ref=e2233]: 正确：0
+                    - img [ref=e2234]
+                - generic [ref=e2236]:
+                  - generic [ref=e2237]:
+                    - generic [ref=e2238]:
+                      - heading "细节判断" [level=3] [ref=e2239]
+                      - paragraph [ref=e2240]: 1 道可见 · 1 道未掌握
+                    - generic [ref=e2241]:
+                      - button "练" [ref=e2242] [cursor=pointer]:
+                        - img
+                        - text: 练
+                      - button "背" [ref=e2243] [cursor=pointer]:
+                        - img
+                        - text: 背
+                  - button "1 未掌握 未分析 近年来，一系列具有人文情怀的文化综艺类节目集体走红。在融媒体时代，文化综艺类节目如何创新成了摆在创作者面前的一道难题。创新要找到令年轻人感兴趣的点进行嫁接，但又不能丢掉主流媒体的审美、价值观和社会责任。文化综艺的创新，应该走文化传统和现代时尚相结合之路，不能脱离对传统经典文化的传承凭空打造所谓现代时尚，而是要把传统与时代精神相结合，走进人民群众最接地气的生活，在寓教于乐中让人受到启迪。下列选项与这段文字意思不符的是： 05/16 23:55 我的答案：2 正确：1" [ref=e2245] [cursor=pointer]:
+                    - generic [ref=e2246]: "1"
+                    - generic [ref=e2247]:
+                      - generic [ref=e2248]:
+                        - generic [ref=e2249]: 未掌握
+                        - generic [ref=e2250]: 未分析
+                      - paragraph [ref=e2251]: 近年来，一系列具有人文情怀的文化综艺类节目集体走红。在融媒体时代，文化综艺类节目如何创新成了摆在创作者面前的一道难题。创新要找到令年轻人感兴趣的点进行嫁接，但又不能丢掉主流媒体的审美、价值观和社会责任。文化综艺的创新，应该走文化传统和现代时尚相结合之路，不能脱离对传统经典文化的传承凭空打造所谓现代时尚，而是要把传统与时代精神相结合，走进人民群众最接地气的生活，在寓教于乐中让人受到启迪。下列选项与这段文字意思不符的是：
+                      - generic [ref=e2252]:
+                        - generic [ref=e2253]:
+                          - img [ref=e2254]
+                          - text: 05/16 23:55
+                        - generic [ref=e2257]: 我的答案：2
+                        - generic [ref=e2258]: 正确：1
+                    - img [ref=e2259]
+                - generic [ref=e2261]:
+                  - generic [ref=e2262]:
+                    - generic [ref=e2263]:
+                      - heading "推断下文" [level=3] [ref=e2264]
+                      - paragraph [ref=e2265]: 1 道可见 · 1 道未掌握
+                    - generic [ref=e2266]:
+                      - button "练" [ref=e2267] [cursor=pointer]:
+                        - img
+                        - text: 练
+                      - button "背" [ref=e2268] [cursor=pointer]:
+                        - img
+                        - text: 背
+                  - button "1 未掌握 未分析 美，向来不是强造出来的，落在城市绿化上更是如此。一座美丽城市的内核，在于人们对大自然的珍爱与敬畏，人与自然的和谐共生。近年来，我国的城市绿化得到快速发展，遍布公园广场的观赏草坪、街道两旁齐整的行道树、绿草如茵的足球场都为园林城市建设增色不少，极大地提升了观赏性与舒适度。但一些城市绿化中也出现了相互跟风、贪美求贵、追求“四季有花”等现象，不仅成为城市建设的不能承受之重，也与生态文明建设的初衷背道而驰。接下来作者最有可能讲述的是： 05/16 23:55 我的答案：1 正确：0" [ref=e2270] [cursor=pointer]:
+                    - generic [ref=e2271]: "1"
+                    - generic [ref=e2272]:
+                      - generic [ref=e2273]:
+                        - generic [ref=e2274]: 未掌握
+                        - generic [ref=e2275]: 未分析
+                      - paragraph [ref=e2276]: 美，向来不是强造出来的，落在城市绿化上更是如此。一座美丽城市的内核，在于人们对大自然的珍爱与敬畏，人与自然的和谐共生。近年来，我国的城市绿化得到快速发展，遍布公园广场的观赏草坪、街道两旁齐整的行道树、绿草如茵的足球场都为园林城市建设增色不少，极大地提升了观赏性与舒适度。但一些城市绿化中也出现了相互跟风、贪美求贵、追求“四季有花”等现象，不仅成为城市建设的不能承受之重，也与生态文明建设的初衷背道而驰。接下来作者最有可能讲述的是：
+                      - generic [ref=e2277]:
+                        - generic [ref=e2278]:
+                          - img [ref=e2279]
+                          - text: 05/16 23:55
+                        - generic [ref=e2282]: 我的答案：1
+                        - generic [ref=e2283]: 正确：0
+                    - img [ref=e2284]
+                - generic [ref=e2286]:
+                  - generic [ref=e2287]:
+                    - generic [ref=e2288]:
+                      - heading "地理国情" [level=3] [ref=e2289]
+                      - paragraph [ref=e2290]: 1 道可见 · 1 道未掌握
+                    - generic [ref=e2291]:
+                      - button "练" [ref=e2292] [cursor=pointer]:
+                        - img
+                        - text: 练
+                      - button "背" [ref=e2293] [cursor=pointer]:
+                        - img
+                        - text: 背
+                  - button "1 未掌握 未分析 我国幅员辽阔，各地风土人情迥异，天南地北皆有壮美景色。下列有关说法错误的是（ ）。 05/16 23:55 我的答案：3 正确：0" [ref=e2295] [cursor=pointer]:
+                    - generic [ref=e2296]: "1"
+                    - generic [ref=e2297]:
+                      - generic [ref=e2298]:
+                        - generic [ref=e2299]: 未掌握
+                        - generic [ref=e2300]: 未分析
+                      - paragraph [ref=e2301]: 我国幅员辽阔，各地风土人情迥异，天南地北皆有壮美景色。下列有关说法错误的是（ ）。
+                      - generic [ref=e2302]:
+                        - generic [ref=e2303]:
+                          - img [ref=e2304]
+                          - text: 05/16 23:55
+                        - generic [ref=e2307]: 我的答案：3
+                        - generic [ref=e2308]: 正确：0
+                    - img [ref=e2309]
+                - generic [ref=e2311]:
+                  - generic [ref=e2312]:
+                    - generic [ref=e2313]:
+                      - heading "类比推理" [level=3] [ref=e2314]
+                      - paragraph [ref=e2315]: 1 道可见 · 1 道未掌握
+                    - generic [ref=e2316]:
+                      - button "练" [ref=e2317] [cursor=pointer]:
+                        - img
+                        - text: 练
+                      - button "背" [ref=e2318] [cursor=pointer]:
+                        - img
+                        - text: 背
+                  - button "2 未掌握 未分析 龙葵碱 对于 （ ） 相当于 （ ） 对于 面团发酵 05/16 23:55 我的答案：3 正确：1" [ref=e2320] [cursor=pointer]:
+                    - generic [ref=e2321]: "2"
+                    - generic [ref=e2322]:
+                      - generic [ref=e2323]:
+                        - generic [ref=e2324]: 未掌握
+                        - generic [ref=e2325]: 未分析
+                      - paragraph [ref=e2326]: 龙葵碱 对于 （ ） 相当于 （ ） 对于 面团发酵
+                      - generic [ref=e2327]:
+                        - generic [ref=e2328]:
+                          - img [ref=e2329]
+                          - text: 05/16 23:55
+                        - generic [ref=e2332]: 我的答案：3
+                        - generic [ref=e2333]: 正确：1
+                    - img [ref=e2334]
+                - generic [ref=e2336]:
+                  - generic [ref=e2337]:
+                    - generic [ref=e2338]:
+                      - heading "定义判断" [level=3] [ref=e2339]
+                      - paragraph [ref=e2340]: 1 道可见 · 1 道未掌握
+                    - generic [ref=e2341]:
+                      - button "练" [ref=e2342] [cursor=pointer]:
+                        - img
+                        - text: 练
+                      - button "背" [ref=e2343] [cursor=pointer]:
+                        - img
+                        - text: 背
+                  - button "1 未掌握 未分析 凯伊效应是指当一束高粘度的假塑性流体倾倒至固体表面时，固体表面会把液束向上反弹出去。其原理为快速下落的液束冲击下方堆积的黏性流体，流体表面因为受到冲击粘度变小，受到撞击后形成一个酒窝状的凹坑，同时粘度降低的表面充当了润滑剂的作用，最终使得下落的液束被反弹出去。根据上述定义，下列属于凯伊效应的是： 05/16 23:53 我的答案：1 正确：3" [ref=e2345] [cursor=pointer]:
+                    - generic [ref=e2346]: "1"
+                    - generic [ref=e2347]:
+                      - generic [ref=e2348]:
+                        - generic [ref=e2349]: 未掌握
+                        - generic [ref=e2350]: 未分析
+                      - paragraph [ref=e2351]: 凯伊效应是指当一束高粘度的假塑性流体倾倒至固体表面时，固体表面会把液束向上反弹出去。其原理为快速下落的液束冲击下方堆积的黏性流体，流体表面因为受到冲击粘度变小，受到撞击后形成一个酒窝状的凹坑，同时粘度降低的表面充当了润滑剂的作用，最终使得下落的液束被反弹出去。根据上述定义，下列属于凯伊效应的是：
+                      - generic [ref=e2352]:
+                        - generic [ref=e2353]:
+                          - img [ref=e2354]
+                          - text: 05/16 23:53
+                        - generic [ref=e2357]: 我的答案：1
+                        - generic [ref=e2358]: 正确：3
+                    - img [ref=e2359]
+                - generic [ref=e2361]:
+                  - generic [ref=e2362]:
+                    - generic [ref=e2363]:
+                      - heading "计算问题" [level=3] [ref=e2364]
+                      - paragraph [ref=e2365]: 1 道可见 · 1 道未掌握
+                    - generic [ref=e2366]:
+                      - button "练" [ref=e2367] [cursor=pointer]:
+                        - img
+                        - text: 练
+                      - button "背" [ref=e2368] [cursor=pointer]:
+                        - img
+                        - text: 背
+                  - button "1 未掌握 知识点不会 木星冲日，即木星、地球和太阳三者处于一条直线上，且地球位于太阳和木星之间。已知2024年12月8日发生了木星冲日，若木星绕太阳公转的周期约为12个地球年，则下一次木星冲日发生于下列哪个时间段？ 05/16 23:53 我的答案：2 正确：1" [ref=e2370] [cursor=pointer]:
+                    - generic [ref=e2371]: "1"
+                    - generic [ref=e2372]:
+                      - generic [ref=e2373]:
+                        - generic [ref=e2374]: 未掌握
+                        - generic [ref=e2375]: 知识点不会
+                      - paragraph [ref=e2376]: 木星冲日，即木星、地球和太阳三者处于一条直线上，且地球位于太阳和木星之间。已知2024年12月8日发生了木星冲日，若木星绕太阳公转的周期约为12个地球年，则下一次木星冲日发生于下列哪个时间段？
+                      - generic [ref=e2377]:
+                        - generic [ref=e2378]:
+                          - img [ref=e2379]
+                          - text: 05/16 23:53
+                        - generic [ref=e2382]: 我的答案：2
+                        - generic [ref=e2383]: 正确：1
+                    - img [ref=e2384]
+                - generic [ref=e2386]:
+                  - generic [ref=e2387]:
+                    - generic [ref=e2388]:
+                      - heading "几何问题" [level=3] [ref=e2389]
+                      - paragraph [ref=e2390]: 1 道可见 · 1 道未掌握
+                    - generic [ref=e2391]:
+                      - button "练" [ref=e2392] [cursor=pointer]:
+                        - img
+                        - text: 练
+                      - button "背" [ref=e2393] [cursor=pointer]:
+                        - img
+                        - text: 背
+                  - button "1 未掌握 未分析 为庆祝春节，某村计划在村口的两根圆柱体石柱上缠绕灯带。每根石柱需绕上3圈灯带，起始点为A，终点为B，如下图所示。若每根石柱高为5米，横截面圆的周长为4米，那么两根石柱所需的灯带总长度最短为多少米？ 05/16 23:45 我的答案：1 正确：2" [ref=e2395] [cursor=pointer]:
+                    - generic [ref=e2396]: "1"
+                    - generic [ref=e2397]:
+                      - generic [ref=e2398]:
+                        - generic [ref=e2399]: 未掌握
+                        - generic [ref=e2400]: 未分析
+                      - paragraph [ref=e2401]: 为庆祝春节，某村计划在村口的两根圆柱体石柱上缠绕灯带。每根石柱需绕上3圈灯带，起始点为A，终点为B，如下图所示。若每根石柱高为5米，横截面圆的周长为4米，那么两根石柱所需的灯带总长度最短为多少米？
+                      - generic [ref=e2402]:
+                        - generic [ref=e2403]:
+                          - img [ref=e2404]
+                          - text: 05/16 23:45
+                        - generic [ref=e2407]: 我的答案：1
+                        - generic [ref=e2408]: 正确：2
+                    - img [ref=e2409]
+            - complementary [ref=e2411]:
+              - generic [ref=e2412]:
+                - generic [ref=e2414]:
+                  - generic [ref=e2415]:
+                    - generic [ref=e2416]:
+                      - generic [ref=e2417]: 未掌握
+                      - generic [ref=e2418]: 错 1 次
+                      - generic [ref=e2419]: 05/16 23:55
+                      - generic [ref=e2420]: 知识点不会
+                    - heading "理论政策" [level=2] [ref=e2421]
+                    - paragraph [ref=e2422]: 最近作答用时：3 秒
+                  - generic [ref=e2423]:
+                    - button "标记掌握" [ref=e2424] [cursor=pointer]:
+                      - img
+                      - text: 标记掌握
+                    - button "练本类" [ref=e2425] [cursor=pointer]:
+                      - img
+                      - text: 练本类
+                    - button "背本类" [ref=e2426] [cursor=pointer]:
+                      - img
+                      - text: 背本类
+                - generic [ref=e2427]:
+                  - generic [ref=e2428]:
+                    - paragraph [ref=e2559]: 建设教育强国，基点在基础教育。基础教育搞得越扎实，教育强国步伐就越稳、后劲就越足。关于加强基础教育，下列举措正确的有几项？
+                    - paragraph [ref=e2560]: ①提升寄宿制学校办学条件和管理水平，办好必要的乡村小规模学校
+                    - paragraph [ref=e2561]: ②统筹推进市域内高中阶段学校多样化发展，加快扩大普通高中教育资源供给
+                    - paragraph [ref=e2562]: ③强化家庭教育主阵地作用，健全学校家庭社会协同育人机制
+                    - paragraph [ref=e2563]: ④建立基础教育各学段学龄人口变化监测预警制度，优化中小学和幼儿园布局
+                    - paragraph [ref=e2564]: ⑤深入开展县域义务教育优质均衡督导评估，有序推进市域义务教育优质均衡发展
+                  - generic [ref=e2434]:
+                    - generic [ref=e2565]:
+                      - generic [ref=e2566]: A
+                      - generic [ref=e2567]: 4项
+                      - generic [ref=e2568]: 正确
+                    - generic [ref=e2569]:
+                      - generic [ref=e2570]: B
+                      - generic [ref=e2571]: 3项
+                      - generic [ref=e2572]: 我的误选
+                    - generic [ref=e2573]:
+                      - generic [ref=e2574]: C
+                      - generic [ref=e2575]: 2项
+                    - generic [ref=e2576]:
+                      - generic [ref=e2577]: D
+                      - generic [ref=e2578]: 1项
+                  - generic [ref=e2449]:
+                    - generic [ref=e2450]:
+                      - generic [ref=e2451]: 正确答案
+                      - generic [ref=e2452]: "0"
+                    - generic [ref=e2453]:
+                      - generic [ref=e2454]: 我的答案
+                      - generic [ref=e2455]: "1"
+                    - generic [ref=e2456]:
+                      - generic [ref=e2457]: 最近用时
+                      - generic [ref=e2458]: 3 秒
+                  - generic [ref=e2459]:
+                    - generic [ref=e2460]: 官方解析
+                    - generic [ref=e2461]:
+                      - paragraph [ref=e2579]: 本题考查新思想。
+                      - paragraph [ref=e2580]: 2025年1月，中共中央 国务院印发《教育强国建设规划纲要（2024—2035年）》（以下简称《纲要》）。
+                      - paragraph [ref=e2581]: ①⑤正确，《纲要》在“三、办强办优基础教育，夯实全面提升国民素质战略基点”部分指出：“（八）推动义务教育优质均衡发展和城乡一体化······提升寄宿制学校办学条件和管理水平，办好必要的乡村小规模学校······深入开展县域义务教育优质均衡督导评估，有序推进市域义务教育优质均衡发展。”
+                      - paragraph [ref=e2582]: ②正确，《纲要》在“三、办强办优基础教育，夯实全面提升国民素质战略基点”部分指出：“（九）促进学前教育普及普惠和高中阶段学校多样化发展······统筹推进市域内高中阶段学校多样化发展，加快扩大普通高中教育资源供给。”
+                      - paragraph [ref=e2583]: ③错误，《纲要》在“三、办强办优基础教育，夯实全面提升国民素质战略基点”部分指出：“（十）统筹推进‘双减’和教育教学质量提升······强化学校教育主阵地作用，全面提升课堂教学水平，加强对学习困难学生的辅导······”故“强化家庭教育主阵地作用”说法错误，应为“强化学校教育主阵地作用”。
+                      - paragraph [ref=e2584]: ④正确，《纲要》在“三、办强办优基础教育，夯实全面提升国民素质战略基点”部分指出：“（七）健全与人口变化相适应的基础教育资源统筹调配机制······建立基础教育各学段学龄人口变化监测预警制度，优化中小学和幼儿园布局。”
+                      - paragraph [ref=e2585]: 故①②④⑤说法正确，共4项。
+                      - paragraph [ref=e2586]: 故正确答案为A。
+                - generic [ref=e2470]:
+                  - generic [ref=e2471]:
+                    - generic [ref=e2472]: 最新错因
+                    - generic [ref=e2473]: 知识点不会
+                  - generic [ref=e2474]:
+                    - generic [ref=e2475]:
+                      - generic [ref=e2476]: 错因摘要
+                      - paragraph [ref=e2477]: 主要是对《教育强国建设规划纲要（2024—2035年）》的具体表述掌握不精准，未能识别出“主阵地”这一特定称谓在教育政策中的归属对象错误（将“学校”误认为“家庭”）。
+                    - generic [ref=e2478]:
+                      - generic [ref=e2479]: 最快路径
+                      - paragraph [ref=e2480]: 第一步：扫描关键词。识别出本题考察2025年1月发布的《教育强国建设规划纲要》。第二步：定位高频陷阱词。看到③中“家庭教育主阵地”，根据惯常政策表述，教育的“主阵地”必然是“学校教育”，判定③错误。第三步：快速过审其余选项。①（乡村学校）、②（高中多样化）、④（学龄人口监测）、⑤（优质均衡）均符合当前教育改革大方向且无常识性逻辑错误。得出1、2、4、5项正确，选A。
+                    - generic [ref=e2481]:
+                      - generic [ref=e2482]: 下次规则
+                      - paragraph [ref=e2483]: 1. **主阵地辨析规则**：在教育政策题中，“主阵地”通常指向“学校教育”或“课堂教学”；家庭教育一般表述为“基础作用”或“协同配合”。 2. **人口关联规则**：当前基础教育政策必然会涉及“学龄人口变化”和“布局优化”，此类表述（如项④）通常为正确项。 3. **均衡化关键词**：看到“县域/市域义务教育优质均衡”基本可判定为官方标准提法。
+                - generic [ref=e2587]:
+                  - generic [ref=e2588]:
+                    - generic [ref=e2589]: 讲题助教
+                    - generic [ref=e2590]: 围绕当前题、官方答案和我的作答追问。
+                  - generic [ref=e2592]:
+                    - generic [ref=e2593]:
+                      - generic [ref=e2594]:
+                        - generic [ref=e2595]:
+                          - img [ref=e2596]
+                          - text: 讲题助教
+                        - paragraph [ref=e2599]: 当前题最近答案：1；正确答案：0
+                      - generic [ref=e2600]: 复盘
+                    - log [ref=e2601]:
+                      - generic [ref=e2602]:
+                        - generic [ref=e2603]:
+                          - generic [ref=e2604]: 助教
+                          - generic [ref=e2605]:
+                            - button "这条讲解有帮助" [ref=e2606] [cursor=pointer]:
+                              - img
+                            - button "这条讲解需要改进" [ref=e2607] [cursor=pointer]:
+                              - img
+                        - generic [ref=e2608]:
+                          - generic [ref=e2609]:
+                            - generic [ref=e2610]:
+                              - generic [ref=e2611]: 本题错因
+                              - generic [ref=e2612]: 知识点不会
+                            - generic [ref=e2613]:
+                              - generic [ref=e2614]: 最快路径
+                              - generic [ref=e2615]: 第一步：扫描关键词。识别出本题考察2025年1月发布的《教育强国建设规划纲要》。第二步：定位高频陷阱词。看到③中“家庭教育主阵地”，根据惯常政策表述，教育的“主阵地”必然是“学校教育”，判定③错误。第三步：快速过审其余选项。①（乡村学校）、②（高中多样化）、④（学龄人口监测）、⑤（优质均衡）均符合当前教育改革大方向且无常识性逻辑错误。得出1、2、4、5项正确，选A。
+                            - generic [ref=e2616]:
+                              - generic [ref=e2617]: 下次规则
+                              - generic [ref=e2618]: 1. **主阵地辨析规则**：在教育政策题中，“主阵地”通常指向“学校教育”或“课堂教学”；家庭教育一般表述为“基础作用”或“协同配合”。 2. **人口关联规则**：当前基础教育政策必然会涉及“学龄人口变化”和“布局优化”，此类表述（如项④）通常为正确项。 3. **均衡化关键词**：看到“县域/市域义务教育优质均衡”基本可判定为官方标准提法。
+                          - heading "错题复盘" [level=4] [ref=e2619]
+                          - paragraph [ref=e2620]:
+                            - strong [ref=e2621]: 本题错因
+                            - text: ：对最新时政文件《教育强国建设规划纲要（2024—2035年）》细节记忆模糊，在面对“主阵地”这类干扰表述时，未能敏锐察觉主体对象置换的陷阱。
+                          - paragraph [ref=e2622]:
+                            - strong [ref=e2623]: 最快路径
+                            - text: ：
+                          - list [ref=e2624]:
+                            - listitem [ref=e2625]:
+                              - strong [ref=e2626]: 关键词匹配
+                              - text: ：基础教育、主阵地、优质均衡。
+                            - listitem [ref=e2627]:
+                              - strong [ref=e2628]: 找茬法
+                              - text: ：在教育体系中，虽然强调家校社协同，但“主阵地”始终是
+                              - strong [ref=e2629]: 学校
+                              - text: 。项③将“家庭教育”称为主阵地，属于明显的主体颠倒。
+                            - listitem [ref=e2630]:
+                              - strong [ref=e2631]: 确认其余项
+                              - text: ：①、②、④、⑤均为近年来国家关于基础教育布局、高中发展及义务教育均衡发展的标准正面表述。
+                          - paragraph [ref=e2632]:
+                            - strong [ref=e2633]: 下次识别规则
+                            - text: ：
+                          - list [ref=e2634]:
+                            - listitem [ref=e2635]:
+                              - strong [ref=e2636]: 主体置换陷阱
+                              - text: ：看到“XX是主阵地”、“XX是核心”、“XX是基础”时，必须核实主体是否对应。例如：学校是主阵地，家庭是第一老师，社会是资源支撑。
+                            - listitem [ref=e2637]:
+                              - strong [ref=e2638]: 时政高频点
+                              - text: ：关注“学龄人口监测”和“优质均衡”，这是2025年教育规划中的核心增量内容。
+                          - separator [ref=e2639]
+                          - heading "完整讲解" [level=4] [ref=e2640]
+                          - paragraph [ref=e2641]: 本题考查《教育强国建设规划纲要（2024—2035年）》中关于基础教育的具体举措：
+                          - list [ref=e2642]:
+                            - listitem [ref=e2643]:
+                              - strong [ref=e2644]: ①正确
+                              - text: ：属于“推动义务教育优质均衡发展和城乡一体化”的要求，关注乡村和寄宿制学校。
+                            - listitem [ref=e2645]:
+                              - strong [ref=e2646]: ②正确
+                              - text: ：属于“促进学前教育普及普惠和高中阶段学校多样化发展”的要求，解决高中资源供给问题。
+                            - listitem [ref=e2647]:
+                              - strong [ref=e2648]: ③错误
+                              - text: ：原文为“强化
+                              - strong [ref=e2649]: 学校教育
+                              - text: 主阵地作用”。家庭教育在政策中通常表述为“发挥家庭教育引导作用”或“健全协同育人机制”，而非主阵地。
+                            - listitem [ref=e2650]:
+                              - strong [ref=e2651]: ④正确
+                              - text: ：针对当前人口出生率变化，建立监测预警并优化布局是极具现实意义的政策。
+                            - listitem [ref=e2652]:
+                              - strong [ref=e2653]: ⑤正确
+                              - text: ：明确了县域和市域两个层级的优质均衡发展目标。
+                          - paragraph [ref=e2654]: 综上，①②④⑤正确，共4项。故正确答案为A。
+                    - generic [ref=e2655]:
+                      - button "如何记忆教育强国规划纲要的核心要点？" [ref=e2656] [cursor=pointer]
+                      - button "行测时政题中常见的“主体置换”陷阱有哪些？" [ref=e2657] [cursor=pointer]
+                      - button "总结一下教育类政策中关于“主阵地”的所有标准说法" [ref=e2658] [cursor=pointer]
+                      - button "帮我梳理2025年最新的教育改革政策关键词" [ref=e2659] [cursor=pointer]
+                    - generic [ref=e2660]:
+                      - generic [ref=e2661]: 继续追问
+                      - textbox "继续追问" [ref=e2662]:
+                        - /placeholder: 例如：这题最快怎么排除两个选项？
+                        - text: 如何记忆教育强国规划纲要的核心要点？
+                    - button "发送" [ref=e2664] [cursor=pointer]:
+                      - img
+                      - text: 发送
