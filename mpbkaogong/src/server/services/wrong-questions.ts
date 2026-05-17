@@ -2,6 +2,8 @@ import { z } from "zod";
 
 import type { AuthenticatedUser } from "@/lib/auth/guards";
 import { prisma } from "@/lib/db/prisma";
+import { latestMistakeReviewMap, type LatestMistakeReviewSummary } from "@/server/agent/mistakes/service";
+import { mistakeCauseSchema } from "@/server/agent/shared/schemas";
 import { BusinessError, NotFoundError } from "@/server/services/errors";
 import { emptyStringToUndefined } from "@/server/services/pagination";
 import { createQuestionPracticeSession } from "@/server/services/practice";
@@ -13,6 +15,8 @@ const booleanStringSchema = z
 
 export const wrongQuestionsQuerySchema = z.object({
   tagId: z.preprocess(emptyStringToUndefined, z.string().min(1).optional()),
+  mistakeCause: z.preprocess(emptyStringToUndefined, mistakeCauseSchema.optional()),
+  analysis: z.preprocess(emptyStringToUndefined, z.enum(["analyzed", "unanalyzed", "all"]).default("all")),
   includeResolved: booleanStringSchema,
 });
 
@@ -84,12 +88,35 @@ export async function listWrongQuestions(user: AuthenticatedUser, query: WrongQu
         wrongCount: number;
         lastWrongAt: string;
         resolvedAt: string | null;
+        latestMistakeReview: LatestMistakeReviewSummary | null;
         question: ReturnType<typeof toQuestionDto>;
       }>;
     }
   >();
 
-  for (const wrongQuestion of wrongQuestions) {
+  const latestReviewByQuestionId = await latestMistakeReviewMap(
+    user,
+    wrongQuestions.map((wrongQuestion) => wrongQuestion.questionId)
+  );
+  const filteredWrongQuestions = wrongQuestions.filter((wrongQuestion) => {
+    const latestReview = latestReviewByQuestionId.get(wrongQuestion.questionId) ?? null;
+
+    if (query.analysis === "analyzed" && !latestReview) {
+      return false;
+    }
+
+    if (query.analysis === "unanalyzed" && latestReview) {
+      return false;
+    }
+
+    if (query.mistakeCause && latestReview?.mistakeCause !== query.mistakeCause) {
+      return false;
+    }
+
+    return true;
+  });
+
+  for (const wrongQuestion of filteredWrongQuestions) {
     const tagId = wrongQuestion.tag?.id ?? wrongQuestion.question.tag?.id ?? null;
     const tagName = wrongQuestion.tag?.name ?? wrongQuestion.question.tag?.name ?? "未分类";
     const groupKey = tagId ?? "untagged";
@@ -110,6 +137,7 @@ export async function listWrongQuestions(user: AuthenticatedUser, query: WrongQu
           wrongCount: number;
           lastWrongAt: string;
           resolvedAt: string | null;
+          latestMistakeReview: LatestMistakeReviewSummary | null;
           question: ReturnType<typeof toQuestionDto>;
         }>;
       });
@@ -121,6 +149,7 @@ export async function listWrongQuestions(user: AuthenticatedUser, query: WrongQu
       wrongCount: wrongQuestion.wrongCount,
       lastWrongAt: wrongQuestion.lastWrongAt.toISOString(),
       resolvedAt: wrongQuestion.resolvedAt?.toISOString() ?? null,
+      latestMistakeReview: latestReviewByQuestionId.get(wrongQuestion.questionId) ?? null,
       question: toQuestionDto(wrongQuestion.question, true),
     });
     groups.set(groupKey, group);

@@ -123,6 +123,11 @@ export type AgentRecommendation = Prisma.AgentRecommendationModel
  */
 export type AgentTutorMessage = Prisma.AgentTutorMessageModel
 /**
+ * Model QuestionMistakeReview
+ * 
+ */
+export type QuestionMistakeReview = Prisma.QuestionMistakeReviewModel
+/**
  * Model AgentFeedback
  * 
  */

@@ -272,6 +272,7 @@ export type PracticeAnswerWhereInput = {
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   question?: Prisma.XOR<Prisma.QuestionScalarRelationFilter, Prisma.QuestionWhereInput>
   wrongSources?: Prisma.WrongQuestionListRelationFilter
+  mistakeReviews?: Prisma.QuestionMistakeReviewListRelationFilter
 }
 
 export type PracticeAnswerOrderByWithRelationInput = {
@@ -290,6 +291,7 @@ export type PracticeAnswerOrderByWithRelationInput = {
   user?: Prisma.UserOrderByWithRelationInput
   question?: Prisma.QuestionOrderByWithRelationInput
   wrongSources?: Prisma.WrongQuestionOrderByRelationAggregateInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewOrderByRelationAggregateInput
   _relevance?: Prisma.PracticeAnswerOrderByRelevanceInput
 }
 
@@ -313,6 +315,7 @@ export type PracticeAnswerWhereUniqueInput = Prisma.AtLeast<{
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   question?: Prisma.XOR<Prisma.QuestionScalarRelationFilter, Prisma.QuestionWhereInput>
   wrongSources?: Prisma.WrongQuestionListRelationFilter
+  mistakeReviews?: Prisma.QuestionMistakeReviewListRelationFilter
 }, "id" | "sessionId_questionId">
 
 export type PracticeAnswerOrderByWithAggregationInput = {
@@ -364,6 +367,7 @@ export type PracticeAnswerCreateInput = {
   user: Prisma.UserCreateNestedOneWithoutPracticeAnswersInput
   question: Prisma.QuestionCreateNestedOneWithoutPracticeAnswersInput
   wrongSources?: Prisma.WrongQuestionCreateNestedManyWithoutLastAnswerInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewCreateNestedManyWithoutPracticeAnswerInput
 }
 
 export type PracticeAnswerUncheckedCreateInput = {
@@ -379,6 +383,7 @@ export type PracticeAnswerUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   wrongSources?: Prisma.WrongQuestionUncheckedCreateNestedManyWithoutLastAnswerInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedCreateNestedManyWithoutPracticeAnswerInput
 }
 
 export type PracticeAnswerUpdateInput = {
@@ -394,6 +399,7 @@ export type PracticeAnswerUpdateInput = {
   user?: Prisma.UserUpdateOneRequiredWithoutPracticeAnswersNestedInput
   question?: Prisma.QuestionUpdateOneRequiredWithoutPracticeAnswersNestedInput
   wrongSources?: Prisma.WrongQuestionUpdateManyWithoutLastAnswerNestedInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewUpdateManyWithoutPracticeAnswerNestedInput
 }
 
 export type PracticeAnswerUncheckedUpdateInput = {
@@ -409,6 +415,7 @@ export type PracticeAnswerUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   wrongSources?: Prisma.WrongQuestionUncheckedUpdateManyWithoutLastAnswerNestedInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedUpdateManyWithoutPracticeAnswerNestedInput
 }
 
 export type PracticeAnswerCreateManyInput = {
@@ -674,6 +681,22 @@ export type PracticeAnswerUpdateOneWithoutWrongSourcesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.PracticeAnswerUpdateToOneWithWhereWithoutWrongSourcesInput, Prisma.PracticeAnswerUpdateWithoutWrongSourcesInput>, Prisma.PracticeAnswerUncheckedUpdateWithoutWrongSourcesInput>
 }
 
+export type PracticeAnswerCreateNestedOneWithoutMistakeReviewsInput = {
+  create?: Prisma.XOR<Prisma.PracticeAnswerCreateWithoutMistakeReviewsInput, Prisma.PracticeAnswerUncheckedCreateWithoutMistakeReviewsInput>
+  connectOrCreate?: Prisma.PracticeAnswerCreateOrConnectWithoutMistakeReviewsInput
+  connect?: Prisma.PracticeAnswerWhereUniqueInput
+}
+
+export type PracticeAnswerUpdateOneWithoutMistakeReviewsNestedInput = {
+  create?: Prisma.XOR<Prisma.PracticeAnswerCreateWithoutMistakeReviewsInput, Prisma.PracticeAnswerUncheckedCreateWithoutMistakeReviewsInput>
+  connectOrCreate?: Prisma.PracticeAnswerCreateOrConnectWithoutMistakeReviewsInput
+  upsert?: Prisma.PracticeAnswerUpsertWithoutMistakeReviewsInput
+  disconnect?: Prisma.PracticeAnswerWhereInput | boolean
+  delete?: Prisma.PracticeAnswerWhereInput | boolean
+  connect?: Prisma.PracticeAnswerWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PracticeAnswerUpdateToOneWithWhereWithoutMistakeReviewsInput, Prisma.PracticeAnswerUpdateWithoutMistakeReviewsInput>, Prisma.PracticeAnswerUncheckedUpdateWithoutMistakeReviewsInput>
+}
+
 export type PracticeAnswerCreateWithoutUserInput = {
   id?: string
   answer?: string | null
@@ -686,6 +709,7 @@ export type PracticeAnswerCreateWithoutUserInput = {
   session: Prisma.PracticeSessionCreateNestedOneWithoutAnswersInput
   question: Prisma.QuestionCreateNestedOneWithoutPracticeAnswersInput
   wrongSources?: Prisma.WrongQuestionCreateNestedManyWithoutLastAnswerInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewCreateNestedManyWithoutPracticeAnswerInput
 }
 
 export type PracticeAnswerUncheckedCreateWithoutUserInput = {
@@ -700,6 +724,7 @@ export type PracticeAnswerUncheckedCreateWithoutUserInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   wrongSources?: Prisma.WrongQuestionUncheckedCreateNestedManyWithoutLastAnswerInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedCreateNestedManyWithoutPracticeAnswerInput
 }
 
 export type PracticeAnswerCreateOrConnectWithoutUserInput = {
@@ -757,6 +782,7 @@ export type PracticeAnswerCreateWithoutQuestionInput = {
   session: Prisma.PracticeSessionCreateNestedOneWithoutAnswersInput
   user: Prisma.UserCreateNestedOneWithoutPracticeAnswersInput
   wrongSources?: Prisma.WrongQuestionCreateNestedManyWithoutLastAnswerInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewCreateNestedManyWithoutPracticeAnswerInput
 }
 
 export type PracticeAnswerUncheckedCreateWithoutQuestionInput = {
@@ -771,6 +797,7 @@ export type PracticeAnswerUncheckedCreateWithoutQuestionInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   wrongSources?: Prisma.WrongQuestionUncheckedCreateNestedManyWithoutLastAnswerInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedCreateNestedManyWithoutPracticeAnswerInput
 }
 
 export type PracticeAnswerCreateOrConnectWithoutQuestionInput = {
@@ -811,6 +838,7 @@ export type PracticeAnswerCreateWithoutSessionInput = {
   user: Prisma.UserCreateNestedOneWithoutPracticeAnswersInput
   question: Prisma.QuestionCreateNestedOneWithoutPracticeAnswersInput
   wrongSources?: Prisma.WrongQuestionCreateNestedManyWithoutLastAnswerInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewCreateNestedManyWithoutPracticeAnswerInput
 }
 
 export type PracticeAnswerUncheckedCreateWithoutSessionInput = {
@@ -825,6 +853,7 @@ export type PracticeAnswerUncheckedCreateWithoutSessionInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   wrongSources?: Prisma.WrongQuestionUncheckedCreateNestedManyWithoutLastAnswerInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedCreateNestedManyWithoutPracticeAnswerInput
 }
 
 export type PracticeAnswerCreateOrConnectWithoutSessionInput = {
@@ -865,6 +894,7 @@ export type PracticeAnswerCreateWithoutWrongSourcesInput = {
   session: Prisma.PracticeSessionCreateNestedOneWithoutAnswersInput
   user: Prisma.UserCreateNestedOneWithoutPracticeAnswersInput
   question: Prisma.QuestionCreateNestedOneWithoutPracticeAnswersInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewCreateNestedManyWithoutPracticeAnswerInput
 }
 
 export type PracticeAnswerUncheckedCreateWithoutWrongSourcesInput = {
@@ -879,6 +909,7 @@ export type PracticeAnswerUncheckedCreateWithoutWrongSourcesInput = {
   answeredAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedCreateNestedManyWithoutPracticeAnswerInput
 }
 
 export type PracticeAnswerCreateOrConnectWithoutWrongSourcesInput = {
@@ -909,6 +940,7 @@ export type PracticeAnswerUpdateWithoutWrongSourcesInput = {
   session?: Prisma.PracticeSessionUpdateOneRequiredWithoutAnswersNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutPracticeAnswersNestedInput
   question?: Prisma.QuestionUpdateOneRequiredWithoutPracticeAnswersNestedInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewUpdateManyWithoutPracticeAnswerNestedInput
 }
 
 export type PracticeAnswerUncheckedUpdateWithoutWrongSourcesInput = {
@@ -923,6 +955,83 @@ export type PracticeAnswerUncheckedUpdateWithoutWrongSourcesInput = {
   answeredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedUpdateManyWithoutPracticeAnswerNestedInput
+}
+
+export type PracticeAnswerCreateWithoutMistakeReviewsInput = {
+  id?: string
+  answer?: string | null
+  isCorrect?: boolean | null
+  timeSpentSeconds?: number
+  sortOrder: number
+  answeredAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  session: Prisma.PracticeSessionCreateNestedOneWithoutAnswersInput
+  user: Prisma.UserCreateNestedOneWithoutPracticeAnswersInput
+  question: Prisma.QuestionCreateNestedOneWithoutPracticeAnswersInput
+  wrongSources?: Prisma.WrongQuestionCreateNestedManyWithoutLastAnswerInput
+}
+
+export type PracticeAnswerUncheckedCreateWithoutMistakeReviewsInput = {
+  id?: string
+  sessionId: string
+  userId: string
+  questionId: string
+  answer?: string | null
+  isCorrect?: boolean | null
+  timeSpentSeconds?: number
+  sortOrder: number
+  answeredAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  wrongSources?: Prisma.WrongQuestionUncheckedCreateNestedManyWithoutLastAnswerInput
+}
+
+export type PracticeAnswerCreateOrConnectWithoutMistakeReviewsInput = {
+  where: Prisma.PracticeAnswerWhereUniqueInput
+  create: Prisma.XOR<Prisma.PracticeAnswerCreateWithoutMistakeReviewsInput, Prisma.PracticeAnswerUncheckedCreateWithoutMistakeReviewsInput>
+}
+
+export type PracticeAnswerUpsertWithoutMistakeReviewsInput = {
+  update: Prisma.XOR<Prisma.PracticeAnswerUpdateWithoutMistakeReviewsInput, Prisma.PracticeAnswerUncheckedUpdateWithoutMistakeReviewsInput>
+  create: Prisma.XOR<Prisma.PracticeAnswerCreateWithoutMistakeReviewsInput, Prisma.PracticeAnswerUncheckedCreateWithoutMistakeReviewsInput>
+  where?: Prisma.PracticeAnswerWhereInput
+}
+
+export type PracticeAnswerUpdateToOneWithWhereWithoutMistakeReviewsInput = {
+  where?: Prisma.PracticeAnswerWhereInput
+  data: Prisma.XOR<Prisma.PracticeAnswerUpdateWithoutMistakeReviewsInput, Prisma.PracticeAnswerUncheckedUpdateWithoutMistakeReviewsInput>
+}
+
+export type PracticeAnswerUpdateWithoutMistakeReviewsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  answer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isCorrect?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  timeSpentSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
+  answeredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  session?: Prisma.PracticeSessionUpdateOneRequiredWithoutAnswersNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutPracticeAnswersNestedInput
+  question?: Prisma.QuestionUpdateOneRequiredWithoutPracticeAnswersNestedInput
+  wrongSources?: Prisma.WrongQuestionUpdateManyWithoutLastAnswerNestedInput
+}
+
+export type PracticeAnswerUncheckedUpdateWithoutMistakeReviewsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  sessionId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  questionId?: Prisma.StringFieldUpdateOperationsInput | string
+  answer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isCorrect?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  timeSpentSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
+  answeredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  wrongSources?: Prisma.WrongQuestionUncheckedUpdateManyWithoutLastAnswerNestedInput
 }
 
 export type PracticeAnswerCreateManyUserInput = {
@@ -950,6 +1059,7 @@ export type PracticeAnswerUpdateWithoutUserInput = {
   session?: Prisma.PracticeSessionUpdateOneRequiredWithoutAnswersNestedInput
   question?: Prisma.QuestionUpdateOneRequiredWithoutPracticeAnswersNestedInput
   wrongSources?: Prisma.WrongQuestionUpdateManyWithoutLastAnswerNestedInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewUpdateManyWithoutPracticeAnswerNestedInput
 }
 
 export type PracticeAnswerUncheckedUpdateWithoutUserInput = {
@@ -964,6 +1074,7 @@ export type PracticeAnswerUncheckedUpdateWithoutUserInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   wrongSources?: Prisma.WrongQuestionUncheckedUpdateManyWithoutLastAnswerNestedInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedUpdateManyWithoutPracticeAnswerNestedInput
 }
 
 export type PracticeAnswerUncheckedUpdateManyWithoutUserInput = {
@@ -1004,6 +1115,7 @@ export type PracticeAnswerUpdateWithoutQuestionInput = {
   session?: Prisma.PracticeSessionUpdateOneRequiredWithoutAnswersNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutPracticeAnswersNestedInput
   wrongSources?: Prisma.WrongQuestionUpdateManyWithoutLastAnswerNestedInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewUpdateManyWithoutPracticeAnswerNestedInput
 }
 
 export type PracticeAnswerUncheckedUpdateWithoutQuestionInput = {
@@ -1018,6 +1130,7 @@ export type PracticeAnswerUncheckedUpdateWithoutQuestionInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   wrongSources?: Prisma.WrongQuestionUncheckedUpdateManyWithoutLastAnswerNestedInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedUpdateManyWithoutPracticeAnswerNestedInput
 }
 
 export type PracticeAnswerUncheckedUpdateManyWithoutQuestionInput = {
@@ -1058,6 +1171,7 @@ export type PracticeAnswerUpdateWithoutSessionInput = {
   user?: Prisma.UserUpdateOneRequiredWithoutPracticeAnswersNestedInput
   question?: Prisma.QuestionUpdateOneRequiredWithoutPracticeAnswersNestedInput
   wrongSources?: Prisma.WrongQuestionUpdateManyWithoutLastAnswerNestedInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewUpdateManyWithoutPracticeAnswerNestedInput
 }
 
 export type PracticeAnswerUncheckedUpdateWithoutSessionInput = {
@@ -1072,6 +1186,7 @@ export type PracticeAnswerUncheckedUpdateWithoutSessionInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   wrongSources?: Prisma.WrongQuestionUncheckedUpdateManyWithoutLastAnswerNestedInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedUpdateManyWithoutPracticeAnswerNestedInput
 }
 
 export type PracticeAnswerUncheckedUpdateManyWithoutSessionInput = {
@@ -1094,10 +1209,12 @@ export type PracticeAnswerUncheckedUpdateManyWithoutSessionInput = {
 
 export type PracticeAnswerCountOutputType = {
   wrongSources: number
+  mistakeReviews: number
 }
 
 export type PracticeAnswerCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   wrongSources?: boolean | PracticeAnswerCountOutputTypeCountWrongSourcesArgs
+  mistakeReviews?: boolean | PracticeAnswerCountOutputTypeCountMistakeReviewsArgs
 }
 
 /**
@@ -1117,6 +1234,13 @@ export type PracticeAnswerCountOutputTypeCountWrongSourcesArgs<ExtArgs extends r
   where?: Prisma.WrongQuestionWhereInput
 }
 
+/**
+ * PracticeAnswerCountOutputType without action
+ */
+export type PracticeAnswerCountOutputTypeCountMistakeReviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.QuestionMistakeReviewWhereInput
+}
+
 
 export type PracticeAnswerSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1134,6 +1258,7 @@ export type PracticeAnswerSelect<ExtArgs extends runtime.Types.Extensions.Intern
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   question?: boolean | Prisma.QuestionDefaultArgs<ExtArgs>
   wrongSources?: boolean | Prisma.PracticeAnswer$wrongSourcesArgs<ExtArgs>
+  mistakeReviews?: boolean | Prisma.PracticeAnswer$mistakeReviewsArgs<ExtArgs>
   _count?: boolean | Prisma.PracticeAnswerCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["practiceAnswer"]>
 
@@ -1159,6 +1284,7 @@ export type PracticeAnswerInclude<ExtArgs extends runtime.Types.Extensions.Inter
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   question?: boolean | Prisma.QuestionDefaultArgs<ExtArgs>
   wrongSources?: boolean | Prisma.PracticeAnswer$wrongSourcesArgs<ExtArgs>
+  mistakeReviews?: boolean | Prisma.PracticeAnswer$mistakeReviewsArgs<ExtArgs>
   _count?: boolean | Prisma.PracticeAnswerCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -1169,6 +1295,7 @@ export type $PracticeAnswerPayload<ExtArgs extends runtime.Types.Extensions.Inte
     user: Prisma.$UserPayload<ExtArgs>
     question: Prisma.$QuestionPayload<ExtArgs>
     wrongSources: Prisma.$WrongQuestionPayload<ExtArgs>[]
+    mistakeReviews: Prisma.$QuestionMistakeReviewPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1526,6 +1653,7 @@ export interface Prisma__PracticeAnswerClient<T, Null = never, ExtArgs extends r
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   question<T extends Prisma.QuestionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.QuestionDefaultArgs<ExtArgs>>): Prisma.Prisma__QuestionClient<runtime.Types.Result.GetResult<Prisma.$QuestionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   wrongSources<T extends Prisma.PracticeAnswer$wrongSourcesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PracticeAnswer$wrongSourcesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WrongQuestionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  mistakeReviews<T extends Prisma.PracticeAnswer$mistakeReviewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PracticeAnswer$mistakeReviewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuestionMistakeReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1935,6 +2063,30 @@ export type PracticeAnswer$wrongSourcesArgs<ExtArgs extends runtime.Types.Extens
   take?: number
   skip?: number
   distinct?: Prisma.WrongQuestionScalarFieldEnum | Prisma.WrongQuestionScalarFieldEnum[]
+}
+
+/**
+ * PracticeAnswer.mistakeReviews
+ */
+export type PracticeAnswer$mistakeReviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the QuestionMistakeReview
+   */
+  select?: Prisma.QuestionMistakeReviewSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the QuestionMistakeReview
+   */
+  omit?: Prisma.QuestionMistakeReviewOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.QuestionMistakeReviewInclude<ExtArgs> | null
+  where?: Prisma.QuestionMistakeReviewWhereInput
+  orderBy?: Prisma.QuestionMistakeReviewOrderByWithRelationInput | Prisma.QuestionMistakeReviewOrderByWithRelationInput[]
+  cursor?: Prisma.QuestionMistakeReviewWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.QuestionMistakeReviewScalarFieldEnum | Prisma.QuestionMistakeReviewScalarFieldEnum[]
 }
 
 /**

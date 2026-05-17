@@ -72,6 +72,7 @@ export const ModelName = {
   AgentConfig: 'AgentConfig',
   AgentRecommendation: 'AgentRecommendation',
   AgentTutorMessage: 'AgentTutorMessage',
+  QuestionMistakeReview: 'QuestionMistakeReview',
   AgentFeedback: 'AgentFeedback',
   ImportJob: 'ImportJob'
 } as const
@@ -410,6 +411,27 @@ export const AgentTutorMessageScalarFieldEnum = {
 export type AgentTutorMessageScalarFieldEnum = (typeof AgentTutorMessageScalarFieldEnum)[keyof typeof AgentTutorMessageScalarFieldEnum]
 
 
+export const QuestionMistakeReviewScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  questionId: 'questionId',
+  sessionId: 'sessionId',
+  practiceAnswerId: 'practiceAnswerId',
+  tutorMessageId: 'tutorMessageId',
+  tagId: 'tagId',
+  mistakeCause: 'mistakeCause',
+  confidence: 'confidence',
+  causeSummary: 'causeSummary',
+  fastestPath: 'fastestPath',
+  transferRule: 'transferRule',
+  timeSpentSeconds: 'timeSpentSeconds',
+  isLatestForQuestion: 'isLatestForQuestion',
+  createdAt: 'createdAt'
+} as const
+
+export type QuestionMistakeReviewScalarFieldEnum = (typeof QuestionMistakeReviewScalarFieldEnum)[keyof typeof QuestionMistakeReviewScalarFieldEnum]
+
+
 export const AgentFeedbackScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -710,6 +732,23 @@ export const AgentTutorMessageOrderByRelevanceFieldEnum = {
 } as const
 
 export type AgentTutorMessageOrderByRelevanceFieldEnum = (typeof AgentTutorMessageOrderByRelevanceFieldEnum)[keyof typeof AgentTutorMessageOrderByRelevanceFieldEnum]
+
+
+export const QuestionMistakeReviewOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  questionId: 'questionId',
+  sessionId: 'sessionId',
+  practiceAnswerId: 'practiceAnswerId',
+  tutorMessageId: 'tutorMessageId',
+  tagId: 'tagId',
+  confidence: 'confidence',
+  causeSummary: 'causeSummary',
+  fastestPath: 'fastestPath',
+  transferRule: 'transferRule'
+} as const
+
+export type QuestionMistakeReviewOrderByRelevanceFieldEnum = (typeof QuestionMistakeReviewOrderByRelevanceFieldEnum)[keyof typeof QuestionMistakeReviewOrderByRelevanceFieldEnum]
 
 
 export const AgentFeedbackOrderByRelevanceFieldEnum = {
