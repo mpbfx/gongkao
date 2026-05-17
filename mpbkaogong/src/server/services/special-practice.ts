@@ -6,11 +6,9 @@ import { BusinessError, NotFoundError } from "@/server/services/errors";
 import { createQuestionPracticeSession } from "@/server/services/practice";
 import { listActiveTagsFlat } from "@/server/services/tags";
 
-const difficultySchema = z.enum(["EASY", "MEDIUM", "HARD", "UNKNOWN"]);
-
 export const createSpecialSessionSchema = z.object({
   mode: z.literal("SPECIAL").optional(),
-  difficulty: difficultySchema.nullish(),
+  difficulty: z.enum(["EASY", "MEDIUM", "HARD", "UNKNOWN"]).nullish(),
   reqs: z
     .array(
       z.object({
@@ -95,7 +93,6 @@ export async function createSpecialPracticeSession(
         isActive: true,
         deletedAt: null,
         tagId: { in: tagIds },
-        ...(input.difficulty ? { difficulty: input.difficulty } : {}),
       },
       include: {
         material: { select: { id: true, title: true, contentHtml: true } },
@@ -115,7 +112,7 @@ export async function createSpecialPracticeSession(
   }
 
   if (selectedQuestionIds.size < requestedTotal) {
-    throw new BusinessError("当前条件下题量不足，请减少题数或放宽难度");
+    throw new BusinessError("当前条件下题量不足，请减少题数或调整知识点");
   }
 
   if (selectedQuestionIds.size < 5) {
@@ -135,14 +132,13 @@ export async function createSpecialPracticeSession(
     })
   );
   const tagNames = selectedTags.map((tag) => tag?.name).filter(Boolean).join("、");
-  const difficultyLabel = input.difficulty ? ` · ${input.difficulty}` : "";
 
   return createQuestionPracticeSession({
     user,
     mode: "SPECIAL",
-    title: `专项练习：${tagNames}${difficultyLabel}`,
+    title: `专项练习：${tagNames}`,
     questions,
     sourceTagIdsJson: input.reqs,
-    difficulty: input.difficulty ?? null,
+    difficulty: null,
   });
 }
