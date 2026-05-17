@@ -805,7 +805,14 @@ export function PracticeRunner({
                 </AlertDescription>
               </Alert>
             ) : null}
-            {isResultMode ? <TutorPanel questionId={question.id} sessionId={initialSession.id} /> : null}
+            {isResultMode ? (
+              <TutorPanel
+                questionId={question.id}
+                sessionId={initialSession.id}
+                triggerLabel={currentResult?.isCorrect ? "复盘讲解" : "问助教"}
+                contextLabel={`我的答案：${currentResult?.answer || "未作答"}；正确答案：${currentResult?.correctAnswer || question.correctAnswer || "暂无"}`}
+              />
+            ) : null}
             <DraftCanvas
               open={showDraftCanvas}
               value={currentScratch}

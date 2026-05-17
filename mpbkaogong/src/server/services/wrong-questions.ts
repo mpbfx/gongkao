@@ -60,6 +60,13 @@ export async function listWrongQuestions(user: AuthenticatedUser, query: WrongQu
             options: { orderBy: { sortOrder: "asc" } },
           },
         },
+        lastAnswer: {
+          select: {
+            answer: true,
+            sessionId: true,
+            timeSpentSeconds: true,
+          },
+        },
       },
     }),
     prisma.wrongQuestion.count({
@@ -89,6 +96,11 @@ export async function listWrongQuestions(user: AuthenticatedUser, query: WrongQu
         lastWrongAt: string;
         resolvedAt: string | null;
         latestMistakeReview: LatestMistakeReviewSummary | null;
+        lastAnswer: {
+          answer: string | null;
+          sessionId: string;
+          timeSpentSeconds: number;
+        } | null;
         question: ReturnType<typeof toQuestionDto>;
       }>;
     }
@@ -138,6 +150,11 @@ export async function listWrongQuestions(user: AuthenticatedUser, query: WrongQu
           lastWrongAt: string;
           resolvedAt: string | null;
           latestMistakeReview: LatestMistakeReviewSummary | null;
+          lastAnswer: {
+            answer: string | null;
+            sessionId: string;
+            timeSpentSeconds: number;
+          } | null;
           question: ReturnType<typeof toQuestionDto>;
         }>;
       });
@@ -150,6 +167,13 @@ export async function listWrongQuestions(user: AuthenticatedUser, query: WrongQu
       lastWrongAt: wrongQuestion.lastWrongAt.toISOString(),
       resolvedAt: wrongQuestion.resolvedAt?.toISOString() ?? null,
       latestMistakeReview: latestReviewByQuestionId.get(wrongQuestion.questionId) ?? null,
+      lastAnswer: wrongQuestion.lastAnswer
+        ? {
+            answer: wrongQuestion.lastAnswer.answer,
+            sessionId: wrongQuestion.lastAnswer.sessionId,
+            timeSpentSeconds: wrongQuestion.lastAnswer.timeSpentSeconds,
+          }
+        : null,
       question: toQuestionDto(wrongQuestion.question, true),
     });
     groups.set(groupKey, group);

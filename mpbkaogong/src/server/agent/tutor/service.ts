@@ -409,6 +409,79 @@ export async function explainQuestionWithTutor(input: TutorGraphInput) {
   });
 }
 
+function isMetadataRecord(value: unknown): value is Record<string, unknown> {
+  return Boolean(value && typeof value === "object" && !Array.isArray(value));
+}
+
+function stringValue(value: unknown) {
+  return typeof value === "string" ? value : "";
+}
+
+function reviewFromMetadata(metadata: unknown) {
+  if (!isMetadataRecord(metadata)) {
+    return null;
+  }
+
+  const mistakeCause = stringValue(metadata.mistakeCause);
+  const confidence = stringValue(metadata.confidence);
+  const causeSummary = stringValue(metadata.causeSummary);
+  const fastestPath = stringValue(metadata.fastestPath);
+  const transferRule = stringValue(metadata.transferRule);
+
+  if (!mistakeCause || !confidence || !causeSummary || !fastestPath || !transferRule) {
+    return null;
+  }
+
+  return {
+    mistakeCause,
+    confidence,
+    causeSummary,
+    fastestPath,
+    transferRule,
+  };
+}
+
+function suggestedPromptsFromMetadata(metadata: unknown) {
+  if (!isMetadataRecord(metadata) || !Array.isArray(metadata.suggestedPrompts)) {
+    return [];
+  }
+
+  return metadata.suggestedPrompts.filter((item): item is string => typeof item === "string" && item.trim().length > 0);
+}
+
+export async function getQuestionTutorHistory({
+  user,
+  questionId,
+  sessionId,
+}: {
+  user: AuthenticatedUser;
+  questionId: string;
+  sessionId?: string;
+}) {
+  const messages = await prisma.agentTutorMessage.findMany({
+    where: {
+      userId: user.id,
+      questionId,
+      ...(sessionId ? { sessionId } : {}),
+    },
+    orderBy: { createdAt: "desc" },
+    take: 20,
+  });
+  const orderedMessages = messages.reverse();
+  const latestAssistantMessage = [...orderedMessages].reverse().find((message) => message.role === "ASSISTANT");
+
+  return {
+    messages: orderedMessages.map((message) => ({
+      id: message.id,
+      role: message.role === "ASSISTANT" ? "ASSISTANT" : "USER",
+      content: message.content,
+      createdAt: message.createdAt.toISOString(),
+      review: message.role === "ASSISTANT" ? reviewFromMetadata(message.metadataJson) : null,
+    })),
+    suggestedPrompts: suggestedPromptsFromMetadata(latestAssistantMessage?.metadataJson),
+  };
+}
+
 export type TutorStreamEvent =
   | { type: "token"; content: string }
   | { type: "done"; messageId: string; suggestedPrompts: string[] }

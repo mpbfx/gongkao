@@ -1,7 +1,12 @@
 import { apiOk } from "@/lib/api/response";
 import { requireUser } from "@/lib/auth/guards";
 import { tutorRequestSchema } from "@/server/agent/shared/schemas";
-import { explainQuestionWithTutor, streamQuestionWithTutor, type TutorStreamEvent } from "@/server/agent/tutor/service";
+import {
+  explainQuestionWithTutor,
+  getQuestionTutorHistory,
+  streamQuestionWithTutor,
+  type TutorStreamEvent,
+} from "@/server/agent/tutor/service";
 import { apiErrorFromUnknown } from "@/server/services/api-errors";
 
 type RouteContext = {
@@ -12,6 +17,19 @@ type RouteContext = {
 
 function encodeSse(event: TutorStreamEvent | { type: "error"; message: string }) {
   return `event: ${event.type}\ndata: ${JSON.stringify(event)}\n\n`;
+}
+
+export async function GET(request: Request, context: RouteContext) {
+  try {
+    const user = await requireUser();
+    const { questionId } = await context.params;
+    const { searchParams } = new URL(request.url);
+    const sessionId = searchParams.get("sessionId")?.trim() || undefined;
+
+    return apiOk(await getQuestionTutorHistory({ user, questionId, sessionId }));
+  } catch (error) {
+    return apiErrorFromUnknown(error);
+  }
 }
 
 export async function POST(request: Request, context: RouteContext) {
