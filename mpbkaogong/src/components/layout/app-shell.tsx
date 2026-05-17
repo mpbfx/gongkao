@@ -2,6 +2,7 @@ import Link from "next/link";
 import { LogOut, Settings } from "lucide-react";
 
 import { AppShellFrame } from "@/components/layout/app-shell-frame";
+import type { AppHeaderContent } from "@/components/layout/app-header-context";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { auth, signOut } from "@/lib/auth";
@@ -13,9 +14,11 @@ function getInitial(name?: string | null, email?: string | null) {
 
 export async function AppShell({
   children,
+  header,
   hideMobileNav = false,
 }: {
   children: React.ReactNode;
+  header?: AppHeaderContent;
   hideMobileNav?: boolean;
 }) {
   const session = await auth();
@@ -54,7 +57,7 @@ export async function AppShell({
   );
 
   return (
-    <AppShellFrame userMenu={userMenu} hideMobileNav={hideMobileNav}>
+    <AppShellFrame defaultHeader={header} userMenu={userMenu} hideMobileNav={hideMobileNav}>
       {children}
     </AppShellFrame>
   );
