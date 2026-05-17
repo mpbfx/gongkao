@@ -1,4 +1,4 @@
-import { ArrowRight, BookOpen, CheckCircle2, Dumbbell, RotateCcw, Tags } from "lucide-react";
+import { ArrowRight, BookOpen, CheckCircle2, Dumbbell, RotateCcw } from "lucide-react";
 import { revalidatePath } from "next/cache";
 import Link from "next/link";
 import { redirect } from "next/navigation";
@@ -7,13 +7,11 @@ import { AppShell } from "@/components/layout/app-shell";
 import { Badge } from "@/components/ui/badge";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
-  Card,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
+  EmptyState,
+  PageHeader,
+  StudentPage,
+} from "@/components/student/page-building-blocks";
+import { TutorPanel } from "@/features/agent/tutor-panel";
 import { requireUser } from "@/lib/auth/guards";
 import { cn } from "@/lib/utils";
 import {
@@ -117,50 +115,36 @@ export default async function WrongQuestionsPage({ searchParams }: WrongQuestion
 
   return (
     <AppShell>
-      <main className="mx-auto flex w-full max-w-6xl flex-1 flex-col gap-6 px-4 py-6 pb-24 md:px-6 md:py-8 lg:pb-8">
-        <section className="flex flex-col gap-3">
-          <Badge variant="secondary" className="w-fit">
-            Phase 5
-          </Badge>
-          <div className="flex flex-col gap-2">
-            <h1 className="text-3xl font-semibold tracking-tight">我的错题</h1>
-            <p className="max-w-2xl text-muted-foreground">
-              按知识点整理未掌握题目，可直接进入错题练习，也可以用背题模式先看答案和解析。
+      <StudentPage>
+        <PageHeader
+          eyebrow="错题本"
+          title="把高频错误收拢成下一组训练"
+          description="按知识点查看未掌握题目，可直接进入错题练习，也可以先背题看解析。"
+          actions={
+            <Link
+              href={query.includeResolved ? "/question-bank/wrong" : "/question-bank/wrong?includeResolved=true"}
+              className={cn(buttonVariants({ variant: "outline" }))}
+            >
+              <RotateCcw data-icon="inline-start" />
+              {query.includeResolved ? "只看未掌握" : "查看已掌握"}
+            </Link>
+          }
+        />
+
+        <section className="flex flex-wrap items-center justify-between gap-3 rounded-lg border bg-card p-4 shadow-xs">
+          <div className="min-w-0">
+            <div className="flex flex-wrap items-center gap-2">
+              <h2 className="font-semibold">快速开始</h2>
+              <Badge variant={data.summary.unresolvedCount > 0 ? "warning" : "success"}>
+                {data.summary.unresolvedCount > 0 ? `${data.summary.unresolvedCount} 道未掌握` : "暂无待复盘"}
+              </Badge>
+            </div>
+            <p className="mt-1 text-sm text-muted-foreground">
+              {data.summary.unresolvedCount > 0
+                ? "默认抽取最多 10 道未掌握错题，适合碎片时间复盘。"
+                : "提交练习后，答错的题会自动进入这里。"}
             </p>
           </div>
-        </section>
-
-        <section className="grid gap-4 md:grid-cols-3">
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Tags aria-hidden="true" />
-                未掌握
-              </CardTitle>
-              <CardDescription>{data.summary.unresolvedCount} 题</CardDescription>
-            </CardHeader>
-          </Card>
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <CheckCircle2 aria-hidden="true" />
-                已掌握
-              </CardTitle>
-              <CardDescription>{data.summary.resolvedCount} 题</CardDescription>
-            </CardHeader>
-          </Card>
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <BookOpen aria-hidden="true" />
-                总错题
-              </CardTitle>
-              <CardDescription>{data.summary.totalCount} 题</CardDescription>
-            </CardHeader>
-          </Card>
-        </section>
-
-        <section className="flex flex-wrap items-center justify-between gap-3">
           <div className="flex flex-wrap gap-2">
             <StartButton mode="WRONG" count={Math.min(10, data.summary.unresolvedCount)}>
               开始练习
@@ -169,26 +153,19 @@ export default async function WrongQuestionsPage({ searchParams }: WrongQuestion
               背题
             </StartButton>
           </div>
-          <Link
-            href={query.includeResolved ? "/question-bank/wrong" : "/question-bank/wrong?includeResolved=true"}
-            className={cn(buttonVariants({ variant: "outline", size: "sm" }))}
-          >
-            <RotateCcw data-icon="inline-start" />
-            {query.includeResolved ? "只看未掌握" : "查看已掌握"}
-          </Link>
         </section>
 
         {hasWrongQuestions || query.includeResolved ? (
           <section className="flex flex-col gap-4">
             {data.groups.map((group) => (
-              <details key={group.tagId ?? "untagged"} open className="group rounded-lg border bg-card">
-                <summary className="cursor-pointer list-none px-4 py-3">
+              <details key={group.tagId ?? "untagged"} open className="group rounded-lg border bg-card shadow-xs">
+                <summary className="cursor-pointer list-none px-4 py-3 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none">
                   <div className="flex flex-wrap items-center justify-between gap-3">
                     <div className="flex min-w-0 flex-col gap-1">
-                      <h2 className="truncate text-lg font-medium">{group.tagName}</h2>
+                      <h2 className="truncate text-lg font-semibold">{group.tagName}</h2>
                       <p className="text-sm text-muted-foreground">{group.count} 道错题</p>
                     </div>
-                    <Badge variant="outline">展开</Badge>
+                    <Badge variant="outline">展开/收起</Badge>
                   </div>
                 </summary>
 
@@ -203,12 +180,12 @@ export default async function WrongQuestionsPage({ searchParams }: WrongQuestion
 
                 <div className="flex flex-col gap-3 border-t p-4">
                   {group.items.map((item) => (
-                    <div key={item.id} className="rounded-lg border px-4 py-3">
+                    <div key={item.id} className="rounded-lg border bg-background px-4 py-3">
                       <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
                         <div className="min-w-0 flex-1">
                           <div className="mb-2 flex flex-wrap gap-2">
                             <Badge variant="outline">错 {item.wrongCount} 次</Badge>
-                            <Badge variant={item.resolvedAt ? "secondary" : "outline"}>
+                            <Badge variant={item.resolvedAt ? "success" : "warning"}>
                               {item.resolvedAt ? "已掌握" : "未掌握"}
                             </Badge>
                             <Badge variant="outline">{formatDate(item.lastWrongAt)}</Badge>
@@ -228,6 +205,9 @@ export default async function WrongQuestionsPage({ searchParams }: WrongQuestion
                           </form>
                         ) : null}
                       </div>
+                      <div className="mt-3">
+                        <TutorPanel questionId={item.questionId} />
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -235,22 +215,18 @@ export default async function WrongQuestionsPage({ searchParams }: WrongQuestion
             ))}
           </section>
         ) : (
-          <Card>
-            <CardHeader>
-              <CardTitle>暂时没有错题</CardTitle>
-              <CardDescription>提交练习后，答错的题会自动进入这里。</CardDescription>
-            </CardHeader>
-            <CardFooter>
-              <Link href="/question-bank/papers" className={cn(buttonVariants({ variant: "outline" }))}>
-                去刷一套试卷
-                <ArrowRight data-icon="inline-end" />
-              </Link>
-            </CardFooter>
-          </Card>
+          <EmptyState
+            icon={BookOpen}
+            title="暂时没有错题"
+            description="提交练习后，答错的题会自动进入这里，后续可按知识点专项消化。"
+          >
+            <Link href="/question-bank/papers" className={cn(buttonVariants({ variant: "outline" }))}>
+              去刷一套试卷
+              <ArrowRight data-icon="inline-end" />
+            </Link>
+          </EmptyState>
         )}
-
-        <Separator />
-      </main>
+      </StudentPage>
     </AppShell>
   );
 }

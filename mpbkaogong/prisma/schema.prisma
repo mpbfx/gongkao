@@ -58,15 +58,18 @@ model User {
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 
-  accounts         Account[]
-  sessions         Session[]
-  memberships      Membership[]
-  practiceSessions PracticeSession[]
-  practiceAnswers  PracticeAnswer[]
-  wrongQuestions   WrongQuestion[]
-  statsSnapshots   UserStatsSnapshot[]
-  tagStats         UserTagStats[]
-  importJobs       ImportJob[]
+  accounts             Account[]
+  sessions             Session[]
+  memberships          Membership[]
+  practiceSessions     PracticeSession[]
+  practiceAnswers      PracticeAnswer[]
+  wrongQuestions       WrongQuestion[]
+  statsSnapshots       UserStatsSnapshot[]
+  tagStats             UserTagStats[]
+  agentRecommendations AgentRecommendation[]
+  agentTutorMessages   AgentTutorMessage[]
+  agentFeedback        AgentFeedback[]
+  importJobs           ImportJob[]
 }
 
 model Account {
@@ -176,13 +179,14 @@ model Question {
   updatedAt      DateTime     @updatedAt
   deletedAt      DateTime?
 
-  tag             QuestionTag?          @relation(fields: [tagId], references: [id])
-  material        Material?             @relation(fields: [materialId], references: [id])
-  options         QuestionOption[]
-  paperQuestions  PaperQuestion[]
-  practiceAnswers PracticeAnswer[]
-  wrongQuestions  WrongQuestion[]
-  dailyQuestions  DailyPracticeQuestion[]
+  tag                QuestionTag?            @relation(fields: [tagId], references: [id])
+  material           Material?               @relation(fields: [materialId], references: [id])
+  options            QuestionOption[]
+  paperQuestions     PaperQuestion[]
+  practiceAnswers    PracticeAnswer[]
+  wrongQuestions     WrongQuestion[]
+  dailyQuestions     DailyPracticeQuestion[]
+  agentTutorMessages AgentTutorMessage[]
 
   @@index([tagId])
   @@index([materialId])
@@ -276,28 +280,31 @@ model DailyPracticeQuestion {
 }
 
 model PracticeSession {
-  id              String         @id @default(cuid())
-  userId          String
-  mode            PracticeMode
-  status          PracticeStatus @default(IN_PROGRESS)
-  title           String
-  paperId         String?
+  id               String         @id @default(cuid())
+  userId           String
+  mode             PracticeMode
+  status           PracticeStatus @default(IN_PROGRESS)
+  title            String
+  paperId          String?
   sourceTagIdsJson Json?
-  difficulty      Difficulty?
-  totalCount      Int            @default(0)
-  answeredCount   Int            @default(0)
-  correctCount    Int            @default(0)
-  wrongCount      Int            @default(0)
-  unansweredCount Int            @default(0)
-  elapsedSeconds  Int            @default(0)
-  accuracy        Decimal?       @db.Decimal(5, 2)
-  submittedAt     DateTime?
-  createdAt       DateTime       @default(now())
-  updatedAt       DateTime       @updatedAt
+  difficulty       Difficulty?
+  totalCount       Int            @default(0)
+  answeredCount    Int            @default(0)
+  correctCount     Int            @default(0)
+  wrongCount       Int            @default(0)
+  unansweredCount  Int            @default(0)
+  elapsedSeconds   Int            @default(0)
+  accuracy         Decimal?       @db.Decimal(5, 2)
+  submittedAt      DateTime?
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
 
-  user    User             @relation(fields: [userId], references: [id], onDelete: Cascade)
-  paper   Paper?           @relation(fields: [paperId], references: [id])
-  answers PracticeAnswer[]
+  user                        User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  paper                       Paper?                @relation(fields: [paperId], references: [id])
+  answers                     PracticeAnswer[]
+  sourceAgentRecommendations  AgentRecommendation[] @relation("AgentRecommendationSource")
+  startedAgentRecommendations AgentRecommendation[] @relation("AgentRecommendationStarted")
+  agentTutorMessages          AgentTutorMessage[]
 
   @@index([userId])
   @@index([mode])
@@ -308,17 +315,17 @@ model PracticeSession {
 }
 
 model PracticeAnswer {
-  id               String   @id @default(cuid())
+  id               String    @id @default(cuid())
   sessionId        String
   userId           String
   questionId       String
   answer           String?
   isCorrect        Boolean?
-  timeSpentSeconds Int      @default(0)
+  timeSpentSeconds Int       @default(0)
   sortOrder        Int
   answeredAt       DateTime?
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
 
   session      PracticeSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
   user         User            @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -375,15 +382,15 @@ model UserStatsSnapshot {
 }
 
 model UserTagStats {
-  id              String   @id @default(cuid())
+  id              String    @id @default(cuid())
   userId          String
   tagId           String
-  answeredCount   Int      @default(0)
-  correctCount    Int      @default(0)
-  wrongCount      Int      @default(0)
-  accuracy        Decimal? @db.Decimal(5, 2)
+  answeredCount   Int       @default(0)
+  correctCount    Int       @default(0)
+  wrongCount      Int       @default(0)
+  accuracy        Decimal?  @db.Decimal(5, 2)
   lastPracticedAt DateTime?
-  updatedAt       DateTime @updatedAt
+  updatedAt       DateTime  @updatedAt
 
   user User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   tag  QuestionTag @relation(fields: [tagId], references: [id])
@@ -393,6 +400,83 @@ model UserTagStats {
   @@index([tagId])
   @@index([accuracy])
   @@index([lastPracticedAt])
+}
+
+model AgentConfig {
+  id              String   @id @default(cuid())
+  key             String   @unique
+  valueJson       Json
+  description     String?
+  updatedByUserId String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([updatedByUserId])
+  @@index([updatedAt])
+}
+
+model AgentRecommendation {
+  id                 String    @id @default(cuid())
+  userId             String
+  sourceSessionId    String?
+  type               String
+  title              String
+  configSnapshotJson Json?
+  evidenceJson       Json?
+  actionJson         Json
+  confidence         String
+  status             String    @default("PENDING")
+  clickedAt          DateTime?
+  startedSessionId   String?
+  completedAt        DateTime?
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+
+  user           User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  sourceSession  PracticeSession? @relation("AgentRecommendationSource", fields: [sourceSessionId], references: [id])
+  startedSession PracticeSession? @relation("AgentRecommendationStarted", fields: [startedSessionId], references: [id])
+
+  @@index([userId])
+  @@index([sourceSessionId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model AgentTutorMessage {
+  id           String   @id @default(cuid())
+  userId       String
+  questionId   String
+  sessionId    String?
+  role         String
+  content      String   @db.Text
+  metadataJson Json?
+  createdAt    DateTime @default(now())
+
+  user     User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  question Question         @relation(fields: [questionId], references: [id])
+  session  PracticeSession? @relation(fields: [sessionId], references: [id])
+
+  @@index([userId])
+  @@index([questionId])
+  @@index([sessionId])
+  @@index([createdAt])
+}
+
+model AgentFeedback {
+  id         String   @id @default(cuid())
+  userId     String
+  targetType String
+  targetId   String
+  rating     String
+  reason     String?
+  createdAt  DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([targetType, targetId])
+  @@index([rating])
+  @@index([createdAt])
 }
 
 model ImportJob {
@@ -414,4 +498,3 @@ model ImportJob {
   @@index([status])
   @@index([createdAt])
 }
-

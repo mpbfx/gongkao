@@ -1,4 +1,4 @@
-import { ArrowLeft, Clock, FileText } from "lucide-react";
+import { ArrowLeft, Clock, FileText, Gauge } from "lucide-react";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 
@@ -14,7 +14,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
+import { PageHeader, StatCard, StudentPage } from "@/components/student/page-building-blocks";
 import { PaperStartButton } from "@/features/papers/paper-start-button";
 import { requireUser } from "@/lib/auth/guards";
 import { cn } from "@/lib/utils";
@@ -49,7 +49,7 @@ export default async function PaperDetailPage({ params }: PaperDetailPageProps) 
 
   return (
     <AppShell>
-      <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-6 px-4 py-6 pb-24 md:px-6 md:py-8 lg:pb-8">
+      <StudentPage className="max-w-5xl">
         <Link href="/question-bank/papers" className={cn(buttonVariants({ variant: "ghost" }), "w-fit")}>
           <ArrowLeft data-icon="inline-start" />
           返回试卷
@@ -62,56 +62,29 @@ export default async function PaperDetailPage({ params }: PaperDetailPageProps) 
           </Alert>
         ) : (
           <>
-            <section className="flex flex-col gap-3">
-              <div className="flex flex-wrap gap-2">
-                <Badge variant="secondary">试卷详情</Badge>
-                {paper.isVipOnly ? <Badge>会员</Badge> : null}
-              </div>
-              <div className="flex flex-col gap-2">
-                <h1 className="text-3xl font-semibold tracking-tight">{paper.title}</h1>
-                <p className="text-muted-foreground">
-                  {[paper.year, paper.province, paper.examType].filter(Boolean).join(" / ")}
-                </p>
-              </div>
-            </section>
+            <PageHeader
+              eyebrow="试卷详情"
+              title={paper.title}
+              description={[paper.year, paper.province, paper.examType].filter(Boolean).join(" / ")}
+              actions={paper.isVipOnly ? <Badge>会员专属</Badge> : <Badge variant="secondary">可直接练习</Badge>}
+            />
 
             <section className="grid gap-4 md:grid-cols-3">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <FileText aria-hidden="true" />
-                    题量
-                  </CardTitle>
-                  <CardDescription>{paper.questionCount} 题</CardDescription>
-                </CardHeader>
-              </Card>
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Clock aria-hidden="true" />
-                    预计用时
-                  </CardTitle>
-                  <CardDescription>{Math.max(10, paper.questionCount)} 分钟</CardDescription>
-                </CardHeader>
-              </Card>
-              <Card>
-                <CardHeader>
-                  <CardTitle>难度</CardTitle>
-                  <CardDescription>{paper.difficultyScore ?? "未评级"}</CardDescription>
-                </CardHeader>
-              </Card>
+              <StatCard title="题量" value={paper.questionCount} description="本套试卷总题数" icon={FileText} tone="info" />
+              <StatCard title="预计用时" value={`${Math.max(10, paper.questionCount)}分`} description="按完整练习估算" icon={Clock} />
+              <StatCard title="难度" value={paper.difficultyScore ?? "未评级"} description="题库综合评分" icon={Gauge} tone="warning" />
             </section>
 
             <Card>
               <CardHeader>
                 <CardTitle>模块分布</CardTitle>
-                <CardDescription>开始练习后题目顺序会固定在本次练习中。</CardDescription>
+                <CardDescription>开始练习后，题目顺序会固定在本次练习中。</CardDescription>
               </CardHeader>
               <CardContent className="flex flex-col gap-3">
                 {paper.model.map((section) => (
                   <div key={section.name} className="flex items-center justify-between rounded-lg bg-muted px-3 py-2">
                     <span className="font-medium">{section.name}</span>
-                    <span className="text-sm text-muted-foreground">
+                    <span className="font-mono text-sm text-muted-foreground tabular-nums">
                       {section.snum} - {section.enum} 题
                     </span>
                   </div>
@@ -121,11 +94,9 @@ export default async function PaperDetailPage({ params }: PaperDetailPageProps) 
                 <PaperStartButton paperId={paper.id} className="w-full md:w-auto" />
               </CardFooter>
             </Card>
-
-            <Separator />
           </>
         )}
-      </main>
+      </StudentPage>
     </AppShell>
   );
 }

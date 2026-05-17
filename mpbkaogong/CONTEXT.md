@@ -28,6 +28,18 @@ _Avoid_: error, failed question
 A concrete next action proposed by the Learning Coach Agent, such as a special practice session, wrong-question practice session, or memorize session.
 _Avoid_: suggestion, tip
 
+**Action Information**:
+Student-facing information that helps a learner choose or complete the next learning action in the current flow.
+_Avoid_: useless information, decorative statistic, explanatory copy
+
+**Learning Workspace**:
+The learner's entry screen for starting or continuing practice and reaching the main study flows.
+_Avoid_: marketing homepage, feature showcase, dashboard splash
+
+**Learner Profile**:
+The learner's personal area for account context, recent practice records, and links back into active study flows.
+_Avoid_: analytics dashboard, study cockpit, metrics overview
+
 **Recommendation Start**:
 The learner action that turns a training recommendation into a practice session.
 _Avoid_: auto start, pre-created session
@@ -53,6 +65,12 @@ _Avoid_: review, comment
 - A **Training Recommendation** creates a new **Practice Session** only after a **Recommendation Start**.
 - A **Tutor Message** belongs to one learner and usually references one question.
 - **Agent Feedback** belongs to one **Training Recommendation** or **Tutor Message**.
+- Student-facing pages prioritize **Action Information** over general explanation or decorative learning metrics.
+- The **Learning Workspace** presents **Action Information** for continuing practice, starting a main practice flow, or addressing active **Wrong Questions**.
+- The **Learner Profile** does not compete with the **Learning Workspace**; it provides account context, recent records, and return paths to study flows.
+- List pages only promote summary metrics when the metric changes the learner's next action in that flow.
+- A **Practice Session** view prioritizes question completion and review clarity over secondary result statistics or implementation explanations.
+- Agent surfaces stay quiet until review or remediation: the **Learning Coach Agent** appears after submission or in review, and the **Explanation Tutor Agent** stays behind a learner-triggered action.
 
 ## Example Dialogue
 
@@ -62,3 +80,6 @@ _Avoid_: review, comment
 ## Flagged Ambiguities
 
 - "agent" was used broadly; resolved into **Learning Coach Agent** and **Explanation Tutor Agent** because they have different triggers, data needs, and success metrics.
+- "useless information" was used broadly; resolved as information that is not **Action Information** in the learner's current flow.
+- "homepage" was used ambiguously; resolved as the **Learning Workspace**, not a marketing page or feature showcase.
+- "dashboard" was used ambiguously; resolved as the **Learner Profile**, not an analytics-heavy overview.

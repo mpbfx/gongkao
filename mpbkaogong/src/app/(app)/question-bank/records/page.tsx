@@ -1,4 +1,4 @@
-import { ArrowRight, BarChart3, Clock, FileText, RotateCcw, Target } from "lucide-react";
+import { ArrowRight, FileText, RotateCcw } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
@@ -13,8 +13,13 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
+import {
+  EmptyState,
+  PageHeader,
+  StudentPage,
+} from "@/components/student/page-building-blocks";
 import { requireUser } from "@/lib/auth/guards";
+import { cleanLearningTitle } from "@/lib/display-title";
 import { cn } from "@/lib/utils";
 import { listPracticeRecords, recordsQuerySchema } from "@/server/services/records";
 
@@ -102,67 +107,25 @@ export default async function RecordsPage({ searchParams }: RecordsPageProps) {
 
   return (
     <AppShell>
-      <main className="mx-auto flex w-full max-w-6xl flex-1 flex-col gap-6 px-4 py-6 pb-24 md:px-6 md:py-8 lg:pb-8">
-        <section className="flex flex-col gap-3">
-          <Badge variant="secondary" className="w-fit">
-            Phase 3
-          </Badge>
-          <div className="flex flex-col gap-2">
-            <h1 className="text-3xl font-semibold tracking-tight">练习记录</h1>
-            <p className="max-w-2xl text-muted-foreground">
-              追踪已提交练习，回看当次题目、我的答案、正确答案和解析。
-            </p>
-          </div>
-        </section>
-
-        <section className="grid gap-4 md:grid-cols-4">
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <FileText aria-hidden="true" />
-                练习次数
-              </CardTitle>
-              <CardDescription>{data.summary.totalSessions} 次</CardDescription>
-            </CardHeader>
-          </Card>
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Target aria-hidden="true" />
-                总题量
-              </CardTitle>
-              <CardDescription>{data.summary.totalQuestions} 题</CardDescription>
-            </CardHeader>
-          </Card>
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <BarChart3 aria-hidden="true" />
-                总正确率
-              </CardTitle>
-              <CardDescription>{data.summary.overallAccuracy ?? "0.00"}%</CardDescription>
-            </CardHeader>
-          </Card>
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Clock aria-hidden="true" />
-                总用时
-              </CardTitle>
-              <CardDescription>{formatDuration(data.summary.totalElapsedSeconds)}</CardDescription>
-            </CardHeader>
-          </Card>
-        </section>
-
-        <section className="flex flex-col gap-3">
-          <div className="flex items-center justify-between gap-3">
-            <h2 className="text-lg font-medium">历史记录</h2>
-            {query.mode ? (
-              <Link href="/question-bank/records" className={cn(buttonVariants({ variant: "ghost", size: "sm" }))}>
+      <StudentPage>
+        <PageHeader
+          eyebrow="复盘记录"
+          title="把每次练习变成下一次提分"
+          description="回看已提交练习，检查作答、正确答案、解析和学习教练建议。"
+          actions={
+            query.mode ? (
+              <Link href="/question-bank/records" className={cn(buttonVariants({ variant: "outline" }))}>
                 <RotateCcw data-icon="inline-start" />
                 清空筛选
               </Link>
-            ) : null}
+            ) : null
+          }
+        />
+
+        <section className="flex flex-col gap-3">
+          <div className="flex items-center justify-between gap-3">
+            <h2 className="text-lg font-semibold">历史记录</h2>
+            <span className="text-sm text-muted-foreground">第 {data.pagination.page} / {data.pagination.totalPages} 页</span>
           </div>
           <div className="flex gap-2 overflow-x-auto pb-1">
             {modeFilters.map((filter) => {
@@ -172,6 +135,7 @@ export default async function RecordsPage({ searchParams }: RecordsPageProps) {
                 <Link
                   key={filter.label}
                   href={buildRecordsHref(filter.value || undefined, 1)}
+                  aria-current={isActive ? "page" : undefined}
                   className={cn(
                     buttonVariants({ variant: isActive ? "default" : "outline", size: "sm" }),
                     "shrink-0"
@@ -191,7 +155,7 @@ export default async function RecordsPage({ searchParams }: RecordsPageProps) {
                 <CardHeader>
                   <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
                     <div className="flex min-w-0 flex-col gap-1">
-                      <CardTitle className="truncate">{record.title}</CardTitle>
+                      <CardTitle className="truncate">{cleanLearningTitle(record.title)}</CardTitle>
                       <CardDescription>
                         {modeLabels[record.mode] ?? record.mode} · {formatDate(record.submittedAt)}
                       </CardDescription>
@@ -203,25 +167,25 @@ export default async function RecordsPage({ searchParams }: RecordsPageProps) {
                   <div className="grid grid-cols-2 gap-3 text-sm md:grid-cols-5">
                     <div className="rounded-lg bg-muted px-3 py-2">
                       <div className="text-muted-foreground">已答</div>
-                      <div className="font-medium">
+                      <div className="font-mono font-medium tabular-nums">
                         {record.answeredCount}/{record.totalCount}
                       </div>
                     </div>
                     <div className="rounded-lg bg-muted px-3 py-2">
                       <div className="text-muted-foreground">正确</div>
-                      <div className="font-medium">{record.correctCount}</div>
+                      <div className="font-mono font-medium tabular-nums">{record.correctCount}</div>
                     </div>
                     <div className="rounded-lg bg-muted px-3 py-2">
                       <div className="text-muted-foreground">错误</div>
-                      <div className="font-medium">{record.wrongCount}</div>
+                      <div className="font-mono font-medium tabular-nums">{record.wrongCount}</div>
                     </div>
                     <div className="rounded-lg bg-muted px-3 py-2">
                       <div className="text-muted-foreground">未答</div>
-                      <div className="font-medium">{record.unansweredCount}</div>
+                      <div className="font-mono font-medium tabular-nums">{record.unansweredCount}</div>
                     </div>
                     <div className="rounded-lg bg-muted px-3 py-2">
                       <div className="text-muted-foreground">用时</div>
-                      <div className="font-medium">{formatDuration(record.elapsedSeconds)}</div>
+                      <div className="font-mono font-medium tabular-nums">{formatDuration(record.elapsedSeconds)}</div>
                     </div>
                   </div>
                 </CardContent>
@@ -238,18 +202,16 @@ export default async function RecordsPage({ searchParams }: RecordsPageProps) {
             ))}
           </section>
         ) : (
-          <Card>
-            <CardHeader>
-              <CardTitle>还没有练习记录</CardTitle>
-              <CardDescription>完成并提交一套试卷后，这里会显示练习结果和复盘入口。</CardDescription>
-            </CardHeader>
-            <CardFooter>
-              <Link href="/question-bank/papers" className={cn(buttonVariants({ variant: "outline" }))}>
-                去刷一套试卷
-                <ArrowRight data-icon="inline-end" />
-              </Link>
-            </CardFooter>
-          </Card>
+          <EmptyState
+            icon={FileText}
+            title="还没有练习记录"
+            description="完成并提交一套试卷后，这里会显示练习结果、解析和复盘入口。"
+          >
+            <Link href="/question-bank/papers" className={cn(buttonVariants({ variant: "outline" }))}>
+              去刷一套试卷
+              <ArrowRight data-icon="inline-end" />
+            </Link>
+          </EmptyState>
         )}
 
         {data.pagination.totalPages > 1 ? (
@@ -277,9 +239,7 @@ export default async function RecordsPage({ searchParams }: RecordsPageProps) {
             </Link>
           </div>
         ) : null}
-
-        <Separator />
-      </main>
+      </StudentPage>
     </AppShell>
   );
 }

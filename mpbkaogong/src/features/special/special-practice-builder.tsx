@@ -1,6 +1,6 @@
 "use client";
 
-import { AlertTriangle, LoaderCircle, Play, RotateCcw } from "lucide-react";
+import { AlertTriangle, Check, LoaderCircle, Play, RotateCcw } from "lucide-react";
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -79,7 +79,8 @@ function TagTree({
             <div className="flex flex-col gap-2 rounded-lg border bg-card p-3 md:flex-row md:items-center md:justify-between">
               <button
                 type="button"
-                className="flex min-w-0 flex-1 items-start gap-3 text-left"
+                className="flex min-h-11 min-w-0 flex-1 items-start gap-3 rounded-md text-left outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+                aria-pressed={isSelected}
                 onClick={() => onToggle(tag)}
               >
                 <span
@@ -89,7 +90,7 @@ function TagTree({
                   )}
                   aria-hidden="true"
                 >
-                  {isSelected ? "✓" : ""}
+                  {isSelected ? <Check className="size-3" /> : null}
                 </span>
                 <span className="flex min-w-0 flex-col gap-1">
                   <span className="font-medium">{tag.name}</span>
@@ -102,7 +103,9 @@ function TagTree({
                 <div className="flex items-center gap-2 md:w-36">
                   <span className="text-sm text-muted-foreground">题量</span>
                   <Input
+                    aria-label={`${tag.name} 题量`}
                     type="number"
+                    inputMode="numeric"
                     min={1}
                     max={100}
                     value={selected[tag.id]}
@@ -224,13 +227,14 @@ export function SpecialPracticeBuilder({ tags }: { tags: TagNode[] }) {
         <CardContent className="flex flex-col gap-4">
           <div className="flex flex-col gap-2">
             <div className="text-sm font-medium">难度</div>
-            <div className="grid grid-cols-4 rounded-lg border bg-muted p-1">
+            <div className="grid grid-cols-4 rounded-lg border bg-muted p-1" role="group" aria-label="选择难度">
               {difficulties.map((item) => (
                 <button
                   key={item.value || "ALL"}
                   type="button"
+                  aria-pressed={difficulty === item.value}
                   className={cn(
-                    "h-8 rounded-md text-sm transition-colors",
+                    "h-10 rounded-md text-sm transition-colors outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 md:h-8",
                     difficulty === item.value && "bg-background shadow-sm"
                   )}
                   onClick={() => setDifficulty(item.value)}
@@ -242,7 +246,7 @@ export function SpecialPracticeBuilder({ tags }: { tags: TagNode[] }) {
           </div>
 
           {message ? (
-            <Alert variant={hasMaterialMix ? "destructive" : "default"}>
+            <Alert variant={hasMaterialMix ? "destructive" : "warning"}>
               <AlertTriangle aria-hidden="true" />
               <AlertTitle>无法开始</AlertTitle>
               <AlertDescription>{message}</AlertDescription>
@@ -269,7 +273,7 @@ export function SpecialPracticeBuilder({ tags }: { tags: TagNode[] }) {
         </CardContent>
       </Card>
 
-      <div className="fixed inset-x-0 bottom-16 border-t bg-background p-3 lg:static lg:border-0 lg:p-0">
+      <div className="fixed inset-x-0 bottom-16 z-20 border-t bg-background/95 p-3 shadow-[0_-8px_24px_rgb(15_23_42/0.08)] backdrop-blur lg:static lg:border-0 lg:bg-transparent lg:p-0 lg:shadow-none">
         <div className="mx-auto flex max-w-6xl items-center gap-3">
           <div className="min-w-0 flex-1">
             <div className="text-sm font-medium">

@@ -311,6 +311,7 @@ export type QuestionWhereInput = {
   practiceAnswers?: Prisma.PracticeAnswerListRelationFilter
   wrongQuestions?: Prisma.WrongQuestionListRelationFilter
   dailyQuestions?: Prisma.DailyPracticeQuestionListRelationFilter
+  agentTutorMessages?: Prisma.AgentTutorMessageListRelationFilter
 }
 
 export type QuestionOrderByWithRelationInput = {
@@ -337,6 +338,7 @@ export type QuestionOrderByWithRelationInput = {
   practiceAnswers?: Prisma.PracticeAnswerOrderByRelationAggregateInput
   wrongQuestions?: Prisma.WrongQuestionOrderByRelationAggregateInput
   dailyQuestions?: Prisma.DailyPracticeQuestionOrderByRelationAggregateInput
+  agentTutorMessages?: Prisma.AgentTutorMessageOrderByRelationAggregateInput
   _relevance?: Prisma.QuestionOrderByRelevanceInput
 }
 
@@ -367,6 +369,7 @@ export type QuestionWhereUniqueInput = Prisma.AtLeast<{
   practiceAnswers?: Prisma.PracticeAnswerListRelationFilter
   wrongQuestions?: Prisma.WrongQuestionListRelationFilter
   dailyQuestions?: Prisma.DailyPracticeQuestionListRelationFilter
+  agentTutorMessages?: Prisma.AgentTutorMessageListRelationFilter
 }, "id">
 
 export type QuestionOrderByWithAggregationInput = {
@@ -437,6 +440,7 @@ export type QuestionCreateInput = {
   practiceAnswers?: Prisma.PracticeAnswerCreateNestedManyWithoutQuestionInput
   wrongQuestions?: Prisma.WrongQuestionCreateNestedManyWithoutQuestionInput
   dailyQuestions?: Prisma.DailyPracticeQuestionCreateNestedManyWithoutQuestionInput
+  agentTutorMessages?: Prisma.AgentTutorMessageCreateNestedManyWithoutQuestionInput
 }
 
 export type QuestionUncheckedCreateInput = {
@@ -461,6 +465,7 @@ export type QuestionUncheckedCreateInput = {
   practiceAnswers?: Prisma.PracticeAnswerUncheckedCreateNestedManyWithoutQuestionInput
   wrongQuestions?: Prisma.WrongQuestionUncheckedCreateNestedManyWithoutQuestionInput
   dailyQuestions?: Prisma.DailyPracticeQuestionUncheckedCreateNestedManyWithoutQuestionInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUncheckedCreateNestedManyWithoutQuestionInput
 }
 
 export type QuestionUpdateInput = {
@@ -485,6 +490,7 @@ export type QuestionUpdateInput = {
   practiceAnswers?: Prisma.PracticeAnswerUpdateManyWithoutQuestionNestedInput
   wrongQuestions?: Prisma.WrongQuestionUpdateManyWithoutQuestionNestedInput
   dailyQuestions?: Prisma.DailyPracticeQuestionUpdateManyWithoutQuestionNestedInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUpdateManyWithoutQuestionNestedInput
 }
 
 export type QuestionUncheckedUpdateInput = {
@@ -509,6 +515,7 @@ export type QuestionUncheckedUpdateInput = {
   practiceAnswers?: Prisma.PracticeAnswerUncheckedUpdateManyWithoutQuestionNestedInput
   wrongQuestions?: Prisma.WrongQuestionUncheckedUpdateManyWithoutQuestionNestedInput
   dailyQuestions?: Prisma.DailyPracticeQuestionUncheckedUpdateManyWithoutQuestionNestedInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUncheckedUpdateManyWithoutQuestionNestedInput
 }
 
 export type QuestionCreateManyInput = {
@@ -822,6 +829,20 @@ export type QuestionUpdateOneRequiredWithoutWrongQuestionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.QuestionUpdateToOneWithWhereWithoutWrongQuestionsInput, Prisma.QuestionUpdateWithoutWrongQuestionsInput>, Prisma.QuestionUncheckedUpdateWithoutWrongQuestionsInput>
 }
 
+export type QuestionCreateNestedOneWithoutAgentTutorMessagesInput = {
+  create?: Prisma.XOR<Prisma.QuestionCreateWithoutAgentTutorMessagesInput, Prisma.QuestionUncheckedCreateWithoutAgentTutorMessagesInput>
+  connectOrCreate?: Prisma.QuestionCreateOrConnectWithoutAgentTutorMessagesInput
+  connect?: Prisma.QuestionWhereUniqueInput
+}
+
+export type QuestionUpdateOneRequiredWithoutAgentTutorMessagesNestedInput = {
+  create?: Prisma.XOR<Prisma.QuestionCreateWithoutAgentTutorMessagesInput, Prisma.QuestionUncheckedCreateWithoutAgentTutorMessagesInput>
+  connectOrCreate?: Prisma.QuestionCreateOrConnectWithoutAgentTutorMessagesInput
+  upsert?: Prisma.QuestionUpsertWithoutAgentTutorMessagesInput
+  connect?: Prisma.QuestionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.QuestionUpdateToOneWithWhereWithoutAgentTutorMessagesInput, Prisma.QuestionUpdateWithoutAgentTutorMessagesInput>, Prisma.QuestionUncheckedUpdateWithoutAgentTutorMessagesInput>
+}
+
 export type QuestionCreateWithoutTagInput = {
   id?: string
   type: $Enums.QuestionType
@@ -843,6 +864,7 @@ export type QuestionCreateWithoutTagInput = {
   practiceAnswers?: Prisma.PracticeAnswerCreateNestedManyWithoutQuestionInput
   wrongQuestions?: Prisma.WrongQuestionCreateNestedManyWithoutQuestionInput
   dailyQuestions?: Prisma.DailyPracticeQuestionCreateNestedManyWithoutQuestionInput
+  agentTutorMessages?: Prisma.AgentTutorMessageCreateNestedManyWithoutQuestionInput
 }
 
 export type QuestionUncheckedCreateWithoutTagInput = {
@@ -866,6 +888,7 @@ export type QuestionUncheckedCreateWithoutTagInput = {
   practiceAnswers?: Prisma.PracticeAnswerUncheckedCreateNestedManyWithoutQuestionInput
   wrongQuestions?: Prisma.WrongQuestionUncheckedCreateNestedManyWithoutQuestionInput
   dailyQuestions?: Prisma.DailyPracticeQuestionUncheckedCreateNestedManyWithoutQuestionInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUncheckedCreateNestedManyWithoutQuestionInput
 }
 
 export type QuestionCreateOrConnectWithoutTagInput = {
@@ -937,6 +960,7 @@ export type QuestionCreateWithoutMaterialInput = {
   practiceAnswers?: Prisma.PracticeAnswerCreateNestedManyWithoutQuestionInput
   wrongQuestions?: Prisma.WrongQuestionCreateNestedManyWithoutQuestionInput
   dailyQuestions?: Prisma.DailyPracticeQuestionCreateNestedManyWithoutQuestionInput
+  agentTutorMessages?: Prisma.AgentTutorMessageCreateNestedManyWithoutQuestionInput
 }
 
 export type QuestionUncheckedCreateWithoutMaterialInput = {
@@ -960,6 +984,7 @@ export type QuestionUncheckedCreateWithoutMaterialInput = {
   practiceAnswers?: Prisma.PracticeAnswerUncheckedCreateNestedManyWithoutQuestionInput
   wrongQuestions?: Prisma.WrongQuestionUncheckedCreateNestedManyWithoutQuestionInput
   dailyQuestions?: Prisma.DailyPracticeQuestionUncheckedCreateNestedManyWithoutQuestionInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUncheckedCreateNestedManyWithoutQuestionInput
 }
 
 export type QuestionCreateOrConnectWithoutMaterialInput = {
@@ -1009,6 +1034,7 @@ export type QuestionCreateWithoutOptionsInput = {
   practiceAnswers?: Prisma.PracticeAnswerCreateNestedManyWithoutQuestionInput
   wrongQuestions?: Prisma.WrongQuestionCreateNestedManyWithoutQuestionInput
   dailyQuestions?: Prisma.DailyPracticeQuestionCreateNestedManyWithoutQuestionInput
+  agentTutorMessages?: Prisma.AgentTutorMessageCreateNestedManyWithoutQuestionInput
 }
 
 export type QuestionUncheckedCreateWithoutOptionsInput = {
@@ -1032,6 +1058,7 @@ export type QuestionUncheckedCreateWithoutOptionsInput = {
   practiceAnswers?: Prisma.PracticeAnswerUncheckedCreateNestedManyWithoutQuestionInput
   wrongQuestions?: Prisma.WrongQuestionUncheckedCreateNestedManyWithoutQuestionInput
   dailyQuestions?: Prisma.DailyPracticeQuestionUncheckedCreateNestedManyWithoutQuestionInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUncheckedCreateNestedManyWithoutQuestionInput
 }
 
 export type QuestionCreateOrConnectWithoutOptionsInput = {
@@ -1071,6 +1098,7 @@ export type QuestionUpdateWithoutOptionsInput = {
   practiceAnswers?: Prisma.PracticeAnswerUpdateManyWithoutQuestionNestedInput
   wrongQuestions?: Prisma.WrongQuestionUpdateManyWithoutQuestionNestedInput
   dailyQuestions?: Prisma.DailyPracticeQuestionUpdateManyWithoutQuestionNestedInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUpdateManyWithoutQuestionNestedInput
 }
 
 export type QuestionUncheckedUpdateWithoutOptionsInput = {
@@ -1094,6 +1122,7 @@ export type QuestionUncheckedUpdateWithoutOptionsInput = {
   practiceAnswers?: Prisma.PracticeAnswerUncheckedUpdateManyWithoutQuestionNestedInput
   wrongQuestions?: Prisma.WrongQuestionUncheckedUpdateManyWithoutQuestionNestedInput
   dailyQuestions?: Prisma.DailyPracticeQuestionUncheckedUpdateManyWithoutQuestionNestedInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUncheckedUpdateManyWithoutQuestionNestedInput
 }
 
 export type QuestionCreateWithoutPaperQuestionsInput = {
@@ -1117,6 +1146,7 @@ export type QuestionCreateWithoutPaperQuestionsInput = {
   practiceAnswers?: Prisma.PracticeAnswerCreateNestedManyWithoutQuestionInput
   wrongQuestions?: Prisma.WrongQuestionCreateNestedManyWithoutQuestionInput
   dailyQuestions?: Prisma.DailyPracticeQuestionCreateNestedManyWithoutQuestionInput
+  agentTutorMessages?: Prisma.AgentTutorMessageCreateNestedManyWithoutQuestionInput
 }
 
 export type QuestionUncheckedCreateWithoutPaperQuestionsInput = {
@@ -1140,6 +1170,7 @@ export type QuestionUncheckedCreateWithoutPaperQuestionsInput = {
   practiceAnswers?: Prisma.PracticeAnswerUncheckedCreateNestedManyWithoutQuestionInput
   wrongQuestions?: Prisma.WrongQuestionUncheckedCreateNestedManyWithoutQuestionInput
   dailyQuestions?: Prisma.DailyPracticeQuestionUncheckedCreateNestedManyWithoutQuestionInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUncheckedCreateNestedManyWithoutQuestionInput
 }
 
 export type QuestionCreateOrConnectWithoutPaperQuestionsInput = {
@@ -1179,6 +1210,7 @@ export type QuestionUpdateWithoutPaperQuestionsInput = {
   practiceAnswers?: Prisma.PracticeAnswerUpdateManyWithoutQuestionNestedInput
   wrongQuestions?: Prisma.WrongQuestionUpdateManyWithoutQuestionNestedInput
   dailyQuestions?: Prisma.DailyPracticeQuestionUpdateManyWithoutQuestionNestedInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUpdateManyWithoutQuestionNestedInput
 }
 
 export type QuestionUncheckedUpdateWithoutPaperQuestionsInput = {
@@ -1202,6 +1234,7 @@ export type QuestionUncheckedUpdateWithoutPaperQuestionsInput = {
   practiceAnswers?: Prisma.PracticeAnswerUncheckedUpdateManyWithoutQuestionNestedInput
   wrongQuestions?: Prisma.WrongQuestionUncheckedUpdateManyWithoutQuestionNestedInput
   dailyQuestions?: Prisma.DailyPracticeQuestionUncheckedUpdateManyWithoutQuestionNestedInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUncheckedUpdateManyWithoutQuestionNestedInput
 }
 
 export type QuestionCreateWithoutDailyQuestionsInput = {
@@ -1225,6 +1258,7 @@ export type QuestionCreateWithoutDailyQuestionsInput = {
   paperQuestions?: Prisma.PaperQuestionCreateNestedManyWithoutQuestionInput
   practiceAnswers?: Prisma.PracticeAnswerCreateNestedManyWithoutQuestionInput
   wrongQuestions?: Prisma.WrongQuestionCreateNestedManyWithoutQuestionInput
+  agentTutorMessages?: Prisma.AgentTutorMessageCreateNestedManyWithoutQuestionInput
 }
 
 export type QuestionUncheckedCreateWithoutDailyQuestionsInput = {
@@ -1248,6 +1282,7 @@ export type QuestionUncheckedCreateWithoutDailyQuestionsInput = {
   paperQuestions?: Prisma.PaperQuestionUncheckedCreateNestedManyWithoutQuestionInput
   practiceAnswers?: Prisma.PracticeAnswerUncheckedCreateNestedManyWithoutQuestionInput
   wrongQuestions?: Prisma.WrongQuestionUncheckedCreateNestedManyWithoutQuestionInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUncheckedCreateNestedManyWithoutQuestionInput
 }
 
 export type QuestionCreateOrConnectWithoutDailyQuestionsInput = {
@@ -1287,6 +1322,7 @@ export type QuestionUpdateWithoutDailyQuestionsInput = {
   paperQuestions?: Prisma.PaperQuestionUpdateManyWithoutQuestionNestedInput
   practiceAnswers?: Prisma.PracticeAnswerUpdateManyWithoutQuestionNestedInput
   wrongQuestions?: Prisma.WrongQuestionUpdateManyWithoutQuestionNestedInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUpdateManyWithoutQuestionNestedInput
 }
 
 export type QuestionUncheckedUpdateWithoutDailyQuestionsInput = {
@@ -1310,6 +1346,7 @@ export type QuestionUncheckedUpdateWithoutDailyQuestionsInput = {
   paperQuestions?: Prisma.PaperQuestionUncheckedUpdateManyWithoutQuestionNestedInput
   practiceAnswers?: Prisma.PracticeAnswerUncheckedUpdateManyWithoutQuestionNestedInput
   wrongQuestions?: Prisma.WrongQuestionUncheckedUpdateManyWithoutQuestionNestedInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUncheckedUpdateManyWithoutQuestionNestedInput
 }
 
 export type QuestionCreateWithoutPracticeAnswersInput = {
@@ -1333,6 +1370,7 @@ export type QuestionCreateWithoutPracticeAnswersInput = {
   paperQuestions?: Prisma.PaperQuestionCreateNestedManyWithoutQuestionInput
   wrongQuestions?: Prisma.WrongQuestionCreateNestedManyWithoutQuestionInput
   dailyQuestions?: Prisma.DailyPracticeQuestionCreateNestedManyWithoutQuestionInput
+  agentTutorMessages?: Prisma.AgentTutorMessageCreateNestedManyWithoutQuestionInput
 }
 
 export type QuestionUncheckedCreateWithoutPracticeAnswersInput = {
@@ -1356,6 +1394,7 @@ export type QuestionUncheckedCreateWithoutPracticeAnswersInput = {
   paperQuestions?: Prisma.PaperQuestionUncheckedCreateNestedManyWithoutQuestionInput
   wrongQuestions?: Prisma.WrongQuestionUncheckedCreateNestedManyWithoutQuestionInput
   dailyQuestions?: Prisma.DailyPracticeQuestionUncheckedCreateNestedManyWithoutQuestionInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUncheckedCreateNestedManyWithoutQuestionInput
 }
 
 export type QuestionCreateOrConnectWithoutPracticeAnswersInput = {
@@ -1395,6 +1434,7 @@ export type QuestionUpdateWithoutPracticeAnswersInput = {
   paperQuestions?: Prisma.PaperQuestionUpdateManyWithoutQuestionNestedInput
   wrongQuestions?: Prisma.WrongQuestionUpdateManyWithoutQuestionNestedInput
   dailyQuestions?: Prisma.DailyPracticeQuestionUpdateManyWithoutQuestionNestedInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUpdateManyWithoutQuestionNestedInput
 }
 
 export type QuestionUncheckedUpdateWithoutPracticeAnswersInput = {
@@ -1418,6 +1458,7 @@ export type QuestionUncheckedUpdateWithoutPracticeAnswersInput = {
   paperQuestions?: Prisma.PaperQuestionUncheckedUpdateManyWithoutQuestionNestedInput
   wrongQuestions?: Prisma.WrongQuestionUncheckedUpdateManyWithoutQuestionNestedInput
   dailyQuestions?: Prisma.DailyPracticeQuestionUncheckedUpdateManyWithoutQuestionNestedInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUncheckedUpdateManyWithoutQuestionNestedInput
 }
 
 export type QuestionCreateWithoutWrongQuestionsInput = {
@@ -1441,6 +1482,7 @@ export type QuestionCreateWithoutWrongQuestionsInput = {
   paperQuestions?: Prisma.PaperQuestionCreateNestedManyWithoutQuestionInput
   practiceAnswers?: Prisma.PracticeAnswerCreateNestedManyWithoutQuestionInput
   dailyQuestions?: Prisma.DailyPracticeQuestionCreateNestedManyWithoutQuestionInput
+  agentTutorMessages?: Prisma.AgentTutorMessageCreateNestedManyWithoutQuestionInput
 }
 
 export type QuestionUncheckedCreateWithoutWrongQuestionsInput = {
@@ -1464,6 +1506,7 @@ export type QuestionUncheckedCreateWithoutWrongQuestionsInput = {
   paperQuestions?: Prisma.PaperQuestionUncheckedCreateNestedManyWithoutQuestionInput
   practiceAnswers?: Prisma.PracticeAnswerUncheckedCreateNestedManyWithoutQuestionInput
   dailyQuestions?: Prisma.DailyPracticeQuestionUncheckedCreateNestedManyWithoutQuestionInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUncheckedCreateNestedManyWithoutQuestionInput
 }
 
 export type QuestionCreateOrConnectWithoutWrongQuestionsInput = {
@@ -1503,6 +1546,7 @@ export type QuestionUpdateWithoutWrongQuestionsInput = {
   paperQuestions?: Prisma.PaperQuestionUpdateManyWithoutQuestionNestedInput
   practiceAnswers?: Prisma.PracticeAnswerUpdateManyWithoutQuestionNestedInput
   dailyQuestions?: Prisma.DailyPracticeQuestionUpdateManyWithoutQuestionNestedInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUpdateManyWithoutQuestionNestedInput
 }
 
 export type QuestionUncheckedUpdateWithoutWrongQuestionsInput = {
@@ -1525,6 +1569,119 @@ export type QuestionUncheckedUpdateWithoutWrongQuestionsInput = {
   options?: Prisma.QuestionOptionUncheckedUpdateManyWithoutQuestionNestedInput
   paperQuestions?: Prisma.PaperQuestionUncheckedUpdateManyWithoutQuestionNestedInput
   practiceAnswers?: Prisma.PracticeAnswerUncheckedUpdateManyWithoutQuestionNestedInput
+  dailyQuestions?: Prisma.DailyPracticeQuestionUncheckedUpdateManyWithoutQuestionNestedInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUncheckedUpdateManyWithoutQuestionNestedInput
+}
+
+export type QuestionCreateWithoutAgentTutorMessagesInput = {
+  id?: string
+  type: $Enums.QuestionType
+  titleHtml: string
+  plainText?: string | null
+  analysisHtml?: string | null
+  correctAnswer: string
+  difficulty?: $Enums.Difficulty
+  globalAccuracy?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  source?: string | null
+  isVipOnly?: boolean
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  tag?: Prisma.QuestionTagCreateNestedOneWithoutQuestionsInput
+  material?: Prisma.MaterialCreateNestedOneWithoutQuestionsInput
+  options?: Prisma.QuestionOptionCreateNestedManyWithoutQuestionInput
+  paperQuestions?: Prisma.PaperQuestionCreateNestedManyWithoutQuestionInput
+  practiceAnswers?: Prisma.PracticeAnswerCreateNestedManyWithoutQuestionInput
+  wrongQuestions?: Prisma.WrongQuestionCreateNestedManyWithoutQuestionInput
+  dailyQuestions?: Prisma.DailyPracticeQuestionCreateNestedManyWithoutQuestionInput
+}
+
+export type QuestionUncheckedCreateWithoutAgentTutorMessagesInput = {
+  id?: string
+  type: $Enums.QuestionType
+  titleHtml: string
+  plainText?: string | null
+  analysisHtml?: string | null
+  correctAnswer: string
+  difficulty?: $Enums.Difficulty
+  globalAccuracy?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  source?: string | null
+  tagId?: string | null
+  materialId?: string | null
+  isVipOnly?: boolean
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  options?: Prisma.QuestionOptionUncheckedCreateNestedManyWithoutQuestionInput
+  paperQuestions?: Prisma.PaperQuestionUncheckedCreateNestedManyWithoutQuestionInput
+  practiceAnswers?: Prisma.PracticeAnswerUncheckedCreateNestedManyWithoutQuestionInput
+  wrongQuestions?: Prisma.WrongQuestionUncheckedCreateNestedManyWithoutQuestionInput
+  dailyQuestions?: Prisma.DailyPracticeQuestionUncheckedCreateNestedManyWithoutQuestionInput
+}
+
+export type QuestionCreateOrConnectWithoutAgentTutorMessagesInput = {
+  where: Prisma.QuestionWhereUniqueInput
+  create: Prisma.XOR<Prisma.QuestionCreateWithoutAgentTutorMessagesInput, Prisma.QuestionUncheckedCreateWithoutAgentTutorMessagesInput>
+}
+
+export type QuestionUpsertWithoutAgentTutorMessagesInput = {
+  update: Prisma.XOR<Prisma.QuestionUpdateWithoutAgentTutorMessagesInput, Prisma.QuestionUncheckedUpdateWithoutAgentTutorMessagesInput>
+  create: Prisma.XOR<Prisma.QuestionCreateWithoutAgentTutorMessagesInput, Prisma.QuestionUncheckedCreateWithoutAgentTutorMessagesInput>
+  where?: Prisma.QuestionWhereInput
+}
+
+export type QuestionUpdateToOneWithWhereWithoutAgentTutorMessagesInput = {
+  where?: Prisma.QuestionWhereInput
+  data: Prisma.XOR<Prisma.QuestionUpdateWithoutAgentTutorMessagesInput, Prisma.QuestionUncheckedUpdateWithoutAgentTutorMessagesInput>
+}
+
+export type QuestionUpdateWithoutAgentTutorMessagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumQuestionTypeFieldUpdateOperationsInput | $Enums.QuestionType
+  titleHtml?: Prisma.StringFieldUpdateOperationsInput | string
+  plainText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  analysisHtml?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  correctAnswer?: Prisma.StringFieldUpdateOperationsInput | string
+  difficulty?: Prisma.EnumDifficultyFieldUpdateOperationsInput | $Enums.Difficulty
+  globalAccuracy?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isVipOnly?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  tag?: Prisma.QuestionTagUpdateOneWithoutQuestionsNestedInput
+  material?: Prisma.MaterialUpdateOneWithoutQuestionsNestedInput
+  options?: Prisma.QuestionOptionUpdateManyWithoutQuestionNestedInput
+  paperQuestions?: Prisma.PaperQuestionUpdateManyWithoutQuestionNestedInput
+  practiceAnswers?: Prisma.PracticeAnswerUpdateManyWithoutQuestionNestedInput
+  wrongQuestions?: Prisma.WrongQuestionUpdateManyWithoutQuestionNestedInput
+  dailyQuestions?: Prisma.DailyPracticeQuestionUpdateManyWithoutQuestionNestedInput
+}
+
+export type QuestionUncheckedUpdateWithoutAgentTutorMessagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumQuestionTypeFieldUpdateOperationsInput | $Enums.QuestionType
+  titleHtml?: Prisma.StringFieldUpdateOperationsInput | string
+  plainText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  analysisHtml?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  correctAnswer?: Prisma.StringFieldUpdateOperationsInput | string
+  difficulty?: Prisma.EnumDifficultyFieldUpdateOperationsInput | $Enums.Difficulty
+  globalAccuracy?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  source?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  materialId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isVipOnly?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  options?: Prisma.QuestionOptionUncheckedUpdateManyWithoutQuestionNestedInput
+  paperQuestions?: Prisma.PaperQuestionUncheckedUpdateManyWithoutQuestionNestedInput
+  practiceAnswers?: Prisma.PracticeAnswerUncheckedUpdateManyWithoutQuestionNestedInput
+  wrongQuestions?: Prisma.WrongQuestionUncheckedUpdateManyWithoutQuestionNestedInput
   dailyQuestions?: Prisma.DailyPracticeQuestionUncheckedUpdateManyWithoutQuestionNestedInput
 }
 
@@ -1567,6 +1724,7 @@ export type QuestionUpdateWithoutTagInput = {
   practiceAnswers?: Prisma.PracticeAnswerUpdateManyWithoutQuestionNestedInput
   wrongQuestions?: Prisma.WrongQuestionUpdateManyWithoutQuestionNestedInput
   dailyQuestions?: Prisma.DailyPracticeQuestionUpdateManyWithoutQuestionNestedInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUpdateManyWithoutQuestionNestedInput
 }
 
 export type QuestionUncheckedUpdateWithoutTagInput = {
@@ -1590,6 +1748,7 @@ export type QuestionUncheckedUpdateWithoutTagInput = {
   practiceAnswers?: Prisma.PracticeAnswerUncheckedUpdateManyWithoutQuestionNestedInput
   wrongQuestions?: Prisma.WrongQuestionUncheckedUpdateManyWithoutQuestionNestedInput
   dailyQuestions?: Prisma.DailyPracticeQuestionUncheckedUpdateManyWithoutQuestionNestedInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUncheckedUpdateManyWithoutQuestionNestedInput
 }
 
 export type QuestionUncheckedUpdateManyWithoutTagInput = {
@@ -1649,6 +1808,7 @@ export type QuestionUpdateWithoutMaterialInput = {
   practiceAnswers?: Prisma.PracticeAnswerUpdateManyWithoutQuestionNestedInput
   wrongQuestions?: Prisma.WrongQuestionUpdateManyWithoutQuestionNestedInput
   dailyQuestions?: Prisma.DailyPracticeQuestionUpdateManyWithoutQuestionNestedInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUpdateManyWithoutQuestionNestedInput
 }
 
 export type QuestionUncheckedUpdateWithoutMaterialInput = {
@@ -1672,6 +1832,7 @@ export type QuestionUncheckedUpdateWithoutMaterialInput = {
   practiceAnswers?: Prisma.PracticeAnswerUncheckedUpdateManyWithoutQuestionNestedInput
   wrongQuestions?: Prisma.WrongQuestionUncheckedUpdateManyWithoutQuestionNestedInput
   dailyQuestions?: Prisma.DailyPracticeQuestionUncheckedUpdateManyWithoutQuestionNestedInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUncheckedUpdateManyWithoutQuestionNestedInput
 }
 
 export type QuestionUncheckedUpdateManyWithoutMaterialInput = {
@@ -1703,6 +1864,7 @@ export type QuestionCountOutputType = {
   practiceAnswers: number
   wrongQuestions: number
   dailyQuestions: number
+  agentTutorMessages: number
 }
 
 export type QuestionCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1711,6 +1873,7 @@ export type QuestionCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensio
   practiceAnswers?: boolean | QuestionCountOutputTypeCountPracticeAnswersArgs
   wrongQuestions?: boolean | QuestionCountOutputTypeCountWrongQuestionsArgs
   dailyQuestions?: boolean | QuestionCountOutputTypeCountDailyQuestionsArgs
+  agentTutorMessages?: boolean | QuestionCountOutputTypeCountAgentTutorMessagesArgs
 }
 
 /**
@@ -1758,6 +1921,13 @@ export type QuestionCountOutputTypeCountDailyQuestionsArgs<ExtArgs extends runti
   where?: Prisma.DailyPracticeQuestionWhereInput
 }
 
+/**
+ * QuestionCountOutputType without action
+ */
+export type QuestionCountOutputTypeCountAgentTutorMessagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AgentTutorMessageWhereInput
+}
+
 
 export type QuestionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1783,6 +1953,7 @@ export type QuestionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   practiceAnswers?: boolean | Prisma.Question$practiceAnswersArgs<ExtArgs>
   wrongQuestions?: boolean | Prisma.Question$wrongQuestionsArgs<ExtArgs>
   dailyQuestions?: boolean | Prisma.Question$dailyQuestionsArgs<ExtArgs>
+  agentTutorMessages?: boolean | Prisma.Question$agentTutorMessagesArgs<ExtArgs>
   _count?: boolean | Prisma.QuestionCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["question"]>
 
@@ -1816,6 +1987,7 @@ export type QuestionInclude<ExtArgs extends runtime.Types.Extensions.InternalArg
   practiceAnswers?: boolean | Prisma.Question$practiceAnswersArgs<ExtArgs>
   wrongQuestions?: boolean | Prisma.Question$wrongQuestionsArgs<ExtArgs>
   dailyQuestions?: boolean | Prisma.Question$dailyQuestionsArgs<ExtArgs>
+  agentTutorMessages?: boolean | Prisma.Question$agentTutorMessagesArgs<ExtArgs>
   _count?: boolean | Prisma.QuestionCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -1829,6 +2001,7 @@ export type $QuestionPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     practiceAnswers: Prisma.$PracticeAnswerPayload<ExtArgs>[]
     wrongQuestions: Prisma.$WrongQuestionPayload<ExtArgs>[]
     dailyQuestions: Prisma.$DailyPracticeQuestionPayload<ExtArgs>[]
+    agentTutorMessages: Prisma.$AgentTutorMessagePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2194,6 +2367,7 @@ export interface Prisma__QuestionClient<T, Null = never, ExtArgs extends runtime
   practiceAnswers<T extends Prisma.Question$practiceAnswersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Question$practiceAnswersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PracticeAnswerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   wrongQuestions<T extends Prisma.Question$wrongQuestionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Question$wrongQuestionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WrongQuestionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   dailyQuestions<T extends Prisma.Question$dailyQuestionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Question$dailyQuestionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DailyPracticeQuestionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  agentTutorMessages<T extends Prisma.Question$agentTutorMessagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Question$agentTutorMessagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AgentTutorMessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2742,6 +2916,30 @@ export type Question$dailyQuestionsArgs<ExtArgs extends runtime.Types.Extensions
   take?: number
   skip?: number
   distinct?: Prisma.DailyPracticeQuestionScalarFieldEnum | Prisma.DailyPracticeQuestionScalarFieldEnum[]
+}
+
+/**
+ * Question.agentTutorMessages
+ */
+export type Question$agentTutorMessagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AgentTutorMessage
+   */
+  select?: Prisma.AgentTutorMessageSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AgentTutorMessage
+   */
+  omit?: Prisma.AgentTutorMessageOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AgentTutorMessageInclude<ExtArgs> | null
+  where?: Prisma.AgentTutorMessageWhereInput
+  orderBy?: Prisma.AgentTutorMessageOrderByWithRelationInput | Prisma.AgentTutorMessageOrderByWithRelationInput[]
+  cursor?: Prisma.AgentTutorMessageWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AgentTutorMessageScalarFieldEnum | Prisma.AgentTutorMessageScalarFieldEnum[]
 }
 
 /**
