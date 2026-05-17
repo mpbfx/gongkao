@@ -47,6 +47,19 @@ enum MembershipStatus {
   CANCELLED
 }
 
+enum MistakeCause {
+  READING_MISS
+  CONCEPT_GAP
+  METHOD_GAP
+  OPTION_TRAP
+  CALCULATION_ERROR
+  MATERIAL_LOCATION_ERROR
+  LOGIC_CHAIN_BREAK
+  TIME_STRATEGY_ERROR
+  CARELESSNESS
+  UNKNOWN
+}
+
 model User {
   id            String    @id @default(cuid())
   name          String?
@@ -68,6 +81,7 @@ model User {
   tagStats             UserTagStats[]
   agentRecommendations AgentRecommendation[]
   agentTutorMessages   AgentTutorMessage[]
+  mistakeReviews       QuestionMistakeReview[]
   agentFeedback        AgentFeedback[]
   importJobs           ImportJob[]
 }
@@ -144,6 +158,7 @@ model QuestionTag {
   questions      Question[]
   wrongQuestions WrongQuestion[]
   tagStats       UserTagStats[]
+  mistakeReviews QuestionMistakeReview[]
 
   @@index([parentId])
   @@index([isActive])
@@ -187,6 +202,7 @@ model Question {
   wrongQuestions     WrongQuestion[]
   dailyQuestions     DailyPracticeQuestion[]
   agentTutorMessages AgentTutorMessage[]
+  mistakeReviews     QuestionMistakeReview[]
 
   @@index([tagId])
   @@index([materialId])
@@ -305,6 +321,7 @@ model PracticeSession {
   sourceAgentRecommendations  AgentRecommendation[] @relation("AgentRecommendationSource")
   startedAgentRecommendations AgentRecommendation[] @relation("AgentRecommendationStarted")
   agentTutorMessages          AgentTutorMessage[]
+  mistakeReviews              QuestionMistakeReview[]
 
   @@index([userId])
   @@index([mode])
@@ -331,6 +348,7 @@ model PracticeAnswer {
   user         User            @relation(fields: [userId], references: [id], onDelete: Cascade)
   question     Question        @relation(fields: [questionId], references: [id])
   wrongSources WrongQuestion[] @relation("WrongQuestionLastAnswer")
+  mistakeReviews QuestionMistakeReview[]
 
   @@unique([sessionId, questionId])
   @@index([sessionId])
@@ -455,11 +473,48 @@ model AgentTutorMessage {
   user     User             @relation(fields: [userId], references: [id], onDelete: Cascade)
   question Question         @relation(fields: [questionId], references: [id])
   session  PracticeSession? @relation(fields: [sessionId], references: [id])
+  mistakeReviews QuestionMistakeReview[]
 
   @@index([userId])
   @@index([questionId])
   @@index([sessionId])
   @@index([createdAt])
+}
+
+model QuestionMistakeReview {
+  id                  String       @id @default(cuid())
+  userId              String
+  questionId          String
+  sessionId           String?
+  practiceAnswerId    String?
+  tutorMessageId      String?
+  tagId               String?
+  mistakeCause        MistakeCause
+  confidence          String
+  causeSummary        String       @db.Text
+  fastestPath         String       @db.Text
+  transferRule        String       @db.Text
+  timeSpentSeconds    Int?
+  isLatestForQuestion Boolean      @default(true)
+  createdAt           DateTime     @default(now())
+
+  user           User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  question       Question           @relation(fields: [questionId], references: [id])
+  session        PracticeSession?   @relation(fields: [sessionId], references: [id])
+  practiceAnswer PracticeAnswer?    @relation(fields: [practiceAnswerId], references: [id])
+  tutorMessage   AgentTutorMessage? @relation(fields: [tutorMessageId], references: [id])
+  tag            QuestionTag?       @relation(fields: [tagId], references: [id])
+
+  @@index([userId, isLatestForQuestion])
+  @@index([userId, questionId, isLatestForQuestion])
+  @@index([userId, mistakeCause, isLatestForQuestion])
+  @@index([userId, tagId, isLatestForQuestion])
+  @@index([userId, createdAt])
+  @@index([questionId])
+  @@index([sessionId])
+  @@index([practiceAnswerId])
+  @@index([tutorMessageId])
+  @@index([tagId])
 }
 
 model AgentFeedback {

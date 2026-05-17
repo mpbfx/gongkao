@@ -2,6 +2,34 @@ import { z } from "zod";
 
 export const agentConfidenceSchema = z.enum(["LOW", "MEDIUM", "HIGH"]);
 
+export const mistakeCauseSchema = z.enum([
+  "READING_MISS",
+  "CONCEPT_GAP",
+  "METHOD_GAP",
+  "OPTION_TRAP",
+  "CALCULATION_ERROR",
+  "MATERIAL_LOCATION_ERROR",
+  "LOGIC_CHAIN_BREAK",
+  "TIME_STRATEGY_ERROR",
+  "CARELESSNESS",
+  "UNKNOWN",
+]);
+
+export type MistakeCause = z.infer<typeof mistakeCauseSchema>;
+
+export const mistakeCauseLabels: Record<MistakeCause, string> = {
+  READING_MISS: "审题漏条件",
+  CONCEPT_GAP: "知识点不会",
+  METHOD_GAP: "题型方法不会",
+  OPTION_TRAP: "选项陷阱",
+  CALCULATION_ERROR: "计算错误",
+  MATERIAL_LOCATION_ERROR: "材料定位错误",
+  LOGIC_CHAIN_BREAK: "推理链断裂",
+  TIME_STRATEGY_ERROR: "时间策略失误",
+  CARELESSNESS: "非知识性失误",
+  UNKNOWN: "信息不足",
+};
+
 export const agentRecommendationStatusSchema = z.enum([
   "PENDING",
   "CLICKED",
@@ -86,6 +114,11 @@ export const tutorRequestSchema = z.object({
 });
 
 export const tutorResponseSchema = z.object({
+  mistakeCause: mistakeCauseSchema,
+  confidence: agentConfidenceSchema,
+  causeSummary: z.string(),
+  fastestPath: z.string(),
+  transferRule: z.string(),
   answer: z.string(),
   suggestedPrompts: z.array(z.string()).min(1).max(5),
   messageId: z.string(),
@@ -103,4 +136,3 @@ export const agentFeedbackSchema = z.object({
 });
 
 export type AgentFeedbackInput = z.infer<typeof agentFeedbackSchema>;
-
