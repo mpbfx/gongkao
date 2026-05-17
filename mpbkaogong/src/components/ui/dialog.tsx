@@ -34,7 +34,7 @@ function DialogContent({
   initialFocus,
   finalFocus,
   ...props
-}: DialogPrimitive.Popup.Props & { variant?: "modal" | "sheet" }) {
+}: DialogPrimitive.Popup.Props & { variant?: "modal" | "sheet" | "assistant" }) {
   return (
     <DialogPortal>
       <DialogBackdrop />
@@ -49,6 +49,8 @@ function DialogContent({
             "left-1/2 top-1/2 w-[calc(100vw-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-lg",
           variant === "sheet" &&
             "inset-x-0 bottom-0 max-h-[82dvh] rounded-t-xl lg:left-1/2 lg:right-auto lg:top-1/2 lg:bottom-auto lg:w-[calc(100vw-2rem)] lg:max-w-md lg:-translate-x-1/2 lg:-translate-y-1/2 lg:rounded-lg",
+          variant === "assistant" &&
+            "inset-x-0 bottom-0 max-h-[88dvh] rounded-t-xl md:inset-y-0 md:left-auto md:right-0 md:bottom-auto md:h-dvh md:max-h-none md:w-[min(30rem,calc(100vw-1rem))] md:rounded-l-lg md:rounded-r-none",
           className
         )}
         {...props}
