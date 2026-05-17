@@ -68,6 +68,7 @@ type TutorStreamEvent =
   | { type: "error"; message: string };
 
 type TutorPanelVariant = "dock" | "assistant";
+type TutorPanelHeightMode = "content" | "fill";
 
 const defaultPrompts = [
   "为什么不选我选的这个？",
@@ -138,11 +139,13 @@ function TutorConversation({
   sessionId,
   contextLabel,
   compact = false,
+  heightMode = "content",
 }: {
   questionId: string;
   sessionId?: string;
   contextLabel?: string;
   compact?: boolean;
+  heightMode?: TutorPanelHeightMode;
 }) {
   const [prompt, setPrompt] = useState(defaultPrompts[0]);
   const [suggestedPrompts, setSuggestedPrompts] = useState(defaultPrompts);
@@ -345,7 +348,7 @@ function TutorConversation({
   }
 
   return (
-    <div className={cn("flex min-h-0 flex-col gap-3", compact ? "text-sm" : "")}>
+    <div className={cn("flex min-h-0 flex-col gap-3", compact ? "text-sm" : "", heightMode === "fill" && "h-full overflow-hidden")}>
       <div className="flex shrink-0 items-start justify-between gap-3">
         <div className="min-w-0">
           <div className="flex items-center gap-2 font-medium">
@@ -376,8 +379,9 @@ function TutorConversation({
 
       <div
         className={cn(
-          "flex min-h-48 flex-1 flex-col gap-3 overflow-y-auto rounded-lg border bg-background p-3",
-          compact ? "max-h-80" : "max-h-[46dvh]"
+          "flex flex-1 flex-col gap-3 overflow-y-auto rounded-lg border bg-background p-3",
+          heightMode === "fill" ? "min-h-0" : "min-h-48",
+          heightMode === "content" && (compact ? "max-h-80" : "max-h-[46dvh]")
         )}
         role="log"
         aria-live="polite"
@@ -518,6 +522,7 @@ export function TutorPanel({
   variant = "assistant",
   triggerLabel = "问助教",
   contextLabel,
+  heightMode = "content",
 }: {
   questionId: string;
   sessionId?: string;
@@ -525,18 +530,19 @@ export function TutorPanel({
   variant?: TutorPanelVariant;
   triggerLabel?: string;
   contextLabel?: string;
+  heightMode?: TutorPanelHeightMode;
 }) {
   const [isOpen, setIsOpen] = useState(false);
 
   if (variant === "dock") {
     return (
-      <Card className={cn("min-h-0", className)}>
-        <CardHeader>
+      <Card className={cn("min-h-0", heightMode === "fill" && "h-full gap-0 py-0", className)}>
+        <CardHeader className={cn(heightMode === "fill" && "sr-only")}>
           <CardTitle className="sr-only">讲题助教</CardTitle>
           <CardDescription className="sr-only">围绕当前题、官方答案和我的作答追问。</CardDescription>
         </CardHeader>
-        <CardContent className="min-h-0">
-          <TutorConversation questionId={questionId} sessionId={sessionId} contextLabel={contextLabel} />
+        <CardContent className={cn("min-h-0", heightMode === "fill" && "flex flex-1 flex-col p-3")}>
+          <TutorConversation questionId={questionId} sessionId={sessionId} contextLabel={contextLabel} heightMode={heightMode} />
         </CardContent>
       </Card>
     );
