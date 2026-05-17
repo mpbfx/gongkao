@@ -9,6 +9,7 @@ import {
   Dumbbell,
   Filter,
   LoaderCircle,
+  MessageSquare,
   RotateCcw,
   Target,
 } from "lucide-react";
@@ -114,6 +115,7 @@ type MistakeInsights = {
 };
 
 type WrongSessionMode = "WRONG" | "MEMORIZE";
+type MobileDetailTab = "review" | "tutor";
 
 type ApiResponse<T> =
   | {
@@ -256,7 +258,56 @@ function StartSessionButton({
   );
 }
 
-function WrongQuestionDetail({
+function OfficialAnalysis({ html }: { html?: string | null }) {
+  const [expanded, setExpanded] = useState(false);
+
+  return (
+    <div className="mt-4 rounded-lg border bg-background p-3">
+      <div className="mb-2 flex items-center justify-between gap-3">
+        <div className="text-sm font-medium">官方解析</div>
+        {html ? (
+          <Button type="button" variant="ghost" size="sm" onClick={() => setExpanded((current) => !current)}>
+            {expanded ? "收起解析" : "展开解析"}
+          </Button>
+        ) : null}
+      </div>
+      {html ? (
+        <div className={cn("relative", !expanded && "max-h-72 overflow-hidden")}>
+          <RichHtml html={html} className="text-sm leading-6 text-muted-foreground" />
+          {!expanded ? <div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-background to-transparent" /> : null}
+        </div>
+      ) : (
+        <p className="text-sm text-muted-foreground">暂无解析。</p>
+      )}
+    </div>
+  );
+}
+
+function WrongQuestionTutorPanel({
+  item,
+  className,
+  heightMode = "content",
+}: {
+  item: WrongQuestionItem;
+  className?: string;
+  heightMode?: "content" | "fill";
+}) {
+  const sessionId = item.lastAnswer?.sessionId;
+
+  return (
+    <TutorPanel
+      key={`${item.questionId}-${sessionId ?? "wrong"}`}
+      questionId={item.questionId}
+      sessionId={sessionId}
+      variant="dock"
+      className={className}
+      heightMode={heightMode}
+      contextLabel={`当前题最近答案：${item.lastAnswer?.answer ?? "未作答"}；正确答案：${item.question.correctAnswer ?? "暂无"}`}
+    />
+  );
+}
+
+function WrongQuestionReview({
   item,
   group,
   onResolve,
@@ -270,7 +321,6 @@ function WrongQuestionDetail({
   isResolving: boolean;
 }) {
   const unresolvedGroupCount = group?.items.filter((entry) => !entry.resolvedAt).length ?? 0;
-  const sessionId = item.lastAnswer?.sessionId;
 
   return (
     <div className="flex min-h-0 flex-col gap-4">
@@ -350,14 +400,7 @@ function WrongQuestionDetail({
           <ReviewStat label="最近用时" value={formatSeconds(item.lastAnswer?.timeSpentSeconds)} tone="info" />
         </div>
 
-        <div className="mt-4 rounded-lg border bg-background p-3">
-          <div className="mb-2 text-sm font-medium">官方解析</div>
-          {item.question.analysisHtml ? (
-            <RichHtml html={item.question.analysisHtml} className="text-sm leading-6 text-muted-foreground" />
-          ) : (
-            <p className="text-sm text-muted-foreground">暂无解析。</p>
-          )}
-        </div>
+        <OfficialAnalysis key={item.questionId} html={item.question.analysisHtml} />
       </section>
 
       {item.latestMistakeReview ? (
@@ -385,13 +428,6 @@ function WrongQuestionDetail({
         </section>
       ) : null}
 
-      <TutorPanel
-        key={`${item.questionId}-${sessionId ?? "wrong"}`}
-        questionId={item.questionId}
-        sessionId={sessionId}
-        variant="dock"
-        contextLabel={`当前题最近答案：${item.lastAnswer?.answer ?? "未作答"}；正确答案：${item.question.correctAnswer ?? "暂无"}`}
-      />
     </div>
   );
 }
@@ -418,6 +454,7 @@ export function WrongReviewWorkspace({
   );
   const [selectedId, setSelectedId] = useState(flatItems[0]?.item.id ?? "");
   const [mobileDetailOpen, setMobileDetailOpen] = useState(false);
+  const [mobileDetailTab, setMobileDetailTab] = useState<MobileDetailTab>("review");
   const [actionError, setActionError] = useState<string | null>(null);
   const [pendingSessionKey, setPendingSessionKey] = useState<string | null>(null);
   const [resolvingId, setResolvingId] = useState<string | null>(null);
@@ -656,6 +693,7 @@ export function WrongReviewWorkspace({
                             )}
                             onClick={() => {
                               setSelectedId(item.id);
+                              setMobileDetailTab("review");
                               setMobileDetailOpen(shouldOpenDetailSheet());
                             }}
                           >
@@ -703,36 +741,74 @@ export function WrongReviewWorkspace({
             </div>
           </section>
 
-          <aside className="hidden xl:block xl:sticky xl:top-20 xl:max-h-[calc(100dvh-6rem)] xl:overflow-y-auto">
+          <aside className="hidden xl:sticky xl:top-20 xl:flex xl:h-[calc(100dvh-6rem)] xl:min-h-0 xl:flex-col xl:gap-3">
             {selected ? (
-              <WrongQuestionDetail
-                item={selected.item}
-                group={selected.group}
-                onResolve={resolveWrongQuestion}
-                onStart={startWrongSession}
-                isResolving={resolvingId === selected.item.id}
-              />
-            ) : null}
-          </aside>
-
-          <Dialog open={mobileDetailOpen} onOpenChange={setMobileDetailOpen}>
-            <DialogContent variant="sheet" className="p-0 xl:hidden">
-              <DialogHeader className="border-b">
-                <DialogTitle>错题详情</DialogTitle>
-                <DialogDescription>查看解析、错因和助教追问。</DialogDescription>
-              </DialogHeader>
-              <DialogBody className="max-h-[calc(82dvh-5rem)] overflow-y-auto p-4">
-                {selected ? (
-                  <WrongQuestionDetail
+              <>
+                <div className="min-h-0 flex-[1_1_48%] overflow-y-auto pr-1">
+                  <WrongQuestionReview
                     item={selected.item}
                     group={selected.group}
                     onResolve={resolveWrongQuestion}
                     onStart={startWrongSession}
                     isResolving={resolvingId === selected.item.id}
                   />
-                ) : null}
-              </DialogBody>
-              <div className="border-t bg-muted/50 p-4">
+                </div>
+                <div className="min-h-[22rem] flex-[1_1_52%]">
+                  <WrongQuestionTutorPanel item={selected.item} heightMode="fill" className="h-full" />
+                </div>
+              </>
+            ) : null}
+          </aside>
+
+          <Dialog open={mobileDetailOpen} onOpenChange={setMobileDetailOpen}>
+            <DialogContent variant="sheet" className="flex h-[82dvh] max-h-[82dvh] flex-col p-0 xl:hidden">
+              <DialogHeader className="border-b">
+                <DialogTitle>错题详情</DialogTitle>
+                <DialogDescription>查看解析、错因和助教追问。</DialogDescription>
+                <div className="mt-3 grid grid-cols-2 gap-1 rounded-lg bg-muted p-1">
+                  <button
+                    type="button"
+                    aria-pressed={mobileDetailTab === "review"}
+                    className={cn(
+                      "inline-flex h-9 items-center justify-center gap-1.5 rounded-md px-3 text-sm font-medium transition-colors focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none",
+                      mobileDetailTab === "review" ? "bg-card text-foreground shadow-xs" : "text-muted-foreground hover:bg-background/60 hover:text-foreground"
+                    )}
+                    onClick={() => setMobileDetailTab("review")}
+                  >
+                    <BookOpen aria-hidden="true" />
+                    解析
+                  </button>
+                  <button
+                    type="button"
+                    aria-pressed={mobileDetailTab === "tutor"}
+                    className={cn(
+                      "inline-flex h-9 items-center justify-center gap-1.5 rounded-md px-3 text-sm font-medium transition-colors focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none",
+                      mobileDetailTab === "tutor" ? "bg-card text-foreground shadow-xs" : "text-muted-foreground hover:bg-background/60 hover:text-foreground"
+                    )}
+                    onClick={() => setMobileDetailTab("tutor")}
+                  >
+                    <MessageSquare aria-hidden="true" />
+                    问助教
+                  </button>
+                </div>
+              </DialogHeader>
+              {selected && mobileDetailTab === "review" ? (
+                <DialogBody className="min-h-0 flex-1 overflow-y-auto p-4">
+                  <WrongQuestionReview
+                    item={selected.item}
+                    group={selected.group}
+                    onResolve={resolveWrongQuestion}
+                    onStart={startWrongSession}
+                    isResolving={resolvingId === selected.item.id}
+                  />
+                </DialogBody>
+              ) : null}
+              {selected && mobileDetailTab === "tutor" ? (
+                <DialogBody className="min-h-0 flex-1 overflow-hidden p-3">
+                  <WrongQuestionTutorPanel item={selected.item} heightMode="fill" className="h-full" />
+                </DialogBody>
+              ) : null}
+              <div className="shrink-0 border-t bg-muted/50 p-4 pb-[calc(1rem+env(safe-area-inset-bottom))]">
                 <DialogClose className="w-full border-border bg-card text-sm font-medium hover:bg-secondary hover:text-secondary-foreground">
                   收起详情
                 </DialogClose>
