@@ -1,11 +1,7 @@
 import {
-  AlertTriangle,
   BarChart3,
-  CheckCircle2,
   Filter,
-  Layers3,
   RotateCcw,
-  Target,
 } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
@@ -13,7 +9,6 @@ import { redirect } from "next/navigation";
 import { AppShell } from "@/components/layout/app-shell";
 import { buttonVariants } from "@/components/ui/button";
 import {
-  MetricStrip,
   PageHeader,
   StudentPage,
 } from "@/components/student/page-building-blocks";
@@ -88,11 +83,10 @@ export default async function WrongQuestionsPage({ searchParams }: WrongQuestion
 
   return (
     <AppShell>
-      <StudentPage wide>
+      <StudentPage wide className="gap-3 py-4 xl:max-w-none xl:px-3 xl:py-3 2xl:px-5">
         <PageHeader
-          eyebrow="错题本"
           title="错题复盘工作台"
-          description="先定位最该处理的错题，再在固定详情面板里看解析、错因和助教追问。"
+          compact
           actions={
             <>
               {hasActiveFilters ? (
@@ -121,41 +115,9 @@ export default async function WrongQuestionsPage({ searchParams }: WrongQuestion
           }
         />
 
-        <MetricStrip
-          items={[
-            {
-              label: "未掌握",
-              value: data.summary.unresolvedCount,
-              description: "下一组错题练习来源",
-              icon: AlertTriangle,
-              tone: data.summary.unresolvedCount > 0 ? "warning" : "success",
-            },
-            {
-              label: "已掌握",
-              value: data.summary.resolvedCount,
-              description: "累计标记掌握",
-              icon: CheckCircle2,
-              tone: "success",
-            },
-            {
-              label: "知识点",
-              value: data.groups.length,
-              description: data.groups[0]?.tagName ?? "暂无分组",
-              icon: Layers3,
-              tone: "info",
-            },
-            {
-              label: "重复错误",
-              value: highRepeatCount,
-              description: "错 2 次及以上",
-              icon: Target,
-              tone: highRepeatCount > 0 ? "destructive" : "success",
-            },
-          ]}
-        />
-
         <WrongReviewWorkspace
           data={data}
+          highRepeatCount={highRepeatCount}
           insights={mistakeInsights}
           query={{
             tagId: query.tagId,

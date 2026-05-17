@@ -434,10 +434,12 @@ function WrongQuestionReview({
 
 export function WrongReviewWorkspace({
   data,
+  highRepeatCount,
   insights,
   query,
 }: {
   data: WrongQuestionsData;
+  highRepeatCount: number;
   insights: MistakeInsights;
   query: WrongQueryState;
 }) {
@@ -459,7 +461,6 @@ export function WrongReviewWorkspace({
   const [pendingSessionKey, setPendingSessionKey] = useState<string | null>(null);
   const [resolvingId, setResolvingId] = useState<string | null>(null);
   const selected = flatItems.find(({ item }) => item.id === selectedId) ?? flatItems[0] ?? null;
-  const highRepeatCount = flatItems.filter(({ item }) => item.wrongCount >= 2 && !item.resolvedAt).length;
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(min-width: 1280px)");
@@ -528,42 +529,7 @@ export function WrongReviewWorkspace({
   }
 
   return (
-    <div className="flex flex-col gap-5">
-      <section className="rounded-lg border bg-card p-4 shadow-xs">
-        <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_auto] xl:items-center">
-          <div className="min-w-0">
-            <div className="flex flex-wrap items-center gap-2">
-              <h2 className="font-semibold">今日复盘队列</h2>
-              <Badge variant={data.summary.unresolvedCount > 0 ? "warning" : "success"}>
-                {data.summary.unresolvedCount > 0 ? `${data.summary.unresolvedCount} 道未掌握` : "暂无待复盘"}
-              </Badge>
-              {pendingSessionKey ? (
-                <Badge variant="outline">
-                  <LoaderCircle className="animate-spin" aria-hidden="true" />
-                  正在创建
-                </Badge>
-              ) : null}
-            </div>
-            <p className="mt-1 text-sm leading-6 text-muted-foreground">
-              先处理重复错误和未分析错题；点开列表项后，右侧会固定展示题目详情和助教追问。
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            <StartSessionButton mode="WRONG" count={Math.min(10, data.summary.unresolvedCount)} onStart={startWrongSession}>
-              开始练习
-            </StartSessionButton>
-            <StartSessionButton mode="MEMORIZE" count={Math.min(10, data.summary.unresolvedCount)} onStart={startWrongSession}>
-              背题
-            </StartSessionButton>
-          </div>
-        </div>
-        <div className="mt-4 grid gap-3 sm:grid-cols-3">
-          <ReviewStat label="重复错误" value={highRepeatCount} tone={highRepeatCount > 0 ? "warning" : "success"} />
-          <ReviewStat label="未分析" value={insights.summary.unanalyzedCount} tone={insights.summary.unanalyzedCount > 0 ? "warning" : "success"} />
-          <ReviewStat label="主导错因" value={insights.summary.dominantCause?.label ?? "暂无"} tone={insights.summary.dominantCause ? "info" : "default"} />
-        </div>
-      </section>
-
+    <div className="flex flex-col gap-3">
       {actionError ? (
         <Alert variant="destructive">
           <AlertTriangle aria-hidden="true" />
@@ -572,92 +538,111 @@ export function WrongReviewWorkspace({
         </Alert>
       ) : null}
 
-      <section className="rounded-lg border bg-card p-4 shadow-xs">
-        <div className="mb-3 flex items-center gap-2 text-sm font-medium">
-          <Filter aria-hidden="true" />
-          筛选错题
-        </div>
-        <div className="flex flex-wrap gap-2">
-          {(["all", "unanalyzed", "analyzed"] as const).map((analysis) => (
-            <Link
-              key={analysis}
-              href={buildWrongHref({
-                tagId: query.tagId,
-                includeResolved: query.includeResolved,
-                mistakeCause: query.mistakeCause,
-                analysis,
-              })}
-              className={cn(buttonVariants({ variant: query.analysis === analysis ? "default" : "outline", size: "sm" }))}
-            >
-              {analysis === "all" ? "全部" : analysis === "unanalyzed" ? "未分析" : "已分析"}
-            </Link>
-          ))}
-          <Link
-            href={buildWrongHref({
-              tagId: query.tagId,
-              includeResolved: !query.includeResolved,
-              mistakeCause: query.mistakeCause,
-              analysis: query.analysis,
-            })}
-            className={cn(buttonVariants({ variant: query.includeResolved ? "default" : "outline", size: "sm" }))}
-          >
-            <RotateCcw data-icon="inline-start" />
-            {query.includeResolved ? "包含已掌握" : "只看未掌握"}
-          </Link>
-          {query.tagId || query.mistakeCause || query.analysis !== "all" ? (
-            <Link href={buildWrongHref({ includeResolved: query.includeResolved })} className={cn(buttonVariants({ variant: "outline", size: "sm" }))}>
-              清空条件
-            </Link>
-          ) : null}
-        </div>
-        {insights.distribution.length > 0 ? (
-          <div className="mt-3 flex flex-wrap gap-2 border-t pt-3">
-            {insights.distribution.slice(0, 6).map((item) => (
-              <Link
-                key={item.cause}
-                href={buildWrongHref({
-                  includeResolved: query.includeResolved,
-                  mistakeCause: item.cause,
-                  analysis: "analyzed",
-                })}
-                className={cn(buttonVariants({ variant: item.cause === query.mistakeCause ? "default" : "outline", size: "sm" }))}
-              >
-                {item.label} · {item.count}
-              </Link>
-            ))}
-          </div>
-        ) : null}
-        {insights.knowledgePatterns.length > 0 ? (
-          <div className="mt-3 flex flex-wrap gap-2 border-t pt-3">
-            {insights.knowledgePatterns.slice(0, 5).map((item) => (
-              <Link
-                key={`${item.tagId ?? "untagged"}-${item.cause}`}
-                href={buildWrongHref({
-                  tagId: item.tagId,
-                  includeResolved: query.includeResolved,
-                  mistakeCause: item.cause,
-                  analysis: "analyzed",
-                })}
-                className={cn(buttonVariants({ variant: "outline", size: "sm" }))}
-              >
-                {item.tagName} / {item.label} · {item.count}
-              </Link>
-            ))}
-          </div>
-        ) : null}
-      </section>
-
       {flatItems.length > 0 ? (
-        <div className="grid gap-4 xl:grid-cols-[minmax(0,0.82fr)_minmax(420px,1.18fr)] xl:items-start">
-          <section className="rounded-lg border bg-card shadow-xs">
-            <div className="flex items-start justify-between gap-3 border-b px-4 py-3">
-              <div>
-                <h2 className="font-semibold">错题列表</h2>
-                <p className="mt-1 text-sm text-muted-foreground">只保留扫描信息，详情和助教固定在右侧。</p>
+        <div className="grid gap-3 xl:grid-cols-[minmax(220px,0.55fr)_minmax(500px,1.2fr)_minmax(300px,0.75fr)] xl:items-start 2xl:gap-4 2xl:grid-cols-[minmax(260px,0.62fr)_minmax(560px,1.25fr)_minmax(340px,0.78fr)]">
+          <section className="flex min-h-0 flex-col rounded-lg border bg-card shadow-xs xl:sticky xl:top-20 xl:h-[calc(100dvh-6rem)]">
+            <div className="border-b px-3 py-2">
+              <div className="flex items-center justify-between gap-2">
+                <div className="min-w-0">
+                  <h2 className="font-semibold">错题列表</h2>
+                  <p className="mt-0.5 truncate text-xs text-muted-foreground">
+                    {data.summary.unresolvedCount} 未掌握 · 重复 {highRepeatCount} · 未分析 {insights.summary.unanalyzedCount}
+                    {insights.summary.dominantCause ? ` · ${insights.summary.dominantCause.label}` : ""}
+                  </p>
+                </div>
+                <Badge variant={pendingSessionKey ? "outline" : "secondary"}>
+                  {pendingSessionKey ? <LoaderCircle className="animate-spin" aria-hidden="true" /> : null}
+                  {flatItems.length} 道
+                </Badge>
               </div>
-              <Badge variant="outline">{flatItems.length} 道</Badge>
+              <div className="mt-2 grid grid-cols-2 gap-1.5">
+                <StartSessionButton mode="WRONG" count={Math.min(10, data.summary.unresolvedCount)} onStart={startWrongSession}>
+                  练习
+                </StartSessionButton>
+                <StartSessionButton mode="MEMORIZE" count={Math.min(10, data.summary.unresolvedCount)} onStart={startWrongSession}>
+                  背题
+                </StartSessionButton>
+              </div>
+              <div className="mt-2 flex flex-wrap items-center gap-1">
+                {(["all", "unanalyzed", "analyzed"] as const).map((analysis) => (
+                  <Link
+                    key={analysis}
+                    href={buildWrongHref({
+                      tagId: query.tagId,
+                      includeResolved: query.includeResolved,
+                      mistakeCause: query.mistakeCause,
+                      analysis,
+                    })}
+                    className={cn(buttonVariants({ variant: query.analysis === analysis ? "default" : "outline", size: "sm" }), "h-7 px-2 text-xs")}
+                  >
+                    {analysis === "all" ? "全部" : analysis === "unanalyzed" ? "未分析" : "已分析"}
+                  </Link>
+                ))}
+                <Link
+                  href={buildWrongHref({
+                    tagId: query.tagId,
+                    includeResolved: !query.includeResolved,
+                    mistakeCause: query.mistakeCause,
+                    analysis: query.analysis,
+                  })}
+                  className={cn(buttonVariants({ variant: query.includeResolved ? "default" : "outline", size: "sm" }), "h-7 px-2 text-xs")}
+                >
+                  <RotateCcw data-icon="inline-start" />
+                  {query.includeResolved ? "含已掌握" : "未掌握"}
+                </Link>
+                {query.tagId || query.mistakeCause || query.analysis !== "all" ? (
+                  <Link href={buildWrongHref({ includeResolved: query.includeResolved })} className={cn(buttonVariants({ variant: "ghost", size: "sm" }), "h-7 px-2 text-xs")}>
+                    清空
+                  </Link>
+                ) : null}
+              </div>
+              {insights.distribution.length > 0 || insights.knowledgePatterns.length > 0 ? (
+                <details className="group mt-1.5">
+                  <summary className="inline-flex h-7 cursor-pointer items-center gap-1 rounded-md px-2 text-xs font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground">
+                    <Filter aria-hidden="true" className="size-3.5" />
+                    更多筛选
+                  </summary>
+                  <div className="mt-2 flex flex-col gap-2 border-t pt-2">
+                    {insights.distribution.length > 0 ? (
+                      <div className="flex flex-wrap gap-1.5">
+                        {insights.distribution.slice(0, 6).map((item) => (
+                          <Link
+                            key={item.cause}
+                            href={buildWrongHref({
+                              includeResolved: query.includeResolved,
+                              mistakeCause: item.cause,
+                              analysis: "analyzed",
+                            })}
+                            className={cn(buttonVariants({ variant: item.cause === query.mistakeCause ? "default" : "outline", size: "sm" }), "h-7 px-2 text-xs")}
+                          >
+                            {item.label} · {item.count}
+                          </Link>
+                        ))}
+                      </div>
+                    ) : null}
+                    {insights.knowledgePatterns.length > 0 ? (
+                      <div className="flex flex-wrap gap-1.5">
+                        {insights.knowledgePatterns.slice(0, 5).map((item) => (
+                          <Link
+                            key={`${item.tagId ?? "untagged"}-${item.cause}`}
+                            href={buildWrongHref({
+                              tagId: item.tagId,
+                              includeResolved: query.includeResolved,
+                              mistakeCause: item.cause,
+                              analysis: "analyzed",
+                            })}
+                            className={cn(buttonVariants({ variant: "outline", size: "sm" }), "h-7 px-2 text-xs")}
+                          >
+                            {item.tagName} / {item.label} · {item.count}
+                          </Link>
+                        ))}
+                      </div>
+                    ) : null}
+                  </div>
+                </details>
+              ) : null}
             </div>
-            <div className="flex max-h-[calc(100dvh-11rem)] flex-col gap-4 overflow-y-auto p-3">
+            <div className="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto p-3">
               {data.groups.map((group) => {
                 const unresolvedGroupCount = group.items.filter((item) => !item.resolvedAt).length;
 
@@ -741,23 +726,20 @@ export function WrongReviewWorkspace({
             </div>
           </section>
 
-          <aside className="hidden xl:sticky xl:top-20 xl:flex xl:h-[calc(100dvh-6rem)] xl:min-h-0 xl:flex-col xl:gap-3">
+          <section className="hidden xl:sticky xl:top-20 xl:block xl:h-[calc(100dvh-6rem)] xl:min-h-0 xl:overflow-y-auto xl:pr-1">
             {selected ? (
-              <>
-                <div className="min-h-0 flex-[1_1_48%] overflow-y-auto pr-1">
-                  <WrongQuestionReview
-                    item={selected.item}
-                    group={selected.group}
-                    onResolve={resolveWrongQuestion}
-                    onStart={startWrongSession}
-                    isResolving={resolvingId === selected.item.id}
-                  />
-                </div>
-                <div className="min-h-[22rem] flex-[1_1_52%]">
-                  <WrongQuestionTutorPanel item={selected.item} heightMode="fill" className="h-full" />
-                </div>
-              </>
+              <WrongQuestionReview
+                item={selected.item}
+                group={selected.group}
+                onResolve={resolveWrongQuestion}
+                onStart={startWrongSession}
+                isResolving={resolvingId === selected.item.id}
+              />
             ) : null}
+          </section>
+
+          <aside className="hidden xl:sticky xl:top-20 xl:block xl:h-[calc(100dvh-6rem)] xl:min-h-0">
+            {selected ? <WrongQuestionTutorPanel item={selected.item} heightMode="fill" className="h-full" /> : null}
           </aside>
 
           <Dialog open={mobileDetailOpen} onOpenChange={setMobileDetailOpen}>
