@@ -1,16 +1,8 @@
-import { Bot, Boxes, FileUp, HelpCircle, LayoutDashboard, ScrollText } from "lucide-react";
+import { Boxes } from "lucide-react";
 import Link from "next/link";
 
+import { AdminNav } from "@/components/admin/admin-nav";
 import { Separator } from "@/components/ui/separator";
-import { cn } from "@/lib/utils";
-
-const adminNavItems = [
-  { label: "概览", href: "/admin", icon: LayoutDashboard },
-  { label: "题目", href: "/admin/questions", icon: HelpCircle },
-  { label: "试卷", href: "/admin/papers", icon: ScrollText },
-  { label: "导入", href: "/admin/imports", icon: FileUp },
-  { label: "Agent", href: "/admin/agent", icon: Bot },
-];
 
 export function AdminShell({ children }: { children: React.ReactNode }) {
   return (
@@ -26,24 +18,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
           </div>
         </div>
         <Separator />
-        <nav className="flex flex-1 flex-col gap-1 p-3">
-          {adminNavItems.map((item) => {
-            const Icon = item.icon;
-
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={cn(
-                  "flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
-                )}
-              >
-                <Icon aria-hidden="true" />
-                {item.label}
-              </Link>
-            );
-          })}
-        </nav>
+        <AdminNav />
         <div className="flex flex-col gap-2 p-3">
           <Link href="/" className="text-sm text-muted-foreground hover:text-foreground">
             返回前台
@@ -67,17 +42,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
         </header>
 
         <div className="border-b bg-muted/40 lg:hidden">
-          <nav className="flex gap-2 overflow-x-auto px-4 py-2">
-            {adminNavItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="shrink-0 rounded-lg border bg-background px-3 py-1.5 text-sm"
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
+          <AdminNav variant="mobile" />
         </div>
 
         {children}

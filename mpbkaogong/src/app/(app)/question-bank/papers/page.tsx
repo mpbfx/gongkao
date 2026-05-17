@@ -32,7 +32,7 @@ function firstValue(value: string | string[] | undefined) {
 }
 
 function selectClassName() {
-  return "h-11 w-full rounded-lg border border-input bg-card px-3 text-base outline-none transition-colors focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 md:h-8 md:px-2.5 md:text-sm";
+  return "h-11 w-full rounded-lg border border-input bg-card px-3 text-base outline-none transition-colors focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 lg:h-8 lg:px-2.5 lg:text-sm";
 }
 
 function buildHref({
@@ -40,11 +40,13 @@ function buildHref({
   year,
   province,
   examType,
+  pageSize,
 }: {
   page: number;
   year?: number;
   province?: string;
   examType?: string;
+  pageSize?: number;
 }) {
   const params = new URLSearchParams();
 
@@ -60,6 +62,10 @@ function buildHref({
     params.set("examType", examType);
   }
 
+  if (pageSize) {
+    params.set("pageSize", String(pageSize));
+  }
+
   if (page > 1) {
     params.set("page", String(page));
   }
@@ -70,14 +76,15 @@ function buildHref({
 
 export default async function PapersPage({ searchParams }: PapersPageProps) {
   const rawParams = await searchParams;
+  const rawPageSize = firstValue(rawParams?.pageSize);
   const parsed = paperListQuerySchema.safeParse({
     year: firstValue(rawParams?.year),
     province: firstValue(rawParams?.province),
     examType: firstValue(rawParams?.examType),
     page: firstValue(rawParams?.page),
-    pageSize: firstValue(rawParams?.pageSize),
+    pageSize: rawPageSize ?? 12,
   });
-  const query = parsed.success ? parsed.data : { page: 1, pageSize: 20 };
+  const query = parsed.success ? parsed.data : { page: 1, pageSize: 12 };
   const data = await listPapers(query);
 
   return (
@@ -209,6 +216,7 @@ export default async function PapersPage({ searchParams }: PapersPageProps) {
                 year: query.year,
                 province: query.province,
                 examType: query.examType,
+                pageSize: rawPageSize ? query.pageSize : undefined,
               })}
               className={cn(
                 buttonVariants({ variant: "outline" }),
@@ -226,6 +234,7 @@ export default async function PapersPage({ searchParams }: PapersPageProps) {
                 year: query.year,
                 province: query.province,
                 examType: query.examType,
+                pageSize: rawPageSize ? query.pageSize : undefined,
               })}
               className={cn(
                 buttonVariants({ variant: "outline" }),
