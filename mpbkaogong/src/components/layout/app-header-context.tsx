@@ -5,6 +5,7 @@ import { createContext, useContext, useMemo, type ReactNode } from "react";
 export type AppHeaderContent = {
   title: ReactNode;
   subtitle?: ReactNode;
+  actions?: ReactNode;
 };
 
 type AppHeaderContextValue = {

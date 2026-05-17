@@ -35,10 +35,12 @@ const navItems = [
 
 export function AppShellFrame({
   children,
+  defaultHeader,
   userMenu,
   hideMobileNav = false,
 }: {
   children: React.ReactNode;
+  defaultHeader?: AppHeaderContent;
   userMenu: React.ReactNode;
   hideMobileNav?: boolean;
 }) {
@@ -148,13 +150,18 @@ export function AppShellFrame({
                   题
                 </div>
                 <div className="flex min-w-0 flex-col">
-                  <span className="truncate font-medium leading-tight">{header?.title ?? "题库工作台"}</span>
-                  {header?.subtitle ? (
-                    <span className="truncate text-xs leading-tight text-muted-foreground">{header.subtitle}</span>
+                  <span className="truncate font-medium leading-tight">{header?.title ?? defaultHeader?.title ?? "题库工作台"}</span>
+                  {header?.subtitle ?? defaultHeader?.subtitle ? (
+                    <span className="truncate text-xs leading-tight text-muted-foreground">{header?.subtitle ?? defaultHeader?.subtitle}</span>
                   ) : null}
                 </div>
               </div>
-              {userMenu}
+              <div className="flex shrink-0 items-center gap-2">
+                {header?.actions ?? defaultHeader?.actions ? (
+                  <div className="hidden items-center gap-2 md:flex">{header?.actions ?? defaultHeader?.actions}</div>
+                ) : null}
+                {userMenu}
+              </div>
             </div>
           </header>
 

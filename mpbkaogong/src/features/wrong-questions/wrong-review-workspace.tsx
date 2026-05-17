@@ -2,6 +2,7 @@
 
 import {
   AlertTriangle,
+  BarChart3,
   BookOpen,
   CheckCircle2,
   ChevronRight,
@@ -641,6 +642,16 @@ export function WrongReviewWorkspace({
                   </div>
                 </details>
               ) : null}
+              <Link
+                href="/question-bank/wrong/insights"
+                className={cn(
+                  buttonVariants({ variant: "ghost", size: "sm" }),
+                  "mt-1 h-7 px-2 text-xs text-muted-foreground hover:text-foreground"
+                )}
+              >
+                <BarChart3 data-icon="inline-start" />
+                错因报告
+              </Link>
             </div>
             <div className="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto p-3">
               {data.groups.map((group) => {
