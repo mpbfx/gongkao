@@ -37,7 +37,10 @@ import {
   type PracticeScratchDraft,
   type PracticeSubmitDraft,
 } from "@/lib/offline/practice-drafts";
+import { cleanLearningTitle } from "@/lib/display-title";
 import { cn } from "@/lib/utils";
+import { CoachDiagnosisCard } from "@/features/agent/coach-diagnosis-card";
+import { TutorPanel } from "@/features/agent/tutor-panel";
 
 type PracticeQuestion = {
   id: string;
@@ -146,6 +149,61 @@ function formatSeconds(seconds: number) {
 
 function stripHtml(html?: string | null) {
   return html?.replace(/<[^>]*>/g, "") ?? "";
+}
+
+function questionStatusLabel(status: "answered" | "correct" | "wrong" | "default") {
+  if (status === "correct") {
+    return "正确";
+  }
+
+  if (status === "wrong") {
+    return "错误";
+  }
+
+  if (status === "answered") {
+    return "已答";
+  }
+
+  return "未答";
+}
+
+function optionStateLabel(state: "selected" | "correct" | "wrong" | "default") {
+  if (state === "correct") {
+    return "正确答案";
+  }
+
+  if (state === "wrong") {
+    return "我的误选";
+  }
+
+  if (state === "selected") {
+    return "已选择";
+  }
+
+  return null;
+}
+
+function usePracticeOverlayDismiss({
+  enabled,
+  onDismiss,
+}: {
+  enabled: boolean;
+  onDismiss: () => void;
+}) {
+  useEffect(() => {
+    if (!enabled) {
+      return;
+    }
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        onDismiss();
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [enabled, onDismiss]);
 }
 
 export function PracticeRunner({
@@ -439,14 +497,14 @@ export function PracticeRunner({
       index === currentIndex && "border-primary ring-2 ring-primary/20",
       !isResultMode && status === "answered" && "bg-primary text-primary-foreground",
       isResultMode && status === "answered" && "bg-primary text-primary-foreground",
-      isResultMode && status === "correct" && "border-primary bg-secondary",
+      isResultMode && status === "correct" && "border-success bg-success/10 text-success",
       isResultMode && status === "wrong" && "border-destructive bg-destructive/10 text-destructive"
     );
   }
 
   const answerLegend = isResultMode
     ? [
-        { label: "正确", className: "border-primary bg-secondary" },
+        { label: "正确", className: "border-success bg-success/10" },
         { label: "错误", className: "border-destructive bg-destructive/10" },
         { label: "未答", className: "bg-background" },
       ]
@@ -498,7 +556,7 @@ export function PracticeRunner({
                     type="button"
                     className={answerButtonClassName(item, index)}
                     title={stripHtml(item.titleHtml)}
-                    aria-label={`第 ${index + 1} 题`}
+                    aria-label={`第 ${index + 1} 题，${questionStatusLabel(questionStatus(item))}`}
                     aria-current={index === currentIndex ? "true" : undefined}
                     onClick={() => goToQuestion(index)}
                   >
@@ -529,7 +587,7 @@ export function PracticeRunner({
 
   useEffect(() => {
     appHeader?.setHeader({
-      title: initialSession.title,
+      title: cleanLearningTitle(initialSession.title),
       subtitle: headerSubtitle,
     });
 
@@ -637,6 +695,14 @@ export function PracticeRunner({
     timeSpentByQuestionId,
   ]);
 
+  usePracticeOverlayDismiss({
+    enabled: showAnswerSheet || showSubmitDialog,
+    onDismiss: () => {
+      setShowAnswerSheet(false);
+      setShowSubmitDialog(false);
+    },
+  });
+
   function buildSubmitDraft(): PracticeSubmitDraft {
     return {
       elapsedSeconds,
@@ -663,10 +729,10 @@ export function PracticeRunner({
   }
 
   return (
-    <main className="mx-auto flex w-full max-w-7xl flex-1 flex-col gap-4 px-4 py-4 pb-44 md:px-6 lg:grid lg:grid-cols-[1fr_320px] lg:items-start lg:pb-28">
+    <main className="mx-auto flex w-full max-w-7xl flex-1 flex-col gap-4 px-4 py-4 pb-36 md:px-6 lg:grid lg:grid-cols-[1fr_320px] lg:items-start lg:pb-28">
       {!isResultMode && (!isOnline || hasPendingSubmit) ? (
         <div className="lg:col-span-2">
-          <Alert>
+          <Alert variant={!isOnline ? "warning" : "info"}>
             {!isOnline ? <WifiOff aria-hidden="true" /> : <Check aria-hidden="true" />}
             <AlertTitle>{!isOnline ? "网络不稳定" : "提交草稿已保留"}</AlertTitle>
             <AlertDescription>
@@ -675,6 +741,12 @@ export function PracticeRunner({
                 : "上次提交没有完成，答案和提交草稿仍在本地，可直接重试提交。"}
             </AlertDescription>
           </Alert>
+        </div>
+      ) : null}
+
+      {resultSummary ? (
+        <div className="lg:col-span-2">
+          <CoachDiagnosisCard sessionId={initialSession.id} />
         </div>
       ) : null}
 
@@ -695,17 +767,19 @@ export function PracticeRunner({
             <div className="flex flex-col gap-3">
               {question.options.map((option) => {
                 const state = optionState(option.value);
+                const stateLabel = optionStateLabel(state);
 
                 return (
                   <button
                     key={option.id}
                     type="button"
                     disabled={isResultMode || isPracticePaused}
+                    aria-pressed={state === "selected"}
                     className={cn(
                       "flex min-h-12 w-full items-start gap-3 rounded-lg border bg-card px-3 py-3 text-left text-sm transition-colors",
                       "focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none",
                       state === "selected" && "border-primary bg-primary text-primary-foreground",
-                      state === "correct" && "border-primary bg-secondary",
+                      state === "correct" && "border-success bg-success/10 text-success",
                       state === "wrong" && "border-destructive bg-destructive/10 text-destructive",
                       isResultMode && "disabled:opacity-100",
                       isPracticePaused && "opacity-40"
@@ -716,13 +790,18 @@ export function PracticeRunner({
                       {option.label}
                     </span>
                     <RichHtml html={option.contentHtml} className="flex-1 leading-6" />
+                    {stateLabel ? (
+                      <span className="shrink-0 rounded-full border bg-background px-2 py-0.5 text-xs text-foreground">
+                        {stateLabel}
+                      </span>
+                    ) : null}
                   </button>
                 );
               })}
             </div>
 
             {isResultMode ? (
-              <Alert>
+              <Alert variant={isMemorizeMode ? "info" : currentResult?.isCorrect ? "success" : "warning"}>
                 {isMemorizeMode ? (
                   <BookOpen aria-hidden="true" />
                 ) : currentResult?.isCorrect ? (
@@ -751,6 +830,7 @@ export function PracticeRunner({
                 </AlertDescription>
               </Alert>
             ) : null}
+            {isResultMode ? <TutorPanel questionId={question.id} sessionId={initialSession.id} /> : null}
             <DraftCanvas
               open={showDraftCanvas}
               value={currentScratch}
@@ -777,27 +857,14 @@ export function PracticeRunner({
 
       <aside className="flex flex-col gap-4 lg:sticky lg:top-20 lg:h-[calc(100dvh-6rem)] lg:min-h-0">
         {resultSummary ? (
-          <Card>
-            <CardHeader>
-              <CardTitle>{reviewMode ? "历史结果" : "提交结果"}</CardTitle>
-              <CardDescription>正确率 {resultSummary.accuracy ?? "0.00"}%</CardDescription>
-            </CardHeader>
-            <CardContent className="grid grid-cols-2 gap-3 text-sm">
-              <div className="rounded-lg bg-muted px-3 py-2">
-                <div className="text-muted-foreground">正确</div>
-                <div className="font-medium">{resultSummary.correctCount}</div>
+          <Card size="sm">
+            <CardContent className="flex flex-col gap-1">
+              <div className="font-medium">
+                {reviewMode ? "历史结果" : "提交结果"} · 正确率 {resultSummary.accuracy ?? "0.00"}%
               </div>
-              <div className="rounded-lg bg-muted px-3 py-2">
-                <div className="text-muted-foreground">错误</div>
-                <div className="font-medium">{resultSummary.wrongCount}</div>
-              </div>
-              <div className="rounded-lg bg-muted px-3 py-2">
-                <div className="text-muted-foreground">未答</div>
-                <div className="font-medium">{resultSummary.unansweredCount}</div>
-              </div>
-              <div className="rounded-lg bg-muted px-3 py-2">
-                <div className="text-muted-foreground">用时</div>
-                <div className="font-medium">{formatSeconds(resultSummary.elapsedSeconds)}</div>
+              <div className="text-sm text-muted-foreground">
+                正确 {resultSummary.correctCount} / 错误 {resultSummary.wrongCount} / 未答{" "}
+                {resultSummary.unansweredCount} · 用时 {formatSeconds(resultSummary.elapsedSeconds)}
               </div>
             </CardContent>
           </Card>
@@ -810,7 +877,7 @@ export function PracticeRunner({
         </Card>
       </aside>
 
-      <div className="fixed inset-x-0 bottom-16 z-30 border-t bg-background/95 p-2 shadow-sm backdrop-blur lg:bottom-0 lg:left-[var(--app-sidebar-width)] lg:p-3">
+      <div className="fixed inset-x-0 bottom-0 z-30 border-t bg-background/95 p-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))] shadow-[0_-8px_24px_rgb(15_23_42/0.08)] backdrop-blur lg:left-[var(--app-sidebar-width)] lg:p-3">
         <div className="mx-auto flex max-w-7xl items-center gap-2">
           <Button
             type="button"
@@ -893,9 +960,17 @@ export function PracticeRunner({
       </div>
 
       {showAnswerSheet ? (
-        <div className="fixed inset-0 z-40 flex items-end bg-background/70 p-0 backdrop-blur-sm lg:hidden">
+        <div
+          className="fixed inset-0 z-40 flex items-end bg-background/70 p-0 backdrop-blur-sm lg:hidden"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="answer-sheet-title"
+        >
           <div className="max-h-[82vh] w-full rounded-t-xl border bg-card p-4 shadow-lg">
             <div className="mx-auto mb-3 h-1 w-10 rounded-full bg-muted-foreground/30" />
+            <h2 id="answer-sheet-title" className="sr-only">
+              答题卡
+            </h2>
             <div className="flex max-h-[calc(82vh-2rem)] flex-col gap-3 overflow-hidden">
               {answerSheetContent}
               <Button type="button" variant="outline" className="w-full" onClick={() => setShowAnswerSheet(false)}>
@@ -907,17 +982,22 @@ export function PracticeRunner({
       ) : null}
 
       {showSubmitDialog ? (
-        <div className="fixed inset-0 z-50 grid place-items-center bg-background/80 p-4 backdrop-blur-sm">
+        <div
+          className="fixed inset-0 z-50 grid place-items-center bg-background/80 p-4 backdrop-blur-sm"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="submit-dialog-title"
+        >
           <Card className="w-full max-w-md">
             <CardHeader>
-              <CardTitle>{completionRate < 0.5 ? "完成率不足 50%" : "确认提交练习"}</CardTitle>
+              <CardTitle id="submit-dialog-title">{completionRate < 0.5 ? "完成率不足 50%" : "确认提交练习"}</CardTitle>
               <CardDescription>
                 已答 {answeredCount} / {questions.length} 题，提交后选项不可再修改。
               </CardDescription>
             </CardHeader>
             <CardContent>
               {completionRate < 0.5 ? (
-                <Alert>
+                <Alert variant="warning">
                   <AlertTriangle aria-hidden="true" />
                   <AlertTitle>作答数量较少</AlertTitle>
                   <AlertDescription>当前完成率较低，建议继续作答后再提交。</AlertDescription>

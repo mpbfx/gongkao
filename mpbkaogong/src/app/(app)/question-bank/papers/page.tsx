@@ -1,4 +1,4 @@
-import { Filter, RotateCcw } from "lucide-react";
+import { ArrowRight, FileSearch, Filter, RotateCcw } from "lucide-react";
 import Link from "next/link";
 
 import { AppShell } from "@/components/layout/app-shell";
@@ -13,7 +13,12 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
-import { Separator } from "@/components/ui/separator";
+import {
+  EmptyState,
+  FilterPanel,
+  PageHeader,
+  StudentPage,
+} from "@/components/student/page-building-blocks";
 import { PaperStartButton } from "@/features/papers/paper-start-button";
 import { cn } from "@/lib/utils";
 import { listPapers, paperListQuerySchema } from "@/server/services/papers";
@@ -27,7 +32,7 @@ function firstValue(value: string | string[] | undefined) {
 }
 
 function selectClassName() {
-  return "h-8 w-full rounded-lg border border-input bg-background px-2.5 text-sm outline-none transition-colors focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50";
+  return "h-11 w-full rounded-lg border border-input bg-card px-3 text-base outline-none transition-colors focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 md:h-8 md:px-2.5 md:text-sm";
 }
 
 function buildHref({
@@ -77,90 +82,75 @@ export default async function PapersPage({ searchParams }: PapersPageProps) {
 
   return (
     <AppShell>
-      <main className="mx-auto flex w-full max-w-6xl flex-1 flex-col gap-6 px-4 py-6 pb-24 md:px-6 md:py-8 lg:pb-8">
-        <section className="flex flex-col gap-3">
-          <Badge variant="secondary" className="w-fit">
-            Phase 2
-          </Badge>
-          <div className="flex flex-col gap-2">
-            <h1 className="text-3xl font-semibold tracking-tight">历年试卷</h1>
-            <p className="max-w-2xl text-muted-foreground">
-              按年份、地区和考试类型筛选试卷，创建练习后进入完整答题流程。
-            </p>
-          </div>
-        </section>
+      <StudentPage>
+        <PageHeader
+          eyebrow="历年试卷"
+          title="用真题训练完整答题节奏"
+          description="按年份、地区和考试类型筛选，选定试卷后进入固定题序的完整练习。"
+          actions={
+            <Link href="/question-bank/special" className={cn(buttonVariants({ variant: "outline" }))}>
+              去专项提分
+              <ArrowRight data-icon="inline-end" />
+            </Link>
+          }
+        />
 
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Filter aria-hidden="true" />
-              筛选
-            </CardTitle>
-            <CardDescription>筛选后列表会按当前条件刷新。</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <form className="flex flex-col gap-4 md:flex-row md:items-end">
-              <FieldGroup className="grid gap-4 md:grid-cols-3">
-                <Field>
-                  <FieldLabel htmlFor="year">年份</FieldLabel>
-                  <select id="year" name="year" defaultValue={query.year ?? ""} className={selectClassName()}>
-                    <option value="">全部年份</option>
-                    {data.filters.years.map((year) => (
-                      <option key={year} value={year}>
-                        {year}
-                      </option>
-                    ))}
-                  </select>
-                </Field>
-                <Field>
-                  <FieldLabel htmlFor="province">地区</FieldLabel>
-                  <select
-                    id="province"
-                    name="province"
-                    defaultValue={query.province ?? ""}
-                    className={selectClassName()}
-                  >
-                    <option value="">全部地区</option>
-                    {data.filters.provinces.map((province) => (
-                      <option key={province} value={province}>
-                        {province}
-                      </option>
-                    ))}
-                  </select>
-                </Field>
-                <Field>
-                  <FieldLabel htmlFor="examType">类型</FieldLabel>
-                  <select
-                    id="examType"
-                    name="examType"
-                    defaultValue={query.examType ?? ""}
-                    className={selectClassName()}
-                  >
-                    <option value="">全部类型</option>
-                    {data.filters.examTypes.map((examType) => (
-                      <option key={examType} value={examType}>
-                        {examType}
-                      </option>
-                    ))}
-                  </select>
-                </Field>
-              </FieldGroup>
-              <div className="flex gap-2">
-                <Button type="submit">应用</Button>
-                <Link href="/question-bank/papers" className={cn(buttonVariants({ variant: "outline" }))}>
-                  <RotateCcw data-icon="inline-start" />
-                  清空
-                </Link>
-              </div>
-            </form>
-          </CardContent>
-        </Card>
-
-        <section className="flex items-center justify-between gap-3">
-          <p className="text-sm text-muted-foreground">
-            共 {data.pagination.total} 套试卷，第 {data.pagination.page} / {data.pagination.totalPages} 页
-          </p>
-        </section>
+        <FilterPanel title="筛选试卷" description="筛选会刷新当前列表，清空后回到全部试卷。" icon={Filter}>
+          <form className="flex flex-col gap-4 md:flex-row md:items-end">
+            <FieldGroup className="grid gap-4 md:grid-cols-3">
+              <Field>
+                <FieldLabel htmlFor="year">年份</FieldLabel>
+                <select id="year" name="year" defaultValue={query.year ?? ""} className={selectClassName()}>
+                  <option value="">全部年份</option>
+                  {data.filters.years.map((year) => (
+                    <option key={year} value={year}>
+                      {year}
+                    </option>
+                  ))}
+                </select>
+              </Field>
+              <Field>
+                <FieldLabel htmlFor="province">地区</FieldLabel>
+                <select
+                  id="province"
+                  name="province"
+                  defaultValue={query.province ?? ""}
+                  className={selectClassName()}
+                >
+                  <option value="">全部地区</option>
+                  {data.filters.provinces.map((province) => (
+                    <option key={province} value={province}>
+                      {province}
+                    </option>
+                  ))}
+                </select>
+              </Field>
+              <Field>
+                <FieldLabel htmlFor="examType">类型</FieldLabel>
+                <select
+                  id="examType"
+                  name="examType"
+                  defaultValue={query.examType ?? ""}
+                  className={selectClassName()}
+                >
+                  <option value="">全部类型</option>
+                  {data.filters.examTypes.map((examType) => (
+                    <option key={examType} value={examType}>
+                      {examType}
+                    </option>
+                  ))}
+                </select>
+              </Field>
+            </FieldGroup>
+            <div className="flex gap-2">
+              <Button type="submit">应用筛选</Button>
+              <Link href="/question-bank/papers" className={cn(buttonVariants({ variant: "outline" }))}>
+                <RotateCcw data-icon="inline-start" />
+                清空
+              </Link>
+            </div>
+          </form>
+        </FilterPanel>
 
         {data.items.length > 0 ? (
           <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
@@ -168,23 +158,23 @@ export default async function PapersPage({ searchParams }: PapersPageProps) {
               <Card key={paper.id}>
                 <CardHeader>
                   <div className="flex items-start justify-between gap-3">
-                    <CardTitle>{paper.title}</CardTitle>
+                    <div className="min-w-0">
+                      <CardTitle className="line-clamp-2">{paper.title}</CardTitle>
+                      <CardDescription>
+                        {[paper.year, paper.province, paper.examType].filter(Boolean).join(" / ")}
+                      </CardDescription>
+                    </div>
                     {paper.isVipOnly ? <Badge>会员</Badge> : null}
                   </div>
-                  <CardDescription>
-                    {[paper.year, paper.province, paper.examType].filter(Boolean).join(" / ")}
-                  </CardDescription>
                 </CardHeader>
-                <CardContent className="flex flex-col gap-3">
-                  <div className="grid grid-cols-2 gap-3 text-sm">
-                    <div className="rounded-lg bg-muted px-3 py-2">
-                      <div className="text-muted-foreground">题量</div>
-                      <div className="font-medium">{paper.questionCount} 题</div>
-                    </div>
-                    <div className="rounded-lg bg-muted px-3 py-2">
-                      <div className="text-muted-foreground">难度</div>
-                      <div className="font-medium">{paper.difficultyScore ?? "未评级"}</div>
-                    </div>
+                <CardContent className="grid grid-cols-2 gap-3 text-sm">
+                  <div className="rounded-lg bg-muted px-3 py-2">
+                    <div className="text-muted-foreground">题量</div>
+                    <div className="font-mono font-medium tabular-nums">{paper.questionCount} 题</div>
+                  </div>
+                  <div className="rounded-lg bg-muted px-3 py-2">
+                    <div className="text-muted-foreground">难度</div>
+                    <div className="font-mono font-medium tabular-nums">{paper.difficultyScore ?? "未评级"}</div>
                   </div>
                 </CardContent>
                 <CardFooter className="grid grid-cols-2 gap-2">
@@ -200,17 +190,15 @@ export default async function PapersPage({ searchParams }: PapersPageProps) {
             ))}
           </section>
         ) : (
-          <Card>
-            <CardHeader>
-              <CardTitle>没有找到匹配试卷</CardTitle>
-              <CardDescription>可以清空筛选后重新查看全部试卷。</CardDescription>
-            </CardHeader>
-            <CardFooter>
-              <Link href="/question-bank/papers" className={cn(buttonVariants({ variant: "outline" }))}>
-                清空筛选
-              </Link>
-            </CardFooter>
-          </Card>
+          <EmptyState
+            icon={FileSearch}
+            title="没有找到匹配试卷"
+            description="换一个年份、地区或类型，或者清空筛选后查看全部试卷。"
+          >
+            <Link href="/question-bank/papers" className={cn(buttonVariants({ variant: "outline" }))}>
+              清空筛选
+            </Link>
+          </EmptyState>
         )}
 
         {data.pagination.totalPages > 1 ? (
@@ -248,9 +236,7 @@ export default async function PapersPage({ searchParams }: PapersPageProps) {
             </Link>
           </div>
         ) : null}
-
-        <Separator />
-      </main>
+      </StudentPage>
     </AppShell>
   );
 }

@@ -77,7 +77,7 @@ export function PaperStartButton({
         {isPending ? <LoaderCircle data-icon="inline-start" className="animate-spin" /> : <Play data-icon="inline-start" />}
         {isPending ? "正在创建" : "开始练习"}
       </Button>
-      {errorMessage ? <p className="text-xs text-destructive">{errorMessage}</p> : null}
+      {errorMessage ? <p className="text-sm text-destructive">{errorMessage}</p> : null}
     </div>
   );
 }

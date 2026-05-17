@@ -11,7 +11,13 @@ function getInitial(name?: string | null, email?: string | null) {
   return (name?.[0] ?? email?.[0] ?? "用").toUpperCase();
 }
 
-export async function AppShell({ children }: { children: React.ReactNode }) {
+export async function AppShell({
+  children,
+  hideMobileNav = false,
+}: {
+  children: React.ReactNode;
+  hideMobileNav?: boolean;
+}) {
   const session = await auth();
   const user = session?.user;
 
@@ -47,5 +53,9 @@ export async function AppShell({ children }: { children: React.ReactNode }) {
     </Link>
   );
 
-  return <AppShellFrame userMenu={userMenu}>{children}</AppShellFrame>;
+  return (
+    <AppShellFrame userMenu={userMenu} hideMobileNav={hideMobileNav}>
+      {children}
+    </AppShellFrame>
+  );
 }

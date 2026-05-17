@@ -1,9 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   BarChart3,
   BookMarked,
+  BookOpen,
   ClipboardList,
   Home,
   PanelLeftClose,
@@ -23,8 +25,9 @@ import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 
 const navItems = [
-  { label: "题库", href: "/", icon: Home },
+  { label: "首页", href: "/", icon: Home },
   { label: "试卷", href: "/question-bank/papers", icon: ClipboardList },
+  { label: "专项", href: "/question-bank/special", icon: BookOpen },
   { label: "错题", href: "/question-bank/wrong", icon: BookMarked },
   { label: "记录", href: "/question-bank/records", icon: BarChart3 },
   { label: "我的", href: "/dashboard", icon: User },
@@ -33,18 +36,30 @@ const navItems = [
 export function AppShellFrame({
   children,
   userMenu,
+  hideMobileNav = false,
 }: {
   children: React.ReactNode;
   userMenu: React.ReactNode;
+  hideMobileNav?: boolean;
 }) {
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const pathname = usePathname();
   const [header, setHeader] = useState<AppHeaderContent | null>(() =>
     typeof window === "undefined" ? null : ((window as AppHeaderWindow).__saduckAppHeader ?? null)
   );
   const headerContextValue = useMemo(() => ({ setHeader }), []);
+  const mobileNavItems = navItems.filter((item) => item.href !== "/question-bank/records");
 
   function toggleSidebar() {
     setIsCollapsed((current) => !current);
+  }
+
+  function isActive(href: string) {
+    if (href === "/") {
+      return pathname === "/";
+    }
+
+    return pathname === href || pathname.startsWith(`${href}/`);
   }
 
   useEffect(() => {
@@ -63,9 +78,15 @@ export function AppShellFrame({
         isCollapsed && "[--app-sidebar-width:4rem]"
       )}
     >
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-50 focus:rounded-lg focus:bg-primary focus:px-3 focus:py-2 focus:text-sm focus:font-medium focus:text-primary-foreground"
+      >
+        跳到主要内容
+      </a>
       <aside
         className={cn(
-          "fixed inset-y-0 left-0 hidden border-r bg-sidebar transition-[width] duration-200 lg:flex lg:flex-col",
+          "fixed inset-y-0 left-0 hidden border-r bg-sidebar/95 transition-[width] duration-200 lg:flex lg:flex-col",
           isCollapsed ? "w-16" : "w-64"
         )}
       >
@@ -82,16 +103,18 @@ export function AppShellFrame({
         <nav className="flex flex-1 flex-col gap-1 p-3">
           {navItems.map((item) => {
             const Icon = item.icon;
+            const active = isActive(item.href);
 
             return (
               <Link
                 key={item.label}
                 href={item.href}
+                aria-current={active ? "page" : undefined}
                 title={isCollapsed ? item.label : undefined}
                 className={cn(
-                  "flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
+                  "flex min-h-10 items-center gap-2 rounded-lg px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none",
                   isCollapsed && "justify-center px-0",
-                  item.href === "/" && "bg-sidebar-accent text-sidebar-accent-foreground"
+                  active && "bg-sidebar-accent text-sidebar-accent-foreground"
                 )}
               >
                 <Icon className="size-4 shrink-0" aria-hidden="true" />
@@ -118,49 +141,54 @@ export function AppShellFrame({
 
       <AppHeaderContext.Provider value={headerContextValue}>
         <div className="flex min-h-dvh flex-col transition-[padding] duration-200 lg:pl-[var(--app-sidebar-width)]">
-        <header className="sticky top-0 z-30 border-b bg-background/95 backdrop-blur">
-          <div className="flex h-14 items-center justify-between px-4 md:px-6">
-            <div className="flex min-w-0 items-center gap-2">
-              <div className="grid size-8 place-items-center rounded-lg bg-primary text-sm text-primary-foreground lg:hidden">
-                题
+          <header className="sticky top-0 z-30 border-b bg-background/95 backdrop-blur">
+            <div className="flex h-14 items-center justify-between px-4 md:px-6">
+              <div className="flex min-w-0 items-center gap-2">
+                <div className="grid size-8 place-items-center rounded-lg bg-primary text-sm text-primary-foreground lg:hidden">
+                  题
+                </div>
+                <div className="flex min-w-0 flex-col">
+                  <span className="truncate font-medium leading-tight">{header?.title ?? "题库工作台"}</span>
+                  {header?.subtitle ? (
+                    <span className="truncate text-xs leading-tight text-muted-foreground">{header.subtitle}</span>
+                  ) : null}
+                </div>
               </div>
-              <div className="flex min-w-0 flex-col">
-                <span className="truncate font-medium leading-tight">{header?.title ?? "题库工作台"}</span>
-                {header?.subtitle ? (
-                  <span className="truncate text-xs leading-tight text-muted-foreground">{header.subtitle}</span>
-                ) : null}
-              </div>
+              {userMenu}
             </div>
-            {userMenu}
+          </header>
+
+          <div id="main-content" className="contents">
+            {children}
           </div>
-        </header>
 
-        {children}
+          {!hideMobileNav ? (
+            <nav className="fixed inset-x-0 bottom-0 z-30 border-t bg-background/95 pb-[env(safe-area-inset-bottom)] shadow-[0_-8px_24px_rgb(15_23_42/0.08)] backdrop-blur lg:hidden">
+              <div className="grid h-16 grid-cols-5">
+                {mobileNavItems.map((item) => {
+                  const Icon = item.icon;
+                  const active = isActive(item.href);
 
-        <nav className="fixed inset-x-0 bottom-0 border-t bg-background pb-[env(safe-area-inset-bottom)] lg:hidden">
-          <div className="grid h-16 grid-cols-5">
-            {navItems.map((item) => {
-              const Icon = item.icon;
-
-              return (
-                <Link
-                  key={item.label}
-                  href={item.href}
-                  className={cn(
-                    "flex flex-col items-center justify-center gap-1 text-xs text-muted-foreground",
-                    item.href === "/" && "text-foreground"
-                  )}
-                >
-                  <Icon className="size-4" aria-hidden="true" />
-                  {item.label}
-                </Link>
-              );
-            })}
-          </div>
-        </nav>
-      </div>
+                  return (
+                    <Link
+                      key={item.label}
+                      href={item.href}
+                      aria-current={active ? "page" : undefined}
+                      className={cn(
+                        "flex flex-col items-center justify-center gap-1 text-xs text-muted-foreground transition-colors focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none",
+                        active && "text-primary"
+                      )}
+                    >
+                      <Icon className="size-4" aria-hidden="true" />
+                      {item.label}
+                    </Link>
+                  );
+                })}
+              </div>
+            </nav>
+          ) : null}
+        </div>
       </AppHeaderContext.Provider>
-
     </div>
   );
 }

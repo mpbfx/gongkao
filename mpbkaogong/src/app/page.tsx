@@ -1,133 +1,140 @@
-import { ArrowRight, BarChart3, BookOpen, CalendarCheck, ClipboardList } from "lucide-react";
+import { ArrowRight, BarChart3, BookMarked, BookOpen, CalendarCheck, ClipboardList } from "lucide-react";
 import Link from "next/link";
 
 import { AppShell } from "@/components/layout/app-shell";
-import { Badge } from "@/components/ui/badge";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
+  ActionCard,
+  PageHeader,
+  StudentPage,
+} from "@/components/student/page-building-blocks";
 import { DailyPracticeAction } from "@/features/daily-practice/daily-practice-action";
 import { getCurrentUser } from "@/lib/auth/guards";
+import { cleanLearningTitle } from "@/lib/display-title";
 import { cn } from "@/lib/utils";
 import { getTodayDailyPractice } from "@/server/services/daily-practice";
+import { listWrongQuestions, wrongQuestionsQuerySchema } from "@/server/services/wrong-questions";
 
 const quickStarts = [
   {
     title: "历年试卷",
-    description: "先跑通真实试卷刷题闭环。",
+    description: "用真实套卷建立考试节奏，适合完整计时训练。",
     href: "/question-bank/papers",
     icon: ClipboardList,
-    status: "Phase 2",
+    badge: "真题训练",
   },
   {
-    title: "专项练习",
-    description: "按知识点、题量和难度快速组卷。",
+    title: "专项提分",
+    description: "按知识点和难度组卷，把薄弱模块单独打穿。",
     href: "/question-bank/special",
     icon: BookOpen,
-    status: "Phase 4",
+    badge: "灵活组卷",
   },
   {
-    title: "练习记录",
-    description: "查看已提交练习并进入历史回看。",
+    title: "错题本",
+    description: "集中处理未掌握题目，适合碎片时间复盘。",
+    href: "/question-bank/wrong",
+    icon: BookMarked,
+    badge: "回炉复盘",
+  },
+  {
+    title: "复盘记录",
+    description: "回看历史练习，定位正确率、用时和错题来源。",
     href: "/question-bank/records",
     icon: BarChart3,
-    status: "Phase 3",
+    badge: "持续跟踪",
   },
 ];
 
 export default async function Home() {
   const user = await getCurrentUser();
-  const dailyPractice = await getTodayDailyPractice(user).catch(() => null);
+  const [dailyPractice, wrongQuestions] = user
+    ? await Promise.all([
+        getTodayDailyPractice(user).catch(() => null),
+        listWrongQuestions(user, wrongQuestionsQuerySchema.parse({})).catch(() => null),
+      ])
+    : [null, null];
+  const dailyTitle = dailyPractice ? cleanLearningTitle(dailyPractice.title) : null;
+  const unresolvedWrongCount = wrongQuestions?.summary.unresolvedCount ?? 0;
 
   return (
     <AppShell>
-      <main className="mx-auto flex w-full max-w-6xl flex-1 flex-col gap-6 px-4 py-6 pb-24 md:px-6 md:py-8 lg:pb-8">
-        <section className="flex flex-col gap-4">
-          <Badge variant="secondary" className="w-fit">
-            P1 认证与基础数据
-          </Badge>
-          <div className="flex flex-col gap-3">
-            <h1 className="max-w-3xl text-3xl font-semibold tracking-tight md:text-5xl">
-              公考题库系统
-            </h1>
-            <p className="max-w-2xl text-muted-foreground">
-              已接入 Auth.js、Prisma、MySQL schema 和种子数据，下一步可以在真实题库上跑通刷题闭环。
-            </p>
+      <StudentPage>
+        <PageHeader
+          eyebrow="学习工作台"
+          title="今天先把一组题做扎实"
+          description="先完成一组练习，再回看错题和记录。"
+          actions={
+            user ? (
+              <Link href="/dashboard" className={cn(buttonVariants({ variant: "outline" }))}>
+                我的概览
+                <ArrowRight data-icon="inline-end" />
+              </Link>
+            ) : (
+              <Link href="/login" className={cn(buttonVariants({ variant: "default" }))}>
+                登录后开始
+                <ArrowRight data-icon="inline-end" />
+              </Link>
+            )
+          }
+        />
+
+        <section className="grid gap-4 lg:grid-cols-[1fr_1fr]">
+          <div className="flex flex-col gap-4">
+            <ActionCard
+              title="每日一练"
+              description={
+                dailyPractice
+                  ? `${dailyTitle} · ${dailyPractice.questionCount} 题`
+                  : "今日暂未开放练习，可先进入历年试卷。"
+              }
+              icon={CalendarCheck}
+              badge={dailyPractice?.completedSession ? "今日已完成" : dailyPractice?.isFallback ? "最近一期" : "今日练习"}
+              badgeVariant={dailyPractice?.completedSession ? "success" : "info"}
+            >
+              <DailyPracticeAction dailyPractice={dailyPractice} className="w-full md:w-auto" />
+            </ActionCard>
+
+            {unresolvedWrongCount > 0 ? (
+              <ActionCard
+                title="错题提醒"
+                description={`还有 ${unresolvedWrongCount} 道未掌握错题，适合先做一组复盘。`}
+                icon={BookMarked}
+                badge="待复盘"
+                badgeVariant="warning"
+              >
+                <Link
+                  href="/question-bank/wrong"
+                  className={cn(buttonVariants({ variant: "outline" }), "w-full justify-between md:w-auto")}
+                >
+                  去复盘
+                  <ArrowRight data-icon="inline-end" />
+                </Link>
+              </ActionCard>
+            ) : null}
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            {quickStarts.map((item) => (
+              <ActionCard
+                key={item.title}
+                title={item.title}
+                description={item.description}
+                icon={item.icon}
+                badge={item.badge}
+              >
+                <Link
+                  href={item.href}
+                  className={cn(buttonVariants({ variant: "outline" }), "w-full justify-between")}
+                >
+                  进入训练
+                  <ArrowRight data-icon="inline-end" />
+                </Link>
+              </ActionCard>
+            ))}
           </div>
         </section>
-
-        <Separator />
-
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <CalendarCheck aria-hidden="true" />
-              每日一练
-            </CardTitle>
-            <CardDescription>
-              {dailyPractice
-                ? `${dailyPractice.title} · ${dailyPractice.questionCount} 题`
-                : "今日暂未配置每日一练"}
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            {dailyPractice?.completedSession ? (
-              <Badge variant="secondary">今日已完成</Badge>
-            ) : dailyPractice?.isFallback ? (
-              <Badge variant="outline">最近一期</Badge>
-            ) : (
-              <Badge variant="outline">今日入口</Badge>
-            )}
-          </CardContent>
-          <CardFooter>
-            <DailyPracticeAction dailyPractice={dailyPractice} className="w-full md:w-auto" />
-          </CardFooter>
-        </Card>
-
-        <section className="grid gap-4 md:grid-cols-3">
-          {quickStarts.map((item) => {
-            const Icon = item.icon;
-
-            return (
-              <Card key={item.title}>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Icon aria-hidden="true" />
-                    {item.title}
-                  </CardTitle>
-                  <CardDescription>{item.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <Badge variant="outline">{item.status}</Badge>
-                </CardContent>
-                <CardFooter>
-                  {item.status === "Phase 2" || item.status === "Phase 3" || item.status === "Phase 4" ? (
-                    <Link
-                      href={item.href}
-                      className={cn(buttonVariants({ variant: "outline" }), "w-full justify-between")}
-                    >
-                      进入
-                      <ArrowRight data-icon="inline-end" />
-                    </Link>
-                  ) : (
-                    <Button variant="outline" disabled className="w-full justify-between">
-                      {item.status === "Phase 2" ? "进入" : "即将实现"}
-                      <ArrowRight data-icon="inline-end" />
-                    </Button>
-                  )}
-                </CardFooter>
-              </Card>
-            );
-          })}
-        </section>
-      </main>
+      </StudentPage>
     </AppShell>
   );
 }

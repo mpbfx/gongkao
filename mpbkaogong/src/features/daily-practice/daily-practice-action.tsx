@@ -79,7 +79,7 @@ export function DailyPracticeAction({
 
       if (!payload.ok) {
         if (payload.error.code === "UNAUTHORIZED") {
-          router.push("/login?callbackUrl=/question-bank/special");
+          router.push(`/login?callbackUrl=${encodeURIComponent(window.location.pathname)}`);
           return;
         }
 
@@ -101,7 +101,7 @@ export function DailyPracticeAction({
         {isPending ? <LoaderCircle data-icon="inline-start" className="animate-spin" /> : <Play data-icon="inline-start" />}
         {isPending ? "正在创建" : "开始每日一练"}
       </Button>
-      {errorMessage ? <p className="text-xs text-destructive">{errorMessage}</p> : null}
+      {errorMessage ? <p className="text-sm text-destructive">{errorMessage}</p> : null}
     </div>
   );
 }

@@ -26,7 +26,7 @@ export default async function PracticePage({ params, searchParams }: PracticePag
   const session = await getPracticeSessionDetail(user, sessionId);
 
   return (
-    <AppShell>
+    <AppShell hideMobileNav>
       <PracticeRunner initialSession={session} reviewMode={query?.review === "1"} />
     </AppShell>
   );

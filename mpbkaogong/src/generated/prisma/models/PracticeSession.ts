@@ -343,6 +343,9 @@ export type PracticeSessionWhereInput = {
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   paper?: Prisma.XOR<Prisma.PaperNullableScalarRelationFilter, Prisma.PaperWhereInput> | null
   answers?: Prisma.PracticeAnswerListRelationFilter
+  sourceAgentRecommendations?: Prisma.AgentRecommendationListRelationFilter
+  startedAgentRecommendations?: Prisma.AgentRecommendationListRelationFilter
+  agentTutorMessages?: Prisma.AgentTutorMessageListRelationFilter
 }
 
 export type PracticeSessionOrderByWithRelationInput = {
@@ -367,6 +370,9 @@ export type PracticeSessionOrderByWithRelationInput = {
   user?: Prisma.UserOrderByWithRelationInput
   paper?: Prisma.PaperOrderByWithRelationInput
   answers?: Prisma.PracticeAnswerOrderByRelationAggregateInput
+  sourceAgentRecommendations?: Prisma.AgentRecommendationOrderByRelationAggregateInput
+  startedAgentRecommendations?: Prisma.AgentRecommendationOrderByRelationAggregateInput
+  agentTutorMessages?: Prisma.AgentTutorMessageOrderByRelationAggregateInput
   _relevance?: Prisma.PracticeSessionOrderByRelevanceInput
 }
 
@@ -395,6 +401,9 @@ export type PracticeSessionWhereUniqueInput = Prisma.AtLeast<{
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   paper?: Prisma.XOR<Prisma.PaperNullableScalarRelationFilter, Prisma.PaperWhereInput> | null
   answers?: Prisma.PracticeAnswerListRelationFilter
+  sourceAgentRecommendations?: Prisma.AgentRecommendationListRelationFilter
+  startedAgentRecommendations?: Prisma.AgentRecommendationListRelationFilter
+  agentTutorMessages?: Prisma.AgentTutorMessageListRelationFilter
 }, "id">
 
 export type PracticeSessionOrderByWithAggregationInput = {
@@ -467,6 +476,9 @@ export type PracticeSessionCreateInput = {
   user: Prisma.UserCreateNestedOneWithoutPracticeSessionsInput
   paper?: Prisma.PaperCreateNestedOneWithoutSessionsInput
   answers?: Prisma.PracticeAnswerCreateNestedManyWithoutSessionInput
+  sourceAgentRecommendations?: Prisma.AgentRecommendationCreateNestedManyWithoutSourceSessionInput
+  startedAgentRecommendations?: Prisma.AgentRecommendationCreateNestedManyWithoutStartedSessionInput
+  agentTutorMessages?: Prisma.AgentTutorMessageCreateNestedManyWithoutSessionInput
 }
 
 export type PracticeSessionUncheckedCreateInput = {
@@ -489,6 +501,9 @@ export type PracticeSessionUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   answers?: Prisma.PracticeAnswerUncheckedCreateNestedManyWithoutSessionInput
+  sourceAgentRecommendations?: Prisma.AgentRecommendationUncheckedCreateNestedManyWithoutSourceSessionInput
+  startedAgentRecommendations?: Prisma.AgentRecommendationUncheckedCreateNestedManyWithoutStartedSessionInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUncheckedCreateNestedManyWithoutSessionInput
 }
 
 export type PracticeSessionUpdateInput = {
@@ -511,6 +526,9 @@ export type PracticeSessionUpdateInput = {
   user?: Prisma.UserUpdateOneRequiredWithoutPracticeSessionsNestedInput
   paper?: Prisma.PaperUpdateOneWithoutSessionsNestedInput
   answers?: Prisma.PracticeAnswerUpdateManyWithoutSessionNestedInput
+  sourceAgentRecommendations?: Prisma.AgentRecommendationUpdateManyWithoutSourceSessionNestedInput
+  startedAgentRecommendations?: Prisma.AgentRecommendationUpdateManyWithoutStartedSessionNestedInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUpdateManyWithoutSessionNestedInput
 }
 
 export type PracticeSessionUncheckedUpdateInput = {
@@ -533,6 +551,9 @@ export type PracticeSessionUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   answers?: Prisma.PracticeAnswerUncheckedUpdateManyWithoutSessionNestedInput
+  sourceAgentRecommendations?: Prisma.AgentRecommendationUncheckedUpdateManyWithoutSourceSessionNestedInput
+  startedAgentRecommendations?: Prisma.AgentRecommendationUncheckedUpdateManyWithoutStartedSessionNestedInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUncheckedUpdateManyWithoutSessionNestedInput
 }
 
 export type PracticeSessionCreateManyInput = {
@@ -698,6 +719,11 @@ export type PracticeSessionScalarRelationFilter = {
   isNot?: Prisma.PracticeSessionWhereInput
 }
 
+export type PracticeSessionNullableScalarRelationFilter = {
+  is?: Prisma.PracticeSessionWhereInput | null
+  isNot?: Prisma.PracticeSessionWhereInput | null
+}
+
 export type PracticeSessionCreateNestedManyWithoutUserInput = {
   create?: Prisma.XOR<Prisma.PracticeSessionCreateWithoutUserInput, Prisma.PracticeSessionUncheckedCreateWithoutUserInput> | Prisma.PracticeSessionCreateWithoutUserInput[] | Prisma.PracticeSessionUncheckedCreateWithoutUserInput[]
   connectOrCreate?: Prisma.PracticeSessionCreateOrConnectWithoutUserInput | Prisma.PracticeSessionCreateOrConnectWithoutUserInput[]
@@ -808,6 +834,54 @@ export type PracticeSessionUpdateOneRequiredWithoutAnswersNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.PracticeSessionUpdateToOneWithWhereWithoutAnswersInput, Prisma.PracticeSessionUpdateWithoutAnswersInput>, Prisma.PracticeSessionUncheckedUpdateWithoutAnswersInput>
 }
 
+export type PracticeSessionCreateNestedOneWithoutSourceAgentRecommendationsInput = {
+  create?: Prisma.XOR<Prisma.PracticeSessionCreateWithoutSourceAgentRecommendationsInput, Prisma.PracticeSessionUncheckedCreateWithoutSourceAgentRecommendationsInput>
+  connectOrCreate?: Prisma.PracticeSessionCreateOrConnectWithoutSourceAgentRecommendationsInput
+  connect?: Prisma.PracticeSessionWhereUniqueInput
+}
+
+export type PracticeSessionCreateNestedOneWithoutStartedAgentRecommendationsInput = {
+  create?: Prisma.XOR<Prisma.PracticeSessionCreateWithoutStartedAgentRecommendationsInput, Prisma.PracticeSessionUncheckedCreateWithoutStartedAgentRecommendationsInput>
+  connectOrCreate?: Prisma.PracticeSessionCreateOrConnectWithoutStartedAgentRecommendationsInput
+  connect?: Prisma.PracticeSessionWhereUniqueInput
+}
+
+export type PracticeSessionUpdateOneWithoutSourceAgentRecommendationsNestedInput = {
+  create?: Prisma.XOR<Prisma.PracticeSessionCreateWithoutSourceAgentRecommendationsInput, Prisma.PracticeSessionUncheckedCreateWithoutSourceAgentRecommendationsInput>
+  connectOrCreate?: Prisma.PracticeSessionCreateOrConnectWithoutSourceAgentRecommendationsInput
+  upsert?: Prisma.PracticeSessionUpsertWithoutSourceAgentRecommendationsInput
+  disconnect?: Prisma.PracticeSessionWhereInput | boolean
+  delete?: Prisma.PracticeSessionWhereInput | boolean
+  connect?: Prisma.PracticeSessionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PracticeSessionUpdateToOneWithWhereWithoutSourceAgentRecommendationsInput, Prisma.PracticeSessionUpdateWithoutSourceAgentRecommendationsInput>, Prisma.PracticeSessionUncheckedUpdateWithoutSourceAgentRecommendationsInput>
+}
+
+export type PracticeSessionUpdateOneWithoutStartedAgentRecommendationsNestedInput = {
+  create?: Prisma.XOR<Prisma.PracticeSessionCreateWithoutStartedAgentRecommendationsInput, Prisma.PracticeSessionUncheckedCreateWithoutStartedAgentRecommendationsInput>
+  connectOrCreate?: Prisma.PracticeSessionCreateOrConnectWithoutStartedAgentRecommendationsInput
+  upsert?: Prisma.PracticeSessionUpsertWithoutStartedAgentRecommendationsInput
+  disconnect?: Prisma.PracticeSessionWhereInput | boolean
+  delete?: Prisma.PracticeSessionWhereInput | boolean
+  connect?: Prisma.PracticeSessionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PracticeSessionUpdateToOneWithWhereWithoutStartedAgentRecommendationsInput, Prisma.PracticeSessionUpdateWithoutStartedAgentRecommendationsInput>, Prisma.PracticeSessionUncheckedUpdateWithoutStartedAgentRecommendationsInput>
+}
+
+export type PracticeSessionCreateNestedOneWithoutAgentTutorMessagesInput = {
+  create?: Prisma.XOR<Prisma.PracticeSessionCreateWithoutAgentTutorMessagesInput, Prisma.PracticeSessionUncheckedCreateWithoutAgentTutorMessagesInput>
+  connectOrCreate?: Prisma.PracticeSessionCreateOrConnectWithoutAgentTutorMessagesInput
+  connect?: Prisma.PracticeSessionWhereUniqueInput
+}
+
+export type PracticeSessionUpdateOneWithoutAgentTutorMessagesNestedInput = {
+  create?: Prisma.XOR<Prisma.PracticeSessionCreateWithoutAgentTutorMessagesInput, Prisma.PracticeSessionUncheckedCreateWithoutAgentTutorMessagesInput>
+  connectOrCreate?: Prisma.PracticeSessionCreateOrConnectWithoutAgentTutorMessagesInput
+  upsert?: Prisma.PracticeSessionUpsertWithoutAgentTutorMessagesInput
+  disconnect?: Prisma.PracticeSessionWhereInput | boolean
+  delete?: Prisma.PracticeSessionWhereInput | boolean
+  connect?: Prisma.PracticeSessionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PracticeSessionUpdateToOneWithWhereWithoutAgentTutorMessagesInput, Prisma.PracticeSessionUpdateWithoutAgentTutorMessagesInput>, Prisma.PracticeSessionUncheckedUpdateWithoutAgentTutorMessagesInput>
+}
+
 export type PracticeSessionCreateWithoutUserInput = {
   id?: string
   mode: $Enums.PracticeMode
@@ -827,6 +901,9 @@ export type PracticeSessionCreateWithoutUserInput = {
   updatedAt?: Date | string
   paper?: Prisma.PaperCreateNestedOneWithoutSessionsInput
   answers?: Prisma.PracticeAnswerCreateNestedManyWithoutSessionInput
+  sourceAgentRecommendations?: Prisma.AgentRecommendationCreateNestedManyWithoutSourceSessionInput
+  startedAgentRecommendations?: Prisma.AgentRecommendationCreateNestedManyWithoutStartedSessionInput
+  agentTutorMessages?: Prisma.AgentTutorMessageCreateNestedManyWithoutSessionInput
 }
 
 export type PracticeSessionUncheckedCreateWithoutUserInput = {
@@ -848,6 +925,9 @@ export type PracticeSessionUncheckedCreateWithoutUserInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   answers?: Prisma.PracticeAnswerUncheckedCreateNestedManyWithoutSessionInput
+  sourceAgentRecommendations?: Prisma.AgentRecommendationUncheckedCreateNestedManyWithoutSourceSessionInput
+  startedAgentRecommendations?: Prisma.AgentRecommendationUncheckedCreateNestedManyWithoutStartedSessionInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUncheckedCreateNestedManyWithoutSessionInput
 }
 
 export type PracticeSessionCreateOrConnectWithoutUserInput = {
@@ -919,6 +999,9 @@ export type PracticeSessionCreateWithoutPaperInput = {
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutPracticeSessionsInput
   answers?: Prisma.PracticeAnswerCreateNestedManyWithoutSessionInput
+  sourceAgentRecommendations?: Prisma.AgentRecommendationCreateNestedManyWithoutSourceSessionInput
+  startedAgentRecommendations?: Prisma.AgentRecommendationCreateNestedManyWithoutStartedSessionInput
+  agentTutorMessages?: Prisma.AgentTutorMessageCreateNestedManyWithoutSessionInput
 }
 
 export type PracticeSessionUncheckedCreateWithoutPaperInput = {
@@ -940,6 +1023,9 @@ export type PracticeSessionUncheckedCreateWithoutPaperInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   answers?: Prisma.PracticeAnswerUncheckedCreateNestedManyWithoutSessionInput
+  sourceAgentRecommendations?: Prisma.AgentRecommendationUncheckedCreateNestedManyWithoutSourceSessionInput
+  startedAgentRecommendations?: Prisma.AgentRecommendationUncheckedCreateNestedManyWithoutStartedSessionInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUncheckedCreateNestedManyWithoutSessionInput
 }
 
 export type PracticeSessionCreateOrConnectWithoutPaperInput = {
@@ -987,6 +1073,9 @@ export type PracticeSessionCreateWithoutAnswersInput = {
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutPracticeSessionsInput
   paper?: Prisma.PaperCreateNestedOneWithoutSessionsInput
+  sourceAgentRecommendations?: Prisma.AgentRecommendationCreateNestedManyWithoutSourceSessionInput
+  startedAgentRecommendations?: Prisma.AgentRecommendationCreateNestedManyWithoutStartedSessionInput
+  agentTutorMessages?: Prisma.AgentTutorMessageCreateNestedManyWithoutSessionInput
 }
 
 export type PracticeSessionUncheckedCreateWithoutAnswersInput = {
@@ -1008,6 +1097,9 @@ export type PracticeSessionUncheckedCreateWithoutAnswersInput = {
   submittedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  sourceAgentRecommendations?: Prisma.AgentRecommendationUncheckedCreateNestedManyWithoutSourceSessionInput
+  startedAgentRecommendations?: Prisma.AgentRecommendationUncheckedCreateNestedManyWithoutStartedSessionInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUncheckedCreateNestedManyWithoutSessionInput
 }
 
 export type PracticeSessionCreateOrConnectWithoutAnswersInput = {
@@ -1045,6 +1137,9 @@ export type PracticeSessionUpdateWithoutAnswersInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutPracticeSessionsNestedInput
   paper?: Prisma.PaperUpdateOneWithoutSessionsNestedInput
+  sourceAgentRecommendations?: Prisma.AgentRecommendationUpdateManyWithoutSourceSessionNestedInput
+  startedAgentRecommendations?: Prisma.AgentRecommendationUpdateManyWithoutStartedSessionNestedInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUpdateManyWithoutSessionNestedInput
 }
 
 export type PracticeSessionUncheckedUpdateWithoutAnswersInput = {
@@ -1066,6 +1161,345 @@ export type PracticeSessionUncheckedUpdateWithoutAnswersInput = {
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sourceAgentRecommendations?: Prisma.AgentRecommendationUncheckedUpdateManyWithoutSourceSessionNestedInput
+  startedAgentRecommendations?: Prisma.AgentRecommendationUncheckedUpdateManyWithoutStartedSessionNestedInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUncheckedUpdateManyWithoutSessionNestedInput
+}
+
+export type PracticeSessionCreateWithoutSourceAgentRecommendationsInput = {
+  id?: string
+  mode: $Enums.PracticeMode
+  status?: $Enums.PracticeStatus
+  title: string
+  sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  difficulty?: $Enums.Difficulty | null
+  totalCount?: number
+  answeredCount?: number
+  correctCount?: number
+  wrongCount?: number
+  unansweredCount?: number
+  elapsedSeconds?: number
+  accuracy?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  submittedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutPracticeSessionsInput
+  paper?: Prisma.PaperCreateNestedOneWithoutSessionsInput
+  answers?: Prisma.PracticeAnswerCreateNestedManyWithoutSessionInput
+  startedAgentRecommendations?: Prisma.AgentRecommendationCreateNestedManyWithoutStartedSessionInput
+  agentTutorMessages?: Prisma.AgentTutorMessageCreateNestedManyWithoutSessionInput
+}
+
+export type PracticeSessionUncheckedCreateWithoutSourceAgentRecommendationsInput = {
+  id?: string
+  userId: string
+  mode: $Enums.PracticeMode
+  status?: $Enums.PracticeStatus
+  title: string
+  paperId?: string | null
+  sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  difficulty?: $Enums.Difficulty | null
+  totalCount?: number
+  answeredCount?: number
+  correctCount?: number
+  wrongCount?: number
+  unansweredCount?: number
+  elapsedSeconds?: number
+  accuracy?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  submittedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  answers?: Prisma.PracticeAnswerUncheckedCreateNestedManyWithoutSessionInput
+  startedAgentRecommendations?: Prisma.AgentRecommendationUncheckedCreateNestedManyWithoutStartedSessionInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUncheckedCreateNestedManyWithoutSessionInput
+}
+
+export type PracticeSessionCreateOrConnectWithoutSourceAgentRecommendationsInput = {
+  where: Prisma.PracticeSessionWhereUniqueInput
+  create: Prisma.XOR<Prisma.PracticeSessionCreateWithoutSourceAgentRecommendationsInput, Prisma.PracticeSessionUncheckedCreateWithoutSourceAgentRecommendationsInput>
+}
+
+export type PracticeSessionCreateWithoutStartedAgentRecommendationsInput = {
+  id?: string
+  mode: $Enums.PracticeMode
+  status?: $Enums.PracticeStatus
+  title: string
+  sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  difficulty?: $Enums.Difficulty | null
+  totalCount?: number
+  answeredCount?: number
+  correctCount?: number
+  wrongCount?: number
+  unansweredCount?: number
+  elapsedSeconds?: number
+  accuracy?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  submittedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutPracticeSessionsInput
+  paper?: Prisma.PaperCreateNestedOneWithoutSessionsInput
+  answers?: Prisma.PracticeAnswerCreateNestedManyWithoutSessionInput
+  sourceAgentRecommendations?: Prisma.AgentRecommendationCreateNestedManyWithoutSourceSessionInput
+  agentTutorMessages?: Prisma.AgentTutorMessageCreateNestedManyWithoutSessionInput
+}
+
+export type PracticeSessionUncheckedCreateWithoutStartedAgentRecommendationsInput = {
+  id?: string
+  userId: string
+  mode: $Enums.PracticeMode
+  status?: $Enums.PracticeStatus
+  title: string
+  paperId?: string | null
+  sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  difficulty?: $Enums.Difficulty | null
+  totalCount?: number
+  answeredCount?: number
+  correctCount?: number
+  wrongCount?: number
+  unansweredCount?: number
+  elapsedSeconds?: number
+  accuracy?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  submittedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  answers?: Prisma.PracticeAnswerUncheckedCreateNestedManyWithoutSessionInput
+  sourceAgentRecommendations?: Prisma.AgentRecommendationUncheckedCreateNestedManyWithoutSourceSessionInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUncheckedCreateNestedManyWithoutSessionInput
+}
+
+export type PracticeSessionCreateOrConnectWithoutStartedAgentRecommendationsInput = {
+  where: Prisma.PracticeSessionWhereUniqueInput
+  create: Prisma.XOR<Prisma.PracticeSessionCreateWithoutStartedAgentRecommendationsInput, Prisma.PracticeSessionUncheckedCreateWithoutStartedAgentRecommendationsInput>
+}
+
+export type PracticeSessionUpsertWithoutSourceAgentRecommendationsInput = {
+  update: Prisma.XOR<Prisma.PracticeSessionUpdateWithoutSourceAgentRecommendationsInput, Prisma.PracticeSessionUncheckedUpdateWithoutSourceAgentRecommendationsInput>
+  create: Prisma.XOR<Prisma.PracticeSessionCreateWithoutSourceAgentRecommendationsInput, Prisma.PracticeSessionUncheckedCreateWithoutSourceAgentRecommendationsInput>
+  where?: Prisma.PracticeSessionWhereInput
+}
+
+export type PracticeSessionUpdateToOneWithWhereWithoutSourceAgentRecommendationsInput = {
+  where?: Prisma.PracticeSessionWhereInput
+  data: Prisma.XOR<Prisma.PracticeSessionUpdateWithoutSourceAgentRecommendationsInput, Prisma.PracticeSessionUncheckedUpdateWithoutSourceAgentRecommendationsInput>
+}
+
+export type PracticeSessionUpdateWithoutSourceAgentRecommendationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  mode?: Prisma.EnumPracticeModeFieldUpdateOperationsInput | $Enums.PracticeMode
+  status?: Prisma.EnumPracticeStatusFieldUpdateOperationsInput | $Enums.PracticeStatus
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  difficulty?: Prisma.NullableEnumDifficultyFieldUpdateOperationsInput | $Enums.Difficulty | null
+  totalCount?: Prisma.IntFieldUpdateOperationsInput | number
+  answeredCount?: Prisma.IntFieldUpdateOperationsInput | number
+  correctCount?: Prisma.IntFieldUpdateOperationsInput | number
+  wrongCount?: Prisma.IntFieldUpdateOperationsInput | number
+  unansweredCount?: Prisma.IntFieldUpdateOperationsInput | number
+  elapsedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  accuracy?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutPracticeSessionsNestedInput
+  paper?: Prisma.PaperUpdateOneWithoutSessionsNestedInput
+  answers?: Prisma.PracticeAnswerUpdateManyWithoutSessionNestedInput
+  startedAgentRecommendations?: Prisma.AgentRecommendationUpdateManyWithoutStartedSessionNestedInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUpdateManyWithoutSessionNestedInput
+}
+
+export type PracticeSessionUncheckedUpdateWithoutSourceAgentRecommendationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  mode?: Prisma.EnumPracticeModeFieldUpdateOperationsInput | $Enums.PracticeMode
+  status?: Prisma.EnumPracticeStatusFieldUpdateOperationsInput | $Enums.PracticeStatus
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  paperId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  difficulty?: Prisma.NullableEnumDifficultyFieldUpdateOperationsInput | $Enums.Difficulty | null
+  totalCount?: Prisma.IntFieldUpdateOperationsInput | number
+  answeredCount?: Prisma.IntFieldUpdateOperationsInput | number
+  correctCount?: Prisma.IntFieldUpdateOperationsInput | number
+  wrongCount?: Prisma.IntFieldUpdateOperationsInput | number
+  unansweredCount?: Prisma.IntFieldUpdateOperationsInput | number
+  elapsedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  accuracy?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  answers?: Prisma.PracticeAnswerUncheckedUpdateManyWithoutSessionNestedInput
+  startedAgentRecommendations?: Prisma.AgentRecommendationUncheckedUpdateManyWithoutStartedSessionNestedInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUncheckedUpdateManyWithoutSessionNestedInput
+}
+
+export type PracticeSessionUpsertWithoutStartedAgentRecommendationsInput = {
+  update: Prisma.XOR<Prisma.PracticeSessionUpdateWithoutStartedAgentRecommendationsInput, Prisma.PracticeSessionUncheckedUpdateWithoutStartedAgentRecommendationsInput>
+  create: Prisma.XOR<Prisma.PracticeSessionCreateWithoutStartedAgentRecommendationsInput, Prisma.PracticeSessionUncheckedCreateWithoutStartedAgentRecommendationsInput>
+  where?: Prisma.PracticeSessionWhereInput
+}
+
+export type PracticeSessionUpdateToOneWithWhereWithoutStartedAgentRecommendationsInput = {
+  where?: Prisma.PracticeSessionWhereInput
+  data: Prisma.XOR<Prisma.PracticeSessionUpdateWithoutStartedAgentRecommendationsInput, Prisma.PracticeSessionUncheckedUpdateWithoutStartedAgentRecommendationsInput>
+}
+
+export type PracticeSessionUpdateWithoutStartedAgentRecommendationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  mode?: Prisma.EnumPracticeModeFieldUpdateOperationsInput | $Enums.PracticeMode
+  status?: Prisma.EnumPracticeStatusFieldUpdateOperationsInput | $Enums.PracticeStatus
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  difficulty?: Prisma.NullableEnumDifficultyFieldUpdateOperationsInput | $Enums.Difficulty | null
+  totalCount?: Prisma.IntFieldUpdateOperationsInput | number
+  answeredCount?: Prisma.IntFieldUpdateOperationsInput | number
+  correctCount?: Prisma.IntFieldUpdateOperationsInput | number
+  wrongCount?: Prisma.IntFieldUpdateOperationsInput | number
+  unansweredCount?: Prisma.IntFieldUpdateOperationsInput | number
+  elapsedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  accuracy?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutPracticeSessionsNestedInput
+  paper?: Prisma.PaperUpdateOneWithoutSessionsNestedInput
+  answers?: Prisma.PracticeAnswerUpdateManyWithoutSessionNestedInput
+  sourceAgentRecommendations?: Prisma.AgentRecommendationUpdateManyWithoutSourceSessionNestedInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUpdateManyWithoutSessionNestedInput
+}
+
+export type PracticeSessionUncheckedUpdateWithoutStartedAgentRecommendationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  mode?: Prisma.EnumPracticeModeFieldUpdateOperationsInput | $Enums.PracticeMode
+  status?: Prisma.EnumPracticeStatusFieldUpdateOperationsInput | $Enums.PracticeStatus
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  paperId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  difficulty?: Prisma.NullableEnumDifficultyFieldUpdateOperationsInput | $Enums.Difficulty | null
+  totalCount?: Prisma.IntFieldUpdateOperationsInput | number
+  answeredCount?: Prisma.IntFieldUpdateOperationsInput | number
+  correctCount?: Prisma.IntFieldUpdateOperationsInput | number
+  wrongCount?: Prisma.IntFieldUpdateOperationsInput | number
+  unansweredCount?: Prisma.IntFieldUpdateOperationsInput | number
+  elapsedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  accuracy?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  answers?: Prisma.PracticeAnswerUncheckedUpdateManyWithoutSessionNestedInput
+  sourceAgentRecommendations?: Prisma.AgentRecommendationUncheckedUpdateManyWithoutSourceSessionNestedInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUncheckedUpdateManyWithoutSessionNestedInput
+}
+
+export type PracticeSessionCreateWithoutAgentTutorMessagesInput = {
+  id?: string
+  mode: $Enums.PracticeMode
+  status?: $Enums.PracticeStatus
+  title: string
+  sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  difficulty?: $Enums.Difficulty | null
+  totalCount?: number
+  answeredCount?: number
+  correctCount?: number
+  wrongCount?: number
+  unansweredCount?: number
+  elapsedSeconds?: number
+  accuracy?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  submittedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutPracticeSessionsInput
+  paper?: Prisma.PaperCreateNestedOneWithoutSessionsInput
+  answers?: Prisma.PracticeAnswerCreateNestedManyWithoutSessionInput
+  sourceAgentRecommendations?: Prisma.AgentRecommendationCreateNestedManyWithoutSourceSessionInput
+  startedAgentRecommendations?: Prisma.AgentRecommendationCreateNestedManyWithoutStartedSessionInput
+}
+
+export type PracticeSessionUncheckedCreateWithoutAgentTutorMessagesInput = {
+  id?: string
+  userId: string
+  mode: $Enums.PracticeMode
+  status?: $Enums.PracticeStatus
+  title: string
+  paperId?: string | null
+  sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  difficulty?: $Enums.Difficulty | null
+  totalCount?: number
+  answeredCount?: number
+  correctCount?: number
+  wrongCount?: number
+  unansweredCount?: number
+  elapsedSeconds?: number
+  accuracy?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  submittedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  answers?: Prisma.PracticeAnswerUncheckedCreateNestedManyWithoutSessionInput
+  sourceAgentRecommendations?: Prisma.AgentRecommendationUncheckedCreateNestedManyWithoutSourceSessionInput
+  startedAgentRecommendations?: Prisma.AgentRecommendationUncheckedCreateNestedManyWithoutStartedSessionInput
+}
+
+export type PracticeSessionCreateOrConnectWithoutAgentTutorMessagesInput = {
+  where: Prisma.PracticeSessionWhereUniqueInput
+  create: Prisma.XOR<Prisma.PracticeSessionCreateWithoutAgentTutorMessagesInput, Prisma.PracticeSessionUncheckedCreateWithoutAgentTutorMessagesInput>
+}
+
+export type PracticeSessionUpsertWithoutAgentTutorMessagesInput = {
+  update: Prisma.XOR<Prisma.PracticeSessionUpdateWithoutAgentTutorMessagesInput, Prisma.PracticeSessionUncheckedUpdateWithoutAgentTutorMessagesInput>
+  create: Prisma.XOR<Prisma.PracticeSessionCreateWithoutAgentTutorMessagesInput, Prisma.PracticeSessionUncheckedCreateWithoutAgentTutorMessagesInput>
+  where?: Prisma.PracticeSessionWhereInput
+}
+
+export type PracticeSessionUpdateToOneWithWhereWithoutAgentTutorMessagesInput = {
+  where?: Prisma.PracticeSessionWhereInput
+  data: Prisma.XOR<Prisma.PracticeSessionUpdateWithoutAgentTutorMessagesInput, Prisma.PracticeSessionUncheckedUpdateWithoutAgentTutorMessagesInput>
+}
+
+export type PracticeSessionUpdateWithoutAgentTutorMessagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  mode?: Prisma.EnumPracticeModeFieldUpdateOperationsInput | $Enums.PracticeMode
+  status?: Prisma.EnumPracticeStatusFieldUpdateOperationsInput | $Enums.PracticeStatus
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  difficulty?: Prisma.NullableEnumDifficultyFieldUpdateOperationsInput | $Enums.Difficulty | null
+  totalCount?: Prisma.IntFieldUpdateOperationsInput | number
+  answeredCount?: Prisma.IntFieldUpdateOperationsInput | number
+  correctCount?: Prisma.IntFieldUpdateOperationsInput | number
+  wrongCount?: Prisma.IntFieldUpdateOperationsInput | number
+  unansweredCount?: Prisma.IntFieldUpdateOperationsInput | number
+  elapsedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  accuracy?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutPracticeSessionsNestedInput
+  paper?: Prisma.PaperUpdateOneWithoutSessionsNestedInput
+  answers?: Prisma.PracticeAnswerUpdateManyWithoutSessionNestedInput
+  sourceAgentRecommendations?: Prisma.AgentRecommendationUpdateManyWithoutSourceSessionNestedInput
+  startedAgentRecommendations?: Prisma.AgentRecommendationUpdateManyWithoutStartedSessionNestedInput
+}
+
+export type PracticeSessionUncheckedUpdateWithoutAgentTutorMessagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  mode?: Prisma.EnumPracticeModeFieldUpdateOperationsInput | $Enums.PracticeMode
+  status?: Prisma.EnumPracticeStatusFieldUpdateOperationsInput | $Enums.PracticeStatus
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  paperId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  difficulty?: Prisma.NullableEnumDifficultyFieldUpdateOperationsInput | $Enums.Difficulty | null
+  totalCount?: Prisma.IntFieldUpdateOperationsInput | number
+  answeredCount?: Prisma.IntFieldUpdateOperationsInput | number
+  correctCount?: Prisma.IntFieldUpdateOperationsInput | number
+  wrongCount?: Prisma.IntFieldUpdateOperationsInput | number
+  unansweredCount?: Prisma.IntFieldUpdateOperationsInput | number
+  elapsedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  accuracy?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  answers?: Prisma.PracticeAnswerUncheckedUpdateManyWithoutSessionNestedInput
+  sourceAgentRecommendations?: Prisma.AgentRecommendationUncheckedUpdateManyWithoutSourceSessionNestedInput
+  startedAgentRecommendations?: Prisma.AgentRecommendationUncheckedUpdateManyWithoutStartedSessionNestedInput
 }
 
 export type PracticeSessionCreateManyUserInput = {
@@ -1107,6 +1541,9 @@ export type PracticeSessionUpdateWithoutUserInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   paper?: Prisma.PaperUpdateOneWithoutSessionsNestedInput
   answers?: Prisma.PracticeAnswerUpdateManyWithoutSessionNestedInput
+  sourceAgentRecommendations?: Prisma.AgentRecommendationUpdateManyWithoutSourceSessionNestedInput
+  startedAgentRecommendations?: Prisma.AgentRecommendationUpdateManyWithoutStartedSessionNestedInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUpdateManyWithoutSessionNestedInput
 }
 
 export type PracticeSessionUncheckedUpdateWithoutUserInput = {
@@ -1128,6 +1565,9 @@ export type PracticeSessionUncheckedUpdateWithoutUserInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   answers?: Prisma.PracticeAnswerUncheckedUpdateManyWithoutSessionNestedInput
+  sourceAgentRecommendations?: Prisma.AgentRecommendationUncheckedUpdateManyWithoutSourceSessionNestedInput
+  startedAgentRecommendations?: Prisma.AgentRecommendationUncheckedUpdateManyWithoutStartedSessionNestedInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUncheckedUpdateManyWithoutSessionNestedInput
 }
 
 export type PracticeSessionUncheckedUpdateManyWithoutUserInput = {
@@ -1189,6 +1629,9 @@ export type PracticeSessionUpdateWithoutPaperInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutPracticeSessionsNestedInput
   answers?: Prisma.PracticeAnswerUpdateManyWithoutSessionNestedInput
+  sourceAgentRecommendations?: Prisma.AgentRecommendationUpdateManyWithoutSourceSessionNestedInput
+  startedAgentRecommendations?: Prisma.AgentRecommendationUpdateManyWithoutStartedSessionNestedInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUpdateManyWithoutSessionNestedInput
 }
 
 export type PracticeSessionUncheckedUpdateWithoutPaperInput = {
@@ -1210,6 +1653,9 @@ export type PracticeSessionUncheckedUpdateWithoutPaperInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   answers?: Prisma.PracticeAnswerUncheckedUpdateManyWithoutSessionNestedInput
+  sourceAgentRecommendations?: Prisma.AgentRecommendationUncheckedUpdateManyWithoutSourceSessionNestedInput
+  startedAgentRecommendations?: Prisma.AgentRecommendationUncheckedUpdateManyWithoutStartedSessionNestedInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUncheckedUpdateManyWithoutSessionNestedInput
 }
 
 export type PracticeSessionUncheckedUpdateManyWithoutPaperInput = {
@@ -1239,10 +1685,16 @@ export type PracticeSessionUncheckedUpdateManyWithoutPaperInput = {
 
 export type PracticeSessionCountOutputType = {
   answers: number
+  sourceAgentRecommendations: number
+  startedAgentRecommendations: number
+  agentTutorMessages: number
 }
 
 export type PracticeSessionCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   answers?: boolean | PracticeSessionCountOutputTypeCountAnswersArgs
+  sourceAgentRecommendations?: boolean | PracticeSessionCountOutputTypeCountSourceAgentRecommendationsArgs
+  startedAgentRecommendations?: boolean | PracticeSessionCountOutputTypeCountStartedAgentRecommendationsArgs
+  agentTutorMessages?: boolean | PracticeSessionCountOutputTypeCountAgentTutorMessagesArgs
 }
 
 /**
@@ -1260,6 +1712,27 @@ export type PracticeSessionCountOutputTypeDefaultArgs<ExtArgs extends runtime.Ty
  */
 export type PracticeSessionCountOutputTypeCountAnswersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.PracticeAnswerWhereInput
+}
+
+/**
+ * PracticeSessionCountOutputType without action
+ */
+export type PracticeSessionCountOutputTypeCountSourceAgentRecommendationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AgentRecommendationWhereInput
+}
+
+/**
+ * PracticeSessionCountOutputType without action
+ */
+export type PracticeSessionCountOutputTypeCountStartedAgentRecommendationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AgentRecommendationWhereInput
+}
+
+/**
+ * PracticeSessionCountOutputType without action
+ */
+export type PracticeSessionCountOutputTypeCountAgentTutorMessagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AgentTutorMessageWhereInput
 }
 
 
@@ -1285,6 +1758,9 @@ export type PracticeSessionSelect<ExtArgs extends runtime.Types.Extensions.Inter
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   paper?: boolean | Prisma.PracticeSession$paperArgs<ExtArgs>
   answers?: boolean | Prisma.PracticeSession$answersArgs<ExtArgs>
+  sourceAgentRecommendations?: boolean | Prisma.PracticeSession$sourceAgentRecommendationsArgs<ExtArgs>
+  startedAgentRecommendations?: boolean | Prisma.PracticeSession$startedAgentRecommendationsArgs<ExtArgs>
+  agentTutorMessages?: boolean | Prisma.PracticeSession$agentTutorMessagesArgs<ExtArgs>
   _count?: boolean | Prisma.PracticeSessionCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["practiceSession"]>
 
@@ -1316,6 +1792,9 @@ export type PracticeSessionInclude<ExtArgs extends runtime.Types.Extensions.Inte
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   paper?: boolean | Prisma.PracticeSession$paperArgs<ExtArgs>
   answers?: boolean | Prisma.PracticeSession$answersArgs<ExtArgs>
+  sourceAgentRecommendations?: boolean | Prisma.PracticeSession$sourceAgentRecommendationsArgs<ExtArgs>
+  startedAgentRecommendations?: boolean | Prisma.PracticeSession$startedAgentRecommendationsArgs<ExtArgs>
+  agentTutorMessages?: boolean | Prisma.PracticeSession$agentTutorMessagesArgs<ExtArgs>
   _count?: boolean | Prisma.PracticeSessionCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -1325,6 +1804,9 @@ export type $PracticeSessionPayload<ExtArgs extends runtime.Types.Extensions.Int
     user: Prisma.$UserPayload<ExtArgs>
     paper: Prisma.$PaperPayload<ExtArgs> | null
     answers: Prisma.$PracticeAnswerPayload<ExtArgs>[]
+    sourceAgentRecommendations: Prisma.$AgentRecommendationPayload<ExtArgs>[]
+    startedAgentRecommendations: Prisma.$AgentRecommendationPayload<ExtArgs>[]
+    agentTutorMessages: Prisma.$AgentTutorMessagePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1688,6 +2170,9 @@ export interface Prisma__PracticeSessionClient<T, Null = never, ExtArgs extends 
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   paper<T extends Prisma.PracticeSession$paperArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PracticeSession$paperArgs<ExtArgs>>): Prisma.Prisma__PaperClient<runtime.Types.Result.GetResult<Prisma.$PaperPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   answers<T extends Prisma.PracticeSession$answersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PracticeSession$answersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PracticeAnswerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  sourceAgentRecommendations<T extends Prisma.PracticeSession$sourceAgentRecommendationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PracticeSession$sourceAgentRecommendationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AgentRecommendationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  startedAgentRecommendations<T extends Prisma.PracticeSession$startedAgentRecommendationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PracticeSession$startedAgentRecommendationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AgentRecommendationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  agentTutorMessages<T extends Prisma.PracticeSession$agentTutorMessagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PracticeSession$agentTutorMessagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AgentTutorMessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2123,6 +2608,78 @@ export type PracticeSession$answersArgs<ExtArgs extends runtime.Types.Extensions
   take?: number
   skip?: number
   distinct?: Prisma.PracticeAnswerScalarFieldEnum | Prisma.PracticeAnswerScalarFieldEnum[]
+}
+
+/**
+ * PracticeSession.sourceAgentRecommendations
+ */
+export type PracticeSession$sourceAgentRecommendationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AgentRecommendation
+   */
+  select?: Prisma.AgentRecommendationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AgentRecommendation
+   */
+  omit?: Prisma.AgentRecommendationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AgentRecommendationInclude<ExtArgs> | null
+  where?: Prisma.AgentRecommendationWhereInput
+  orderBy?: Prisma.AgentRecommendationOrderByWithRelationInput | Prisma.AgentRecommendationOrderByWithRelationInput[]
+  cursor?: Prisma.AgentRecommendationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AgentRecommendationScalarFieldEnum | Prisma.AgentRecommendationScalarFieldEnum[]
+}
+
+/**
+ * PracticeSession.startedAgentRecommendations
+ */
+export type PracticeSession$startedAgentRecommendationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AgentRecommendation
+   */
+  select?: Prisma.AgentRecommendationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AgentRecommendation
+   */
+  omit?: Prisma.AgentRecommendationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AgentRecommendationInclude<ExtArgs> | null
+  where?: Prisma.AgentRecommendationWhereInput
+  orderBy?: Prisma.AgentRecommendationOrderByWithRelationInput | Prisma.AgentRecommendationOrderByWithRelationInput[]
+  cursor?: Prisma.AgentRecommendationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AgentRecommendationScalarFieldEnum | Prisma.AgentRecommendationScalarFieldEnum[]
+}
+
+/**
+ * PracticeSession.agentTutorMessages
+ */
+export type PracticeSession$agentTutorMessagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AgentTutorMessage
+   */
+  select?: Prisma.AgentTutorMessageSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AgentTutorMessage
+   */
+  omit?: Prisma.AgentTutorMessageOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AgentTutorMessageInclude<ExtArgs> | null
+  where?: Prisma.AgentTutorMessageWhereInput
+  orderBy?: Prisma.AgentTutorMessageOrderByWithRelationInput | Prisma.AgentTutorMessageOrderByWithRelationInput[]
+  cursor?: Prisma.AgentTutorMessageWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AgentTutorMessageScalarFieldEnum | Prisma.AgentTutorMessageScalarFieldEnum[]
 }
 
 /**

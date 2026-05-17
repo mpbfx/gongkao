@@ -69,6 +69,10 @@ export const ModelName = {
   WrongQuestion: 'WrongQuestion',
   UserStatsSnapshot: 'UserStatsSnapshot',
   UserTagStats: 'UserTagStats',
+  AgentConfig: 'AgentConfig',
+  AgentRecommendation: 'AgentRecommendation',
+  AgentTutorMessage: 'AgentTutorMessage',
+  AgentFeedback: 'AgentFeedback',
   ImportJob: 'ImportJob'
 } as const
 
@@ -358,6 +362,67 @@ export const UserTagStatsScalarFieldEnum = {
 export type UserTagStatsScalarFieldEnum = (typeof UserTagStatsScalarFieldEnum)[keyof typeof UserTagStatsScalarFieldEnum]
 
 
+export const AgentConfigScalarFieldEnum = {
+  id: 'id',
+  key: 'key',
+  valueJson: 'valueJson',
+  description: 'description',
+  updatedByUserId: 'updatedByUserId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AgentConfigScalarFieldEnum = (typeof AgentConfigScalarFieldEnum)[keyof typeof AgentConfigScalarFieldEnum]
+
+
+export const AgentRecommendationScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  sourceSessionId: 'sourceSessionId',
+  type: 'type',
+  title: 'title',
+  configSnapshotJson: 'configSnapshotJson',
+  evidenceJson: 'evidenceJson',
+  actionJson: 'actionJson',
+  confidence: 'confidence',
+  status: 'status',
+  clickedAt: 'clickedAt',
+  startedSessionId: 'startedSessionId',
+  completedAt: 'completedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AgentRecommendationScalarFieldEnum = (typeof AgentRecommendationScalarFieldEnum)[keyof typeof AgentRecommendationScalarFieldEnum]
+
+
+export const AgentTutorMessageScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  questionId: 'questionId',
+  sessionId: 'sessionId',
+  role: 'role',
+  content: 'content',
+  metadataJson: 'metadataJson',
+  createdAt: 'createdAt'
+} as const
+
+export type AgentTutorMessageScalarFieldEnum = (typeof AgentTutorMessageScalarFieldEnum)[keyof typeof AgentTutorMessageScalarFieldEnum]
+
+
+export const AgentFeedbackScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  targetType: 'targetType',
+  targetId: 'targetId',
+  rating: 'rating',
+  reason: 'reason',
+  createdAt: 'createdAt'
+} as const
+
+export type AgentFeedbackScalarFieldEnum = (typeof AgentFeedbackScalarFieldEnum)[keyof typeof AgentFeedbackScalarFieldEnum]
+
+
 export const ImportJobScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -389,6 +454,13 @@ export const NullableJsonNullValueInput = {
 } as const
 
 export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const NullsOrder = {
@@ -602,6 +674,54 @@ export const UserTagStatsOrderByRelevanceFieldEnum = {
 } as const
 
 export type UserTagStatsOrderByRelevanceFieldEnum = (typeof UserTagStatsOrderByRelevanceFieldEnum)[keyof typeof UserTagStatsOrderByRelevanceFieldEnum]
+
+
+export const AgentConfigOrderByRelevanceFieldEnum = {
+  id: 'id',
+  key: 'key',
+  description: 'description',
+  updatedByUserId: 'updatedByUserId'
+} as const
+
+export type AgentConfigOrderByRelevanceFieldEnum = (typeof AgentConfigOrderByRelevanceFieldEnum)[keyof typeof AgentConfigOrderByRelevanceFieldEnum]
+
+
+export const AgentRecommendationOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  sourceSessionId: 'sourceSessionId',
+  type: 'type',
+  title: 'title',
+  confidence: 'confidence',
+  status: 'status',
+  startedSessionId: 'startedSessionId'
+} as const
+
+export type AgentRecommendationOrderByRelevanceFieldEnum = (typeof AgentRecommendationOrderByRelevanceFieldEnum)[keyof typeof AgentRecommendationOrderByRelevanceFieldEnum]
+
+
+export const AgentTutorMessageOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  questionId: 'questionId',
+  sessionId: 'sessionId',
+  role: 'role',
+  content: 'content'
+} as const
+
+export type AgentTutorMessageOrderByRelevanceFieldEnum = (typeof AgentTutorMessageOrderByRelevanceFieldEnum)[keyof typeof AgentTutorMessageOrderByRelevanceFieldEnum]
+
+
+export const AgentFeedbackOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  targetType: 'targetType',
+  targetId: 'targetId',
+  rating: 'rating',
+  reason: 'reason'
+} as const
+
+export type AgentFeedbackOrderByRelevanceFieldEnum = (typeof AgentFeedbackOrderByRelevanceFieldEnum)[keyof typeof AgentFeedbackOrderByRelevanceFieldEnum]
 
 
 export const ImportJobOrderByRelevanceFieldEnum = {

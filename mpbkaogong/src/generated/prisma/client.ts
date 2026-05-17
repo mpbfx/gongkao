@@ -132,6 +132,26 @@ export type UserStatsSnapshot = Prisma.UserStatsSnapshotModel
  */
 export type UserTagStats = Prisma.UserTagStatsModel
 /**
+ * Model AgentConfig
+ * 
+ */
+export type AgentConfig = Prisma.AgentConfigModel
+/**
+ * Model AgentRecommendation
+ * 
+ */
+export type AgentRecommendation = Prisma.AgentRecommendationModel
+/**
+ * Model AgentTutorMessage
+ * 
+ */
+export type AgentTutorMessage = Prisma.AgentTutorMessageModel
+/**
+ * Model AgentFeedback
+ * 
+ */
+export type AgentFeedback = Prisma.AgentFeedbackModel
+/**
  * Model ImportJob
  * 
  */

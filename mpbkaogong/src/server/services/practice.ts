@@ -512,6 +512,18 @@ export async function submitPracticeSession(
       },
     });
 
+    await tx.agentRecommendation.updateMany({
+      where: {
+        userId: user.id,
+        startedSessionId: session.id,
+        completedAt: null,
+      },
+      data: {
+        status: "COMPLETED",
+        completedAt: now,
+      },
+    });
+
     return {
       session: updatedSession,
       answers: answerRows,

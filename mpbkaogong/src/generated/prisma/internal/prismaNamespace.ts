@@ -402,6 +402,10 @@ export const ModelName = {
   WrongQuestion: 'WrongQuestion',
   UserStatsSnapshot: 'UserStatsSnapshot',
   UserTagStats: 'UserTagStats',
+  AgentConfig: 'AgentConfig',
+  AgentRecommendation: 'AgentRecommendation',
+  AgentTutorMessage: 'AgentTutorMessage',
+  AgentFeedback: 'AgentFeedback',
   ImportJob: 'ImportJob'
 } as const
 
@@ -418,7 +422,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "account" | "session" | "verificationToken" | "membership" | "questionTag" | "material" | "question" | "questionOption" | "paper" | "paperQuestion" | "dailyPractice" | "dailyPracticeQuestion" | "practiceSession" | "practiceAnswer" | "wrongQuestion" | "userStatsSnapshot" | "userTagStats" | "importJob"
+    modelProps: "user" | "account" | "session" | "verificationToken" | "membership" | "questionTag" | "material" | "question" | "questionOption" | "paper" | "paperQuestion" | "dailyPractice" | "dailyPracticeQuestion" | "practiceSession" | "practiceAnswer" | "wrongQuestion" | "userStatsSnapshot" | "userTagStats" | "agentConfig" | "agentRecommendation" | "agentTutorMessage" | "agentFeedback" | "importJob"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1610,6 +1614,270 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    AgentConfig: {
+      payload: Prisma.$AgentConfigPayload<ExtArgs>
+      fields: Prisma.AgentConfigFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AgentConfigFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentConfigPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AgentConfigFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentConfigPayload>
+        }
+        findFirst: {
+          args: Prisma.AgentConfigFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentConfigPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AgentConfigFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentConfigPayload>
+        }
+        findMany: {
+          args: Prisma.AgentConfigFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentConfigPayload>[]
+        }
+        create: {
+          args: Prisma.AgentConfigCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentConfigPayload>
+        }
+        createMany: {
+          args: Prisma.AgentConfigCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.AgentConfigDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentConfigPayload>
+        }
+        update: {
+          args: Prisma.AgentConfigUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentConfigPayload>
+        }
+        deleteMany: {
+          args: Prisma.AgentConfigDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AgentConfigUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.AgentConfigUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentConfigPayload>
+        }
+        aggregate: {
+          args: Prisma.AgentConfigAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAgentConfig>
+        }
+        groupBy: {
+          args: Prisma.AgentConfigGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AgentConfigGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AgentConfigCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AgentConfigCountAggregateOutputType> | number
+        }
+      }
+    }
+    AgentRecommendation: {
+      payload: Prisma.$AgentRecommendationPayload<ExtArgs>
+      fields: Prisma.AgentRecommendationFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AgentRecommendationFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentRecommendationPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AgentRecommendationFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentRecommendationPayload>
+        }
+        findFirst: {
+          args: Prisma.AgentRecommendationFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentRecommendationPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AgentRecommendationFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentRecommendationPayload>
+        }
+        findMany: {
+          args: Prisma.AgentRecommendationFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentRecommendationPayload>[]
+        }
+        create: {
+          args: Prisma.AgentRecommendationCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentRecommendationPayload>
+        }
+        createMany: {
+          args: Prisma.AgentRecommendationCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.AgentRecommendationDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentRecommendationPayload>
+        }
+        update: {
+          args: Prisma.AgentRecommendationUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentRecommendationPayload>
+        }
+        deleteMany: {
+          args: Prisma.AgentRecommendationDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AgentRecommendationUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.AgentRecommendationUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentRecommendationPayload>
+        }
+        aggregate: {
+          args: Prisma.AgentRecommendationAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAgentRecommendation>
+        }
+        groupBy: {
+          args: Prisma.AgentRecommendationGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AgentRecommendationGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AgentRecommendationCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AgentRecommendationCountAggregateOutputType> | number
+        }
+      }
+    }
+    AgentTutorMessage: {
+      payload: Prisma.$AgentTutorMessagePayload<ExtArgs>
+      fields: Prisma.AgentTutorMessageFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AgentTutorMessageFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentTutorMessagePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AgentTutorMessageFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentTutorMessagePayload>
+        }
+        findFirst: {
+          args: Prisma.AgentTutorMessageFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentTutorMessagePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AgentTutorMessageFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentTutorMessagePayload>
+        }
+        findMany: {
+          args: Prisma.AgentTutorMessageFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentTutorMessagePayload>[]
+        }
+        create: {
+          args: Prisma.AgentTutorMessageCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentTutorMessagePayload>
+        }
+        createMany: {
+          args: Prisma.AgentTutorMessageCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.AgentTutorMessageDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentTutorMessagePayload>
+        }
+        update: {
+          args: Prisma.AgentTutorMessageUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentTutorMessagePayload>
+        }
+        deleteMany: {
+          args: Prisma.AgentTutorMessageDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AgentTutorMessageUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.AgentTutorMessageUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentTutorMessagePayload>
+        }
+        aggregate: {
+          args: Prisma.AgentTutorMessageAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAgentTutorMessage>
+        }
+        groupBy: {
+          args: Prisma.AgentTutorMessageGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AgentTutorMessageGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AgentTutorMessageCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AgentTutorMessageCountAggregateOutputType> | number
+        }
+      }
+    }
+    AgentFeedback: {
+      payload: Prisma.$AgentFeedbackPayload<ExtArgs>
+      fields: Prisma.AgentFeedbackFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AgentFeedbackFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentFeedbackPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AgentFeedbackFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentFeedbackPayload>
+        }
+        findFirst: {
+          args: Prisma.AgentFeedbackFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentFeedbackPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AgentFeedbackFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentFeedbackPayload>
+        }
+        findMany: {
+          args: Prisma.AgentFeedbackFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentFeedbackPayload>[]
+        }
+        create: {
+          args: Prisma.AgentFeedbackCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentFeedbackPayload>
+        }
+        createMany: {
+          args: Prisma.AgentFeedbackCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.AgentFeedbackDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentFeedbackPayload>
+        }
+        update: {
+          args: Prisma.AgentFeedbackUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentFeedbackPayload>
+        }
+        deleteMany: {
+          args: Prisma.AgentFeedbackDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AgentFeedbackUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.AgentFeedbackUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentFeedbackPayload>
+        }
+        aggregate: {
+          args: Prisma.AgentFeedbackAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAgentFeedback>
+        }
+        groupBy: {
+          args: Prisma.AgentFeedbackGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AgentFeedbackGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AgentFeedbackCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AgentFeedbackCountAggregateOutputType> | number
+        }
+      }
+    }
     ImportJob: {
       payload: Prisma.$ImportJobPayload<ExtArgs>
       fields: Prisma.ImportJobFieldRefs
@@ -1985,6 +2253,67 @@ export const UserTagStatsScalarFieldEnum = {
 export type UserTagStatsScalarFieldEnum = (typeof UserTagStatsScalarFieldEnum)[keyof typeof UserTagStatsScalarFieldEnum]
 
 
+export const AgentConfigScalarFieldEnum = {
+  id: 'id',
+  key: 'key',
+  valueJson: 'valueJson',
+  description: 'description',
+  updatedByUserId: 'updatedByUserId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AgentConfigScalarFieldEnum = (typeof AgentConfigScalarFieldEnum)[keyof typeof AgentConfigScalarFieldEnum]
+
+
+export const AgentRecommendationScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  sourceSessionId: 'sourceSessionId',
+  type: 'type',
+  title: 'title',
+  configSnapshotJson: 'configSnapshotJson',
+  evidenceJson: 'evidenceJson',
+  actionJson: 'actionJson',
+  confidence: 'confidence',
+  status: 'status',
+  clickedAt: 'clickedAt',
+  startedSessionId: 'startedSessionId',
+  completedAt: 'completedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AgentRecommendationScalarFieldEnum = (typeof AgentRecommendationScalarFieldEnum)[keyof typeof AgentRecommendationScalarFieldEnum]
+
+
+export const AgentTutorMessageScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  questionId: 'questionId',
+  sessionId: 'sessionId',
+  role: 'role',
+  content: 'content',
+  metadataJson: 'metadataJson',
+  createdAt: 'createdAt'
+} as const
+
+export type AgentTutorMessageScalarFieldEnum = (typeof AgentTutorMessageScalarFieldEnum)[keyof typeof AgentTutorMessageScalarFieldEnum]
+
+
+export const AgentFeedbackScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  targetType: 'targetType',
+  targetId: 'targetId',
+  rating: 'rating',
+  reason: 'reason',
+  createdAt: 'createdAt'
+} as const
+
+export type AgentFeedbackScalarFieldEnum = (typeof AgentFeedbackScalarFieldEnum)[keyof typeof AgentFeedbackScalarFieldEnum]
+
+
 export const ImportJobScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -2016,6 +2345,13 @@ export const NullableJsonNullValueInput = {
 } as const
 
 export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const NullsOrder = {
@@ -2229,6 +2565,54 @@ export const UserTagStatsOrderByRelevanceFieldEnum = {
 } as const
 
 export type UserTagStatsOrderByRelevanceFieldEnum = (typeof UserTagStatsOrderByRelevanceFieldEnum)[keyof typeof UserTagStatsOrderByRelevanceFieldEnum]
+
+
+export const AgentConfigOrderByRelevanceFieldEnum = {
+  id: 'id',
+  key: 'key',
+  description: 'description',
+  updatedByUserId: 'updatedByUserId'
+} as const
+
+export type AgentConfigOrderByRelevanceFieldEnum = (typeof AgentConfigOrderByRelevanceFieldEnum)[keyof typeof AgentConfigOrderByRelevanceFieldEnum]
+
+
+export const AgentRecommendationOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  sourceSessionId: 'sourceSessionId',
+  type: 'type',
+  title: 'title',
+  confidence: 'confidence',
+  status: 'status',
+  startedSessionId: 'startedSessionId'
+} as const
+
+export type AgentRecommendationOrderByRelevanceFieldEnum = (typeof AgentRecommendationOrderByRelevanceFieldEnum)[keyof typeof AgentRecommendationOrderByRelevanceFieldEnum]
+
+
+export const AgentTutorMessageOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  questionId: 'questionId',
+  sessionId: 'sessionId',
+  role: 'role',
+  content: 'content'
+} as const
+
+export type AgentTutorMessageOrderByRelevanceFieldEnum = (typeof AgentTutorMessageOrderByRelevanceFieldEnum)[keyof typeof AgentTutorMessageOrderByRelevanceFieldEnum]
+
+
+export const AgentFeedbackOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  targetType: 'targetType',
+  targetId: 'targetId',
+  rating: 'rating',
+  reason: 'reason'
+} as const
+
+export type AgentFeedbackOrderByRelevanceFieldEnum = (typeof AgentFeedbackOrderByRelevanceFieldEnum)[keyof typeof AgentFeedbackOrderByRelevanceFieldEnum]
 
 
 export const ImportJobOrderByRelevanceFieldEnum = {
@@ -2473,6 +2857,10 @@ export type GlobalOmitConfig = {
   wrongQuestion?: Prisma.WrongQuestionOmit
   userStatsSnapshot?: Prisma.UserStatsSnapshotOmit
   userTagStats?: Prisma.UserTagStatsOmit
+  agentConfig?: Prisma.AgentConfigOmit
+  agentRecommendation?: Prisma.AgentRecommendationOmit
+  agentTutorMessage?: Prisma.AgentTutorMessageOmit
+  agentFeedback?: Prisma.AgentFeedbackOmit
   importJob?: Prisma.ImportJobOmit
 }
 
