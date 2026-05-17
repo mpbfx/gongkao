@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { RichHtml } from "@/components/question/rich-html";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
@@ -175,6 +175,10 @@ function normalizeAnswer(answer?: string | null) {
 
 function answerIncludes(answer: string | undefined | null, value: string) {
   return normalizeAnswer(answer).split(",").filter(Boolean).includes(value);
+}
+
+function shouldOpenDetailSheet() {
+  return typeof window !== "undefined" && !window.matchMedia("(min-width: 1280px)").matches;
 }
 
 function buildWrongHref(input: {
@@ -420,6 +424,20 @@ export function WrongReviewWorkspace({
   const selected = flatItems.find(({ item }) => item.id === selectedId) ?? flatItems[0] ?? null;
   const highRepeatCount = flatItems.filter(({ item }) => item.wrongCount >= 2 && !item.resolvedAt).length;
 
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 1280px)");
+    const closeSheetOnDesktop = () => {
+      if (mediaQuery.matches) {
+        setMobileDetailOpen(false);
+      }
+    };
+
+    closeSheetOnDesktop();
+    mediaQuery.addEventListener("change", closeSheetOnDesktop);
+
+    return () => mediaQuery.removeEventListener("change", closeSheetOnDesktop);
+  }, []);
+
   async function startWrongSession(input: { mode: WrongSessionMode; tagId?: string | null; count: number }) {
     setActionError(null);
     setPendingSessionKey(`${input.mode}:${input.tagId ?? "all"}`);
@@ -638,7 +656,7 @@ export function WrongReviewWorkspace({
                             )}
                             onClick={() => {
                               setSelectedId(item.id);
-                              setMobileDetailOpen(true);
+                              setMobileDetailOpen(shouldOpenDetailSheet());
                             }}
                           >
                             <div
