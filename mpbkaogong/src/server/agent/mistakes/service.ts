@@ -32,6 +32,12 @@ export type MistakeReviewInput = {
   timeSpentSeconds?: number | null;
 };
 
+type TrendBucket = {
+  day: string;
+  total: number;
+  movingAverage?: number;
+} & Partial<Record<MistakeCause, number>>;
+
 const causeOrder = mistakeCauseSchema.options;
 
 function dateKey(value: Date) {
@@ -233,7 +239,7 @@ export async function getMistakeInsights(
       ? new Date(records[0].createdAt.getFullYear(), records[0].createdAt.getMonth(), records[0].createdAt.getDate())
       : end);
   const days = eachDay(trendStart, end);
-  const trendBuckets = new Map(days.map((day) => [day, { day, total: 0 } as Record<string, number | string>]));
+  const trendBuckets = new Map<string, TrendBucket>(days.map((day) => [day, { day, total: 0 }]));
 
   for (const record of records) {
     const key = dateKey(record.createdAt);
@@ -243,8 +249,8 @@ export async function getMistakeInsights(
       continue;
     }
 
-    bucket.total = Number(bucket.total) + 1;
-    bucket[record.mistakeCause] = Number(bucket[record.mistakeCause] ?? 0) + 1;
+    bucket.total += 1;
+    bucket[record.mistakeCause] = (bucket[record.mistakeCause] ?? 0) + 1;
   }
 
   const trend = Array.from(trendBuckets.values());

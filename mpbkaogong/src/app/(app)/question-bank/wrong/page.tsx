@@ -1,9 +1,12 @@
 import {
   AlertTriangle,
   ArrowRight,
+  BarChart3,
   BookOpen,
+  Brain,
   CheckCircle2,
   Dumbbell,
+  Filter,
   Layers3,
   RotateCcw,
   Target,
@@ -25,6 +28,7 @@ import {
 import { TutorPanel } from "@/features/agent/tutor-panel";
 import { requireUser } from "@/lib/auth/guards";
 import { cn } from "@/lib/utils";
+import { getMistakeInsights } from "@/server/agent/mistakes/service";
 import {
   createWrongQuestionPracticeSession,
   listWrongQuestions,
@@ -53,6 +57,34 @@ function formatDate(value: string) {
     hour: "2-digit",
     minute: "2-digit",
   }).format(new Date(value));
+}
+
+function buildWrongHref(input: {
+  tagId?: string | null;
+  includeResolved?: boolean;
+  mistakeCause?: string | null;
+  analysis?: "analyzed" | "unanalyzed" | "all";
+}) {
+  const params = new URLSearchParams();
+
+  if (input.tagId) {
+    params.set("tagId", input.tagId);
+  }
+
+  if (input.includeResolved) {
+    params.set("includeResolved", "true");
+  }
+
+  if (input.mistakeCause) {
+    params.set("mistakeCause", input.mistakeCause);
+  }
+
+  if (input.analysis && input.analysis !== "all") {
+    params.set("analysis", input.analysis);
+  }
+
+  const query = params.toString();
+  return `/question-bank/wrong${query ? `?${query}` : ""}`;
 }
 
 async function startWrongSession(formData: FormData) {
@@ -119,10 +151,16 @@ export default async function WrongQuestionsPage({ searchParams }: WrongQuestion
   const rawParams = await searchParams;
   const query = wrongQuestionsQuerySchema.parse({
     tagId: firstValue(rawParams?.tagId),
+    mistakeCause: firstValue(rawParams?.mistakeCause),
+    analysis: firstValue(rawParams?.analysis),
     includeResolved: firstValue(rawParams?.includeResolved),
   });
-  const data = await listWrongQuestions(user, query);
+  const [data, mistakeInsights] = await Promise.all([
+    listWrongQuestions(user, query),
+    getMistakeInsights(user, { range: "30", includeResolved: query.includeResolved }),
+  ]);
   const hasWrongQuestions = data.summary.unresolvedCount > 0;
+  const hasActiveFilters = Boolean(query.tagId || query.mistakeCause || query.analysis !== "all");
   const highRepeatCount = data.groups.reduce(
     (total, group) => total + group.items.filter((item) => item.wrongCount >= 2 && !item.resolvedAt).length,
     0
@@ -136,13 +174,25 @@ export default async function WrongQuestionsPage({ searchParams }: WrongQuestion
           title="把高频错误收拢成下一组训练"
           description="优先看重复错误和未掌握知识点，复盘入口保持在每个模块附近。"
           actions={
-            <Link
-              href={query.includeResolved ? "/question-bank/wrong" : "/question-bank/wrong?includeResolved=true"}
-              className={cn(buttonVariants({ variant: "outline" }))}
-            >
-              <RotateCcw data-icon="inline-start" />
-              {query.includeResolved ? "只看未掌握" : "查看已掌握"}
-            </Link>
+            <>
+              {hasActiveFilters ? (
+                <Link href={buildWrongHref({ includeResolved: query.includeResolved })} className={cn(buttonVariants({ variant: "outline" }))}>
+                  <Filter data-icon="inline-start" />
+                  清空筛选
+                </Link>
+              ) : null}
+              <Link href="/question-bank/wrong/insights" className={cn(buttonVariants({ variant: "outline" }))}>
+                <BarChart3 data-icon="inline-start" />
+                错因报告
+              </Link>
+              <Link
+                href={buildWrongHref({ includeResolved: !query.includeResolved })}
+                className={cn(buttonVariants({ variant: "outline" }))}
+              >
+                <RotateCcw data-icon="inline-start" />
+                {query.includeResolved ? "只看未掌握" : "查看已掌握"}
+              </Link>
+            </>
           }
         />
 
@@ -203,14 +253,97 @@ export default async function WrongQuestionsPage({ searchParams }: WrongQuestion
           </div>
         </section>
 
+        <TrainingPanel
+          title="错因复盘行动"
+          description="统计只按每道题最新一次结构化复盘计算；未分析错题可以继续问助教补齐。"
+          icon={Brain}
+          action={
+            <Link href="/question-bank/wrong/insights" className={cn(buttonVariants({ variant: "outline", size: "sm" }))}>
+              完整报告
+              <ArrowRight data-icon="inline-end" />
+            </Link>
+          }
+          tone={mistakeInsights.summary.unanalyzedCount > 0 ? "warning" : "info"}
+        >
+          <div className="grid gap-4 lg:grid-cols-[minmax(0,1.2fr)_minmax(280px,0.8fr)]">
+            <div className="grid gap-3 sm:grid-cols-3">
+              <Link
+                href={buildWrongHref({ includeResolved: query.includeResolved, analysis: "analyzed" })}
+                className="rounded-lg border bg-background p-3 transition-colors hover:bg-muted/60"
+              >
+                <div className="text-xs text-muted-foreground">已分析</div>
+                <div className="mt-1 font-mono text-2xl font-semibold">{mistakeInsights.summary.analyzedCount}</div>
+                <div className="mt-1 text-xs text-muted-foreground">有结构化错因</div>
+              </Link>
+              <Link
+                href={buildWrongHref({ includeResolved: query.includeResolved, analysis: "unanalyzed" })}
+                className="rounded-lg border bg-background p-3 transition-colors hover:bg-muted/60"
+              >
+                <div className="text-xs text-muted-foreground">未分析</div>
+                <div className="mt-1 font-mono text-2xl font-semibold">{mistakeInsights.summary.unanalyzedCount}</div>
+                <div className="mt-1 text-xs text-muted-foreground">建议优先问助教</div>
+              </Link>
+              <div className="rounded-lg border bg-background p-3">
+                <div className="text-xs text-muted-foreground">主导错因</div>
+                <div className="mt-1 text-base font-semibold">
+                  {mistakeInsights.summary.dominantCause?.label ?? "暂无"}
+                </div>
+                <div className="mt-1 text-xs text-muted-foreground">
+                  {mistakeInsights.summary.dominantCause
+                    ? `${mistakeInsights.summary.dominantCause.count} 道题`
+                    : "先完成错因复盘"}
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {mistakeInsights.distribution.length > 0 ? (
+                mistakeInsights.distribution.slice(0, 6).map((item) => (
+                  <Link
+                    key={item.cause}
+                    href={buildWrongHref({
+                      includeResolved: query.includeResolved,
+                      mistakeCause: item.cause,
+                      analysis: "analyzed",
+                    })}
+                    className={cn(buttonVariants({ variant: item.cause === query.mistakeCause ? "default" : "outline", size: "sm" }))}
+                  >
+                    {item.label} · {item.count}
+                  </Link>
+                ))
+              ) : (
+                <p className="text-sm text-muted-foreground">还没有可统计的错因。点开错题的“问助教”后，这里会自动沉淀。</p>
+              )}
+            </div>
+          </div>
+          {mistakeInsights.knowledgePatterns.length > 0 ? (
+            <div className="mt-4 flex flex-wrap gap-2 border-t pt-4">
+              {mistakeInsights.knowledgePatterns.slice(0, 5).map((item) => (
+                <Link
+                  key={`${item.tagId ?? "untagged"}-${item.cause}`}
+                  href={buildWrongHref({
+                    tagId: item.tagId,
+                    includeResolved: query.includeResolved,
+                    mistakeCause: item.cause,
+                    analysis: "analyzed",
+                  })}
+                  className={cn(buttonVariants({ variant: "outline", size: "sm" }))}
+                >
+                  {item.tagName} / {item.label} · {item.count}
+                </Link>
+              ))}
+            </div>
+          ) : null}
+        </TrainingPanel>
+
         {hasWrongQuestions || query.includeResolved ? (
           <TrainingPanel
             title="复盘优先级"
             description="模块按未掌握数量排序；重复错误越多，越适合先练一组。"
             icon={BookOpen}
           >
-            <div className="flex flex-col gap-4">
-            {data.groups.map((group) => (
+            {data.groups.length > 0 ? (
+              <div className="flex flex-col gap-4">
+              {data.groups.map((group) => (
               <details
                 key={group.tagId ?? "untagged"}
                 open={group.items.some((item) => item.wrongCount >= 2 && !item.resolvedAt) || data.groups.length <= 2}
@@ -258,6 +391,13 @@ export default async function WrongQuestionsPage({ searchParams }: WrongQuestion
                               {item.resolvedAt ? "已掌握" : "未掌握"}
                             </Badge>
                             <Badge variant="outline">{formatDate(item.lastWrongAt)}</Badge>
+                            {item.latestMistakeReview ? (
+                              <Badge variant={item.latestMistakeReview.confidence === "LOW" ? "outline" : "info"}>
+                                {item.latestMistakeReview.mistakeCauseLabel}
+                              </Badge>
+                            ) : (
+                              <Badge variant="outline">未分析错因</Badge>
+                            )}
                           </div>
                           <h3 className="line-clamp-2 text-sm leading-6">{stripHtml(item.question.titleHtml)}</h3>
                           <p className="mt-2 text-sm text-muted-foreground">
@@ -281,8 +421,13 @@ export default async function WrongQuestionsPage({ searchParams }: WrongQuestion
                   ))}
                 </div>
               </details>
-            ))}
-            </div>
+              ))}
+              </div>
+            ) : (
+              <div className="rounded-lg border bg-background p-4 text-sm text-muted-foreground">
+                当前筛选下没有错题。可以清空筛选，或先分析未分类错题。
+              </div>
+            )}
           </TrainingPanel>
         ) : (
           <EmptyState

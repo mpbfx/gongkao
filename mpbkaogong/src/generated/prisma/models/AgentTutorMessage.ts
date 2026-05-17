@@ -205,6 +205,7 @@ export type AgentTutorMessageWhereInput = {
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   question?: Prisma.XOR<Prisma.QuestionScalarRelationFilter, Prisma.QuestionWhereInput>
   session?: Prisma.XOR<Prisma.PracticeSessionNullableScalarRelationFilter, Prisma.PracticeSessionWhereInput> | null
+  mistakeReviews?: Prisma.QuestionMistakeReviewListRelationFilter
 }
 
 export type AgentTutorMessageOrderByWithRelationInput = {
@@ -219,6 +220,7 @@ export type AgentTutorMessageOrderByWithRelationInput = {
   user?: Prisma.UserOrderByWithRelationInput
   question?: Prisma.QuestionOrderByWithRelationInput
   session?: Prisma.PracticeSessionOrderByWithRelationInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewOrderByRelationAggregateInput
   _relevance?: Prisma.AgentTutorMessageOrderByRelevanceInput
 }
 
@@ -237,6 +239,7 @@ export type AgentTutorMessageWhereUniqueInput = Prisma.AtLeast<{
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   question?: Prisma.XOR<Prisma.QuestionScalarRelationFilter, Prisma.QuestionWhereInput>
   session?: Prisma.XOR<Prisma.PracticeSessionNullableScalarRelationFilter, Prisma.PracticeSessionWhereInput> | null
+  mistakeReviews?: Prisma.QuestionMistakeReviewListRelationFilter
 }, "id">
 
 export type AgentTutorMessageOrderByWithAggregationInput = {
@@ -276,6 +279,7 @@ export type AgentTutorMessageCreateInput = {
   user: Prisma.UserCreateNestedOneWithoutAgentTutorMessagesInput
   question: Prisma.QuestionCreateNestedOneWithoutAgentTutorMessagesInput
   session?: Prisma.PracticeSessionCreateNestedOneWithoutAgentTutorMessagesInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewCreateNestedManyWithoutTutorMessageInput
 }
 
 export type AgentTutorMessageUncheckedCreateInput = {
@@ -287,6 +291,7 @@ export type AgentTutorMessageUncheckedCreateInput = {
   content: string
   metadataJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
+  mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedCreateNestedManyWithoutTutorMessageInput
 }
 
 export type AgentTutorMessageUpdateInput = {
@@ -298,6 +303,7 @@ export type AgentTutorMessageUpdateInput = {
   user?: Prisma.UserUpdateOneRequiredWithoutAgentTutorMessagesNestedInput
   question?: Prisma.QuestionUpdateOneRequiredWithoutAgentTutorMessagesNestedInput
   session?: Prisma.PracticeSessionUpdateOneWithoutAgentTutorMessagesNestedInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewUpdateManyWithoutTutorMessageNestedInput
 }
 
 export type AgentTutorMessageUncheckedUpdateInput = {
@@ -309,6 +315,7 @@ export type AgentTutorMessageUncheckedUpdateInput = {
   content?: Prisma.StringFieldUpdateOperationsInput | string
   metadataJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedUpdateManyWithoutTutorMessageNestedInput
 }
 
 export type AgentTutorMessageCreateManyInput = {
@@ -386,6 +393,11 @@ export type AgentTutorMessageMinOrderByAggregateInput = {
   role?: Prisma.SortOrder
   content?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+}
+
+export type AgentTutorMessageNullableScalarRelationFilter = {
+  is?: Prisma.AgentTutorMessageWhereInput | null
+  isNot?: Prisma.AgentTutorMessageWhereInput | null
 }
 
 export type AgentTutorMessageCreateNestedManyWithoutUserInput = {
@@ -514,6 +526,22 @@ export type AgentTutorMessageUncheckedUpdateManyWithoutSessionNestedInput = {
   deleteMany?: Prisma.AgentTutorMessageScalarWhereInput | Prisma.AgentTutorMessageScalarWhereInput[]
 }
 
+export type AgentTutorMessageCreateNestedOneWithoutMistakeReviewsInput = {
+  create?: Prisma.XOR<Prisma.AgentTutorMessageCreateWithoutMistakeReviewsInput, Prisma.AgentTutorMessageUncheckedCreateWithoutMistakeReviewsInput>
+  connectOrCreate?: Prisma.AgentTutorMessageCreateOrConnectWithoutMistakeReviewsInput
+  connect?: Prisma.AgentTutorMessageWhereUniqueInput
+}
+
+export type AgentTutorMessageUpdateOneWithoutMistakeReviewsNestedInput = {
+  create?: Prisma.XOR<Prisma.AgentTutorMessageCreateWithoutMistakeReviewsInput, Prisma.AgentTutorMessageUncheckedCreateWithoutMistakeReviewsInput>
+  connectOrCreate?: Prisma.AgentTutorMessageCreateOrConnectWithoutMistakeReviewsInput
+  upsert?: Prisma.AgentTutorMessageUpsertWithoutMistakeReviewsInput
+  disconnect?: Prisma.AgentTutorMessageWhereInput | boolean
+  delete?: Prisma.AgentTutorMessageWhereInput | boolean
+  connect?: Prisma.AgentTutorMessageWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.AgentTutorMessageUpdateToOneWithWhereWithoutMistakeReviewsInput, Prisma.AgentTutorMessageUpdateWithoutMistakeReviewsInput>, Prisma.AgentTutorMessageUncheckedUpdateWithoutMistakeReviewsInput>
+}
+
 export type AgentTutorMessageCreateWithoutUserInput = {
   id?: string
   role: string
@@ -522,6 +550,7 @@ export type AgentTutorMessageCreateWithoutUserInput = {
   createdAt?: Date | string
   question: Prisma.QuestionCreateNestedOneWithoutAgentTutorMessagesInput
   session?: Prisma.PracticeSessionCreateNestedOneWithoutAgentTutorMessagesInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewCreateNestedManyWithoutTutorMessageInput
 }
 
 export type AgentTutorMessageUncheckedCreateWithoutUserInput = {
@@ -532,6 +561,7 @@ export type AgentTutorMessageUncheckedCreateWithoutUserInput = {
   content: string
   metadataJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
+  mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedCreateNestedManyWithoutTutorMessageInput
 }
 
 export type AgentTutorMessageCreateOrConnectWithoutUserInput = {
@@ -582,6 +612,7 @@ export type AgentTutorMessageCreateWithoutQuestionInput = {
   createdAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutAgentTutorMessagesInput
   session?: Prisma.PracticeSessionCreateNestedOneWithoutAgentTutorMessagesInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewCreateNestedManyWithoutTutorMessageInput
 }
 
 export type AgentTutorMessageUncheckedCreateWithoutQuestionInput = {
@@ -592,6 +623,7 @@ export type AgentTutorMessageUncheckedCreateWithoutQuestionInput = {
   content: string
   metadataJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
+  mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedCreateNestedManyWithoutTutorMessageInput
 }
 
 export type AgentTutorMessageCreateOrConnectWithoutQuestionInput = {
@@ -628,6 +660,7 @@ export type AgentTutorMessageCreateWithoutSessionInput = {
   createdAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutAgentTutorMessagesInput
   question: Prisma.QuestionCreateNestedOneWithoutAgentTutorMessagesInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewCreateNestedManyWithoutTutorMessageInput
 }
 
 export type AgentTutorMessageUncheckedCreateWithoutSessionInput = {
@@ -638,6 +671,7 @@ export type AgentTutorMessageUncheckedCreateWithoutSessionInput = {
   content: string
   metadataJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
+  mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedCreateNestedManyWithoutTutorMessageInput
 }
 
 export type AgentTutorMessageCreateOrConnectWithoutSessionInput = {
@@ -666,6 +700,66 @@ export type AgentTutorMessageUpdateManyWithWhereWithoutSessionInput = {
   data: Prisma.XOR<Prisma.AgentTutorMessageUpdateManyMutationInput, Prisma.AgentTutorMessageUncheckedUpdateManyWithoutSessionInput>
 }
 
+export type AgentTutorMessageCreateWithoutMistakeReviewsInput = {
+  id?: string
+  role: string
+  content: string
+  metadataJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutAgentTutorMessagesInput
+  question: Prisma.QuestionCreateNestedOneWithoutAgentTutorMessagesInput
+  session?: Prisma.PracticeSessionCreateNestedOneWithoutAgentTutorMessagesInput
+}
+
+export type AgentTutorMessageUncheckedCreateWithoutMistakeReviewsInput = {
+  id?: string
+  userId: string
+  questionId: string
+  sessionId?: string | null
+  role: string
+  content: string
+  metadataJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+}
+
+export type AgentTutorMessageCreateOrConnectWithoutMistakeReviewsInput = {
+  where: Prisma.AgentTutorMessageWhereUniqueInput
+  create: Prisma.XOR<Prisma.AgentTutorMessageCreateWithoutMistakeReviewsInput, Prisma.AgentTutorMessageUncheckedCreateWithoutMistakeReviewsInput>
+}
+
+export type AgentTutorMessageUpsertWithoutMistakeReviewsInput = {
+  update: Prisma.XOR<Prisma.AgentTutorMessageUpdateWithoutMistakeReviewsInput, Prisma.AgentTutorMessageUncheckedUpdateWithoutMistakeReviewsInput>
+  create: Prisma.XOR<Prisma.AgentTutorMessageCreateWithoutMistakeReviewsInput, Prisma.AgentTutorMessageUncheckedCreateWithoutMistakeReviewsInput>
+  where?: Prisma.AgentTutorMessageWhereInput
+}
+
+export type AgentTutorMessageUpdateToOneWithWhereWithoutMistakeReviewsInput = {
+  where?: Prisma.AgentTutorMessageWhereInput
+  data: Prisma.XOR<Prisma.AgentTutorMessageUpdateWithoutMistakeReviewsInput, Prisma.AgentTutorMessageUncheckedUpdateWithoutMistakeReviewsInput>
+}
+
+export type AgentTutorMessageUpdateWithoutMistakeReviewsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.StringFieldUpdateOperationsInput | string
+  content?: Prisma.StringFieldUpdateOperationsInput | string
+  metadataJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutAgentTutorMessagesNestedInput
+  question?: Prisma.QuestionUpdateOneRequiredWithoutAgentTutorMessagesNestedInput
+  session?: Prisma.PracticeSessionUpdateOneWithoutAgentTutorMessagesNestedInput
+}
+
+export type AgentTutorMessageUncheckedUpdateWithoutMistakeReviewsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  questionId?: Prisma.StringFieldUpdateOperationsInput | string
+  sessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.StringFieldUpdateOperationsInput | string
+  content?: Prisma.StringFieldUpdateOperationsInput | string
+  metadataJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
 export type AgentTutorMessageCreateManyUserInput = {
   id?: string
   questionId: string
@@ -684,6 +778,7 @@ export type AgentTutorMessageUpdateWithoutUserInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   question?: Prisma.QuestionUpdateOneRequiredWithoutAgentTutorMessagesNestedInput
   session?: Prisma.PracticeSessionUpdateOneWithoutAgentTutorMessagesNestedInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewUpdateManyWithoutTutorMessageNestedInput
 }
 
 export type AgentTutorMessageUncheckedUpdateWithoutUserInput = {
@@ -694,6 +789,7 @@ export type AgentTutorMessageUncheckedUpdateWithoutUserInput = {
   content?: Prisma.StringFieldUpdateOperationsInput | string
   metadataJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedUpdateManyWithoutTutorMessageNestedInput
 }
 
 export type AgentTutorMessageUncheckedUpdateManyWithoutUserInput = {
@@ -724,6 +820,7 @@ export type AgentTutorMessageUpdateWithoutQuestionInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutAgentTutorMessagesNestedInput
   session?: Prisma.PracticeSessionUpdateOneWithoutAgentTutorMessagesNestedInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewUpdateManyWithoutTutorMessageNestedInput
 }
 
 export type AgentTutorMessageUncheckedUpdateWithoutQuestionInput = {
@@ -734,6 +831,7 @@ export type AgentTutorMessageUncheckedUpdateWithoutQuestionInput = {
   content?: Prisma.StringFieldUpdateOperationsInput | string
   metadataJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedUpdateManyWithoutTutorMessageNestedInput
 }
 
 export type AgentTutorMessageUncheckedUpdateManyWithoutQuestionInput = {
@@ -764,6 +862,7 @@ export type AgentTutorMessageUpdateWithoutSessionInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutAgentTutorMessagesNestedInput
   question?: Prisma.QuestionUpdateOneRequiredWithoutAgentTutorMessagesNestedInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewUpdateManyWithoutTutorMessageNestedInput
 }
 
 export type AgentTutorMessageUncheckedUpdateWithoutSessionInput = {
@@ -774,6 +873,7 @@ export type AgentTutorMessageUncheckedUpdateWithoutSessionInput = {
   content?: Prisma.StringFieldUpdateOperationsInput | string
   metadataJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedUpdateManyWithoutTutorMessageNestedInput
 }
 
 export type AgentTutorMessageUncheckedUpdateManyWithoutSessionInput = {
@@ -786,6 +886,35 @@ export type AgentTutorMessageUncheckedUpdateManyWithoutSessionInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
+
+/**
+ * Count Type AgentTutorMessageCountOutputType
+ */
+
+export type AgentTutorMessageCountOutputType = {
+  mistakeReviews: number
+}
+
+export type AgentTutorMessageCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  mistakeReviews?: boolean | AgentTutorMessageCountOutputTypeCountMistakeReviewsArgs
+}
+
+/**
+ * AgentTutorMessageCountOutputType without action
+ */
+export type AgentTutorMessageCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AgentTutorMessageCountOutputType
+   */
+  select?: Prisma.AgentTutorMessageCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * AgentTutorMessageCountOutputType without action
+ */
+export type AgentTutorMessageCountOutputTypeCountMistakeReviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.QuestionMistakeReviewWhereInput
+}
 
 
 export type AgentTutorMessageSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -800,6 +929,8 @@ export type AgentTutorMessageSelect<ExtArgs extends runtime.Types.Extensions.Int
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   question?: boolean | Prisma.QuestionDefaultArgs<ExtArgs>
   session?: boolean | Prisma.AgentTutorMessage$sessionArgs<ExtArgs>
+  mistakeReviews?: boolean | Prisma.AgentTutorMessage$mistakeReviewsArgs<ExtArgs>
+  _count?: boolean | Prisma.AgentTutorMessageCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["agentTutorMessage"]>
 
 
@@ -820,6 +951,8 @@ export type AgentTutorMessageInclude<ExtArgs extends runtime.Types.Extensions.In
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   question?: boolean | Prisma.QuestionDefaultArgs<ExtArgs>
   session?: boolean | Prisma.AgentTutorMessage$sessionArgs<ExtArgs>
+  mistakeReviews?: boolean | Prisma.AgentTutorMessage$mistakeReviewsArgs<ExtArgs>
+  _count?: boolean | Prisma.AgentTutorMessageCountOutputTypeDefaultArgs<ExtArgs>
 }
 
 export type $AgentTutorMessagePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -828,6 +961,7 @@ export type $AgentTutorMessagePayload<ExtArgs extends runtime.Types.Extensions.I
     user: Prisma.$UserPayload<ExtArgs>
     question: Prisma.$QuestionPayload<ExtArgs>
     session: Prisma.$PracticeSessionPayload<ExtArgs> | null
+    mistakeReviews: Prisma.$QuestionMistakeReviewPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1181,6 +1315,7 @@ export interface Prisma__AgentTutorMessageClient<T, Null = never, ExtArgs extend
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   question<T extends Prisma.QuestionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.QuestionDefaultArgs<ExtArgs>>): Prisma.Prisma__QuestionClient<runtime.Types.Result.GetResult<Prisma.$QuestionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   session<T extends Prisma.AgentTutorMessage$sessionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AgentTutorMessage$sessionArgs<ExtArgs>>): Prisma.Prisma__PracticeSessionClient<runtime.Types.Result.GetResult<Prisma.$PracticeSessionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  mistakeReviews<T extends Prisma.AgentTutorMessage$mistakeReviewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AgentTutorMessage$mistakeReviewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuestionMistakeReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1582,6 +1717,30 @@ export type AgentTutorMessage$sessionArgs<ExtArgs extends runtime.Types.Extensio
    */
   include?: Prisma.PracticeSessionInclude<ExtArgs> | null
   where?: Prisma.PracticeSessionWhereInput
+}
+
+/**
+ * AgentTutorMessage.mistakeReviews
+ */
+export type AgentTutorMessage$mistakeReviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the QuestionMistakeReview
+   */
+  select?: Prisma.QuestionMistakeReviewSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the QuestionMistakeReview
+   */
+  omit?: Prisma.QuestionMistakeReviewOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.QuestionMistakeReviewInclude<ExtArgs> | null
+  where?: Prisma.QuestionMistakeReviewWhereInput
+  orderBy?: Prisma.QuestionMistakeReviewOrderByWithRelationInput | Prisma.QuestionMistakeReviewOrderByWithRelationInput[]
+  cursor?: Prisma.QuestionMistakeReviewWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.QuestionMistakeReviewScalarFieldEnum | Prisma.QuestionMistakeReviewScalarFieldEnum[]
 }
 
 /**

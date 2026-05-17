@@ -65,3 +65,19 @@ export const MembershipStatus = {
 } as const
 
 export type MembershipStatus = (typeof MembershipStatus)[keyof typeof MembershipStatus]
+
+
+export const MistakeCause = {
+  READING_MISS: 'READING_MISS',
+  CONCEPT_GAP: 'CONCEPT_GAP',
+  METHOD_GAP: 'METHOD_GAP',
+  OPTION_TRAP: 'OPTION_TRAP',
+  CALCULATION_ERROR: 'CALCULATION_ERROR',
+  MATERIAL_LOCATION_ERROR: 'MATERIAL_LOCATION_ERROR',
+  LOGIC_CHAIN_BREAK: 'LOGIC_CHAIN_BREAK',
+  TIME_STRATEGY_ERROR: 'TIME_STRATEGY_ERROR',
+  CARELESSNESS: 'CARELESSNESS',
+  UNKNOWN: 'UNKNOWN'
+} as const
+
+export type MistakeCause = (typeof MistakeCause)[keyof typeof MistakeCause]

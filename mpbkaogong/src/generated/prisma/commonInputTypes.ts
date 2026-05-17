@@ -463,6 +463,23 @@ export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
   _max?: Prisma.NestedJsonFilter<$PrismaModel>
 }
 
+export type EnumMistakeCauseFilter<$PrismaModel = never> = {
+  equals?: $Enums.MistakeCause | Prisma.EnumMistakeCauseFieldRefInput<$PrismaModel>
+  in?: $Enums.MistakeCause[]
+  notIn?: $Enums.MistakeCause[]
+  not?: Prisma.NestedEnumMistakeCauseFilter<$PrismaModel> | $Enums.MistakeCause
+}
+
+export type EnumMistakeCauseWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.MistakeCause | Prisma.EnumMistakeCauseFieldRefInput<$PrismaModel>
+  in?: $Enums.MistakeCause[]
+  notIn?: $Enums.MistakeCause[]
+  not?: Prisma.NestedEnumMistakeCauseWithAggregatesFilter<$PrismaModel> | $Enums.MistakeCause
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumMistakeCauseFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumMistakeCauseFilter<$PrismaModel>
+}
+
 export type NestedStringFilter<$PrismaModel = never> = {
   equals?: string | Prisma.StringFieldRefInput<$PrismaModel>
   in?: string[]
@@ -873,6 +890,23 @@ export type NestedJsonFilterBase<$PrismaModel = never> = {
   gt?: runtime.InputJsonValue
   gte?: runtime.InputJsonValue
   not?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel> | Prisma.JsonNullValueFilter
+}
+
+export type NestedEnumMistakeCauseFilter<$PrismaModel = never> = {
+  equals?: $Enums.MistakeCause | Prisma.EnumMistakeCauseFieldRefInput<$PrismaModel>
+  in?: $Enums.MistakeCause[]
+  notIn?: $Enums.MistakeCause[]
+  not?: Prisma.NestedEnumMistakeCauseFilter<$PrismaModel> | $Enums.MistakeCause
+}
+
+export type NestedEnumMistakeCauseWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.MistakeCause | Prisma.EnumMistakeCauseFieldRefInput<$PrismaModel>
+  in?: $Enums.MistakeCause[]
+  notIn?: $Enums.MistakeCause[]
+  not?: Prisma.NestedEnumMistakeCauseWithAggregatesFilter<$PrismaModel> | $Enums.MistakeCause
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumMistakeCauseFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumMistakeCauseFilter<$PrismaModel>
 }
 
 

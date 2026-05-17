@@ -21,6 +21,13 @@ import { cn } from "@/lib/utils";
 type TutorMessage = {
   role: "USER" | "ASSISTANT";
   content: string;
+  review?: {
+    mistakeCause: string;
+    confidence: string;
+    causeSummary: string;
+    fastestPath: string;
+    transferRule: string;
+  };
 };
 
 type ApiResponse<T> =
@@ -30,6 +37,7 @@ type ApiResponse<T> =
 type TutorStreamEvent =
   | { type: "token"; content: string }
   | { type: "done"; messageId: string; suggestedPrompts: string[] }
+  | { type: "review"; mistakeCause: string; confidence: string; causeSummary: string; fastestPath: string; transferRule: string }
   | { type: "error"; message: string };
 
 const defaultPrompts = [
@@ -39,6 +47,19 @@ const defaultPrompts = [
   "给我总结成一句口诀",
   "下次怎么识别同类题？",
 ];
+
+const causeLabels: Record<string, string> = {
+  READING_MISS: "审题漏条件",
+  CONCEPT_GAP: "知识点不会",
+  METHOD_GAP: "题型方法不会",
+  OPTION_TRAP: "选项陷阱",
+  CALCULATION_ERROR: "计算错误",
+  MATERIAL_LOCATION_ERROR: "材料定位错误",
+  LOGIC_CHAIN_BREAK: "推理链断裂",
+  TIME_STRATEGY_ERROR: "时间策略失误",
+  CARELESSNESS: "非知识性失误",
+  UNKNOWN: "信息不足",
+};
 
 function TutorMarkdown({ content }: { content: string }) {
   return (
@@ -163,6 +184,19 @@ export function TutorPanel({
             });
           }
 
+          if (event.type === "review") {
+            setMessages((current) => {
+              const next = [...current];
+              const lastMessage = next[next.length - 1];
+
+              if (lastMessage?.role === "ASSISTANT") {
+                next[next.length - 1] = { ...lastMessage, review: event };
+              }
+
+              return next;
+            });
+          }
+
           if (event.type === "done") {
             setSuggestedPrompts(event.suggestedPrompts.length > 0 ? event.suggestedPrompts : defaultPrompts);
           }
@@ -237,6 +271,26 @@ export function TutorPanel({
                     {message.role === "ASSISTANT" ? (
                       message.content ? (
                         <div className="flex flex-col gap-2">
+                          {message.review ? (
+                            <div className="grid gap-2 rounded-lg border bg-background p-3 sm:grid-cols-3">
+                              <div className="rounded-md bg-muted/60 p-2">
+                                <div className="text-xs text-muted-foreground">
+                                  {message.review.confidence === "LOW" ? "可能错因" : "本题错因"}
+                                </div>
+                                <div className="mt-1 text-sm font-semibold">
+                                  {causeLabels[message.review.mistakeCause] ?? message.review.mistakeCause}
+                                </div>
+                              </div>
+                              <div className="rounded-md bg-muted/60 p-2">
+                                <div className="text-xs text-muted-foreground">最快路径</div>
+                                <div className="mt-1 line-clamp-3 text-sm leading-5">{message.review.fastestPath}</div>
+                              </div>
+                              <div className="rounded-md bg-muted/60 p-2">
+                                <div className="text-xs text-muted-foreground">下次规则</div>
+                                <div className="mt-1 line-clamp-3 text-sm leading-5">{message.review.transferRule}</div>
+                              </div>
+                            </div>
+                          ) : null}
                           <TutorMarkdown content={message.content} />
                         </div>
                       ) : (

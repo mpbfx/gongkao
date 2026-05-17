@@ -91,6 +91,25 @@ export const coachConfigSchema = z.object({
 
 export type CoachConfig = z.infer<typeof coachConfigSchema>;
 
+const booleanConfigSchema = z.preprocess((value) => {
+  if (value === "true" || value === "on" || value === "1") {
+    return true;
+  }
+
+  if (value === "false" || value === "off" || value === "0") {
+    return false;
+  }
+
+  return value;
+}, z.boolean());
+
+export const tutorAutoReviewConfigSchema = z.object({
+  enabled: booleanConfigSchema.default(true),
+  maxQuestionsPerSession: z.coerce.number().int().min(1).max(50).default(10),
+});
+
+export type TutorAutoReviewConfig = z.infer<typeof tutorAutoReviewConfigSchema>;
+
 export const coachDiagnosisDtoSchema = z.object({
   summary: z.object({
     title: z.string(),

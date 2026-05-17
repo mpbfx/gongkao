@@ -405,6 +405,7 @@ export const ModelName = {
   AgentConfig: 'AgentConfig',
   AgentRecommendation: 'AgentRecommendation',
   AgentTutorMessage: 'AgentTutorMessage',
+  QuestionMistakeReview: 'QuestionMistakeReview',
   AgentFeedback: 'AgentFeedback',
   ImportJob: 'ImportJob'
 } as const
@@ -422,7 +423,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "account" | "session" | "verificationToken" | "membership" | "questionTag" | "material" | "question" | "questionOption" | "paper" | "paperQuestion" | "dailyPractice" | "dailyPracticeQuestion" | "practiceSession" | "practiceAnswer" | "wrongQuestion" | "userStatsSnapshot" | "userTagStats" | "agentConfig" | "agentRecommendation" | "agentTutorMessage" | "agentFeedback" | "importJob"
+    modelProps: "user" | "account" | "session" | "verificationToken" | "membership" | "questionTag" | "material" | "question" | "questionOption" | "paper" | "paperQuestion" | "dailyPractice" | "dailyPracticeQuestion" | "practiceSession" | "practiceAnswer" | "wrongQuestion" | "userStatsSnapshot" | "userTagStats" | "agentConfig" | "agentRecommendation" | "agentTutorMessage" | "questionMistakeReview" | "agentFeedback" | "importJob"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1812,6 +1813,72 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    QuestionMistakeReview: {
+      payload: Prisma.$QuestionMistakeReviewPayload<ExtArgs>
+      fields: Prisma.QuestionMistakeReviewFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.QuestionMistakeReviewFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuestionMistakeReviewPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.QuestionMistakeReviewFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuestionMistakeReviewPayload>
+        }
+        findFirst: {
+          args: Prisma.QuestionMistakeReviewFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuestionMistakeReviewPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.QuestionMistakeReviewFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuestionMistakeReviewPayload>
+        }
+        findMany: {
+          args: Prisma.QuestionMistakeReviewFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuestionMistakeReviewPayload>[]
+        }
+        create: {
+          args: Prisma.QuestionMistakeReviewCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuestionMistakeReviewPayload>
+        }
+        createMany: {
+          args: Prisma.QuestionMistakeReviewCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.QuestionMistakeReviewDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuestionMistakeReviewPayload>
+        }
+        update: {
+          args: Prisma.QuestionMistakeReviewUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuestionMistakeReviewPayload>
+        }
+        deleteMany: {
+          args: Prisma.QuestionMistakeReviewDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.QuestionMistakeReviewUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.QuestionMistakeReviewUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$QuestionMistakeReviewPayload>
+        }
+        aggregate: {
+          args: Prisma.QuestionMistakeReviewAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateQuestionMistakeReview>
+        }
+        groupBy: {
+          args: Prisma.QuestionMistakeReviewGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.QuestionMistakeReviewGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.QuestionMistakeReviewCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.QuestionMistakeReviewCountAggregateOutputType> | number
+        }
+      }
+    }
     AgentFeedback: {
       payload: Prisma.$AgentFeedbackPayload<ExtArgs>
       fields: Prisma.AgentFeedbackFieldRefs
@@ -2301,6 +2368,27 @@ export const AgentTutorMessageScalarFieldEnum = {
 export type AgentTutorMessageScalarFieldEnum = (typeof AgentTutorMessageScalarFieldEnum)[keyof typeof AgentTutorMessageScalarFieldEnum]
 
 
+export const QuestionMistakeReviewScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  questionId: 'questionId',
+  sessionId: 'sessionId',
+  practiceAnswerId: 'practiceAnswerId',
+  tutorMessageId: 'tutorMessageId',
+  tagId: 'tagId',
+  mistakeCause: 'mistakeCause',
+  confidence: 'confidence',
+  causeSummary: 'causeSummary',
+  fastestPath: 'fastestPath',
+  transferRule: 'transferRule',
+  timeSpentSeconds: 'timeSpentSeconds',
+  isLatestForQuestion: 'isLatestForQuestion',
+  createdAt: 'createdAt'
+} as const
+
+export type QuestionMistakeReviewScalarFieldEnum = (typeof QuestionMistakeReviewScalarFieldEnum)[keyof typeof QuestionMistakeReviewScalarFieldEnum]
+
+
 export const AgentFeedbackScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -2603,6 +2691,23 @@ export const AgentTutorMessageOrderByRelevanceFieldEnum = {
 export type AgentTutorMessageOrderByRelevanceFieldEnum = (typeof AgentTutorMessageOrderByRelevanceFieldEnum)[keyof typeof AgentTutorMessageOrderByRelevanceFieldEnum]
 
 
+export const QuestionMistakeReviewOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  questionId: 'questionId',
+  sessionId: 'sessionId',
+  practiceAnswerId: 'practiceAnswerId',
+  tutorMessageId: 'tutorMessageId',
+  tagId: 'tagId',
+  confidence: 'confidence',
+  causeSummary: 'causeSummary',
+  fastestPath: 'fastestPath',
+  transferRule: 'transferRule'
+} as const
+
+export type QuestionMistakeReviewOrderByRelevanceFieldEnum = (typeof QuestionMistakeReviewOrderByRelevanceFieldEnum)[keyof typeof QuestionMistakeReviewOrderByRelevanceFieldEnum]
+
+
 export const AgentFeedbackOrderByRelevanceFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -2720,6 +2825,13 @@ export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'J
  * Reference to a field of type 'QueryMode'
  */
 export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+    
+
+
+/**
+ * Reference to a field of type 'MistakeCause'
+ */
+export type EnumMistakeCauseFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MistakeCause'>
     
 
 
@@ -2860,6 +2972,7 @@ export type GlobalOmitConfig = {
   agentConfig?: Prisma.AgentConfigOmit
   agentRecommendation?: Prisma.AgentRecommendationOmit
   agentTutorMessage?: Prisma.AgentTutorMessageOmit
+  questionMistakeReview?: Prisma.QuestionMistakeReviewOmit
   agentFeedback?: Prisma.AgentFeedbackOmit
   importJob?: Prisma.ImportJobOmit
 }

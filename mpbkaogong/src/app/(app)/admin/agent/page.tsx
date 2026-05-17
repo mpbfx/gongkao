@@ -17,7 +17,12 @@ import {
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { requireAdmin } from "@/lib/auth/guards";
-import { getCoachConfig, upsertCoachConfig } from "@/server/agent/shared/config";
+import {
+  getCoachConfig,
+  getTutorAutoReviewConfig,
+  upsertCoachConfig,
+  upsertTutorAutoReviewConfig,
+} from "@/server/agent/shared/config";
 
 async function saveAgentConfig(formData: FormData) {
   "use server";
@@ -34,9 +39,24 @@ async function saveAgentConfig(formData: FormData) {
   revalidatePath("/admin/agent");
 }
 
+async function saveTutorAutoReviewConfig(formData: FormData) {
+  "use server";
+
+  const user = await requireAdmin();
+
+  await upsertTutorAutoReviewConfig(user, {
+    enabled: formData.get("enabled") === "on",
+    maxQuestionsPerSession: formData.get("maxQuestionsPerSession"),
+  });
+  revalidatePath("/admin/agent");
+}
+
 export default async function AdminAgentPage() {
   await requireAdmin();
-  const config = await getCoachConfig();
+  const [config, tutorAutoReviewConfig] = await Promise.all([
+    getCoachConfig(),
+    getTutorAutoReviewConfig(),
+  ]);
 
   return (
     <main className="mx-auto flex w-full max-w-4xl flex-1 flex-col gap-6 px-4 py-6 pb-24 md:px-6 md:py-8 lg:pb-8">
@@ -132,7 +152,56 @@ export default async function AdminAgentPage() {
           </form>
         </CardContent>
       </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>讲题助教</CardTitle>
+          <CardDescription>控制提交练习后是否自动为答错题生成结构化错因记录。</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form action={saveTutorAutoReviewConfig} className="flex flex-col gap-6">
+            <FieldGroup>
+              <div className="grid gap-4 md:grid-cols-[minmax(0,1fr)_220px]">
+                <Field className="rounded-lg border bg-background p-4">
+                  <div className="flex items-start gap-3">
+                    <Input
+                      id="enabled"
+                      name="enabled"
+                      type="checkbox"
+                      defaultChecked={tutorAutoReviewConfig.enabled}
+                      className="mt-0.5 size-4"
+                    />
+                    <div className="flex flex-col gap-1">
+                      <FieldLabel htmlFor="enabled">提交后自动收集错因</FieldLabel>
+                      <FieldDescription>
+                        开启后，提交练习不会等待模型；系统会在后台为答错题生成错因记录，供错题报告使用。
+                      </FieldDescription>
+                    </div>
+                  </div>
+                </Field>
+                <Field>
+                  <FieldLabel htmlFor="maxQuestionsPerSession">每场最多分析</FieldLabel>
+                  <Input
+                    id="maxQuestionsPerSession"
+                    name="maxQuestionsPerSession"
+                    type="number"
+                    min={1}
+                    max={50}
+                    defaultValue={tutorAutoReviewConfig.maxQuestionsPerSession}
+                  />
+                  <FieldDescription>限制模型调用数量，避免一次提交产生过多后台任务。</FieldDescription>
+                </Field>
+              </div>
+            </FieldGroup>
+            <div className="flex justify-end">
+              <Button type="submit">
+                <Save data-icon="inline-start" />
+                保存助教配置
+              </Button>
+            </div>
+          </form>
+        </CardContent>
+      </Card>
     </main>
   );
 }
-
