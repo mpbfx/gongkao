@@ -704,7 +704,7 @@ export function PracticeRunner({
   }
 
   return (
-    <main className="mx-auto flex w-full max-w-7xl flex-1 flex-col gap-4 px-4 py-4 pb-36 md:px-6 lg:grid lg:grid-cols-[1fr_320px] lg:items-start lg:pb-28">
+    <main className="mx-auto flex w-full max-w-7xl flex-1 flex-col gap-4 px-4 py-4 pb-36 md:px-6 lg:grid lg:grid-cols-[minmax(0,1fr)_320px] lg:items-start lg:pb-8">
       {!isResultMode && (!isOnline || hasPendingSubmit) ? (
         <div className="lg:col-span-2">
           <Alert variant={!isOnline ? "warning" : "info"}>
@@ -845,6 +845,58 @@ export function PracticeRunner({
           </Card>
         ) : null}
 
+        <Card size="sm" className="hidden lg:flex">
+          <CardContent className="flex flex-col gap-3">
+            <div className="flex items-start justify-between gap-3">
+              <div>
+                <div className="font-medium">{actionBarPrimaryText}</div>
+                <div className="mt-1 text-sm text-muted-foreground">{actionBarSecondaryText}</div>
+              </div>
+              <Badge variant={isPracticePaused ? "warning" : "outline"}>
+                {isResultMode ? "回看" : isPracticePaused ? "暂停" : "训练中"}
+              </Badge>
+            </div>
+            <div className="grid grid-cols-2 gap-2">
+              <Button
+                type="button"
+                variant="outline"
+                disabled={currentIndex === 0}
+                onClick={() => goToQuestion(currentIndex - 1)}
+              >
+                <ChevronLeft data-icon="inline-start" />
+                上一题
+              </Button>
+              <Button
+                type="button"
+                variant="outline"
+                disabled={currentIndex === questions.length - 1}
+                onClick={() => goToQuestion(currentIndex + 1)}
+              >
+                下一题
+                <ChevronRight data-icon="inline-end" />
+              </Button>
+            </div>
+            {!isResultMode ? (
+              <Button type="button" variant="outline" onClick={togglePause}>
+                {isPracticePaused ? <Play data-icon="inline-start" /> : <Pause data-icon="inline-start" />}
+                {isPracticePaused ? "继续答题" : "暂停答题"}
+              </Button>
+            ) : null}
+            {!isResultMode || currentScratch ? (
+              <Button type="button" variant="outline" onClick={() => setShowDraftCanvas(true)}>
+                <PencilLine data-icon="inline-start" />
+                {isResultMode ? "草稿回看" : "草稿"}
+              </Button>
+            ) : null}
+            {!isResultMode ? (
+              <Button type="button" onClick={() => setShowSubmitDialog(true)}>
+                <Send data-icon="inline-start" />
+                提交练习
+              </Button>
+            ) : null}
+          </CardContent>
+        </Card>
+
         <Card className="hidden lg:flex lg:min-h-0 lg:flex-1 lg:flex-col">
           <CardContent className="flex min-h-0 flex-1 flex-col gap-3 overflow-hidden">
             {answerSheetContent}
@@ -852,85 +904,81 @@ export function PracticeRunner({
         </Card>
       </aside>
 
-      <div className="fixed inset-x-0 bottom-0 z-30 border-t bg-background/95 p-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))] shadow-[0_-8px_24px_rgb(15_23_42/0.08)] backdrop-blur lg:left-[var(--app-sidebar-width)] lg:p-3">
-        <div className="mx-auto flex max-w-7xl items-center gap-2">
-          <Button
-            type="button"
-            variant="outline"
-            size="sm"
-            className="size-11 shrink-0 px-0 sm:w-auto sm:px-3"
-            aria-label="上一题"
-            disabled={currentIndex === 0}
-            onClick={() => goToQuestion(currentIndex - 1)}
-          >
-            <ChevronLeft data-icon="inline-start" />
-            <span className="hidden sm:inline">上一题</span>
-          </Button>
-          <div className="min-w-0 flex-1 text-center text-xs sm:text-sm">
+      <div className="fixed inset-x-0 bottom-0 z-30 border-t bg-background/95 p-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))] shadow-[0_-8px_24px_rgb(15_23_42/0.08)] backdrop-blur lg:hidden">
+        <div className="mx-auto grid max-w-3xl gap-2">
+          <div className="flex min-w-0 items-center justify-between gap-3 px-1 text-xs sm:text-sm">
             <div className="truncate font-medium">{actionBarPrimaryText}</div>
-            <div className="truncate text-muted-foreground">{actionBarSecondaryText}</div>
+            <div className="shrink-0 text-muted-foreground">{actionBarSecondaryText}</div>
           </div>
-          <Button
-            type="button"
-            variant="outline"
-            size="sm"
-            className="size-11 shrink-0 px-0 sm:w-auto sm:px-3"
-            aria-label="下一题"
-            disabled={currentIndex === questions.length - 1}
-            onClick={() => goToQuestion(currentIndex + 1)}
-          >
-            <span className="hidden sm:inline">下一题</span>
-            <ChevronRight data-icon="inline-end" />
-          </Button>
-          <div className="hidden h-8 w-px shrink-0 bg-border md:block" />
-          {!isResultMode ? (
+          <div className="flex items-center gap-2">
             <Button
               type="button"
               variant="outline"
               size="sm"
-              className="size-11 shrink-0 px-0 md:w-auto md:px-3"
-              aria-label={isPracticePaused ? "继续答题" : "暂停答题"}
-              onClick={togglePause}
+              className="size-11 shrink-0 px-0"
+              aria-label="上一题"
+              disabled={currentIndex === 0}
+              onClick={() => goToQuestion(currentIndex - 1)}
             >
-              {isPracticePaused ? <Play data-icon="inline-start" /> : <Pause data-icon="inline-start" />}
-              <span className="hidden md:inline">{isPracticePaused ? "继续" : "暂停"}</span>
+              <ChevronLeft data-icon="inline-start" />
             </Button>
-          ) : null}
-          {!isResultMode || currentScratch ? (
             <Button
               type="button"
               variant="outline"
               size="sm"
-              className="size-11 shrink-0 px-0 md:w-auto md:px-3"
-              aria-label={isResultMode ? "查看草稿" : "草稿"}
-              onClick={() => setShowDraftCanvas(true)}
+              className="size-11 shrink-0 px-0"
+              aria-label="下一题"
+              disabled={currentIndex === questions.length - 1}
+              onClick={() => goToQuestion(currentIndex + 1)}
             >
-              <PencilLine data-icon="inline-start" />
-              <span className="hidden md:inline">{isResultMode ? "草稿回看" : "草稿"}</span>
+              <ChevronRight data-icon="inline-end" />
             </Button>
-          ) : null}
-          <Button
-            type="button"
-            variant="outline"
-            size="sm"
-            className="size-11 shrink-0 px-0 lg:hidden"
-            aria-label="答题卡"
-            onClick={() => setShowAnswerSheet(true)}
-          >
-            <Grid3X3 data-icon="inline-start" />
-          </Button>
-          {!isResultMode ? (
             <Button
               type="button"
+              variant="outline"
               size="sm"
-              className="size-11 shrink-0 px-0 sm:w-auto sm:px-3"
-              aria-label="提交"
-              onClick={() => setShowSubmitDialog(true)}
+              className="size-11 shrink-0 px-0"
+              aria-label="答题卡"
+              onClick={() => setShowAnswerSheet(true)}
             >
-              <Send data-icon="inline-start" />
-              <span className="hidden sm:inline">提交</span>
+              <Grid3X3 data-icon="inline-start" />
             </Button>
-          ) : null}
+            {!isResultMode ? (
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                className="size-11 shrink-0 px-0"
+                aria-label={isPracticePaused ? "继续答题" : "暂停答题"}
+                onClick={togglePause}
+              >
+                {isPracticePaused ? <Play data-icon="inline-start" /> : <Pause data-icon="inline-start" />}
+              </Button>
+            ) : null}
+            {!isResultMode || currentScratch ? (
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                className="size-11 shrink-0 px-0"
+                aria-label={isResultMode ? "查看草稿" : "草稿"}
+                onClick={() => setShowDraftCanvas(true)}
+              >
+                <PencilLine data-icon="inline-start" />
+              </Button>
+            ) : null}
+            {!isResultMode ? (
+              <Button
+                type="button"
+                size="sm"
+                className="min-w-20 flex-1 px-3"
+                onClick={() => setShowSubmitDialog(true)}
+              >
+                <Send data-icon="inline-start" />
+                提交
+              </Button>
+            ) : null}
+          </div>
         </div>
       </div>
 
