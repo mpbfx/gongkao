@@ -2,6 +2,8 @@
 
 import { Bot, LoaderCircle, MessageSquare, RotateCcw, Send } from "lucide-react";
 import { useState } from "react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
@@ -25,6 +27,11 @@ type ApiResponse<T> =
   | { ok: true; data: T; error: null }
   | { ok: false; data: null; error: { message: string } };
 
+type TutorStreamEvent =
+  | { type: "token"; content: string }
+  | { type: "done"; messageId: string; suggestedPrompts: string[] }
+  | { type: "error"; message: string };
+
 const defaultPrompts = [
   "为什么不选我选的这个？",
   "有没有更快的做法？",
@@ -32,6 +39,45 @@ const defaultPrompts = [
   "给我总结成一句口诀",
   "下次怎么识别同类题？",
 ];
+
+function TutorMarkdown({ content }: { content: string }) {
+  return (
+    <ReactMarkdown
+      remarkPlugins={[remarkGfm]}
+      components={{
+        h1: ({ children }) => <h3 className="mt-2 text-base font-semibold first:mt-0">{children}</h3>,
+        h2: ({ children }) => <h3 className="mt-2 text-base font-semibold first:mt-0">{children}</h3>,
+        h3: ({ children }) => <h4 className="mt-2 text-sm font-semibold first:mt-0">{children}</h4>,
+        p: ({ children }) => <p className="text-sm leading-6">{children}</p>,
+        ul: ({ children }) => <ul className="ml-4 list-disc space-y-1 text-sm leading-6">{children}</ul>,
+        ol: ({ children }) => <ol className="ml-4 list-decimal space-y-1 text-sm leading-6">{children}</ol>,
+        li: ({ children }) => <li>{children}</li>,
+        strong: ({ children }) => <strong className="font-semibold text-foreground">{children}</strong>,
+        code: ({ children }) => <code className="rounded bg-background px-1 py-0.5 text-xs">{children}</code>,
+      }}
+    >
+      {content}
+    </ReactMarkdown>
+  );
+}
+
+function parseTutorStreamEvent(rawEvent: string) {
+  const eventType = rawEvent
+    .split("\n")
+    .find((line) => line.startsWith("event: "))
+    ?.slice("event: ".length);
+  const data = rawEvent
+    .split("\n")
+    .filter((line) => line.startsWith("data: "))
+    .map((line) => line.slice("data: ".length))
+    .join("\n");
+
+  if (!eventType || !data) {
+    return null;
+  }
+
+  return JSON.parse(data) as TutorStreamEvent;
+}
 
 export function TutorPanel({
   questionId,
@@ -60,32 +106,79 @@ export function TutorPanel({
     setIsOpen(true);
     setIsLoading(true);
     setError(null);
-    setMessages((current) => [...current, { role: "USER", content: trimmed }]);
+    setMessages((current) => [
+      ...current,
+      { role: "USER", content: trimmed },
+      { role: "ASSISTANT", content: "" },
+    ]);
 
     try {
       const response = await fetch(`/api/agent/tutor/questions/${questionId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Accept: "text/event-stream",
         },
         body: JSON.stringify({
           sessionId,
           prompt: trimmed,
         }),
       });
-      const payload = (await response.json()) as ApiResponse<{
-        answer: string;
-        suggestedPrompts: string[];
-      }>;
 
-      if (!payload.ok) {
-        setError(payload.error.message);
+      if (!response.ok || !response.body) {
+        const payload = (await response.json()) as ApiResponse<never>;
+        setError(payload.ok ? "讲题助教暂时不可用，请稍后重试。" : payload.error.message);
         setLastFailedPrompt(trimmed);
+        setMessages((current) => current.slice(0, -1));
         return;
       }
 
-      setMessages((current) => [...current, { role: "ASSISTANT", content: payload.data.answer }]);
-      setSuggestedPrompts(payload.data.suggestedPrompts.length > 0 ? payload.data.suggestedPrompts : defaultPrompts);
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = "";
+
+      while (true) {
+        const { done, value } = await reader.read();
+        buffer += decoder.decode(value, { stream: !done });
+        const events = buffer.split("\n\n");
+        buffer = events.pop() ?? "";
+
+        for (const rawEvent of events) {
+          const event = parseTutorStreamEvent(rawEvent);
+
+          if (!event) {
+            continue;
+          }
+
+          if (event.type === "token") {
+            setMessages((current) => {
+              const next = [...current];
+              const lastMessage = next[next.length - 1];
+
+              if (lastMessage?.role === "ASSISTANT") {
+                next[next.length - 1] = { ...lastMessage, content: lastMessage.content + event.content };
+              }
+
+              return next;
+            });
+          }
+
+          if (event.type === "done") {
+            setSuggestedPrompts(event.suggestedPrompts.length > 0 ? event.suggestedPrompts : defaultPrompts);
+          }
+
+          if (event.type === "error") {
+            setError(event.message);
+            setLastFailedPrompt(trimmed);
+            return;
+          }
+        }
+
+        if (done) {
+          break;
+        }
+      }
+
       setPrompt("");
       setLastFailedPrompt(null);
     } catch {
@@ -141,10 +234,23 @@ export function TutorPanel({
                     <Badge variant={message.role === "ASSISTANT" ? "info" : "outline"} className="w-fit">
                       {message.role === "ASSISTANT" ? "助教" : "我"}
                     </Badge>
-                    <p className="whitespace-pre-wrap text-sm leading-6">{message.content}</p>
+                    {message.role === "ASSISTANT" ? (
+                      message.content ? (
+                        <div className="flex flex-col gap-2">
+                          <TutorMarkdown content={message.content} />
+                        </div>
+                      ) : (
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                          <LoaderCircle className="animate-spin" aria-hidden="true" />
+                          正在讲解
+                        </div>
+                      )
+                    ) : (
+                      <p className="whitespace-pre-wrap text-sm leading-6">{message.content}</p>
+                    )}
                   </div>
                 ))}
-                {isLoading ? (
+                {isLoading && messages[messages.length - 1]?.content ? (
                   <div className="flex items-center gap-2 text-sm text-muted-foreground">
                     <LoaderCircle className="animate-spin" aria-hidden="true" />
                     正在讲解

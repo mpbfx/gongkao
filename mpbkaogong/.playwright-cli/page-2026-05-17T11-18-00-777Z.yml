@@ -1,0 +1,526 @@
+- generic [active] [ref=e1]:
+  - button "Open Next.js Dev Tools" [ref=e25] [cursor=pointer]:
+    - img [ref=e26]
+  - alert [ref=e29]
+  - generic [ref=e30]:
+    - link "跳到主要内容" [ref=e31] [cursor=pointer]:
+      - /url: "#main-content"
+    - complementary [ref=e32]:
+      - generic [ref=e33]:
+        - generic [ref=e34]: 题
+        - generic [ref=e35]:
+          - generic [ref=e36]: 公考题库
+          - generic [ref=e37]: Question Bank
+      - separator [ref=e38]
+      - navigation [ref=e39]:
+        - link "首页" [ref=e40] [cursor=pointer]:
+          - /url: /
+          - img [ref=e41]
+          - generic [ref=e44]: 首页
+        - link "试卷" [ref=e45] [cursor=pointer]:
+          - /url: /question-bank/papers
+          - img [ref=e46]
+          - generic [ref=e49]: 试卷
+        - link "专项" [ref=e50] [cursor=pointer]:
+          - /url: /question-bank/special
+          - img [ref=e51]
+          - generic [ref=e53]: 专项
+        - link "错题" [ref=e54] [cursor=pointer]:
+          - /url: /question-bank/wrong
+          - img [ref=e55]
+          - generic [ref=e58]: 错题
+        - link "记录" [ref=e59] [cursor=pointer]:
+          - /url: /question-bank/records
+          - img [ref=e60]
+          - generic [ref=e62]: 记录
+        - link "我的" [ref=e63] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e64]
+          - generic [ref=e67]: 我的
+      - button "收起侧栏" [ref=e69] [cursor=pointer]:
+        - img
+        - text: 收起
+    - generic [ref=e70]:
+      - banner [ref=e71]:
+        - generic [ref=e72]:
+          - generic [ref=e75]: 题库工作台
+          - generic [ref=e76]:
+            - generic [ref=e78]: D
+            - generic [ref=e79]: Demo User
+            - button "退出登录" [ref=e81] [cursor=pointer]:
+              - img
+      - main [ref=e83]:
+        - generic [ref=e84]:
+          - generic [ref=e85]:
+            - generic [ref=e86]: 错题本
+            - generic [ref=e87]:
+              - heading "把高频错误收拢成下一组训练" [level=1] [ref=e88]
+              - paragraph [ref=e89]: 优先看重复错误和未掌握知识点，复盘入口保持在每个模块附近。
+          - link "查看已掌握" [ref=e91] [cursor=pointer]:
+            - /url: /question-bank/wrong?includeResolved=true
+            - img
+            - text: 查看已掌握
+        - generic [ref=e92]:
+          - generic [ref=e93]:
+            - img [ref=e95]
+            - generic [ref=e97]:
+              - generic [ref=e98]: 未掌握
+              - generic [ref=e99]: "42"
+              - generic [ref=e100]: 下一组错题练习来源
+          - generic [ref=e101]:
+            - img [ref=e103]
+            - generic [ref=e106]:
+              - generic [ref=e107]: 已掌握
+              - generic [ref=e108]: "5"
+              - generic [ref=e109]: 累计标记掌握
+          - generic [ref=e110]:
+            - img [ref=e112]
+            - generic [ref=e116]:
+              - generic [ref=e117]: 知识点
+              - generic [ref=e118]: "19"
+              - generic [ref=e119]: 理论政策
+          - generic [ref=e120]:
+            - img [ref=e122]
+            - generic [ref=e126]:
+              - generic [ref=e127]: 重复错误
+              - generic [ref=e128]: "8"
+              - generic [ref=e129]: 错 2 次及以上
+        - generic [ref=e130]:
+          - generic [ref=e131]:
+            - generic [ref=e132]:
+              - heading "快速开始" [level=2] [ref=e133]
+              - generic [ref=e134]: 42 道未掌握
+            - paragraph [ref=e135]: 默认抽取最多 10 道未掌握错题，适合碎片时间复盘。
+          - generic [ref=e136]:
+            - button "开始练习" [ref=e138] [cursor=pointer]:
+              - img
+              - text: 开始练习
+            - button "背题" [ref=e140] [cursor=pointer]:
+              - img
+              - text: 背题
+        - generic [ref=e141]:
+          - generic [ref=e143]:
+            - img [ref=e145]
+            - generic [ref=e147]:
+              - heading "复盘优先级" [level=2] [ref=e148]
+              - generic [ref=e149]: 模块按未掌握数量排序；重复错误越多，越适合先练一组。
+          - generic [ref=e151]:
+            - group [ref=e152]:
+              - generic "理论政策 11 道错题 · 5 道重复错误 展开/收起" [ref=e153] [cursor=pointer]:
+                - generic [ref=e154]:
+                  - generic [ref=e155]:
+                    - heading "理论政策" [level=2] [ref=e156]
+                    - paragraph [ref=e157]: 11 道错题 · 5 道重复错误
+                  - generic [ref=e158]: 展开/收起
+              - generic [ref=e159]:
+                - button "练习本类" [ref=e161] [cursor=pointer]:
+                  - img
+                  - text: 练习本类
+                - button "背本类" [ref=e163] [cursor=pointer]:
+                  - img
+                  - text: 背本类
+              - generic [ref=e164]:
+                - generic [ref=e165]:
+                  - generic [ref=e166]:
+                    - generic [ref=e167]:
+                      - generic [ref=e168]:
+                        - generic [ref=e169]: 错 4 次
+                        - generic [ref=e170]: 未掌握
+                        - generic [ref=e171]: 05/17 17:55
+                      - heading "推进中国式现代化是一个系统工程，需要统筹兼顾、系统谋划、整体推进，正确处理好一系列重大关系。下列与之相关的表述正确的有（ ）。①活力与秩序：中国式现代化应当而且能够实现活而不乱、活跃有序的动态平衡②守正与创新：守正才能不迷失方向、不犯颠覆性错误，创新才能把握时代、引领时代③战略与策略：要增强策略的前瞻性，准确把握事物发展的必然趋势，以科学的战略预见未来、引领未来④效率与公平：中国式现代化既要创造比资本主义更高的效率，又要更有效地维护社会公平，更好实现效率与公平相兼顾、相促进、相统一" [level=3] [ref=e172]
+                      - paragraph [ref=e173]: 正确答案：2
+                    - button "标记掌握" [ref=e175] [cursor=pointer]:
+                      - img
+                      - text: 标记掌握
+                  - button "问助教" [ref=e178] [cursor=pointer]:
+                    - img
+                    - text: 问助教
+                - generic [ref=e179]:
+                  - generic [ref=e180]:
+                    - generic [ref=e181]:
+                      - generic [ref=e182]:
+                        - generic [ref=e183]: 错 1 次
+                        - generic [ref=e184]: 未掌握
+                        - generic [ref=e185]: 05/16 23:55
+                      - heading "建设教育强国，基点在基础教育。基础教育搞得越扎实，教育强国步伐就越稳、后劲就越足。关于加强基础教育，下列举措正确的有几项？①提升寄宿制学校办学条件和管理水平，办好必要的乡村小规模学校②统筹推进市域内高中阶段学校多样化发展，加快扩大普通高中教育资源供给③强化家庭教育主阵地作用，健全学校家庭社会协同育人机制④建立基础教育各学段学龄人口变化监测预警制度，优化中小学和幼儿园布局⑤深入开展县域义务教育优质均衡督导评估，有序推进市域义务教育优质均衡发展" [level=3] [ref=e186]
+                      - paragraph [ref=e187]: 正确答案：0
+                    - button "标记掌握" [ref=e189] [cursor=pointer]:
+                      - img
+                      - text: 标记掌握
+                  - button "问助教" [ref=e192] [cursor=pointer]:
+                    - img
+                    - text: 问助教
+                - generic [ref=e193]:
+                  - generic [ref=e194]:
+                    - generic [ref=e195]:
+                      - generic [ref=e196]:
+                        - generic [ref=e197]: 错 1 次
+                        - generic [ref=e198]: 未掌握
+                        - generic [ref=e199]: 05/16 23:55
+                      - heading "城乡融合发展是中国式现代化的必然要求。关于城乡融合发展，下列说法正确的有几项？①要把乡村振兴战略这篇大文章做好，必须走城乡融合发展之路②在现代化进程中，如何处理好工农关系、城乡关系，在一定程度上决定着现代化的成败③要顺应城乡融合发展大趋势，破除妨碍城乡要素平等交换、双向流动的制度壁垒④振兴乡村，不能就乡村论乡村，还是要强化以工补农、以城带乡，加快形成工农互促、城乡互补、协调发展、共同繁荣的新型工农城乡关系" [level=3] [ref=e200]
+                      - paragraph [ref=e201]: 正确答案：3
+                    - button "标记掌握" [ref=e203] [cursor=pointer]:
+                      - img
+                      - text: 标记掌握
+                  - button "问助教" [ref=e206] [cursor=pointer]:
+                    - img
+                    - text: 问助教
+                - generic [ref=e207]:
+                  - generic [ref=e208]:
+                    - generic [ref=e209]:
+                      - generic [ref=e210]:
+                        - generic [ref=e211]: 错 1 次
+                        - generic [ref=e212]: 未掌握
+                        - generic [ref=e213]: 05/16 23:55
+                      - heading "习近平总书记指出，要推动公共文化服务标准化、均等化，坚持政府主导、社会参与、重心下移、共建共享，完善公共文化服务体系，提高基本公共文化服务的覆盖面和适用性。关于完善公共文化服务体系，下列举措正确的有几项？①做好文化馆、乡镇（街道）综合文化站、村（社区）综合性文化服务中心等的规划建设②推动优质文化资源向沿海发达地区集中，促进公共文化服务差异化发展③实施全国智慧图书馆体系建设、公共文化云建设等项目④实施广播电视惠民工程，完善农村文化基础设施网络⑤推动各民族文化的传承保护和创新交融，提升民族地区公共文化服务水平" [level=3] [ref=e214]
+                      - paragraph [ref=e215]: 正确答案：2
+                    - button "标记掌握" [ref=e217] [cursor=pointer]:
+                      - img
+                      - text: 标记掌握
+                  - button "问助教" [ref=e220] [cursor=pointer]:
+                    - img
+                    - text: 问助教
+                - generic [ref=e221]:
+                  - generic [ref=e222]:
+                    - generic [ref=e223]:
+                      - generic [ref=e224]:
+                        - generic [ref=e225]: 错 1 次
+                        - generic [ref=e226]: 未掌握
+                        - generic [ref=e227]: 05/16 23:55
+                      - heading "习近平总书记指出，讲好中国故事，传播好中国声音，展示真实、立体、全面的中国，是加强我国国际传播能力建设的重要任务。关于加强我国国际传播能力建设，下列表述正确的是：①要提升国际传播体系稳定性，防范国际传播格局重构②要全面提升国际传播效能，建强适应新时代国际传播需要的专门人才队伍③要倡导和平的国际舆论环境，不参与国际舆论斗争，塑造谦逊谦和的大国形象④推动走出去、请进来管理便利化，扩大国际人文交流合作" [level=3] [ref=e228]
+                      - paragraph [ref=e229]: 正确答案：1
+                    - button "标记掌握" [ref=e231] [cursor=pointer]:
+                      - img
+                      - text: 标记掌握
+                  - button "问助教" [ref=e234] [cursor=pointer]:
+                    - img
+                    - text: 问助教
+                - generic [ref=e235]:
+                  - generic [ref=e236]:
+                    - generic [ref=e237]:
+                      - generic [ref=e238]:
+                        - generic [ref=e239]: 错 1 次
+                        - generic [ref=e240]: 未掌握
+                        - generic [ref=e241]: 05/16 23:55
+                      - heading "习近平总书记强调，要坚持以铸牢中华民族共同体意识为主线，不断推进民族团结进步事业，推动党的民族工作高质量发展。关于铸牢中华民族共同体意识，下列说法正确的有几项?①广泛交往交流交融是推进中华民族共同体建设的重要途径②加强对青少年的历史文化教育，全面推广普及国家通用语言文字，全面推行使用国家统编教材③要坚持和完善民族区域自治制度，逐步完善相关法律法规和差别化区域支持政策，依法保障各族群众合法权益④要引导各族群众不断增强对伟大祖国、中华民族、中华文化、中国共产党、中国特色社会主义的认同" [level=3] [ref=e242]
+                      - paragraph [ref=e243]: 正确答案：3
+                    - button "标记掌握" [ref=e245] [cursor=pointer]:
+                      - img
+                      - text: 标记掌握
+                  - button "问助教" [ref=e248] [cursor=pointer]:
+                    - img
+                    - text: 问助教
+                - generic [ref=e249]:
+                  - generic [ref=e250]:
+                    - generic [ref=e251]:
+                      - generic [ref=e252]:
+                        - generic [ref=e253]: 错 1 次
+                        - generic [ref=e254]: 未掌握
+                        - generic [ref=e255]: 05/16 23:55
+                      - heading "制定“十五五”规划建议，系统谋划“十五五”时期经济社会发展，是实现党的二十大描绘的宏伟蓝图、分阶段有步骤推进中国式现代化的需要，意义重大。关于“十五五”规划建议，下列表述正确的有几项？①适度超前建设新型基础设施，推进信息通信网络、全国一体化算力网、重大科技基础设施等建设和集约高效利用②推动量子科技、生物制造、第六代移动通信等成为新的经济增长点③建设法治经济、信用经济，打造市场化法治化国际化一流营商环境④健全与常住人口相匹配的公共资源配置机制，加强县域基本公共服务供给统筹" [level=3] [ref=e256]
+                      - paragraph [ref=e257]: 正确答案：3
+                    - button "标记掌握" [ref=e259] [cursor=pointer]:
+                      - img
+                      - text: 标记掌握
+                  - button "问助教" [ref=e262] [cursor=pointer]:
+                    - img
+                    - text: 问助教
+                - generic [ref=e263]:
+                  - generic [ref=e264]:
+                    - generic [ref=e265]:
+                      - generic [ref=e266]:
+                        - generic [ref=e267]: 错 2 次
+                        - generic [ref=e268]: 未掌握
+                        - generic [ref=e269]: 05/16 23:55
+                      - heading "习近平总书记指出，中国愿同世界各国一道，把握信息革命发展的历史主动，携手构建网络空间命运共同体，让互联网更好造福人民、造福世界。关于构建网络空间命运共同体，下列表述正确的是：①尊重网络主权，维护网络安全，共同构建和平、安全、开放、合作的网络空间②全球网络主要由跨国公司提供，网络空间未来应由跨国公司携手经营③倡导发展优先，构建更加普惠繁荣的网络空间④保障数据安全，建立单边、保密的国际互联网治理体系⑤深化网络安全务实合作，有力打击网络违法犯罪行为" [level=3] [ref=e270]
+                      - paragraph [ref=e271]: 正确答案：0
+                    - button "标记掌握" [ref=e273] [cursor=pointer]:
+                      - img
+                      - text: 标记掌握
+                  - button "问助教" [ref=e276] [cursor=pointer]:
+                    - img
+                    - text: 问助教
+                - generic [ref=e277]:
+                  - generic [ref=e278]:
+                    - generic [ref=e279]:
+                      - generic [ref=e280]:
+                        - generic [ref=e281]: 错 3 次
+                        - generic [ref=e282]: 未掌握
+                        - generic [ref=e283]: 05/16 23:55
+                      - heading "党的十八大以来，以习近平同志为核心的党中央坚定不移推进全面从严治党，取得一系列理论创新、实践创新、制度创新成果，构建起全面从严治党体系，开辟了百年大党自我革命新境界。下列关于全面从严治党的表述不准确的是（ ）。" [level=3] [ref=e284]
+                      - paragraph [ref=e285]: 正确答案：2
+                    - button "标记掌握" [ref=e287] [cursor=pointer]:
+                      - img
+                      - text: 标记掌握
+                  - button "问助教" [ref=e290] [cursor=pointer]:
+                    - img
+                    - text: 问助教
+                - generic [ref=e291]:
+                  - generic [ref=e292]:
+                    - generic [ref=e293]:
+                      - generic [ref=e294]:
+                        - generic [ref=e295]: 错 3 次
+                        - generic [ref=e296]: 未掌握
+                        - generic [ref=e297]: 05/16 23:55
+                      - heading "习近平总书记强调，要推动森林“水库、钱库、粮库、碳库”更好联动，实现生态效益、经济效益、社会效益相统一。下列表述与这一要求相契合的有几项？①手中有粮，心中不慌②绿水青山就是金山银山③增绿就是增优势，护林就是护财富④环境就是民生，青山就是美丽，蓝天也是幸福" [level=3] [ref=e298]
+                      - paragraph [ref=e299]: 正确答案：2
+                    - button "标记掌握" [ref=e301] [cursor=pointer]:
+                      - img
+                      - text: 标记掌握
+                  - button "问助教" [ref=e304] [cursor=pointer]:
+                    - img
+                    - text: 问助教
+                - generic [ref=e305]:
+                  - generic [ref=e306]:
+                    - generic [ref=e307]:
+                      - generic [ref=e308]:
+                        - generic [ref=e309]: 错 3 次
+                        - generic [ref=e310]: 未掌握
+                        - generic [ref=e311]: 05/16 23:55
+                      - heading "党的二十届四中全会指出，“十五五”时期是基本实现社会主义现代化夯实基础、全面发力的关键时期，在基本实现社会主义现代化进程中具有承前启后的重要地位。关于“十五五”规划，下列说法正确的是：" [level=3] [ref=e312]
+                      - paragraph [ref=e313]: 正确答案：0
+                    - button "标记掌握" [ref=e315] [cursor=pointer]:
+                      - img
+                      - text: 标记掌握
+                  - button "问助教" [ref=e318] [cursor=pointer]:
+                    - img
+                    - text: 问助教
+            - group [ref=e319]:
+              - generic "资料分析 5 道错题 · 0 道重复错误 展开/收起" [ref=e320] [cursor=pointer]:
+                - generic [ref=e321]:
+                  - generic [ref=e322]:
+                    - heading "资料分析" [level=2] [ref=e323]
+                    - paragraph [ref=e324]: 5 道错题 · 0 道重复错误
+                  - generic [ref=e325]: 展开/收起
+            - group [ref=e326]:
+              - generic "中心理解 3 道错题 · 0 道重复错误 展开/收起" [ref=e327] [cursor=pointer]:
+                - generic [ref=e328]:
+                  - generic [ref=e329]:
+                    - heading "中心理解" [level=2] [ref=e330]
+                    - paragraph [ref=e331]: 3 道错题 · 0 道重复错误
+                  - generic [ref=e332]: 展开/收起
+            - group [ref=e333]:
+              - generic "自然科技 3 道错题 · 1 道重复错误 展开/收起" [ref=e334] [cursor=pointer]:
+                - generic [ref=e335]:
+                  - generic [ref=e336]:
+                    - heading "自然科技" [level=2] [ref=e337]
+                    - paragraph [ref=e338]: 3 道错题 · 1 道重复错误
+                  - generic [ref=e339]: 展开/收起
+              - generic [ref=e340]:
+                - button "练习本类" [ref=e342] [cursor=pointer]:
+                  - img
+                  - text: 练习本类
+                - button "背本类" [ref=e344] [cursor=pointer]:
+                  - img
+                  - text: 背本类
+              - generic [ref=e345]:
+                - generic [ref=e346]:
+                  - generic [ref=e347]:
+                    - generic [ref=e348]:
+                      - generic [ref=e349]:
+                        - generic [ref=e350]: 错 1 次
+                        - generic [ref=e351]: 未掌握
+                        - generic [ref=e352]: 05/16 23:55
+                      - heading "咖啡因是一种中枢神经兴奋剂，能够暂时驱走睡意并恢复精力，咖啡、茶和能量饮料中都含有咖啡因成分。下列有关说法正确的是（ ）。" [level=3] [ref=e353]
+                      - paragraph [ref=e354]: 正确答案：0
+                    - button "标记掌握" [ref=e356] [cursor=pointer]:
+                      - img
+                      - text: 标记掌握
+                  - button "问助教" [ref=e359] [cursor=pointer]:
+                    - img
+                    - text: 问助教
+                - generic [ref=e360]:
+                  - generic [ref=e361]:
+                    - generic [ref=e362]:
+                      - generic [ref=e363]:
+                        - generic [ref=e364]: 错 1 次
+                        - generic [ref=e365]: 未掌握
+                        - generic [ref=e366]: 05/16 23:55
+                      - heading "下列异常的体检指标，与其关联的疾病最不可能对应的是（ ）。" [level=3] [ref=e367]
+                      - paragraph [ref=e368]: 正确答案：1
+                    - button "标记掌握" [ref=e370] [cursor=pointer]:
+                      - img
+                      - text: 标记掌握
+                  - button "问助教" [ref=e373] [cursor=pointer]:
+                    - img
+                    - text: 问助教
+                - generic [ref=e374]:
+                  - generic [ref=e375]:
+                    - generic [ref=e376]:
+                      - generic [ref=e377]:
+                        - generic [ref=e378]: 错 2 次
+                        - generic [ref=e379]: 未掌握
+                        - generic [ref=e380]: 05/16 23:53
+                      - heading "若将一个弹簧拉力器的一端固定在天花板上，握住另一端用力缓慢竖直下拉，假设弹簧具有一定的质量且均匀分布，则弹簧拉力器最可能断裂的位置是（ ）。" [level=3] [ref=e381]
+                      - paragraph [ref=e382]: 正确答案：0
+                    - button "标记掌握" [ref=e384] [cursor=pointer]:
+                      - img
+                      - text: 标记掌握
+                  - button "问助教" [ref=e387] [cursor=pointer]:
+                    - img
+                    - text: 问助教
+            - group [ref=e388]:
+              - generic "语句排序 2 道错题 · 0 道重复错误 展开/收起" [ref=e389] [cursor=pointer]:
+                - generic [ref=e390]:
+                  - generic [ref=e391]:
+                    - heading "语句排序" [level=2] [ref=e392]
+                    - paragraph [ref=e393]: 2 道错题 · 0 道重复错误
+                  - generic [ref=e394]: 展开/收起
+            - group [ref=e395]:
+              - generic "人文历史 2 道错题 · 1 道重复错误 展开/收起" [ref=e396] [cursor=pointer]:
+                - generic [ref=e397]:
+                  - generic [ref=e398]:
+                    - heading "人文历史" [level=2] [ref=e399]
+                    - paragraph [ref=e400]: 2 道错题 · 1 道重复错误
+                  - generic [ref=e401]: 展开/收起
+              - generic [ref=e402]:
+                - button "练习本类" [ref=e404] [cursor=pointer]:
+                  - img
+                  - text: 练习本类
+                - button "背本类" [ref=e406] [cursor=pointer]:
+                  - img
+                  - text: 背本类
+              - generic [ref=e407]:
+                - generic [ref=e408]:
+                  - generic [ref=e409]:
+                    - generic [ref=e410]:
+                      - generic [ref=e411]:
+                        - generic [ref=e412]: 错 1 次
+                        - generic [ref=e413]: 未掌握
+                        - generic [ref=e414]: 05/16 23:55
+                      - heading "《黄帝内经》中“是故圣人不治已病治未病”的思想是中医养生的重要理念，倡导通过饮食、运动、情志调节等方式增强体质，未病先防。下列古诗词中描述的行为不符合“治未病”理念的是（ ）。" [level=3] [ref=e415]
+                      - paragraph [ref=e416]: 正确答案：2
+                    - button "标记掌握" [ref=e418] [cursor=pointer]:
+                      - img
+                      - text: 标记掌握
+                  - button "问助教" [ref=e421] [cursor=pointer]:
+                    - img
+                    - text: 问助教
+                - generic [ref=e422]:
+                  - generic [ref=e423]:
+                    - generic [ref=e424]:
+                      - generic [ref=e425]:
+                        - generic [ref=e426]: 错 2 次
+                        - generic [ref=e427]: 未掌握
+                        - generic [ref=e428]: 05/16 23:55
+                      - heading "关于我国考古发现，下列说法错误的是:" [level=3] [ref=e429]
+                      - paragraph [ref=e430]: 正确答案：1
+                    - button "标记掌握" [ref=e432] [cursor=pointer]:
+                      - img
+                      - text: 标记掌握
+                  - button "问助教" [ref=e435] [cursor=pointer]:
+                    - img
+                    - text: 问助教
+            - group [ref=e436]:
+              - generic "经济 2 道错题 · 0 道重复错误 展开/收起" [ref=e437] [cursor=pointer]:
+                - generic [ref=e438]:
+                  - generic [ref=e439]:
+                    - heading "经济" [level=2] [ref=e440]
+                    - paragraph [ref=e441]: 2 道错题 · 0 道重复错误
+                  - generic [ref=e442]: 展开/收起
+            - group [ref=e443]:
+              - generic "马克思主义 2 道错题 · 0 道重复错误 展开/收起" [ref=e444] [cursor=pointer]:
+                - generic [ref=e445]:
+                  - generic [ref=e446]:
+                    - heading "马克思主义" [level=2] [ref=e447]
+                    - paragraph [ref=e448]: 2 道错题 · 0 道重复错误
+                  - generic [ref=e449]: 展开/收起
+            - group [ref=e450]:
+              - generic "常识判断 2 道错题 · 0 道重复错误 展开/收起" [ref=e451] [cursor=pointer]:
+                - generic [ref=e452]:
+                  - generic [ref=e453]:
+                    - heading "常识判断" [level=2] [ref=e454]
+                    - paragraph [ref=e455]: 2 道错题 · 0 道重复错误
+                  - generic [ref=e456]: 展开/收起
+            - group [ref=e457]:
+              - generic "加强削弱 1 道错题 · 0 道重复错误 展开/收起" [ref=e458] [cursor=pointer]:
+                - generic [ref=e459]:
+                  - generic [ref=e460]:
+                    - heading "加强削弱" [level=2] [ref=e461]
+                    - paragraph [ref=e462]: 1 道错题 · 0 道重复错误
+                  - generic [ref=e463]: 展开/收起
+            - group [ref=e464]:
+              - generic "图形推理 1 道错题 · 0 道重复错误 展开/收起" [ref=e465] [cursor=pointer]:
+                - generic [ref=e466]:
+                  - generic [ref=e467]:
+                    - heading "图形推理" [level=2] [ref=e468]
+                    - paragraph [ref=e469]: 1 道错题 · 0 道重复错误
+                  - generic [ref=e470]: 展开/收起
+            - group [ref=e471]:
+              - generic "和差倍比 1 道错题 · 0 道重复错误 展开/收起" [ref=e472] [cursor=pointer]:
+                - generic [ref=e473]:
+                  - generic [ref=e474]:
+                    - heading "和差倍比" [level=2] [ref=e475]
+                    - paragraph [ref=e476]: 1 道错题 · 0 道重复错误
+                  - generic [ref=e477]: 展开/收起
+            - group [ref=e478]:
+              - generic "细节判断 1 道错题 · 0 道重复错误 展开/收起" [ref=e479] [cursor=pointer]:
+                - generic [ref=e480]:
+                  - generic [ref=e481]:
+                    - heading "细节判断" [level=2] [ref=e482]
+                    - paragraph [ref=e483]: 1 道错题 · 0 道重复错误
+                  - generic [ref=e484]: 展开/收起
+            - group [ref=e485]:
+              - generic "推断下文 1 道错题 · 0 道重复错误 展开/收起" [ref=e486] [cursor=pointer]:
+                - generic [ref=e487]:
+                  - generic [ref=e488]:
+                    - heading "推断下文" [level=2] [ref=e489]
+                    - paragraph [ref=e490]: 1 道错题 · 0 道重复错误
+                  - generic [ref=e491]: 展开/收起
+            - group [ref=e492]:
+              - generic "地理国情 1 道错题 · 0 道重复错误 展开/收起" [ref=e493] [cursor=pointer]:
+                - generic [ref=e494]:
+                  - generic [ref=e495]:
+                    - heading "地理国情" [level=2] [ref=e496]
+                    - paragraph [ref=e497]: 1 道错题 · 0 道重复错误
+                  - generic [ref=e498]: 展开/收起
+            - group [ref=e499]:
+              - generic "类比推理 1 道错题 · 1 道重复错误 展开/收起" [ref=e500] [cursor=pointer]:
+                - generic [ref=e501]:
+                  - generic [ref=e502]:
+                    - heading "类比推理" [level=2] [ref=e503]
+                    - paragraph [ref=e504]: 1 道错题 · 1 道重复错误
+                  - generic [ref=e505]: 展开/收起
+              - generic [ref=e506]:
+                - button "练习本类" [ref=e508] [cursor=pointer]:
+                  - img
+                  - text: 练习本类
+                - button "背本类" [ref=e510] [cursor=pointer]:
+                  - img
+                  - text: 背本类
+              - generic [ref=e512]:
+                - generic [ref=e513]:
+                  - generic [ref=e514]:
+                    - generic [ref=e515]:
+                      - generic [ref=e516]: 错 2 次
+                      - generic [ref=e517]: 未掌握
+                      - generic [ref=e518]: 05/16 23:55
+                    - heading "龙葵碱 对于 （ ） 相当于 （ ） 对于 面团发酵" [level=3] [ref=e519]
+                    - paragraph [ref=e520]: 正确答案：1
+                  - button "标记掌握" [ref=e522] [cursor=pointer]:
+                    - img
+                    - text: 标记掌握
+                - button "问助教" [ref=e525] [cursor=pointer]:
+                  - img
+                  - text: 问助教
+            - group [ref=e526]:
+              - generic "定义判断 1 道错题 · 0 道重复错误 展开/收起" [ref=e527] [cursor=pointer]:
+                - generic [ref=e528]:
+                  - generic [ref=e529]:
+                    - heading "定义判断" [level=2] [ref=e530]
+                    - paragraph [ref=e531]: 1 道错题 · 0 道重复错误
+                  - generic [ref=e532]: 展开/收起
+            - group [ref=e533]:
+              - generic "计算问题 1 道错题 · 0 道重复错误 展开/收起" [ref=e534] [cursor=pointer]:
+                - generic [ref=e535]:
+                  - generic [ref=e536]:
+                    - heading "计算问题" [level=2] [ref=e537]
+                    - paragraph [ref=e538]: 1 道错题 · 0 道重复错误
+                  - generic [ref=e539]: 展开/收起
+            - group [ref=e540]:
+              - generic "几何问题 1 道错题 · 0 道重复错误 展开/收起" [ref=e541] [cursor=pointer]:
+                - generic [ref=e542]:
+                  - generic [ref=e543]:
+                    - heading "几何问题" [level=2] [ref=e544]
+                    - paragraph [ref=e545]: 1 道错题 · 0 道重复错误
+                  - generic [ref=e546]: 展开/收起
