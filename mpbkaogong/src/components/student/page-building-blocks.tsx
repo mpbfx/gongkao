@@ -70,8 +70,8 @@ export function PageHeader({
   compact?: boolean;
 }) {
   return (
-    <section className="flex flex-col gap-3 border-b pb-4 md:flex-row md:items-end md:justify-between">
-      <div className="flex min-w-0 flex-col gap-2">
+    <section className={cn("flex flex-col border-b md:flex-row md:items-end md:justify-between", compact ? "gap-2 pb-3" : "gap-3 pb-4")}>
+      <div className={cn("flex min-w-0 flex-col", compact ? "gap-1.5" : "gap-2")}>
         {eyebrow ? (
           <Badge variant="info" className="w-fit">
             {eyebrow}
@@ -176,6 +176,7 @@ export function TrainingPanel({
 export function MetricStrip({
   items,
   className,
+  compact = false,
 }: {
   items: Array<{
     label: string;
@@ -185,6 +186,7 @@ export function MetricStrip({
     tone?: Tone;
   }>;
   className?: string;
+  compact?: boolean;
 }) {
   return (
     <section className={cn("grid overflow-hidden rounded-lg border bg-card shadow-xs sm:grid-cols-2 lg:grid-cols-4", className)}>
@@ -192,16 +194,22 @@ export function MetricStrip({
         const Icon = item.icon;
 
         return (
-          <div key={item.label} className="flex min-w-0 items-start gap-3 border-b p-4 last:border-b-0 sm:[&:nth-child(2n)]:border-l lg:border-b-0 lg:border-l lg:first:border-l-0 sm:[&:nth-last-child(-n+2)]:border-b-0">
+          <div
+            key={item.label}
+            className={cn(
+              "flex min-w-0 items-start border-b last:border-b-0 sm:[&:nth-child(2n)]:border-l lg:border-b-0 lg:border-l lg:first:border-l-0 sm:[&:nth-last-child(-n+2)]:border-b-0",
+              compact ? "gap-2 p-3" : "gap-3 p-4"
+            )}
+          >
             {Icon ? (
-              <div className={cn("grid size-9 shrink-0 place-items-center rounded-lg", toneClassNames[item.tone ?? "default"])}>
-                <Icon className="size-4" aria-hidden="true" />
+              <div className={cn("grid shrink-0 place-items-center rounded-lg", compact ? "size-8" : "size-9", toneClassNames[item.tone ?? "default"])}>
+                <Icon className={cn(compact ? "size-3.5" : "size-4")} aria-hidden="true" />
               </div>
             ) : null}
             <div className="min-w-0">
               <div className="text-xs font-medium text-muted-foreground">{item.label}</div>
-              <div className="mt-1 font-mono text-2xl font-semibold tabular-nums text-foreground">{item.value}</div>
-              {item.description ? <div className="mt-1 text-xs leading-5 text-muted-foreground">{item.description}</div> : null}
+              <div className={cn("mt-0.5 font-mono font-semibold tabular-nums text-foreground", compact ? "text-xl" : "text-2xl")}>{item.value}</div>
+              {item.description && !compact ? <div className="mt-1 text-xs leading-5 text-muted-foreground">{item.description}</div> : null}
             </div>
           </div>
         );
