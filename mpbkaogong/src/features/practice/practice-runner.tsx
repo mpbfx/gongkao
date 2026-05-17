@@ -25,11 +25,17 @@ import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
+import {
+  Dialog,
+  DialogBody,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import {
   clearPracticeDraft,
   getPracticeDraft,
@@ -181,29 +187,6 @@ function optionStateLabel(state: "selected" | "correct" | "wrong" | "default") {
   }
 
   return null;
-}
-
-function usePracticeOverlayDismiss({
-  enabled,
-  onDismiss,
-}: {
-  enabled: boolean;
-  onDismiss: () => void;
-}) {
-  useEffect(() => {
-    if (!enabled) {
-      return;
-    }
-
-    function handleKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") {
-        onDismiss();
-      }
-    }
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [enabled, onDismiss]);
 }
 
 export function PracticeRunner({
@@ -695,14 +678,6 @@ export function PracticeRunner({
     timeSpentByQuestionId,
   ]);
 
-  usePracticeOverlayDismiss({
-    enabled: showAnswerSheet || showSubmitDialog,
-    onDismiss: () => {
-      setShowAnswerSheet(false);
-      setShowSubmitDialog(false);
-    },
-  });
-
   function buildSubmitDraft(): PracticeSubmitDraft {
     return {
       elapsedSeconds,
@@ -883,7 +858,7 @@ export function PracticeRunner({
             type="button"
             variant="outline"
             size="sm"
-            className="h-10 w-10 shrink-0 px-0 sm:w-auto sm:px-3"
+            className="size-11 shrink-0 px-0 sm:w-auto sm:px-3"
             aria-label="上一题"
             disabled={currentIndex === 0}
             onClick={() => goToQuestion(currentIndex - 1)}
@@ -899,7 +874,7 @@ export function PracticeRunner({
             type="button"
             variant="outline"
             size="sm"
-            className="h-10 w-10 shrink-0 px-0 sm:w-auto sm:px-3"
+            className="size-11 shrink-0 px-0 sm:w-auto sm:px-3"
             aria-label="下一题"
             disabled={currentIndex === questions.length - 1}
             onClick={() => goToQuestion(currentIndex + 1)}
@@ -913,7 +888,7 @@ export function PracticeRunner({
               type="button"
               variant="outline"
               size="sm"
-              className="h-10 w-10 shrink-0 px-0 md:w-auto md:px-3"
+              className="size-11 shrink-0 px-0 md:w-auto md:px-3"
               aria-label={isPracticePaused ? "继续答题" : "暂停答题"}
               onClick={togglePause}
             >
@@ -926,7 +901,7 @@ export function PracticeRunner({
               type="button"
               variant="outline"
               size="sm"
-              className="h-10 w-10 shrink-0 px-0 md:w-auto md:px-3"
+              className="size-11 shrink-0 px-0 md:w-auto md:px-3"
               aria-label={isResultMode ? "查看草稿" : "草稿"}
               onClick={() => setShowDraftCanvas(true)}
             >
@@ -938,7 +913,7 @@ export function PracticeRunner({
             type="button"
             variant="outline"
             size="sm"
-            className="h-10 w-10 shrink-0 px-0 lg:hidden"
+            className="size-11 shrink-0 px-0 lg:hidden"
             aria-label="答题卡"
             onClick={() => setShowAnswerSheet(true)}
           >
@@ -948,7 +923,7 @@ export function PracticeRunner({
             <Button
               type="button"
               size="sm"
-              className="h-10 w-10 shrink-0 px-0 sm:w-auto sm:px-3"
+              className="size-11 shrink-0 px-0 sm:w-auto sm:px-3"
               aria-label="提交"
               onClick={() => setShowSubmitDialog(true)}
             >
@@ -959,71 +934,60 @@ export function PracticeRunner({
         </div>
       </div>
 
-      {showAnswerSheet ? (
-        <div
-          className="fixed inset-0 z-40 flex items-end bg-background/70 p-0 backdrop-blur-sm lg:hidden"
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="answer-sheet-title"
-        >
-          <div className="max-h-[82vh] w-full rounded-t-xl border bg-card p-4 shadow-lg">
-            <div className="mx-auto mb-3 h-1 w-10 rounded-full bg-muted-foreground/30" />
-            <h2 id="answer-sheet-title" className="sr-only">
-              答题卡
-            </h2>
-            <div className="flex max-h-[calc(82vh-2rem)] flex-col gap-3 overflow-hidden">
-              {answerSheetContent}
-              <Button type="button" variant="outline" className="w-full" onClick={() => setShowAnswerSheet(false)}>
-                收起答题卡
-              </Button>
-            </div>
+      <Dialog open={showAnswerSheet} onOpenChange={(open) => setShowAnswerSheet(open)}>
+        <DialogContent variant="sheet" className="p-4 lg:hidden">
+          <DialogTitle className="sr-only">答题卡</DialogTitle>
+          <DialogDescription className="sr-only">
+            查看本次练习的答题进度，并跳转到指定题目。
+          </DialogDescription>
+          <div className="mx-auto mb-3 h-1 w-10 rounded-full bg-muted-foreground/30" />
+          <div className="flex max-h-[calc(82vh-2rem)] flex-col gap-3 overflow-hidden">
+            {answerSheetContent}
+            <DialogClose className="w-full border-border bg-card text-sm font-medium hover:bg-secondary hover:text-secondary-foreground">
+              收起答题卡
+            </DialogClose>
           </div>
-        </div>
-      ) : null}
+        </DialogContent>
+      </Dialog>
 
-      {showSubmitDialog ? (
-        <div
-          className="fixed inset-0 z-50 grid place-items-center bg-background/80 p-4 backdrop-blur-sm"
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="submit-dialog-title"
-        >
-          <Card className="w-full max-w-md">
-            <CardHeader>
-              <CardTitle id="submit-dialog-title">{completionRate < 0.5 ? "完成率不足 50%" : "确认提交练习"}</CardTitle>
-              <CardDescription>
-                已答 {answeredCount} / {questions.length} 题，提交后选项不可再修改。
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              {completionRate < 0.5 ? (
-                <Alert variant="warning">
-                  <AlertTriangle aria-hidden="true" />
-                  <AlertTitle>作答数量较少</AlertTitle>
-                  <AlertDescription>当前完成率较低，建议继续作答后再提交。</AlertDescription>
-                </Alert>
-              ) : (
-                <p className="text-sm text-muted-foreground">
-                  {isOnline
-                    ? "系统会计算正确、错误、未答和正确率，并显示答案解析。"
-                    : "当前处于离线状态，提交草稿会保存在本地，网络恢复后可重试。"}
-                </p>
-              )}
-              {submitError ? <p className="mt-3 text-sm text-destructive">{submitError}</p> : null}
-            </CardContent>
-            <CardFooter className="justify-end gap-2">
-              <Button type="button" variant="outline" disabled={isSubmitting} onClick={() => setShowSubmitDialog(false)}>
-                取消
-              </Button>
-              <Button type="button" disabled={isSubmitting} onClick={submitPractice}>
-                {isSubmitting ? <LoaderCircle data-icon="inline-start" className="animate-spin" /> : null}
-                {isOnline ? "确认提交" : "保存提交草稿"}
-              </Button>
-            </CardFooter>
-          </Card>
-        </div>
-      ) : null}
-
+      <Dialog open={showSubmitDialog} onOpenChange={(open) => setShowSubmitDialog(open)}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>{completionRate < 0.5 ? "完成率不足 50%" : "确认提交练习"}</DialogTitle>
+            <DialogDescription>
+              已答 {answeredCount} / {questions.length} 题，提交后选项不可再修改。
+            </DialogDescription>
+          </DialogHeader>
+          <DialogBody>
+            {completionRate < 0.5 ? (
+              <Alert variant="warning">
+                <AlertTriangle aria-hidden="true" />
+                <AlertTitle>作答数量较少</AlertTitle>
+                <AlertDescription>当前完成率较低，建议继续作答后再提交。</AlertDescription>
+              </Alert>
+            ) : (
+              <p className="text-sm text-muted-foreground">
+                {isOnline
+                  ? "系统会计算正确、错误、未答和正确率，并显示答案解析。"
+                  : "当前处于离线状态，提交草稿会保存在本地，网络恢复后可重试。"}
+              </p>
+            )}
+            {submitError ? <p className="mt-3 text-sm text-destructive">{submitError}</p> : null}
+          </DialogBody>
+          <DialogFooter>
+            <DialogClose
+              className="border-border bg-card px-3 text-sm font-medium hover:bg-secondary hover:text-secondary-foreground"
+              disabled={isSubmitting}
+            >
+              取消
+            </DialogClose>
+            <Button type="button" disabled={isSubmitting} onClick={submitPractice}>
+              {isSubmitting ? <LoaderCircle data-icon="inline-start" className="animate-spin" /> : null}
+              {isOnline ? "确认提交" : "保存提交草稿"}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </main>
   );
 }

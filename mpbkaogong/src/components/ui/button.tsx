@@ -21,16 +21,16 @@ const buttonVariants = cva(
       },
       size: {
         default:
-          "h-11 gap-1.5 px-3 md:h-8 md:px-2.5 has-data-[icon=inline-end]:pr-2.5 md:has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2.5 md:has-data-[icon=inline-start]:pl-2",
-        xs: "h-8 gap-1 rounded-md px-2 text-xs md:h-6 in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3",
-        sm: "h-10 gap-1 rounded-md px-3 text-[0.8rem] md:h-7 md:px-2.5 in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-2 md:has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-2 md:has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3.5",
-        lg: "h-12 gap-1.5 px-4 md:h-9 md:px-2.5 has-data-[icon=inline-end]:pr-3 md:has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-3 md:has-data-[icon=inline-start]:pl-2",
-        icon: "size-11 md:size-8",
+          "h-11 gap-1.5 px-3 lg:h-8 lg:px-2.5 has-data-[icon=inline-end]:pr-2.5 lg:has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2.5 lg:has-data-[icon=inline-start]:pl-2",
+        xs: "h-11 gap-1 rounded-md px-2 text-xs lg:h-6 in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3",
+        sm: "h-11 gap-1 rounded-md px-3 text-[0.8rem] lg:h-7 lg:px-2.5 in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-2 lg:has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-2 lg:has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3.5",
+        lg: "h-12 gap-1.5 px-4 lg:h-9 lg:px-2.5 has-data-[icon=inline-end]:pr-3 lg:has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-3 lg:has-data-[icon=inline-start]:pl-2",
+        icon: "size-11 lg:size-8",
         "icon-xs":
-          "size-8 rounded-md md:size-6 in-data-[slot=button-group]:rounded-lg [&_svg:not([class*='size-'])]:size-3",
+          "size-11 rounded-md lg:size-6 in-data-[slot=button-group]:rounded-lg [&_svg:not([class*='size-'])]:size-3",
         "icon-sm":
-          "size-10 rounded-md md:size-7 in-data-[slot=button-group]:rounded-lg",
-        "icon-lg": "size-12 md:size-9",
+          "size-11 rounded-md lg:size-7 in-data-[slot=button-group]:rounded-lg",
+        "icon-lg": "size-12 lg:size-9",
       },
     },
     defaultVariants: {
