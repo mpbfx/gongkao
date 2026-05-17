@@ -15,6 +15,7 @@ import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -291,16 +292,21 @@ export function SpecialPracticeBuilder({ tags }: { tags: TagNode[] }) {
     }
   }
 
+  const difficultyLabel = difficulties.find((item) => item.value === difficulty)?.label ?? "不限";
+  const startDisabled = isPending || selectedCount === 0 || hasMaterialMix;
+
   return (
-    <div className="flex flex-col gap-4">
-      <Card>
-        <CardHeader>
-          <CardTitle>练习条件</CardTitle>
-          <CardDescription>选择难度、知识点和题量后开始组卷。</CardDescription>
-        </CardHeader>
-        <CardContent className="flex flex-col gap-4">
-          <div className="flex flex-col gap-2">
-            <div className="text-sm font-medium">难度</div>
+    <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_340px] lg:items-start">
+      <div className="flex min-w-0 flex-col gap-4">
+        <Card>
+          <CardHeader>
+            <div className="flex flex-wrap items-center gap-2">
+              <Badge variant="info">第 1 步</Badge>
+              <CardTitle>选择难度</CardTitle>
+            </div>
+            <CardDescription>默认不限难度；需要冲刺时再收窄为易、中、难。</CardDescription>
+          </CardHeader>
+          <CardContent>
             <div className="grid grid-cols-4 rounded-lg border bg-muted p-1" role="group" aria-label="选择难度">
               {difficulties.map((item) => (
                 <button
@@ -317,82 +323,112 @@ export function SpecialPracticeBuilder({ tags }: { tags: TagNode[] }) {
                 </button>
               ))}
             </div>
-          </div>
+          </CardContent>
+        </Card>
 
-          {message ? (
-            <Alert variant={hasMaterialMix ? "destructive" : "warning"}>
-              <AlertTriangle aria-hidden="true" />
-              <AlertTitle>无法开始</AlertTitle>
-              <AlertDescription>{message}</AlertDescription>
-            </Alert>
-          ) : null}
-
-          {hasMaterialMix ? (
-            <Alert variant="destructive">
-              <AlertTriangle aria-hidden="true" />
-              <AlertTitle>材料类混选</AlertTitle>
-              <AlertDescription>材料类专项需要单独练习，请取消其他分类后再开始。</AlertDescription>
-            </Alert>
-          ) : null}
-        </CardContent>
-      </Card>
-
-      <Card>
-        <CardHeader>
-          <CardTitle>专项分类</CardTitle>
-          <CardDescription>
-            {normalizedSearch ? `已显示 ${resultCount} 组匹配分类。` : "默认只显示顶层分类，展开后选择更细的知识点。"}
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="flex flex-col gap-4">
-          <label className="flex flex-col gap-2">
-            <span className="text-sm font-medium">搜索分类</span>
-            <div className="relative">
-              <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" aria-hidden="true" />
-              <Input
-                value={searchQuery}
-                onChange={(event) => setSearchQuery(event.target.value)}
-                className="pl-9 pr-11"
-                placeholder="输入知识点名称"
-                type="search"
-              />
-              {searchQuery ? (
-                <button
-                  type="button"
-                  className="absolute right-1 top-1/2 grid size-11 -translate-y-1/2 place-items-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none lg:size-7"
-                  aria-label="清空分类搜索"
-                  onClick={() => setSearchQuery("")}
-                >
-                  <X className="size-4" aria-hidden="true" />
-                </button>
-              ) : null}
+        <Card>
+          <CardHeader>
+            <div className="flex flex-wrap items-center gap-2">
+              <Badge variant="info">第 2 步</Badge>
+              <CardTitle>选择知识点</CardTitle>
             </div>
-          </label>
-
-          {selectedCount > 0 ? (
-            <section className="rounded-lg border bg-muted/40 p-3" aria-label="已选专项">
-              <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-                <div>
-                  <h3 className="text-sm font-medium">已选专项</h3>
-                  <p className="mt-1 text-xs text-muted-foreground">
-                    {selectedCount} 类 · {totalCount} 题，可在这里调整题量。
-                  </p>
-                </div>
-                <Button type="button" variant="ghost" size="sm" onClick={() => setSelected({})}>
-                  <RotateCcw data-icon="inline-start" />
-                  清空
-                </Button>
+            <CardDescription>
+              {normalizedSearch ? `已显示 ${resultCount} 组匹配分类。` : "默认只显示顶层分类，展开后选择更细的知识点。"}
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="flex flex-col gap-4">
+            <label className="flex flex-col gap-2">
+              <span className="text-sm font-medium">搜索分类</span>
+              <div className="relative">
+                <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" aria-hidden="true" />
+                <Input
+                  value={searchQuery}
+                  onChange={(event) => setSearchQuery(event.target.value)}
+                  className="pl-9 pr-11"
+                  placeholder="输入知识点名称"
+                  type="search"
+                />
+                {searchQuery ? (
+                  <button
+                    type="button"
+                    className="absolute right-1 top-1/2 grid size-11 -translate-y-1/2 place-items-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none lg:size-7"
+                    aria-label="清空分类搜索"
+                    onClick={() => setSearchQuery("")}
+                  >
+                    <X className="size-4" aria-hidden="true" />
+                  </button>
+                ) : null}
               </div>
-              <div className="grid gap-2 md:grid-cols-2">
+            </label>
+
+            {visibleTags.length > 0 ? (
+              <TagTree
+                tags={visibleTags}
+                selected={selected}
+                expanded={expanded}
+                forceExpanded={Boolean(normalizedSearch)}
+                onToggle={toggleTag}
+                onToggleExpand={toggleExpand}
+              />
+            ) : (
+              <div className="rounded-lg border border-dashed bg-muted/40 p-6 text-center">
+                <p className="text-sm font-medium">没有匹配的专项分类</p>
+                <p className="mt-1 text-sm text-muted-foreground">换一个关键词，或清空搜索后从顶层分类展开。</p>
+              </div>
+            )}
+          </CardContent>
+        </Card>
+      </div>
+
+      <aside className="flex flex-col gap-4 lg:sticky lg:top-20">
+        <Card className="border-primary/20">
+          <CardHeader>
+            <div className="flex flex-wrap items-center gap-2">
+              <Badge variant="info">第 3 步</Badge>
+              <CardTitle>确认题量</CardTitle>
+            </div>
+            <CardDescription>
+              已选 {selectedCount} 类 · 预计 {totalCount} 题 · 难度 {difficultyLabel}
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="flex flex-col gap-4">
+            {message ? (
+              <Alert variant={hasMaterialMix ? "destructive" : "warning"}>
+                <AlertTriangle aria-hidden="true" />
+                <AlertTitle>无法开始</AlertTitle>
+                <AlertDescription>{message}</AlertDescription>
+              </Alert>
+            ) : null}
+
+            {hasMaterialMix ? (
+              <Alert variant="destructive">
+                <AlertTriangle aria-hidden="true" />
+                <AlertTitle>材料类混选</AlertTitle>
+                <AlertDescription>材料类专项需要单独练习，请取消其他分类后再开始。</AlertDescription>
+              </Alert>
+            ) : null}
+
+            {selectedCount > 0 ? (
+              <section className="flex flex-col gap-2" aria-label="已选专项">
                 {selectedTags.map((tag) => (
-                  <div key={tag.id} className="flex flex-col gap-2 rounded-lg border bg-card p-3 sm:flex-row sm:items-center sm:justify-between">
-                    <div className="min-w-0">
-                      <div className="truncate text-sm font-medium">{tag.name}</div>
-                      <div className="mt-1 text-xs text-muted-foreground">
-                        {tag.questionCount} 题{tag.isMaterialOnly ? " · 材料类" : ""}
+                  <div key={tag.id} className="rounded-lg border bg-background p-3">
+                    <div className="mb-3 flex items-start justify-between gap-3">
+                      <div className="min-w-0">
+                        <div className="truncate text-sm font-medium">{tag.name}</div>
+                        <div className="mt-1 text-xs text-muted-foreground">
+                          {tag.questionCount} 题{tag.isMaterialOnly ? " · 材料类" : ""}
+                        </div>
                       </div>
+                      <button
+                        type="button"
+                        className="grid size-11 shrink-0 place-items-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none lg:size-8"
+                        aria-label={`取消选择 ${tag.name}`}
+                        onClick={() => toggleTag(tag)}
+                      >
+                        <X className="size-4" aria-hidden="true" />
+                      </button>
                     </div>
-                    <div className="flex items-center gap-2 sm:w-40">
+                    <label className="flex items-center gap-2">
                       <span className="text-sm text-muted-foreground">题量</span>
                       <Input
                         aria-label={`${tag.name} 题量`}
@@ -403,61 +439,46 @@ export function SpecialPracticeBuilder({ tags }: { tags: TagNode[] }) {
                         value={selected[tag.id]}
                         onChange={(event) => updateCount(tag.id, Number(event.target.value))}
                       />
-                      <button
-                        type="button"
-                        className="grid size-11 shrink-0 place-items-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none lg:size-8"
-                        aria-label={`取消选择 ${tag.name}`}
-                        onClick={() => toggleTag(tag)}
-                      >
-                        <X className="size-4" aria-hidden="true" />
-                      </button>
-                    </div>
+                    </label>
                   </div>
                 ))}
+                <Button type="button" variant="ghost" size="sm" onClick={() => setSelected({})}>
+                  <RotateCcw data-icon="inline-start" />
+                  清空选择
+                </Button>
+              </section>
+            ) : (
+              <div className="rounded-lg border border-dashed bg-muted/40 p-5 text-center">
+                <p className="text-sm font-medium">还没有选择知识点</p>
+                <p className="mt-1 text-sm text-muted-foreground">从左侧分类中选中一个模块后再确认题量。</p>
               </div>
-            </section>
-          ) : null}
+            )}
+          </CardContent>
+          <div className="grid gap-2 border-t bg-muted/40 p-4">
+            <Button type="button" disabled={startDisabled} onClick={startSpecialPractice}>
+              {isPending ? <LoaderCircle data-icon="inline-start" className="animate-spin" /> : <Play data-icon="inline-start" />}
+              开始专项练习
+            </Button>
+          </div>
+        </Card>
+      </aside>
 
-          {visibleTags.length > 0 ? (
-            <TagTree
-              tags={visibleTags}
-              selected={selected}
-              expanded={expanded}
-              forceExpanded={Boolean(normalizedSearch)}
-              onToggle={toggleTag}
-              onToggleExpand={toggleExpand}
-            />
-          ) : (
-            <div className="rounded-lg border border-dashed bg-muted/40 p-6 text-center">
-              <p className="text-sm font-medium">没有匹配的专项分类</p>
-              <p className="mt-1 text-sm text-muted-foreground">换一个关键词，或清空搜索后从顶层分类展开。</p>
-            </div>
-          )}
-        </CardContent>
-      </Card>
-
-      <div className="fixed inset-x-0 bottom-16 z-20 border-t bg-background/95 p-3 shadow-[0_-8px_24px_rgb(15_23_42/0.08)] backdrop-blur lg:static lg:border-0 lg:bg-transparent lg:p-0 lg:shadow-none">
+      <div className="fixed inset-x-0 bottom-16 z-20 border-t bg-background/95 p-3 shadow-[0_-8px_24px_rgb(15_23_42/0.08)] backdrop-blur lg:hidden">
         <div className="mx-auto flex max-w-6xl items-center gap-3">
           <div className="min-w-0 flex-1">
             <div className="text-sm font-medium">
               已选 {selectedCount} 类 · {totalCount} 题
             </div>
-            <div className="text-xs text-muted-foreground">
-              {difficulty ? `难度 ${difficulty}` : "难度不限"}
-            </div>
+            <div className="text-xs text-muted-foreground">难度 {difficultyLabel}</div>
           </div>
-          <Button type="button" variant="outline" disabled={isPending || selectedCount === 0} onClick={() => setSelected({})}>
-            <RotateCcw data-icon="inline-start" />
-            清空
-          </Button>
-          <Button type="button" disabled={isPending || selectedCount === 0 || hasMaterialMix} onClick={startSpecialPractice}>
+          <Button type="button" disabled={startDisabled} onClick={startSpecialPractice}>
             {isPending ? <LoaderCircle data-icon="inline-start" className="animate-spin" /> : <Play data-icon="inline-start" />}
-            开始练习
+            开始
           </Button>
         </div>
       </div>
 
-      <div className="h-36 lg:hidden" />
+      <div className="h-24 lg:hidden" />
     </div>
   );
 }

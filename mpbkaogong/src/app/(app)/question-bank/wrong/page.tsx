@@ -1,4 +1,13 @@
-import { ArrowRight, BookOpen, CheckCircle2, Dumbbell, RotateCcw } from "lucide-react";
+import {
+  AlertTriangle,
+  ArrowRight,
+  BookOpen,
+  CheckCircle2,
+  Dumbbell,
+  Layers3,
+  RotateCcw,
+  Target,
+} from "lucide-react";
 import { revalidatePath } from "next/cache";
 import Link from "next/link";
 import { redirect } from "next/navigation";
@@ -8,8 +17,10 @@ import { Badge } from "@/components/ui/badge";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
   EmptyState,
+  MetricStrip,
   PageHeader,
   StudentPage,
+  TrainingPanel,
 } from "@/components/student/page-building-blocks";
 import { TutorPanel } from "@/features/agent/tutor-panel";
 import { requireUser } from "@/lib/auth/guards";
@@ -112,14 +123,18 @@ export default async function WrongQuestionsPage({ searchParams }: WrongQuestion
   });
   const data = await listWrongQuestions(user, query);
   const hasWrongQuestions = data.summary.unresolvedCount > 0;
+  const highRepeatCount = data.groups.reduce(
+    (total, group) => total + group.items.filter((item) => item.wrongCount >= 2 && !item.resolvedAt).length,
+    0
+  );
 
   return (
     <AppShell>
-      <StudentPage>
+      <StudentPage wide>
         <PageHeader
           eyebrow="错题本"
           title="把高频错误收拢成下一组训练"
-          description="按知识点查看未掌握题目，可直接进入错题练习，也可以先背题看解析。"
+          description="优先看重复错误和未掌握知识点，复盘入口保持在每个模块附近。"
           actions={
             <Link
               href={query.includeResolved ? "/question-bank/wrong" : "/question-bank/wrong?includeResolved=true"}
@@ -129,6 +144,39 @@ export default async function WrongQuestionsPage({ searchParams }: WrongQuestion
               {query.includeResolved ? "只看未掌握" : "查看已掌握"}
             </Link>
           }
+        />
+
+        <MetricStrip
+          items={[
+            {
+              label: "未掌握",
+              value: data.summary.unresolvedCount,
+              description: "下一组错题练习来源",
+              icon: AlertTriangle,
+              tone: data.summary.unresolvedCount > 0 ? "warning" : "success",
+            },
+            {
+              label: "已掌握",
+              value: data.summary.resolvedCount,
+              description: "累计标记掌握",
+              icon: CheckCircle2,
+              tone: "success",
+            },
+            {
+              label: "知识点",
+              value: data.groups.length,
+              description: data.groups[0]?.tagName ?? "暂无分组",
+              icon: Layers3,
+              tone: "info",
+            },
+            {
+              label: "重复错误",
+              value: highRepeatCount,
+              description: "错 2 次及以上",
+              icon: Target,
+              tone: highRepeatCount > 0 ? "destructive" : "success",
+            },
+          ]}
         />
 
         <section className="flex flex-wrap items-center justify-between gap-3 rounded-lg border bg-card p-4 shadow-xs">
@@ -156,16 +204,29 @@ export default async function WrongQuestionsPage({ searchParams }: WrongQuestion
         </section>
 
         {hasWrongQuestions || query.includeResolved ? (
-          <section className="flex flex-col gap-4">
+          <TrainingPanel
+            title="复盘优先级"
+            description="模块按未掌握数量排序；重复错误越多，越适合先练一组。"
+            icon={BookOpen}
+          >
+            <div className="flex flex-col gap-4">
             {data.groups.map((group) => (
-              <details key={group.tagId ?? "untagged"} open className="group rounded-lg border bg-card shadow-xs">
+              <details
+                key={group.tagId ?? "untagged"}
+                open={group.items.some((item) => item.wrongCount >= 2 && !item.resolvedAt) || data.groups.length <= 2}
+                className="group rounded-lg border bg-background shadow-xs"
+              >
                 <summary className="cursor-pointer list-none px-4 py-3 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none">
                   <div className="flex flex-wrap items-center justify-between gap-3">
                     <div className="flex min-w-0 flex-col gap-1">
                       <h2 className="truncate text-lg font-semibold">{group.tagName}</h2>
-                      <p className="text-sm text-muted-foreground">{group.count} 道错题</p>
+                      <p className="text-sm text-muted-foreground">
+                        {group.count} 道错题 · {group.items.filter((item) => item.wrongCount >= 2 && !item.resolvedAt).length} 道重复错误
+                      </p>
                     </div>
-                    <Badge variant="outline">展开/收起</Badge>
+                    <Badge variant={group.items.some((item) => item.wrongCount >= 2 && !item.resolvedAt) ? "warning" : "outline"}>
+                      展开/收起
+                    </Badge>
                   </div>
                 </summary>
 
@@ -180,11 +241,19 @@ export default async function WrongQuestionsPage({ searchParams }: WrongQuestion
 
                 <div className="flex flex-col gap-3 border-t p-4">
                   {group.items.map((item) => (
-                    <div key={item.id} className="rounded-lg border bg-background px-4 py-3">
+                    <div
+                      key={item.id}
+                      className={cn(
+                        "rounded-lg border bg-card px-4 py-3",
+                        item.wrongCount >= 2 && !item.resolvedAt && "border-warning/40 bg-warning/5"
+                      )}
+                    >
                       <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
                         <div className="min-w-0 flex-1">
                           <div className="mb-2 flex flex-wrap gap-2">
-                            <Badge variant="outline">错 {item.wrongCount} 次</Badge>
+                            <Badge variant={item.wrongCount >= 2 && !item.resolvedAt ? "warning" : "outline"}>
+                              错 {item.wrongCount} 次
+                            </Badge>
                             <Badge variant={item.resolvedAt ? "success" : "warning"}>
                               {item.resolvedAt ? "已掌握" : "未掌握"}
                             </Badge>
@@ -213,7 +282,8 @@ export default async function WrongQuestionsPage({ searchParams }: WrongQuestion
                 </div>
               </details>
             ))}
-          </section>
+            </div>
+          </TrainingPanel>
         ) : (
           <EmptyState
             icon={BookOpen}

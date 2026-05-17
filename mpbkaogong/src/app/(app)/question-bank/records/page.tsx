@@ -1,4 +1,4 @@
-import { ArrowRight, FileText, RotateCcw } from "lucide-react";
+import { ArrowRight, BarChart3, CheckCircle2, Clock, FileText, RotateCcw, Target } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
@@ -15,8 +15,10 @@ import {
 } from "@/components/ui/card";
 import {
   EmptyState,
+  MetricStrip,
   PageHeader,
   StudentPage,
+  TrainingPanel,
 } from "@/components/student/page-building-blocks";
 import { requireUser } from "@/lib/auth/guards";
 import { cleanLearningTitle } from "@/lib/display-title";
@@ -104,14 +106,21 @@ export default async function RecordsPage({ searchParams }: RecordsPageProps) {
   });
   const query = parsed.success ? parsed.data : recordsQuerySchema.parse({});
   const data = await listPracticeRecords(user, query);
+  const recentAverage =
+    data.items.length > 0
+      ? (
+          data.items.reduce((total, record) => total + Number(record.accuracy ?? 0), 0) /
+          data.items.length
+        ).toFixed(2)
+      : null;
 
   return (
     <AppShell>
-      <StudentPage>
+      <StudentPage wide>
         <PageHeader
           eyebrow="复盘记录"
           title="把每次练习变成下一次提分"
-          description="回看已提交练习，检查作答、正确答案、解析和学习教练建议。"
+          description="先看整体趋势，再进入单次练习回看解析、用时和错题来源。"
           actions={
             query.mode ? (
               <Link href="/question-bank/records" className={cn(buttonVariants({ variant: "outline" }))}>
@@ -122,11 +131,43 @@ export default async function RecordsPage({ searchParams }: RecordsPageProps) {
           }
         />
 
-        <section className="flex flex-col gap-3">
-          <div className="flex items-center justify-between gap-3">
-            <h2 className="text-lg font-semibold">历史记录</h2>
-            <span className="text-sm text-muted-foreground">第 {data.pagination.page} / {data.pagination.totalPages} 页</span>
-          </div>
+        <MetricStrip
+          items={[
+            {
+              label: "累计练习",
+              value: data.summary.totalSessions,
+              description: `${data.summary.totalQuestions} 题`,
+              icon: FileText,
+              tone: "info",
+            },
+            {
+              label: "整体正确率",
+              value: `${data.summary.overallAccuracy ?? "0.00"}%`,
+              description: `${data.summary.correctCount} 正确`,
+              icon: Target,
+              tone: "success",
+            },
+            {
+              label: "本页均值",
+              value: `${recentAverage ?? "0.00"}%`,
+              description: `${data.items.length} 条记录`,
+              icon: BarChart3,
+              tone: "info",
+            },
+            {
+              label: "累计用时",
+              value: formatDuration(data.summary.totalElapsedSeconds),
+              description: "已提交记录",
+              icon: Clock,
+            },
+          ]}
+        />
+
+        <TrainingPanel
+          title="历史记录"
+          description={`第 ${data.pagination.page} / ${data.pagination.totalPages} 页`}
+          icon={CheckCircle2}
+        >
           <div className="flex gap-2 overflow-x-auto pb-1">
             {modeFilters.map((filter) => {
               const isActive = (query.mode ?? "") === filter.value;
@@ -146,7 +187,7 @@ export default async function RecordsPage({ searchParams }: RecordsPageProps) {
               );
             })}
           </div>
-        </section>
+        </TrainingPanel>
 
         {data.items.length > 0 ? (
           <section className="flex flex-col gap-3">

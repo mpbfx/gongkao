@@ -72,6 +72,10 @@ _Avoid_: full mistake distribution, tutor usage count, raw message count
 A learner action that uses mistake cause analysis to open, filter, or continue reviewing a concrete set of wrong questions.
 _Avoid_: passive report, decorative chart, standalone insight
 
+**Knowledge-Point Mistake Pattern**:
+An analyzed mistake pattern that combines a question knowledge point with a Mistake Cause.
+_Avoid_: generic weak point, isolated tag statistic
+
 **Agent Feedback**:
 A learner's rating or reason about whether an agent output was useful.
 _Avoid_: review, comment
@@ -85,8 +89,10 @@ _Avoid_: review, comment
 - An **Explanation Tutor Agent** produces a **Mistake Review** when explaining a submitted or wrong question.
 - A **Mistake Review** includes exactly one primary **Mistake Cause**.
 - A **Mistake Review** may create a **Mistake Review Record**; multiple records may exist for the same learner and question over time.
+- A successful structured **Mistake Review** creates a **Mistake Review Record** automatically; the learner does not need to save it manually.
 - An **Analyzed Mistake Distribution** counts each analyzed question once by its latest **Mistake Review Record** and separately reports unanalyzed active **Wrong Questions**.
 - An **Analyzed Mistake Distribution** belongs near **Wrong Questions** and should lead to one or more **Mistake Review Actions**.
+- A **Knowledge-Point Mistake Pattern** helps the learner distinguish what they are missing within a knowledge point, not just which knowledge point is weak.
 - A **Training Recommendation** creates a new **Practice Session** only after a **Recommendation Start**.
 - A **Tutor Message** belongs to one learner and usually references one question.
 - **Agent Feedback** belongs to one **Training Recommendation** or **Tutor Message**.
@@ -117,6 +123,12 @@ _Avoid_: review, comment
 > **Dev:** "Should mistake trends live in a standalone learning report?"
 > **Domain expert:** "No. Put the **Analyzed Mistake Distribution** with **Wrong Questions** and make it lead to a **Mistake Review Action**."
 
+> **Dev:** "Should learners save useful tutor answers before they count in mistake trends?"
+> **Domain expert:** "No. A successful structured **Mistake Review** should create a **Mistake Review Record** automatically."
+
+> **Dev:** "Is it enough to know that a learner is weak in one knowledge point?"
+> **Domain expert:** "No. A **Knowledge-Point Mistake Pattern** should show whether that weakness is caused by reading misses, concept confusion, option traps, or another mistake cause."
+
 ## Flagged Ambiguities
 
 - "agent" was used broadly; resolved into **Learning Coach Agent** and **Explanation Tutor Agent** because they have different triggers, data needs, and success metrics.
@@ -128,3 +140,5 @@ _Avoid_: review, comment
 - "latest mistake" and "mistake trend" have different needs; resolved by keeping historical **Mistake Review Records** while allowing the latest record for a learner-question pair to be identified.
 - "mistake distribution" should not imply all wrong questions are classified; resolved as **Analyzed Mistake Distribution**, which only covers analyzed questions and separately exposes unanalyzed active wrong questions.
 - "trend page" was too passive; resolved as an **Analyzed Mistake Distribution** on the wrong-question flow, backed by **Mistake Review Actions**.
+- "save review" would make trend data incomplete; resolved that successful structured **Mistake Reviews** automatically create **Mistake Review Records**.
+- "weak knowledge point" was too coarse for tutor-driven insight; resolved as **Knowledge-Point Mistake Pattern** when mistake cause and knowledge point are used together.
