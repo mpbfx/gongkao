@@ -7,8 +7,9 @@ import {
   PanelRight,
   RotateCcw,
   Send,
+  Square,
 } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
@@ -40,6 +41,7 @@ type TutorMessage = {
   content: string;
   createdAt?: string;
   review?: TutorReview | null;
+  streamKey?: string;
 };
 
 type TutorHistoryResponse = {
@@ -142,6 +144,10 @@ function TutorConversation({
   const [isLoading, setIsLoading] = useState(false);
   const [isHistoryLoading, setIsHistoryLoading] = useState(false);
   const [lastFailedPrompt, setLastFailedPrompt] = useState<string | null>(null);
+  const abortControllerRef = useRef<AbortController | null>(null);
+  const activeStreamKeyRef = useRef<string | null>(null);
+  const streamBufferRef = useRef("");
+  const streamTimerRef = useRef<number | null>(null);
   const historyUrl = useMemo(() => {
     const params = new URLSearchParams();
 
@@ -195,6 +201,70 @@ function TutorConversation({
     };
   }, [historyUrl]);
 
+  useEffect(
+    () => () => {
+      abortControllerRef.current?.abort();
+      if (streamTimerRef.current !== null) {
+        window.clearTimeout(streamTimerRef.current);
+      }
+    },
+    []
+  );
+
+  function clearStreamingTimer() {
+    if (streamTimerRef.current !== null) {
+      window.clearTimeout(streamTimerRef.current);
+      streamTimerRef.current = null;
+    }
+  }
+
+  function clearStreamingState() {
+    activeStreamKeyRef.current = null;
+    streamBufferRef.current = "";
+    clearStreamingTimer();
+  }
+
+  function scheduleStreamingFlush() {
+    if (streamTimerRef.current !== null) {
+      return;
+    }
+
+    const tick = () => {
+      const key = activeStreamKeyRef.current;
+      const buffer = streamBufferRef.current;
+
+      if (!key || buffer.length === 0) {
+        streamTimerRef.current = null;
+        return;
+      }
+
+      const chunkSize = buffer.length > 180 ? 18 : buffer.length > 90 ? 10 : buffer.length > 36 ? 6 : 2;
+      const delay = buffer.length > 180 ? 8 : buffer.length > 90 ? 12 : buffer.length > 36 ? 18 : 28;
+      const nextChunk = buffer.slice(0, chunkSize);
+      streamBufferRef.current = buffer.slice(chunkSize);
+
+      setMessages((current) =>
+        current.map((message) =>
+          message.streamKey === key ? { ...message, content: message.content + nextChunk } : message
+        )
+      );
+
+      streamTimerRef.current = window.setTimeout(() => {
+        streamTimerRef.current = null;
+        tick();
+      }, delay);
+    };
+
+    tick();
+  }
+
+  function stopStreaming() {
+    abortControllerRef.current?.abort();
+    abortControllerRef.current = null;
+    clearStreamingState();
+    setIsLoading(false);
+  }
+
   async function askTutor(nextPrompt = prompt) {
     const trimmed = nextPrompt.trim();
 
@@ -202,12 +272,21 @@ function TutorConversation({
       return;
     }
 
+    const controller = new AbortController();
+    const streamKey = typeof crypto !== "undefined" && "randomUUID" in crypto ? crypto.randomUUID() : `${Date.now()}-${Math.random()}`;
+
+    abortControllerRef.current?.abort();
+    abortControllerRef.current = controller;
+    activeStreamKeyRef.current = streamKey;
+    streamBufferRef.current = "";
+    clearStreamingTimer();
+
     setIsLoading(true);
     setError(null);
     setMessages((current) => [
       ...current,
       { role: "USER", content: trimmed },
-      { role: "ASSISTANT", content: "", review: null },
+      { role: "ASSISTANT", content: "", review: null, streamKey },
     ]);
 
     try {
@@ -217,6 +296,7 @@ function TutorConversation({
           "Content-Type": "application/json",
           Accept: "text/event-stream",
         },
+        signal: controller.signal,
         body: JSON.stringify({
           sessionId,
           prompt: trimmed,
@@ -249,25 +329,17 @@ function TutorConversation({
           }
 
           if (event.type === "token") {
-            setMessages((current) => {
-              const next = [...current];
-              const lastMessage = next[next.length - 1];
-
-              if (lastMessage?.role === "ASSISTANT") {
-                next[next.length - 1] = { ...lastMessage, content: lastMessage.content + event.content };
-              }
-
-              return next;
-            });
+            streamBufferRef.current += event.content;
+            scheduleStreamingFlush();
           }
 
           if (event.type === "review") {
             setMessages((current) => {
               const next = [...current];
-              const lastMessage = next[next.length - 1];
+              const index = next.findLastIndex((message) => message.role === "ASSISTANT" && message.streamKey === streamKey);
 
-              if (lastMessage?.role === "ASSISTANT") {
-                next[next.length - 1] = { ...lastMessage, review: event };
+              if (index >= 0) {
+                next[index] = { ...next[index], review: event };
               }
 
               return next;
@@ -275,22 +347,28 @@ function TutorConversation({
           }
 
           if (event.type === "done") {
+            while (streamBufferRef.current.length > 0) {
+              await new Promise((resolve) => window.setTimeout(resolve, 12));
+            }
+
             setSuggestedPrompts(event.suggestedPrompts.length > 0 ? event.suggestedPrompts : defaultPrompts);
             setMessages((current) => {
               const next = [...current];
-              const lastMessage = next[next.length - 1];
+              const index = next.findLastIndex((message) => message.role === "ASSISTANT" && message.streamKey === streamKey);
 
-              if (lastMessage?.role === "ASSISTANT") {
-                next[next.length - 1] = { ...lastMessage, id: event.messageId };
+              if (index >= 0) {
+                next[index] = { ...next[index], id: event.messageId, streamKey: undefined };
               }
 
               return next;
             });
+            clearStreamingState();
           }
 
           if (event.type === "error") {
             setError(event.message);
             setLastFailedPrompt(trimmed);
+            clearStreamingState();
             return;
           }
         }
@@ -303,10 +381,19 @@ function TutorConversation({
       setPrompt("");
       setLastFailedPrompt(null);
     } catch {
+      if (controller.signal.aborted) {
+        return;
+      }
+
       setError("讲题助教暂时不可用，请稍后重试。");
       setLastFailedPrompt(trimmed);
     } finally {
-      setIsLoading(false);
+      if (!controller.signal.aborted) {
+        setIsLoading(false);
+      }
+      if (abortControllerRef.current === controller) {
+        abortControllerRef.current = null;
+      }
     }
   }
 
@@ -380,6 +467,12 @@ function TutorConversation({
                     ) : null}
                     <div className="rounded-md bg-background/60 p-2.5">
                       <TutorMarkdown content={message.content} />
+                      {isLoading &&
+                      index === messages.length - 1 &&
+                      message.role === "ASSISTANT" &&
+                      message.content ? (
+                        <span aria-hidden="true" className="ml-1 inline-block h-4 w-1 animate-pulse rounded-full bg-primary align-middle" />
+                      ) : null}
                     </div>
                   </div>
                 ) : (
@@ -417,22 +510,22 @@ function TutorConversation({
       <label className="shrink-0 border-t bg-muted/35 p-2.5">
         <span className="sr-only">继续追问</span>
         <div className="flex min-h-11 items-center gap-2 rounded-lg border border-input bg-card px-2 py-1.5 shadow-xs focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50">
-        <textarea
-          value={prompt}
-          onChange={(event) => setPrompt(event.target.value)}
+          <textarea
+            value={prompt}
+            onChange={(event) => setPrompt(event.target.value)}
             className="max-h-20 min-h-8 flex-1 resize-none bg-transparent px-1 py-1 text-base leading-6 outline-none md:text-sm"
             placeholder="继续追问..."
-          disabled={isLoading}
-        />
+            disabled={isLoading}
+          />
           <Button
             type="button"
             size="icon-sm"
             className="size-8 shrink-0 rounded-full"
-            aria-label="发送"
-            disabled={isLoading || prompt.trim().length === 0}
-            onClick={() => askTutor()}
+            aria-label={isLoading ? "停止" : "发送"}
+            disabled={!isLoading && prompt.trim().length === 0}
+            onClick={() => (isLoading ? stopStreaming() : askTutor())}
           >
-            {isLoading ? <LoaderCircle data-icon="icon" className="animate-spin" /> : <Send data-icon="icon" />}
+            {isLoading ? <Square data-icon="icon" /> : <Send data-icon="icon" />}
           </Button>
         </div>
       </label>
