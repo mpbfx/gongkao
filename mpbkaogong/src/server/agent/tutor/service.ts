@@ -4,7 +4,7 @@ import type { MistakeCause } from "@/generated/prisma/enums";
 import type { AuthenticatedUser } from "@/lib/auth/guards";
 import { prisma } from "@/lib/db/prisma";
 import { createQuestionMistakeReview } from "@/server/agent/mistakes/service";
-import { generateStructuredResponseWithStatus } from "@/server/agent/shared/llm";
+import { generateStructuredResponseWithStatus, streamTextResponse } from "@/server/agent/shared/llm";
 import { tutorModelOutputSchema, tutorResponseSchema, type TutorResponse } from "@/server/agent/shared/schemas";
 import { stripHtml, truncateText } from "@/server/agent/shared/text";
 import { BusinessError, NotFoundError } from "@/server/services/errors";
@@ -246,6 +246,16 @@ function buildTutorInstructions() {
     "TIME_STRATEGY_ERROR 只有在 timeSpentSeconds 存在，且明显高于本场/个人/知识点平均，并且存在更快路径时才能选择；没有可靠时间数据时禁止选择。",
     "confidence 为 LOW 时，causeSummary 必须表达为可能原因，不要强判。",
     "answer 用 Markdown 输出，先展示本题错因、最快路径、下次识别规则，再补充必要讲解。",
+  ].join("\n");
+}
+
+function buildTutorStreamingInstructions() {
+  return [
+    "你是公考行测讲题助教。只围绕给定题目、官方答案、用户答案、官方解析和真实作答用时回答。",
+    "直接输出 Markdown 正文，不要输出 JSON，不要包裹代码块。",
+    "回答必须紧凑，按本题错因、最快路径、下次识别规则、必要讲解的顺序组织。",
+    "不要修改标准答案，不要输出无关聊天，不要泄露模型推理过程。",
+    "如果证据不足，用“可能”表达，不要强判。",
   ].join("\n");
 }
 
@@ -497,34 +507,50 @@ export async function* streamQuestionWithTutor(input: TutorGraphInput): AsyncGen
       content: input.prompt,
     },
   });
-  const result = await runTutorGraph(input);
+  const context = await loadTutorContext(input);
+  const fallback = fallbackTutorOutput(context, input.prompt);
+  let streamedAnswer = "";
 
-  yield {
-    type: "review",
-    mistakeCause: result.output.data.mistakeCause,
-    confidence: result.output.data.confidence,
-    causeSummary: result.output.data.causeSummary,
-    fastestPath: result.output.data.fastestPath,
-    transferRule: result.output.data.transferRule,
-  };
-
-  for (const chunk of result.output.data.answer.split(/(\n\n+)/)) {
+  for await (const chunk of streamTextResponse({
+    instructions: buildTutorStreamingInstructions(),
+    input: buildTutorInput(context, input.prompt),
+    fallback: fallback.answer,
+  })) {
     if (chunk) {
+      streamedAnswer += chunk;
       yield { type: "token", content: chunk };
     }
   }
 
+  const structured = await generateTutorOutput(context, input.prompt);
+  const output: TutorGraphOutput = {
+    usedFallback: structured.usedFallback,
+    data: {
+      ...structured.data,
+      answer: streamedAnswer.trim() || structured.data.answer,
+    },
+  };
+
+  yield {
+    type: "review",
+    mistakeCause: output.data.mistakeCause,
+    confidence: output.data.confidence,
+    causeSummary: output.data.causeSummary,
+    fastestPath: output.data.fastestPath,
+    transferRule: output.data.transferRule,
+  };
+
   const assistantMessage = await persistTutorResult({
     input,
-    context: result.context,
-    output: result.output,
+    context,
+    output,
     userMessageId: userMessage.id,
   });
 
   yield {
     type: "done",
     messageId: assistantMessage.id,
-    suggestedPrompts: result.output.data.suggestedPrompts,
+    suggestedPrompts: output.data.suggestedPrompts,
   };
 }
 
