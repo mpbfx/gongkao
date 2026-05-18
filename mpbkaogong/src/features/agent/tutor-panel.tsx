@@ -406,26 +406,35 @@ function TutorConversation({
         ) : null}
       </div>
 
-      <div className="flex shrink-0 gap-1.5 overflow-x-auto border-t px-3 py-2">
+      <div className="flex shrink-0 gap-1.5 overflow-x-auto border-t px-2.5 py-1.5">
         {suggestedPrompts.slice(0, 3).map((item) => (
-          <Button key={item} type="button" variant="outline" size="sm" className="h-8 rounded-md px-2 text-xs" disabled={isLoading} onClick={() => askTutor(item)}>
+          <Button key={item} type="button" variant="outline" size="sm" className="h-7 rounded-md px-2 text-xs" disabled={isLoading} onClick={() => askTutor(item)}>
             {item}
           </Button>
         ))}
       </div>
 
-      <label className="flex shrink-0 flex-col gap-2 border-t bg-muted/35 px-3 py-2.5">
+      <label className="shrink-0 border-t bg-muted/35 p-2.5">
+        <span className="sr-only">继续追问</span>
+        <div className="flex min-h-11 items-center gap-2 rounded-lg border border-input bg-card px-2 py-1.5 shadow-xs focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50">
         <textarea
           value={prompt}
           onChange={(event) => setPrompt(event.target.value)}
-          className="min-h-16 resize-none rounded-md border border-input bg-card px-3 py-2 text-base outline-none transition-colors focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 md:text-sm"
-          placeholder="例如：这题最快怎么排除两个选项？"
+            className="max-h-20 min-h-8 flex-1 resize-none bg-transparent px-1 py-1 text-base leading-6 outline-none md:text-sm"
+            placeholder="继续追问..."
           disabled={isLoading}
         />
-        <Button type="button" className="self-end h-8 px-3 text-xs" disabled={isLoading || prompt.trim().length === 0} onClick={() => askTutor()}>
-          {isLoading ? <LoaderCircle data-icon="inline-start" className="animate-spin" /> : <Send data-icon="inline-start" />}
-          发送
-        </Button>
+          <Button
+            type="button"
+            size="icon-sm"
+            className="size-8 shrink-0 rounded-full"
+            aria-label="发送"
+            disabled={isLoading || prompt.trim().length === 0}
+            onClick={() => askTutor()}
+          >
+            {isLoading ? <LoaderCircle data-icon="icon" className="animate-spin" /> : <Send data-icon="icon" />}
+          </Button>
+        </div>
       </label>
     </div>
   );
