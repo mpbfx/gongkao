@@ -7,6 +7,7 @@ import {
   CheckCircle2,
   ChevronRight,
   Clock3,
+  FileText,
   Dumbbell,
   Filter,
   LoaderCircle,
@@ -222,7 +223,7 @@ function ReviewStat({
   tone?: "default" | "warning" | "success" | "info";
 }) {
   return (
-    <div className="rounded-lg border bg-background p-3">
+    <div className="rounded-md border bg-background p-3">
       <div className="text-xs text-muted-foreground">{label}</div>
       <div
         className={cn(
@@ -242,18 +243,31 @@ function StartSessionButton({
   mode,
   tagId,
   count,
+  compact = false,
   children,
   onStart,
 }: {
   mode: WrongSessionMode;
   tagId?: string | null;
   count: number;
+  compact?: boolean;
   children: React.ReactNode;
   onStart: (input: { mode: WrongSessionMode; tagId?: string | null; count: number }) => void;
 }) {
+  const label = mode === "MEMORIZE" ? "开始背题" : "开始练习";
+  const Icon = mode === "MEMORIZE" ? BookOpen : Dumbbell;
+
   return (
-    <Button type="button" variant={mode === "MEMORIZE" ? "outline" : "default"} size="sm" disabled={count <= 0} onClick={() => onStart({ mode, tagId, count })}>
-      {mode === "MEMORIZE" ? <BookOpen data-icon="inline-start" /> : <Dumbbell data-icon="inline-start" />}
+    <Button
+      type="button"
+      variant={mode === "MEMORIZE" ? "outline" : "default"}
+      size={compact ? "icon-xs" : "sm"}
+      disabled={count <= 0}
+      aria-label={compact ? label : undefined}
+      title={compact ? label : undefined}
+      onClick={() => onStart({ mode, tagId, count })}
+    >
+      <Icon data-icon={compact ? "icon" : "inline-start"} />
       {children}
     </Button>
   );
@@ -263,7 +277,7 @@ function OfficialAnalysis({ html }: { html?: string | null }) {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <div className="mt-4 rounded-lg border bg-background p-3">
+    <div className="mt-4 rounded-md border bg-background p-3">
       <div className="mb-2 flex items-center justify-between gap-3">
         <div className="text-sm font-medium">官方解析</div>
         {html ? (
@@ -324,8 +338,8 @@ function WrongQuestionReview({
   const unresolvedGroupCount = group?.items.filter((entry) => !entry.resolvedAt).length ?? 0;
 
   return (
-    <div className="flex min-h-0 flex-col gap-4">
-      <section className="rounded-lg border bg-card p-4 shadow-xs">
+    <div className="flex min-h-0 flex-col">
+      <section className="border-b bg-card px-4 py-3">
         <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
           <div className="min-w-0">
             <div className="mb-2 flex flex-wrap gap-2">
@@ -340,7 +354,7 @@ function WrongQuestionReview({
                 <Badge variant="outline">未分析错因</Badge>
               )}
             </div>
-            <h2 className="text-lg font-semibold leading-7">{group?.tagName ?? item.question.tag?.name ?? "未分类"}</h2>
+            <h2 className="text-base font-semibold leading-7">{group?.tagName ?? item.question.tag?.name ?? "未分类"}</h2>
             <p className="mt-1 text-sm text-muted-foreground">最近作答用时：{formatSeconds(item.lastAnswer?.timeSpentSeconds)}</p>
           </div>
           <div className="flex flex-wrap gap-2">
@@ -360,9 +374,9 @@ function WrongQuestionReview({
         </div>
       </section>
 
-      <section className="rounded-lg border bg-card p-4 shadow-xs">
+      <section className="bg-card px-4 py-4">
         {item.question.materialHtml ? (
-          <div className="mb-4 rounded-lg border bg-muted/50 p-3">
+          <div className="mb-4 rounded-md border bg-muted/50 p-3">
             {item.question.material?.title ? (
               <div className="mb-2 text-sm font-medium">{item.question.material.title}</div>
             ) : null}
@@ -381,7 +395,7 @@ function WrongQuestionReview({
               <div
                 key={option.id}
                 className={cn(
-                  "flex items-start gap-3 rounded-lg border bg-background px-3 py-3 text-sm",
+                  "flex items-start gap-3 rounded-md border bg-background px-3 py-3 text-sm",
                   isCorrect && "border-success bg-success/10",
                   isMine && !isCorrect && "border-destructive bg-destructive/10"
                 )}
@@ -405,7 +419,7 @@ function WrongQuestionReview({
       </section>
 
       {item.latestMistakeReview ? (
-        <section className="rounded-lg border border-info/30 bg-card p-4 shadow-xs">
+        <section className="border-t border-info/30 bg-info/5 px-4 py-4">
           <div className="mb-3 flex flex-wrap items-center gap-2">
             <Badge variant={item.latestMistakeReview.confidence === "LOW" ? "outline" : "info"}>
               {item.latestMistakeReview.confidence === "LOW" ? "可能错因" : "最新错因"}
@@ -540,12 +554,12 @@ export function WrongReviewWorkspace({
       ) : null}
 
       {flatItems.length > 0 ? (
-        <div className="grid gap-3 xl:grid-cols-[minmax(220px,0.55fr)_minmax(500px,1.2fr)_minmax(300px,0.75fr)] xl:items-start 2xl:gap-4 2xl:grid-cols-[minmax(260px,0.62fr)_minmax(560px,1.25fr)_minmax(340px,0.78fr)]">
-          <section className="flex min-h-0 flex-col rounded-lg border bg-card shadow-xs xl:sticky xl:top-20 xl:h-[calc(100dvh-6rem)]">
-            <div className="border-b px-3 py-2">
+        <div className="overflow-hidden rounded-lg border bg-card shadow-sm xl:grid xl:h-[calc(100dvh-5.4rem)] xl:grid-cols-[380px_minmax(430px,1fr)_360px] 2xl:grid-cols-[420px_minmax(620px,1.35fr)_410px]">
+          <section className="flex min-h-0 flex-col border-b bg-card xl:border-b-0 xl:border-r">
+            <div className="border-b bg-muted/35 px-3 py-2">
               <div className="flex items-center justify-between gap-2">
                 <div className="min-w-0">
-                  <h2 className="font-semibold">错题列表</h2>
+                  <h2 className="font-semibold">错题队列</h2>
                   <p className="mt-0.5 truncate text-xs text-muted-foreground">
                     {data.summary.unresolvedCount} 未掌握 · 重复 {highRepeatCount} · 未分析 {insights.summary.unanalyzedCount}
                     {insights.summary.dominantCause ? ` · ${insights.summary.dominantCause.label}` : ""}
@@ -653,104 +667,100 @@ export function WrongReviewWorkspace({
                 错因报告
               </Link>
             </div>
-            <div className="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto p-3">
-              {data.groups.map((group) => {
-                const unresolvedGroupCount = group.items.filter((item) => !item.resolvedAt).length;
+            <div className="flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto p-2.5 xl:h-0">
+              {flatItems.map(({ item, group }, index) => {
+                const active = selected?.item.id === item.id;
+                const isFirstOfGroup = index === 0 || flatItems[index - 1]?.group.tagId !== group.tagId;
+                const unresolvedGroupCount = group.items.filter((entry) => !entry.resolvedAt).length;
 
                 return (
-                  <div key={group.tagId ?? "untagged"} className="rounded-lg border bg-background">
-                    <div className="flex flex-wrap items-center justify-between gap-3 border-b px-3 py-2">
-                      <div className="min-w-0">
-                        <h3 className="truncate text-sm font-semibold">{group.tagName}</h3>
-                        <p className="text-xs text-muted-foreground">
-                          {group.count} 道可见 · {unresolvedGroupCount} 道未掌握
-                        </p>
+                  <button
+                    key={item.id}
+                    type="button"
+                    className={cn(
+                      "flex w-full items-start gap-2.5 rounded-md border px-3 py-2.5 text-left transition-colors hover:bg-muted/60 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none",
+                      active && "border-primary/30 bg-primary/10 shadow-[inset_3px_0_0_var(--primary)]",
+                      isFirstOfGroup && "mt-1"
+                    )}
+                    onClick={() => {
+                      setSelectedId(item.id);
+                      setMobileDetailTab("review");
+                      setMobileDetailOpen(shouldOpenDetailSheet());
+                    }}
+                  >
+                    <div
+                      className={cn(
+                        "mt-0.5 grid size-7 shrink-0 place-items-center rounded-md border text-xs font-semibold",
+                        item.resolvedAt
+                          ? "border-success/30 bg-success/10 text-success"
+                          : item.wrongCount >= 2
+                            ? "border-warning/30 bg-warning/10 text-warning"
+                            : "bg-card"
+                      )}
+                    >
+                      {item.wrongCount}
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      {isFirstOfGroup ? (
+                        <div className="mb-1 flex items-center justify-between gap-2">
+                          <div className="min-w-0">
+                            <div className="truncate text-xs font-medium text-muted-foreground">{group.tagName}</div>
+                            <div className="text-[11px] text-muted-foreground">
+                              {group.count} 道 · {unresolvedGroupCount} 未掌握
+                            </div>
+                          </div>
+                          <Badge variant="outline" className="h-5 rounded-md px-1.5 text-[10px]">
+                            {group.items.length}
+                          </Badge>
+                        </div>
+                      ) : null}
+                      <p className="line-clamp-2 text-sm leading-5">{stripHtml(item.question.titleHtml)}</p>
+                      <div className="mt-1.5 flex min-w-0 items-center gap-2 text-xs text-muted-foreground">
+                        <span className="inline-flex shrink-0 items-center gap-1">
+                          <Clock3 aria-hidden="true" />
+                          {formatDate(item.lastWrongAt)}
+                        </span>
+                        <span className="truncate">我 {item.lastAnswer?.answer ?? "-"} / 正 {item.question.correctAnswer ?? "-"}</span>
                       </div>
-                      <div className="flex gap-2">
-                        <StartSessionButton mode="WRONG" tagId={group.tagId} count={Math.min(10, unresolvedGroupCount)} onStart={startWrongSession}>
-                          练
-                        </StartSessionButton>
-                        <StartSessionButton mode="MEMORIZE" tagId={group.tagId} count={Math.min(10, unresolvedGroupCount)} onStart={startWrongSession}>
-                          背
-                        </StartSessionButton>
+                      <div className="mt-1.5 flex min-w-0 items-center gap-1.5">
+                        <span
+                          className={cn(
+                            "h-1.5 w-1.5 shrink-0 rounded-full",
+                            item.resolvedAt ? "bg-success" : item.wrongCount >= 2 ? "bg-warning" : "bg-muted-foreground"
+                          )}
+                        />
+                        <span className="truncate text-xs text-muted-foreground">
+                          {item.resolvedAt ? "已掌握" : "未掌握"} · {item.latestMistakeReview?.mistakeCauseLabel ?? "未分析"}
+                        </span>
                       </div>
                     </div>
-                    <div className="flex flex-col">
-                      {group.items.map((item) => {
-                        const active = selected?.item.id === item.id;
-
-                        return (
-                          <button
-                            key={item.id}
-                            type="button"
-                            className={cn(
-                              "flex w-full items-start gap-3 border-b px-3 py-3 text-left transition-colors last:border-b-0 hover:bg-muted/60 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none",
-                              active && "bg-secondary"
-                            )}
-                            onClick={() => {
-                              setSelectedId(item.id);
-                              setMobileDetailTab("review");
-                              setMobileDetailOpen(shouldOpenDetailSheet());
-                            }}
-                          >
-                            <div
-                              className={cn(
-                                "mt-0.5 grid size-8 shrink-0 place-items-center rounded-lg border text-xs font-semibold",
-                                item.resolvedAt
-                                  ? "border-success/30 bg-success/10 text-success"
-                                  : item.wrongCount >= 2
-                                    ? "border-warning/30 bg-warning/10 text-warning"
-                                    : "bg-card"
-                              )}
-                            >
-                              {item.wrongCount}
-                            </div>
-                            <div className="min-w-0 flex-1">
-                              <div className="flex flex-wrap gap-1.5">
-                                <Badge variant={item.resolvedAt ? "success" : "warning"}>{item.resolvedAt ? "已掌握" : "未掌握"}</Badge>
-                                {item.latestMistakeReview ? (
-                                  <Badge variant={item.latestMistakeReview.confidence === "LOW" ? "outline" : "info"}>
-                                    {item.latestMistakeReview.mistakeCauseLabel}
-                                  </Badge>
-                                ) : (
-                                  <Badge variant="outline">未分析</Badge>
-                                )}
-                              </div>
-                              <p className="mt-2 line-clamp-2 text-sm leading-6">{stripHtml(item.question.titleHtml)}</p>
-                              <div className="mt-2 flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
-                                <span className="inline-flex items-center gap-1">
-                                  <Clock3 aria-hidden="true" />
-                                  {formatDate(item.lastWrongAt)}
-                                </span>
-                                <span>我的答案：{item.lastAnswer?.answer ?? "未作答"}</span>
-                                <span>正确：{item.question.correctAnswer ?? "暂无"}</span>
-                              </div>
-                            </div>
-                            <ChevronRight className="mt-1 text-muted-foreground" aria-hidden="true" />
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </div>
+                    <ChevronRight className="mt-1 size-3.5 shrink-0 text-muted-foreground" aria-hidden="true" />
+                  </button>
                 );
               })}
             </div>
           </section>
 
-          <section className="hidden xl:sticky xl:top-20 xl:block xl:h-[calc(100dvh-6rem)] xl:min-h-0 xl:overflow-y-auto xl:pr-1">
-            {selected ? (
-              <WrongQuestionReview
-                item={selected.item}
-                group={selected.group}
-                onResolve={resolveWrongQuestion}
-                onStart={startWrongSession}
-                isResolving={resolvingId === selected.item.id}
-              />
-            ) : null}
+          <section className="hidden min-h-0 bg-background xl:flex xl:flex-col">
+            <div className="flex h-9 shrink-0 items-center gap-2 border-b bg-muted/35 px-3 text-xs font-medium text-muted-foreground">
+              <FileText className="size-3.5" aria-hidden="true" />
+              题目上下文
+            </div>
+            <div className="min-h-0 flex-1 overflow-y-auto">
+              {selected ? (
+                <WrongQuestionReview
+                  item={selected.item}
+                  group={selected.group}
+                  onResolve={resolveWrongQuestion}
+                  onStart={startWrongSession}
+                  isResolving={resolvingId === selected.item.id}
+                />
+              ) : null}
+            </div>
           </section>
 
-          <aside className="hidden xl:sticky xl:top-20 xl:block xl:h-[calc(100dvh-6rem)] xl:min-h-0">
-            {selected ? <WrongQuestionTutorPanel item={selected.item} heightMode="fill" className="h-full" /> : null}
+          <aside className="hidden min-h-0 border-l bg-card xl:block">
+            {selected ? <WrongQuestionTutorPanel item={selected.item} heightMode="fill" className="h-full border-0 shadow-none" /> : null}
           </aside>
 
           <Dialog open={mobileDetailOpen} onOpenChange={setMobileDetailOpen}>

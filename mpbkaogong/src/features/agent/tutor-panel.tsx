@@ -4,26 +4,16 @@ import {
   Bot,
   LoaderCircle,
   MessageSquare,
+  PanelRight,
   RotateCcw,
   Send,
-  Sparkles,
-  ThumbsDown,
-  ThumbsUp,
 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import {
   Dialog,
   DialogBody,
@@ -130,22 +120,20 @@ function parseTutorStreamEvent(rawEvent: string) {
   return JSON.parse(data) as TutorStreamEvent;
 }
 
-function feedbackLabel(value: "HELPFUL" | "NOT_HELPFUL") {
-  return value === "HELPFUL" ? "已标记有帮助" : "已标记需改进";
-}
-
 function TutorConversation({
   questionId,
   sessionId,
   contextLabel,
   compact = false,
   heightMode = "content",
+  showHeader = true,
 }: {
   questionId: string;
   sessionId?: string;
   contextLabel?: string;
   compact?: boolean;
   heightMode?: TutorPanelHeightMode;
+  showHeader?: boolean;
 }) {
   const [prompt, setPrompt] = useState(defaultPrompts[0]);
   const [suggestedPrompts, setSuggestedPrompts] = useState(defaultPrompts);
@@ -154,7 +142,6 @@ function TutorConversation({
   const [isLoading, setIsLoading] = useState(false);
   const [isHistoryLoading, setIsHistoryLoading] = useState(false);
   const [lastFailedPrompt, setLastFailedPrompt] = useState<string | null>(null);
-  const [feedbackByMessageId, setFeedbackByMessageId] = useState<Record<string, "HELPFUL" | "NOT_HELPFUL">>({});
   const historyUrl = useMemo(() => {
     const params = new URLSearchParams();
 
@@ -173,7 +160,6 @@ function TutorConversation({
       setIsHistoryLoading(true);
       setError(null);
       setMessages([]);
-      setFeedbackByMessageId({});
 
       try {
         const response = await fetch(historyUrl);
@@ -208,29 +194,6 @@ function TutorConversation({
       cancelled = true;
     };
   }, [historyUrl]);
-
-  async function submitFeedback(messageId: string, rating: "HELPFUL" | "NOT_HELPFUL") {
-    setFeedbackByMessageId((current) => ({ ...current, [messageId]: rating }));
-
-    try {
-      await fetch("/api/agent/feedback", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          targetType: "TUTOR_MESSAGE",
-          targetId: messageId,
-          rating,
-        }),
-      });
-    } catch {
-      setFeedbackByMessageId((current) => {
-        const next = { ...current };
-        delete next[messageId];
-        return next;
-      });
-      setError("反馈没有保存成功，请稍后再试。");
-    }
-  }
 
   async function askTutor(nextPrompt = prompt) {
     const trimmed = nextPrompt.trim();
@@ -348,29 +311,28 @@ function TutorConversation({
   }
 
   return (
-    <div className={cn("flex min-h-0 flex-col gap-3", compact ? "text-sm" : "", heightMode === "fill" && "h-full overflow-hidden")}>
-      <div className="flex shrink-0 items-start justify-between gap-3">
-        <div className="min-w-0">
-          <div className="flex items-center gap-2 font-medium">
-            <Bot aria-hidden="true" />
-            讲题助教
+    <div className={cn("flex min-h-0 flex-col", compact ? "text-sm" : "", heightMode === "fill" && "h-full overflow-hidden")}>
+      {showHeader ? (
+        <div className="flex shrink-0 items-center gap-2 border-b px-3 py-2">
+          <span className="grid size-7 shrink-0 place-items-center rounded-md bg-foreground text-background">
+            <Bot className="size-4" aria-hidden="true" />
+          </span>
+          <div className="min-w-0">
+            <div className="text-sm font-semibold leading-5">讲题助教</div>
+            {contextLabel ? <div className="truncate text-xs text-muted-foreground">{contextLabel}</div> : null}
           </div>
-          <p className="mt-1 text-sm leading-5 text-muted-foreground">
-            {contextLabel ?? "围绕当前题、官方答案和我的作答追问。"}
-          </p>
         </div>
-        <Badge variant="info">复盘</Badge>
-      </div>
+      ) : null}
 
       {error ? (
-        <Alert variant="destructive">
-          <AlertTitle>助教没有回答</AlertTitle>
-          <AlertDescription className="flex flex-col gap-3">
+        <Alert variant="destructive" className="mx-3 mt-3">
+          <AlertTitle>助教暂时不可用</AlertTitle>
+          <AlertDescription className="flex flex-col gap-2">
             <span>{error}</span>
             {lastFailedPrompt ? (
               <Button type="button" variant="outline" size="sm" className="w-fit" onClick={() => askTutor(lastFailedPrompt)}>
                 <RotateCcw data-icon="inline-start" />
-                重试刚才的问题
+                重试
               </Button>
             ) : null}
           </AlertDescription>
@@ -379,7 +341,7 @@ function TutorConversation({
 
       <div
         className={cn(
-          "flex flex-1 flex-col gap-3 overflow-y-auto rounded-lg border bg-background p-3",
+          "flex flex-1 flex-col gap-2 overflow-y-auto px-3 py-2.5",
           heightMode === "fill" ? "min-h-0" : "min-h-48",
           heightMode === "content" && (compact ? "max-h-80" : "max-h-[46dvh]")
         )}
@@ -387,81 +349,43 @@ function TutorConversation({
         aria-live="polite"
       >
         {isHistoryLoading ? (
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+          <div className="flex items-center gap-2 rounded-md border bg-background px-3 py-2 text-sm text-muted-foreground">
             <LoaderCircle className="animate-spin" aria-hidden="true" />
-            正在读取历史追问
+            读取记录
           </div>
         ) : messages.length > 0 ? (
           messages.map((message, index) => (
             <div
               key={`${message.id ?? "draft"}-${message.role}-${index}`}
-              className={cn(
-                "flex flex-col gap-2 rounded-lg px-3 py-2",
-                message.role === "ASSISTANT" ? "bg-secondary" : "bg-muted"
-              )}
+              className={cn("flex flex-col gap-2 rounded-lg border px-3 py-2.5 shadow-xs", message.role === "ASSISTANT" ? "bg-card" : "ml-8 bg-primary/10")}
             >
-              <div className="flex items-center justify-between gap-2">
-                <Badge variant={message.role === "ASSISTANT" ? "info" : "outline"} className="w-fit">
-                  {message.role === "ASSISTANT" ? "助教" : "我"}
-                </Badge>
-                {message.role === "ASSISTANT" && message.id ? (
-                  <div className="flex items-center gap-1">
-                    {feedbackByMessageId[message.id] ? (
-                      <span className="text-xs text-muted-foreground">{feedbackLabel(feedbackByMessageId[message.id])}</span>
-                    ) : (
-                      <>
-                        <Button
-                          type="button"
-                          variant="ghost"
-                          size="icon-xs"
-                          aria-label="这条讲解有帮助"
-                          onClick={() => submitFeedback(message.id!, "HELPFUL")}
-                        >
-                          <ThumbsUp data-icon="icon" />
-                        </Button>
-                        <Button
-                          type="button"
-                          variant="ghost"
-                          size="icon-xs"
-                          aria-label="这条讲解需要改进"
-                          onClick={() => submitFeedback(message.id!, "NOT_HELPFUL")}
-                        >
-                          <ThumbsDown data-icon="icon" />
-                        </Button>
-                      </>
-                    )}
-                  </div>
-                ) : null}
-              </div>
               {message.role === "ASSISTANT" ? (
                 message.content ? (
                   <div className="flex flex-col gap-2">
                     {message.review ? (
-                      <div className="grid gap-2 rounded-lg border bg-background p-3 sm:grid-cols-3">
-                        <div className="rounded-md bg-muted/60 p-2">
-                          <div className="text-xs text-muted-foreground">
-                            {message.review.confidence === "LOW" ? "可能错因" : "本题错因"}
-                          </div>
-                          <div className="mt-1 text-sm font-semibold">
-                            {causeLabels[message.review.mistakeCause] ?? message.review.mistakeCause}
-                          </div>
+                      <div className="grid gap-2 rounded-md border bg-background p-2.5 sm:grid-cols-3">
+                        <div>
+                          <div className="text-[11px] text-muted-foreground">错因</div>
+                          <div className="mt-0.5 text-sm font-medium">{causeLabels[message.review.mistakeCause] ?? message.review.mistakeCause}</div>
                         </div>
-                        <div className="rounded-md bg-muted/60 p-2">
-                          <div className="text-xs text-muted-foreground">最快路径</div>
-                          <div className="mt-1 line-clamp-3 text-sm leading-5">{message.review.fastestPath}</div>
+                        <div>
+                          <div className="text-[11px] text-muted-foreground">路径</div>
+                          <div className="mt-0.5 line-clamp-2 text-sm leading-5">{message.review.fastestPath}</div>
                         </div>
-                        <div className="rounded-md bg-muted/60 p-2">
-                          <div className="text-xs text-muted-foreground">下次规则</div>
-                          <div className="mt-1 line-clamp-3 text-sm leading-5">{message.review.transferRule}</div>
+                        <div>
+                          <div className="text-[11px] text-muted-foreground">规则</div>
+                          <div className="mt-0.5 line-clamp-2 text-sm leading-5">{message.review.transferRule}</div>
                         </div>
                       </div>
                     ) : null}
-                    <TutorMarkdown content={message.content} />
+                    <div className="rounded-md bg-background/60 p-2.5">
+                      <TutorMarkdown content={message.content} />
+                    </div>
                   </div>
                 ) : (
                   <div className="flex items-center gap-2 text-sm text-muted-foreground">
                     <LoaderCircle className="animate-spin" aria-hidden="true" />
-                    正在讲解
+                    讲解中
                   </div>
                 )
               ) : (
@@ -470,47 +394,39 @@ function TutorConversation({
             </div>
           ))
         ) : (
-          <div className="grid flex-1 place-items-center rounded-lg border border-dashed p-4 text-center">
-            <div>
-              <Sparkles className="mx-auto mb-2 text-muted-foreground" aria-hidden="true" />
-              <p className="text-sm font-medium">还没有追问记录</p>
-              <p className="mt-1 text-xs leading-5 text-muted-foreground">先点一个快捷问题，助教会把错因和下次规则沉淀到错题本。</p>
-            </div>
+          <div className="grid flex-1 place-items-center rounded-lg border border-dashed bg-background/70 p-4 text-center text-sm text-muted-foreground">
+            选一个快捷问题开始
           </div>
         )}
         {isLoading && messages[messages.length - 1]?.content ? (
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <LoaderCircle className="animate-spin" aria-hidden="true" />
-            正在讲解
+            讲解中
           </div>
         ) : null}
       </div>
 
-      <div className="flex shrink-0 flex-wrap gap-2">
-        {suggestedPrompts.map((item) => (
-          <Button key={item} type="button" variant="outline" size="sm" disabled={isLoading} onClick={() => askTutor(item)}>
+      <div className="flex shrink-0 gap-1.5 overflow-x-auto border-t px-3 py-2">
+        {suggestedPrompts.slice(0, 3).map((item) => (
+          <Button key={item} type="button" variant="outline" size="sm" className="h-8 rounded-md px-2 text-xs" disabled={isLoading} onClick={() => askTutor(item)}>
             {item}
           </Button>
         ))}
       </div>
 
-      <label className="flex shrink-0 flex-col gap-2">
-        <span className="text-sm font-medium">继续追问</span>
+      <label className="flex shrink-0 flex-col gap-2 border-t bg-muted/35 px-3 py-2.5">
         <textarea
           value={prompt}
           onChange={(event) => setPrompt(event.target.value)}
-          className="min-h-20 rounded-lg border border-input bg-card px-3 py-2 text-base outline-none transition-colors focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 md:text-sm"
+          className="min-h-16 resize-none rounded-md border border-input bg-card px-3 py-2 text-base outline-none transition-colors focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 md:text-sm"
           placeholder="例如：这题最快怎么排除两个选项？"
           disabled={isLoading}
         />
-      </label>
-
-      <div className="flex shrink-0 justify-end">
-        <Button type="button" disabled={isLoading || prompt.trim().length === 0} onClick={() => askTutor()}>
+        <Button type="button" className="self-end h-8 px-3 text-xs" disabled={isLoading || prompt.trim().length === 0} onClick={() => askTutor()}>
           {isLoading ? <LoaderCircle data-icon="inline-start" className="animate-spin" /> : <Send data-icon="inline-start" />}
           发送
         </Button>
-      </div>
+      </label>
     </div>
   );
 }
@@ -536,15 +452,19 @@ export function TutorPanel({
 
   if (variant === "dock") {
     return (
-      <Card className={cn("min-h-0", heightMode === "fill" && "h-full gap-0 py-0", className)}>
-        <CardHeader className={cn(heightMode === "fill" && "sr-only")}>
-          <CardTitle className="sr-only">讲题助教</CardTitle>
-          <CardDescription className="sr-only">围绕当前题、官方答案和我的作答追问。</CardDescription>
-        </CardHeader>
-        <CardContent className={cn("min-h-0", heightMode === "fill" && "flex flex-1 flex-col p-3")}>
-          <TutorConversation questionId={questionId} sessionId={sessionId} contextLabel={contextLabel} heightMode={heightMode} />
-        </CardContent>
-      </Card>
+      <section
+        className={cn(
+          "min-h-0 overflow-hidden border bg-card shadow-xs",
+          heightMode === "fill" ? "flex h-full flex-col" : "rounded-lg",
+          className
+        )}
+      >
+        <div className="flex h-8 shrink-0 items-center gap-2 border-b bg-muted/45 px-3">
+          <PanelRight className="size-3.5 text-muted-foreground" aria-hidden="true" />
+          <div className="text-xs font-medium text-muted-foreground">讲题助教</div>
+        </div>
+        <TutorConversation questionId={questionId} sessionId={sessionId} contextLabel={contextLabel} heightMode={heightMode} showHeader={false} />
+      </section>
     );
   }
 
@@ -557,17 +477,14 @@ export function TutorPanel({
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent variant="assistant" className="flex flex-col p-0">
-          <DialogHeader className="border-b">
-            <DialogTitle className="flex items-center gap-2">
-              <Bot aria-hidden="true" />
-              讲题助教
-            </DialogTitle>
-            <DialogDescription>保持题目在旁边，专注追问错因、路径和迁移规则。</DialogDescription>
+          <DialogHeader className="sr-only">
+            <DialogTitle>讲题助教</DialogTitle>
+            <DialogDescription>讲题助教对话面板。</DialogDescription>
           </DialogHeader>
-          <DialogBody className="min-h-0 flex-1 overflow-hidden p-4">
+          <DialogBody className="min-h-0 flex-1 overflow-hidden p-2">
             <TutorConversation questionId={questionId} sessionId={sessionId} contextLabel={contextLabel} compact />
           </DialogBody>
-          <DialogFooter>
+          <DialogFooter className="sr-only">
             <DialogClose>收起助教</DialogClose>
           </DialogFooter>
         </DialogContent>
