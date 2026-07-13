@@ -1,7 +1,8 @@
 import { describe, expect, it } from "vitest";
 
 import { movingAverage } from "@/server/agent/mistakes/service";
-import { mistakeCauseSchema, tutorAutoReviewConfigSchema, tutorModelOutputSchema } from "@/server/agent/shared/schemas";
+import { mistakeCauseSchema, tutorAutoReviewConfigSchema } from "@/server/agent/shared/schemas";
+import { tutorMistakeReviewSchema } from "@/server/agent/tutor/schemas/tutor-schemas";
 
 describe("mistake review schemas", () => {
   it("supports the first-version mistake cause taxonomy", () => {
@@ -20,13 +21,12 @@ describe("mistake review schemas", () => {
   });
 
   it("requires structured tutor review fields", () => {
-    const parsed = tutorModelOutputSchema.safeParse({
+    const parsed = tutorMistakeReviewSchema.safeParse({
       mistakeCause: "OPTION_TRAP",
       confidence: "MEDIUM",
       causeSummary: "用户答案被干扰项中的局部表述吸引。",
       fastestPath: "先看题干限定，再排除只满足局部条件的选项。",
       transferRule: "遇到绝对化或局部正确选项，回到题干限定逐项核验。",
-      answer: "## 本题错因\n被干扰项吸引。",
       suggestedPrompts: ["这题最快怎么做？"],
     });
 

@@ -25,7 +25,7 @@ export async function AppShell({
   const user = session?.user;
 
   const userMenu = user ? (
-    <div className="flex items-center gap-2">
+    <div className="student-user-menu flex items-center gap-2">
       {user.role && user.role !== "USER" ? (
         <Link href="/admin" className={cn(buttonVariants({ variant: "outline", size: "sm" }))}>
           <Settings data-icon="inline-start" />

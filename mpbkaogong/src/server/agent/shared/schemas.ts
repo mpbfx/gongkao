@@ -127,26 +127,6 @@ export const coachDiagnosisDtoSchema = z.object({
 
 export type CoachDiagnosisDto = z.infer<typeof coachDiagnosisDtoSchema>;
 
-export const tutorRequestSchema = z.object({
-  sessionId: z.string().min(1).optional(),
-  prompt: z.string().trim().min(1).max(500),
-});
-
-export const tutorResponseSchema = z.object({
-  mistakeCause: mistakeCauseSchema,
-  confidence: agentConfidenceSchema,
-  causeSummary: z.string(),
-  fastestPath: z.string(),
-  transferRule: z.string(),
-  answer: z.string(),
-  suggestedPrompts: z.array(z.string()).min(1).max(5),
-  messageId: z.string(),
-});
-
-export type TutorResponse = z.infer<typeof tutorResponseSchema>;
-
-export const tutorModelOutputSchema = tutorResponseSchema.omit({ messageId: true });
-
 export const agentFeedbackSchema = z.object({
   targetType: z.enum(["RECOMMENDATION", "TUTOR_MESSAGE"]),
   targetId: z.string().min(1),

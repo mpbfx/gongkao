@@ -1,22 +1,21 @@
-import { ArrowRight, FileSearch, Filter, Gauge, MapPin, RotateCcw } from "lucide-react";
+import { ArrowRight, FileSearch, Filter, Gauge, MapPin } from "lucide-react";
 import Link from "next/link";
 
 import { AppShell } from "@/components/layout/app-shell";
 import { Badge } from "@/components/ui/badge";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import {
   Card,
   CardDescription,
   CardTitle,
 } from "@/components/ui/card";
-import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import {
   EmptyState,
   PageHeader,
   StudentPage,
-  TrainingPanel,
 } from "@/components/student/page-building-blocks";
 import { PaperStartButton } from "@/features/papers/paper-start-button";
+import { PaperFilterForm } from "@/features/papers/paper-filter-form";
 import { cn } from "@/lib/utils";
 import { listPapers, paperListQuerySchema } from "@/server/services/papers";
 
@@ -26,10 +25,6 @@ type PapersPageProps = {
 
 function firstValue(value: string | string[] | undefined) {
   return Array.isArray(value) ? value[0] : value;
-}
-
-function selectClassName() {
-  return "h-11 w-full rounded-lg border border-input bg-card px-3 text-base outline-none transition-colors focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 lg:h-8 lg:px-2.5 lg:text-sm";
 }
 
 function buildHref({
@@ -71,75 +66,6 @@ function buildHref({
   return `/question-bank/papers${query ? `?${query}` : ""}`;
 }
 
-function PaperFilterForm({
-  query,
-  data,
-}: {
-  query: {
-    year?: number;
-    province?: string;
-    examType?: string;
-  };
-  data: Awaited<ReturnType<typeof listPapers>>;
-}) {
-  return (
-    <form className="grid gap-3 md:grid-cols-[repeat(3,minmax(0,1fr))_auto] md:items-end">
-      <FieldGroup className="grid gap-3 md:contents">
-        <Field>
-          <FieldLabel htmlFor="year">年份</FieldLabel>
-          <select id="year" name="year" defaultValue={query.year ?? ""} className={selectClassName()}>
-            <option value="">全部年份</option>
-            {data.filters.years.map((year) => (
-              <option key={year} value={year}>
-                {year}
-              </option>
-            ))}
-          </select>
-        </Field>
-        <Field>
-          <FieldLabel htmlFor="province">地区</FieldLabel>
-          <select
-            id="province"
-            name="province"
-            defaultValue={query.province ?? ""}
-            className={selectClassName()}
-          >
-            <option value="">全部地区</option>
-            {data.filters.provinces.map((province) => (
-              <option key={province} value={province}>
-                {province}
-              </option>
-            ))}
-          </select>
-        </Field>
-        <Field>
-          <FieldLabel htmlFor="examType">类型</FieldLabel>
-          <select
-            id="examType"
-            name="examType"
-            defaultValue={query.examType ?? ""}
-            className={selectClassName()}
-          >
-            <option value="">全部类型</option>
-            {data.filters.examTypes.map((examType) => (
-              <option key={examType} value={examType}>
-                {examType}
-              </option>
-            ))}
-          </select>
-        </Field>
-      </FieldGroup>
-      <div className="flex gap-2 md:justify-end">
-        <Button type="submit">应用</Button>
-        <Link href="/question-bank/papers" className={cn(buttonVariants({ variant: "outline" }))}>
-          <RotateCcw data-icon="inline-start" />
-          清空
-        </Link>
-      </div>
-    </form>
-  );
-}
-
 export default async function PapersPage({ searchParams }: PapersPageProps) {
   const rawParams = await searchParams;
   const rawPageSize = firstValue(rawParams?.pageSize);
@@ -158,9 +84,9 @@ export default async function PapersPage({ searchParams }: PapersPageProps) {
     <AppShell>
       <StudentPage wide>
         <PageHeader
-          eyebrow="历年试卷"
-          title="用真题训练完整答题节奏"
-          description="筛选只承担定位任务，列表优先展示能立即开始练习的关键信息。"
+          eyebrow="EXAM ARCHIVE / 历年试卷"
+          title="历年试卷档案馆"
+          description="收录各地历年真题，按考情分门别类。以真题为纲，以实战为要。"
           actions={
             <Link href="/question-bank/special" className={cn(buttonVariants({ variant: "outline" }))}>
               去专项提分
@@ -183,24 +109,32 @@ export default async function PapersPage({ searchParams }: PapersPageProps) {
             </Badge>
           </summary>
           <div className="border-t p-4">
-            <PaperFilterForm query={query} data={data} />
+            <PaperFilterForm query={query} filters={data.filters} idPrefix="mobile" />
           </div>
         </details>
 
-        <TrainingPanel
-          title="筛选试卷"
-          description={`共 ${data.pagination.total} 套可用试卷，默认每页显示 ${data.pagination.pageSize} 套。`}
-          icon={Filter}
-          className="hidden md:block"
-        >
-          <PaperFilterForm query={query} data={data} />
-        </TrainingPanel>
+        <div className="grid gap-6 lg:grid-cols-[17rem_minmax(0,1fr)] lg:items-start">
+          <aside className="hidden border-r border-foreground/30 pr-6 lg:sticky lg:top-24 lg:block">
+            <div className="mb-5 border-b-2 border-foreground pb-4">
+              <h2 className="student-heading flex items-center gap-2 text-xl font-semibold"><Filter className="size-5 text-primary" /> 档案筛选</h2>
+              <p className="mt-2 text-xs leading-5 text-muted-foreground">从年份、地区与考试类别定位卷宗。</p>
+            </div>
+            <PaperFilterForm query={query} filters={data.filters} vertical idPrefix="desktop" />
+            <div className="mt-7 border-y border-foreground/25 py-4 text-sm">
+              <span className="text-muted-foreground">当前收录</span>
+              <div className="student-heading mt-1 text-3xl text-primary">{data.pagination.total}<span className="ml-1 text-sm text-foreground">份档案</span></div>
+            </div>
+          </aside>
 
         {data.items.length > 0 ? (
-          <section className="flex flex-col gap-3">
+          <section className="flex flex-col border-t-2 border-foreground lg:gap-0">
+            <div className="hidden grid-cols-[8.5rem_minmax(0,1fr)_5rem_6rem_10rem] border-b border-foreground/35 px-4 py-3 text-xs font-semibold tracking-[0.12em] text-muted-foreground lg:grid">
+              <span>试卷编号</span><span>试卷名称</span><span>题量</span><span>难度</span><span className="text-right">操作</span>
+            </div>
             {data.items.map((paper) => (
-              <Card key={paper.id} className="gap-0">
-                <div className="grid gap-4 p-4 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
+              <Card id={`paper-${paper.id}`} key={paper.id} className="scroll-mt-24 gap-0 lg:rounded-none lg:border-0 lg:border-b lg:border-foreground/22 lg:bg-transparent lg:shadow-none lg:last:border-b-0">
+                <div className="grid gap-4 p-4 lg:grid-cols-[8.5rem_minmax(0,1fr)_5rem_6rem_10rem] lg:items-center lg:px-4 lg:py-4">
+                  <div className="hidden student-heading text-2xl font-semibold tabular-nums lg:block">{paper.year ?? "----"}-{String(paper.id).slice(-3).toUpperCase()}</div>
                   <div className="min-w-0">
                     <div className="mb-2 flex flex-wrap items-center gap-2">
                       {paper.year ? <Badge variant="info">{paper.year}</Badge> : null}
@@ -213,23 +147,20 @@ export default async function PapersPage({ searchParams }: PapersPageProps) {
                       {paper.examType ? <Badge variant="outline">{paper.examType}</Badge> : null}
                       {paper.isVipOnly ? <Badge>会员</Badge> : null}
                     </div>
-                    <CardTitle className="line-clamp-2 text-base md:text-lg">{paper.title}</CardTitle>
-                    <CardDescription className="mt-2 flex flex-wrap gap-x-4 gap-y-1">
-                      <span>{paper.questionCount} 题</span>
-                      <span className="inline-flex items-center gap-1">
-                        <Gauge className="size-3.5" aria-hidden="true" />
-                        难度 {paper.difficultyScore ?? "未评级"}
-                      </span>
-                    </CardDescription>
+                    <CardTitle className="line-clamp-2 text-base md:text-lg lg:font-semibold">{paper.title}</CardTitle>
+                    <CardDescription className="mt-2 lg:hidden">{paper.questionCount} 题 · 难度 {paper.difficultyScore ?? "未评级"}</CardDescription>
                   </div>
-                  <div className="grid grid-cols-2 gap-2 lg:w-56">
-                    <Link
-                      href={`/question-bank/papers/${paper.id}`}
-                      className={cn(buttonVariants({ variant: "outline" }), "w-full")}
-                    >
-                      详情
-                    </Link>
-                    <PaperStartButton paperId={paper.id} className="w-full" />
+                  <div className="hidden font-mono text-sm tabular-nums lg:block">
+                    {paper.questionCount} 题
+                  </div>
+                  <div className="hidden lg:block">
+                    <div className="inline-flex items-center gap-1 text-sm font-medium">
+                      <Gauge className="size-3.5 text-warning" aria-hidden="true" />
+                      {paper.difficultyScore ?? "未评级"}
+                    </div>
+                  </div>
+                  <div className="grid gap-2 lg:grid-cols-1 lg:justify-items-end">
+                    <PaperStartButton paperId={paper.id} className="w-full lg:w-auto" />
                   </div>
                 </div>
               </Card>
@@ -246,6 +177,7 @@ export default async function PapersPage({ searchParams }: PapersPageProps) {
             </Link>
           </EmptyState>
         )}
+        </div>
 
         {data.pagination.totalPages > 1 ? (
           <div className="flex items-center justify-between gap-3">

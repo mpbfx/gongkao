@@ -17,10 +17,6 @@ function getOpenAIClient() {
   return openaiClient;
 }
 
-export function isOpenAIConfigured() {
-  return Boolean(process.env.OPENAI_API_KEY && process.env.OPENAI_MODEL);
-}
-
 function getOpenAIApiMode() {
   const configuredMode = process.env.OPENAI_API_MODE?.toLowerCase();
 
@@ -155,7 +151,7 @@ export async function generateStructuredResponse<T extends z.ZodType>({
   return result.data;
 }
 
-export async function generateStructuredResponseWithStatus<T extends z.ZodType>({
+async function generateStructuredResponseWithStatus<T extends z.ZodType>({
   schema,
   name,
   instructions,
@@ -195,109 +191,11 @@ export async function generateStructuredResponseWithStatus<T extends z.ZodType>(
         return { data: output, usedFallback: false };
       }
     } catch (error) {
-      console.warn(`Agent LLM generation failed with ${generator.name}`, error);
+      console.warn(`Coach LLM generation failed with ${generator.name}`, error);
     }
   }
 
-  console.error("Agent LLM generation returned invalid structured output");
+  console.error("Coach LLM generation returned invalid structured output");
 
   return { data: fallback, usedFallback: true };
-}
-
-async function* streamWithResponsesApi({
-  client,
-  model,
-  instructions,
-  input,
-}: {
-  client: OpenAI;
-  model: string;
-  instructions: string;
-  input: string;
-}) {
-  const stream = await client.responses.create({
-    model,
-    instructions,
-    input,
-    stream: true,
-  });
-
-  for await (const event of stream) {
-    if (event.type === "response.output_text.delta") {
-      yield event.delta;
-    }
-  }
-}
-
-async function* streamWithChatCompletions({
-  client,
-  model,
-  instructions,
-  input,
-}: {
-  client: OpenAI;
-  model: string;
-  instructions: string;
-  input: string;
-}) {
-  const stream = await client.chat.completions.create({
-    model,
-    stream: true,
-    messages: [
-      { role: "system", content: instructions },
-      { role: "user", content: input },
-    ],
-  });
-
-  for await (const chunk of stream) {
-    const content = chunk.choices[0]?.delta.content;
-
-    if (content) {
-      yield content;
-    }
-  }
-}
-
-export async function* streamTextResponse({
-  instructions,
-  input,
-  fallback,
-}: {
-  instructions: string;
-  input: string;
-  fallback: string;
-}) {
-  const client = getOpenAIClient();
-  const model = process.env.OPENAI_MODEL;
-
-  if (!client || !model) {
-    yield fallback;
-    return;
-  }
-
-  const generators =
-    getOpenAIApiMode() === "chat"
-      ? [streamWithChatCompletions, streamWithResponsesApi]
-      : [streamWithResponsesApi, streamWithChatCompletions];
-
-  for (const generator of generators) {
-    let yielded = false;
-
-    try {
-      for await (const chunk of generator({ client, model, instructions, input })) {
-        yielded = true;
-        yield chunk;
-      }
-
-      return;
-    } catch (error) {
-      console.warn(`Agent LLM streaming failed with ${generator.name}`, error);
-
-      if (yielded) {
-        throw error;
-      }
-    }
-  }
-
-  yield fallback;
 }

@@ -3,14 +3,12 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
+  ArrowLeft,
   BarChart3,
   BookMarked,
   BookOpen,
   ClipboardList,
   Home,
-  PanelLeftClose,
-  PanelLeftOpen,
-  User,
 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 
@@ -20,17 +18,14 @@ import {
   type AppHeaderContent,
   type AppHeaderWindow,
 } from "@/components/layout/app-header-context";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 
 const navItems = [
-  { label: "首页", href: "/", icon: Home },
-  { label: "试卷", href: "/question-bank/papers", icon: ClipboardList },
-  { label: "专项", href: "/question-bank/special", icon: BookOpen },
-  { label: "错题", href: "/question-bank/wrong", icon: BookMarked },
-  { label: "记录", href: "/question-bank/records", icon: BarChart3 },
-  { label: "我的", href: "/dashboard", icon: User },
+  { number: "01", label: "今日校准", shortLabel: "首页", href: "/", icon: Home },
+  { number: "02", label: "历年试卷", shortLabel: "试卷", href: "/question-bank/papers", icon: ClipboardList },
+  { number: "03", label: "专项提分", shortLabel: "专项", href: "/question-bank/special", icon: BookOpen },
+  { number: "04", label: "错题复盘", shortLabel: "错题", href: "/question-bank/wrong", icon: BookMarked },
+  { number: "05", label: "学习情况", shortLabel: "学情", href: "/dashboard", icon: BarChart3 },
 ];
 
 export function AppShellFrame({
@@ -44,17 +39,13 @@ export function AppShellFrame({
   userMenu: React.ReactNode;
   hideMobileNav?: boolean;
 }) {
-  const [isCollapsed, setIsCollapsed] = useState(false);
   const pathname = usePathname();
+  const isPracticeFocus = pathname.startsWith("/practice/");
   const [header, setHeader] = useState<AppHeaderContent | null>(() =>
     typeof window === "undefined" ? null : ((window as AppHeaderWindow).__saduckAppHeader ?? null)
   );
   const headerContextValue = useMemo(() => ({ setHeader }), []);
-  const mobileNavItems = navItems.filter((item) => item.href !== "/question-bank/records");
-
-  function toggleSidebar() {
-    setIsCollapsed((current) => !current);
-  }
+  const mobileNavItems = navItems;
 
   function isActive(href: string) {
     if (href === "/") {
@@ -76,8 +67,8 @@ export function AppShellFrame({
   return (
     <div
       className={cn(
-        "min-h-dvh bg-background text-foreground [--app-sidebar-width:16rem]",
-        isCollapsed && "[--app-sidebar-width:4rem]"
+        "student-shell student-shell-v2 min-h-dvh bg-background text-foreground [--app-sidebar-width:10.75rem]",
+        isPracticeFocus && "student-practice-focus [--app-sidebar-width:0rem]"
       )}
     >
       <a
@@ -88,21 +79,15 @@ export function AppShellFrame({
       </a>
       <aside
         className={cn(
-          "fixed inset-y-0 left-0 hidden border-r bg-sidebar/95 transition-[width] duration-200 lg:flex lg:flex-col",
-          isCollapsed ? "w-16" : "w-64"
+          "student-spine fixed inset-y-0 left-0 z-40 hidden w-[var(--app-sidebar-width)] overflow-hidden bg-sidebar text-sidebar-foreground lg:flex lg:flex-col",
+          isPracticeFocus && "lg:hidden"
         )}
       >
-        <div className={cn("flex h-16 items-center gap-2 px-5", isCollapsed && "justify-center px-0")}>
-          <div className="grid size-9 shrink-0 place-items-center rounded-lg bg-primary text-primary-foreground">
-            题
-          </div>
-          <div className={cn("flex min-w-0 flex-col", isCollapsed && "hidden")}>
-            <span className="truncate font-semibold leading-tight">公考题库</span>
-            <span className="truncate text-xs text-muted-foreground">Question Bank</span>
-          </div>
+        <div className="student-spine-brand relative flex h-[7.25rem] shrink-0 flex-col justify-center px-5">
+          <span className="student-heading whitespace-nowrap text-[1.2rem] font-semibold leading-none tracking-[0.02em]">备考编辑部</span>
+          <span className="mt-2 text-[0.62rem] tracking-[0.34em] text-sidebar-foreground/70">公考提分研究院</span>
         </div>
-        <Separator />
-        <nav className="flex flex-1 flex-col gap-1 p-3">
+        <nav className="flex flex-1 flex-col">
           {navItems.map((item) => {
             const Icon = item.icon;
             const active = isActive(item.href);
@@ -112,47 +97,49 @@ export function AppShellFrame({
                 key={item.label}
                 href={item.href}
                 aria-current={active ? "page" : undefined}
-                title={isCollapsed ? item.label : undefined}
                 className={cn(
-                  "flex min-h-10 items-center gap-2 rounded-lg px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none",
-                  isCollapsed && "justify-center px-0",
-                  active && "bg-sidebar-accent text-sidebar-accent-foreground"
+                  "student-spine-link group relative flex min-h-[5.35rem] items-center gap-3 border-b border-sidebar-border px-5 text-sidebar-foreground/68 transition-colors hover:bg-sidebar-accent/45 hover:text-sidebar-foreground focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sidebar-ring focus-visible:outline-none",
+                  active && "is-active bg-sidebar-accent/58 text-sidebar-foreground"
                 )}
               >
-                <Icon className="size-4 shrink-0" aria-hidden="true" />
-                <span className={cn(isCollapsed && "sr-only")}>{item.label}</span>
+                <span className="font-mono text-[1.4rem] font-light tabular-nums text-sidebar-foreground/42 group-[.is-active]:text-primary">{item.number}</span>
+                <span className="student-heading text-[0.98rem] font-semibold tracking-[0.08em]">{item.label}</span>
+                <Icon className="absolute bottom-2.5 right-3 size-3.5 opacity-0 transition-opacity group-hover:opacity-45 group-[.is-active]:opacity-55" aria-hidden="true" />
               </Link>
             );
           })}
         </nav>
-        <div className="p-3">
-          <Button
-            type="button"
-            variant="outline"
-            size={isCollapsed ? "icon-sm" : "sm"}
-            className={cn("w-full", isCollapsed && "mx-auto w-8")}
-            aria-label={isCollapsed ? "展开侧栏" : "收起侧栏"}
-            title={isCollapsed ? "展开侧栏" : "收起侧栏"}
-            onClick={toggleSidebar}
-          >
-            {isCollapsed ? <PanelLeftOpen data-icon="icon" /> : <PanelLeftClose data-icon="inline-start" />}
-            {!isCollapsed ? "收起" : null}
-          </Button>
+        <div className="student-spine-footer border-t border-sidebar-border px-4 py-4">
+          <span className="block text-[0.6rem] tracking-[0.28em] text-sidebar-foreground/45">STUDY FILE</span>
+          <span className="student-heading mt-1.5 block text-sm tracking-[0.08em]">训练记录 · 持续校准</span>
+          <div className="student-sidebar-user mt-4 border-t border-sidebar-border pt-4">
+            {userMenu}
+          </div>
         </div>
       </aside>
 
       <AppHeaderContext.Provider value={headerContextValue}>
         <div className="flex min-h-dvh flex-col transition-[padding] duration-200 lg:pl-[var(--app-sidebar-width)]">
-          <header className="sticky top-0 z-30 border-b bg-background/95 backdrop-blur">
-            <div className="flex h-14 items-center justify-between px-4 md:px-6">
+          <header className={cn("student-topbar sticky top-0 z-30 border-b bg-background/95 backdrop-blur", !isPracticeFocus && "lg:hidden", isPracticeFocus && "practice-focus-topbar")}>
+            <div className="flex h-14 items-center justify-between px-4 md:px-6 lg:h-[4.25rem] lg:px-9">
               <div className="flex min-w-0 items-center gap-2">
+                {isPracticeFocus ? (
+                  <Link
+                    href="/"
+                    aria-label="返回首页"
+                    className="mr-1 inline-flex h-9 shrink-0 items-center gap-1.5 border border-foreground/20 px-2.5 text-sm text-muted-foreground transition-colors hover:border-primary hover:text-primary focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+                  >
+                    <ArrowLeft className="size-4" aria-hidden="true" />
+                    <span>返回首页</span>
+                  </Link>
+                ) : null}
                 <div className="grid size-8 place-items-center rounded-lg bg-primary text-sm text-primary-foreground lg:hidden">
                   题
                 </div>
                 <div className="flex min-w-0 flex-col">
-                  <span className="truncate font-medium leading-tight">{header?.title ?? defaultHeader?.title ?? "题库工作台"}</span>
+                  <span className="student-heading truncate font-medium leading-tight lg:text-[0.98rem] lg:tracking-[0.08em]">{header?.title ?? defaultHeader?.title ?? "备考编辑部"}</span>
                   {header?.subtitle ?? defaultHeader?.subtitle ? (
-                    <span className="truncate text-xs leading-tight text-muted-foreground">{header?.subtitle ?? defaultHeader?.subtitle}</span>
+                  <span className="truncate text-xs leading-tight text-muted-foreground lg:hidden">{header?.subtitle ?? defaultHeader?.subtitle}</span>
                   ) : null}
                 </div>
               </div>
@@ -187,7 +174,7 @@ export function AppShellFrame({
                       )}
                     >
                       <Icon className="size-4" aria-hidden="true" />
-                      {item.label}
+                      {item.shortLabel}
                     </Link>
                   );
                 })}

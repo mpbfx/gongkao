@@ -16,7 +16,7 @@ export const createSpecialSessionSchema = z.object({
         num: z.coerce.number().int().min(1).max(100),
       })
     )
-    .min(1),
+    .length(1),
 });
 
 export type CreateSpecialSessionInput = z.infer<typeof createSpecialSessionSchema>;
@@ -62,12 +62,6 @@ export async function createSpecialPracticeSession(
   user: AuthenticatedUser,
   input: CreateSpecialSessionInput
 ) {
-  const requestedTotal = input.reqs.reduce((total, req) => total + req.num, 0);
-
-  if (requestedTotal < 5) {
-    throw new BusinessError("专项练习总题数不能少于 5 题");
-  }
-
   const tags = await listActiveTagsFlat();
   const tagById = new Map(tags.map((tag) => [tag.id, tag]));
   const missingTag = input.reqs.find((req) => !tagById.has(req.tagId));
@@ -76,12 +70,7 @@ export async function createSpecialPracticeSession(
     throw new NotFoundError("专项分类不存在");
   }
 
-  const selectedTags = input.reqs.map((req) => tagById.get(req.tagId)).filter(Boolean);
-  const hasMaterialOnly = selectedTags.some((tag) => tag?.isMaterialOnly);
-
-  if (hasMaterialOnly && selectedTags.length > 1) {
-    throw new BusinessError("材料类专项不能和其他专项混练");
-  }
+  const selectedTag = tagById.get(input.reqs[0]?.tagId ?? "");
 
   const descendantsByTag = descendantIdsByTag(tags);
   const selectedQuestionIds = new Set<string>();
@@ -111,14 +100,6 @@ export async function createSpecialPracticeSession(
     throw new BusinessError("当前条件下没有可练习的题目");
   }
 
-  if (selectedQuestionIds.size < requestedTotal) {
-    throw new BusinessError("当前条件下题量不足，请减少题数或调整知识点");
-  }
-
-  if (selectedQuestionIds.size < 5) {
-    throw new BusinessError("可练习题目不足 5 题");
-  }
-
   const questions = shuffle(
     await prisma.question.findMany({
       where: {
@@ -131,14 +112,14 @@ export async function createSpecialPracticeSession(
       },
     })
   );
-  const tagNames = selectedTags.map((tag) => tag?.name).filter(Boolean).join("、");
+  const tagName = selectedTag?.name ?? "专项";
 
   return createQuestionPracticeSession({
     user,
     mode: "SPECIAL",
-    title: `专项练习：${tagNames}`,
+    title: `专项练习：${tagName}`,
     questions,
-    sourceTagIdsJson: input.reqs,
+    sourceTagIdsJson: [{ tagId: input.reqs[0]?.tagId, num: questions.length }],
     difficulty: null,
   });
 }

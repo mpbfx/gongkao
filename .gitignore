@@ -15,6 +15,10 @@ dist/
 build/
 coverage/
 tsconfig.tsbuildinfo
+.playwright-cli/
+**/.playwright-cli/
+output/
+**/output/
 
 # Logs
 *.log

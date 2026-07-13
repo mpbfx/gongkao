@@ -2,7 +2,8 @@
 
 import {
   AlertTriangle,
-  BookOpen,
+  ArrowRight,
+  BookMarked,
   Check,
   ChevronLeft,
   ChevronRight,
@@ -14,6 +15,7 @@ import {
   Send,
   WifiOff,
 } from "lucide-react";
+import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 
 import { useAppHeader } from "@/components/layout/app-header-context";
@@ -21,7 +23,7 @@ import { DraftCanvas } from "@/components/practice/draft-canvas";
 import { RichHtml } from "@/components/question/rich-html";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -45,8 +47,18 @@ import {
 } from "@/lib/offline/practice-drafts";
 import { cleanLearningTitle } from "@/lib/display-title";
 import { cn } from "@/lib/utils";
-import { CoachDiagnosisCard } from "@/features/agent/coach-diagnosis-card";
 import { TutorPanel } from "@/features/agent/tutor-panel";
+import { PracticeAnswerSheet } from "@/features/practice/practice-answer-sheet";
+import {
+  PracticeResultAnalysisPanel,
+  PracticeResultOverview,
+} from "@/features/practice/practice-result-panels";
+import { PracticeResultWorkspace } from "@/features/practice/practice-result-workspace";
+import {
+  formatPracticeClock as formatSeconds,
+  normalizePracticeAnswer as normalizeAnswer,
+  optionStateLabel,
+} from "@/features/practice/practice-view-utils";
 
 type PracticeQuestion = {
   id: string;
@@ -128,66 +140,6 @@ type ApiResponse<T> =
         details: unknown;
       };
     };
-
-function normalizeAnswer(answer?: string | null) {
-  if (!answer) {
-    return "";
-  }
-
-  return Array.from(
-    new Set(
-      answer
-        .split(",")
-        .map((part) => part.trim())
-        .filter(Boolean)
-    )
-  )
-    .sort()
-    .join(",");
-}
-
-function formatSeconds(seconds: number) {
-  const minutes = Math.floor(seconds / 60);
-  const rest = seconds % 60;
-
-  return `${String(minutes).padStart(2, "0")}:${String(rest).padStart(2, "0")}`;
-}
-
-function stripHtml(html?: string | null) {
-  return html?.replace(/<[^>]*>/g, "") ?? "";
-}
-
-function questionStatusLabel(status: "answered" | "correct" | "wrong" | "default") {
-  if (status === "correct") {
-    return "正确";
-  }
-
-  if (status === "wrong") {
-    return "错误";
-  }
-
-  if (status === "answered") {
-    return "已答";
-  }
-
-  return "未答";
-}
-
-function optionStateLabel(state: "selected" | "correct" | "wrong" | "default") {
-  if (state === "correct") {
-    return "正确答案";
-  }
-
-  if (state === "wrong") {
-    return "我的误选";
-  }
-
-  if (state === "selected") {
-    return "已选择";
-  }
-
-  return null;
-}
 
 export function PracticeRunner({
   initialSession,
@@ -451,6 +403,12 @@ export function PracticeRunner({
           elapsedSeconds: initialSession.elapsedSeconds,
         }
       : null;
+  const nextAction = resultSummary?.wrongCount
+    ? { href: "/question-bank/wrong", label: "复盘本次错题", description: "答错的题已自动进入错题本。", icon: BookMarked }
+    : initialSession.mode === "SPECIAL"
+      ? { href: "/question-bank/special", label: "继续专项练习", description: "本组已完成，可以继续选择一个知识点。", icon: ArrowRight }
+      : { href: "/", label: "返回今日训练", description: "本组已完成，回到首页选择下一步。", icon: ArrowRight };
+  const NextActionIcon = nextAction.icon;
 
   function questionStatus(item: PracticeQuestion) {
     const result = resultByQuestionId.get(item.id);
@@ -498,60 +456,18 @@ export function PracticeRunner({
       ];
 
   const answerSheetContent = (
-    <>
-      <div className="flex shrink-0 items-center justify-between gap-3">
-        <div className="min-w-0">
-          <div className="flex items-center gap-2 font-medium">
-            <Grid3X3 className="size-4" aria-hidden="true" />
-            答题卡
-          </div>
-          <p className="mt-1 text-sm text-muted-foreground">
-            {isMemorizeMode ? `共 ${questions.length} 题` : `已答 ${answeredCount} / ${questions.length}`}
-          </p>
-        </div>
-        <Badge variant="outline">{Math.round(completionRate * 100)}%</Badge>
-      </div>
-      <div className="h-1.5 shrink-0 overflow-hidden rounded-full bg-muted">
-        <div className="h-full rounded-full bg-primary" style={{ width: `${Math.round(completionRate * 100)}%` }} />
-      </div>
-      <div className="flex shrink-0 flex-wrap gap-x-3 gap-y-2 text-xs text-muted-foreground">
-        {answerLegend.map((item) => (
-          <span key={item.label} className="inline-flex items-center gap-1.5">
-            <span className={cn("size-2.5 rounded-sm border", item.className)} />
-            {item.label}
-          </span>
-        ))}
-      </div>
-      <div className="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto pr-1">
-        {answerGroups.map((group) => {
-          const currentGroup = group.items.some((item) => item.index === currentIndex);
-
-          return (
-            <details key={group.name} open={currentGroup || answerGroups.length <= 3} className="group">
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-2 rounded-md px-1 py-1 text-sm font-medium hover:bg-muted">
-                <span className="truncate">{group.name}</span>
-                <span className="text-xs text-muted-foreground">{group.items.length} 题</span>
-              </summary>
-              <div className="mt-2 grid grid-cols-[repeat(auto-fill,minmax(2.25rem,1fr))] gap-2">
-                {group.items.map(({ question: item, index }) => (
-                  <button
-                    key={`${group.name}-${item.id}-${index}`}
-                    type="button"
-                    className={answerButtonClassName(item, index)}
-                    title={stripHtml(item.titleHtml)}
-                    aria-label={`第 ${index + 1} 题，${questionStatusLabel(questionStatus(item))}`}
-                    aria-current={index === currentIndex ? "true" : undefined}
-                    onClick={() => goToQuestion(index)}
-                  >
-                    {index + 1}
-                  </button>
-                ))}
-              </div>
-            </details>
-          );
-        })}
-      </div>
-    </>
+    <PracticeAnswerSheet
+      groups={answerGroups}
+      currentIndex={currentIndex}
+      answeredCount={answeredCount}
+      totalCount={questions.length}
+      completionRate={completionRate}
+      isMemorizeMode={isMemorizeMode}
+      legend={answerLegend}
+      getButtonClassName={answerButtonClassName}
+      getQuestionStatus={questionStatus}
+      onSelect={goToQuestion}
+    />
   );
 
   const actionBarPrimaryText = isResultMode
@@ -703,8 +619,118 @@ export function PracticeRunner({
     setHasPendingSubmit(true);
   }
 
+  if (isResultMode && resultSummary) {
+    const questionPane = (
+      <section className="practice-review-question flex min-h-full flex-col p-4 lg:p-5">
+        <div className="flex items-center justify-between gap-3 border-b border-foreground/20 pb-3">
+          <Button type="button" variant="outline" size="sm" disabled={currentIndex === 0} onClick={() => goToQuestion(currentIndex - 1)}>
+            <ChevronLeft data-icon="inline-start" />上一题
+          </Button>
+          <span className="student-heading font-semibold">第 {currentIndex + 1} 题</span>
+          <Button type="button" variant="outline" size="sm" disabled={currentIndex === questions.length - 1} onClick={() => goToQuestion(currentIndex + 1)}>
+            下一题<ChevronRight data-icon="inline-end" />
+          </Button>
+        </div>
+
+        {question.materialHtml ? (
+          <div className="mt-4 border-l-2 border-accent bg-muted/45 p-3">
+            {question.material?.title ? <div className="mb-2 text-sm font-medium">{question.material.title}</div> : null}
+            <RichHtml html={question.materialHtml} className="text-sm leading-7 text-muted-foreground" />
+          </div>
+        ) : null}
+
+        <RichHtml html={question.titleHtml} className="mt-5 text-base leading-8" />
+        <div className="mt-5 flex flex-col gap-2.5">
+          {question.options.map((option) => {
+            const state = optionState(option.value);
+            const stateLabel = optionStateLabel(state);
+            return (
+              <button
+                key={option.id}
+                type="button"
+                disabled
+                className={cn(
+                  "flex min-h-13 w-full items-start gap-3 border bg-card/50 px-3.5 py-3 text-left text-sm disabled:opacity-100",
+                  state === "correct" && "border-success bg-success/8 text-success",
+                  state === "wrong" && "border-destructive bg-destructive/8 text-destructive"
+                )}
+              >
+                <span className={cn("grid size-7 shrink-0 place-items-center rounded-full border text-xs font-semibold", state === "correct" && "border-success bg-success text-success-foreground", state === "wrong" && "border-destructive bg-destructive text-white")}>
+                  {option.label}
+                </span>
+                <RichHtml html={option.contentHtml} className="min-w-0 flex-1 leading-6" />
+                {stateLabel ? <span className="shrink-0 border border-current/25 px-2 py-0.5 text-xs">{stateLabel}</span> : null}
+              </button>
+            );
+          })}
+        </div>
+        <div className="mt-auto flex items-center justify-between border-t border-foreground/20 pt-4 text-sm text-muted-foreground">
+          <span className="text-xs tracking-[0.12em]">题目卷面 · 结果回看</span>
+          <button type="button" className="inline-flex items-center gap-2" onClick={() => setShowDraftCanvas(true)}><PencilLine className="size-4" />草稿回看</button>
+        </div>
+        <DraftCanvas
+          open={showDraftCanvas}
+          value={currentScratch}
+          readOnly
+          questionLabel={`第 ${currentIndex + 1} 题`}
+          variant="overlay"
+          onChange={updateCurrentScratch}
+          onClose={() => setShowDraftCanvas(false)}
+        />
+      </section>
+    );
+
+    return (
+      <PracticeResultWorkspace
+        summary={resultSummary}
+        reviewMode={reviewMode}
+        currentIndex={currentIndex}
+        totalCount={questions.length}
+        questionPane={questionPane}
+        analysisPane={
+          <div className="flex min-h-full flex-col">
+            <PracticeResultAnalysisPanel
+              isMemorizeMode={isMemorizeMode}
+              isCorrect={currentResult?.isCorrect}
+              answer={currentResult?.answer}
+              correctAnswer={currentResult?.correctAnswer || question.correctAnswer || "暂无"}
+              analysisHtml={currentResult?.analysisHtml ?? question.analysisHtml}
+              className="flex-1 border-0 shadow-none"
+            />
+            <div className="border-t border-foreground/20 bg-card/55 p-4">
+              <div className="text-xs font-medium tracking-[0.16em] text-muted-foreground">下一步</div>
+              <p className="mt-2 text-sm text-muted-foreground">{nextAction.description}</p>
+              <Link href={nextAction.href} className={cn(buttonVariants(), "mt-3 w-full")}>
+                <NextActionIcon data-icon="inline-start" />
+                {nextAction.label}
+              </Link>
+            </div>
+          </div>
+        }
+        answerSheet={answerSheetContent}
+        tutorPane={
+          <TutorPanel
+            questionId={question.id}
+            sessionId={initialSession.id}
+            variant="dock"
+            heightMode="fill"
+            className="h-full min-h-0 rounded-none border-0 shadow-none"
+            contextLabel={`第 ${currentIndex + 1} 题；我的答案：${currentResult?.answer || "未作答"}；正确答案：${currentResult?.correctAnswer || question.correctAnswer || "暂无"}`}
+          />
+        }
+      />
+    );
+  }
+
   return (
-    <main className="mx-auto flex w-full max-w-7xl flex-1 flex-col gap-4 px-4 py-4 pb-36 md:px-6 lg:grid lg:grid-cols-[minmax(0,1fr)_320px] lg:items-start lg:pb-8">
+    <main
+      className={cn(
+        "practice-workspace mx-auto flex w-full max-w-7xl flex-1 flex-col gap-4 px-4 py-4 pb-36 md:px-6 lg:grid lg:items-start lg:pb-8",
+        isResultMode
+          ? "lg:grid-cols-[minmax(0,1fr)_minmax(300px,340px)]"
+          : "lg:grid-cols-[minmax(0,1fr)_320px]"
+      )}
+    >
       {!isResultMode && (!isOnline || hasPendingSubmit) ? (
         <div className="lg:col-span-2">
           <Alert variant={!isOnline ? "warning" : "info"}>
@@ -719,15 +745,50 @@ export function PracticeRunner({
         </div>
       ) : null}
 
-      {resultSummary ? (
-        <div className="lg:col-span-2">
-          <CoachDiagnosisCard sessionId={initialSession.id} />
-        </div>
-      ) : null}
+      <div
+        className={cn(
+          "flex min-w-0 flex-col gap-4",
+          isResultMode
+            ? "lg:grid lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:items-start"
+            : "lg:contents"
+        )}
+      >
+        {resultSummary ? (
+          <PracticeResultOverview
+            summary={resultSummary}
+            reviewMode={reviewMode}
+            className="lg:col-span-2"
+          />
+        ) : null}
 
-      <section className="flex min-w-0 flex-col gap-4">
-        <Card>
-          <CardContent className="relative flex flex-col gap-4 pt-1">
+        <section className="flex min-w-0 flex-col gap-4">
+          <Card className="practice-question-paper">
+            <CardContent className="relative flex flex-col gap-4 pt-1">
+            {isResultMode ? (
+              <div className="hidden items-center justify-between gap-3 border-b border-dashed pb-3 lg:flex">
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  disabled={currentIndex === 0}
+                  onClick={() => goToQuestion(currentIndex - 1)}
+                >
+                  <ChevronLeft data-icon="inline-start" />
+                  上一题
+                </Button>
+                <div className="student-heading text-sm font-semibold">第 {currentIndex + 1} 题</div>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  disabled={currentIndex === questions.length - 1}
+                  onClick={() => goToQuestion(currentIndex + 1)}
+                >
+                  下一题
+                  <ChevronRight data-icon="inline-end" />
+                </Button>
+              </div>
+            ) : null}
             {question.materialHtml ? (
               <div className="rounded-lg bg-muted p-3">
                 {question.material?.title ? (
@@ -776,34 +837,14 @@ export function PracticeRunner({
             </div>
 
             {isResultMode ? (
-              <Alert variant={isMemorizeMode ? "info" : currentResult?.isCorrect ? "success" : "warning"}>
-                {isMemorizeMode ? (
-                  <BookOpen aria-hidden="true" />
-                ) : currentResult?.isCorrect ? (
-                  <Check aria-hidden="true" />
-                ) : (
-                  <AlertTriangle aria-hidden="true" />
-                )}
-                <AlertTitle>
-                  {isMemorizeMode ? "背题解析" : currentResult?.isCorrect ? "本题正确" : "本题未答对"}
-                </AlertTitle>
-                <AlertDescription>
-                  <div className="flex flex-col gap-2">
-                    <p>
-                      正确答案：{currentResult?.correctAnswer || question.correctAnswer || "暂无"}
-                      {isMemorizeMode ? "" : `；我的答案：${currentResult?.answer || "未作答"}`}
-                    </p>
-                    {currentResult?.analysisHtml || question.analysisHtml ? (
-                      <RichHtml
-                        html={currentResult?.analysisHtml ?? question.analysisHtml}
-                        className="leading-6"
-                      />
-                    ) : (
-                      <p>暂无解析。</p>
-                    )}
-                  </div>
-                </AlertDescription>
-              </Alert>
+              <PracticeResultAnalysisPanel
+                isMemorizeMode={isMemorizeMode}
+                isCorrect={currentResult?.isCorrect}
+                answer={currentResult?.answer}
+                correctAnswer={currentResult?.correctAnswer || question.correctAnswer || "暂无"}
+                analysisHtml={currentResult?.analysisHtml ?? question.analysisHtml}
+                className="border-0 shadow-none lg:hidden"
+              />
             ) : null}
             {isResultMode ? (
               <TutorPanel
@@ -811,6 +852,7 @@ export function PracticeRunner({
                 sessionId={initialSession.id}
                 triggerLabel={currentResult?.isCorrect ? "复盘讲解" : "问助教"}
                 contextLabel={`我的答案：${currentResult?.answer || "未作答"}；正确答案：${currentResult?.correctAnswer || question.correctAnswer || "暂无"}`}
+                className="lg:hidden"
               />
             ) : null}
             <DraftCanvas
@@ -833,26 +875,27 @@ export function PracticeRunner({
                 </div>
               </div>
             ) : null}
-          </CardContent>
-        </Card>
-      </section>
-
-      <aside className="flex flex-col gap-4 lg:sticky lg:top-20 lg:h-[calc(100dvh-6rem)] lg:min-h-0">
-        {resultSummary ? (
-          <Card size="sm">
-            <CardContent className="flex flex-col gap-1">
-              <div className="font-medium">
-                {reviewMode ? "历史结果" : "提交结果"} · 正确率 {resultSummary.accuracy ?? "0.00"}%
-              </div>
-              <div className="text-sm text-muted-foreground">
-                正确 {resultSummary.correctCount} / 错误 {resultSummary.wrongCount} / 未答{" "}
-                {resultSummary.unansweredCount} · 用时 {formatSeconds(resultSummary.elapsedSeconds)}
-              </div>
             </CardContent>
           </Card>
+        </section>
+
+        {isResultMode ? (
+          <PracticeResultAnalysisPanel
+            isMemorizeMode={isMemorizeMode}
+            isCorrect={currentResult?.isCorrect}
+            answer={currentResult?.answer}
+            correctAnswer={currentResult?.correctAnswer || question.correctAnswer || "暂无"}
+            analysisHtml={currentResult?.analysisHtml ?? question.analysisHtml}
+            className="hidden lg:flex"
+          />
         ) : null}
 
-        <Card size="sm" className="hidden lg:flex">
+      </div>
+
+      <aside
+        className="flex flex-col gap-4 lg:sticky lg:top-20 lg:h-[calc(100dvh-6rem)] lg:min-h-0"
+      >
+        {!isResultMode ? <Card size="sm" className="hidden lg:flex">
           <CardContent className="flex flex-col gap-3">
             <div className="flex items-start justify-between gap-3">
               <div>
@@ -902,13 +945,29 @@ export function PracticeRunner({
               </Button>
             ) : null}
           </CardContent>
-        </Card>
+        </Card> : null}
 
-        <Card className="hidden lg:flex lg:min-h-0 lg:flex-1 lg:flex-col">
+        <Card
+          className={cn(
+            "hidden lg:flex lg:min-h-0 lg:flex-col",
+            isResultMode ? "lg:max-h-[21rem] lg:flex-none" : "lg:flex-1"
+          )}
+        >
           <CardContent className="flex min-h-0 flex-1 flex-col gap-3 overflow-hidden">
             {answerSheetContent}
           </CardContent>
         </Card>
+
+        {isResultMode ? (
+          <TutorPanel
+            questionId={question.id}
+            sessionId={initialSession.id}
+            variant="dock"
+            heightMode="fill"
+            className="hidden min-h-[22rem] flex-1 rounded-xl lg:flex"
+            contextLabel={`我的答案：${currentResult?.answer || "未作答"}；正确答案：${currentResult?.correctAnswer || question.correctAnswer || "暂无"}`}
+          />
+        ) : null}
       </aside>
 
       <div className="fixed inset-x-0 bottom-0 z-30 border-t bg-background/95 p-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))] shadow-[0_-8px_24px_rgb(15_23_42/0.08)] backdrop-blur lg:hidden">

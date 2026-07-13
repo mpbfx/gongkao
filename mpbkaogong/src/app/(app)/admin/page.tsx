@@ -1,4 +1,4 @@
-import { Bot, Database, FileUp, HelpCircle, ScrollText } from "lucide-react";
+import { Database, FileUp, HelpCircle, ScrollText } from "lucide-react";
 import Link from "next/link";
 
 import { buttonVariants } from "@/components/ui/button";
@@ -75,20 +75,6 @@ export default async function AdminPage() {
           <CardFooter>
             <Link href="/admin/imports" className={cn(buttonVariants({ variant: "outline", size: "sm" }))}>
               批量导入
-            </Link>
-          </CardFooter>
-        </Card>
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Bot aria-hidden="true" />
-              Agent
-            </CardTitle>
-            <CardDescription>诊断窗口与推荐阈值</CardDescription>
-          </CardHeader>
-          <CardFooter>
-            <Link href="/admin/agent" className={cn(buttonVariants({ variant: "outline", size: "sm" }))}>
-              配置 Agent
             </Link>
           </CardFooter>
         </Card>

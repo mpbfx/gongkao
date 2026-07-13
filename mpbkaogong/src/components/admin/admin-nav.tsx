@@ -1,6 +1,6 @@
 "use client";
 
-import { Bot, FileUp, HelpCircle, LayoutDashboard, ScrollText } from "lucide-react";
+import { FileUp, HelpCircle, LayoutDashboard, ScrollText } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -11,7 +11,6 @@ const adminNavItems = [
   { label: "题目", href: "/admin/questions", icon: HelpCircle },
   { label: "试卷", href: "/admin/papers", icon: ScrollText },
   { label: "导入", href: "/admin/imports", icon: FileUp },
-  { label: "Agent", href: "/admin/agent", icon: Bot },
 ];
 
 function isActivePath(pathname: string, href: string) {

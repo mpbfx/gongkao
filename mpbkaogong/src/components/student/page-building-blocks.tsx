@@ -46,8 +46,8 @@ export function StudentPage({
   return (
     <main
       className={cn(
-        "mx-auto flex w-full flex-1 flex-col gap-5 px-4 py-5 pb-24 md:px-6 md:py-6 lg:pb-8",
-        wide ? "max-w-7xl" : "max-w-6xl",
+        "student-page mx-auto flex w-full flex-1 flex-col gap-5 px-4 py-5 pb-24 md:px-6 md:py-6 lg:gap-7 lg:px-9 lg:pb-12 lg:pt-9",
+        wide ? "max-w-[96rem]" : "max-w-[82rem]",
         className
       )}
     >
@@ -70,24 +70,22 @@ export function PageHeader({
   compact?: boolean;
 }) {
   return (
-    <section className={cn("flex flex-col border-b md:flex-row md:items-end md:justify-between", compact ? "gap-2 pb-3" : "gap-3 pb-4")}>
+    <section className={cn("editorial-page-header relative flex flex-col border-b-2 border-foreground md:flex-row md:items-end md:justify-between", compact ? "gap-2 pb-3" : "gap-4 pb-5 lg:pb-7")}>
       <div className={cn("flex min-w-0 flex-col", compact ? "gap-1.5" : "gap-2")}>
         {eyebrow ? (
-          <Badge variant="info" className="w-fit">
-            {eyebrow}
-          </Badge>
+          <span className="editorial-kicker w-fit text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-primary">{eyebrow}</span>
         ) : null}
         <div className="flex flex-col gap-1.5">
           <h1
             className={cn(
-              "font-semibold tracking-tight text-foreground",
-              compact ? "text-xl md:text-2xl" : "text-2xl md:text-3xl"
+              "student-heading font-semibold tracking-tight text-foreground",
+              compact ? "text-xl md:text-2xl" : "text-2xl md:text-3xl lg:max-w-5xl lg:text-[3.5rem] lg:leading-[1.05]"
             )}
           >
             {title}
           </h1>
           {description ? (
-            <p className="max-w-3xl text-sm leading-6 text-muted-foreground">
+            <p className="max-w-3xl text-sm leading-6 text-muted-foreground lg:text-base lg:leading-7">
               {description}
             </p>
           ) : null}
@@ -118,19 +116,19 @@ export function TrainingHero({
   className?: string;
 }) {
   return (
-    <section className={cn("overflow-hidden rounded-lg border bg-card shadow-xs", className)}>
-      <div className="grid gap-4 border-l-4 border-primary p-4 md:grid-cols-[minmax(0,1fr)_auto] md:p-5">
+    <section className={cn("editorial-hero overflow-hidden border-y-2 border-foreground bg-card", className)}>
+      <div className="grid gap-4 border-l-4 border-primary p-4 md:grid-cols-[minmax(0,1fr)_auto] md:p-5 lg:min-h-48 lg:items-center lg:px-8 lg:py-8">
         <div className="min-w-0">
           <div className="mb-2 flex flex-wrap items-center gap-2">
             {eyebrow ? <span className="text-xs font-medium text-muted-foreground">{eyebrow}</span> : null}
             {badge ? <Badge variant={badgeVariant}>{badge}</Badge> : null}
           </div>
-          <h2 className="text-xl font-semibold tracking-tight text-foreground md:text-2xl">{title}</h2>
+          <h2 className="student-heading text-xl font-semibold tracking-tight text-foreground md:text-2xl lg:max-w-4xl lg:text-[2.65rem] lg:leading-[1.12]">{title}</h2>
           {description ? <div className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">{description}</div> : null}
         </div>
         {actions ? <div className="flex flex-wrap items-center gap-2 md:justify-end">{actions}</div> : null}
       </div>
-      {children ? <div className="border-t bg-muted/30 p-4 md:p-5">{children}</div> : null}
+      {children ? <div className="border-t border-foreground/35 bg-muted/20 p-4 md:p-5 lg:px-8">{children}</div> : null}
     </section>
   );
 }
@@ -153,22 +151,22 @@ export function TrainingPanel({
   className?: string;
 }) {
   return (
-    <section className={cn("rounded-lg border bg-card shadow-xs", toneBorderClassNames[tone], className)}>
-      <div className="flex items-start justify-between gap-3 border-b px-4 py-3">
+    <section className={cn("editorial-panel border-y border-foreground/60 bg-card/45", toneBorderClassNames[tone], className)}>
+      <div className="flex items-start justify-between gap-3 border-b border-foreground/30 px-4 py-3 lg:px-0 lg:py-4">
         <div className="flex min-w-0 items-start gap-3">
           {Icon ? (
-            <div className={cn("grid size-9 shrink-0 place-items-center rounded-lg", toneClassNames[tone])}>
+            <div className={cn("grid size-9 shrink-0 place-items-center border border-current/25", toneClassNames[tone])}>
               <Icon className="size-4" aria-hidden="true" />
             </div>
           ) : null}
           <div className="min-w-0">
-            <h2 className="font-semibold leading-6">{title}</h2>
+            <h2 className="student-heading font-semibold leading-6">{title}</h2>
             {description ? <div className="mt-1 text-sm leading-5 text-muted-foreground">{description}</div> : null}
           </div>
         </div>
         {action ? <div className="shrink-0">{action}</div> : null}
       </div>
-      <div className="p-4">{children}</div>
+      <div className="p-4 lg:px-0 lg:py-5">{children}</div>
     </section>
   );
 }
@@ -189,7 +187,7 @@ export function MetricStrip({
   compact?: boolean;
 }) {
   return (
-    <section className={cn("grid overflow-hidden rounded-lg border bg-card shadow-xs sm:grid-cols-2 lg:grid-cols-4", className)}>
+    <section className={cn("editorial-ledger grid overflow-hidden border-y-2 border-foreground bg-transparent sm:grid-cols-2 lg:grid-cols-4", className)}>
       {items.map((item) => {
         const Icon = item.icon;
 
@@ -197,18 +195,18 @@ export function MetricStrip({
           <div
             key={item.label}
             className={cn(
-              "flex min-w-0 items-start border-b last:border-b-0 sm:[&:nth-child(2n)]:border-l lg:border-b-0 lg:border-l lg:first:border-l-0 sm:[&:nth-last-child(-n+2)]:border-b-0",
-              compact ? "gap-2 p-3" : "gap-3 p-4"
+              "flex min-w-0 items-start border-b border-foreground/30 last:border-b-0 sm:[&:nth-child(2n)]:border-l lg:border-b-0 lg:border-l lg:first:border-l-0 sm:[&:nth-last-child(-n+2)]:border-b-0",
+              compact ? "gap-2 p-3" : "gap-3 p-4 lg:px-6 lg:py-6"
             )}
           >
             {Icon ? (
-              <div className={cn("grid shrink-0 place-items-center rounded-lg", compact ? "size-8" : "size-9", toneClassNames[item.tone ?? "default"])}>
+              <div className={cn("grid shrink-0 place-items-center border border-current/20", compact ? "size-8" : "size-9", toneClassNames[item.tone ?? "default"])}>
                 <Icon className={cn(compact ? "size-3.5" : "size-4")} aria-hidden="true" />
               </div>
             ) : null}
             <div className="min-w-0">
               <div className="text-xs font-medium text-muted-foreground">{item.label}</div>
-              <div className={cn("mt-0.5 font-mono font-semibold tabular-nums text-foreground", compact ? "text-xl" : "text-2xl")}>{item.value}</div>
+              <div className={cn("student-heading mt-0.5 font-semibold tabular-nums text-foreground", compact ? "text-xl" : "text-3xl")}>{item.value}</div>
               {item.description && !compact ? <div className="mt-1 text-xs leading-5 text-muted-foreground">{item.description}</div> : null}
             </div>
           </div>
@@ -277,7 +275,7 @@ export function ActionCard({
   );
 
   return (
-    <Card className={cn("transition-colors hover:border-primary/30", toneBorderClassNames[tone])}>
+    <Card className={cn("editorial-action-card transition-colors hover:border-primary/70 lg:rounded-none lg:border-x-0 lg:border-t-0 lg:bg-transparent lg:shadow-none", toneBorderClassNames[tone])}>
       <CardHeader>
         <div className="flex items-start justify-between gap-3">
           <div className="flex min-w-0 items-start gap-3">
@@ -313,7 +311,7 @@ export function EmptyState({
   children?: React.ReactNode;
 }) {
   return (
-    <div className="rounded-lg border border-dashed bg-card">
+    <div className="editorial-empty border-y border-dashed border-foreground/45 bg-card/50">
       <CardContent className="flex flex-col items-center gap-4 py-10 text-center">
         <div className="grid size-12 place-items-center rounded-lg bg-secondary text-secondary-foreground">
           <Icon aria-hidden="true" />
@@ -325,6 +323,46 @@ export function EmptyState({
         {children ? <div className="flex flex-wrap justify-center gap-2">{children}</div> : null}
       </CardContent>
     </div>
+  );
+}
+
+export function PageSkeleton({
+  title,
+  rows = 3,
+}: {
+  title: string;
+  rows?: number;
+}) {
+  return (
+    <StudentPage wide>
+      <section className="flex flex-col gap-3 border-b-2 border-foreground pb-4" aria-label={title} aria-busy="true">
+        <div className="h-6 w-24 animate-pulse rounded-full bg-muted" />
+        <div className="h-10 w-full max-w-xl animate-pulse rounded-lg bg-muted" />
+        <div className="h-5 w-full max-w-2xl animate-pulse rounded bg-muted/80" />
+      </section>
+      <div className="grid overflow-hidden border-y-2 border-foreground bg-card/40 lg:grid-cols-4">
+        {Array.from({ length: 4 }, (_, index) => (
+          <div key={index} className="flex gap-3 border-b p-4 last:border-b-0 lg:border-b-0 lg:border-l lg:first:border-l-0">
+            <div className="size-9 animate-pulse rounded-lg bg-muted" />
+            <div className="flex flex-1 flex-col gap-2">
+              <div className="h-3 w-20 animate-pulse rounded bg-muted" />
+              <div className="h-7 w-24 animate-pulse rounded bg-muted" />
+            </div>
+          </div>
+        ))}
+      </div>
+      <section className="overflow-hidden border-y border-foreground/60 bg-card/40">
+        {Array.from({ length: rows }, (_, index) => (
+          <div key={index} className="grid gap-3 border-b p-4 last:border-b-0 lg:grid-cols-[minmax(0,1fr)_240px] lg:px-5 lg:py-5">
+            <div className="flex flex-col gap-2">
+              <div className="h-5 w-2/3 animate-pulse rounded bg-muted" />
+              <div className="h-4 w-1/2 animate-pulse rounded bg-muted/80" />
+            </div>
+            <div className="h-8 animate-pulse rounded-lg bg-muted" />
+          </div>
+        ))}
+      </section>
+    </StudentPage>
   );
 }
 

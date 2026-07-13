@@ -1,0 +1,46 @@
+[
+  {
+    "file": "01-home.png",
+    "prompt": "High-fidelity desktop homepage UI for a Chinese civil-service exam training product. Art direction: 备考编辑部, a premium editorial newsroom for exam preparation. Warm paper #F4F0E8, deep ink #172238, vermilion #D65A3A, proofing green #2E7665, ochre #B8842F. Narrow dark dossier-spine navigation with numbered chapters. Huge Song-style Chinese headline 把每一次练习，都校准到提分上. Dramatic asymmetric hero with an overlapping tilted answer sheet and red proofreading marks. 今日校准 is the primary task and 开始训练 is the dominant action. Statistics sit on a thin baseline, and 历年试卷、专项提分、错题复盘、复盘记录 form four continuous editorial chapters instead of rounded cards. Practical React-ready layout, no purple, no glassmorphism, no mobile phone, no watermark."
+  },
+  {
+    "file": "02-login.png",
+    "prompt": "High-fidelity desktop login UI for the same 备考编辑部 Chinese exam product. Split composition: left two-thirds resembles a deep-ink premium magazine cover with vertical issue number, answer-sheet circles, red proofreading slash and large Chinese serif title 公考练习台; right side is a warm-paper login desk with 登录公考练习台, 邮箱, 密码, 登录. Strong editorial typography, thin rules, minimal rounded surfaces, accessible labels and error area. Same warm paper, deep ink, vermilion, proofing green palette. Practical production UI, no purple gradient, no glassmorphism, no mobile phone, no watermark."
+  },
+  {
+    "file": "03-dashboard.png",
+    "prompt": "High-fidelity desktop 今日工作台 for the same 备考编辑部 product. Narrow numbered dossier navigation. Build a daily command board rather than a card dashboard: one oversized priority task with red deadline stamp, a vertical training timeline, a compact unresolved-wrong-question queue, and a next-action ledger. Large Chinese serif headline 今天只校准最重要的一组. Metrics appear as margin notes and tabular numbers, not four rounded cards. Dense, calm, professional editorial composition, practical React-ready layout, same palette, no purple, no glassmorphism, no watermark."
+  },
+  {
+    "file": "04-papers-list.png",
+    "prompt": "High-fidelity desktop 历年试卷 archive catalog for the same 备考编辑部 product. Narrow dossier navigation. Left column is an index/filter rail with year, region, category and sort controls. Right side is a dense exam archive with bold issue numbers, paper titles, question counts, difficulty marks and clear 开练 actions. Use ruled rows, archival tabs, stamps and generous editorial hierarchy instead of separate rounded cards. Chinese serif headings, sans-serif metadata, warm paper and deep ink with vermilion accents. Practical React/Tailwind layout, no fake charts, no purple, no glassmorphism, no watermark."
+  },
+  {
+    "file": "05-paper-detail.png",
+    "prompt": "High-fidelity desktop 试卷详情 UI for the same 备考编辑部 product. Present the exam as a premium dossier cover: oversized year and region title, exam metadata, three key statistics, and a ruled module table. On the right place a sticky tear-off admission ticket style panel titled 准备开始 with question count, suggested time, mode and dominant 开始练习 action. Use paper layers, ink rules, archival stamps and restrained red annotations, very few rounded cards. Same palette and navigation, practical implementable UI, no purple, no glassmorphism, no watermark."
+  },
+  {
+    "file": "06-special-builder.png",
+    "prompt": "High-fidelity desktop 专项组卷 workbench for the same 备考编辑部 product. Full-height master-detail composition desk. Left pane is a scrollable knowledge directory with search, expandable chapters and checked subtopics. Right pane is a composition ledger showing selected topics, minus-number-plus steppers, a numbered question grid, validation notice and a fixed 开始专项练习 bar. Use ledger lines, proofing marks, chapter numbers 01 and 02, warm paper, deep ink and vermilion. Dense but clear React-ready UI, no giant empty cards, no purple, no glassmorphism, no watermark."
+  },
+  {
+    "file": "07-practice-active.png",
+    "prompt": "High-fidelity desktop active practice UI for the same 备考编辑部 product in distraction-free focus mode. Hide ordinary site navigation. Use a thin exam header with session title, question progress, timer, pause and save state. Main area is a large white exam paper with material, question and answer options. Right side contains a compact answer sheet and vertical tool rail for draft, mark and submit. Editorial exam realism, ink rules, subtle paper texture, clear selected answer in vermilion, accessible spacing. Practical production UI, no purple, no AI chat aesthetic, no watermark."
+  },
+  {
+    "file": "08-practice-review.png",
+    "prompt": "High-fidelity desktop result review UI for the same 备考编辑部 product. A true three-column correction desk: left question and marked answer options, middle red-pen correction and detailed 解析校准, right answer sheet above a docked 讲题助教. Top result ledger spans the first two columns with accuracy, correct, wrong, unanswered and time. Use editorial rules, proofreading symbols, green correct marks and vermilion wrong marks; tutor remains deep ink and paper, never purple. Practical React-ready layout, no glassmorphism, no watermark."
+  },
+  {
+    "file": "09-records.png",
+    "prompt": "High-fidelity desktop 复盘记录 logbook for the same 备考编辑部 product. Continuous editorial report layout: huge serif title 把每次练习变成下一次提分, a single ruled metric baseline, compact filter tabs, then a dense logbook table with practice name, time, completion, accuracy, duration and 回看解析 action. Use a dark ink table header, alternating subtle paper rows, archival status labels and page numbering. No invented trend charts. Same narrow numbered navigation and palette, no purple, no glassmorphism, no watermark."
+  },
+  {
+    "file": "10-wrong-workspace.png",
+    "prompt": "High-fidelity desktop 错题复盘 workbench for the same 备考编辑部 product. Three-zone layout: narrow left queue with filters and numbered mistake slips, large central question context with answer comparison and mastery controls, right docked tutor and mistake-cause notes. Use red proofreading marks, green mastered stamps, ruled paper and visible progress. Dense professional exam workflow, not a generic card dashboard and not a purple AI chat. Same palette and navigation, practical implementable UI, no watermark."
+  },
+  {
+    "file": "11-mistake-insights.png",
+    "prompt": "High-fidelity desktop 错因报告 long-form analytical report for the same 备考编辑部 product. Editorial newspaper data story with oversized headline, key mistake count, cause distribution, accuracy/time context, a prominent knowledge-point by mistake-cause matrix, and a final 下一步动作 section linked to real practice. Charts use vermilion, proofing green, ochre and deep ink only. Use columns, rules, captions and margin annotations instead of rounded dashboard cards. Same numbered navigation, practical Recharts-ready UI, no purple, no glassmorphism, no watermark."
+  }
+]

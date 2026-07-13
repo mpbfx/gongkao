@@ -10,6 +10,7 @@ export type ApiErrorCode =
   | "CONFLICT"
   | "BUSINESS_ERROR"
   | "RATE_LIMITED"
+  | "SERVICE_UNAVAILABLE"
   | "INTERNAL_ERROR";
 
 export function apiOk<T>(data: T) {

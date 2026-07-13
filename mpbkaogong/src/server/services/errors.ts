@@ -32,3 +32,10 @@ export class BusinessError extends Error {
     this.name = "BusinessError";
   }
 }
+
+export class ServiceUnavailableError extends Error {
+  constructor(message = "服务暂时不可用", public details: unknown = null) {
+    super(message);
+    this.name = "ServiceUnavailableError";
+  }
+}
