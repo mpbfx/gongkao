@@ -25,7 +25,7 @@ export default async function SpecialPracticePage() {
 
   return (
     <AppShell>
-      <StudentPage>
+      <StudentPage wide className="special-editorial-page">
         <PageHeader
           eyebrow="专项提分"
           title="按知识点组一套更精准的练习"

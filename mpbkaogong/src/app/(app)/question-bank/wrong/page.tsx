@@ -26,15 +26,14 @@ export default async function WrongQuestionsPage({ searchParams }: WrongQuestion
   }
 
   const rawParams = await searchParams;
+  const questionId = firstValue(rawParams?.questionId);
   const query = wrongQuestionsQuerySchema.parse({
     tagId: firstValue(rawParams?.tagId),
-    mistakeCause: firstValue(rawParams?.mistakeCause),
-    analysis: firstValue(rawParams?.analysis),
     includeResolved: firstValue(rawParams?.includeResolved),
   });
   const [data, mistakeInsights] = await Promise.all([
     listWrongQuestions(user, query),
-    getMistakeInsights(user, { range: "30", includeResolved: query.includeResolved }),
+    getMistakeInsights(user, { range: "30", includeResolved: false }),
   ]);
   const highRepeatCount = data.groups.reduce(
     (total, group) => total + group.items.filter((item) => item.wrongCount >= 2 && !item.resolvedAt).length,
@@ -47,16 +46,15 @@ export default async function WrongQuestionsPage({ searchParams }: WrongQuestion
         title: "错题复盘工作台",
       }}
     >
-      <StudentPage wide className="gap-3 py-3 xl:max-w-none xl:px-3 2xl:px-5">
+      <StudentPage wide className="gap-3 py-3 lg:gap-0 lg:py-3 xl:max-w-none xl:px-3 2xl:px-5">
         <WrongReviewWorkspace
           data={data}
           highRepeatCount={highRepeatCount}
           insights={mistakeInsights}
           query={{
             tagId: query.tagId,
-            mistakeCause: query.mistakeCause,
-            analysis: query.analysis,
             includeResolved: query.includeResolved,
+            questionId,
           }}
         />
       </StudentPage>

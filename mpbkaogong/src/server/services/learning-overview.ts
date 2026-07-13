@@ -15,7 +15,7 @@ function modeLabel(mode: string) {
     SPECIAL: "专项",
     DAILY: "日练",
     WRONG: "错题",
-    MEMORIZE: "背题",
+    MEMORIZE: "错题复盘",
     REVIEW: "回看",
   };
 

@@ -1,4 +1,4 @@
-import { ArrowRight, BarChart3, CheckCircle2, Clock, FileText, RotateCcw, Target } from "lucide-react";
+import { ArrowRight, CheckCircle2, FileText, RotateCcw, Target } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
@@ -31,11 +31,9 @@ type RecordsPageProps = {
 
 const modeFilters = [
   { label: "全部", value: "" },
-  { label: "历年试卷", value: "PAPER" },
-  { label: "专项练习", value: "SPECIAL" },
-  { label: "每日一练", value: "DAILY" },
-  { label: "错题练习", value: "WRONG" },
-  { label: "背题模式", value: "MEMORIZE" },
+  { label: "真题", value: "PAPER" },
+  { label: "专项", value: "SPECIAL" },
+  { label: "错题", value: "WRONG" },
 ];
 
 const modeLabels: Record<string, string> = {
@@ -43,7 +41,7 @@ const modeLabels: Record<string, string> = {
   SPECIAL: "专项练习",
   DAILY: "每日一练",
   WRONG: "错题练习",
-  MEMORIZE: "背题模式",
+  MEMORIZE: "错题复盘",
   REVIEW: "历史回看",
 };
 
@@ -106,17 +104,9 @@ export default async function RecordsPage({ searchParams }: RecordsPageProps) {
   });
   const query = parsed.success ? parsed.data : recordsQuerySchema.parse({});
   const data = await listPracticeRecords(user, query);
-  const recentAverage =
-    data.items.length > 0
-      ? (
-          data.items.reduce((total, record) => total + Number(record.accuracy ?? 0), 0) /
-          data.items.length
-        ).toFixed(2)
-      : null;
-
   return (
     <AppShell>
-      <StudentPage wide>
+      <StudentPage wide className="records-editorial-page">
         <PageHeader
           eyebrow="复盘记录"
           title="把每次练习变成下一次提分"
@@ -132,6 +122,7 @@ export default async function RecordsPage({ searchParams }: RecordsPageProps) {
         />
 
         <MetricStrip
+          className="lg:grid-cols-2"
           items={[
             {
               label: "累计练习",
@@ -146,19 +137,6 @@ export default async function RecordsPage({ searchParams }: RecordsPageProps) {
               description: `${data.summary.correctCount} 正确`,
               icon: Target,
               tone: "success",
-            },
-            {
-              label: "本页均值",
-              value: `${recentAverage ?? "0.00"}%`,
-              description: `${data.items.length} 条记录`,
-              icon: BarChart3,
-              tone: "info",
-            },
-            {
-              label: "累计用时",
-              value: formatDuration(data.summary.totalElapsedSeconds),
-              description: "已提交记录",
-              icon: Clock,
             },
           ]}
         />
@@ -190,10 +168,46 @@ export default async function RecordsPage({ searchParams }: RecordsPageProps) {
         </TrainingPanel>
 
         {data.items.length > 0 ? (
-          <section className="flex flex-col gap-3">
+          <>
+          <section className="hidden overflow-hidden rounded-xl border bg-card shadow-xs lg:block">
+            <div className="grid grid-cols-[minmax(320px,1.5fr)_180px_140px_120px_150px_110px] border-b bg-foreground px-5 py-3 text-xs font-medium text-background">
+              <span>练习名称</span>
+              <span>完成时间</span>
+              <span>完成题数</span>
+              <span>正确率</span>
+              <span>用时</span>
+              <span className="text-right">操作</span>
+            </div>
             {data.items.map((record) => (
-              <Card key={record.id}>
-                <CardHeader>
+              <div
+                key={record.id}
+                className="grid grid-cols-[minmax(320px,1.5fr)_180px_140px_120px_150px_110px] items-center border-b px-5 py-4 last:border-b-0"
+              >
+                <div className="min-w-0">
+                  <div className="truncate font-medium">{cleanLearningTitle(record.title)}</div>
+                  <div className="mt-1 text-xs text-muted-foreground">{modeLabels[record.mode] ?? record.mode}</div>
+                </div>
+                <span className="text-sm text-muted-foreground">{formatDate(record.submittedAt)}</span>
+                <span className="font-mono text-sm tabular-nums">{record.answeredCount}/{record.totalCount}</span>
+                <Badge className="w-fit" variant={Number(record.accuracy ?? 0) >= 70 ? "success" : "warning"}>
+                  {record.accuracy ?? "0.00"}%
+                </Badge>
+                <span className="font-mono text-sm tabular-nums">{formatDuration(record.elapsedSeconds)}</span>
+                <Link
+                  href={`/practice/${record.id}?review=1`}
+                  className={cn(buttonVariants({ variant: "outline", size: "sm" }), "justify-self-end")}
+                >
+                  回看解析
+                  <ArrowRight data-icon="inline-end" />
+                </Link>
+              </div>
+            ))}
+          </section>
+
+          <section className="flex flex-col gap-3 lg:hidden">
+            {data.items.map((record) => (
+              <Card key={record.id} className="lg:rounded-none lg:border-0 lg:border-b lg:bg-transparent lg:shadow-none lg:last:border-b-0">
+                <CardHeader className="lg:pb-0">
                   <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
                     <div className="flex min-w-0 flex-col gap-1">
                       <CardTitle className="truncate">{cleanLearningTitle(record.title)}</CardTitle>
@@ -201,36 +215,36 @@ export default async function RecordsPage({ searchParams }: RecordsPageProps) {
                         {modeLabels[record.mode] ?? record.mode} · {formatDate(record.submittedAt)}
                       </CardDescription>
                     </div>
-                    <Badge variant="outline">{record.accuracy ?? "0.00"}%</Badge>
+                    <Badge variant={Number(record.accuracy ?? 0) >= 70 ? "success" : "warning"}>{record.accuracy ?? "0.00"}%</Badge>
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <div className="grid grid-cols-2 gap-3 text-sm md:grid-cols-5">
-                    <div className="rounded-lg bg-muted px-3 py-2">
+                  <div className="grid grid-cols-2 gap-3 text-sm md:grid-cols-5 lg:gap-0 lg:divide-x lg:rounded-lg lg:border lg:bg-background/55">
+                    <div className="rounded-lg bg-muted px-3 py-2 lg:rounded-none lg:bg-transparent">
                       <div className="text-muted-foreground">已答</div>
                       <div className="font-mono font-medium tabular-nums">
                         {record.answeredCount}/{record.totalCount}
                       </div>
                     </div>
-                    <div className="rounded-lg bg-muted px-3 py-2">
+                    <div className="rounded-lg bg-muted px-3 py-2 lg:rounded-none lg:bg-transparent">
                       <div className="text-muted-foreground">正确</div>
                       <div className="font-mono font-medium tabular-nums">{record.correctCount}</div>
                     </div>
-                    <div className="rounded-lg bg-muted px-3 py-2">
+                    <div className="rounded-lg bg-muted px-3 py-2 lg:rounded-none lg:bg-transparent">
                       <div className="text-muted-foreground">错误</div>
                       <div className="font-mono font-medium tabular-nums">{record.wrongCount}</div>
                     </div>
-                    <div className="rounded-lg bg-muted px-3 py-2">
+                    <div className="rounded-lg bg-muted px-3 py-2 lg:rounded-none lg:bg-transparent">
                       <div className="text-muted-foreground">未答</div>
                       <div className="font-mono font-medium tabular-nums">{record.unansweredCount}</div>
                     </div>
-                    <div className="rounded-lg bg-muted px-3 py-2">
+                    <div className="rounded-lg bg-muted px-3 py-2 lg:rounded-none lg:bg-transparent">
                       <div className="text-muted-foreground">用时</div>
                       <div className="font-mono font-medium tabular-nums">{formatDuration(record.elapsedSeconds)}</div>
                     </div>
                   </div>
                 </CardContent>
-                <CardFooter>
+                <CardFooter className="lg:border-t-0 lg:bg-transparent lg:pt-0">
                   <Link
                     href={`/practice/${record.id}?review=1`}
                     className={cn(buttonVariants({ variant: "outline" }), "w-full justify-between md:w-auto")}
@@ -242,6 +256,7 @@ export default async function RecordsPage({ searchParams }: RecordsPageProps) {
               </Card>
             ))}
           </section>
+          </>
         ) : (
           <EmptyState
             icon={FileText}

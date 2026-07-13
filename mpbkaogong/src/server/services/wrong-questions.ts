@@ -21,7 +21,7 @@ export const wrongQuestionsQuerySchema = z.object({
 });
 
 export const createWrongSessionSchema = z.object({
-  mode: z.enum(["WRONG", "MEMORIZE"]).default("WRONG"),
+  mode: z.literal("WRONG").default("WRONG"),
   tagId: z.preprocess(emptyStringToUndefined, z.string().min(1).optional()),
   count: z.preprocess(emptyStringToUndefined, z.coerce.number().int().min(1).max(100).optional()),
 });
@@ -43,7 +43,7 @@ function shuffle<T>(items: T[]) {
 export async function listWrongQuestions(user: AuthenticatedUser, query: WrongQuestionsQuery) {
   const where = {
     userId: user.id,
-    ...(query.includeResolved ? {} : { resolvedAt: null }),
+    resolvedAt: query.includeResolved ? { not: null } : null,
     ...(query.tagId ? { tagId: query.tagId } : {}),
   };
 
@@ -229,47 +229,37 @@ export async function createWrongQuestionPracticeSession(
 
   return createQuestionPracticeSession({
     user,
-    mode: input.mode,
-    title: input.mode === "MEMORIZE" ? `背题模式：${tagName}` : `错题练习：${tagName}`,
+    mode: "WRONG",
+    title: `错题练习：${tagName}`,
     questions: selectedWrongQuestions.map((wrongQuestion) => wrongQuestion.question),
     sourceTagIdsJson: input.tagId ? [{ tagId: input.tagId, num: requestedCount }] : undefined,
   });
 }
 
+export async function restoreWrongQuestion(user: AuthenticatedUser, id: string) {
+  const restored = await prisma.wrongQuestion.updateMany({
+    where: { id, userId: user.id, resolvedAt: { not: null } },
+    data: { resolvedAt: null },
+  });
+
+  if (restored.count === 0) {
+    const exists = await prisma.wrongQuestion.findFirst({ where: { id, userId: user.id }, select: { id: true } });
+    if (!exists) throw new NotFoundError("错题不存在");
+  }
+
+  return { id, resolvedAt: null };
+}
+
 export async function resolveWrongQuestion(user: AuthenticatedUser, id: string) {
-  const wrongQuestion = await prisma.wrongQuestion.findFirst({
-    where: {
-      id,
-      userId: user.id,
-    },
-    select: {
-      id: true,
-      resolvedAt: true,
-    },
-  });
-
-  if (!wrongQuestion) {
-    throw new NotFoundError("错题不存在");
-  }
-
-  if (wrongQuestion.resolvedAt) {
-    return {
-      id: wrongQuestion.id,
-      resolvedAt: wrongQuestion.resolvedAt.toISOString(),
-    };
-  }
-
-  const resolved = await prisma.wrongQuestion.update({
-    where: { id: wrongQuestion.id },
+  const resolved = await prisma.wrongQuestion.updateMany({
+    where: { id, userId: user.id, resolvedAt: null },
     data: { resolvedAt: new Date() },
-    select: {
-      id: true,
-      resolvedAt: true,
-    },
   });
 
-  return {
-    id: resolved.id,
-    resolvedAt: resolved.resolvedAt?.toISOString() ?? null,
-  };
+  if (resolved.count === 0) {
+    const exists = await prisma.wrongQuestion.findFirst({ where: { id, userId: user.id }, select: { id: true } });
+    if (!exists) throw new NotFoundError("错题不存在");
+  }
+
+  return { id };
 }

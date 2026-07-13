@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 
 import { ServiceWorkerRegister } from "@/components/pwa/service-worker-register";
 
+import "katex/dist/katex.min.css";
 import "./globals.css";
 
 const geistSans = Geist({

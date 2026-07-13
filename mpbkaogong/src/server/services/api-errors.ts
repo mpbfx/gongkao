@@ -8,6 +8,7 @@ import {
   ConflictError,
   MembershipRequiredError,
   NotFoundError,
+  ServiceUnavailableError,
 } from "@/server/services/errors";
 
 export function formatZodError(error: ZodError) {
@@ -48,6 +49,10 @@ export function apiErrorFromUnknown(error: unknown) {
 
   if (error instanceof BusinessError) {
     return apiError("BUSINESS_ERROR", error.message, 422, error.details);
+  }
+
+  if (error instanceof ServiceUnavailableError) {
+    return apiError("SERVICE_UNAVAILABLE", error.message, 503, error.details);
   }
 
   console.error(error);
