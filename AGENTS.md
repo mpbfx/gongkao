@@ -30,6 +30,9 @@ Vitest uses the Node environment and discovers `src/**/*.test.ts`. Place tests b
 
 Recent commits use short, imperative summaries such as `Compress tutor composer` and `Fix wrong-question sheet backdrop on desktop`. Keep each commit scoped to one coherent change. Pull requests should explain the problem and solution, note schema or environment changes, link relevant issues, and include screenshots for visible UI changes. Report the commands used to verify the change.
 
+- Pull request title and body must be written in clear, natural Chinese. Keep technical identifiers, file paths, commands, branch names, and API names in their original form.
+- Pull request descriptions should use Chinese headings to summarize the changes, motivation, data/configuration impact, validation commands, and any follow-up work.
+
 ## Security & Configuration
 
 Never commit `.env.local`, credentials, API keys, or production data. Review generated Prisma migrations before committing them. Treat changes to `CLIProxyAPI/` as submodule pointer updates and document the referenced upstream revision.
