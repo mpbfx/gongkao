@@ -6,6 +6,7 @@ import { trimConversationContext } from "@/server/agent/tutor/context/conversati
 import { getTutorApiKey, createTutorModel } from "@/server/agent/tutor/models/pi-model";
 import { buildTutorSystemPrompt } from "@/server/agent/tutor/prompts/tutor-system-prompt";
 import { tutorRuntimeLimits } from "@/server/agent/tutor/runtime/runtime-limits";
+import { createCourseKnowledgeTool } from "@/server/agent/tutor/tools/course-knowledge";
 import { createLearnerPatternsTool } from "@/server/agent/tutor/tools/learner-patterns";
 import { createPreviousReviewsTool } from "@/server/agent/tutor/tools/previous-reviews";
 import { createRelatedQuestionsTool } from "@/server/agent/tutor/tools/related-questions";
@@ -35,11 +36,15 @@ export function createTutorAgent({
   context,
   messages,
   streamFn,
+  enableKnowledge = true,
+  requireReview = true,
 }: {
   userId: string;
   context: TutorQuestionContext;
   messages: AgentMessage[];
   streamFn?: StreamFn;
+  enableKnowledge?: boolean;
+  requireReview?: boolean;
 }) {
   const reviewSubmission: ReviewSubmission = {};
   const counters: TutorRuntimeCounters = { turns: 0, toolCalls: 0, toolNames: new Set() };
@@ -47,11 +52,12 @@ export function createTutorAgent({
     createLearnerPatternsTool(userId, context),
     createPreviousReviewsTool(userId, context),
     createRelatedQuestionsTool(context),
-    createSubmitMistakeReviewTool(context, reviewSubmission),
   ];
+  if (enableKnowledge) tools.push(createCourseKnowledgeTool(context));
+  if (requireReview) tools.push(createSubmitMistakeReviewTool(context, reviewSubmission));
   const options: AgentOptions = {
     initialState: {
-      systemPrompt: buildTutorSystemPrompt(context),
+      systemPrompt: buildTutorSystemPrompt(context, { requireReview }),
       model: createTutorModel(),
       thinkingLevel: "off",
       tools,

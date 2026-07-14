@@ -368,9 +368,12 @@ async function main() {
       update: {
         name: tag.name,
         sortOrder: tag.sortOrder,
+        path: tag.name,
+        isLeaf: true,
+        taxonomySource: "seed",
         isActive: true,
       },
-      create: tag,
+      create: { ...tag, path: tag.name, isLeaf: true, taxonomySource: "seed" },
     });
   }
 
@@ -443,6 +446,7 @@ async function main() {
       year: 2026,
       province: "全国",
       examType: "行测",
+      durationSeconds: 7200,
       isActive: true,
       questions: {
         deleteMany: {},
@@ -462,6 +466,7 @@ async function main() {
       year: 2026,
       province: "全国",
       examType: "行测",
+      durationSeconds: 7200,
       isActive: true,
       questions: {
         create: questions.map((question, index) => ({

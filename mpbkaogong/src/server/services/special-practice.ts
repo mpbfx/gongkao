@@ -4,20 +4,29 @@ import type { AuthenticatedUser } from "@/lib/auth/guards";
 import { prisma } from "@/lib/db/prisma";
 import { BusinessError, NotFoundError } from "@/server/services/errors";
 import { createQuestionPracticeSession } from "@/server/services/practice";
+import { createFoundationPracticeSession } from "@/server/services/foundation-training";
 import { listActiveTagsFlat } from "@/server/services/tags";
 
-export const createSpecialSessionSchema = z.object({
-  mode: z.literal("SPECIAL").optional(),
-  difficulty: z.enum(["EASY", "MEDIUM", "HARD", "UNKNOWN"]).nullish(),
-  reqs: z
-    .array(
-      z.object({
-        tagId: z.string().min(1),
-        num: z.coerce.number().int().min(1).max(100),
-      })
-    )
-    .length(1),
-});
+export const createSpecialSessionSchema = z.preprocess(
+  (value) => {
+    if (!value || typeof value !== "object" || !("reqs" in value)) return value;
+    const legacy = value as { reqs?: Array<{ tagId?: string; num?: number }> };
+    return {
+      protocol: "CUSTOM",
+      tagId: legacy.reqs?.[0]?.tagId,
+      count: legacy.reqs?.[0]?.num,
+    };
+  },
+  z.discriminatedUnion("protocol", [
+    z.object({ protocol: z.literal("FOUNDATION"), tagId: z.string().min(1) }),
+    z.object({
+      protocol: z.literal("CUSTOM"),
+      tagId: z.string().min(1),
+      count: z.coerce.number().int().min(1).max(100),
+      difficulty: z.enum(["EASY", "MEDIUM", "HARD", "UNKNOWN"]).nullish(),
+    }),
+  ])
+);
 
 export type CreateSpecialSessionInput = z.infer<typeof createSpecialSessionSchema>;
 
@@ -62,20 +71,25 @@ export async function createSpecialPracticeSession(
   user: AuthenticatedUser,
   input: CreateSpecialSessionInput
 ) {
+  if (input.protocol === "FOUNDATION") {
+    return createFoundationPracticeSession(user, input.tagId);
+  }
+
+  const reqs = [{ tagId: input.tagId, num: input.count }];
   const tags = await listActiveTagsFlat();
   const tagById = new Map(tags.map((tag) => [tag.id, tag]));
-  const missingTag = input.reqs.find((req) => !tagById.has(req.tagId));
+  const missingTag = reqs.find((req) => !tagById.has(req.tagId));
 
   if (missingTag) {
     throw new NotFoundError("专项分类不存在");
   }
 
-  const selectedTag = tagById.get(input.reqs[0]?.tagId ?? "");
+  const selectedTag = tagById.get(input.tagId);
 
   const descendantsByTag = descendantIdsByTag(tags);
   const selectedQuestionIds = new Set<string>();
 
-  for (const req of input.reqs) {
+  for (const req of reqs) {
     const tagIds = Array.from(descendantsByTag.get(req.tagId) ?? new Set([req.tagId]));
     const candidates = await prisma.question.findMany({
       where: {
@@ -119,7 +133,7 @@ export async function createSpecialPracticeSession(
     mode: "SPECIAL",
     title: `专项练习：${tagName}`,
     questions,
-    sourceTagIdsJson: [{ tagId: input.reqs[0]?.tagId, num: questions.length }],
-    difficulty: null,
+    sourceTagIdsJson: [{ tagId: input.tagId, num: questions.length }],
+    difficulty: input.difficulty ?? null,
   });
 }

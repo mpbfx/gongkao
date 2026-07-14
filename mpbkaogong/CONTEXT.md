@@ -40,6 +40,18 @@ _Avoid_: marketing homepage, feature showcase, dashboard splash
 The learner's personal area for account context, recent practice records, and links back into active study flows.
 _Avoid_: analytics dashboard, study cockpit, metrics overview
 
+**Exam Goal**:
+The single current exam paper a learner is preparing for. It anchors benchmark selection and the ordered training flow.
+_Avoid_: generic preference, permanent multi-goal portfolio
+
+**Benchmark Session**:
+The learner's first submitted timed paper session for the current Exam Goal. Later paper sessions compare against it without replacing it.
+_Avoid_: rolling average, latest mock, editable baseline
+
+**Foundation Training**:
+An ordered leaf-tag training protocol using exactly 15 questions. A leaf passes when the learner answers at least 9 correctly in one round.
+_Avoid_: arbitrary special practice, adaptive mastery score
+
 **Recommendation Start**:
 The learner action that turns a training recommendation into a practice session.
 _Avoid_: auto start, pre-created session
@@ -95,6 +107,9 @@ _Avoid_: review, comment
 - A **Knowledge-Point Mistake Pattern** helps the learner distinguish what they are missing within a knowledge point, not just which knowledge point is weak.
 - A **Training Recommendation** creates a new **Practice Session** only after a **Recommendation Start**.
 - A **Tutor Message** belongs to one learner and usually references one question.
+- An **Exam Goal** has at most one **Benchmark Session**.
+- **Foundation Training** only uses active leaf tags with at least 15 available questions.
+- Interactive **Tutor Messages** do not create new mistake review records; automatic post-submission review creates the structured record once.
 - **Agent Feedback** belongs to one **Training Recommendation** or **Tutor Message**.
 - Student-facing pages prioritize **Action Information** over general explanation or decorative learning metrics.
 - The **Learning Workspace** presents **Action Information** for continuing practice, starting a main practice flow, or addressing active **Wrong Questions**.

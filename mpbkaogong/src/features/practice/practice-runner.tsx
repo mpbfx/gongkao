@@ -24,6 +24,7 @@ import { RichHtml } from "@/components/question/rich-html";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
 import { Button, buttonVariants } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
 import {
   Card,
   CardContent,
@@ -43,6 +44,7 @@ import {
   getPracticeDraft,
   savePracticeDraft,
   type PracticeScratchDraft,
+  type PracticeEventDraft,
   type PracticeSubmitDraft,
 } from "@/lib/offline/practice-drafts";
 import { cleanLearningTitle } from "@/lib/display-title";
@@ -54,11 +56,14 @@ import {
   PracticeResultOverview,
 } from "@/features/practice/practice-result-panels";
 import { PracticeResultWorkspace } from "@/features/practice/practice-result-workspace";
+import { PracticeReflectionPanel } from "@/features/practice/practice-reflection-panel";
 import {
   formatPracticeClock as formatSeconds,
   normalizePracticeAnswer as normalizeAnswer,
   optionStateLabel,
 } from "@/features/practice/practice-view-utils";
+import { usePracticeTimer } from "@/features/practice/use-practice-timer";
+import { usePracticeEventLog } from "@/features/practice/use-practice-event-log";
 
 type PracticeQuestion = {
   id: string;
@@ -87,6 +92,7 @@ type UserAnswer = {
   answer: string | null;
   isCorrect: boolean | null;
   timeSpentSeconds: number;
+  decisionNote?: string | null;
 };
 
 type PracticeSessionView = {
@@ -94,12 +100,20 @@ type PracticeSessionView = {
   title: string;
   mode: string;
   status: string;
+  purpose: string;
+  timingMode: string;
   totalCount: number;
   answeredCount: number;
   correctCount: number;
   wrongCount: number;
   unansweredCount: number;
   elapsedSeconds: number;
+  timeLimitSeconds: number | null;
+  pauseCount: number;
+  pausedSeconds: number;
+  score: string | null;
+  maxScore: string | null;
+  reflectionText?: string | null;
   accuracy: string | null;
   questions: PracticeQuestion[];
   userAnswers: UserAnswer[];
@@ -115,12 +129,17 @@ type SubmitResult = {
   unansweredCount: number;
   accuracy: string | null;
   elapsedSeconds: number;
+  pauseCount: number;
+  pausedSeconds: number;
+  score: string | null;
+  maxScore: string | null;
   answers: Array<{
     questionId: string;
     answer: string | null;
     correctAnswer: string;
     isCorrect: boolean;
     timeSpentSeconds: number;
+    decisionNote?: string | null;
     analysisHtml?: string | null;
   }>;
 };
@@ -149,7 +168,6 @@ export function PracticeRunner({
   reviewMode?: boolean;
 }) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [elapsedSeconds, setElapsedSeconds] = useState(initialSession.elapsedSeconds);
   const [answers, setAnswers] = useState<Record<string, string>>(() =>
     Object.fromEntries(
       initialSession.userAnswers
@@ -162,6 +180,13 @@ export function PracticeRunner({
       initialSession.userAnswers.map((answer) => [answer.questionId, answer.timeSpentSeconds])
     )
   );
+  const [decisionNotesByQuestionId, setDecisionNotesByQuestionId] = useState<Record<string, string>>(() =>
+    Object.fromEntries(
+      initialSession.userAnswers
+        .filter((answer) => answer.decisionNote)
+        .map((answer) => [answer.questionId, answer.decisionNote ?? ""])
+    )
+  );
   const [showSubmitDialog, setShowSubmitDialog] = useState(false);
   const [showDraftCanvas, setShowDraftCanvas] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -171,7 +196,7 @@ export function PracticeRunner({
   const [hasPendingSubmit, setHasPendingSubmit] = useState(false);
   const [scratchByQuestionId, setScratchByQuestionId] = useState<Record<string, PracticeScratchDraft>>({});
   const [showAnswerSheet, setShowAnswerSheet] = useState(false);
-  const [isPaused, setIsPaused] = useState(false);
+  const [timeExpired, setTimeExpired] = useState(false);
   const [isOnline, setIsOnline] = useState(() =>
     typeof window === "undefined" ? true : window.navigator.onLine
   );
@@ -183,7 +208,38 @@ export function PracticeRunner({
   const answeredCount = Object.values(answers).filter((answer) => normalizeAnswer(answer).length > 0).length;
   const completionRate = questions.length > 0 ? answeredCount / questions.length : 0;
   const isResultMode = initialSession.status === "SUBMITTED" || isMemorizeMode || Boolean(submitResult);
-  const isPracticePaused = !isResultMode && isPaused;
+  const { events, setEvents, record, recordVisit } = usePracticeEventLog(question.id);
+  const timer = usePracticeTimer({
+    initialElapsedSeconds: initialSession.elapsedSeconds,
+    timeLimitSeconds: initialSession.timeLimitSeconds,
+    timingMode: initialSession.timingMode,
+    disabled: isResultMode || timeExpired,
+    onActiveSecond: () => {
+      setTimeSpentByQuestionId((current) => ({
+        ...current,
+        [question.id]: (current[question.id] ?? 0) + 1,
+      }));
+    },
+    onExpire: (expiredElapsedSeconds) => {
+      const expiryEvent: PracticeEventDraft = {
+        type: "TIME_EXPIRED",
+        questionId: question.id,
+        occurredAt: new Date().toISOString(),
+      };
+      record({ type: "TIME_EXPIRED", questionId: question.id });
+      setTimeExpired(true);
+      void submitPractice(expiredElapsedSeconds, [...events, expiryEvent]);
+    },
+  });
+  const {
+    elapsedSeconds,
+    setElapsedSeconds,
+    pauseCount,
+    setPauseCount,
+    pausedSeconds,
+    setPausedSeconds,
+  } = timer;
+  const isPracticePaused = !isResultMode && timer.isPaused;
   const currentScratch = scratchByQuestionId[question.id] ?? null;
   const resultByQuestionId = useMemo(() => {
     const map = new Map<
@@ -193,6 +249,7 @@ export function PracticeRunner({
         correctAnswer?: string;
         isCorrect: boolean | null;
         analysisHtml?: string | null;
+        decisionNote?: string | null;
       }
     >();
 
@@ -203,6 +260,7 @@ export function PracticeRunner({
         correctAnswer: matchedQuestion?.correctAnswer,
         isCorrect: answer.isCorrect,
         analysisHtml: matchedQuestion?.analysisHtml,
+        decisionNote: answer.decisionNote,
       });
     }
 
@@ -232,29 +290,14 @@ export function PracticeRunner({
   }, [questions]);
   const currentResult = resultByQuestionId.get(question.id);
 
-  useEffect(() => {
-    if (isResultMode || isPracticePaused) {
-      return;
-    }
-
-    const timer = window.setInterval(() => {
-      setElapsedSeconds((seconds) => seconds + 1);
-      setTimeSpentByQuestionId((current) => ({
-        ...current,
-        [question.id]: (current[question.id] ?? 0) + 1,
-      }));
-    }, 1000);
-
-    return () => window.clearInterval(timer);
-  }, [isResultMode, isPracticePaused, question.id]);
-
   function updateAnswer(value: string) {
-    if (isResultMode || isPracticePaused) {
+    if (isResultMode || isPracticePaused || timeExpired) {
       return;
     }
 
     setAnswers((current) => {
       const previous = normalizeAnswer(current[question.id]);
+      let nextAnswer = value;
 
       if (question.type === "MULTIPLE") {
         const nextValues = new Set(previous ? previous.split(",") : []);
@@ -265,15 +308,14 @@ export function PracticeRunner({
           nextValues.add(value);
         }
 
-        return {
-          ...current,
-          [question.id]: Array.from(nextValues).sort().join(","),
-        };
+        nextAnswer = Array.from(nextValues).sort().join(",");
       }
-
+      if (previous && previous !== normalizeAnswer(nextAnswer)) {
+        record({ questionId: question.id, type: "ANSWER_CHANGE" });
+      }
       return {
         ...current,
-        [question.id]: value,
+        [question.id]: nextAnswer,
       };
     });
   }
@@ -288,6 +330,11 @@ export function PracticeRunner({
       answers,
       elapsedSeconds,
       timeSpentByQuestionId,
+      decisionNotesByQuestionId,
+      pauseCount,
+      pausedSeconds,
+      events,
+      timeExpired,
       scratchByQuestionId: nextScratchByQuestionId,
       pendingSubmit,
     });
@@ -307,29 +354,36 @@ export function PracticeRunner({
   }
 
   function goToQuestion(index: number) {
+    const targetIndex = Math.min(Math.max(index, 0), Math.max(questions.length - 1, 0));
+    if (targetIndex === currentIndex) return;
+    if (!normalizeAnswer(answers[question.id])) {
+      record({ questionId: question.id, type: "SKIP" });
+    }
+    recordVisit(questions[targetIndex].id);
     void saveLocalPracticeDraft();
     setShowDraftCanvas(false);
     setShowAnswerSheet(false);
-    setCurrentIndex(Math.min(Math.max(index, 0), Math.max(questions.length - 1, 0)));
+    setCurrentIndex(targetIndex);
   }
 
   function togglePause() {
-    if (isResultMode) {
-      return;
-    }
-
-    setIsPaused((current) => !current);
+    if (isResultMode || initialSession.timingMode === "STRICT") return;
+    record({ questionId: question.id, type: isPracticePaused ? "RESUME" : "PAUSE" });
+    timer.togglePause();
   }
 
-  async function submitPractice() {
+  async function submitPractice(
+    elapsedOverride?: number,
+    eventsOverride?: PracticeEventDraft[]
+  ) {
     setIsSubmitting(true);
     setSubmitError(null);
 
     try {
-      const submitDraft = buildSubmitDraft();
+      const submitDraft = buildSubmitDraft(elapsedOverride, eventsOverride);
 
       if (!isOnline) {
-        await savePendingSubmitDraft();
+        await savePendingSubmitDraft(submitDraft);
         setSubmitError("当前网络不可用，提交草稿已保留，请在网络恢复后重试。");
         setShowSubmitDialog(false);
         return;
@@ -358,7 +412,7 @@ export function PracticeRunner({
         await clearPracticeDraft(initialSession.id);
       }
     } catch {
-      await savePendingSubmitDraft();
+      await savePendingSubmitDraft(buildSubmitDraft(elapsedOverride, eventsOverride));
       setSubmitError("提交失败，答案已保留，请稍后重试。");
     } finally {
       setIsSubmitting(false);
@@ -401,9 +455,20 @@ export function PracticeRunner({
           unansweredCount: initialSession.unansweredCount,
           accuracy: initialSession.accuracy,
           elapsedSeconds: initialSession.elapsedSeconds,
+          pauseCount: initialSession.pauseCount,
+          pausedSeconds: initialSession.pausedSeconds,
+          score: initialSession.score,
+          maxScore: initialSession.maxScore,
         }
       : null;
-  const nextAction = resultSummary?.wrongCount
+  const nextAction = initialSession.purpose === "FOUNDATION"
+    ? {
+        href: "/question-bank/special",
+        label: (resultSummary?.correctCount ?? 0) >= 9 ? "进入下一个叶子类型" : "再练本类型15题",
+        description: (resultSummary?.correctCount ?? 0) >= 9 ? "本轮已达到9/15，筑基状态已更新。" : "本轮尚未达到9/15，继续训练当前类型。",
+        icon: ArrowRight,
+      }
+    : resultSummary?.wrongCount
     ? { href: "/question-bank/wrong", label: "复盘本次错题", description: "答错的题已自动进入错题本。", icon: BookMarked }
     : initialSession.mode === "SPECIAL"
       ? { href: "/question-bank/special", label: "继续专项练习", description: "本组已完成，可以继续选择一个知识点。", icon: ArrowRight }
@@ -479,7 +544,9 @@ export function PracticeRunner({
       : "结果回看"
     : isPracticePaused
       ? "已暂停"
-      : formatSeconds(elapsedSeconds);
+      : timer.remainingSeconds === null
+        ? formatSeconds(elapsedSeconds)
+        : `剩余 ${formatSeconds(timer.remainingSeconds)}`;
   const headerSubtitle = `第 ${currentIndex + 1} / ${questions.length} 题${
     question.sectionName ? ` · ${question.sectionName}` : ""
   }`;
@@ -538,6 +605,15 @@ export function PracticeRunner({
 
         setAnswers(restoredAnswers);
         setTimeSpentByQuestionId(restoredTimeSpent);
+        setDecisionNotesByQuestionId(
+          Object.fromEntries(
+            Object.entries(draft.decisionNotesByQuestionId ?? {}).filter(([questionId]) => questionIds.has(questionId))
+          )
+        );
+        setPauseCount(draft.pauseCount ?? 0);
+        setPausedSeconds(draft.pausedSeconds ?? 0);
+        setEvents(draft.events ?? []);
+        setTimeExpired(Boolean(draft.timeExpired));
         setCurrentIndex(Math.min(Math.max(draft.currentIndex, 0), Math.max(questions.length - 1, 0)));
         setElapsedSeconds(draft.elapsedSeconds);
         setHasPendingSubmit(Boolean(draft.pendingSubmit));
@@ -551,7 +627,7 @@ export function PracticeRunner({
     return () => {
       cancelled = true;
     };
-  }, [initialSession.id, isResultMode, questions]);
+  }, [initialSession.id, isResultMode, questions, setElapsedSeconds, setEvents, setPauseCount, setPausedSeconds]);
 
   useEffect(() => {
     if (!isDraftReady || isResultMode) {
@@ -565,15 +641,24 @@ export function PracticeRunner({
         answers,
         elapsedSeconds,
         timeSpentByQuestionId,
+        decisionNotesByQuestionId,
+        pauseCount,
+        pausedSeconds,
+        events,
+        timeExpired,
         scratchByQuestionId,
         pendingSubmit: hasPendingSubmit
           ? {
               elapsedSeconds,
+              pauseCount,
+              pausedSeconds,
               answers: questions.map((item) => ({
                 questionId: item.id,
                 answer: answers[item.id] ?? null,
                 timeSpentSeconds: timeSpentByQuestionId[item.id] ?? 0,
+                decisionNote: decisionNotesByQuestionId[item.id] ?? null,
               })),
+              events,
               savedAt: new Date().toISOString(),
             }
           : null,
@@ -592,29 +677,46 @@ export function PracticeRunner({
     questions,
     scratchByQuestionId,
     timeSpentByQuestionId,
+    decisionNotesByQuestionId,
+    pauseCount,
+    pausedSeconds,
+    events,
+    timeExpired,
   ]);
 
-  function buildSubmitDraft(): PracticeSubmitDraft {
+  function buildSubmitDraft(
+    elapsedOverride = elapsedSeconds,
+    eventsOverride = events
+  ): PracticeSubmitDraft {
     return {
-      elapsedSeconds,
+      elapsedSeconds: elapsedOverride,
+      pauseCount,
+      pausedSeconds,
       answers: questions.map((item) => ({
         questionId: item.id,
         answer: answers[item.id] ?? null,
         timeSpentSeconds: timeSpentByQuestionId[item.id] ?? 0,
+        decisionNote: decisionNotesByQuestionId[item.id] ?? null,
       })),
+      events: eventsOverride,
       savedAt: new Date().toISOString(),
     };
   }
 
-  async function savePendingSubmitDraft() {
+  async function savePendingSubmitDraft(submitDraft = buildSubmitDraft()) {
     await savePracticeDraft({
       sessionId: initialSession.id,
       currentIndex,
       answers,
       elapsedSeconds,
       timeSpentByQuestionId,
+      decisionNotesByQuestionId,
+      pauseCount,
+      pausedSeconds,
+      events,
+      timeExpired,
       scratchByQuestionId,
-      pendingSubmit: buildSubmitDraft(),
+      pendingSubmit: submitDraft,
     });
     setHasPendingSubmit(true);
   }
@@ -664,6 +766,11 @@ export function PracticeRunner({
             );
           })}
         </div>
+        {currentResult?.decisionNote ? (
+          <blockquote className="mt-4 border-l-2 border-primary bg-primary/5 px-3 py-2 text-sm text-muted-foreground">
+            当时记录：{currentResult.decisionNote}
+          </blockquote>
+        ) : null}
         <div className="mt-auto flex items-center justify-between border-t border-foreground/20 pt-4 text-sm text-muted-foreground">
           <span className="text-xs tracking-[0.12em]">题目卷面 · 结果回看</span>
           <button type="button" className="inline-flex items-center gap-2" onClick={() => setShowDraftCanvas(true)}><PencilLine className="size-4" />草稿回看</button>
@@ -705,6 +812,12 @@ export function PracticeRunner({
                 {nextAction.label}
               </Link>
             </div>
+            {["BASELINE", "MOCK", "TIME_PRESSURE"].includes(initialSession.purpose) ? (
+              <PracticeReflectionPanel
+                sessionId={initialSession.id}
+                initialText={initialSession.reflectionText}
+              />
+            ) : null}
           </div>
         }
         answerSheet={answerSheetContent}
@@ -809,7 +922,7 @@ export function PracticeRunner({
                   <button
                     key={option.id}
                     type="button"
-                    disabled={isResultMode || isPracticePaused}
+                    disabled={isResultMode || isPracticePaused || timeExpired}
                     aria-pressed={state === "selected"}
                     className={cn(
                       "flex min-h-12 w-full items-start gap-3 rounded-lg border bg-card px-3 py-3 text-left text-sm transition-colors",
@@ -835,6 +948,23 @@ export function PracticeRunner({
                 );
               })}
             </div>
+
+            {!isResultMode ? (
+              <details className="border-y border-foreground/20 py-2">
+                <summary className="cursor-pointer text-sm font-medium">一句话记录想法或决策</summary>
+                <Textarea
+                  className="mt-3 min-h-20"
+                  maxLength={500}
+                  disabled={isPracticePaused || timeExpired}
+                  value={decisionNotesByQuestionId[question.id] ?? ""}
+                  placeholder="例如：这道题太难，先跳过。"
+                  onChange={(event) => setDecisionNotesByQuestionId((current) => ({
+                    ...current,
+                    [question.id]: event.target.value,
+                  }))}
+                />
+              </details>
+            ) : null}
 
             {isResultMode ? (
               <PracticeResultAnalysisPanel
@@ -926,7 +1056,7 @@ export function PracticeRunner({
                 <ChevronRight data-icon="inline-end" />
               </Button>
             </div>
-            {!isResultMode ? (
+            {!isResultMode && initialSession.timingMode !== "STRICT" ? (
               <Button type="button" variant="outline" onClick={togglePause}>
                 {isPracticePaused ? <Play data-icon="inline-start" /> : <Pause data-icon="inline-start" />}
                 {isPracticePaused ? "继续答题" : "暂停答题"}
@@ -1009,7 +1139,7 @@ export function PracticeRunner({
             >
               <Grid3X3 data-icon="inline-start" />
             </Button>
-            {!isResultMode ? (
+            {!isResultMode && initialSession.timingMode !== "STRICT" ? (
               <Button
                 type="button"
                 variant="outline"
@@ -1095,7 +1225,7 @@ export function PracticeRunner({
             >
               取消
             </DialogClose>
-            <Button type="button" disabled={isSubmitting} onClick={submitPractice}>
+            <Button type="button" disabled={isSubmitting} onClick={() => void submitPractice()}>
               {isSubmitting ? <LoaderCircle data-icon="inline-start" className="animate-spin" /> : null}
               {isOnline ? "确认提交" : "保存提交草稿"}
             </Button>

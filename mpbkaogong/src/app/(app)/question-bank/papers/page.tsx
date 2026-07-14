@@ -69,6 +69,8 @@ function buildHref({
 export default async function PapersPage({ searchParams }: PapersPageProps) {
   const rawParams = await searchParams;
   const rawPageSize = firstValue(rawParams?.pageSize);
+  const benchmarkPaperId = firstValue(rawParams?.benchmark);
+  const requestedPurpose = firstValue(rawParams?.purpose);
   const parsed = paperListQuerySchema.safeParse({
     year: firstValue(rawParams?.year),
     province: firstValue(rawParams?.province),
@@ -160,7 +162,22 @@ export default async function PapersPage({ searchParams }: PapersPageProps) {
                     </div>
                   </div>
                   <div className="grid gap-2 lg:grid-cols-1 lg:justify-items-end">
-                    <PaperStartButton paperId={paper.id} className="w-full lg:w-auto" />
+                    <PaperStartButton
+                      paperId={paper.id}
+                      className="w-full lg:w-auto"
+                      durationSeconds={paper.durationSeconds}
+                      purpose={
+                        benchmarkPaperId === paper.id
+                          ? "BASELINE"
+                          : requestedPurpose === "BASELINE"
+                            ? "BASELINE"
+                          : requestedPurpose === "MOCK"
+                            ? "MOCK"
+                            : requestedPurpose === "TIME_PRESSURE"
+                              ? "TIME_PRESSURE"
+                              : "PRACTICE"
+                      }
+                    />
                   </div>
                 </div>
               </Card>

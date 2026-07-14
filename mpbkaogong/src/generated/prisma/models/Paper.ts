@@ -29,11 +29,13 @@ export type AggregatePaper = {
 export type PaperAvgAggregateOutputType = {
   year: number | null
   difficultyScore: runtime.Decimal | null
+  durationSeconds: number | null
 }
 
 export type PaperSumAggregateOutputType = {
   year: number | null
   difficultyScore: runtime.Decimal | null
+  durationSeconds: number | null
 }
 
 export type PaperMinAggregateOutputType = {
@@ -44,6 +46,7 @@ export type PaperMinAggregateOutputType = {
   province: string | null
   examType: string | null
   difficultyScore: runtime.Decimal | null
+  durationSeconds: number | null
   isVipOnly: boolean | null
   isActive: boolean | null
   createdAt: Date | null
@@ -59,6 +62,7 @@ export type PaperMaxAggregateOutputType = {
   province: string | null
   examType: string | null
   difficultyScore: runtime.Decimal | null
+  durationSeconds: number | null
   isVipOnly: boolean | null
   isActive: boolean | null
   createdAt: Date | null
@@ -74,6 +78,7 @@ export type PaperCountAggregateOutputType = {
   province: number
   examType: number
   difficultyScore: number
+  durationSeconds: number
   isVipOnly: number
   isActive: number
   createdAt: number
@@ -86,11 +91,13 @@ export type PaperCountAggregateOutputType = {
 export type PaperAvgAggregateInputType = {
   year?: true
   difficultyScore?: true
+  durationSeconds?: true
 }
 
 export type PaperSumAggregateInputType = {
   year?: true
   difficultyScore?: true
+  durationSeconds?: true
 }
 
 export type PaperMinAggregateInputType = {
@@ -101,6 +108,7 @@ export type PaperMinAggregateInputType = {
   province?: true
   examType?: true
   difficultyScore?: true
+  durationSeconds?: true
   isVipOnly?: true
   isActive?: true
   createdAt?: true
@@ -116,6 +124,7 @@ export type PaperMaxAggregateInputType = {
   province?: true
   examType?: true
   difficultyScore?: true
+  durationSeconds?: true
   isVipOnly?: true
   isActive?: true
   createdAt?: true
@@ -131,6 +140,7 @@ export type PaperCountAggregateInputType = {
   province?: true
   examType?: true
   difficultyScore?: true
+  durationSeconds?: true
   isVipOnly?: true
   isActive?: true
   createdAt?: true
@@ -233,6 +243,7 @@ export type PaperGroupByOutputType = {
   province: string | null
   examType: string | null
   difficultyScore: runtime.Decimal | null
+  durationSeconds: number | null
   isVipOnly: boolean
   isActive: boolean
   createdAt: Date
@@ -271,6 +282,7 @@ export type PaperWhereInput = {
   province?: Prisma.StringNullableFilter<"Paper"> | string | null
   examType?: Prisma.StringNullableFilter<"Paper"> | string | null
   difficultyScore?: Prisma.DecimalNullableFilter<"Paper"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  durationSeconds?: Prisma.IntNullableFilter<"Paper"> | number | null
   isVipOnly?: Prisma.BoolFilter<"Paper"> | boolean
   isActive?: Prisma.BoolFilter<"Paper"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Paper"> | Date | string
@@ -278,6 +290,7 @@ export type PaperWhereInput = {
   deletedAt?: Prisma.DateTimeNullableFilter<"Paper"> | Date | string | null
   questions?: Prisma.PaperQuestionListRelationFilter
   sessions?: Prisma.PracticeSessionListRelationFilter
+  examGoals?: Prisma.UserExamGoalListRelationFilter
 }
 
 export type PaperOrderByWithRelationInput = {
@@ -288,6 +301,7 @@ export type PaperOrderByWithRelationInput = {
   province?: Prisma.SortOrderInput | Prisma.SortOrder
   examType?: Prisma.SortOrderInput | Prisma.SortOrder
   difficultyScore?: Prisma.SortOrderInput | Prisma.SortOrder
+  durationSeconds?: Prisma.SortOrderInput | Prisma.SortOrder
   isVipOnly?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -295,6 +309,7 @@ export type PaperOrderByWithRelationInput = {
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   questions?: Prisma.PaperQuestionOrderByRelationAggregateInput
   sessions?: Prisma.PracticeSessionOrderByRelationAggregateInput
+  examGoals?: Prisma.UserExamGoalOrderByRelationAggregateInput
   _relevance?: Prisma.PaperOrderByRelevanceInput
 }
 
@@ -309,6 +324,7 @@ export type PaperWhereUniqueInput = Prisma.AtLeast<{
   province?: Prisma.StringNullableFilter<"Paper"> | string | null
   examType?: Prisma.StringNullableFilter<"Paper"> | string | null
   difficultyScore?: Prisma.DecimalNullableFilter<"Paper"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  durationSeconds?: Prisma.IntNullableFilter<"Paper"> | number | null
   isVipOnly?: Prisma.BoolFilter<"Paper"> | boolean
   isActive?: Prisma.BoolFilter<"Paper"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Paper"> | Date | string
@@ -316,6 +332,7 @@ export type PaperWhereUniqueInput = Prisma.AtLeast<{
   deletedAt?: Prisma.DateTimeNullableFilter<"Paper"> | Date | string | null
   questions?: Prisma.PaperQuestionListRelationFilter
   sessions?: Prisma.PracticeSessionListRelationFilter
+  examGoals?: Prisma.UserExamGoalListRelationFilter
 }, "id" | "slug">
 
 export type PaperOrderByWithAggregationInput = {
@@ -326,6 +343,7 @@ export type PaperOrderByWithAggregationInput = {
   province?: Prisma.SortOrderInput | Prisma.SortOrder
   examType?: Prisma.SortOrderInput | Prisma.SortOrder
   difficultyScore?: Prisma.SortOrderInput | Prisma.SortOrder
+  durationSeconds?: Prisma.SortOrderInput | Prisma.SortOrder
   isVipOnly?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -349,6 +367,7 @@ export type PaperScalarWhereWithAggregatesInput = {
   province?: Prisma.StringNullableWithAggregatesFilter<"Paper"> | string | null
   examType?: Prisma.StringNullableWithAggregatesFilter<"Paper"> | string | null
   difficultyScore?: Prisma.DecimalNullableWithAggregatesFilter<"Paper"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  durationSeconds?: Prisma.IntNullableWithAggregatesFilter<"Paper"> | number | null
   isVipOnly?: Prisma.BoolWithAggregatesFilter<"Paper"> | boolean
   isActive?: Prisma.BoolWithAggregatesFilter<"Paper"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Paper"> | Date | string
@@ -364,6 +383,7 @@ export type PaperCreateInput = {
   province?: string | null
   examType?: string | null
   difficultyScore?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  durationSeconds?: number | null
   isVipOnly?: boolean
   isActive?: boolean
   createdAt?: Date | string
@@ -371,6 +391,7 @@ export type PaperCreateInput = {
   deletedAt?: Date | string | null
   questions?: Prisma.PaperQuestionCreateNestedManyWithoutPaperInput
   sessions?: Prisma.PracticeSessionCreateNestedManyWithoutPaperInput
+  examGoals?: Prisma.UserExamGoalCreateNestedManyWithoutTargetPaperInput
 }
 
 export type PaperUncheckedCreateInput = {
@@ -381,6 +402,7 @@ export type PaperUncheckedCreateInput = {
   province?: string | null
   examType?: string | null
   difficultyScore?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  durationSeconds?: number | null
   isVipOnly?: boolean
   isActive?: boolean
   createdAt?: Date | string
@@ -388,6 +410,7 @@ export type PaperUncheckedCreateInput = {
   deletedAt?: Date | string | null
   questions?: Prisma.PaperQuestionUncheckedCreateNestedManyWithoutPaperInput
   sessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutPaperInput
+  examGoals?: Prisma.UserExamGoalUncheckedCreateNestedManyWithoutTargetPaperInput
 }
 
 export type PaperUpdateInput = {
@@ -398,6 +421,7 @@ export type PaperUpdateInput = {
   province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   examType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   difficultyScore?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  durationSeconds?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isVipOnly?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -405,6 +429,7 @@ export type PaperUpdateInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   questions?: Prisma.PaperQuestionUpdateManyWithoutPaperNestedInput
   sessions?: Prisma.PracticeSessionUpdateManyWithoutPaperNestedInput
+  examGoals?: Prisma.UserExamGoalUpdateManyWithoutTargetPaperNestedInput
 }
 
 export type PaperUncheckedUpdateInput = {
@@ -415,6 +440,7 @@ export type PaperUncheckedUpdateInput = {
   province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   examType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   difficultyScore?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  durationSeconds?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isVipOnly?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -422,6 +448,7 @@ export type PaperUncheckedUpdateInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   questions?: Prisma.PaperQuestionUncheckedUpdateManyWithoutPaperNestedInput
   sessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutPaperNestedInput
+  examGoals?: Prisma.UserExamGoalUncheckedUpdateManyWithoutTargetPaperNestedInput
 }
 
 export type PaperCreateManyInput = {
@@ -432,6 +459,7 @@ export type PaperCreateManyInput = {
   province?: string | null
   examType?: string | null
   difficultyScore?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  durationSeconds?: number | null
   isVipOnly?: boolean
   isActive?: boolean
   createdAt?: Date | string
@@ -447,6 +475,7 @@ export type PaperUpdateManyMutationInput = {
   province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   examType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   difficultyScore?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  durationSeconds?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isVipOnly?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -462,6 +491,7 @@ export type PaperUncheckedUpdateManyInput = {
   province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   examType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   difficultyScore?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  durationSeconds?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isVipOnly?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -483,6 +513,7 @@ export type PaperCountOrderByAggregateInput = {
   province?: Prisma.SortOrder
   examType?: Prisma.SortOrder
   difficultyScore?: Prisma.SortOrder
+  durationSeconds?: Prisma.SortOrder
   isVipOnly?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -493,6 +524,7 @@ export type PaperCountOrderByAggregateInput = {
 export type PaperAvgOrderByAggregateInput = {
   year?: Prisma.SortOrder
   difficultyScore?: Prisma.SortOrder
+  durationSeconds?: Prisma.SortOrder
 }
 
 export type PaperMaxOrderByAggregateInput = {
@@ -503,6 +535,7 @@ export type PaperMaxOrderByAggregateInput = {
   province?: Prisma.SortOrder
   examType?: Prisma.SortOrder
   difficultyScore?: Prisma.SortOrder
+  durationSeconds?: Prisma.SortOrder
   isVipOnly?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -518,6 +551,7 @@ export type PaperMinOrderByAggregateInput = {
   province?: Prisma.SortOrder
   examType?: Prisma.SortOrder
   difficultyScore?: Prisma.SortOrder
+  durationSeconds?: Prisma.SortOrder
   isVipOnly?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -528,6 +562,7 @@ export type PaperMinOrderByAggregateInput = {
 export type PaperSumOrderByAggregateInput = {
   year?: Prisma.SortOrder
   difficultyScore?: Prisma.SortOrder
+  durationSeconds?: Prisma.SortOrder
 }
 
 export type PaperScalarRelationFilter = {
@@ -570,6 +605,20 @@ export type PaperUpdateOneWithoutSessionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.PaperUpdateToOneWithWhereWithoutSessionsInput, Prisma.PaperUpdateWithoutSessionsInput>, Prisma.PaperUncheckedUpdateWithoutSessionsInput>
 }
 
+export type PaperCreateNestedOneWithoutExamGoalsInput = {
+  create?: Prisma.XOR<Prisma.PaperCreateWithoutExamGoalsInput, Prisma.PaperUncheckedCreateWithoutExamGoalsInput>
+  connectOrCreate?: Prisma.PaperCreateOrConnectWithoutExamGoalsInput
+  connect?: Prisma.PaperWhereUniqueInput
+}
+
+export type PaperUpdateOneRequiredWithoutExamGoalsNestedInput = {
+  create?: Prisma.XOR<Prisma.PaperCreateWithoutExamGoalsInput, Prisma.PaperUncheckedCreateWithoutExamGoalsInput>
+  connectOrCreate?: Prisma.PaperCreateOrConnectWithoutExamGoalsInput
+  upsert?: Prisma.PaperUpsertWithoutExamGoalsInput
+  connect?: Prisma.PaperWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PaperUpdateToOneWithWhereWithoutExamGoalsInput, Prisma.PaperUpdateWithoutExamGoalsInput>, Prisma.PaperUncheckedUpdateWithoutExamGoalsInput>
+}
+
 export type PaperCreateWithoutQuestionsInput = {
   id?: string
   title: string
@@ -578,12 +627,14 @@ export type PaperCreateWithoutQuestionsInput = {
   province?: string | null
   examType?: string | null
   difficultyScore?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  durationSeconds?: number | null
   isVipOnly?: boolean
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   sessions?: Prisma.PracticeSessionCreateNestedManyWithoutPaperInput
+  examGoals?: Prisma.UserExamGoalCreateNestedManyWithoutTargetPaperInput
 }
 
 export type PaperUncheckedCreateWithoutQuestionsInput = {
@@ -594,12 +645,14 @@ export type PaperUncheckedCreateWithoutQuestionsInput = {
   province?: string | null
   examType?: string | null
   difficultyScore?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  durationSeconds?: number | null
   isVipOnly?: boolean
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   sessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutPaperInput
+  examGoals?: Prisma.UserExamGoalUncheckedCreateNestedManyWithoutTargetPaperInput
 }
 
 export type PaperCreateOrConnectWithoutQuestionsInput = {
@@ -626,12 +679,14 @@ export type PaperUpdateWithoutQuestionsInput = {
   province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   examType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   difficultyScore?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  durationSeconds?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isVipOnly?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sessions?: Prisma.PracticeSessionUpdateManyWithoutPaperNestedInput
+  examGoals?: Prisma.UserExamGoalUpdateManyWithoutTargetPaperNestedInput
 }
 
 export type PaperUncheckedUpdateWithoutQuestionsInput = {
@@ -642,12 +697,14 @@ export type PaperUncheckedUpdateWithoutQuestionsInput = {
   province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   examType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   difficultyScore?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  durationSeconds?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isVipOnly?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutPaperNestedInput
+  examGoals?: Prisma.UserExamGoalUncheckedUpdateManyWithoutTargetPaperNestedInput
 }
 
 export type PaperCreateWithoutSessionsInput = {
@@ -658,12 +715,14 @@ export type PaperCreateWithoutSessionsInput = {
   province?: string | null
   examType?: string | null
   difficultyScore?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  durationSeconds?: number | null
   isVipOnly?: boolean
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   questions?: Prisma.PaperQuestionCreateNestedManyWithoutPaperInput
+  examGoals?: Prisma.UserExamGoalCreateNestedManyWithoutTargetPaperInput
 }
 
 export type PaperUncheckedCreateWithoutSessionsInput = {
@@ -674,12 +733,14 @@ export type PaperUncheckedCreateWithoutSessionsInput = {
   province?: string | null
   examType?: string | null
   difficultyScore?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  durationSeconds?: number | null
   isVipOnly?: boolean
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   questions?: Prisma.PaperQuestionUncheckedCreateNestedManyWithoutPaperInput
+  examGoals?: Prisma.UserExamGoalUncheckedCreateNestedManyWithoutTargetPaperInput
 }
 
 export type PaperCreateOrConnectWithoutSessionsInput = {
@@ -706,12 +767,14 @@ export type PaperUpdateWithoutSessionsInput = {
   province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   examType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   difficultyScore?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  durationSeconds?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isVipOnly?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   questions?: Prisma.PaperQuestionUpdateManyWithoutPaperNestedInput
+  examGoals?: Prisma.UserExamGoalUpdateManyWithoutTargetPaperNestedInput
 }
 
 export type PaperUncheckedUpdateWithoutSessionsInput = {
@@ -722,12 +785,102 @@ export type PaperUncheckedUpdateWithoutSessionsInput = {
   province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   examType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   difficultyScore?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  durationSeconds?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isVipOnly?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   questions?: Prisma.PaperQuestionUncheckedUpdateManyWithoutPaperNestedInput
+  examGoals?: Prisma.UserExamGoalUncheckedUpdateManyWithoutTargetPaperNestedInput
+}
+
+export type PaperCreateWithoutExamGoalsInput = {
+  id?: string
+  title: string
+  slug: string
+  year?: number | null
+  province?: string | null
+  examType?: string | null
+  difficultyScore?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  durationSeconds?: number | null
+  isVipOnly?: boolean
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  questions?: Prisma.PaperQuestionCreateNestedManyWithoutPaperInput
+  sessions?: Prisma.PracticeSessionCreateNestedManyWithoutPaperInput
+}
+
+export type PaperUncheckedCreateWithoutExamGoalsInput = {
+  id?: string
+  title: string
+  slug: string
+  year?: number | null
+  province?: string | null
+  examType?: string | null
+  difficultyScore?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  durationSeconds?: number | null
+  isVipOnly?: boolean
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  questions?: Prisma.PaperQuestionUncheckedCreateNestedManyWithoutPaperInput
+  sessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutPaperInput
+}
+
+export type PaperCreateOrConnectWithoutExamGoalsInput = {
+  where: Prisma.PaperWhereUniqueInput
+  create: Prisma.XOR<Prisma.PaperCreateWithoutExamGoalsInput, Prisma.PaperUncheckedCreateWithoutExamGoalsInput>
+}
+
+export type PaperUpsertWithoutExamGoalsInput = {
+  update: Prisma.XOR<Prisma.PaperUpdateWithoutExamGoalsInput, Prisma.PaperUncheckedUpdateWithoutExamGoalsInput>
+  create: Prisma.XOR<Prisma.PaperCreateWithoutExamGoalsInput, Prisma.PaperUncheckedCreateWithoutExamGoalsInput>
+  where?: Prisma.PaperWhereInput
+}
+
+export type PaperUpdateToOneWithWhereWithoutExamGoalsInput = {
+  where?: Prisma.PaperWhereInput
+  data: Prisma.XOR<Prisma.PaperUpdateWithoutExamGoalsInput, Prisma.PaperUncheckedUpdateWithoutExamGoalsInput>
+}
+
+export type PaperUpdateWithoutExamGoalsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  examType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  difficultyScore?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  durationSeconds?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isVipOnly?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  questions?: Prisma.PaperQuestionUpdateManyWithoutPaperNestedInput
+  sessions?: Prisma.PracticeSessionUpdateManyWithoutPaperNestedInput
+}
+
+export type PaperUncheckedUpdateWithoutExamGoalsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  examType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  difficultyScore?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  durationSeconds?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isVipOnly?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  questions?: Prisma.PaperQuestionUncheckedUpdateManyWithoutPaperNestedInput
+  sessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutPaperNestedInput
 }
 
 
@@ -738,11 +891,13 @@ export type PaperUncheckedUpdateWithoutSessionsInput = {
 export type PaperCountOutputType = {
   questions: number
   sessions: number
+  examGoals: number
 }
 
 export type PaperCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   questions?: boolean | PaperCountOutputTypeCountQuestionsArgs
   sessions?: boolean | PaperCountOutputTypeCountSessionsArgs
+  examGoals?: boolean | PaperCountOutputTypeCountExamGoalsArgs
 }
 
 /**
@@ -769,6 +924,13 @@ export type PaperCountOutputTypeCountSessionsArgs<ExtArgs extends runtime.Types.
   where?: Prisma.PracticeSessionWhereInput
 }
 
+/**
+ * PaperCountOutputType without action
+ */
+export type PaperCountOutputTypeCountExamGoalsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.UserExamGoalWhereInput
+}
+
 
 export type PaperSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -778,6 +940,7 @@ export type PaperSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   province?: boolean
   examType?: boolean
   difficultyScore?: boolean
+  durationSeconds?: boolean
   isVipOnly?: boolean
   isActive?: boolean
   createdAt?: boolean
@@ -785,6 +948,7 @@ export type PaperSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   deletedAt?: boolean
   questions?: boolean | Prisma.Paper$questionsArgs<ExtArgs>
   sessions?: boolean | Prisma.Paper$sessionsArgs<ExtArgs>
+  examGoals?: boolean | Prisma.Paper$examGoalsArgs<ExtArgs>
   _count?: boolean | Prisma.PaperCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["paper"]>
 
@@ -798,6 +962,7 @@ export type PaperSelectScalar = {
   province?: boolean
   examType?: boolean
   difficultyScore?: boolean
+  durationSeconds?: boolean
   isVipOnly?: boolean
   isActive?: boolean
   createdAt?: boolean
@@ -805,10 +970,11 @@ export type PaperSelectScalar = {
   deletedAt?: boolean
 }
 
-export type PaperOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "slug" | "year" | "province" | "examType" | "difficultyScore" | "isVipOnly" | "isActive" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["paper"]>
+export type PaperOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "slug" | "year" | "province" | "examType" | "difficultyScore" | "durationSeconds" | "isVipOnly" | "isActive" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["paper"]>
 export type PaperInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   questions?: boolean | Prisma.Paper$questionsArgs<ExtArgs>
   sessions?: boolean | Prisma.Paper$sessionsArgs<ExtArgs>
+  examGoals?: boolean | Prisma.Paper$examGoalsArgs<ExtArgs>
   _count?: boolean | Prisma.PaperCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -817,6 +983,7 @@ export type $PaperPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   objects: {
     questions: Prisma.$PaperQuestionPayload<ExtArgs>[]
     sessions: Prisma.$PracticeSessionPayload<ExtArgs>[]
+    examGoals: Prisma.$UserExamGoalPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -826,6 +993,7 @@ export type $PaperPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     province: string | null
     examType: string | null
     difficultyScore: runtime.Decimal | null
+    durationSeconds: number | null
     isVipOnly: boolean
     isActive: boolean
     createdAt: Date
@@ -1173,6 +1341,7 @@ export interface Prisma__PaperClient<T, Null = never, ExtArgs extends runtime.Ty
   readonly [Symbol.toStringTag]: "PrismaPromise"
   questions<T extends Prisma.Paper$questionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Paper$questionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaperQuestionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   sessions<T extends Prisma.Paper$sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Paper$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PracticeSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  examGoals<T extends Prisma.Paper$examGoalsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Paper$examGoalsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserExamGoalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1209,6 +1378,7 @@ export interface PaperFieldRefs {
   readonly province: Prisma.FieldRef<"Paper", 'String'>
   readonly examType: Prisma.FieldRef<"Paper", 'String'>
   readonly difficultyScore: Prisma.FieldRef<"Paper", 'Decimal'>
+  readonly durationSeconds: Prisma.FieldRef<"Paper", 'Int'>
   readonly isVipOnly: Prisma.FieldRef<"Paper", 'Boolean'>
   readonly isActive: Prisma.FieldRef<"Paper", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"Paper", 'DateTime'>
@@ -1607,6 +1777,30 @@ export type Paper$sessionsArgs<ExtArgs extends runtime.Types.Extensions.Internal
   take?: number
   skip?: number
   distinct?: Prisma.PracticeSessionScalarFieldEnum | Prisma.PracticeSessionScalarFieldEnum[]
+}
+
+/**
+ * Paper.examGoals
+ */
+export type Paper$examGoalsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the UserExamGoal
+   */
+  select?: Prisma.UserExamGoalSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the UserExamGoal
+   */
+  omit?: Prisma.UserExamGoalOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserExamGoalInclude<ExtArgs> | null
+  where?: Prisma.UserExamGoalWhereInput
+  orderBy?: Prisma.UserExamGoalOrderByWithRelationInput | Prisma.UserExamGoalOrderByWithRelationInput[]
+  cursor?: Prisma.UserExamGoalWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.UserExamGoalScalarFieldEnum | Prisma.UserExamGoalScalarFieldEnum[]
 }
 
 /**

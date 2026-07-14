@@ -28,10 +28,12 @@ export type AggregateQuestionTag = {
 
 export type QuestionTagAvgAggregateOutputType = {
   sortOrder: number | null
+  depth: number | null
 }
 
 export type QuestionTagSumAggregateOutputType = {
   sortOrder: number | null
+  depth: number | null
 }
 
 export type QuestionTagMinAggregateOutputType = {
@@ -42,6 +44,11 @@ export type QuestionTagMinAggregateOutputType = {
   sortOrder: number | null
   isMaterialOnly: boolean | null
   isActive: boolean | null
+  depth: number | null
+  path: string | null
+  isLeaf: boolean | null
+  taxonomySource: string | null
+  taxonomyVersion: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -54,6 +61,11 @@ export type QuestionTagMaxAggregateOutputType = {
   sortOrder: number | null
   isMaterialOnly: boolean | null
   isActive: boolean | null
+  depth: number | null
+  path: string | null
+  isLeaf: boolean | null
+  taxonomySource: string | null
+  taxonomyVersion: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -66,6 +78,11 @@ export type QuestionTagCountAggregateOutputType = {
   sortOrder: number
   isMaterialOnly: number
   isActive: number
+  depth: number
+  path: number
+  isLeaf: number
+  taxonomySource: number
+  taxonomyVersion: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -74,10 +91,12 @@ export type QuestionTagCountAggregateOutputType = {
 
 export type QuestionTagAvgAggregateInputType = {
   sortOrder?: true
+  depth?: true
 }
 
 export type QuestionTagSumAggregateInputType = {
   sortOrder?: true
+  depth?: true
 }
 
 export type QuestionTagMinAggregateInputType = {
@@ -88,6 +107,11 @@ export type QuestionTagMinAggregateInputType = {
   sortOrder?: true
   isMaterialOnly?: true
   isActive?: true
+  depth?: true
+  path?: true
+  isLeaf?: true
+  taxonomySource?: true
+  taxonomyVersion?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -100,6 +124,11 @@ export type QuestionTagMaxAggregateInputType = {
   sortOrder?: true
   isMaterialOnly?: true
   isActive?: true
+  depth?: true
+  path?: true
+  isLeaf?: true
+  taxonomySource?: true
+  taxonomyVersion?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -112,6 +141,11 @@ export type QuestionTagCountAggregateInputType = {
   sortOrder?: true
   isMaterialOnly?: true
   isActive?: true
+  depth?: true
+  path?: true
+  isLeaf?: true
+  taxonomySource?: true
+  taxonomyVersion?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -211,6 +245,11 @@ export type QuestionTagGroupByOutputType = {
   sortOrder: number
   isMaterialOnly: boolean
   isActive: boolean
+  depth: number
+  path: string | null
+  isLeaf: boolean
+  taxonomySource: string | null
+  taxonomyVersion: string | null
   createdAt: Date
   updatedAt: Date
   _count: QuestionTagCountAggregateOutputType | null
@@ -246,6 +285,11 @@ export type QuestionTagWhereInput = {
   sortOrder?: Prisma.IntFilter<"QuestionTag"> | number
   isMaterialOnly?: Prisma.BoolFilter<"QuestionTag"> | boolean
   isActive?: Prisma.BoolFilter<"QuestionTag"> | boolean
+  depth?: Prisma.IntFilter<"QuestionTag"> | number
+  path?: Prisma.StringNullableFilter<"QuestionTag"> | string | null
+  isLeaf?: Prisma.BoolFilter<"QuestionTag"> | boolean
+  taxonomySource?: Prisma.StringNullableFilter<"QuestionTag"> | string | null
+  taxonomyVersion?: Prisma.StringNullableFilter<"QuestionTag"> | string | null
   createdAt?: Prisma.DateTimeFilter<"QuestionTag"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"QuestionTag"> | Date | string
   parent?: Prisma.XOR<Prisma.QuestionTagNullableScalarRelationFilter, Prisma.QuestionTagWhereInput> | null
@@ -254,6 +298,7 @@ export type QuestionTagWhereInput = {
   wrongQuestions?: Prisma.WrongQuestionListRelationFilter
   tagStats?: Prisma.UserTagStatsListRelationFilter
   mistakeReviews?: Prisma.QuestionMistakeReviewListRelationFilter
+  knowledgeChunks?: Prisma.KnowledgeChunkListRelationFilter
 }
 
 export type QuestionTagOrderByWithRelationInput = {
@@ -264,6 +309,11 @@ export type QuestionTagOrderByWithRelationInput = {
   sortOrder?: Prisma.SortOrder
   isMaterialOnly?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  depth?: Prisma.SortOrder
+  path?: Prisma.SortOrderInput | Prisma.SortOrder
+  isLeaf?: Prisma.SortOrder
+  taxonomySource?: Prisma.SortOrderInput | Prisma.SortOrder
+  taxonomyVersion?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   parent?: Prisma.QuestionTagOrderByWithRelationInput
@@ -272,6 +322,7 @@ export type QuestionTagOrderByWithRelationInput = {
   wrongQuestions?: Prisma.WrongQuestionOrderByRelationAggregateInput
   tagStats?: Prisma.UserTagStatsOrderByRelationAggregateInput
   mistakeReviews?: Prisma.QuestionMistakeReviewOrderByRelationAggregateInput
+  knowledgeChunks?: Prisma.KnowledgeChunkOrderByRelationAggregateInput
   _relevance?: Prisma.QuestionTagOrderByRelevanceInput
 }
 
@@ -286,6 +337,11 @@ export type QuestionTagWhereUniqueInput = Prisma.AtLeast<{
   sortOrder?: Prisma.IntFilter<"QuestionTag"> | number
   isMaterialOnly?: Prisma.BoolFilter<"QuestionTag"> | boolean
   isActive?: Prisma.BoolFilter<"QuestionTag"> | boolean
+  depth?: Prisma.IntFilter<"QuestionTag"> | number
+  path?: Prisma.StringNullableFilter<"QuestionTag"> | string | null
+  isLeaf?: Prisma.BoolFilter<"QuestionTag"> | boolean
+  taxonomySource?: Prisma.StringNullableFilter<"QuestionTag"> | string | null
+  taxonomyVersion?: Prisma.StringNullableFilter<"QuestionTag"> | string | null
   createdAt?: Prisma.DateTimeFilter<"QuestionTag"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"QuestionTag"> | Date | string
   parent?: Prisma.XOR<Prisma.QuestionTagNullableScalarRelationFilter, Prisma.QuestionTagWhereInput> | null
@@ -294,6 +350,7 @@ export type QuestionTagWhereUniqueInput = Prisma.AtLeast<{
   wrongQuestions?: Prisma.WrongQuestionListRelationFilter
   tagStats?: Prisma.UserTagStatsListRelationFilter
   mistakeReviews?: Prisma.QuestionMistakeReviewListRelationFilter
+  knowledgeChunks?: Prisma.KnowledgeChunkListRelationFilter
 }, "id" | "slug">
 
 export type QuestionTagOrderByWithAggregationInput = {
@@ -304,6 +361,11 @@ export type QuestionTagOrderByWithAggregationInput = {
   sortOrder?: Prisma.SortOrder
   isMaterialOnly?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  depth?: Prisma.SortOrder
+  path?: Prisma.SortOrderInput | Prisma.SortOrder
+  isLeaf?: Prisma.SortOrder
+  taxonomySource?: Prisma.SortOrderInput | Prisma.SortOrder
+  taxonomyVersion?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.QuestionTagCountOrderByAggregateInput
@@ -324,6 +386,11 @@ export type QuestionTagScalarWhereWithAggregatesInput = {
   sortOrder?: Prisma.IntWithAggregatesFilter<"QuestionTag"> | number
   isMaterialOnly?: Prisma.BoolWithAggregatesFilter<"QuestionTag"> | boolean
   isActive?: Prisma.BoolWithAggregatesFilter<"QuestionTag"> | boolean
+  depth?: Prisma.IntWithAggregatesFilter<"QuestionTag"> | number
+  path?: Prisma.StringNullableWithAggregatesFilter<"QuestionTag"> | string | null
+  isLeaf?: Prisma.BoolWithAggregatesFilter<"QuestionTag"> | boolean
+  taxonomySource?: Prisma.StringNullableWithAggregatesFilter<"QuestionTag"> | string | null
+  taxonomyVersion?: Prisma.StringNullableWithAggregatesFilter<"QuestionTag"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"QuestionTag"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"QuestionTag"> | Date | string
 }
@@ -335,6 +402,11 @@ export type QuestionTagCreateInput = {
   sortOrder?: number
   isMaterialOnly?: boolean
   isActive?: boolean
+  depth?: number
+  path?: string | null
+  isLeaf?: boolean
+  taxonomySource?: string | null
+  taxonomyVersion?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   parent?: Prisma.QuestionTagCreateNestedOneWithoutChildrenInput
@@ -343,6 +415,7 @@ export type QuestionTagCreateInput = {
   wrongQuestions?: Prisma.WrongQuestionCreateNestedManyWithoutTagInput
   tagStats?: Prisma.UserTagStatsCreateNestedManyWithoutTagInput
   mistakeReviews?: Prisma.QuestionMistakeReviewCreateNestedManyWithoutTagInput
+  knowledgeChunks?: Prisma.KnowledgeChunkCreateNestedManyWithoutTagInput
 }
 
 export type QuestionTagUncheckedCreateInput = {
@@ -353,6 +426,11 @@ export type QuestionTagUncheckedCreateInput = {
   sortOrder?: number
   isMaterialOnly?: boolean
   isActive?: boolean
+  depth?: number
+  path?: string | null
+  isLeaf?: boolean
+  taxonomySource?: string | null
+  taxonomyVersion?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   children?: Prisma.QuestionTagUncheckedCreateNestedManyWithoutParentInput
@@ -360,6 +438,7 @@ export type QuestionTagUncheckedCreateInput = {
   wrongQuestions?: Prisma.WrongQuestionUncheckedCreateNestedManyWithoutTagInput
   tagStats?: Prisma.UserTagStatsUncheckedCreateNestedManyWithoutTagInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedCreateNestedManyWithoutTagInput
+  knowledgeChunks?: Prisma.KnowledgeChunkUncheckedCreateNestedManyWithoutTagInput
 }
 
 export type QuestionTagUpdateInput = {
@@ -369,6 +448,11 @@ export type QuestionTagUpdateInput = {
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   isMaterialOnly?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  depth?: Prisma.IntFieldUpdateOperationsInput | number
+  path?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isLeaf?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  taxonomySource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxonomyVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   parent?: Prisma.QuestionTagUpdateOneWithoutChildrenNestedInput
@@ -377,6 +461,7 @@ export type QuestionTagUpdateInput = {
   wrongQuestions?: Prisma.WrongQuestionUpdateManyWithoutTagNestedInput
   tagStats?: Prisma.UserTagStatsUpdateManyWithoutTagNestedInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUpdateManyWithoutTagNestedInput
+  knowledgeChunks?: Prisma.KnowledgeChunkUpdateManyWithoutTagNestedInput
 }
 
 export type QuestionTagUncheckedUpdateInput = {
@@ -387,6 +472,11 @@ export type QuestionTagUncheckedUpdateInput = {
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   isMaterialOnly?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  depth?: Prisma.IntFieldUpdateOperationsInput | number
+  path?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isLeaf?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  taxonomySource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxonomyVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   children?: Prisma.QuestionTagUncheckedUpdateManyWithoutParentNestedInput
@@ -394,6 +484,7 @@ export type QuestionTagUncheckedUpdateInput = {
   wrongQuestions?: Prisma.WrongQuestionUncheckedUpdateManyWithoutTagNestedInput
   tagStats?: Prisma.UserTagStatsUncheckedUpdateManyWithoutTagNestedInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedUpdateManyWithoutTagNestedInput
+  knowledgeChunks?: Prisma.KnowledgeChunkUncheckedUpdateManyWithoutTagNestedInput
 }
 
 export type QuestionTagCreateManyInput = {
@@ -404,6 +495,11 @@ export type QuestionTagCreateManyInput = {
   sortOrder?: number
   isMaterialOnly?: boolean
   isActive?: boolean
+  depth?: number
+  path?: string | null
+  isLeaf?: boolean
+  taxonomySource?: string | null
+  taxonomyVersion?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -415,6 +511,11 @@ export type QuestionTagUpdateManyMutationInput = {
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   isMaterialOnly?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  depth?: Prisma.IntFieldUpdateOperationsInput | number
+  path?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isLeaf?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  taxonomySource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxonomyVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -427,6 +528,11 @@ export type QuestionTagUncheckedUpdateManyInput = {
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   isMaterialOnly?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  depth?: Prisma.IntFieldUpdateOperationsInput | number
+  path?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isLeaf?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  taxonomySource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxonomyVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -460,12 +566,18 @@ export type QuestionTagCountOrderByAggregateInput = {
   sortOrder?: Prisma.SortOrder
   isMaterialOnly?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  depth?: Prisma.SortOrder
+  path?: Prisma.SortOrder
+  isLeaf?: Prisma.SortOrder
+  taxonomySource?: Prisma.SortOrder
+  taxonomyVersion?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type QuestionTagAvgOrderByAggregateInput = {
   sortOrder?: Prisma.SortOrder
+  depth?: Prisma.SortOrder
 }
 
 export type QuestionTagMaxOrderByAggregateInput = {
@@ -476,6 +588,11 @@ export type QuestionTagMaxOrderByAggregateInput = {
   sortOrder?: Prisma.SortOrder
   isMaterialOnly?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  depth?: Prisma.SortOrder
+  path?: Prisma.SortOrder
+  isLeaf?: Prisma.SortOrder
+  taxonomySource?: Prisma.SortOrder
+  taxonomyVersion?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -488,12 +605,18 @@ export type QuestionTagMinOrderByAggregateInput = {
   sortOrder?: Prisma.SortOrder
   isMaterialOnly?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  depth?: Prisma.SortOrder
+  path?: Prisma.SortOrder
+  isLeaf?: Prisma.SortOrder
+  taxonomySource?: Prisma.SortOrder
+  taxonomyVersion?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type QuestionTagSumOrderByAggregateInput = {
   sortOrder?: Prisma.SortOrder
+  depth?: Prisma.SortOrder
 }
 
 export type QuestionTagScalarRelationFilter = {
@@ -633,6 +756,22 @@ export type QuestionTagUpdateOneWithoutMistakeReviewsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.QuestionTagUpdateToOneWithWhereWithoutMistakeReviewsInput, Prisma.QuestionTagUpdateWithoutMistakeReviewsInput>, Prisma.QuestionTagUncheckedUpdateWithoutMistakeReviewsInput>
 }
 
+export type QuestionTagCreateNestedOneWithoutKnowledgeChunksInput = {
+  create?: Prisma.XOR<Prisma.QuestionTagCreateWithoutKnowledgeChunksInput, Prisma.QuestionTagUncheckedCreateWithoutKnowledgeChunksInput>
+  connectOrCreate?: Prisma.QuestionTagCreateOrConnectWithoutKnowledgeChunksInput
+  connect?: Prisma.QuestionTagWhereUniqueInput
+}
+
+export type QuestionTagUpdateOneWithoutKnowledgeChunksNestedInput = {
+  create?: Prisma.XOR<Prisma.QuestionTagCreateWithoutKnowledgeChunksInput, Prisma.QuestionTagUncheckedCreateWithoutKnowledgeChunksInput>
+  connectOrCreate?: Prisma.QuestionTagCreateOrConnectWithoutKnowledgeChunksInput
+  upsert?: Prisma.QuestionTagUpsertWithoutKnowledgeChunksInput
+  disconnect?: Prisma.QuestionTagWhereInput | boolean
+  delete?: Prisma.QuestionTagWhereInput | boolean
+  connect?: Prisma.QuestionTagWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.QuestionTagUpdateToOneWithWhereWithoutKnowledgeChunksInput, Prisma.QuestionTagUpdateWithoutKnowledgeChunksInput>, Prisma.QuestionTagUncheckedUpdateWithoutKnowledgeChunksInput>
+}
+
 export type QuestionTagCreateWithoutChildrenInput = {
   id?: string
   name: string
@@ -640,6 +779,11 @@ export type QuestionTagCreateWithoutChildrenInput = {
   sortOrder?: number
   isMaterialOnly?: boolean
   isActive?: boolean
+  depth?: number
+  path?: string | null
+  isLeaf?: boolean
+  taxonomySource?: string | null
+  taxonomyVersion?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   parent?: Prisma.QuestionTagCreateNestedOneWithoutChildrenInput
@@ -647,6 +791,7 @@ export type QuestionTagCreateWithoutChildrenInput = {
   wrongQuestions?: Prisma.WrongQuestionCreateNestedManyWithoutTagInput
   tagStats?: Prisma.UserTagStatsCreateNestedManyWithoutTagInput
   mistakeReviews?: Prisma.QuestionMistakeReviewCreateNestedManyWithoutTagInput
+  knowledgeChunks?: Prisma.KnowledgeChunkCreateNestedManyWithoutTagInput
 }
 
 export type QuestionTagUncheckedCreateWithoutChildrenInput = {
@@ -657,12 +802,18 @@ export type QuestionTagUncheckedCreateWithoutChildrenInput = {
   sortOrder?: number
   isMaterialOnly?: boolean
   isActive?: boolean
+  depth?: number
+  path?: string | null
+  isLeaf?: boolean
+  taxonomySource?: string | null
+  taxonomyVersion?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   questions?: Prisma.QuestionUncheckedCreateNestedManyWithoutTagInput
   wrongQuestions?: Prisma.WrongQuestionUncheckedCreateNestedManyWithoutTagInput
   tagStats?: Prisma.UserTagStatsUncheckedCreateNestedManyWithoutTagInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedCreateNestedManyWithoutTagInput
+  knowledgeChunks?: Prisma.KnowledgeChunkUncheckedCreateNestedManyWithoutTagInput
 }
 
 export type QuestionTagCreateOrConnectWithoutChildrenInput = {
@@ -677,6 +828,11 @@ export type QuestionTagCreateWithoutParentInput = {
   sortOrder?: number
   isMaterialOnly?: boolean
   isActive?: boolean
+  depth?: number
+  path?: string | null
+  isLeaf?: boolean
+  taxonomySource?: string | null
+  taxonomyVersion?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   children?: Prisma.QuestionTagCreateNestedManyWithoutParentInput
@@ -684,6 +840,7 @@ export type QuestionTagCreateWithoutParentInput = {
   wrongQuestions?: Prisma.WrongQuestionCreateNestedManyWithoutTagInput
   tagStats?: Prisma.UserTagStatsCreateNestedManyWithoutTagInput
   mistakeReviews?: Prisma.QuestionMistakeReviewCreateNestedManyWithoutTagInput
+  knowledgeChunks?: Prisma.KnowledgeChunkCreateNestedManyWithoutTagInput
 }
 
 export type QuestionTagUncheckedCreateWithoutParentInput = {
@@ -693,6 +850,11 @@ export type QuestionTagUncheckedCreateWithoutParentInput = {
   sortOrder?: number
   isMaterialOnly?: boolean
   isActive?: boolean
+  depth?: number
+  path?: string | null
+  isLeaf?: boolean
+  taxonomySource?: string | null
+  taxonomyVersion?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   children?: Prisma.QuestionTagUncheckedCreateNestedManyWithoutParentInput
@@ -700,6 +862,7 @@ export type QuestionTagUncheckedCreateWithoutParentInput = {
   wrongQuestions?: Prisma.WrongQuestionUncheckedCreateNestedManyWithoutTagInput
   tagStats?: Prisma.UserTagStatsUncheckedCreateNestedManyWithoutTagInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedCreateNestedManyWithoutTagInput
+  knowledgeChunks?: Prisma.KnowledgeChunkUncheckedCreateNestedManyWithoutTagInput
 }
 
 export type QuestionTagCreateOrConnectWithoutParentInput = {
@@ -730,6 +893,11 @@ export type QuestionTagUpdateWithoutChildrenInput = {
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   isMaterialOnly?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  depth?: Prisma.IntFieldUpdateOperationsInput | number
+  path?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isLeaf?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  taxonomySource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxonomyVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   parent?: Prisma.QuestionTagUpdateOneWithoutChildrenNestedInput
@@ -737,6 +905,7 @@ export type QuestionTagUpdateWithoutChildrenInput = {
   wrongQuestions?: Prisma.WrongQuestionUpdateManyWithoutTagNestedInput
   tagStats?: Prisma.UserTagStatsUpdateManyWithoutTagNestedInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUpdateManyWithoutTagNestedInput
+  knowledgeChunks?: Prisma.KnowledgeChunkUpdateManyWithoutTagNestedInput
 }
 
 export type QuestionTagUncheckedUpdateWithoutChildrenInput = {
@@ -747,12 +916,18 @@ export type QuestionTagUncheckedUpdateWithoutChildrenInput = {
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   isMaterialOnly?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  depth?: Prisma.IntFieldUpdateOperationsInput | number
+  path?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isLeaf?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  taxonomySource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxonomyVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   questions?: Prisma.QuestionUncheckedUpdateManyWithoutTagNestedInput
   wrongQuestions?: Prisma.WrongQuestionUncheckedUpdateManyWithoutTagNestedInput
   tagStats?: Prisma.UserTagStatsUncheckedUpdateManyWithoutTagNestedInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedUpdateManyWithoutTagNestedInput
+  knowledgeChunks?: Prisma.KnowledgeChunkUncheckedUpdateManyWithoutTagNestedInput
 }
 
 export type QuestionTagUpsertWithWhereUniqueWithoutParentInput = {
@@ -782,6 +957,11 @@ export type QuestionTagScalarWhereInput = {
   sortOrder?: Prisma.IntFilter<"QuestionTag"> | number
   isMaterialOnly?: Prisma.BoolFilter<"QuestionTag"> | boolean
   isActive?: Prisma.BoolFilter<"QuestionTag"> | boolean
+  depth?: Prisma.IntFilter<"QuestionTag"> | number
+  path?: Prisma.StringNullableFilter<"QuestionTag"> | string | null
+  isLeaf?: Prisma.BoolFilter<"QuestionTag"> | boolean
+  taxonomySource?: Prisma.StringNullableFilter<"QuestionTag"> | string | null
+  taxonomyVersion?: Prisma.StringNullableFilter<"QuestionTag"> | string | null
   createdAt?: Prisma.DateTimeFilter<"QuestionTag"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"QuestionTag"> | Date | string
 }
@@ -793,6 +973,11 @@ export type QuestionTagCreateWithoutQuestionsInput = {
   sortOrder?: number
   isMaterialOnly?: boolean
   isActive?: boolean
+  depth?: number
+  path?: string | null
+  isLeaf?: boolean
+  taxonomySource?: string | null
+  taxonomyVersion?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   parent?: Prisma.QuestionTagCreateNestedOneWithoutChildrenInput
@@ -800,6 +985,7 @@ export type QuestionTagCreateWithoutQuestionsInput = {
   wrongQuestions?: Prisma.WrongQuestionCreateNestedManyWithoutTagInput
   tagStats?: Prisma.UserTagStatsCreateNestedManyWithoutTagInput
   mistakeReviews?: Prisma.QuestionMistakeReviewCreateNestedManyWithoutTagInput
+  knowledgeChunks?: Prisma.KnowledgeChunkCreateNestedManyWithoutTagInput
 }
 
 export type QuestionTagUncheckedCreateWithoutQuestionsInput = {
@@ -810,12 +996,18 @@ export type QuestionTagUncheckedCreateWithoutQuestionsInput = {
   sortOrder?: number
   isMaterialOnly?: boolean
   isActive?: boolean
+  depth?: number
+  path?: string | null
+  isLeaf?: boolean
+  taxonomySource?: string | null
+  taxonomyVersion?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   children?: Prisma.QuestionTagUncheckedCreateNestedManyWithoutParentInput
   wrongQuestions?: Prisma.WrongQuestionUncheckedCreateNestedManyWithoutTagInput
   tagStats?: Prisma.UserTagStatsUncheckedCreateNestedManyWithoutTagInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedCreateNestedManyWithoutTagInput
+  knowledgeChunks?: Prisma.KnowledgeChunkUncheckedCreateNestedManyWithoutTagInput
 }
 
 export type QuestionTagCreateOrConnectWithoutQuestionsInput = {
@@ -841,6 +1033,11 @@ export type QuestionTagUpdateWithoutQuestionsInput = {
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   isMaterialOnly?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  depth?: Prisma.IntFieldUpdateOperationsInput | number
+  path?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isLeaf?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  taxonomySource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxonomyVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   parent?: Prisma.QuestionTagUpdateOneWithoutChildrenNestedInput
@@ -848,6 +1045,7 @@ export type QuestionTagUpdateWithoutQuestionsInput = {
   wrongQuestions?: Prisma.WrongQuestionUpdateManyWithoutTagNestedInput
   tagStats?: Prisma.UserTagStatsUpdateManyWithoutTagNestedInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUpdateManyWithoutTagNestedInput
+  knowledgeChunks?: Prisma.KnowledgeChunkUpdateManyWithoutTagNestedInput
 }
 
 export type QuestionTagUncheckedUpdateWithoutQuestionsInput = {
@@ -858,12 +1056,18 @@ export type QuestionTagUncheckedUpdateWithoutQuestionsInput = {
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   isMaterialOnly?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  depth?: Prisma.IntFieldUpdateOperationsInput | number
+  path?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isLeaf?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  taxonomySource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxonomyVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   children?: Prisma.QuestionTagUncheckedUpdateManyWithoutParentNestedInput
   wrongQuestions?: Prisma.WrongQuestionUncheckedUpdateManyWithoutTagNestedInput
   tagStats?: Prisma.UserTagStatsUncheckedUpdateManyWithoutTagNestedInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedUpdateManyWithoutTagNestedInput
+  knowledgeChunks?: Prisma.KnowledgeChunkUncheckedUpdateManyWithoutTagNestedInput
 }
 
 export type QuestionTagCreateWithoutWrongQuestionsInput = {
@@ -873,6 +1077,11 @@ export type QuestionTagCreateWithoutWrongQuestionsInput = {
   sortOrder?: number
   isMaterialOnly?: boolean
   isActive?: boolean
+  depth?: number
+  path?: string | null
+  isLeaf?: boolean
+  taxonomySource?: string | null
+  taxonomyVersion?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   parent?: Prisma.QuestionTagCreateNestedOneWithoutChildrenInput
@@ -880,6 +1089,7 @@ export type QuestionTagCreateWithoutWrongQuestionsInput = {
   questions?: Prisma.QuestionCreateNestedManyWithoutTagInput
   tagStats?: Prisma.UserTagStatsCreateNestedManyWithoutTagInput
   mistakeReviews?: Prisma.QuestionMistakeReviewCreateNestedManyWithoutTagInput
+  knowledgeChunks?: Prisma.KnowledgeChunkCreateNestedManyWithoutTagInput
 }
 
 export type QuestionTagUncheckedCreateWithoutWrongQuestionsInput = {
@@ -890,12 +1100,18 @@ export type QuestionTagUncheckedCreateWithoutWrongQuestionsInput = {
   sortOrder?: number
   isMaterialOnly?: boolean
   isActive?: boolean
+  depth?: number
+  path?: string | null
+  isLeaf?: boolean
+  taxonomySource?: string | null
+  taxonomyVersion?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   children?: Prisma.QuestionTagUncheckedCreateNestedManyWithoutParentInput
   questions?: Prisma.QuestionUncheckedCreateNestedManyWithoutTagInput
   tagStats?: Prisma.UserTagStatsUncheckedCreateNestedManyWithoutTagInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedCreateNestedManyWithoutTagInput
+  knowledgeChunks?: Prisma.KnowledgeChunkUncheckedCreateNestedManyWithoutTagInput
 }
 
 export type QuestionTagCreateOrConnectWithoutWrongQuestionsInput = {
@@ -921,6 +1137,11 @@ export type QuestionTagUpdateWithoutWrongQuestionsInput = {
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   isMaterialOnly?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  depth?: Prisma.IntFieldUpdateOperationsInput | number
+  path?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isLeaf?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  taxonomySource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxonomyVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   parent?: Prisma.QuestionTagUpdateOneWithoutChildrenNestedInput
@@ -928,6 +1149,7 @@ export type QuestionTagUpdateWithoutWrongQuestionsInput = {
   questions?: Prisma.QuestionUpdateManyWithoutTagNestedInput
   tagStats?: Prisma.UserTagStatsUpdateManyWithoutTagNestedInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUpdateManyWithoutTagNestedInput
+  knowledgeChunks?: Prisma.KnowledgeChunkUpdateManyWithoutTagNestedInput
 }
 
 export type QuestionTagUncheckedUpdateWithoutWrongQuestionsInput = {
@@ -938,12 +1160,18 @@ export type QuestionTagUncheckedUpdateWithoutWrongQuestionsInput = {
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   isMaterialOnly?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  depth?: Prisma.IntFieldUpdateOperationsInput | number
+  path?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isLeaf?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  taxonomySource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxonomyVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   children?: Prisma.QuestionTagUncheckedUpdateManyWithoutParentNestedInput
   questions?: Prisma.QuestionUncheckedUpdateManyWithoutTagNestedInput
   tagStats?: Prisma.UserTagStatsUncheckedUpdateManyWithoutTagNestedInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedUpdateManyWithoutTagNestedInput
+  knowledgeChunks?: Prisma.KnowledgeChunkUncheckedUpdateManyWithoutTagNestedInput
 }
 
 export type QuestionTagCreateWithoutTagStatsInput = {
@@ -953,6 +1181,11 @@ export type QuestionTagCreateWithoutTagStatsInput = {
   sortOrder?: number
   isMaterialOnly?: boolean
   isActive?: boolean
+  depth?: number
+  path?: string | null
+  isLeaf?: boolean
+  taxonomySource?: string | null
+  taxonomyVersion?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   parent?: Prisma.QuestionTagCreateNestedOneWithoutChildrenInput
@@ -960,6 +1193,7 @@ export type QuestionTagCreateWithoutTagStatsInput = {
   questions?: Prisma.QuestionCreateNestedManyWithoutTagInput
   wrongQuestions?: Prisma.WrongQuestionCreateNestedManyWithoutTagInput
   mistakeReviews?: Prisma.QuestionMistakeReviewCreateNestedManyWithoutTagInput
+  knowledgeChunks?: Prisma.KnowledgeChunkCreateNestedManyWithoutTagInput
 }
 
 export type QuestionTagUncheckedCreateWithoutTagStatsInput = {
@@ -970,12 +1204,18 @@ export type QuestionTagUncheckedCreateWithoutTagStatsInput = {
   sortOrder?: number
   isMaterialOnly?: boolean
   isActive?: boolean
+  depth?: number
+  path?: string | null
+  isLeaf?: boolean
+  taxonomySource?: string | null
+  taxonomyVersion?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   children?: Prisma.QuestionTagUncheckedCreateNestedManyWithoutParentInput
   questions?: Prisma.QuestionUncheckedCreateNestedManyWithoutTagInput
   wrongQuestions?: Prisma.WrongQuestionUncheckedCreateNestedManyWithoutTagInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedCreateNestedManyWithoutTagInput
+  knowledgeChunks?: Prisma.KnowledgeChunkUncheckedCreateNestedManyWithoutTagInput
 }
 
 export type QuestionTagCreateOrConnectWithoutTagStatsInput = {
@@ -1001,6 +1241,11 @@ export type QuestionTagUpdateWithoutTagStatsInput = {
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   isMaterialOnly?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  depth?: Prisma.IntFieldUpdateOperationsInput | number
+  path?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isLeaf?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  taxonomySource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxonomyVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   parent?: Prisma.QuestionTagUpdateOneWithoutChildrenNestedInput
@@ -1008,6 +1253,7 @@ export type QuestionTagUpdateWithoutTagStatsInput = {
   questions?: Prisma.QuestionUpdateManyWithoutTagNestedInput
   wrongQuestions?: Prisma.WrongQuestionUpdateManyWithoutTagNestedInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUpdateManyWithoutTagNestedInput
+  knowledgeChunks?: Prisma.KnowledgeChunkUpdateManyWithoutTagNestedInput
 }
 
 export type QuestionTagUncheckedUpdateWithoutTagStatsInput = {
@@ -1018,12 +1264,18 @@ export type QuestionTagUncheckedUpdateWithoutTagStatsInput = {
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   isMaterialOnly?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  depth?: Prisma.IntFieldUpdateOperationsInput | number
+  path?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isLeaf?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  taxonomySource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxonomyVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   children?: Prisma.QuestionTagUncheckedUpdateManyWithoutParentNestedInput
   questions?: Prisma.QuestionUncheckedUpdateManyWithoutTagNestedInput
   wrongQuestions?: Prisma.WrongQuestionUncheckedUpdateManyWithoutTagNestedInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedUpdateManyWithoutTagNestedInput
+  knowledgeChunks?: Prisma.KnowledgeChunkUncheckedUpdateManyWithoutTagNestedInput
 }
 
 export type QuestionTagCreateWithoutMistakeReviewsInput = {
@@ -1033,6 +1285,11 @@ export type QuestionTagCreateWithoutMistakeReviewsInput = {
   sortOrder?: number
   isMaterialOnly?: boolean
   isActive?: boolean
+  depth?: number
+  path?: string | null
+  isLeaf?: boolean
+  taxonomySource?: string | null
+  taxonomyVersion?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   parent?: Prisma.QuestionTagCreateNestedOneWithoutChildrenInput
@@ -1040,6 +1297,7 @@ export type QuestionTagCreateWithoutMistakeReviewsInput = {
   questions?: Prisma.QuestionCreateNestedManyWithoutTagInput
   wrongQuestions?: Prisma.WrongQuestionCreateNestedManyWithoutTagInput
   tagStats?: Prisma.UserTagStatsCreateNestedManyWithoutTagInput
+  knowledgeChunks?: Prisma.KnowledgeChunkCreateNestedManyWithoutTagInput
 }
 
 export type QuestionTagUncheckedCreateWithoutMistakeReviewsInput = {
@@ -1050,12 +1308,18 @@ export type QuestionTagUncheckedCreateWithoutMistakeReviewsInput = {
   sortOrder?: number
   isMaterialOnly?: boolean
   isActive?: boolean
+  depth?: number
+  path?: string | null
+  isLeaf?: boolean
+  taxonomySource?: string | null
+  taxonomyVersion?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   children?: Prisma.QuestionTagUncheckedCreateNestedManyWithoutParentInput
   questions?: Prisma.QuestionUncheckedCreateNestedManyWithoutTagInput
   wrongQuestions?: Prisma.WrongQuestionUncheckedCreateNestedManyWithoutTagInput
   tagStats?: Prisma.UserTagStatsUncheckedCreateNestedManyWithoutTagInput
+  knowledgeChunks?: Prisma.KnowledgeChunkUncheckedCreateNestedManyWithoutTagInput
 }
 
 export type QuestionTagCreateOrConnectWithoutMistakeReviewsInput = {
@@ -1081,6 +1345,11 @@ export type QuestionTagUpdateWithoutMistakeReviewsInput = {
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   isMaterialOnly?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  depth?: Prisma.IntFieldUpdateOperationsInput | number
+  path?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isLeaf?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  taxonomySource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxonomyVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   parent?: Prisma.QuestionTagUpdateOneWithoutChildrenNestedInput
@@ -1088,6 +1357,7 @@ export type QuestionTagUpdateWithoutMistakeReviewsInput = {
   questions?: Prisma.QuestionUpdateManyWithoutTagNestedInput
   wrongQuestions?: Prisma.WrongQuestionUpdateManyWithoutTagNestedInput
   tagStats?: Prisma.UserTagStatsUpdateManyWithoutTagNestedInput
+  knowledgeChunks?: Prisma.KnowledgeChunkUpdateManyWithoutTagNestedInput
 }
 
 export type QuestionTagUncheckedUpdateWithoutMistakeReviewsInput = {
@@ -1098,12 +1368,122 @@ export type QuestionTagUncheckedUpdateWithoutMistakeReviewsInput = {
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   isMaterialOnly?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  depth?: Prisma.IntFieldUpdateOperationsInput | number
+  path?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isLeaf?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  taxonomySource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxonomyVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   children?: Prisma.QuestionTagUncheckedUpdateManyWithoutParentNestedInput
   questions?: Prisma.QuestionUncheckedUpdateManyWithoutTagNestedInput
   wrongQuestions?: Prisma.WrongQuestionUncheckedUpdateManyWithoutTagNestedInput
   tagStats?: Prisma.UserTagStatsUncheckedUpdateManyWithoutTagNestedInput
+  knowledgeChunks?: Prisma.KnowledgeChunkUncheckedUpdateManyWithoutTagNestedInput
+}
+
+export type QuestionTagCreateWithoutKnowledgeChunksInput = {
+  id?: string
+  name: string
+  slug: string
+  sortOrder?: number
+  isMaterialOnly?: boolean
+  isActive?: boolean
+  depth?: number
+  path?: string | null
+  isLeaf?: boolean
+  taxonomySource?: string | null
+  taxonomyVersion?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  parent?: Prisma.QuestionTagCreateNestedOneWithoutChildrenInput
+  children?: Prisma.QuestionTagCreateNestedManyWithoutParentInput
+  questions?: Prisma.QuestionCreateNestedManyWithoutTagInput
+  wrongQuestions?: Prisma.WrongQuestionCreateNestedManyWithoutTagInput
+  tagStats?: Prisma.UserTagStatsCreateNestedManyWithoutTagInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewCreateNestedManyWithoutTagInput
+}
+
+export type QuestionTagUncheckedCreateWithoutKnowledgeChunksInput = {
+  id?: string
+  name: string
+  slug: string
+  parentId?: string | null
+  sortOrder?: number
+  isMaterialOnly?: boolean
+  isActive?: boolean
+  depth?: number
+  path?: string | null
+  isLeaf?: boolean
+  taxonomySource?: string | null
+  taxonomyVersion?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  children?: Prisma.QuestionTagUncheckedCreateNestedManyWithoutParentInput
+  questions?: Prisma.QuestionUncheckedCreateNestedManyWithoutTagInput
+  wrongQuestions?: Prisma.WrongQuestionUncheckedCreateNestedManyWithoutTagInput
+  tagStats?: Prisma.UserTagStatsUncheckedCreateNestedManyWithoutTagInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedCreateNestedManyWithoutTagInput
+}
+
+export type QuestionTagCreateOrConnectWithoutKnowledgeChunksInput = {
+  where: Prisma.QuestionTagWhereUniqueInput
+  create: Prisma.XOR<Prisma.QuestionTagCreateWithoutKnowledgeChunksInput, Prisma.QuestionTagUncheckedCreateWithoutKnowledgeChunksInput>
+}
+
+export type QuestionTagUpsertWithoutKnowledgeChunksInput = {
+  update: Prisma.XOR<Prisma.QuestionTagUpdateWithoutKnowledgeChunksInput, Prisma.QuestionTagUncheckedUpdateWithoutKnowledgeChunksInput>
+  create: Prisma.XOR<Prisma.QuestionTagCreateWithoutKnowledgeChunksInput, Prisma.QuestionTagUncheckedCreateWithoutKnowledgeChunksInput>
+  where?: Prisma.QuestionTagWhereInput
+}
+
+export type QuestionTagUpdateToOneWithWhereWithoutKnowledgeChunksInput = {
+  where?: Prisma.QuestionTagWhereInput
+  data: Prisma.XOR<Prisma.QuestionTagUpdateWithoutKnowledgeChunksInput, Prisma.QuestionTagUncheckedUpdateWithoutKnowledgeChunksInput>
+}
+
+export type QuestionTagUpdateWithoutKnowledgeChunksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
+  isMaterialOnly?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  depth?: Prisma.IntFieldUpdateOperationsInput | number
+  path?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isLeaf?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  taxonomySource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxonomyVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  parent?: Prisma.QuestionTagUpdateOneWithoutChildrenNestedInput
+  children?: Prisma.QuestionTagUpdateManyWithoutParentNestedInput
+  questions?: Prisma.QuestionUpdateManyWithoutTagNestedInput
+  wrongQuestions?: Prisma.WrongQuestionUpdateManyWithoutTagNestedInput
+  tagStats?: Prisma.UserTagStatsUpdateManyWithoutTagNestedInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewUpdateManyWithoutTagNestedInput
+}
+
+export type QuestionTagUncheckedUpdateWithoutKnowledgeChunksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
+  isMaterialOnly?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  depth?: Prisma.IntFieldUpdateOperationsInput | number
+  path?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isLeaf?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  taxonomySource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxonomyVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  children?: Prisma.QuestionTagUncheckedUpdateManyWithoutParentNestedInput
+  questions?: Prisma.QuestionUncheckedUpdateManyWithoutTagNestedInput
+  wrongQuestions?: Prisma.WrongQuestionUncheckedUpdateManyWithoutTagNestedInput
+  tagStats?: Prisma.UserTagStatsUncheckedUpdateManyWithoutTagNestedInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedUpdateManyWithoutTagNestedInput
 }
 
 export type QuestionTagCreateManyParentInput = {
@@ -1113,6 +1493,11 @@ export type QuestionTagCreateManyParentInput = {
   sortOrder?: number
   isMaterialOnly?: boolean
   isActive?: boolean
+  depth?: number
+  path?: string | null
+  isLeaf?: boolean
+  taxonomySource?: string | null
+  taxonomyVersion?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -1124,6 +1509,11 @@ export type QuestionTagUpdateWithoutParentInput = {
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   isMaterialOnly?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  depth?: Prisma.IntFieldUpdateOperationsInput | number
+  path?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isLeaf?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  taxonomySource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxonomyVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   children?: Prisma.QuestionTagUpdateManyWithoutParentNestedInput
@@ -1131,6 +1521,7 @@ export type QuestionTagUpdateWithoutParentInput = {
   wrongQuestions?: Prisma.WrongQuestionUpdateManyWithoutTagNestedInput
   tagStats?: Prisma.UserTagStatsUpdateManyWithoutTagNestedInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUpdateManyWithoutTagNestedInput
+  knowledgeChunks?: Prisma.KnowledgeChunkUpdateManyWithoutTagNestedInput
 }
 
 export type QuestionTagUncheckedUpdateWithoutParentInput = {
@@ -1140,6 +1531,11 @@ export type QuestionTagUncheckedUpdateWithoutParentInput = {
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   isMaterialOnly?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  depth?: Prisma.IntFieldUpdateOperationsInput | number
+  path?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isLeaf?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  taxonomySource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxonomyVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   children?: Prisma.QuestionTagUncheckedUpdateManyWithoutParentNestedInput
@@ -1147,6 +1543,7 @@ export type QuestionTagUncheckedUpdateWithoutParentInput = {
   wrongQuestions?: Prisma.WrongQuestionUncheckedUpdateManyWithoutTagNestedInput
   tagStats?: Prisma.UserTagStatsUncheckedUpdateManyWithoutTagNestedInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedUpdateManyWithoutTagNestedInput
+  knowledgeChunks?: Prisma.KnowledgeChunkUncheckedUpdateManyWithoutTagNestedInput
 }
 
 export type QuestionTagUncheckedUpdateManyWithoutParentInput = {
@@ -1156,6 +1553,11 @@ export type QuestionTagUncheckedUpdateManyWithoutParentInput = {
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   isMaterialOnly?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  depth?: Prisma.IntFieldUpdateOperationsInput | number
+  path?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isLeaf?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  taxonomySource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxonomyVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1171,6 +1573,7 @@ export type QuestionTagCountOutputType = {
   wrongQuestions: number
   tagStats: number
   mistakeReviews: number
+  knowledgeChunks: number
 }
 
 export type QuestionTagCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1179,6 +1582,7 @@ export type QuestionTagCountOutputTypeSelect<ExtArgs extends runtime.Types.Exten
   wrongQuestions?: boolean | QuestionTagCountOutputTypeCountWrongQuestionsArgs
   tagStats?: boolean | QuestionTagCountOutputTypeCountTagStatsArgs
   mistakeReviews?: boolean | QuestionTagCountOutputTypeCountMistakeReviewsArgs
+  knowledgeChunks?: boolean | QuestionTagCountOutputTypeCountKnowledgeChunksArgs
 }
 
 /**
@@ -1226,6 +1630,13 @@ export type QuestionTagCountOutputTypeCountMistakeReviewsArgs<ExtArgs extends ru
   where?: Prisma.QuestionMistakeReviewWhereInput
 }
 
+/**
+ * QuestionTagCountOutputType without action
+ */
+export type QuestionTagCountOutputTypeCountKnowledgeChunksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.KnowledgeChunkWhereInput
+}
+
 
 export type QuestionTagSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1235,6 +1646,11 @@ export type QuestionTagSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   sortOrder?: boolean
   isMaterialOnly?: boolean
   isActive?: boolean
+  depth?: boolean
+  path?: boolean
+  isLeaf?: boolean
+  taxonomySource?: boolean
+  taxonomyVersion?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   parent?: boolean | Prisma.QuestionTag$parentArgs<ExtArgs>
@@ -1243,6 +1659,7 @@ export type QuestionTagSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   wrongQuestions?: boolean | Prisma.QuestionTag$wrongQuestionsArgs<ExtArgs>
   tagStats?: boolean | Prisma.QuestionTag$tagStatsArgs<ExtArgs>
   mistakeReviews?: boolean | Prisma.QuestionTag$mistakeReviewsArgs<ExtArgs>
+  knowledgeChunks?: boolean | Prisma.QuestionTag$knowledgeChunksArgs<ExtArgs>
   _count?: boolean | Prisma.QuestionTagCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["questionTag"]>
 
@@ -1256,11 +1673,16 @@ export type QuestionTagSelectScalar = {
   sortOrder?: boolean
   isMaterialOnly?: boolean
   isActive?: boolean
+  depth?: boolean
+  path?: boolean
+  isLeaf?: boolean
+  taxonomySource?: boolean
+  taxonomyVersion?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type QuestionTagOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "slug" | "parentId" | "sortOrder" | "isMaterialOnly" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["questionTag"]>
+export type QuestionTagOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "slug" | "parentId" | "sortOrder" | "isMaterialOnly" | "isActive" | "depth" | "path" | "isLeaf" | "taxonomySource" | "taxonomyVersion" | "createdAt" | "updatedAt", ExtArgs["result"]["questionTag"]>
 export type QuestionTagInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   parent?: boolean | Prisma.QuestionTag$parentArgs<ExtArgs>
   children?: boolean | Prisma.QuestionTag$childrenArgs<ExtArgs>
@@ -1268,6 +1690,7 @@ export type QuestionTagInclude<ExtArgs extends runtime.Types.Extensions.Internal
   wrongQuestions?: boolean | Prisma.QuestionTag$wrongQuestionsArgs<ExtArgs>
   tagStats?: boolean | Prisma.QuestionTag$tagStatsArgs<ExtArgs>
   mistakeReviews?: boolean | Prisma.QuestionTag$mistakeReviewsArgs<ExtArgs>
+  knowledgeChunks?: boolean | Prisma.QuestionTag$knowledgeChunksArgs<ExtArgs>
   _count?: boolean | Prisma.QuestionTagCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -1280,6 +1703,7 @@ export type $QuestionTagPayload<ExtArgs extends runtime.Types.Extensions.Interna
     wrongQuestions: Prisma.$WrongQuestionPayload<ExtArgs>[]
     tagStats: Prisma.$UserTagStatsPayload<ExtArgs>[]
     mistakeReviews: Prisma.$QuestionMistakeReviewPayload<ExtArgs>[]
+    knowledgeChunks: Prisma.$KnowledgeChunkPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1289,6 +1713,11 @@ export type $QuestionTagPayload<ExtArgs extends runtime.Types.Extensions.Interna
     sortOrder: number
     isMaterialOnly: boolean
     isActive: boolean
+    depth: number
+    path: string | null
+    isLeaf: boolean
+    taxonomySource: string | null
+    taxonomyVersion: string | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["questionTag"]>
@@ -1637,6 +2066,7 @@ export interface Prisma__QuestionTagClient<T, Null = never, ExtArgs extends runt
   wrongQuestions<T extends Prisma.QuestionTag$wrongQuestionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.QuestionTag$wrongQuestionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WrongQuestionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   tagStats<T extends Prisma.QuestionTag$tagStatsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.QuestionTag$tagStatsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserTagStatsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   mistakeReviews<T extends Prisma.QuestionTag$mistakeReviewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.QuestionTag$mistakeReviewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuestionMistakeReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  knowledgeChunks<T extends Prisma.QuestionTag$knowledgeChunksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.QuestionTag$knowledgeChunksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$KnowledgeChunkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1673,6 +2103,11 @@ export interface QuestionTagFieldRefs {
   readonly sortOrder: Prisma.FieldRef<"QuestionTag", 'Int'>
   readonly isMaterialOnly: Prisma.FieldRef<"QuestionTag", 'Boolean'>
   readonly isActive: Prisma.FieldRef<"QuestionTag", 'Boolean'>
+  readonly depth: Prisma.FieldRef<"QuestionTag", 'Int'>
+  readonly path: Prisma.FieldRef<"QuestionTag", 'String'>
+  readonly isLeaf: Prisma.FieldRef<"QuestionTag", 'Boolean'>
+  readonly taxonomySource: Prisma.FieldRef<"QuestionTag", 'String'>
+  readonly taxonomyVersion: Prisma.FieldRef<"QuestionTag", 'String'>
   readonly createdAt: Prisma.FieldRef<"QuestionTag", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"QuestionTag", 'DateTime'>
 }
@@ -2159,6 +2594,30 @@ export type QuestionTag$mistakeReviewsArgs<ExtArgs extends runtime.Types.Extensi
   take?: number
   skip?: number
   distinct?: Prisma.QuestionMistakeReviewScalarFieldEnum | Prisma.QuestionMistakeReviewScalarFieldEnum[]
+}
+
+/**
+ * QuestionTag.knowledgeChunks
+ */
+export type QuestionTag$knowledgeChunksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the KnowledgeChunk
+   */
+  select?: Prisma.KnowledgeChunkSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the KnowledgeChunk
+   */
+  omit?: Prisma.KnowledgeChunkOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.KnowledgeChunkInclude<ExtArgs> | null
+  where?: Prisma.KnowledgeChunkWhereInput
+  orderBy?: Prisma.KnowledgeChunkOrderByWithRelationInput | Prisma.KnowledgeChunkOrderByWithRelationInput[]
+  cursor?: Prisma.KnowledgeChunkWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.KnowledgeChunkScalarFieldEnum | Prisma.KnowledgeChunkScalarFieldEnum[]
 }
 
 /**

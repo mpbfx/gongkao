@@ -2,12 +2,23 @@ import Dexie, { type Table } from "dexie";
 
 export type PracticeSubmitDraft = {
   elapsedSeconds: number;
+  pauseCount: number;
+  pausedSeconds: number;
   answers: Array<{
     questionId: string;
     answer: string | null;
     timeSpentSeconds: number;
+    decisionNote?: string | null;
   }>;
+  events?: PracticeEventDraft[];
   savedAt: string;
+};
+
+export type PracticeEventDraft = {
+  questionId?: string | null;
+  type: "QUESTION_VIEW" | "ANSWER_CHANGE" | "SKIP" | "RETURN" | "PAUSE" | "RESUME" | "TIME_EXPIRED";
+  occurredAt: string;
+  payload?: Record<string, unknown> | null;
 };
 
 export type PracticeScratchDraft = {
@@ -24,6 +35,11 @@ export type PracticeDraft = {
   answers: Record<string, string>;
   elapsedSeconds: number;
   timeSpentByQuestionId: Record<string, number>;
+  decisionNotesByQuestionId?: Record<string, string>;
+  pauseCount?: number;
+  pausedSeconds?: number;
+  events?: PracticeEventDraft[];
+  timeExpired?: boolean;
   scratchByQuestionId: Record<string, PracticeScratchDraft>;
   pendingSubmit?: PracticeSubmitDraft | null;
   updatedAt: string;

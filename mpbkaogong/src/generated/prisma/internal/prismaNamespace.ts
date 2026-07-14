@@ -399,15 +399,21 @@ export const ModelName = {
   DailyPracticeQuestion: 'DailyPracticeQuestion',
   PracticeSession: 'PracticeSession',
   PracticeAnswer: 'PracticeAnswer',
+  PracticeEvent: 'PracticeEvent',
   WrongQuestion: 'WrongQuestion',
   UserStatsSnapshot: 'UserStatsSnapshot',
   UserTagStats: 'UserTagStats',
+  UserExamGoal: 'UserExamGoal',
   AgentConfig: 'AgentConfig',
   AgentRecommendation: 'AgentRecommendation',
   AgentTutorMessage: 'AgentTutorMessage',
   QuestionMistakeReview: 'QuestionMistakeReview',
   AgentFeedback: 'AgentFeedback',
-  ImportJob: 'ImportJob'
+  ImportJob: 'ImportJob',
+  KnowledgeSource: 'KnowledgeSource',
+  KnowledgeChunk: 'KnowledgeChunk',
+  KnowledgeChatSession: 'KnowledgeChatSession',
+  KnowledgeChatMessage: 'KnowledgeChatMessage'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -423,7 +429,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "account" | "session" | "verificationToken" | "membership" | "questionTag" | "material" | "question" | "questionOption" | "paper" | "paperQuestion" | "dailyPractice" | "dailyPracticeQuestion" | "practiceSession" | "practiceAnswer" | "wrongQuestion" | "userStatsSnapshot" | "userTagStats" | "agentConfig" | "agentRecommendation" | "agentTutorMessage" | "questionMistakeReview" | "agentFeedback" | "importJob"
+    modelProps: "user" | "account" | "session" | "verificationToken" | "membership" | "questionTag" | "material" | "question" | "questionOption" | "paper" | "paperQuestion" | "dailyPractice" | "dailyPracticeQuestion" | "practiceSession" | "practiceAnswer" | "practiceEvent" | "wrongQuestion" | "userStatsSnapshot" | "userTagStats" | "userExamGoal" | "agentConfig" | "agentRecommendation" | "agentTutorMessage" | "questionMistakeReview" | "agentFeedback" | "importJob" | "knowledgeSource" | "knowledgeChunk" | "knowledgeChatSession" | "knowledgeChatMessage"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1417,6 +1423,72 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    PracticeEvent: {
+      payload: Prisma.$PracticeEventPayload<ExtArgs>
+      fields: Prisma.PracticeEventFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.PracticeEventFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PracticeEventPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.PracticeEventFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PracticeEventPayload>
+        }
+        findFirst: {
+          args: Prisma.PracticeEventFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PracticeEventPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.PracticeEventFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PracticeEventPayload>
+        }
+        findMany: {
+          args: Prisma.PracticeEventFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PracticeEventPayload>[]
+        }
+        create: {
+          args: Prisma.PracticeEventCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PracticeEventPayload>
+        }
+        createMany: {
+          args: Prisma.PracticeEventCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.PracticeEventDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PracticeEventPayload>
+        }
+        update: {
+          args: Prisma.PracticeEventUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PracticeEventPayload>
+        }
+        deleteMany: {
+          args: Prisma.PracticeEventDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.PracticeEventUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.PracticeEventUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PracticeEventPayload>
+        }
+        aggregate: {
+          args: Prisma.PracticeEventAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePracticeEvent>
+        }
+        groupBy: {
+          args: Prisma.PracticeEventGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PracticeEventGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.PracticeEventCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PracticeEventCountAggregateOutputType> | number
+        }
+      }
+    }
     WrongQuestion: {
       payload: Prisma.$WrongQuestionPayload<ExtArgs>
       fields: Prisma.WrongQuestionFieldRefs
@@ -1612,6 +1684,72 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.UserTagStatsCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.UserTagStatsCountAggregateOutputType> | number
+        }
+      }
+    }
+    UserExamGoal: {
+      payload: Prisma.$UserExamGoalPayload<ExtArgs>
+      fields: Prisma.UserExamGoalFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.UserExamGoalFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserExamGoalPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.UserExamGoalFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserExamGoalPayload>
+        }
+        findFirst: {
+          args: Prisma.UserExamGoalFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserExamGoalPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.UserExamGoalFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserExamGoalPayload>
+        }
+        findMany: {
+          args: Prisma.UserExamGoalFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserExamGoalPayload>[]
+        }
+        create: {
+          args: Prisma.UserExamGoalCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserExamGoalPayload>
+        }
+        createMany: {
+          args: Prisma.UserExamGoalCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.UserExamGoalDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserExamGoalPayload>
+        }
+        update: {
+          args: Prisma.UserExamGoalUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserExamGoalPayload>
+        }
+        deleteMany: {
+          args: Prisma.UserExamGoalDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.UserExamGoalUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.UserExamGoalUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserExamGoalPayload>
+        }
+        aggregate: {
+          args: Prisma.UserExamGoalAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateUserExamGoal>
+        }
+        groupBy: {
+          args: Prisma.UserExamGoalGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UserExamGoalGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.UserExamGoalCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UserExamGoalCountAggregateOutputType> | number
         }
       }
     }
@@ -2011,6 +2149,270 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    KnowledgeSource: {
+      payload: Prisma.$KnowledgeSourcePayload<ExtArgs>
+      fields: Prisma.KnowledgeSourceFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.KnowledgeSourceFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KnowledgeSourcePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.KnowledgeSourceFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KnowledgeSourcePayload>
+        }
+        findFirst: {
+          args: Prisma.KnowledgeSourceFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KnowledgeSourcePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.KnowledgeSourceFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KnowledgeSourcePayload>
+        }
+        findMany: {
+          args: Prisma.KnowledgeSourceFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KnowledgeSourcePayload>[]
+        }
+        create: {
+          args: Prisma.KnowledgeSourceCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KnowledgeSourcePayload>
+        }
+        createMany: {
+          args: Prisma.KnowledgeSourceCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.KnowledgeSourceDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KnowledgeSourcePayload>
+        }
+        update: {
+          args: Prisma.KnowledgeSourceUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KnowledgeSourcePayload>
+        }
+        deleteMany: {
+          args: Prisma.KnowledgeSourceDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.KnowledgeSourceUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.KnowledgeSourceUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KnowledgeSourcePayload>
+        }
+        aggregate: {
+          args: Prisma.KnowledgeSourceAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateKnowledgeSource>
+        }
+        groupBy: {
+          args: Prisma.KnowledgeSourceGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.KnowledgeSourceGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.KnowledgeSourceCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.KnowledgeSourceCountAggregateOutputType> | number
+        }
+      }
+    }
+    KnowledgeChunk: {
+      payload: Prisma.$KnowledgeChunkPayload<ExtArgs>
+      fields: Prisma.KnowledgeChunkFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.KnowledgeChunkFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KnowledgeChunkPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.KnowledgeChunkFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KnowledgeChunkPayload>
+        }
+        findFirst: {
+          args: Prisma.KnowledgeChunkFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KnowledgeChunkPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.KnowledgeChunkFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KnowledgeChunkPayload>
+        }
+        findMany: {
+          args: Prisma.KnowledgeChunkFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KnowledgeChunkPayload>[]
+        }
+        create: {
+          args: Prisma.KnowledgeChunkCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KnowledgeChunkPayload>
+        }
+        createMany: {
+          args: Prisma.KnowledgeChunkCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.KnowledgeChunkDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KnowledgeChunkPayload>
+        }
+        update: {
+          args: Prisma.KnowledgeChunkUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KnowledgeChunkPayload>
+        }
+        deleteMany: {
+          args: Prisma.KnowledgeChunkDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.KnowledgeChunkUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.KnowledgeChunkUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KnowledgeChunkPayload>
+        }
+        aggregate: {
+          args: Prisma.KnowledgeChunkAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateKnowledgeChunk>
+        }
+        groupBy: {
+          args: Prisma.KnowledgeChunkGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.KnowledgeChunkGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.KnowledgeChunkCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.KnowledgeChunkCountAggregateOutputType> | number
+        }
+      }
+    }
+    KnowledgeChatSession: {
+      payload: Prisma.$KnowledgeChatSessionPayload<ExtArgs>
+      fields: Prisma.KnowledgeChatSessionFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.KnowledgeChatSessionFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KnowledgeChatSessionPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.KnowledgeChatSessionFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KnowledgeChatSessionPayload>
+        }
+        findFirst: {
+          args: Prisma.KnowledgeChatSessionFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KnowledgeChatSessionPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.KnowledgeChatSessionFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KnowledgeChatSessionPayload>
+        }
+        findMany: {
+          args: Prisma.KnowledgeChatSessionFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KnowledgeChatSessionPayload>[]
+        }
+        create: {
+          args: Prisma.KnowledgeChatSessionCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KnowledgeChatSessionPayload>
+        }
+        createMany: {
+          args: Prisma.KnowledgeChatSessionCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.KnowledgeChatSessionDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KnowledgeChatSessionPayload>
+        }
+        update: {
+          args: Prisma.KnowledgeChatSessionUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KnowledgeChatSessionPayload>
+        }
+        deleteMany: {
+          args: Prisma.KnowledgeChatSessionDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.KnowledgeChatSessionUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.KnowledgeChatSessionUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KnowledgeChatSessionPayload>
+        }
+        aggregate: {
+          args: Prisma.KnowledgeChatSessionAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateKnowledgeChatSession>
+        }
+        groupBy: {
+          args: Prisma.KnowledgeChatSessionGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.KnowledgeChatSessionGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.KnowledgeChatSessionCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.KnowledgeChatSessionCountAggregateOutputType> | number
+        }
+      }
+    }
+    KnowledgeChatMessage: {
+      payload: Prisma.$KnowledgeChatMessagePayload<ExtArgs>
+      fields: Prisma.KnowledgeChatMessageFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.KnowledgeChatMessageFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KnowledgeChatMessagePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.KnowledgeChatMessageFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KnowledgeChatMessagePayload>
+        }
+        findFirst: {
+          args: Prisma.KnowledgeChatMessageFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KnowledgeChatMessagePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.KnowledgeChatMessageFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KnowledgeChatMessagePayload>
+        }
+        findMany: {
+          args: Prisma.KnowledgeChatMessageFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KnowledgeChatMessagePayload>[]
+        }
+        create: {
+          args: Prisma.KnowledgeChatMessageCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KnowledgeChatMessagePayload>
+        }
+        createMany: {
+          args: Prisma.KnowledgeChatMessageCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.KnowledgeChatMessageDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KnowledgeChatMessagePayload>
+        }
+        update: {
+          args: Prisma.KnowledgeChatMessageUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KnowledgeChatMessagePayload>
+        }
+        deleteMany: {
+          args: Prisma.KnowledgeChatMessageDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.KnowledgeChatMessageUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.KnowledgeChatMessageUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KnowledgeChatMessagePayload>
+        }
+        aggregate: {
+          args: Prisma.KnowledgeChatMessageAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateKnowledgeChatMessage>
+        }
+        groupBy: {
+          args: Prisma.KnowledgeChatMessageGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.KnowledgeChatMessageGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.KnowledgeChatMessageCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.KnowledgeChatMessageCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -2124,6 +2526,11 @@ export const QuestionTagScalarFieldEnum = {
   sortOrder: 'sortOrder',
   isMaterialOnly: 'isMaterialOnly',
   isActive: 'isActive',
+  depth: 'depth',
+  path: 'path',
+  isLeaf: 'isLeaf',
+  taxonomySource: 'taxonomySource',
+  taxonomyVersion: 'taxonomyVersion',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -2187,6 +2594,7 @@ export const PaperScalarFieldEnum = {
   province: 'province',
   examType: 'examType',
   difficultyScore: 'difficultyScore',
+  durationSeconds: 'durationSeconds',
   isVipOnly: 'isVipOnly',
   isActive: 'isActive',
   createdAt: 'createdAt',
@@ -2238,6 +2646,8 @@ export const PracticeSessionScalarFieldEnum = {
   userId: 'userId',
   mode: 'mode',
   status: 'status',
+  purpose: 'purpose',
+  timingMode: 'timingMode',
   title: 'title',
   paperId: 'paperId',
   sourceTagIdsJson: 'sourceTagIdsJson',
@@ -2248,7 +2658,13 @@ export const PracticeSessionScalarFieldEnum = {
   wrongCount: 'wrongCount',
   unansweredCount: 'unansweredCount',
   elapsedSeconds: 'elapsedSeconds',
+  timeLimitSeconds: 'timeLimitSeconds',
+  pauseCount: 'pauseCount',
+  pausedSeconds: 'pausedSeconds',
   accuracy: 'accuracy',
+  score: 'score',
+  maxScore: 'maxScore',
+  reflectionText: 'reflectionText',
   submittedAt: 'submittedAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -2265,6 +2681,7 @@ export const PracticeAnswerScalarFieldEnum = {
   answer: 'answer',
   isCorrect: 'isCorrect',
   timeSpentSeconds: 'timeSpentSeconds',
+  decisionNote: 'decisionNote',
   sortOrder: 'sortOrder',
   answeredAt: 'answeredAt',
   createdAt: 'createdAt',
@@ -2272,6 +2689,20 @@ export const PracticeAnswerScalarFieldEnum = {
 } as const
 
 export type PracticeAnswerScalarFieldEnum = (typeof PracticeAnswerScalarFieldEnum)[keyof typeof PracticeAnswerScalarFieldEnum]
+
+
+export const PracticeEventScalarFieldEnum = {
+  id: 'id',
+  sessionId: 'sessionId',
+  userId: 'userId',
+  questionId: 'questionId',
+  type: 'type',
+  payloadJson: 'payloadJson',
+  occurredAt: 'occurredAt',
+  createdAt: 'createdAt'
+} as const
+
+export type PracticeEventScalarFieldEnum = (typeof PracticeEventScalarFieldEnum)[keyof typeof PracticeEventScalarFieldEnum]
 
 
 export const WrongQuestionScalarFieldEnum = {
@@ -2314,10 +2745,27 @@ export const UserTagStatsScalarFieldEnum = {
   wrongCount: 'wrongCount',
   accuracy: 'accuracy',
   lastPracticedAt: 'lastPracticedAt',
+  foundationStatus: 'foundationStatus',
+  foundationRoundCount: 'foundationRoundCount',
+  lastRoundCorrect: 'lastRoundCorrect',
+  bestRoundCorrect: 'bestRoundCorrect',
+  passedAt: 'passedAt',
   updatedAt: 'updatedAt'
 } as const
 
 export type UserTagStatsScalarFieldEnum = (typeof UserTagStatsScalarFieldEnum)[keyof typeof UserTagStatsScalarFieldEnum]
+
+
+export const UserExamGoalScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  targetPaperId: 'targetPaperId',
+  baselineSessionId: 'baselineSessionId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type UserExamGoalScalarFieldEnum = (typeof UserExamGoalScalarFieldEnum)[keyof typeof UserExamGoalScalarFieldEnum]
 
 
 export const AgentConfigScalarFieldEnum = {
@@ -2419,6 +2867,70 @@ export const ImportJobScalarFieldEnum = {
 export type ImportJobScalarFieldEnum = (typeof ImportJobScalarFieldEnum)[keyof typeof ImportJobScalarFieldEnum]
 
 
+export const KnowledgeSourceScalarFieldEnum = {
+  id: 'id',
+  type: 'type',
+  title: 'title',
+  bvid: 'bvid',
+  partNo: 'partNo',
+  sourceFile: 'sourceFile',
+  contentHash: 'contentHash',
+  durationMs: 'durationMs',
+  status: 'status',
+  lastError: 'lastError',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type KnowledgeSourceScalarFieldEnum = (typeof KnowledgeSourceScalarFieldEnum)[keyof typeof KnowledgeSourceScalarFieldEnum]
+
+
+export const KnowledgeChunkScalarFieldEnum = {
+  id: 'id',
+  sourceId: 'sourceId',
+  chunkNo: 'chunkNo',
+  startMs: 'startMs',
+  endMs: 'endMs',
+  rawText: 'rawText',
+  cleanText: 'cleanText',
+  keywords: 'keywords',
+  category: 'category',
+  tagId: 'tagId',
+  contentHash: 'contentHash',
+  vectorPointId: 'vectorPointId',
+  indexStatus: 'indexStatus',
+  indexError: 'indexError',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type KnowledgeChunkScalarFieldEnum = (typeof KnowledgeChunkScalarFieldEnum)[keyof typeof KnowledgeChunkScalarFieldEnum]
+
+
+export const KnowledgeChatSessionScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  title: 'title',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type KnowledgeChatSessionScalarFieldEnum = (typeof KnowledgeChatSessionScalarFieldEnum)[keyof typeof KnowledgeChatSessionScalarFieldEnum]
+
+
+export const KnowledgeChatMessageScalarFieldEnum = {
+  id: 'id',
+  sessionId: 'sessionId',
+  role: 'role',
+  content: 'content',
+  citationsJson: 'citationsJson',
+  metadataJson: 'metadataJson',
+  createdAt: 'createdAt'
+} as const
+
+export type KnowledgeChatMessageScalarFieldEnum = (typeof KnowledgeChatMessageScalarFieldEnum)[keyof typeof KnowledgeChatMessageScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -2508,7 +3020,10 @@ export const QuestionTagOrderByRelevanceFieldEnum = {
   id: 'id',
   name: 'name',
   slug: 'slug',
-  parentId: 'parentId'
+  parentId: 'parentId',
+  path: 'path',
+  taxonomySource: 'taxonomySource',
+  taxonomyVersion: 'taxonomyVersion'
 } as const
 
 export type QuestionTagOrderByRelevanceFieldEnum = (typeof QuestionTagOrderByRelevanceFieldEnum)[keyof typeof QuestionTagOrderByRelevanceFieldEnum]
@@ -2610,7 +3125,8 @@ export const PracticeSessionOrderByRelevanceFieldEnum = {
   id: 'id',
   userId: 'userId',
   title: 'title',
-  paperId: 'paperId'
+  paperId: 'paperId',
+  reflectionText: 'reflectionText'
 } as const
 
 export type PracticeSessionOrderByRelevanceFieldEnum = (typeof PracticeSessionOrderByRelevanceFieldEnum)[keyof typeof PracticeSessionOrderByRelevanceFieldEnum]
@@ -2621,10 +3137,22 @@ export const PracticeAnswerOrderByRelevanceFieldEnum = {
   sessionId: 'sessionId',
   userId: 'userId',
   questionId: 'questionId',
-  answer: 'answer'
+  answer: 'answer',
+  decisionNote: 'decisionNote'
 } as const
 
 export type PracticeAnswerOrderByRelevanceFieldEnum = (typeof PracticeAnswerOrderByRelevanceFieldEnum)[keyof typeof PracticeAnswerOrderByRelevanceFieldEnum]
+
+
+export const PracticeEventOrderByRelevanceFieldEnum = {
+  id: 'id',
+  sessionId: 'sessionId',
+  userId: 'userId',
+  questionId: 'questionId',
+  type: 'type'
+} as const
+
+export type PracticeEventOrderByRelevanceFieldEnum = (typeof PracticeEventOrderByRelevanceFieldEnum)[keyof typeof PracticeEventOrderByRelevanceFieldEnum]
 
 
 export const WrongQuestionOrderByRelevanceFieldEnum = {
@@ -2653,6 +3181,16 @@ export const UserTagStatsOrderByRelevanceFieldEnum = {
 } as const
 
 export type UserTagStatsOrderByRelevanceFieldEnum = (typeof UserTagStatsOrderByRelevanceFieldEnum)[keyof typeof UserTagStatsOrderByRelevanceFieldEnum]
+
+
+export const UserExamGoalOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  targetPaperId: 'targetPaperId',
+  baselineSessionId: 'baselineSessionId'
+} as const
+
+export type UserExamGoalOrderByRelevanceFieldEnum = (typeof UserExamGoalOrderByRelevanceFieldEnum)[keyof typeof UserExamGoalOrderByRelevanceFieldEnum]
 
 
 export const AgentConfigOrderByRelevanceFieldEnum = {
@@ -2729,6 +3267,56 @@ export const ImportJobOrderByRelevanceFieldEnum = {
 } as const
 
 export type ImportJobOrderByRelevanceFieldEnum = (typeof ImportJobOrderByRelevanceFieldEnum)[keyof typeof ImportJobOrderByRelevanceFieldEnum]
+
+
+export const KnowledgeSourceOrderByRelevanceFieldEnum = {
+  id: 'id',
+  type: 'type',
+  title: 'title',
+  bvid: 'bvid',
+  sourceFile: 'sourceFile',
+  contentHash: 'contentHash',
+  status: 'status',
+  lastError: 'lastError'
+} as const
+
+export type KnowledgeSourceOrderByRelevanceFieldEnum = (typeof KnowledgeSourceOrderByRelevanceFieldEnum)[keyof typeof KnowledgeSourceOrderByRelevanceFieldEnum]
+
+
+export const KnowledgeChunkOrderByRelevanceFieldEnum = {
+  id: 'id',
+  sourceId: 'sourceId',
+  rawText: 'rawText',
+  cleanText: 'cleanText',
+  keywords: 'keywords',
+  category: 'category',
+  tagId: 'tagId',
+  contentHash: 'contentHash',
+  vectorPointId: 'vectorPointId',
+  indexStatus: 'indexStatus',
+  indexError: 'indexError'
+} as const
+
+export type KnowledgeChunkOrderByRelevanceFieldEnum = (typeof KnowledgeChunkOrderByRelevanceFieldEnum)[keyof typeof KnowledgeChunkOrderByRelevanceFieldEnum]
+
+
+export const KnowledgeChatSessionOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  title: 'title'
+} as const
+
+export type KnowledgeChatSessionOrderByRelevanceFieldEnum = (typeof KnowledgeChatSessionOrderByRelevanceFieldEnum)[keyof typeof KnowledgeChatSessionOrderByRelevanceFieldEnum]
+
+
+export const KnowledgeChatMessageOrderByRelevanceFieldEnum = {
+  id: 'id',
+  sessionId: 'sessionId',
+  role: 'role',
+  content: 'content'
+} as const
+
+export type KnowledgeChatMessageOrderByRelevanceFieldEnum = (typeof KnowledgeChatMessageOrderByRelevanceFieldEnum)[keyof typeof KnowledgeChatMessageOrderByRelevanceFieldEnum]
 
 
 
@@ -2815,6 +3403,20 @@ export type EnumPracticeStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$P
 
 
 /**
+ * Reference to a field of type 'PracticePurpose'
+ */
+export type EnumPracticePurposeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PracticePurpose'>
+    
+
+
+/**
+ * Reference to a field of type 'PracticeTimingMode'
+ */
+export type EnumPracticeTimingModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PracticeTimingMode'>
+    
+
+
+/**
  * Reference to a field of type 'Json'
  */
 export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
@@ -2825,6 +3427,13 @@ export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'J
  * Reference to a field of type 'QueryMode'
  */
 export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+    
+
+
+/**
+ * Reference to a field of type 'FoundationStatus'
+ */
+export type EnumFoundationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FoundationStatus'>
     
 
 
@@ -2966,15 +3575,21 @@ export type GlobalOmitConfig = {
   dailyPracticeQuestion?: Prisma.DailyPracticeQuestionOmit
   practiceSession?: Prisma.PracticeSessionOmit
   practiceAnswer?: Prisma.PracticeAnswerOmit
+  practiceEvent?: Prisma.PracticeEventOmit
   wrongQuestion?: Prisma.WrongQuestionOmit
   userStatsSnapshot?: Prisma.UserStatsSnapshotOmit
   userTagStats?: Prisma.UserTagStatsOmit
+  userExamGoal?: Prisma.UserExamGoalOmit
   agentConfig?: Prisma.AgentConfigOmit
   agentRecommendation?: Prisma.AgentRecommendationOmit
   agentTutorMessage?: Prisma.AgentTutorMessageOmit
   questionMistakeReview?: Prisma.QuestionMistakeReviewOmit
   agentFeedback?: Prisma.AgentFeedbackOmit
   importJob?: Prisma.ImportJobOmit
+  knowledgeSource?: Prisma.KnowledgeSourceOmit
+  knowledgeChunk?: Prisma.KnowledgeChunkOmit
+  knowledgeChatSession?: Prisma.KnowledgeChatSessionOmit
+  knowledgeChatMessage?: Prisma.KnowledgeChatMessageOmit
 }
 
 /* Types for Logging */

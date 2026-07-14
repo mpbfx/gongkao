@@ -26,6 +26,9 @@ import {
 import { requireUser } from "@/lib/auth/guards";
 import { cn } from "@/lib/utils";
 import { getLearningSituation } from "@/server/services/learning-situation";
+import { getExamGoal } from "@/server/services/exam-goals";
+import { getFoundationProgress } from "@/server/services/foundation-training";
+import { getNextTrainingAction } from "@/server/services/training-plan";
 
 function formatDuration(seconds: number) {
   if (seconds <= 0) return "—";
@@ -81,7 +84,12 @@ export default async function DashboardPage() {
 
   if (!user) redirect("/login?callbackUrl=/dashboard");
 
-  const situation = await getLearningSituation(user);
+  const [situation, examGoal, foundation, nextAction] = await Promise.all([
+    getLearningSituation(user),
+    getExamGoal(user),
+    getFoundationProgress(user),
+    getNextTrainingAction(user),
+  ]);
   const hasTrend = situation.accuracyTrend.length >= 2;
   const hasHeatmap = situation.knowledgeHeatmap.tags.length > 0;
   const hasModes = situation.modeComparison.length > 0;
@@ -112,9 +120,28 @@ export default async function DashboardPage() {
           <nav className="flex flex-wrap gap-2" aria-label="学习情况快捷操作">
             <Link href="/question-bank/wrong" className={actionClass}>复盘错题</Link>
             <Link href="/question-bank/special" className={actionClass}>按薄弱点组卷</Link>
+            <Link href="/question-bank/papers?purpose=TIME_PRESSURE" className={actionClass}>减时模拟</Link>
             <Link href="/question-bank/records" className={actionClass}>查看历史记录</Link>
           </nav>
         </header>
+
+        <section className="grid border-y-2 border-foreground bg-card/45 lg:grid-cols-[minmax(0,1fr)_16rem_16rem_auto]">
+          <div className="border-b border-foreground/20 p-4 lg:border-b-0 lg:border-r">
+            <div className="text-[0.65rem] tracking-[0.18em] text-muted-foreground">当前目标</div>
+            <div className="student-heading mt-1 text-lg font-semibold">{examGoal?.targetPaper.title ?? "尚未设置目标考试"}</div>
+          </div>
+          <div className="border-b border-foreground/20 p-4 lg:border-b-0 lg:border-r">
+            <div className="text-[0.65rem] tracking-[0.18em] text-muted-foreground">BENCHMARK</div>
+            <div className="student-heading mt-1 text-lg font-semibold">{examGoal?.baselineSession ? `${examGoal.baselineSession.score ?? "0"}/${examGoal.baselineSession.maxScore ?? "0"} 分` : "待完成"}</div>
+          </div>
+          <div className="border-b border-foreground/20 p-4 lg:border-b-0 lg:border-r">
+            <div className="text-[0.65rem] tracking-[0.18em] text-muted-foreground">筑基进度</div>
+            <div className="student-heading mt-1 text-lg font-semibold">{foundation.passedCount}/{foundation.totalCount} 个叶子类型</div>
+          </div>
+          <div className="flex items-center p-4">
+            <Link href={nextAction.href} className={cn(buttonVariants(), "w-full")}>{nextAction.label}<ArrowRight data-icon="inline-end" /></Link>
+          </div>
+        </section>
 
         <dl className="learning-kpi-strip grid grid-cols-2 overflow-hidden border-y-2 border-foreground sm:grid-cols-3 lg:grid-cols-5">
           {kpis.map(({ label, value, suffix, icon: Icon }) => (

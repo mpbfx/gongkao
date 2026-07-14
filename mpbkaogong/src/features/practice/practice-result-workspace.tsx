@@ -13,6 +13,8 @@ type ResultSummary = {
   unansweredCount: number;
   accuracy: string | null;
   elapsedSeconds: number;
+  score?: string | null;
+  maxScore?: string | null;
 };
 
 export function PracticeResultWorkspace({

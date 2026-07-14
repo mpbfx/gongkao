@@ -11,7 +11,7 @@ import {
   beginTutorTurn,
   getTutorHistory,
   markTutorTurn,
-  persistTutorSuccess,
+  persistTutorChatSuccess,
 } from "@/server/agent/tutor/persistence/messages";
 import { runTutorAgent, TutorRuntimeError } from "@/server/agent/tutor/runtime/run-tutor-agent";
 import { type TutorStreamEvent } from "@/server/agent/tutor/schemas/tutor-schemas";
@@ -38,12 +38,12 @@ async function executeTutorTurn(input: TutorInput, emit: Emit, signal?: AbortSig
       prompt: input.prompt,
       signal,
       emit,
+      requireReview: false,
     });
-    const assistantMessage = await persistTutorSuccess({
+    const assistantMessage = await persistTutorChatSuccess({
       userId: input.user.id,
       context,
       answer: result.answer,
-      review: result.review,
       userMessageId: userMessage.id,
       runtime: { ...result, turnId },
     });
@@ -51,7 +51,7 @@ async function executeTutorTurn(input: TutorInput, emit: Emit, signal?: AbortSig
     await emit({
       type: "done",
       messageId: assistantMessage.id,
-      suggestedPrompts: result.review.suggestedPrompts,
+      suggestedPrompts: ["为什么不选我选的这个？", "有没有更快的做法？", "这类题下次怎么判断？"],
       runtime: "pi",
       durationMs: result.durationMs,
     });

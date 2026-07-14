@@ -5,7 +5,6 @@ import { AppShell } from "@/components/layout/app-shell";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { StudentPage } from "@/components/student/page-building-blocks";
-import { DailyPracticeAction } from "@/features/daily-practice/daily-practice-action";
 import { getCurrentUser } from "@/lib/auth/guards";
 import { cn } from "@/lib/utils";
 import { getLearningOverview } from "@/server/services/learning-overview";
@@ -39,19 +38,23 @@ export default async function Home() {
                 <span className="h-px w-12 bg-primary" />
               </div>
               <h1 className="student-heading mt-5 max-w-3xl text-[2.8rem] font-semibold leading-[1.08] tracking-[-0.04em] md:text-[4rem]">
-                {user ? dailyPractice?.title ?? "从一套真题开始今天的训练" : "把每一次练习，都校准到提分上"}
+                {user ? overview?.primaryAction.title ?? dailyPractice?.title ?? "从一套真题开始今天的训练" : "把每一次练习，都校准到提分上"}
               </h1>
               <p className="mt-5 max-w-2xl text-base leading-8 text-muted-foreground">
                 {user
-                  ? dailyPractice
-                    ? `${dailyPractice.questionCount} 题。答案和草稿会自动保存，完成后直接进入解析与错题复盘。`
-                    : "今日暂未配置每日一练，可以直接选择一套真题或进入错题复盘。"
+                  ? overview?.primaryAction.description
+                    ?? (dailyPractice
+                      ? `${dailyPractice.questionCount} 题。答案和草稿会自动保存，完成后直接进入解析与错题复盘。`
+                      : "今日暂未配置每日一练，可以直接选择一套真题或进入错题复盘。")
                   : "以考点为尺，以数据为镜。完成练习、复盘错题，把时间用在真正影响得分的地方。"}
               </p>
 
               <div className="mt-8 flex flex-wrap items-center gap-3">
                 {user ? (
-                  <DailyPracticeAction dailyPractice={dailyPractice} className="h-12 px-6 text-base" />
+                  <Link href={overview?.primaryAction.href ?? "/question-bank/papers"} className={cn(buttonVariants(), "h-12 px-6 text-base")}>
+                    {overview?.primaryAction.label ?? "开始训练"}
+                    <ArrowRight data-icon="inline-end" />
+                  </Link>
                 ) : (
                   <Link href="/login" className={cn(buttonVariants(), "h-12 px-6 text-base")}>
                     登录开始

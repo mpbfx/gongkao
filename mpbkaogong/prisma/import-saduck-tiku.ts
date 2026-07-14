@@ -191,16 +191,25 @@ function sectionForIndex(sections: Section[], index: number) {
 }
 
 function flattenTags(tags: SaduckTag[]) {
-  const rows: Array<SaduckTag & { parentName: string | null }> = [];
+  const rows: Array<
+    SaduckTag & { parentName: string | null; depth: number; path: string; isLeaf: boolean }
+  > = [];
 
-  function visit(nodes: SaduckTag[], parentName: string | null) {
+  function visit(nodes: SaduckTag[], parentName: string | null, depth: number, parentPath: string) {
     for (const tag of nodes) {
-      rows.push({ ...tag, parentName });
-      visit(tag.children ?? [], tag.id);
+      const tagPath = parentPath ? `${parentPath}/${tag.id}` : tag.id;
+      rows.push({
+        ...tag,
+        parentName,
+        depth,
+        path: tagPath,
+        isLeaf: (tag.children?.length ?? 0) === 0,
+      });
+      visit(tag.children ?? [], tag.id, depth + 1, tagPath);
     }
   }
 
-  visit(tags, null);
+  visit(tags, null, 0, "");
   return rows;
 }
 
@@ -237,6 +246,10 @@ async function ensureTags() {
         name: tag.id,
         sortOrder: tag.sort ?? 0,
         isMaterialOnly: Boolean(tag.ise),
+        depth: tag.depth,
+        path: tag.path,
+        isLeaf: tag.isLeaf,
+        taxonomySource: "saduck",
         isActive: true,
       },
       create: {
@@ -245,6 +258,10 @@ async function ensureTags() {
         slug: id,
         sortOrder: tag.sort ?? 0,
         isMaterialOnly: Boolean(tag.ise),
+        depth: tag.depth,
+        path: tag.path,
+        isLeaf: tag.isLeaf,
+        taxonomySource: "saduck",
         isActive: true,
       },
     });
@@ -260,6 +277,10 @@ async function ensureTags() {
         parentId: tag.parentName ? tagIdByName.get(tag.parentName) : null,
         sortOrder: tag.sort ?? 0,
         isMaterialOnly: Boolean(tag.ise),
+        depth: tag.depth,
+        path: tag.path,
+        isLeaf: tag.isLeaf,
+        taxonomySource: "saduck",
         isActive: true,
       },
       create: {
@@ -269,6 +290,10 @@ async function ensureTags() {
         parentId: tag.parentName ? tagIdByName.get(tag.parentName) : null,
         sortOrder: tag.sort ?? 0,
         isMaterialOnly: Boolean(tag.ise),
+        depth: tag.depth,
+        path: tag.path,
+        isLeaf: tag.isLeaf,
+        taxonomySource: "saduck",
         isActive: true,
       },
     });
@@ -287,6 +312,9 @@ async function ensureFallbackTag(name: string, tagIdByName: Map<string, string>)
     where: { id },
     update: {
       name,
+      path: name,
+      isLeaf: true,
+      taxonomySource: "saduck",
       isActive: true,
     },
     create: {
@@ -294,6 +322,9 @@ async function ensureFallbackTag(name: string, tagIdByName: Map<string, string>)
       name,
       slug: id,
       sortOrder: 1000,
+      path: name,
+      isLeaf: true,
+      taxonomySource: "saduck",
       isActive: true,
     },
   });
