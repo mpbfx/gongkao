@@ -81,7 +81,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
         <div className="absolute right-20 top-40 size-48 rotate-[-12deg] rounded-full border-2 border-primary/35 shadow-[inset_0_0_0_1rem_var(--sidebar)]" aria-hidden="true" />
       </section>
       <div className="relative flex w-full items-center justify-center px-4 py-10 lg:px-12">
-      <section className="relative w-full max-w-sm border border-foreground/35 bg-card p-6 shadow-[0_24px_60px_rgb(42_34_24/0.14)] lg:max-w-md lg:rotate-[-0.7deg] lg:p-10">
+      <section className="relative w-full max-w-sm border border-foreground/35 bg-card p-6 shadow-[0_24px_60px_rgb(42_34_24/0.14)] lg:max-w-md lg:p-10">
         <div className="absolute -top-5 left-1/2 h-10 w-28 -translate-x-1/2 border border-foreground/25 bg-[#b58a4f] shadow-md" aria-hidden="true" />
         <div className="border-b-2 border-foreground pb-5">
           <span className="text-[0.62rem] font-semibold tracking-[0.26em] text-primary">STUDY FILE / ACCESS</span>

@@ -1,4 +1,4 @@
-import { ArrowRight, FileSearch, Filter, Gauge, MapPin } from "lucide-react";
+import { ArrowRight, FileSearch, Gauge, MapPin } from "lucide-react";
 import Link from "next/link";
 
 import { AppShell } from "@/components/layout/app-shell";
@@ -14,6 +14,7 @@ import {
   PageHeader,
   StudentPage,
 } from "@/components/student/page-building-blocks";
+import { FilterPopover } from "@/components/student/interaction-overlays";
 import { PaperStartButton } from "@/features/papers/paper-start-button";
 import { PaperFilterForm } from "@/features/papers/paper-filter-form";
 import { cn } from "@/lib/utils";
@@ -84,12 +85,12 @@ export default async function PapersPage({ searchParams }: PapersPageProps) {
 
   return (
     <AppShell>
-      <StudentPage wide>
+      <StudentPage layout="wide">
         <PageHeader
-          eyebrow="EXAM ARCHIVE / 历年试卷"
-          title="历年试卷档案馆"
-          description="收录各地历年真题，按考情分门别类。以真题为纲，以实战为要。"
-          actions={
+          eyebrow="历年试卷"
+          title="选择一套真题开始训练"
+          summary={<span>当前收录 {data.pagination.total} 套试卷</span>}
+          secondaryActions={
             <Link href="/question-bank/special" className={cn(buttonVariants({ variant: "outline" }))}>
               去专项提分
               <ArrowRight data-icon="inline-end" />
@@ -97,36 +98,18 @@ export default async function PapersPage({ searchParams }: PapersPageProps) {
           }
         />
 
-        <details
-          open={hasActiveFilters}
-          className="group rounded-lg border bg-card shadow-xs md:hidden"
-        >
-          <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none">
-            <span className="flex items-center gap-2 font-medium">
-              <Filter className="size-4" aria-hidden="true" />
-              筛选试卷
-            </span>
-            <Badge variant={hasActiveFilters ? "info" : "outline"}>
-              {hasActiveFilters ? "已筛选" : "展开"}
-            </Badge>
-          </summary>
-          <div className="border-t p-4">
-            <PaperFilterForm query={query} filters={data.filters} idPrefix="mobile" />
+        <div className="flex min-h-11 flex-wrap items-center justify-between gap-3 border-y border-foreground/35 py-2">
+          <div className="flex flex-wrap items-center gap-2">
+            {query.year ? <Badge variant="info">{query.year} 年</Badge> : null}
+            {query.province ? <Badge variant="outline">{query.province}</Badge> : null}
+            {query.examType ? <Badge variant="outline">{query.examType}</Badge> : null}
+            {!hasActiveFilters ? <span className="text-sm text-muted-foreground">显示全部试卷</span> : null}
+            {hasActiveFilters ? <Link href="/question-bank/papers" className="text-sm text-primary hover:underline">清除筛选</Link> : null}
           </div>
-        </details>
-
-        <div className="grid gap-6 lg:grid-cols-[17rem_minmax(0,1fr)] lg:items-start">
-          <aside className="hidden border-r border-foreground/30 pr-6 lg:sticky lg:top-24 lg:block">
-            <div className="mb-5 border-b-2 border-foreground pb-4">
-              <h2 className="student-heading flex items-center gap-2 text-xl font-semibold"><Filter className="size-5 text-primary" /> 档案筛选</h2>
-              <p className="mt-2 text-xs leading-5 text-muted-foreground">从年份、地区与考试类别定位卷宗。</p>
-            </div>
-            <PaperFilterForm query={query} filters={data.filters} vertical idPrefix="desktop" />
-            <div className="mt-7 border-y border-foreground/25 py-4 text-sm">
-              <span className="text-muted-foreground">当前收录</span>
-              <div className="student-heading mt-1 text-3xl text-primary">{data.pagination.total}<span className="ml-1 text-sm text-foreground">份档案</span></div>
-            </div>
-          </aside>
+          <FilterPopover label="筛选试卷" activeCount={[query.year, query.province, query.examType].filter(Boolean).length}>
+            <PaperFilterForm query={query} filters={data.filters} vertical idPrefix="popover" />
+          </FilterPopover>
+        </div>
 
         {data.items.length > 0 ? (
           <section className="flex flex-col border-t-2 border-foreground lg:gap-0">
@@ -194,7 +177,6 @@ export default async function PapersPage({ searchParams }: PapersPageProps) {
             </Link>
           </EmptyState>
         )}
-        </div>
 
         {data.pagination.totalPages > 1 ? (
           <div className="flex items-center justify-between gap-3">

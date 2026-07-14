@@ -37,17 +37,24 @@ type BadgeVariant = VariantProps<typeof badgeVariants>["variant"];
 export function StudentPage({
   children,
   wide = false,
+  layout,
   className,
 }: {
   children: React.ReactNode;
   wide?: boolean;
+  layout?: "content" | "wide" | "workspace" | "focus";
   className?: string;
 }) {
+  const resolvedLayout = layout ?? (wide ? "wide" : "content");
+
   return (
     <main
       className={cn(
         "student-page mx-auto flex w-full flex-1 flex-col gap-5 px-4 py-5 pb-24 md:px-6 md:py-6 lg:gap-7 lg:px-9 lg:pb-12 lg:pt-9",
-        wide ? "max-w-[96rem]" : "max-w-[82rem]",
+        resolvedLayout === "content" && "max-w-[90rem]",
+        resolvedLayout === "wide" && "max-w-[96rem]",
+        resolvedLayout === "workspace" && "max-w-none lg:px-5 lg:py-5",
+        resolvedLayout === "focus" && "max-w-[88rem] lg:px-6 lg:py-5",
         className
       )}
     >
@@ -60,38 +67,52 @@ export function PageHeader({
   eyebrow,
   title,
   description,
+  summary,
   actions,
+  primaryAction,
+  secondaryActions,
   compact = false,
 }: {
   eyebrow?: string;
   title: string;
   description?: string;
+  summary?: React.ReactNode;
   actions?: React.ReactNode;
+  primaryAction?: React.ReactNode;
+  secondaryActions?: React.ReactNode;
   compact?: boolean;
 }) {
+  const headerActions = primaryAction || secondaryActions ? (
+    <>
+      {secondaryActions}
+      {primaryAction}
+    </>
+  ) : actions;
+
   return (
-    <section className={cn("editorial-page-header relative flex flex-col border-b-2 border-foreground md:flex-row md:items-end md:justify-between", compact ? "gap-2 pb-3" : "gap-4 pb-5 lg:pb-7")}>
+    <section className={cn("editorial-page-header relative flex flex-col border-b-2 border-foreground md:flex-row md:items-end md:justify-between", compact ? "gap-2 pb-3" : "gap-4 pb-5 lg:pb-6")}>
       <div className={cn("flex min-w-0 flex-col", compact ? "gap-1.5" : "gap-2")}>
         {eyebrow ? (
-          <span className="editorial-kicker w-fit text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-primary">{eyebrow}</span>
+          <span className="editorial-kicker w-fit text-xs font-semibold text-primary">{eyebrow}</span>
         ) : null}
         <div className="flex flex-col gap-1.5">
           <h1
             className={cn(
               "student-heading font-semibold tracking-tight text-foreground",
-              compact ? "text-xl md:text-2xl" : "text-2xl md:text-3xl lg:max-w-5xl lg:text-[3.5rem] lg:leading-[1.05]"
+              compact ? "text-xl md:text-2xl" : "text-2xl md:text-3xl lg:max-w-5xl lg:text-[2.65rem] lg:leading-[1.08]"
             )}
           >
             {title}
           </h1>
           {description ? (
-            <p className="max-w-3xl text-sm leading-6 text-muted-foreground lg:text-base lg:leading-7">
+            <p className="max-w-3xl text-sm leading-6 text-muted-foreground">
               {description}
             </p>
           ) : null}
+          {summary ? <div className="mt-1 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted-foreground">{summary}</div> : null}
         </div>
       </div>
-      {actions ? <div className="flex shrink-0 flex-wrap items-center gap-2">{actions}</div> : null}
+      {headerActions ? <div className="flex shrink-0 flex-wrap items-center gap-2">{headerActions}</div> : null}
     </section>
   );
 }

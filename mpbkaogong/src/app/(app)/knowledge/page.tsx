@@ -19,12 +19,11 @@ export default async function KnowledgePage({ searchParams }: { searchParams?: P
 
   return (
     <AppShell header={{ title: "课程知识", subtitle: "从课程原文中检索并引用" }}>
-      <StudentPage wide className="gap-3 py-4 lg:py-4">
+      <StudentPage layout="workspace" className="gap-3 py-4 lg:py-4">
         <PageHeader
           compact
-          eyebrow="COURSE ARCHIVE · 课程知识"
           title="课程知识问答"
-          description="答案严格依据已导入字幕，并保留分P、时间范围和原视频跳转。"
+          summary={<span>回答依据已导入课程字幕，并保留视频定位</span>}
         />
         <KnowledgeWorkspace initialSessions={sessions} initialPrompt={initialPrompt} />
       </StudentPage>
