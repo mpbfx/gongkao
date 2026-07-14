@@ -1,0 +1,4208 @@
+{
+  "id": null,
+  "sid": 19416,
+  "source": "2025年天津公务员录用考试《行测》",
+  "model": "[{\"name\":\"数量关系\",\"snum\":1,\"enum\":15},{\"name\":\"言语理解\",\"snum\":16,\"enum\":40},{\"name\":\"常识判断\",\"snum\":41,\"enum\":65},{\"name\":\"判断推理\",\"snum\":66,\"enum\":100},{\"name\":\"资料分析\",\"snum\":101,\"enum\":120}]",
+  "questions": [
+    {
+      "id": 20861,
+      "titleHtml": "<p>某水产养殖公司拥有若干幼体培育车间、育苗车间和藻类池。已知幼体培育车间的水体与育苗车间的水体之比为1：4，藻类池的水体是幼体培育车间水体的50%。若每200m³水体需配备1名管理人员，则幼体培育车间需要的管理人员比育苗车间少12人。问该公司共配备了多少名管理人员？</p>",
+      "type": "single",
+      "globalAccuracy": 56,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "25"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "24"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "23"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "22"
+        }
+      ],
+      "analysisHtml": "<p>方法一：设幼体培育车间的水体为<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=dFQHVHsHQw458-Y1dC_O-Q\" />，则育苗车间的水体为<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=tu6ChEDDUtUv7sNtRCET-Q\" />，藻类池的水体为<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=H8e2kmuuWDmHNVWm0L0BHQ\" />。根据“幼体培育车间需要的管理人员比育苗车间少12人”，可列方程：<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=K4Yo5WyyuuIn3LeykhjpxkDpcH4HdOSoAwP8rrYWY8FpTdo01A89Bq9f6osjnHJE\" />，解得x=800。则幼体培育车间的水体为<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=4pTxIgEmWgSOdZq3azz9jQ\" />，育苗车间的水体为<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=7wn70eB2HVIpYR2VBPwAHK2wxoNDX2ET7eJC6gV0K-g\" />，藻类池的水体为<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=FlnSA1CrJv2RUT4JelTvmCeumhALGqv-aSVdJf2usF0\" />。故该公司共配备了<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=dqhHbLAWpFSF674chsc0LhRfpWY4F60DGz8UKa6a55UhW4Hrn8YhaQ_KTXDl9NWZRGvE7CCkUYdcrWo_3ah0ig\" />名管理人员。</p><p>方法二：根据“幼体培育车间的水体与育苗车间的水体之比为1：4，藻类池的水体是幼体培育车间水体的50%”可得三车间的水体之比为1：2：8，则总水体为1+2+8=11的倍数，则由“每<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=UVrmFXdF_cSwdvKIM3k9Ag\" />水体需配备1名管理人员”可得总管理人员数也为11的倍数，结合选项只有D选项符合。</p><p>故正确答案为D。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "和差倍比",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20862,
+      "titleHtml": "<p>乡村振兴文明实践积分制度中，基础积分50分；民主评议活动积分中3项为每项10分，2项为每项5分；贡献积分有5项，每项10分。每项积分仅加一次。小李去年在民主评议活动和贡献积分中都有收获，总积分为130分。问小李至少获得了几项民主评议活动积分？</p>",
+      "type": "single",
+      "globalAccuracy": 61,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "1"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "2"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "3"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "4"
+        }
+      ],
+      "analysisHtml": "<p>根据题意可知，总积分（130）=基础积分（50）+民主评议活动积分+贡献积分。基础积分固定为50分，要想使得获得积分的民主评议活动项目尽可能少，则需民主评议活动的积分尽可能少，贡献积分尽可能多，即贡献积分获得满分5×10=50分，此时民主评议活动获得130-50-50=30分；民主评议活动项目有5分/项和10分/项两类，当获得10分/项的3项（3×10=30分）时，获得积分的民主评议活动项目最少。故小李至少获得了3项民主评议活动积分。</p><p>故正确答案为C。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "最值问题",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20863,
+      "titleHtml": "<p>某种商品今年1月的定价为1000元/吨，2月起由于每月原材料上涨导致每月成本增加20元/吨，3月、6月、9月、12月每月初定价在上月基础上向上调50元/吨。则本年度利润最高的月份和最低的月份分别是：</p>",
+      "type": "single",
+      "globalAccuracy": 65,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "3月、10月"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "3月、11月"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "4月、10月"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "4月、11月"
+        }
+      ],
+      "analysisHtml": "<p>方法一：设今年1月商品的成本为x元/吨。根据题意，可列表如下：</p><p><img width=\"610px\" height=\"130px\" src=\"//fb.fbstatic.cn/api/tarzan/images/193a4ccbdbda24c.png?width=700\" /></p><p>由表可知：3月的利润最高，11月的利润最低。</p><p>方法二：根据选项，最高利润只需比较3月与4月，根据题意，3月与4月的定价相同，而4月的成本更高，故4月的利润更低，排除C、D两项；同理，最低利润只需比较10月与11月，10月与11月的定价相同，而11月的成本更高，故11月的利润更低，排除A项。</p><p>故正确答案为B。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "经济利润",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20864,
+      "titleHtml": "<p>某超市销售甲、乙两种相同单价的商品。第一天甲的销量是乙的1.5倍，第二天乙打八折销售，销量比甲多500件。已知甲、乙两种商品两天的总销售额相等，甲两天共销售1400件，问乙第一天销售多少件？</p>",
+      "type": "single",
+      "globalAccuracy": 51,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "600"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "700"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "800"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "900"
+        }
+      ],
+      "analysisHtml": "<p>赋值甲、乙两种商品的单价均为10元，则第二天乙打八折的价格为10×0.8=8元。设乙第一天的销量为x件，则甲第一天的销量为1.5x件，甲第二天的销量为（1400-1.5x）件，乙第二天的销量为1400-1.5x+500=（1900-1.5x）件。根据“甲、乙两种商品两天的总销售额相等”，可列式：1400×10=10x+8×（1900-1.5x），解得x=600。因此乙第一天销售600件。</p><p>故正确答案为A。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "经济利润",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20865,
+      "titleHtml": "<p>某连锁餐厅甲、乙、丙三个店面2024年销售额总计为1000万元，利润总计为120万元。其中，甲店面的销售额是利润的10倍，是丙店面销售额的<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mfrac><mn>2</mn><mn>3</mn></mfrac></math>，乙店面的利润比甲店面多10万元且比丙店面少10万元。问乙店面的销售额是利润的多少倍？</p>",
+      "type": "single",
+      "globalAccuracy": 74,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "6"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "6.25"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "7"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "7.2"
+        }
+      ],
+      "analysisHtml": "<p>设2024年甲店面利润为x万元，则其销售额为10x万元，乙店面利润为（x+10）万元，丙店面利润为x+10+10=（x+20）万元，其销售额为10x÷<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mfrac><mn>2</mn><mn>3</mn></mfrac></math>=15x万元。根据“甲、乙、丙三个店面2024年利润总计为120万元”，可得x+（x+10）+（x+20）=3x+30=120，解得x=30。又根据“甲、乙、丙三个店面2024年销售额总计为1000万元”，可得乙店面销售额=1000-10x-15x=1000-25×30=250万元，乙店面利润为30+10=40万元，则乙店面的销售额是利润的250÷40=6.25倍。</p><p>故正确答案为B。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "和差倍比",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20866,
+      "titleHtml": "<p>企业将15个招聘名额分配到甲、乙、丙、丁四个分公司。要求每个分公司至少分1个名额，任意2个分公司分配名额数不同。甲分配的名额不能是最多，甲、乙分配的名额都不能是最少，丙比丁多分配1个名额。问有多少种不同的分配方式？</p>",
+      "type": "single",
+      "globalAccuracy": 49,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "2"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "4"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "7"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "9"
+        }
+      ],
+      "analysisHtml": "<p>任意2个分公司分配名额数不同，甲、乙分配的名额都不是最少，且丙比丁多1个，则丁为最少，丙为倒数第二；甲不能是最多，则乙为最多，甲为第二。对最少数量分类讨论如下：①丁为1时，丙为2，剩余12个分配名额供甲、乙分配，则甲、乙分配方案可为（3、9），（4、8），（5、7）三种，均满足题意；②丁为2时，丙为3，剩余10个分配名额供甲、乙分配，则甲、乙分配方案可为（4、6）一种，满足题意。其余均不满足题意，故共有4种不同的分配方式。</p><p>故正确答案为B。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "排列组合",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20867,
+      "titleHtml": "<p>从甲地到乙地为下坡路，从乙地到丙地为上坡路。小张从甲地开车经过乙地前往丙地，此后原路返回。其上坡速度是下坡的60%。已知他从甲地到乙地用时正好是去程全程用时的一半，则他返程全程用时比去程全程用时：</p>",
+      "type": "single",
+      "globalAccuracy": 41,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "少不到10%"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "少10%以上"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "多不到10%"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "多10%以上"
+        }
+      ],
+      "analysisHtml": "<p>方法一：赋值上坡速度为60km/h，下坡速度为100km/h，赋值去程从甲地到乙地时间为1h，则去程全程时间为2h。根据公式：S=VT，可知<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=TEdmWyAAk2M1ecdtP7phUw\" /><img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=y53mxlI7XHer2_0GqZ6GbJ59fvqbLdtek4V-MfXVgTk\" />，<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=b5c25IdHP2M3TMXAdQMSEA\" /><img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=6pwCw3hCUdQ2sZzuG2t2ohONCTLjq8rKbcQKz1zlMV0\" />，返程全程的时间<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=Gb5W35KwIH2rikchb3hNPA\" /><img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=VzVsVoraMjPrxTFTabruNGoP828SUseb5cP2uIXJDMtHFYARhTDh4ezcXFyRAFBrLXWmgA5rgADgfj-tPoduew\" />，所以<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=Svpv7KyZsH981nR47LIXsTXGK6IAolvHljlHy1IVHw-5mvy-I-fjFRJZY5YBiP0-U9Q_deDKZnH-FDTqf9QVYw\" /><img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=Uu6_CKNCfPFdbR5zW9J-Dg\" />，在D项范围内。</p><p><img width=\"400px\" height=\"243px\" src=\"//fb.fenbike.cn/api/tarzan/images/193a4dfe5e260c7.png?width=700\" /></p><p>方法二：根据比例行程，若S相同，则V与T成反比，可知甲地到乙地：<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=-JLreKqeqRI4xb2JKuEuIOJKL3DGNIbCVlgnMzXEu-CSaWoTMzfFAQvAR4p9Yv2h\" /><img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=dXBgHM89TS4B0gY78Lc4EeIvpJ3YvxhXQy9tE_--K2cv9KgPG6rDtb3cM7j-2ynB\" />；乙地到丙地：<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=-JLreKqeqRI4xb2JKuEuIOJKL3DGNIbCVlgnMzXEu-CSaWoTMzfFAQvAR4p9Yv2h\" /><img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=dv22NtI3tkRO-YfzgFcMxGHmvu-4__IS-vqYDkbsurM\" />。根据题意，去程从甲地到乙地的时间为去程全程的一半，则设去程从甲地到乙地的时间为15x，全程时间为30x，返程从丙地到乙地的时间为9x，从乙地到甲地的时间为25x，全程时间为34x，故<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=Svpv7KyZsH981nR47LIXsdELRAaTqaGh9KUzy2Y7-Bc8256H_ZL-jDLPAKYW3p9EnKTXiqlwDxyULffzxno39g\" /><img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=Uu6_CKNCfPFdbR5zW9J-Dg\" />，在D项范围内。</p><p>故正确答案为D。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "行程问题",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20868,
+      "titleHtml": "<p>零售企业在某城市有10家门店，其中A、B、C区分别有5家、3家和2家，现选择其中的5家门店开展促销活动，要求每个区至少选择1家，问有多少种不同的选择方式？</p>",
+      "type": "single",
+      "globalAccuracy": 26,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "不到200种"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "200~399种之间"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "400~799种之间"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "不少于800种"
+        }
+      ],
+      "analysisHtml": "<p>题目要求每个区至少选择1家，则每个区的选择数量只能是（3，1，1）和（2，2，1）的组合。具体每个区选几家，需要分情况讨论。</p><p>如果按照（3，1，1）的组合选择，可选：①A区3家，B区1家，C区1家，有<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=1NcgHBXTAf_PfsqVBng2Nw0km_9x4Elbt1ASlWhM1tQ\" /><img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=hhZ9HOaqEqa98xZSzwmnXWQhtAkMSUYKkyqEoQFM7e8\" />种情况；②A区1家，B区3家，C区1家，有<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=mlLBXz7d1ZLH6DU6wYC9_NzX-CrGn2K2l-P3pPgbHeQ\" /><img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=bJkn5EGafBt152mGqIKJqQ\" />种情况。相加共有60+10=70种情况。</p><p>如果按照（2，2，1）的组合选择，可选：①A区2家，B区2家，C区1家，有<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=yw98qdwy1RxAS0ewm-saoI03cDPBSOU-bRNjdIeeC40\" /><img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=wmCQj9ELb47TUFUkmkTozd341ASH8J69tKDkhCiGZhY\" />种情况；②A区1家，B区2家，C区2家，有<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=U7tx8dGbjFGIp4CpXxwZr_C_7EFBDP0Hpxnr_g28LoU\" /><img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=nNb8AJ6V8RKYE0-m_0ZKFA\" />种情况；③A区2家，B区1家，C区2家，有<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=_mkwATsLMnZtOX5TzWS0xn7LFVUfrZwJfLNLGNKgt3I\" /><img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=aMgRcSA8sJDKQBpbBXx_rqnY9QMhu7I7vUg1nlLam5k\" />种情况。相加共有60+15+30=105种情况。</p><p>综合以上，共有70+105=175种情况，在A项范围内。</p><p>故正确答案为A。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "排列组合",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20869,
+      "titleHtml": "<p>某超市规定，消费达标可参加抽奖，分一等奖200元、二等奖100元和未中奖三种情形。已知小王消费共抽奖3次，若每次抽中一等奖和二等奖的概率分别为10%和20%，问小王共中奖恰好300元的概率在以下哪个范围内？</p>",
+      "type": "single",
+      "globalAccuracy": 36,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "5%以下"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "5%~8%之间"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "8%~11%之间"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "11%以上"
+        }
+      ],
+      "analysisHtml": "<p>根据题意，已知小王想要抽奖3次恰好中奖300元，分类如下：</p><p>（1）中3次二等奖（100元）：每次中二等奖概率相同，均为20%，则连续中3次的概率为20%×20%×20%=0.8%；</p><p>（2）中1次一等奖（200元）以及1次二等奖（100元），1次未中奖：每次抽中一等奖和二等奖的概率分别为10%和20%，则每次未中奖的概率为1-10%-20%=70%。因需要考虑3次抽奖的结果具体是在哪次发生，故列式为：<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><msubsup><mi>A</mi><mn>3</mn><mn>3</mn></msubsup></math>×10%×20%×70%=8.4%。</p><p>综上所述，总概率为0.8%+8.4%=9.2%。</p><p>故正确答案为C。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "概率问题",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20870,
+      "titleHtml": "<p>甲和乙参加知识竞赛，每人均需作答1道理工类问题和1道人文类问题。甲作答两类问题的正确率分别为60%和40%，乙作答两类问题的正确率分别为50%和75%。问甲答对问题数量比乙多的概率在以下哪个范围内？</p>",
+      "type": "single",
+      "globalAccuracy": 27,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "22%以下"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "22%-25%之间"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "25-28%之间"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "28%以上"
+        }
+      ],
+      "analysisHtml": "<p>甲答对问题数量比乙多的情况有两种：</p><p>（1）甲答对1道（理工类对人文类错或理工类错人文类对），乙答对0道。甲答对1道的概率为60%x（1-40%）+（1-60%）x40%=60%×60%+40%×40%=52%，乙答对0道的概率为（1-50%）×（1-75%）=50%×25%=12.5%。分步用乘法，甲答对1道，乙答对0道概率为52%×12.5%=6.5%；</p><p>（2）甲答对2道，乙答对0道或1道（理工类对人文类错或理工类错人文类对）。甲答对2道的概率为60%×40%=24%，乙答对0道或1道的概率为12.5%+（1-50%）×75%+50%×（1-75%）=62.5%，也可以考虑反面求解，乙答对0道或1道概率=1-乙答对2道概率，即1-50%×75%=62.5%。甲答对2道，乙答对0道或1道的概率为24%×62.5%=15%。</p><p>分类用加法，甲答对问题数量比乙多的概率为6.5%+15%=21.5%，在A项范围内。</p><p>故正确答案为A。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "概率问题",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20871,
+      "titleHtml": "<p>某旅行团有游客15人，租用6辆车外出旅行，每辆车乘坐游客最多4人。已知每辆车至少乘坐1名游客，问乘坐2名游客的车辆至多有几辆？</p>",
+      "type": "single",
+      "globalAccuracy": 57,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "1"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "2"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "3"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "4"
+        }
+      ],
+      "analysisHtml": "<p>方法一：设乘坐1名游客的车有a辆，乘坐2名游客的车有b辆，乘坐3名游客的车有c辆，乘坐4名游客的车有d辆。根据题意可列式：a+b+c+d=6······①，a+2b+3c+4d=15······②，联立方程组，由②-①，得b+2c+3d=9。求b的最大值，将选项从大到小依次代入，代入D项，若b=4，则2c+3d=5，可取值c=d=1，代入①解得a=0，满足题干条件。</p><p>方法二：根据题意，每辆车至多乘坐4名游客，求乘坐2名游客的车辆至多有几辆。若6辆车均先乘坐2名游客，则各自空余2个座位。剩余15-2×6=3名游客无车乘坐，即剩余的3名游客最少需要安排到2辆车上，此时乘坐2名游客的车辆最多，为6-2=4辆。</p><p>故正确答案为D。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "最值问题",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20872,
+      "titleHtml": "<p>小区保安老张的值班时间是每星期一、二、四、六。某年4月1日老张休息，5月老张总共值班17次。则当年老张最后一次值班是在：</p>",
+      "type": "single",
+      "globalAccuracy": 45,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "星期一"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "星期二"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "星期四"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "星期六"
+        }
+      ],
+      "analysisHtml": "<p>根据题意可知：老张每周值班4天即4次。5月共31天，其中5月1-28日共28天为4整周，老张需值班4×4=16次，则剩余3天（5月29-31日）中老张需要值班1次，由题意可知，这3天为星期三、星期四、星期五或星期五、星期六、星期日。分情况讨论：</p><p>①若5月31日为星期五，则5月1日为星期三，所以4月1日为星期一，老张需要值班，与题干要求不符，排除；</p><p>②若5月31日为星期日，则5月1日为星期五，所以4月1日为星期三，老张休息，符合题干要求。由于6月1日至12月31日共：30+31+31+30+31+30+31=214天，则<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mfrac><mn>214</mn><mn>7</mn></mfrac></math>=30（个周期）······4（天），相当于5月31日星期日再过4天即为12月31日的星期四，这天恰好需要老张值班，因此当年老张最后一次值班是在星期四。</p><p>故正确答案为C。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "计算问题",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20873,
+      "titleHtml": "<p>一条长方形跑道ABCD中，AB长度是AD的1.5倍。小张从A点出发以9千米/小时的速度向B点方向匀速慢跑，40秒后尚未到达B点，距离B点还有35米。如他继续沿跑道匀速慢跑，再过1分钟后，他与A点的直线距离在以下哪个范围内？</p>",
+      "type": "single",
+      "globalAccuracy": 46,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "不到135米"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "135~140米之间"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "140~145米之间"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "超过145米"
+        }
+      ],
+      "analysisHtml": "<p>已知9千米/小时=9000÷3600秒=米/秒，根据s=vt，小张40秒后距离A点2.5×40=100米，则AB长度为100+35=135米。根据题干“AB长度是AD的1.5倍”，可得<img flag=\"tex\" src=\"//fb.fenbike.cn/api/planet/accessories/formulas?latex=wvh_gLeKEDqTgWe53um9xItnYXcwUDNMxmSQMxwRBL8\" />米。小张慢跑1分钟的距离为2.5×60=150米，根据跑前距离B点还有35米，BC长度为90米，150-35-90=25米，可得1分钟后小张到达CD边上E点且与C点距离为25米，如下图所示，与A、D两点构成直角三角形，其中AD=90米，DE=135-25=110米，根据勾股定理可得<img flag=\"tex\" src=\"//fb.fenbike.cn/api/planet/accessories/formulas?latex=P7yYOKH6LUbFLrqagj74eVHOt2hMx5oWI_36Y0xeCk0\" />，则<img flag=\"tex\" src=\"//fb.fenbike.cn/api/planet/accessories/formulas?latex=hTi--NRrWRlBgJb6-E3M_cMNDjuKUgUGLH6W5MoP5r0\" /><img flag=\"tex\" src=\"//fb.fenbike.cn/api/planet/accessories/formulas?latex=e_ayCY_fP5kYeKxb328gSp-McLhuEaKw97xVLsUYNf0\" />，因此<img flag=\"tex\" src=\"//fb.fenbike.cn/api/planet/accessories/formulas?latex=dZs06-Ly9tpwgagsKMS_P8t5IvKj7wnkucYB6nj8Bkw\" /><img flag=\"tex\" src=\"//fb.fenbike.cn/api/planet/accessories/formulas?latex=6nFgvVshNQGi605mCpqJZaybUi81WSqhE0B0FgQE2S3yATGyAWadftydEVXGnc7h\" />米，则此时小张距离A点的直线距离在140~145米之间。</p><p><img width=\"398px\" height=\"282px\" src=\"//fb.fbstatic.cn/api/tarzan/images/193a4c786fdeb05.png?width=700\" /></p><p>故正确答案为C。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "行程问题",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20874,
+      "titleHtml": "<p>某矩形农场ABCD如图所示，矩形区域ADEF为生产区，矩形区域BCEF为休闲区。现连接BD将两区域打通，与EF相交于O点。已知AF和FE的长度分别为600米和400米，问COD围成的三角形阴影区域面积为多少万平方米？</p><p><img width=\"246px\" height=\"153px\" src=\"//fb.fenbike.cn/api/tarzan/images/193a4d558bb688e.png?width=700\" /></p>",
+      "type": "single",
+      "globalAccuracy": 48,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "12"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "15"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "16"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "18"
+        }
+      ],
+      "analysisHtml": "连接BE，如下图所示。根据题意BCEF为矩形，则BC//EF且BC=EF=400米，EC⊥OE，那么△COE与△BOE为同底等高的三角形，即<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><msub><mi>S</mi><mrow><mo>△</mo><mi>C</mi><mi>O</mi><mi>E</mi></mrow></msub><mo>=</mo><msub><mi>S</mi><mrow><mo>△</mo><mi>B</mi><mi>O</mi><mi>E</mi></mrow></msub></math>，那么<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><msub><mi>S</mi><mrow><mo>△</mo><mi>C</mi><mi>O</mi><mi>D</mi></mrow></msub><mo>=</mo><msub><mi>S</mi><mrow><mo>△</mo><mi>E</mi><mi>O</mi><mi>D</mi></mrow></msub><mo>+</mo><msub><mi>S</mi><mrow><mo>△</mo><mi>C</mi><mi>O</mi><mi>E</mi></mrow></msub><mo>=</mo><msub><mi>S</mi><mrow><mo>△</mo><mi>E</mi><mi>O</mi><mi>D</mi></mrow></msub><mo>+</mo><msub><mi>S</mi><mrow><mo>△</mo><mi>B</mi><mi>O</mi><mi>E</mi></mrow></msub><mo>=</mo><msub><mi>S</mi><mrow><mo>△</mo><mi>B</mi><mi>D</mi><mi>E</mi></mrow></msub></math>=1/2 ×DE×BC=1/2 ×600×400=120000平方米，即12万平方米。<br><img width=\"296px\" height=\"187px\" src=\"//fb.fbstatic.cn/api/tarzan/images/193a4d63a823c22.png?width=700\"><br>故正确答案为A。",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "几何问题",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20875,
+      "titleHtml": "某工业园区内一区域如下图所示，三角形ABC与ACD为两个面积相等的直角三角形，AB长度是BC的2倍。现在区域内划出如图两个圆形区域摆放花坛，两个圆形均与图中两条边相切。已知B点到大圆、D点到小圆上任一点的最短距离分别为AD长度的<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mfrac><mn>1</mn><mn>2</mn></mfrac></math>、<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mfrac><mn>1</mn><mn>5</mn></mfrac></math>，问大圆面积是小圆的多少倍？<br><img width=\"600px\" height=\"241px\" src=\"//fb.fbstatic.cn/api/tarzan/images/1948d644303e003.png?width=700\" />",
+      "type": "single",
+      "globalAccuracy": 30,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "3倍以下"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "3~3.5倍之间"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "3.5~4倍之间"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "4倍以上"
+        }
+      ],
+      "analysisHtml": "<p><img width=\"600px\" height=\"260px\" src=\"//fb.fbstatic.cn/api/tarzan/images/1948d64924db115.png?width=700\" /><br>根据题意“三角形ABC与ACD为两个面积相等的直角三角形，AB长度是BC的2倍”，可得∠BAC=∠ACD=30°，则∠ABC=∠ADC=60°，连接BO₁、DO₂可得与两圆交点分别为G与H两点，则BG、DH分别为B、D两点距离两圆的最短距离，∠O₁BE=(1/2)∠ABC=30°，∠O₂DF=(1/2)∠ADC=30°，设大圆、小圆半径分别为R、r，O₁B=2 O₁E=2R、O₂D=2 O₂F=2r，BG=O₁B-O₁G=2R-R=R，DH=O₂D-O₂H=2r-r=r，赋值AD=BC=10，则BG=(1/2)×BC=5=R、DH=（1/5）×AD=2=r，所以<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mfrac><msub><mi>S</mi><mrow><mo>大圆</mo></mrow></msub><msub><mi>S</mi><mrow><mo>小圆</mo></mrow></msub></mfrac><mo>=</mo><mfrac><mrow><mi>π</mi><msup><mi>R</mi><mn>2</mn></msup></mrow><mrow><mi>π</mi><msup><mi>r</mi><mn>2</mn></msup></mrow></mfrac><mo>=</mo><mfrac><msup><mn>5</mn><mn>2</mn></msup><msup><mn>2</mn><mn>2</mn></msup></mfrac></math>=6.25<br>故正确答案为D。",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "几何问题",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20876,
+      "titleHtml": "<p>户外不等于“野外”，运动不等于“盲动”。我们固然不能因为安全风险就<u>            </u>，但户外运动也要做好事前防范，注意风险管控。</p><p>填入画横线部分最恰当的一项是：</p>",
+      "type": "single",
+      "globalAccuracy": 73,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "深居简出"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "投鼠忌器"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "因噎废食"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "委曲求全"
+        }
+      ],
+      "analysisHtml": "<p>根据后文“但户外运动也要做好事前防范，注意风险管控”可知，转折前后语义相反，故横线处所填成语需体现不能因为存在安全风险就不进行户外运动。C项“因噎废食”比喻因为怕出问题就索性不去干，符合文意，且“噎”对应文中的“安全风险”，“废食”与后文构成转折关系，当选。</p><p>A项：“深居简出”原指野兽藏在深密的地方，很少出现，后指常待在家里，很少出门。文段强调的并不是不出门，而是要在做好防范的前提下进行户外运动，排除。</p><p>B项：“投鼠忌器”本意为想掷打老鼠，却担心老鼠身旁的器物被击坏而不敢下手，后比喻做事有所顾忌，不敢下手。该词的侧重点在有所顾忌，转折后的“事前防范”“风险管控”也属于心理上的顾忌所带来的后续行动，因此该处填入“投鼠忌器”与后文内容不能构成转折关系，排除。</p><p>D项：“委曲求全”指勉强迁就，以求保全，或为顾全大局而暂时忍让。文段并未体现“顾全大局”，排除。</p><p>故正确答案为C。</p><p>【文段出处】《给户外运动系上“安全带”》</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "逻辑填空",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20877,
+      "titleHtml": "<p>快递业并非一般的行业，它就像一个“超级连接器”，可连接生产消费、打通千城百业、连通线上线下、畅通内外循环。正因此，它被称为反映经济活力的“<u>          </u>”。</p><p>填入画横线部分最恰当的一项是：</p>",
+      "type": "single",
+      "globalAccuracy": 48,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "风向标"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "试金石"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "放大镜"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "显色剂"
+        }
+      ],
+      "analysisHtml": "<p>由“连接生产消费、打通千城百业、连通线上线下、畅通内外循环”可知，快递业涉及经济的各个方面。结合横线前的“反映经济活力”可知，横线处强调快递业涉及面广，能够显示出经济发展的情况。A项“风向标”本意为一种测定风向的设备，可以用来形容某种事物的发展方向或趋势，符合文意，当选。</p><p>B项：“试金石”指检验事物、方法或人的可靠标准，文段强调的是“反映经济活力”，而非“检验经济活力”，与文意不符，排除。</p><p>C项：“放大镜”是一种用来观察物体微小细节的光学器件，侧重强调放大作用，与文意无关，排除。</p><p>D项：“显色剂”指一种将生化反应后产生的复合物显色以达到实验目的的试剂，可以用来形容凸显事物特征的方法或手段。此处并非要凸显经济活力的特点，与文意不符，排除。</p><p>故正确答案为A。</p><p>【文段出处】广州日报《从快递增速感知活力中国》</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "逻辑填空",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20878,
+      "titleHtml": "<p>长期以来，我国区域间、城乡间的金融资源<u>        </u>存在异质性差异，金融资源的不平衡分布会加速经济发展的“马太效应”。数字金融能够<u>        </u>区域间、群体间的“数字鸿沟”，促进资金的公平分配和经济的包容性增长。</p><p>依次填入画横线部分最恰当的一项是：</p>",
+      "type": "single",
+      "globalAccuracy": 62,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "规划 填平"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "共享 跨越"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "储备 淡化"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "配置 弥合"
+        }
+      ],
+      "analysisHtml": "<p>第一空，搭配“金融资源”。根据“金融资源的不平衡分布会加速经济发展的‘马太效应’”可知，横线处所填词语应体现我国区域间、城乡间的金融资源存在分布不平衡的现象。C项“储备”指储存以备应用，D项“配置”指配备布置，二者均搭配恰当，且符合文意，保留。A项“规划”指计划安排，侧重对未来的计划，文段侧重资源分布不平衡的现状，排除。B项“共享”指共同享有，与文意无关，排除。</p><p>第二空，搭配“数字鸿沟”，且根据“促进资金的公平分配和经济的包容性增长”可知，横线处所填词语应体现让鸿沟变小之意。D项“弥合”指使愈合，置于此处可体现让鸿沟变小之意，当选。C项“淡化”指弱化、减化，与“数字鸿沟”搭配不当，排除。</p><p>故正确答案为D。</p><p>【文段出处】光明日报《发挥数字金融在支持经济增长中的重要作用》</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "逻辑填空",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20879,
+      "titleHtml": "<p>当前不少城市对文化遗产的保护进入了旅游驱动的误区。过度地商业化，将原始居民全部迁出，充满活力的生产、生活场景<u>            </u>，文化遗产成为<u>        </u>的遗址，失去鲜活的魅力。</p><p>依次填入画横线部分最恰当的一项是：</p>",
+      "type": "single",
+      "globalAccuracy": 56,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "转瞬即逝 停滞"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "无影无踪 陈腐"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "消失殆尽 静态"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "烟消云散 呆板"
+        }
+      ],
+      "analysisHtml": "<p>第一空，根据“将原始居民全部迁出”可知，横线处所填成语应体现生产、生活场景消失之意。B项“无影无踪”指没有一点踪影，形容完全消失，不知去向；C项“消失殆尽”指逐渐消失至没有；D项“烟消云散”比喻事物消失得无影无踪。三者均符合文意，保留。A项“转瞬即逝”指一转眼就消逝，形容时间过得飞快，与文意不符，排除。</p><p>第二空，搭配“遗址”。根据后文“失去鲜活的魅力”可知，横线处所填词语应表达文化遗产变成失去动态活力的遗址之意。C项“静态”指相对静止的、不活动的状态，能表达出失去动态活力之意，当选。B项“陈腐”比喻人思想和观念陈旧、生活行为堕落、制度败坏腐朽，多用来形容观念、思想、制度等；D项“呆板”形容人的样子、做事等不灵活、死板。二者均与“遗址”搭配不当，排除。</p><p>故正确答案为C。</p><p>【文段出处】光明网《解析文化遗产保护的“泉州样本”》</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "逻辑填空",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20880,
+      "titleHtml": "<p>发展社会主义民主政治，关键是要增加和扩大我们的优势和特点，而不是要削弱和<u>        </u>我们的优势和特点。我们要坚持发挥党总揽全局、协调各方的领导核心作用，提高党科学执政、民主执政、依法执政水平，保证党领导人民有效治理国家，切实防止出现<u>            </u>、一盘散沙的现象。</p><p>依次填入画横线部分最恰当的一项是：</p>",
+      "type": "single",
+      "globalAccuracy": 64,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "缩小 群龙无首"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "忽视 党同伐异"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "抛弃 各自为政"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "限制 分崩离析"
+        }
+      ],
+      "analysisHtml": "<p>第一空，根据文意可知，横线处应与“削弱”并列，且共同与前文的“增加和扩大”构成反义并列，其中“削弱”对应“增加”，因此横线处所填词语对应“扩大”。A项“缩小”指由大变小或减少，能与“扩大”形成反义对应，保留。D项“限制”指规定范围，不许超过，置于此处也可体现约束、减弱之意，可以与“扩大”形成反义对应，保留。B项“忽视”指忽略，不注意，不重视，强调主观上的疏忽，与文意无关，排除。C项“抛弃”指丢弃、扔下，置于此处语义程度过重，排除。</p><p>第二空，根据“、”可知，横线处所填成语与“一盘散沙”构成近义并列关系，且根据“防止”可知，横线处所填成语应与前文构成反义关系，体现无领导、无核心之意。A项“群龙无首”比喻众人会集而没有领头的人，也指无人领导，事情无法进行，符合文意，当选。D项“分崩离析”指四分五裂，形容国家或集团分裂瓦解，更侧重 “分”，而非文段强调的“无领导”“无核心”，排除。A项“群龙无首”中的“首”即文段中的“领导”“核心”，与文段中强调的“党总揽全局、协调各方的领导核心作用”更为对应。</p><p>故正确答案为A。</p><p>【文段出处】新华社 求是《坚持和完善人民代表大会制度 保障人民当家作主》</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "逻辑填空",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20881,
+      "titleHtml": "<p>近年来，人工智能技术正全面变革肿瘤诊疗全流程。但现有人工智能诊疗模型也有局限性。许多模型通过大规模标注数据集训练，寻找图像特征与临床结果之间的相关性。虽然在准确率上取得了显著成效，但这种“黑箱式”操作缺乏<u>          </u>依据，导致医生难以完全<u>        </u>人工智能的诊断结果，因此回归医学源头的认知格外重要。</p><p>依次填入画横线部分最恰当的一项是：</p>",
+      "type": "single",
+      "globalAccuracy": 51,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "过程性 采纳"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "解释性 信赖"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "验证性 遵循"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "决定性 理解"
+        }
+      ],
+      "analysisHtml": "<p>第一空，对应形象表达“黑箱式”操作。“黑箱式”操作指的是只给结果，不给过程或者任何解释的一种操作，因此得出的结论缺乏“过程性”或“解释性”依据，A、B两项均符合文意，保留。C项“验证性”侧重经过检验得到证实，D项“决定性”侧重起主导作用，均与“黑箱式”操作无法对应，且如果缺乏“验证性”依据或 “决定性”依据，诊断结果就不可能达到较高的准确率，与前文“在准确率上取得了显著成效”语义矛盾，排除。</p><p>第二空，搭配“诊断结果”。根据“缺乏······依据”可知，横线处应体现医生不敢完全相信人工智能的诊断结果。B项“信赖”指信任并依靠，符合文意，且与“诊断结果”搭配恰当，当选。A项“采纳”指接受，常搭配建议、意见等，且“采纳”的前提是信任，对比来看B项置于此处更为准确，排除。</p><p>故正确答案为B。</p><p>【文段出处】科技日报《AI如何助力重塑肿瘤诊疗模式》</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "逻辑填空",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20882,
+      "titleHtml": "<p>百年大党长期执政，思维惯性、行为惰性客观存在，一些老观念、老套路、老办法容易<u>            </u>，队伍不断发展壮大也带来干部良莠并存、参差不齐。我们必须<u>            </u>提高科学执政、民主执政、依法执政水平，克服干部队伍中存在的能力不足、本领恐慌，确保适应新时代要求、具备领导现代化建设能力，做到政治过硬、本领高强，堪当民族复兴重任。</p><p>依次填入画横线部分最恰当的一项是：</p>",
+      "type": "single",
+      "globalAccuracy": 73,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "积重难返 一如既往"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "相沿成习 与时俱进"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "画地为牢 坚定不移"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "因循守旧 持之以恒"
+        }
+      ],
+      "analysisHtml": "<p>本题可以从第二空入手。根据 “百年大党长期执政，思维惯性、行为惰性客观存在”以及 “确保适应新时代要求、具备领导现代化建设能力”可知，横线处需体现执政应当适应新时代的要求并具备领导现代化建设的能力。B项“与时俱进”指随着时代的发展而不断发展、前进，符合文意，保留。A项“一如既往”指态度或做法没有任何变化，还是像从前一样；C项“坚定不移”指稳定坚强、毫不动摇，不放弃、不改变自己的想法；D项“持之以恒”指长久坚持下去。三者均未体现“适应新时代”，排除。</p><p>第一空，代入验证。根据 “百年大党长期执政，思维惯性、行为惰性客观存在”可知，横线处应体现“老观念、老套路、老办法”长久存在之意。B项“相沿成习”指按照旧的一套沿袭下来，已成习惯，符合文意，当选。</p><p>故正确答案为B。</p><p>【文段出处】习近平《论党的自我革命》</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "逻辑填空",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20883,
+      "titleHtml": "<p>领导干部特别是高级干部担负着推进改革的重要职责。要增强政治责任感、历史使命感，以攻坚克难、迎难而上的政治勇气，直面矛盾问题不<u>        </u>，铲除顽瘴痼疾不<u>        </u>，应对风险挑战不<u>        </u>，奋力打开改革发展新天地。</p><p>依次填入画横线部分最恰当的一项是：</p>",
+      "type": "single",
+      "globalAccuracy": 86,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "回避 含糊 退缩"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "放弃 姑息 气馁"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "推诿 迟疑 妥协"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "畏惧 宽纵 懈怠"
+        }
+      ],
+      "analysisHtml": "<p>第一空，横线前出现否定词“不”，故横线处所填词语与“直面矛盾问题”语义相反。A项“回避”指让开、躲开，C项“推诿”指把责任推给别人，D项“畏惧”指害怕，三者均符合文意，保留。B项“放弃”指丢掉原有的权利、主张、意见等，该词的反义是“坚持”，并非“直面矛盾问题”，排除。</p><p>第二空，横线处对应“铲除顽瘴痼疾”。结合横线前的“不”可知，横线处所填词语应体现态度不坚决，模糊不清之意。A项“含糊”意思是不明确、不清晰，做事敷衍马虎；C项“迟疑”指拿不定主意，犹豫不决；D项“宽纵”指宽容、放纵。三者均符合文意，保留。</p><p>第三空，结合横线前的“不”可知，横线处所填词语应体现“应对风险挑战”的态度。代入文中，A项“不退缩”意为勇敢面对，不放弃，符合文意，当选。C项“不妥协”强调立场坚定，D项“不懈怠”强调不松懈、不懒惰，均无法与“应对风险挑战”的态度相对应，排除。</p><p>故正确答案为A。</p><p>【文段出处】《奋力打开改革发展新天地》</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "逻辑填空",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20884,
+      "titleHtml": "<p>传统产业的技术创新以<u>          </u>的增量创新为主，主导技术出现后会保持较长时间。当前，产业变革突飞猛进，新技术不断进入商业化阶段，还有一些前沿技术正在孕育萌芽、<u>            </u>。新技术的成熟和应用催生出新产品、新模式、新业态，对既有产业形成冲击并使产业竞争格局发生<u>        </u>。</p><p>依次填入画横线部分最恰当的一项是：</p>",
+      "type": "single",
+      "globalAccuracy": 44,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "前瞻性 潜滋暗长 升级"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "创造性 势不可挡 变革"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "长期性 破茧而出 改变"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "渐进性 蓄势待发 重构"
+        }
+      ],
+      "analysisHtml": "<p>第一空，搭配“增量创新”。根据“主导技术出现后会保持较长时间”可知，横线处所填词语应表达传统产业的技术创新是逐步、慢慢进行的。A项“前瞻性”指往远看、往前看的特性，C项“长期性”指一件事情的影响时间延续较长，D项“渐进性”强调逐渐前进、逐渐发展或变化，三者均符合文意，保留。B项“创造性”侧重有所创新，与“增量创新”语义重复，排除。</p><p>第二空，横线前出现“、”，故横线处所填成语与“孕育萌芽”语义相近，应体现正在开始的状态。C项“破茧而出”指重获新生，走出困境；D项“蓄势待发”原意指半蹲着的人随时准备站起来冲出去，现指随时准备进攻。二者均与文意相符，保留。A项“潜滋暗长”指在暗中不知不觉地滋生发展，偏贬义，与文段语境不符，排除。</p><p>第三空，根据“新技术的成熟和应用催生出新产品、新模式、新业态，对既有产业形成冲击”可知，在“新技术”的影响下，出现了“新产品、新模式、新业态”，故横线处所填词语应体现产业竞争格局随之“变新”之意。D项“重构”指重新构建，符合文意，当选。C项“改变”指发生变化、改动，表意不精准，且程度过轻，排除。</p><p>故正确答案为D。</p><p>【文段出处】人民日报《打造数字经济新优势》</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "逻辑填空",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20885,
+      "titleHtml": "<p>医疗领域是高度数字化的。整个诊疗过程都留有痕迹，且不同环节前后印证、<u>            </u>。换言之，无中生有、<u>            </u>必然会被记录在案，会留下蛛丝马迹。在整治骗保上，不妨聚焦虚假住院、药品倒卖等突出问题，开发更多大数据筛查模型，让骗保行为逃不过技术的<u>            </u>。</p><p>依次填入画横线部分最恰当的一项是：</p>",
+      "type": "single",
+      "globalAccuracy": 90,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "一以贯之 瞒天过海 刀光剑影"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "环环相扣 急功近利 明察秋毫"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "严丝合缝 以假乱真 火眼金睛"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "滴水不漏 敷衍了事 天罗地网"
+        }
+      ],
+      "analysisHtml": "<p>第一空，搭配“不同环节”，且根据横线前“、”可知，横线处所填词语需与“前后印证”构成近义并列关系。“前后印证”指前后相关，互相契合、证实。B项“环环相扣”指一环扣着一环，形容紧密相连，缺一不可；C项“严丝合缝”形容缝隙密合，看不出拼凑的痕迹。二者均符合文意，保留。A项“一以贯之”指用一种思想或理论贯穿于各类事物之中，与文意不符，排除。D项“滴水不漏”形容说话、办事非常细致、周密，无懈可击，与“不同环节”搭配不当，排除。</p><p>第二空，根据横线前“、”可知，横线处所填词语与“无中生有”构成近义并列关系，需表达“没有、假的、不真实”之意。C项“以假乱真”指用假的东西去冒充或混杂真的东西，符合文意，保留。B项“急功近利”指急于求成，贪图眼前的成效和利益，文段并未体现“急于求成”的意思，排除。</p><p>第三空，代入验证。根据文意可知，横线处所填词语需表达骗保行为逃不过大数据筛查模型之意。C项“火眼金睛”指人的眼光锐利，能够识别真伪，填入文段可形象地表达大数据筛查模型可以发现骗保行为，符合文意，当选。</p><p>故正确答案为C。</p><p>【文段出处】《3张CT片何以成照妖镜》</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "逻辑填空",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20886,
+      "titleHtml": "<p>近年来，蕴藏于海水、卤水和高盐工业废水等自然与工业资源中的“蓝色能源”——渗透能，因其储量大、可再生等特点，受到了研究者的广泛关注。浓度比重不同的水之间会产生渗透现象。渗透时对作为隔膜的半透膜产生的压力被称为渗透压力，由渗透压力产生的能量被称为渗透能。而具有离子分离特性的功能薄膜是渗透能回收的关键。但在渗透能的实际回收过程中，水体的高盐浓度往往会导致分离膜的离子选择性和扩散性大幅下降，从而严重制约了相关技术的应用与推广。</p><p>接下来最可能说的是：</p>",
+      "type": "single",
+      "globalAccuracy": 75,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "分离膜性能下降的原因"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "渗透能与其他绿色能源的区别"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "一种高效稳定的渗透能回收性能新材料"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "渗透能的开发利用前景"
+        }
+      ],
+      "analysisHtml": "<p>根据提问方式可知，本题为接语选择题，应在通读全文的基础上，重点关注文段最后论述的核心话题。文段开篇指出渗透能因其特点受到广泛关注，接下来提到渗透现象，由渗透产生渗透压力，而渗透能回收的关键则是功能薄膜。最后通过转折关联词“但”提出渗透能的实际回收过程存在一定问题，制约了技术的应用与推广。故文段最后围绕“渗透能回收”这一问题进行论述，下文应提出相应的解决方法，即“一种高效稳定的渗透能回收性能新材料”，对应C项。</p><p>A项：“分离膜性能下降的原因”在尾句已经提及，后文不会再论述，排除。</p><p>B项：“渗透能与其他绿色能源的区别”与文段最后的核心话题不一致，排除。</p><p>D项：“渗透能的开发利用前景”与文段最后的核心话题不一致，排除。</p><p>故正确答案为C。</p><p>【文段出处】科技日报《新型蛭石纳米材料通道膜  实现工业废水渗透能高效回收》</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "推断下文",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20887,
+      "titleHtml": "<p><u>                    </u>。首先，机器学习在收集和分析数据方面具有强大的能力，可以在室内部署传感器和智能电表，进行数据收集、监控、分析，以改善室内能源的利用。其次，人工智能技术与卫星相结合，可以监测土地利用的变化、植被和森林覆盖情况，以及特定生态区域的外来（入侵）物种。最后，使用人工智能技术的空气净化器可以时刻记录空气质量和环境数据，发布污染警告。此外，可以利用机器学习的特殊模型来收集和分析相关地区碳排放、噪声和空气污染的情况，以及由此可能引发的居民呼吸系统、心血管疾病以及产生精神压力和情绪焦虑的潜在风险。</p><p>填入画横线部分最恰当的一项是：</p>",
+      "type": "single",
+      "globalAccuracy": 75,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "人工智能可帮助人类应对科技挑战，促进创新突破"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "产业转型升级将为人工智能的发展提供“用武之地”"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "采用人工智能高科技应对环境挑战有着明显的优势"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "科学家开发了用人工智能对抗城市污染的有效模型"
+        }
+      ],
+      "analysisHtml": "<p>本题为语句填空题，所填语句出现在开头，需结合后文内容分析。横线后从四个角度展开并列分述，指出人工智能技术可以用来改善室内能源的利用；可以监测土地利用的变化、植被和森林覆盖情况，以及特定生态区域的外来（入侵）物种；可以记录空气质量和环境数据，发布污染警告；可以收集和分析碳排放、噪声和空气污染的情况，以及由此引发的对人体的危害。故横线处所填内容应与后文话题一致且对后文内容进行概括，即人工智能技术可以帮助我们应对环境问题，对应C项。</p><p>A项：“应对科技挑战，促进创新突破”文段未提及，无中生有，排除。</p><p>B项：“产业转型升级”文段未提及，无中生有，且文段强调的是人工智能的发展带来的好处，而非如何促进人工智能的发展，逻辑有误，排除。</p><p>D项：“科学家开发了······有效模型”文段未提及，无中生有，且“城市污染”表述片面，无法全面概括后文，排除。</p><p>故正确答案为C。</p><p>【文段出处】《人工智能成为应对环境挑战新利器》</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "语句填空",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20888,
+      "titleHtml": "<p>在应用端，端侧部署是目前人工智能大模型发展的热门方向，但由于所需算力资源过于庞大，大模型几乎无法在手机、人形机器人等小型终端上本地部署，限制了大模型的应用场景。例如，在目前发布且有实际演示的模型中，十亿参数量模型尚可在手机上运行，一旦模型参数级别跃升至百亿级，在手机端运行就变得非常吃力，几乎无法正常使用。在许多场景下，<u>                    </u>，这也给小模型留下了更多发展空间。</p><p>填入画横线部分最恰当的一项是：</p>",
+      "type": "single",
+      "globalAccuracy": 65,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "模型规模越大并不一定能给用户带来更好的使用体验"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "小模型的本地化部署能保障用户的数据控制权和隐私权"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "高端算力短缺等因素是困扰国内大模型发展的难题"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "小模型能够降低不相关、意外或不一致的输出风险"
+        }
+      ],
+      "analysisHtml": "<p>横线出现在文段尾句且为尾句的分句，需结合横线前内容以及尾句内容进行分析。文段首先提出“端侧部署”这一话题，随后通过转折词“但”提出问题，即大模型无法在小型终端上本地部署，限制了其应用场景，并通过“例如”列举手机端几乎无法正常使用参数过大的模型这一案例，对前文问题展开进一步分析。结合横线后“这也给小模型留下了更多发展空间”以及前文内容可知，横线处应总结前文大模型所存在的问题，并引出小模型获得发展空间这一结果。A项：“模型规模越大并不一定能给用户带来更好的使用体验”承接前文问题，说明在一些场景下模型规模并非越大越好，从而体现出小模型的优势和发展空间，衔接恰当，当选。</p><p>B项：前文主要强调的是大模型因算力问题在小型终端部署受限，未提及用户的数据控制权和隐私权，该项无中生有，排除。</p><p>C项：前文重点论述大模型在应用端的部署问题，并未提及高端算力是否短缺，无中生有，且无法引出横线后小模型获得发展空间这一结果，排除。</p><p>D项：“降低输出风险”文段并未提及，无中生有，排除。</p><p>故正确答案为A。</p><p>【文段出处】科技日报《并非越大越好，模型选择要结合需求》</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "语句填空",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20889,
+      "titleHtml": "<p>对于新型氢能动力飞机，其推进系统需要建设新的地面配套设施，而现有基础设施是依据在用飞机的动力系统和配套设备所搭建，各国开发者需要研究和解决在尽量短的时间内为飞机加注氢燃料、尽量缩短飞机的停场时间，并确保加注过程的安全性和经济性等问题。氢能飞机的运行需要在规划初期就确定好基础设施的建设工作。目前，无论航空公司还是机场的配套设施，都不适合氢能飞机的商业化运行，新型氢能源的推广需要重新搭建相关基础设施及配套设施。</p><p>这段文字意在说明：</p>",
+      "type": "single",
+      "globalAccuracy": 58,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "适用氢能飞机的基础设施尚有待完善"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "氢能飞机商业化需提前规划配套设施"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "解决短时加注燃料是未来普及氢能飞机的关键"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "氢能飞机的推进系统与在用飞机存在较大差异"
+        }
+      ],
+      "analysisHtml": "<p>文段先指出氢能飞机在推进系统方面需要建设新的地面配套设施。接着指出氢能飞机的运行方面在规划初期就要确定好基础设施的建设工作，而目前的航空公司和机场的配套设施都不适合氢能飞机的商业化运行。故文段从氢能飞机推进和运行两个方面介绍其配套设施的建设有待完善，属于并列结构，需全面概括，对应A项。</p><p>B项：“商业化”仅对应并列的一方面，表述片面，排除。</p><p>C项：“短时加注燃料”属于建设氢能飞机推进系统，表述片面，排除。</p><p>D项：“氢能飞机的推进系统”对应文段首句，表述片面，排除。</p><p>故正确答案为A。</p><p>【文段出处】科学网《冉冉升起的氢燃料飞机（下）》</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "中心理解",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20890,
+      "titleHtml": "<p>我国新的职业教育法对职业教育的新定位是类型教育。把职业教育办为与普通教育平等的类型教育，是解决教育“分层”问题的重点与难点。当前，我国对职业教育的投入，还没有做到与普通教育一致，而从办好职业教育所需师资、实习实训场地、产教融合教育测算，职业教育所需经费投入是普通教育所需经费投入的3倍。显然，要让地方政府拿出举办普高3倍的经费办职业学校，这不但涉及增加教育经费投入，而且也将是重大的教育政绩观转变。</p><p>这段文字意在说明：</p>",
+      "type": "single",
+      "globalAccuracy": 75,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "多方协作是破解职业教育发展困境的关键"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "职业教育的被重视程度仍有待提高"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "职业教育所需经费投入超出政府负担"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "加大职业教育投入需改变地方政府理念"
+        }
+      ],
+      "analysisHtml": "<p>文段开篇指出对职业教育的新定位是类型教育，并强调此举是解决教育“分层”问题的重点与难点。接着提出职业教育投入资金不足的问题，即投入未与普通教育一致，且办好职业教育所需经费投入是普通教育的3倍。最后通过递进关联词“不但······而且······”进行强调，要让地方政府拿出举办普高3倍的经费办职业学校，需要地方政府加大教育经费投入，更需要地方政府转变教育政绩观。故文段重点强调投入高额教育经费办职业教育需要地方政府转变教育政绩观，对应D项。</p><p>Ａ、Ｃ两项：A项“多方协作”、C项“职业教育所需经费投入超出政府负担”文段均未提及，无中生有，排除。</p><p>B项：文段围绕“职业教育投入”的话题展开，选项偏离文段核心话题，排除。</p><p>故正确答案为D。</p><p>【文段出处】光明网《持续加大教育投入，改革教育资源配置方式》</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "中心理解",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20891,
+      "titleHtml": "<p>区块链与人工智能等技术有所不同，其应用的过程是在寻求全局最优解，一定会带来已有管理体系及价值分配模式的改变。如果相应的体制机制等无法适应这种改变，区块链技术的应用将不会展现出应有的技术特性。我国金融市场严重依赖主体信用，即使利用区块链技术匹配了供应链金融场景，商业银行还是要重复线下非区块链流程，有的商业银行如果没有担保函依然不敢服务链上中小企业。此外，区块链技术在金融交易中的增信作用并未得到相应制度激励。</p><p>这段文字意在说明：</p>",
+      "type": "single",
+      "globalAccuracy": 35,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "区块链技术尚未在金融领域发挥出应有价值"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "区块链技术的应用必将带来管理模式的更新"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "金融行业需要优化体制机制以匹配区块链技术"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "商业银行限制了区块链技术在金融领域的应用"
+        }
+      ],
+      "analysisHtml": "<p>文段开篇介绍区块链技术的应用会带来已有管理体系和价值分配模式的改变，并指出如果没有相应的体制机制来适应这种改变，区块链技术的应用将会受到限制。接着文段通过“此外”引导两个方面，进一步指出金融市场存在严重依赖主体信用和增信作用缺乏相应制度激励两个问题，使区块链技术的应用受到限制，即区块链技术并未在金融领域发挥出应有的价值，对应A项。</p><p>B项：偏离文段主题词“金融”，排除。</p><p>C项：“需要优化体制机制以匹配区块链技术”说法错误。根据文段第二句，优化体制机制匹配的是管理体系及价值分配模式的改变，而非区块链技术，且文段主要讨论的是区块链技术在金融行业的应用受限，而非让金融行业做出较大改变去匹配区块链技术，本末倒置，排除。</p><p>D项：“商业银行”仅对应“此外”之前的部分内容，表述片面，排除。</p><p>故正确答案为A。</p><p>【文段出处】科技日报《加快区块链技术应用 畅通金融服务中小企业渠道》</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "中心理解",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20892,
+      "titleHtml": "<p>“跑完一场马，爱上一座城。”这几乎是所有城市举办马拉松赛事的出发点和落脚点。以天津马拉松为例，主办方设置了极具诚意的路线，天津之眼、解放桥、世纪钟、民园广场等地标都与“天马”同框，五大道和意风区的异国风情、海河的旖旎风光、古文化街的历史风貌、天开高教科创园的朝气蓬勃，都能“一日看尽”。打造最美赛道，给跑者最好的体验，这是绝佳的展示文化和魅力、营销城市的机会和方式。</p><p>这段文字以天津马拉松为例是为了说明：</p>",
+      "type": "single",
+      "globalAccuracy": 60,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "举办马拉松赛事有助于城市营销和推广"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "组织者要多措并举提升马拉松的体验感"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "马拉松是拉动当地文旅产业发展的一剂良药"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "马拉松的路线应结合城市文化景观进行设计"
+        }
+      ],
+      "analysisHtml": "<p>文段开篇引出“马拉松赛事”的话题，强调举办马拉松赛事的出发点和落脚点是让人们“爱上一座城”。接着以天津马拉松为例，具体介绍其设置的极具诚意的路线，让跑者能够领略众多地标和不同风貌。尾句强调打造最美赛道给跑者提供最好的体验，是展示城市文化魅力和营销城市的好机会。故文段意在强调举办马拉松赛事有助于展示城市文化魅力，推广和营销城市，对应A项。</p><p>B项：未提及文段主题词“城市”，文段重点强调的是举办马拉松赛事对城市的作用，排除。</p><p>C项：“拉动当地文旅产业发展”文段未提及，无中生有，排除。</p><p>D项：“马拉松的路线应结合城市文化景观进行设计”为举例的内容，并非要论证的观点，排除。</p><p>故正确答案为A。</p><p>【文段出处】新华网《新闻分析：“马拉松热”背后的经济账》</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "中心理解",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20893,
+      "titleHtml": "<p>非遗要“火起来”，更要扩大市场，去积极拥抱新技术，焕发新的生机。我们看到随着新技术同非遗的有机结合，非遗的传播彻底突破了地域限制，借助互联网+、VR等全新的打开方式，非遗IP在青年人群体中间成为时尚。例如，某武侠游戏联合“天下第一苗寨”西江千户苗寨及3位苗族代表性非遗传承人深度合作，在剧情、建筑、服饰中加入苗族文化元素，让更多年轻人对非遗产生探究的兴趣。而来自中国古老的文化精粹，也在走入寻常百姓家的同时，以数字时代的方式潜移默化地传承下去。</p><p>这段文字意在说明：</p>",
+      "type": "single",
+      "globalAccuracy": 87,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "数字技术是非遗走向市场的桥梁"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "年轻人已成为非遗传承的新力量"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "新技术赋能非遗迸发出新的生机"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "非遗的传播必须突破地域的限制"
+        }
+      ],
+      "analysisHtml": "<p>文段开篇引出“非遗要‘火起来’，更要扩大市场”的话题，接着提出对策，即非遗要通过新技术焕发新的生机。随后指出非遗与新技术结合后会带来突破地域限制、在青年人群体中间成为时尚等积极影响。而后又通过武侠游戏与苗族非遗融合让年轻人对非遗产生兴趣的案例进行举例论证，再次点明非遗文化借助数字时代的方式得以传承。故文段重在强调新技术使非遗焕发出新的生机，对应C项。</p><p>A项：“数字技术”范围缩小，且文段重点是新技术为非遗带来新的生机，而非“走向市场”，偏离文段中心，排除。</p><p>B项：“年轻人已成为非遗传承的新力量”偏离文段中心，文段重点是新技术为非遗带来新的生机，排除。</p><p>D项：“突破地域的限制”仅为新技术给非遗传播带来的影响之一，表述片面且非重点，排除。</p><p>故正确答案为C。</p><p>【文段出处】人民网《以人才为本为非遗传承注入不竭动力》</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "中心理解",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20894,
+      "titleHtml": "<p>脊髓损伤是一种极具破坏性的疾病，常常导致患者面临瘫痪等严重后果。损伤发生后，神经细胞的轴突投射被切断，引发从损伤部位开始的神经“死亡”过程。同时，伤口处形成的病变或间隙成为阻碍神经细胞再生的天然屏障，而这一过程对于受损功能的恢复至关重要。为了解决这一医学难题，有研究团队巧妙地开发出一种可植入的导电性3D打印支架。这一创新设计不仅能够有效填补脊髓损伤后的间隙，还利用导电生物材料模仿脊髓的自然结构，为受损神经元提供了一条“再生之路”。</p><p>最适合做这段文字标题的是：</p>",
+      "type": "single",
+      "globalAccuracy": 37,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "导电生物材料——受损神经元的“再生之路”"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "链接神经细胞轴突投射是脊髓恢复功能的关键"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "3D打印支架——让脊髓不怕再受伤"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "导电性3D打印植入物促进受损脊髓修复"
+        }
+      ],
+      "analysisHtml": "<p>文段开篇阐述脊髓损伤是极具破坏性的疾病，会导致严重后果。接着具体说明了损伤发生后会引发神经“死亡”以及伤口处的病变或间隙阻碍神经细胞再生，这对受损功能的恢复至关重要。随后指出为解决这一难题，研究团队开发出一种可植入的导电性3D打印支架，该支架能填补间隙并能使受损神经元得到修复。故文段为“提出问题+解决问题”的结构，重点强调导电性3D打印支架可以帮助受损脊髓得到修复，对应D项。</p><p>A项：“导电生物材料”范围扩大，文段核心话题为“导电性3D打印支架”，排除。</p><p>B项：“链接神经细胞轴突投射”对应“同时”之前的内容，表述片面，且缺少文段核心话题“导电性3D打印支架”，排除。</p><p>C项：“3D打印支架”表述不明确，文段核心话题为“导电性3D打印支架”，且文段重点突出的是导电性3D打印支架有促进受损脊髓修复的作用，但这并不意味着可以解决脊髓受伤的所有问题，“让脊髓不怕再受伤”表述有误，排除。</p><p>故正确答案为D。</p><p>【文段出处】科技日报《导电性3D打印植入物促进受损脊髓修复》</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "标题填入",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20895,
+      "titleHtml": "<p>在动物王国中，毒蜘蛛黑寡妇的毒液令人闻风丧胆。这种毒液由七种不同毒素组成，其中大多数毒素的目标是昆虫和甲壳类动物的神经系统。但有一种特别的成分：α-蛛毒素，却对脊椎动物有着致命杀伤力，尤其对人类构成威胁。当α-蛛毒素找到它的目标——神经细胞间突触时，就像一把精密的钥匙找到了锁眼。它与突触上的特定受体结合，就像打开了潘多拉魔盒，导致钙离子如潮水般涌入。这一过程引发了神经递质的过度释放，导致剧烈的肌肉收缩和痉挛，身体内部仿佛上演了一场失控的舞蹈。</p><p>关于α-蛛毒素，上文提到了：</p>",
+      "type": "single",
+      "globalAccuracy": 86,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "是黑寡妇蜘蛛特有的毒素"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "能与人体神经细胞间突触的受体结合"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "对昆虫和甲壳类动物没有影响"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "会对人体的肌肉组织造成永久伤害"
+        }
+      ],
+      "analysisHtml": "<p>A项：根据“但有一种特别的成分：α-蛛毒素”可知，文段仅提到α-蛛毒素是黑寡妇蜘蛛毒液中一种特别的毒素，没有提及它是黑寡妇蜘蛛“特有的毒素”，无中生有，排除。</p><p>B项：根据“当α-蛛毒素找到它的目标——神经细胞间突触时，就像一把精密的钥匙找到了锁眼。它与突触上的特定受体结合”可知，文段已说明它能与人体神经细胞间突触的受体结合，表述正确，当选。</p><p>C项：根据“但有一种特别的成分：α-蛛毒素，却对脊椎动物有着致命杀伤力，尤其对人类构成威胁”可知，文段仅提及α-蛛毒素会对脊椎动物尤其是人类构成威胁，并没有提及“对昆虫和甲壳类动物没有影响”，无中生有，排除。</p><p>D项：根据“导致剧烈的肌肉收缩和痉挛，身体内部仿佛上演了一场失控的舞蹈”可知，α-蛛毒素会对肌肉造成损伤，但并未提及“永久伤害”，无中生有，排除。</p><p>故正确答案为B。</p><p>【文段出处】科技日报《黑寡妇蜘蛛毒液为何如此致命》</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "细节判断",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20896,
+      "titleHtml": "<p>随着数字化发展，涌现了拥有海量用户的大型互联网平台。深入推进公共文化服务数字化进程，更好地利用数字技术提升公共文化服务的普惠性、便利性、均等性，应充分发挥大型互联网平台的作用。为此，要进一步细化和完善公共文化服务保障法关于“鼓励社会资本依法投入公共文化服务，拓宽公共文化服务资金来源渠道”等规定，鼓励大型互联网平台经营者通过提供数据使用权、算力使用权、云存储空间、数字基础设施使用权等方式积极参与公共文化服务，让公共文化服务能够通过大型互联网平台的渠道直达群众，不断提升公共文化服务的数字化水平和服务效能。</p><p>这段文字意在说明：</p>",
+      "type": "single",
+      "globalAccuracy": 14,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "应不断健全社会力量参与公共文化服务的激励机制"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "应当细化和完善法律制度推进公共文化数字化发展"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "应以高质量的文化供给不断提升群众的文化获得感"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "应充分利用大型互联网平台提升公共文化服务水平"
+        }
+      ],
+      "analysisHtml": "<p>文段开篇指出当前涌现了拥有海量用户的大型互联网平台，随后说明应利用大型互联网平台提升公共文化服务水平。根据接下来的指代词“为此”可知，利用“大型互联网平台提升公共文化服务水平”是要实现的目标，后文以对策标志词“要”提出实现这一目标的对策。因此后文的对策为文段重点，即强调要进一步细化和完善公共文化服务保障法关于“鼓励社会资本依法投入公共文化服务，拓宽公共文化服务资金来源渠道”等规定，鼓励大型互联网平台参与公共文化服务，进而提升公共文化服务的数字化水平和服务效能。对策本身是重点，对应A项。</p><p>B项：“法律制度”概念扩大，文段强调的是“公共文化服务保障法”且侧重于“鼓励”，排除。</p><p>C项：“高质量的文化供给”文段并未提及，无中生有，排除。</p><p>D项：“充分利用大型互联网平台提升公共文化服务水平”为文段核心对策所要达到的目标，相较之下A项的对策更重要，排除。</p><p>故正确答案为A。</p><p>【文段出处】光明日报《以高水平法治推动公共文化服务数字化发展》</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "中心理解",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20897,
+      "titleHtml": "<p>一项最新研究结果显示，在高层大气还存在着令人惊讶的微生物循环模式，这比我们此前预期的微生物在大气中的循环高度更高，达到了十万英尺甚至更高的大气上层。负责该项研究的人员认为高层大气可能作为致病微生物的“全球运输系统”，在来自宇宙空间高水平的辐射背景下，可增加病菌或者微生物的突变几率，作为一种特殊的“疾病温床”。比如，在北非和加勒比海地区之间形成的风带，每年可卷起大约十亿吨的沙粒和尘埃，其中每克沙中含有约一百万数量级的微生物，这些被“横扫”的大量沙尘最终散布在世界各大洋中。</p><p>下列说法符合文意的是：</p>",
+      "type": "single",
+      "globalAccuracy": 93,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "辐射是导致微生物突变增加的主要原因"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "高层大气环境可能导致致病微生物全球传播"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "风力作用是目前微生物散布的最主要方式"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "微生物大气循环可能减缓人类疾病的发生"
+        }
+      ],
+      "analysisHtml": "<p>A项：根据“在来自宇宙空间高水平的辐射背景下，可增加病菌或者微生物的突变几率”可知，文段仅论述辐射可以增加微生物突变几率，“主要原因”文段并未提及，无中生有，排除。</p><p>B项：根据“负责该项研究的人员认为高层大气可能作为致病微生物的‘全球运输系统’”可知，选项表述正确，当选。</p><p>C项：根据“在北非和加勒比海地区之间形成的风带······每克沙中含有约一百万数量级的微生物······最终散布在世界各大洋中”可知，文段仅论述风力作用会散布微生物，“最主要方式”表述过于绝对，排除。</p><p>D项：文段论述的是高层大气微生物循环会运输病菌或微生物，“减缓人类疾病的发生”文段并未提及，无中生有，排除。</p><p>故正确答案为B。</p><p>【文段出处】黑龙江科技信息《不可思议的“细菌走廊”  大气环流可运输真菌》</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "细节判断",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20898,
+      "titleHtml": "<p>①中国古代“天人合一”的哲学思想，就告诫我们应顺乎自然规律，实现人与自然和谐共生</p><p>②一段时期以来，污染重、损失大、风险高的生态环境状况还相当严峻</p><p>③建设美丽中国已经成为中国人民心向往之的奋斗目标，成为实现中华民族伟大复兴的必经之路</p><p>④中华民族是人类文明进步的重大贡献者，绵延五千多年的中华文明孕育着丰富的生态文化</p><p>⑤进入新时代，人民对美好生活的向往，对生态文明建设提出了更高要求</p><p>⑥从历史和现实看，在中华民族大手笔书写璀璨文明的同时，也面临环境容量有限，生态系统脆弱的国情</p><p>将以上6个句子重新排列，语序正确的一项是：</p>",
+      "type": "single",
+      "globalAccuracy": 70,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "①⑥②⑤③④"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "⑤②⑥①④③"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "③⑥②①⑤④"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "④①⑥②⑤③"
+        }
+      ],
+      "analysisHtml": "<p>对比选项，确定首句。①句指出“天人合一”的哲学思想告诫我们应顺乎自然规律，实现人与自然和谐共生；③句指出建设美丽中国是实现中华民族伟大复兴的必经之路；④句指出绵延五千多年的中华文明孕育着丰富的生态文化；⑤句指出新时代对生态文明建设提出了更高的要求。④⑤两句均提到了“生态”这一话题，按照逻辑顺序应先介绍我国有生态文化，再论述对生态文明建设提出了更高要求，故④句应在⑤句之前，排除A、B、C三项，锁定D项。</p><p>验证D项。④句与①句均围绕中华文明中的生态文化进行论述，⑥句指出中华民族有璀璨文明的同时，也面临环境容量有限，生态系统脆弱的国情，②句继续围绕生态问题进行论述，⑤句指出新时代对生态文明建设提出了更高的要求，③句提出对策，指出建设美丽中国是实现中华民族伟大复兴的必经之路，符合逻辑，当选。</p><p>故正确答案为D。</p><p>【文段出处】中国青年报《世园会：彰显美丽中国绿色发展的窗口》</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "语句排序",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20899,
+      "titleHtml": "<p>①在药物研究中，要根据病理过程发生的机制，找到在临床上对疾病有治疗作用，且不会对生命其他活动产生副作用或者副作用可控的药物</p><p>②现代生物学和医学的发展使人们在生命科学的基础研究领域，发现了很多关系到正常生理和病理过程的蛋白、酶和信号通路</p><p>③例如，某一蛋白或酶能够影响重要的生命活动，如果有疾病是这一生命活动的异常导致，那么理论上，我们调控这一蛋白或酶就可以治疗这种疾病</p><p>④之所以称它们为“潜在靶点”，是因为这些靶点的作用只在基础研究的试验中得到了证明，但在疾病模型，特别是在临床治疗中并没有获得证明</p><p>⑤这样的药物针对的靶点才是真正的药物靶点</p><p>⑥我们称这样的靶点为药物的“潜在靶点”，药物化学家就是要通过确证这些靶点来筛选药物</p><p>将以上6个句子重新排列，语序正确的一项是：</p>",
+      "type": "single",
+      "globalAccuracy": 67,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "①④⑤⑥②③"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "①②③⑤⑥④"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "②③⑥④①⑤"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "②①③④⑤⑥"
+        }
+      ],
+      "analysisHtml": "<p>对比选项，确定首句。首句分别为①句和②句，①句表明要根据病理过程发生的机制，找到既有效又副作用可控的药物；②句表明现代生物学和医学的发展使人们在生命科学的基础研究领域有所发现。两句均可以做首句，且话题不一致，无法判别，均保留。</p><p>继续寻找其他线索。④句出现指代词“它们”，并解释称“它们”为“潜在靶点”的原因，故前句应有具体指代对象。选项中④句前分别为①句、③句、⑥句，⑥句出现“潜在靶点”这一话题，为④句指代对象，⑥④两句可构成指代词捆绑。①句强调要找到既有效又不会对生命其他活动产生副作用或副作用可控的药物，③句表明可以通过调控蛋白或酶治疗相关疾病，均未提到“潜在靶点”这一话题，无对应指代对象，排除A、D两项。</p><p>继续观察发现，⑤句出现指代词“这样的药物”，故前句应指明具体的药物。⑤句前分别为①句、③句，①句提到既有效又副作用可控的药物，存在具体指代对象，①⑤两句可构成指代词捆绑。③句表明可以通过调控蛋白或酶治疗疾病，未提到“药物”的相关话题，缺少指代对象，排除B项，C项当选。</p><p>故正确答案为C。</p><p>【文段出处】《加强原创靶点开发，推动医药源头创新》</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "语句排序",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20900,
+      "titleHtml": "<p>①现代传播格局对参与文学创作、生产、传播的从业者提出了更高要求</p><p>②新时代文学呈现出“破圈”与“跨界”的整体趋势</p><p>③我们希望促进文学精品的生产、传播、转化、译介，尽己所能，让好作品在各个环节充分发挥能量，以开拓和延伸放大文学的价值，让文学的生命力与活力更好迸发</p><p>④酒香也怕巷子深</p><p>⑤由此，更多人能够意识到，文学是不可或缺的力量，在现代人的精神生活中，始终存在文学的维度</p><p>⑥“破圈”与“跨界”绝不是迎合媒介的变化，也不是与短视频、影视、游戏等抢夺注意力</p><p>将以上6个句子重新排列，语序正确的一项是：</p>",
+      "type": "single",
+      "globalAccuracy": 51,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "①②④⑤⑥③"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "②④①⑥③⑤"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "④③②⑥①⑤"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "⑥④①②⑤③"
+        }
+      ],
+      "analysisHtml": "<p>对比选项，确定首句。①句指出现代传播格局对文学从业者有更高要求，②句提出新时代文学“破圈”“跨界”的整体趋势，④句通过“酒香也怕巷子深”引出“破圈”“跨界”的重要性，均可做首句，A、B、C三项保留。⑥句针对“破圈”“跨界”做进一步阐述和解释，是对②句的解释说明，故②句应在⑥句前，排除D项。</p><p>继续观察选项。⑤句出现指代词“由此”，可先判断③句和⑤句哪个更适合做尾句。③句围绕“文学”展开，论述我们要尽己所能放大文学的价值，让文学的生命力与活力更好迸发。⑤句指出在现代人的精神生活中，文学不可或缺。根据日常逻辑，要先放大文学的价值，迸发文学的生命力，才能让文学始终存在于人们的精神生活中，故③句应在⑤句前。且⑤句中的“由此”可以起到指代上文和总结的作用，更适合做尾句，排除A项。</p><p>继续观察选项。⑤句之前分别为③句、①句。根据上述分析，③⑤两句均围绕“文学”这一话题展开，且衔接得当，B项当选。①句围绕“文学从业者”论述，指出现代传播格局对文学从业者有更高要求，与⑤句话题不一致，无法与⑤句进行捆绑，排除C项。</p><p>故正确答案为B。</p><p>【文段出处】《以开拓和延伸放大文学的价值》</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "语句排序",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20901,
+      "titleHtml": "<p>2024年8月21日，中共中央办公厅、国务院办公厅印发的《关于完善市场准入制度的意见》对外公布。关于如何完善市场准入制度，下列说法正确的有几项？</p><p>①完善市场准入白名单管理模式</p><p>②合理设定市场禁入和许可准入事项</p><p>③加强内外资准入政策协同联动</p><p>④取消服务业准入限制</p><p>⑤优化新业态新领域市场准入环境</p>",
+      "type": "single",
+      "globalAccuracy": 20,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "2项"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "3项"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "4项"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "5项"
+        }
+      ],
+      "analysisHtml": "<p>本题考查政治常识。</p><p>2024年8月21日，中共中央办公厅、国务院办公厅印发的《关于完善市场准入制度的意见》对外公布，全文2000多字、10条意见，被称为“市场准入10条”：一、完善市场准入负面清单管理模式。二、科学确定市场准入规则。三、合理设定市场禁入和许可准入事项。四、明确市场准入管理措施调整程序。五、加强内外资准入政策协同联动。六、有序放宽服务业准入限制。七、优化新业态新领域市场准入环境。八、加大放宽市场准入试点力度。九、抓好市场准入制度落实。十、强化组织实施。</p><p>①“完善市场准入白名单管理模式”说法错误，应为“完善市场准入负面清单管理模式”。</p><p>④“取消服务业准入限制”说法错误，应为“有序放宽服务业准入限制”。</p><p>②③⑤说法正确，有3项。</p><p>故正确答案为B。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "理论政策",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20902,
+      "titleHtml": "<p>2024年是习近平总书记提出“节水优先、空间均衡、系统治理、两手发力”治水思路十周年。关于治水，下列说法正确的有几项？</p><p>①推进中国式现代化，要把水资源问题考虑进去，以水定城、以水定地、以水定人、以水定产，发展节水产业</p><p>②坚决抑制不合理用水需求，大力发展节水产业和技术，大力推进农业节水，实施全社会节水行动，推动用水方式由粗放向节约集约转变</p><p>③要坚持山水林田湖草沙一体化保护和系统治理，构建从山顶到海洋的保护治理大格局，集中采用人工修复手段，持之以恒推进生态建设</p><p>④要创新水权、排污权等交易措施，用好财税杠杆，发挥价格机制作用，倒逼提升节水效果</p>",
+      "type": "single",
+      "globalAccuracy": 52,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "1项"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "2项"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "3项"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "4项"
+        }
+      ],
+      "analysisHtml": "<p>本题考查政治常识。</p><p>①正确，习近平总书记2023年在广东徐闻县大水桥水库考察调研时强调，推进中国式现代化，要把水资源问题考虑进去，以水定城、以水定地、以水定人、以水定产，发展节水产业。</p><p>②正确，2019年9月18日上午，习近平总书记在郑州主持召开黄河流域生态保护和高质量发展座谈会并发表重要讲话，他强调，推进水资源节约集约利用······把水资源作为最大的刚性约束，合理规划人口、城市和产业发展，坚决抑制不合理用水需求，大力发展节水产业和技术，大力推进农业节水，实施全社会节水行动，推动用水方式由粗放向节约集约转变。</p><p>③错误，2023年7月17日至18日，习近平总书记在全国生态环境保护大会上发表重要讲话，其中指出要正确处理自然恢复和人工修复的关系，要坚持山水林田湖草沙一体化保护和系统治理，构建从山顶到海洋的保护治理大格局，综合运用自然恢复和人工修复两种手段，因地因时制宜、分区分类施策，努力找到生态保护修复的最佳解决方案。“集中采用人工修复手段”表述错误，应为“综合运用自然恢复和人工修复”两种手段。</p><p>④正确，2021年10月22日，习近平总书记在深入推动黄河流域生态保护和高质量发展座谈会上强调，要精打细算用好水资源，从严从细管好水资源。要创新水权、排污权等交易措施，用好财税杠杆，发挥价格机制作用，倒逼提升节水效果。</p><p>综上，①②④说法正确，共3项。</p><p>故正确答案为C。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "理论政策",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20903,
+      "titleHtml": "<p>习近平总书记强调，推动经济社会发展绿色化、低碳化是实现高质量发展的关键环节。根据《中共中央 国务院关于加快经济社会发展全面绿色转型的意见》，下列说法正确的是：</p><p>①到2035年，绿色低碳循环发展经济体系要基本建立</p><p>②大力发展非化石能源，积极发展分布式光伏、分散式风电、普及式核电</p><p>③倡导绿色低碳规划设计理念，严守城镇开发边界，控制新增建设用地过快增长</p><p>④推进京津冀协同发展，完善生态环境协同保护机制，支持雄安新区建设成为绿色发展城市典范</p>",
+      "type": "single",
+      "globalAccuracy": 29,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "①③④"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "①②④"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "①②③"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "②③④"
+        }
+      ],
+      "analysisHtml": "<p>本题考查政治常识。</p><p>①正确，《中共中央 国务院关于加快经济社会发展全面绿色转型的意见》指出：“到2030年，重点领域绿色转型取得积极进展，绿色生产方式和生活方式基本形成，减污降碳协同能力显著增强，主要资源利用效率进一步提升，支持绿色发展的政策和标准体系更加完善，经济社会发展全面绿色转型取得显著成效。到2035年，绿色低碳循环发展经济体系基本建立，绿色生产方式和生活方式广泛形成，减污降碳协同增效取得显著进展，主要资源利用效率达到国际先进水平，经济社会发展全面进入绿色低碳轨道，碳排放达峰后稳中有降，美丽中国目标基本实现。”</p><p>②错误，《中共中央 国务院关于加快经济社会发展全面绿色转型的意见》指出：“大力发展非化石能源。加快西北风电光伏、西南水电、海上风电、沿海核电等清洁能源基地建设，积极发展分布式光伏、分散式风电，因地制宜开发生物质能、地热能、海洋能等新能源，推进氢能‘制储输用’全链条发展。统筹水电开发和生态保护，推进水风光一体化开发。积极安全有序发展核电，保持合理布局和平稳建设节奏。到2030年，非化石能源消费比重提高到25%左右。”原文未提及“普及式核电”。</p><p>③正确，《中共中央 国务院关于加快经济社会发展全面绿色转型的意见》指出：“推行绿色规划建设方式。在城乡的规划、建设、治理各环节全面落实绿色转型要求。倡导绿色低碳规划设计理念，严守城镇开发边界，控制新增建设用地过快增长，保护和修复绿地、水域、湿地等生态空间，合理规划噪声敏感建筑物集中区域。推进气候适应型城市建设，增强城乡气候韧性。推广绿色建造方式，优先选用绿色建材，深化扬尘污染综合治理。”</p><p>④正确，《中共中央 国务院关于加快经济社会发展全面绿色转型的意见》指出：“推进京津冀协同发展，完善生态环境协同保护机制，支持雄安新区建设成为绿色发展城市典范。持续推进长江经济带共抓大保护，探索生态优先、绿色发展新路径。深入推进粤港澳大湾区建设和长三角一体化发展，打造世界级绿色低碳产业集群。推动海南自由贸易港建设、黄河流域生态保护和高质量发展。建设美丽中国先行区。持续加大对资源型地区和革命老区绿色转型的支持力度，培育发展绿色低碳产业。”</p><p>综上，①③④说法正确。</p><p>故正确答案为A。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "理论政策",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20904,
+      "titleHtml": "<p>习近平总书记关于卫生健康工作的重要论述，是做好卫生健康工作的根本遵循。关于习近平总书记对健康中国建设的重要论述，下列说法正确的有几项？ </p><p>①建设体育强国、健康中国，最根本的是增强人民体质、保障人民健康</p><p>②治疗是最经济最有效的健康策略，要坚决贯彻治疗为主的卫生与健康工作方针</p><p>③无论社会发展到什么程度，我们都要毫不动摇把公益性写在医疗卫生事业的旗帜上</p><p>④在实现“两个一百年”奋斗目标的历史进程中，发展卫生健康事业始终处于基础性地位，同国家整体战略紧密衔接，发挥着重要支撑作用</p><p>⑤爱国卫生运动是我们党把群众路线运用于卫生防病工作的成功实践 </p>",
+      "type": "single",
+      "globalAccuracy": 56,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "2项"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "3项"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "4项"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "5项"
+        }
+      ],
+      "analysisHtml": "<p>本题考查政治常识。</p><p>①正确，2022年1月，习近平总书记在北京考察2022年冬奥会、冬残奥会筹办备赛工作，在参观“带动三亿人参与冰雪运动成果展”时，习近平总书记指出：“建设体育强国、健康中国，最根本的是增强人民体质、保障人民健康。这是全面建设社会主义现代化国家的一个重要方面。”</p><p>②错误，2020年2月14日，习近平总书记在中央全面深化改革委员会第十二次会议上发表讲话指出：“预防是最经济最有效的健康策略。要坚决贯彻预防为主的卫生与健康工作方针，坚持常备不懈，将预防关口前移，避免小病酿成大疫。”“治疗”说法错误。</p><p>③正确，2016年8月19日，习近平总书记在《正确把握推进健康中国建设的重大问题》文章中指出：“无论社会发展到什么程度，我们都要毫不动摇把公益性写在医疗卫生事业的旗帜上，不能走全盘市场化、商业化的路子。政府投入要重点用于基本医疗卫生服务，不断完善制度、扩展服务、提高质量，让广大人民群众享有公平可及、系统连续的预防、治疗、康复、健康促进等健康服务。”</p><p>④正确，2020年6月2日，习近平总书记主持召开专家学者座谈会时指出：“在实现‘两个一百年’奋斗目标的历史进程中，发展卫生健康事业始终处于基础性地位，同国家整体战略紧密衔接，发挥着重要支撑作用。”</p><p>⑤正确，2020年6月2日，习近平总书记在专家学者座谈会上发表讲话指出：“爱国卫生运动是我们党把群众路线运用于卫生防病工作的成功实践。要总结新冠肺炎疫情防控斗争经验，丰富爱国卫生工作内涵，创新方式方法，推动从环境卫生治理向全面社会健康管理转变，解决好关系人民健康的全局性、长期性问题。”</p><p>故①③④⑤正确，共4项。</p><p>故正确答案为C。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "理论政策",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20905,
+      "titleHtml": "<p>2024年是京津冀协同发展战略实施10周年，关于京津冀协同发展十年成果，下列表述正确的有几项？</p><p>①天津的全国先进制造研发基地建设已进入快车道</p><p>②京津冀三地以“六链五群”为协同发力点，加快产业成龙配套，成链成群</p><p>③当前，京津冀三地产业已进入由疏解存量向共谋增量转变的阶段</p><p>④天津“天鲸号”“天鲲号”刷新了海洋装备领域多项世界纪录</p>",
+      "type": "single",
+      "globalAccuracy": 42,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "1项"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "2项"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "3项"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "4项"
+        }
+      ],
+      "analysisHtml": "<p>本题考查政治常识。</p><p>①正确，2024年10月25日，京津冀产业协同专题工作组在天津发布《京津冀产业协同发展十周年报告》。报告指出，京津冀三地产业结构持续升级，北京重点打造以新一代信息技术、医药健康为引领的“2441”高精尖产业体系，国际科技创新中心建设向更高水平迈进；天津加快构建以智能科技产业为引领的“1+3+4”现代工业产业体系，全国先进制造研发基地建设进入快车道；河北着力打造以新一代信息技术、高端装备等九大产业为主导的工业产业体系，产业转型升级试验区建设成效明显。</p><p>②正确，2024年10月25日，京津冀产业协同专题工作组在天津发布《京津冀产业协同发展十周年报告》。报告指出，三地进一步完善协作机制，立足区域产业特色和比较优势，以“六链五群”为协同发力点，加快产业成龙配套、成链成群。（“六链”即氢能、生物医药、网络安全和工业互联网、高端仪器设备和工业母机、新能源和智能网联汽车、机器人6条重点产业链；“五群”即集成电路、新一代信息技术应用创新、生物医药、电力装备、安全应急装备5个具有竞争力的先进制造业集群。）</p><p>③正确，2024年7月《京津冀协同发展报告（2024）》发布，报告指出，京津冀产业链出现实质性协同推进，区域高质量发展的动能优势初步显现。当前，三地产业已进入由疏解存量向共谋增量转变的阶段。</p><p>④正确，2024年10月25日，京津冀产业协同专题工作组在天津发布《京津冀产业协同发展十周年报告》。报告指出，三地整合产业链上下游企业、科研院所，形成攻关合力，在“点”上实现重大突破，涌现出一批颠覆性技术和重大原创成果。北京推出全球首个纯电驱拟人奔跑的全尺寸人形机器人“天工”，发布全球首个新一代量子计算云平台“夸父”；天津在国际上首次实现二氧化碳到淀粉的从头合成，“天鲸号”“天鲲号”刷新了海洋装备领域多项世界纪录；河北高精密摆线针轮减速器打破国外垄断，巨型风电叶片研发生产能力国际领先。</p><p>综上，①②③④均正确，共4项。</p><p>故正确答案为D。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "理论政策",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20906,
+      "titleHtml": "<p>根据《中共中央关于进一步全面深化改革 推进中国式现代化的决定》，下列与经济体制改革有关的说法，不准确的是：</p>",
+      "type": "single",
+      "globalAccuracy": 54,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "健全生产要素由收益评价贡献、按贡献决定报酬的机制"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "发展以高技术、高效能、高质量为特征的生产力"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "推动国有资本向前瞻性战略性新兴产业集中"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "建立保持制造业合理比重投入机制，合理降低制造业综合成本和税费负担"
+        }
+      ],
+      "analysisHtml": "<p>本题考查政治常识。</p><p>2024年7月15日至18日，中国共产党第二十届中央委员会第三次全体会议在北京召开，全会审议通过了《中共中央关于进一步全面深化改革 推进中国式现代化的决定》，以下简称《决定》。</p><p>A项错误，《决定》指出，完善主要由市场供求关系决定要素价格机制，防止政府对价格形成的不当干预。健全劳动、资本、土地、知识、技术、管理、数据等生产要素由市场评价贡献、按贡献决定报酬的机制。</p><p>B项正确，《决定》指出，健全因地制宜发展新质生产力体制机制。推动技术革命性突破、生产要素创新性配置、产业深度转型升级，推动劳动者、劳动资料、劳动对象优化组合和更新跃升，催生新产业、新模式、新动能，发展以高技术、高效能、高质量为特征的生产力。</p><p>C项正确，《决定》指出，进一步明晰不同类型国有企业功能定位，完善主责主业管理，明确国有资本重点投资领域和方向。推动国有资本向关系国家安全、国民经济命脉的重要行业和关键领域集中，向关系国计民生的公共服务、应急能力、公益性领域等集中，向前瞻性战略性新兴产业集中。</p><p>D项正确，《决定》指出，优化重大产业基金运作和监管机制，确保资金投向符合国家战略要求。建立保持制造业合理比重投入机制，合理降低制造业综合成本和税费负担。</p><p>本题为选非题，故正确答案为A。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "理论政策",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20907,
+      "titleHtml": "<p>习近平总书记指出，人口发展是关系中华民族伟大复兴的大事，必须着力提高人口整体素质，以人口高质量发展支撑中国式现代化。关于习近平总书记对人口高质量发展的重要指示，下列理解正确的有几项？</p><p>①人口减少也有一些正面效应，比如倒逼经济发展从内涵式发展向外延式扩张转向</p><p>②更加重视“引导”和“激励”的办法，主要依靠政府力量推动人口高质量发展</p><p>③推动人口工作由调节数量为主向提升素质、稳定总量、优化结构、畅通流动转变</p><p>④以消费结构升级引领产业转型升级，基础设施布局要考虑人口达峰和分布变化的影响</p><p>⑤加快发展多层次、多支柱养老保险体系，强化第二、第三支柱养老保险</p>",
+      "type": "single",
+      "globalAccuracy": 52,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "1项"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "2项"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "3项"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "4项"
+        }
+      ],
+      "analysisHtml": "<p>本题考查政治常识。</p><p>2024年11月16日出版的第22期《求是》杂志发表习近平的重要文章《以人口高质量发展支撑中国式现代化》。 </p><p>①错误，文章指出，要辩证看待人口负增长带来的影响······人口减少会对发展带来一些不利影响，比如劳动力减少、消费投资动能减弱。同时，人口减少也有一些正面效应，比如减轻资源环境压力、倒逼经济发展从外延式扩张转向内涵式发展。总的看，人口减少对经济社会发展影响利弊兼有，不能只看一面，有些问题要长期看，不能急于下结论，既要反对“人口决定论”，又要反对“人口无关论”，趋利避害做好工作。</p><p>②错误，文章指出，坚持以改革创新推动人口高质量发展。过去人口工作以“管”为主，今后工作覆盖面更广了、颗粒度更细了，要更加重视“引导”和“激励”的办法，由主要依靠政府力量向政府和社会协同治理转变。</p><p>③正确，文章指出，坚持以人口高质量发展促进经济社会高质量发展。我国已经进入推动高质量发展的关键时期，必须推动人口工作由调节数量为主向提升素质、稳定总量、优化结构、畅通流动转变，以人口高质量发展打造高素质人力资源，加快构建新发展格局，着力推动高质量发展。</p><p>④正确，文章指出，更好统筹人口与经济社会、资源环境的关系，维护人口安全。要顺应人口转变新趋势建设现代化产业体系。以消费结构升级引领产业转型升级，基础设施布局要考虑人口达峰和分布变化的影响。</p><p>⑤正确，文章指出，实施积极应对人口老龄化国家战略，努力实现老有所养、老有所为、老有所乐······要增强社会保险制度可持续性。加快发展多层次、多支柱养老保险体系，强化第二、第三支柱养老保险，健全基本医疗保险筹资和待遇调整机制。</p><p>综上，③④⑤正确，共3项。</p><p>故正确答案为C。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "理论政策",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20908,
+      "titleHtml": "<p>习近平总书记运用马克思主义的立场观点，创造性提出一系列新思想、新观点、新论断，明确回答了新时代为什么要全面深化改革、怎样推进全面深化改革等重大问题。下列与之相关的说法正确的有几项？</p><p>①改革开放是决定当代中国命运的关键一招，也是决定实现“两个一百年”奋斗目标、实现中华民族伟大复兴的关键一招</p><p>②为了人民而改革，改革才有意义；依靠人民而改革，改革才有动力</p><p>③“改革与法治如鸟之两翼、车之两轮”，要坚持在法治下推进改革，在改革中完善法治</p><p>④要针对伟大社会革命实践的新要求来谋划党的自我革命，用伟大社会革命发展的新成果来检验党的自我革命的实际成效</p>",
+      "type": "single",
+      "globalAccuracy": 71,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "1项"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "2项"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "3项"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "4项"
+        }
+      ],
+      "analysisHtml": "<p>本题考查政治常识。</p><p>①正确，2012年12月7日至11日，习近平总书记在广东考察时的讲话中指出：“改革开放是决定当代中国命运的关键一招，也是决定实现‘两个一百年’奋斗目标、实现中华民族伟大复兴的关键一招。”</p><p>②正确，2013年12月3日，习近平总书记在第十八届中央政治局第十一次集体学习时指出：“为了人民而改革，改革才有意义；依靠人民而改革，改革才有动力。”</p><p>③正确，2018年8月24日，习近平总书记在中央全面依法治国委员会第一次会议上强调：“‘改革与法治如鸟之两翼、车之两轮’，要坚持在法治下推进改革，在改革中完善法治。”</p><p>④正确，2024年1月8日，习近平总书记在二十届中央纪委三次全会上提出“九个以”的实践要求，他指出，党的自我革命是手段而不是目的，根本目的是为了更好引领伟大社会革命。要针对伟大社会革命实践的新要求来谋划党的自我革命，明确目标任务、战略部署、聚焦点发力点；用伟大社会革命发展的新成果来检验党的自我革命的实际成效，努力实现以党的自我革命引领伟大社会革命，以伟大社会革命促进党的自我革命。</p><p>综上，①②③④正确，共4项。</p><p>故正确答案为D。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "理论政策",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20909,
+      "titleHtml": "<p>2024年2月，习近平总书记到天津考察指导工作，并发表重要讲话，提出（    ）重要要求，为新征程上天津高质量发展指明了前进方向、注入了强劲动力。</p>",
+      "type": "single",
+      "globalAccuracy": 17,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "“三个着力”"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "“四个善作善成”"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "“四高”现代化大都市"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "“五个现代化天津”"
+        }
+      ],
+      "analysisHtml": "<p>本题考查政治常识。</p><p>B项正确，A、C、D三项错误，2024年春节前夕，习近平总书记到天津考察指导工作，并发表重要讲话，提出四个“善作善成”重要要求，这为新征程上天津高质量发展指明了前进方向、注入了强劲动力。四个“善作善成”即：在发展新质生产力上善作善成，在进一步全面深化改革开放上善作善成，在推动文化传承发展上善作善成，在提升城市治理现代化水平上善作善成。</p><p>故正确答案为B。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "理论政策",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20910,
+      "titleHtml": "<p>2024年8月25日，中共天津市委召开了市委十二届六次全会。全会的主题不包括以下哪一项内容？</p>",
+      "type": "single",
+      "globalAccuracy": 26,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "坚持以习近平新时代中国特色社会主义思想为指导，认真学习贯彻党的二十届三中全会精神"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "深入贯彻落实习近平总书记关于全面深化改革的一系列新思想、新观点、新论断和视察天津重要讲话精神"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "深入贯彻习近平总书记对天津工作“三个着力”重要要求和一系列重要指示批示精神"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "进一步全面深化改革，凝心聚力、奋发进取，全面建设社会主义现代化大都市，奋力谱写中国式现代化天津篇章"
+        }
+      ],
+      "analysisHtml": "<p>本题考查政治常识。</p><p>A、B、D三项正确，2024年8月26日，天津市委召开新闻发布会，解读中共天津市委十二届六次全会精神时指出，这次全会的主题是：坚持以习近平新时代中国特色社会主义思想为指导，认真学习贯彻党的二十届三中全会精神，深入贯彻落实习近平总书记关于全面深化改革的一系列新思想、新观点、新论断和视察天津重要讲话精神，进一步全面深化改革，凝心聚力、奋发进取，全面建设社会主义现代化大都市，奋力谱写中国式现代化天津篇章。</p><p>C项错误，2013年5月，习近平总书记在天津视察工作时提出“三个着力”要求，对天津提出着力提高发展质量和效益、着力保障和改善民生、着力加强和改善党的领导的重要要求，是指导天津经济社会发展的纲领，回答了走什么路、为了谁、以什么为保障的问题。但不属于中共天津市委十二届六次全会的主题。</p><p>本题为选非题，故正确答案为C。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "理论政策",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20911,
+      "titleHtml": "<p>低空经济正以惊人的速度蓬勃发展。关于低空经济，下列说法错误的是（    ）。</p>",
+      "type": "single",
+      "globalAccuracy": 51,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "低空经济的空域范围不超过2000米"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "无人机、直升机均为低空领域的代表性产品"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "低空经济具有创新引领、绿色低碳、数实融合的特征"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "低空经济是战略性新兴产业的代表之一"
+        }
+      ],
+      "analysisHtml": "<p>本题考查政治常识。</p><p>A项错误，低空经济是指垂直范围1000米以下、根据实际需要延伸至不超过3000米的低空空域范围内，以民用有人或无人驾驶航空器为主，以载人、载货等多场景低空飞行活动为牵引，辐射带动相关领域融合发展的综合性经济形态。</p><p>B项正确，低空经济涉及低空飞行、航空旅游、科研教育等行业和应用场景，产品包括无人机、直升机等。</p><p>C项正确，2024年4月18日，工业和信息化部副部长单忠德在国新办举行的新闻发布会上表示：“低空经济是新质生产力的典型代表，更是培育发展新动能的重要方向，具有创新引领、绿色低碳、数实融合等特点。”</p><p>D项正确，2023年底，中央经济工作会议将低空经济列为战略性新兴产业之一。在2024年的全国两会期间，低空经济首次写入政府工作报告。报告指出，巩固扩大智能网联新能源汽车等产业领先优势，加快前沿新兴氢能、新材料、创新药等产业发展，积极打造生物制造、商业航天、低空经济等新增长引擎。</p><p>本题为选非题，故正确答案为A。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "理论政策",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20912,
+      "titleHtml": "<p>关于强制执行，下列说法错误的是：</p>",
+      "type": "single",
+      "globalAccuracy": 34,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "强制执行一般由权利人提出申请，法院不会主动执行"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "强制执行措施包括查封、扣押、冻结、拍卖、变卖等"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "如果被执行人丧失了劳动能力，法院可以裁定终结执行"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "强制执行不仅限于财务，也可以要求当事人履行特定行为"
+        }
+      ],
+      "analysisHtml": "<p>本题考查法律常识。</p><p>A项正确，根据《中华人民共和国民事诉讼法》第二百四十七条第一款规定：“发生法律效力的民事判决、裁定，当事人必须履行。一方拒绝履行的，对方当事人可以向人民法院申请执行，也可以由审判员移送执行员执行。”因此，一般情况下，强制执行确需要权利人申请执行，法院不会主动执行；但也存在例外情况需由审判员移送执行员执行。</p><p>B项正确，根据《中华人民共和国民事诉讼法》第二百五十五条第一款规定：“被执行人未按执行通知履行法律文书确定的义务，人民法院有权查封、扣押、冻结、拍卖、变卖被执行人应当履行义务部分的财产。但应当保留被执行人及其所扶养家属的生活必需品。”因此，人民法院的强制执行措施包括查封、扣押、冻结、拍卖、变卖等。</p><p>C项错误，根据《中华人民共和国民事诉讼法》第二百六十八条第五项规定：“有下列情形之一的，人民法院裁定终结执行：（五）作为被执行人的公民因生活困难无力偿还借款，无收入来源，又丧失劳动能力的。”因此，被执行人除需要满足丧失了劳动能力这一条件以外，还需要满足生活困难无力偿还借款，无收入来源的条件，法院才可以裁定终结执行。</p><p>D项正确，根据《中华人民共和国民事诉讼法》第二百五十五条第一款规定：“被执行人未按执行通知履行法律文书确定的义务，人民法院有权查封、扣押、冻结、拍卖、变卖被执行人应当履行义务部分的财产。但应当保留被执行人及其所扶养家属的生活必需品。”第二百六十一条第一款规定：“强制迁出房屋或者强制退出土地，由院长签发公告，责令被执行人在指定期间履行。被执行人逾期不履行的，由执行员强制执行。”因此，强制执行中除了查封、扣押、冻结、拍卖、变卖等涉及财产的执行方式外，还包括强制迁出房屋或者强制退出土地等涉及要求当事人履行特定行为的执行方式。</p><p>本题为选非题，故正确答案为C。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "法律",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20913,
+      "titleHtml": "<p>根据《中华人民共和国文物保护法》，下列说法错误的是：</p>",
+      "type": "single",
+      "globalAccuracy": 77,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "南海海域内发现的沉船及其中文物属于国家所有"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "国有文物收藏单位不得将馆藏文物赠与其他单位"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "文物工作的方针是“保护为主、抢救第一、合理利用、加强管理”"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "经营文物拍卖的拍卖企业能够同时从事文物的购销经营活动"
+        }
+      ],
+      "analysisHtml": "<p>本题考查法律常识。</p><p>A项正确，根据《中华人民共和国文物保护法》第五条第一款规定：“中华人民共和国境内地下、内水和领海中遗存的一切文物，以及中国管辖的其他海域内遗存的起源于中国的和起源国不明的文物，属于国家所有。”因此，南海海域属于我国领海，其海域内发现的沉船及其中文物均应属于国家所有。</p><p>B项正确，根据《中华人民共和国文物保护法》第六十条规定：“禁止国有文物收藏单位将馆藏文物赠与、出租、出售或者抵押、质押给其他单位、个人。”因此，国有文物收藏单位不得将馆藏文物赠与其他单位。</p><p>C项正确，根据《中华人民共和国文物保护法》第四条规定：“文物工作坚持中国共产党的领导，坚持以社会主义核心价值观为引领，贯彻保护为主、抢救第一、合理利用、加强管理的方针。”因此，文物工作的方针是“保护为主、抢救第一、合理利用、加强管理”。</p><p>D项错误，根据《中华人民共和国文物保护法》第七十一条第二款：“文物拍卖企业不得从事文物销售经营活动，不得设立文物销售单位。”因此，经营文物拍卖的拍卖企业不能同时从事文物的购销经营活动。</p><p>本题为选非题，故正确答案为D。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "法律",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20914,
+      "titleHtml": "<p>关于商标权，下列说法正确的是：</p>",
+      "type": "single",
+      "globalAccuracy": 52,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "商标注册之后即使不在实际中使用，也不会被撤销"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "商标权保护的标志包括声音、字母甚至颜色组合等"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "商标权可以变更注册人、许可他人使用，但不能转让"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "过了商标权的保护期限，商标就可以被公开随意取用"
+        }
+      ],
+      "analysisHtml": "<p>本题考查法律常识。</p><p>A项错误，根据《中华人民共和国商标法》第四十九条第二款规定：“注册商标成为其核定使用的商品的通用名称或者没有正当理由连续三年不使用的，任何单位或者个人可以向商标局申请撤销该注册商标。商标局应当自收到申请之日起九个月内做出决定。有特殊情况需要延长的，经国务院工商行政管理部门批准，可以延长三个月。”因此，商标注册之后不在实际中使用，有可能会被撤销。</p><p>B项正确，根据《中华人民共和国商标法》第八条规定：“任何能够将自然人、法人或者其他组织的商品与他人的商品区别开的标志，包括文字、图形、字母、数字、三维标志、颜色组合和声音等，以及上述要素的组合，均可以作为商标申请注册。”因此，商标权保护的标志包括声音、字母甚至颜色组合等。</p><p>C项错误，根据《中华人民共和国商标法》第四十二条第一款规定：“转让注册商标的，转让人和受让人应当签订转让协议，并共同向商标局提出申请。受让人应当保证使用该注册商标的商品质量。”因此，商标权可以转让。</p><p>D项错误，根据《中华人民共和国商标法》第四十条第一款规定：“注册商标有效期满，需要继续使用的，商标注册人应当在期满前十二个月内按照规定办理续展手续；在此期间未能办理的，可以给予六个月的宽展期。每次续展注册的有效期为十年，自该商标上一届有效期满次日起计算。期满未办理续展手续的，注销其注册商标。”第五十条规定：“注册商标被撤销、被宣告无效或者期满不再续展的，自撤销、宣告无效或者注销之日起一年内，商标局对与该商标相同或者近似的商标注册申请，不予核准。”因此，即使过了商标权的保护期限不再续展的，该商标在一定期限内并不可以被公开随意取用。</p><p>故正确答案为B。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "法律",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20915,
+      "titleHtml": "<p>关于石油加工，下列说法错误的是：</p>",
+      "type": "single",
+      "globalAccuracy": 72,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "润滑剂、沥青、石蜡均可以通过石油加工获得"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "汽油是通过催化裂化从原油中获得，不涉及物理变化"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "加工时使用氢气可以去除石油中的杂质，提高产品质量"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "刚开采出来的石油一般都含水，加工时要进行脱水处理"
+        }
+      ],
+      "analysisHtml": "<p>本题考查科技常识。</p><p>A项正确，石油被称为“工业的血液”，是指气态、液态和固态的烃类混合物，具有天然的产状。石油通过提炼和加工，可以得到燃料油、润滑剂、溶剂油、石蜡、沥青等产品。</p><p>B项错误，汽油制备的主要步骤：原油开采、原油预处理、原油蒸馏、催化裂化、吸收和解吸、汽油精制、汽油调和以及成品储存与运输。催化裂化是在热和催化剂的作用下使重质油发生裂化反应，转变为裂化气、汽油和柴油等的过程，这属于化学变化。原油蒸馏是把原油加热切割成不同沸点范围的馏分油，这属于物理变化。因此，在汽油生产过程中，涉及了物理变化和化学变化。</p><p>C项正确，石油的成分主要是碳氢化合物，但同时还有不少含有硫、氮和氧的化合物，以及微量的金属，它们大多是有害的物质。加工时使用氢气可以使得氢气和石油产品中的硫、氮、氧等杂质反应，生成气态的硫化氢、氨和水等物质，从而去除杂质，提高产品质量。</p><p>D项正确，在石油开采过程中，通常从地下采出的原油都含有水。加工时需对石油进行脱水处理，这可以分离出油水混合液中的污水及杂质，以获得合格的商品原油。常见的原油脱水的方法主要有：沉降脱水、热化学沉降脱水、电化学联合脱水等。</p><p>本题为选非题，故正确答案为B。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "自然科技",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20916,
+      "titleHtml": "<p>关于农业生产中的科学知识，下列说法错误的是：</p>",
+      "type": "single",
+      "globalAccuracy": 57,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "化肥在水中溶解后可形成作物能够吸收的离子形态"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "作物茎内导管可利用毛细现象将土壤中的水分吸上来"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "土壤中加入石灰可中和土壤的酸性以提高土壤pH值"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "水通过喷灌系统的喷嘴时速度会突然减小，压力增大"
+        }
+      ],
+      "analysisHtml": "<p>本题考查科技常识。</p><p>A项正确，当化肥施入土壤之后，化肥会在土壤的水分中溶解，同时会发生水解反应，形成如硝酸根离子、磷酸根离子、氯离子等植物可以吸收的离子形态。</p><p>B项正确，如果把直径很细的玻璃管（称毛细管）插入盛有水的容器中，水会沿着管内壁自动地上升，水呈凹面，并且高出容器的液面，这种能使水在毛细管中自动上升的力称为毛细作用力。在自然界和日常生活中有许多毛细现象的例子，植物茎内的导管就是植物体内极细的毛细管，它能把土壤里的水分吸上来。</p><p>C项正确，为了中和酸性土壤，提高其肥力，最常见的方法是添加石灰或石灰石。石灰性材料由于富含钙离子和镁离子，可以中和土壤中的酸，提高pH值，现已成为使用最为广泛的酸性土壤改良剂。</p><p>D项错误，根据伯努利原理，当流体在喷嘴内部加速流动时，其速度增加，压力减小。当水流经过喷嘴时，由于喷嘴的截面积减小，水流的速度会增加，而压力则会降低。这种速度的增加使得水能够以更高的速度喷出。因此，在喷嘴的出口处，流体的速度将达到最高，压力将达到最低。</p><p>本题为选非题，故正确答案为D。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "自然科技",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20917,
+      "titleHtml": "<p>关于矿物及其制品，下列说法错误的是：</p>",
+      "type": "single",
+      "globalAccuracy": 63,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "稀土并不是一种元素，而是一组金属元素的集合"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "矿石中可以提取颜料，孔雀石即可提取绿色颜料"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "石棉具有较高的燃点和耐热性，可用来隔热保温"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "花岗岩是一种变质岩，硬度低，常用于地面装饰"
+        }
+      ],
+      "analysisHtml": "<p>本题考查科技常识。</p><p>A项正确，稀土不是一种元素，而是化学元素周期表中17种金属元素的简称，包含镧、铈、镨、钕、钷、钐、铕、钆、铽、镝、钬、铒、铥、镱、镥、钪、钇。因为18世纪发现的稀土矿物较少，当时只能用化学法制得少量不溶于水的氧化物，历史上习惯把这种氧化物称为“土”，因而得名“稀土”。</p><p>B项正确，矿石中的某些矿物具有天然的着色效果，可以通过一定的技术手段提取出来作为颜料使用。如孔雀石的主要成分为碱式碳酸铜，它是中国古代重要的绿色颜料。中国古代称孔雀石为绿青、石绿或青琅玕。</p><p>C项正确，石棉是天然纤维状的硅质矿物的泛称，具有高度的耐火性、耐热性，能够在高温环境下保持其物理和化学性质的稳定，这使得它成为隔热和保温的理想材料。</p><p>D项错误，花岗岩属于岩浆岩而不是变质岩，花岗岩硬度高，在建筑、道路与桥梁建设、工业以及环保与景观等多个领域都具有重要的应用价值。</p><p>本题为选非题，故正确答案为D。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "自然科技",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20918,
+      "titleHtml": "<p>关于生活中的物理现象，下列说法正确的是：</p>",
+      "type": "single",
+      "globalAccuracy": 34,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "桥梁桥拱的形状经极致优化可显著增加桥梁对桥墩的拉力"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "白炽灯中的钨丝在长期使用过程中会逐渐变细，电阻变大"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "风筝在飞上天空的过程中，动能转化为势能，机械能不变"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "修建高塔时，塔基底座的面积越大，塔对地面的压力越小"
+        }
+      ],
+      "analysisHtml": "<p>本题考查科技常识。</p><p>A项错误，桥梁桥拱的形状设计主要是为了分散压力、增强结构的稳定性和减少材料的使用。一个优化过的桥拱形状通常会减少桥梁对桥墩的压力，而不是增加对桥墩的拉力。</p><p>B项正确，白炽灯中的钨丝在发光时会因为高温而升华，即直接从固态变为气态。长期使用后，钨丝会因为升华而逐渐变细。根据电阻的公式R<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=I56VJKKSLaQhgBFuTX5-awdpykruo5iQL0UTMhRHOl0\" />（其中<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=7s_M4ZSoJf_yNuDwHxEzJg\" />是电阻率，L是长度，S是横截面积），当钨丝变细时，其横截面积S减小，而长度L和电阻率<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=7s_M4ZSoJf_yNuDwHxEzJg\" />基本不变，因此电阻R会增大。</p><p>C项错误，风筝在飞上天空的过程中，通常会通过调整风筝线的角度和长度来改变风筝的飞行高度和速度。在此过程中，风筝的动能（与速度有关）和势能（与高度有关）都会发生变化。一般来说，风筝上升时，动能会转化为势能，但机械能（动能和势能之和）可能会因为空气阻力和高度等因素增大或减小。</p><p>D项错误，压力，是指发生在两个物体的接触表面的作用力，或者是气体对于固体和液体表面的垂直作用力，或者是液体对于固体表面的垂直作用力。修建高塔时，塔对地面的压力来源于重力，与作用面积无关。而与作用面积有关的是压强，当压力一定时，受力面积越大，压强越小。</p><p>故正确答案为B。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "自然科技",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20919,
+      "titleHtml": "<p>下列论文选题与其考察地点对应正确的是：</p>",
+      "type": "single",
+      "globalAccuracy": 30,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "《卢舍那大佛造像艺术研究》—山西大同"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "《丹霞地貌景观特征及发育演化研究》—贵州赤水"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "《三江并流区地表覆盖类型变化成因探析》—四川宜宾"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "《乡村振兴背景下河姆渡遗址的保护与开发》—浙江湖州"
+        }
+      ],
+      "analysisHtml": "<p>本题考查地理国情。</p><p>A项错误，卢舍那大佛位于河南省洛阳龙门西山南部山腰奉先寺，是按照武则天的形象塑造的，作于唐高宗咸亨四年。卢舍那大佛是龙门石窟中艺术水平最高、整体设计最严密、规模最大的一座造像，以神秘微笑著称，被国外游客誉为“东方蒙娜丽莎”“世界最美雕像”。因此考察地点应是河南洛阳。</p><p>B项正确，丹霞地貌即以陆相为主的红层发育的具有陡崖坡的地貌。丹霞地貌在中国广泛分布，其中四川的蜀南竹海和七洞沟属于幼年期丹霞，贵州赤水丹霞属于青年期丹霞，广东丹霞山属于壮年期丹霞，江西龙虎山则属于老年期丹霞。因此考察地点对应贵州赤水。</p><p>C项错误，三江并流是指金沙江、澜沧江和怒江这三条发源于青藏高原的大江在云南省境内自北向南并行奔流170多千米的区域，位于中国云南省。因此考察地点应是云南。</p><p>D项错误，河姆渡遗址位于浙江省宁波市余姚市河姆渡镇河姆渡村的东北，距宁波市区约20千米，是中国南方早期新石器时代遗址。因此考察地点应是浙江宁波。</p><p>故正确答案为B。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "地理国情",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20920,
+      "titleHtml": "<p>关于名句中的文史知识，下列说法正确的是：</p>",
+      "type": "single",
+      "globalAccuracy": 15,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "“苍山负雪，明烛天南”中的“苍山”指的是泰山"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "“图穷事自至，豪主正怔营”中的“豪主”指的是荆轲"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "“疏影横斜水清浅，暗香浮动月黄昏”中的“暗香”指的是桂花香气"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "“一年好景君须记，最是橙黄橘绿时”中的“好景”指的是夏季景色"
+        }
+      ],
+      "analysisHtml": "<p>本题考查人文常识。</p><p>A项正确，“苍山负雪，明烛天南”出自清代姚鼐的《登泰山记》，意思是只见青山上覆盖着白雪，白雪光照亮了南面的天空。此处的“苍山”指的是泰山。</p><p>B项错误，“图穷事自至，豪主正怔营”出自东晋陶渊明的《咏荆轲》，意思是翻完地图忽地现出匕首，秦王一见不由胆颤心惊。此处的“豪主”指的是秦王。</p><p>C项错误，“疏影横斜水清浅，暗香浮动月黄昏”出自宋代林逋的《山园小梅·其一》，意思是稀疏的影儿，横斜在清浅的水中，清幽的芬芳，浮动在黄昏的月光之下。此处的“暗香”指的是梅花香气。</p><p>D项错误，“一年好景君须记，最是橙黄橘绿时”出自宋代苏轼的《赠刘景文》，意思是一年中最好的景致你一定要记住，最美景是在秋末冬初橙黄橘绿的时节啊。此处的“好景”指的是秋末冬初的景色。</p><p>故正确答案为A。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "人文历史",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20921,
+      "titleHtml": "<p>下列情形在历史中最可能发生的是：</p>",
+      "type": "single",
+      "globalAccuracy": 23,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "明朝末期一个商贾邀请了昆曲班子献唱贺寿"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "名将白起曾参考淝水之战的战术来指挥军队"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "瓷商借助唐朝通商政策将粉彩瓷器销往海外"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "王阳明和黄宗羲曾通过书信以探讨学术问题"
+        }
+      ],
+      "analysisHtml": "<p>本题考查人文常识。</p><p>A项正确，昆曲起源于元末明初的江苏昆山地区，在明代中叶开始占据剧坛的中心地位，成为此后两百多年间重要的戏剧形式。因此，明朝末期一个商贾邀请了昆曲班子献唱贺寿极有可能发生。</p><p>B项错误，白起是战国时期名将，“兵家”代表人物。淝水之战，是公元383年东晋和前秦之间发生在淝水（今安徽省寿县的东南方）的一场战争。因此，白起不可能参考淝水之战的战术来指挥军队。</p><p>C项错误，粉彩瓷器是清朝康熙年间出现的一种瓷器；到雍正时期，已趋成熟，并形成粉彩装饰的独特风格；乾隆时期粉彩已非常兴盛。唐朝还未有粉彩瓷器，因此，瓷商借助唐朝通商政策将粉彩瓷器销往海外不可能发生。</p><p>D项错误，王阳明（1472年10月31日-1529年1月9日），又名王守仁，明代中期思想家，心学集大成者。黄宗羲（1610年9月24日-1695年8月12日），明末清初著名思想家。二者生活在不同时期。因此，王阳明和黄宗羲曾通过书信以探讨学术问题不可能发生。</p><p>故正确答案为A。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "人文历史",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20922,
+      "titleHtml": "<p>关于2024年奥运会中国夺金项目，下列说法正确的是：</p>",
+      "type": "single",
+      "globalAccuracy": 28,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "10米气步枪个人赛中每发最高10环"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "吊环不同结构组的动作必须在充分的摆动中完成"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "跳水动作代码“307B”中的“B”表示屈体的动作姿态"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "花样游泳集体项目决赛中以自由自选的比赛成绩确定名次"
+        }
+      ],
+      "analysisHtml": "<p>本题考查科技常识。</p><p>A项错误，10米气步枪个人赛分资格赛和决赛两部分，其中资格赛需在1小时15分内完成60发，得分含小数，每发最高10.9分（环），满分654分。按总分高低排名，资格赛前八的选手进入决赛。决赛最多完成24发，得分含小数，每发最高10.9分（环），满分261.6分。</p><p>B项错误，鞍马不同的结构组的动作必须在充分的摆动中完成，不能停顿，该项目中不允许有力量动作，而不是吊环。吊环应由比例大致相等的摆动和力量静止动作组成，而非单纯依靠摆动动作。</p><p>C项正确，跳水的动作代码是由数字和字母组成。第一位数字代表不同的动作，共有六个数字编码，“3”代表反身跳（面对水面后空翻）。第二位数字表示是否飞身，“0”表示没有飞身，“1”表示有飞身。第三位数字代表旋转的周数，其中数字除以2即为旋转的总周数，“7”表示翻腾3周半。最后一个字母指动作姿势类型，“B”表示屈体（腿绷直，头贴紧膝盖）姿势。</p><p>D项错误，在2024年巴黎奥运会上，花样游泳团体项目由三部分组成，分别是集体技术自选、集体自由自选，以及新加入的集体技巧。团体项目决赛名次是通过这三个项目的得分总和来确定的。</p><p>故正确答案为C。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "自然科技",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20923,
+      "titleHtml": "<p>关于诗句中蕴含的生物学知识，下列说法错误的是：</p>",
+      "type": "single",
+      "globalAccuracy": 27,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "“穿花蛱蝶深深见”——生物的拟态伪装形式"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "“几处早莺争暖树”——鸟类在繁殖中的占区行为"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "“忽然蜕作多花蝶”——完全变态发育昆虫的发育过程"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "“棠梨叶落胭脂色”——叶绿素产生速度落后于分解速度"
+        }
+      ],
+      "analysisHtml": "<p>本题考查科技常识。</p><p>A项错误，“穿花蛱蝶深深见”出自唐代诗人杜甫的《曲江二首・其二》，意思是蝴蝶在花丛深处穿梭往来时隐时现。繁茂的花丛为蝴蝶提供了充足的活动空间和食物来源，此诗句体现了蝴蝶的觅食行为。拟态是一种生物模拟另一种生物或模拟环境中的其他物体从而获得好处的现象，一般拟态是静止的保护行为，而不是在运动状态中。</p><p>B项正确，“几处早莺争暖树”出自唐代诗人白居易的《钱塘湖春行》，意思是几处早出的黄莺争着飞向向阳的树木。体现了鸟类在繁殖期争夺有利的栖息场所，属于占区行为。占区行为是指动物在繁殖季节为了保障自身和后代的生存和繁殖而占据一定的区域的行为。</p><p>C项正确，“忽然蜕作多花蝶”出自宋代范成大的《秋日田园杂兴》，意思是仿佛忽然间蜕变成为色彩斑斓的蝴蝶。完全变态发育是昆虫发育的一种基本类型，指昆虫在个体发育过程中，经过卵、幼虫、蛹和成虫四个完全不同的发育阶段。蝴蝶的发育过程符合完全变态发育的定义。诗句描绘了从蛹蜕变为成虫蝴蝶的转变过程。</p><p>D项正确，“棠梨叶落胭脂色”出自宋代王禹偁的《村行》，意思是棠梨的树叶飘落，颜色红如胭脂。这是由于秋天来临，气温下降，光照时间缩短，使得棠梨树叶中的叶绿素分解加快，同时叶绿素的合成速度减慢，产生速度落后于分解速度。叶绿素的绿色逐渐褪去，叶片中的花青素等其他色素的颜色就显现出来，使得树叶呈现出胭脂色。</p><p>本题为选非题，故正确答案为A。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "自然科技",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20924,
+      "titleHtml": "<p>关于常见药物，下列说法错误的是：</p>",
+      "type": "single",
+      "globalAccuracy": 36,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "双黄连适用于风热感冒引起的发热、咳嗽"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "维生素E过量使用会导致食欲不振、视力模糊等症状"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "医用碘伏常见浓度是1%，可直接涂擦除眼睛外的皮肤表面"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "降胆固醇的他汀类药物一般清晨服用，因为胆固醇主要在日间合成"
+        }
+      ],
+      "analysisHtml": "<p>本题考查科技常识。</p><p>A项正确，双黄连是一种中成药，主要成分有金银花、黄芩、连翘，具有辛凉解表、清热解毒等作用，可以用于治疗因为外感风热引起的发热、咳嗽、咽痛等症状。</p><p>B项正确，维生素E具有抗氧化作用，过量摄入会导致体内自由基清除过多，影响正常的视网膜功能。患者可能会出现视力下降、视野缺损等现象。同时，维生素E在大量摄入后可能会引起胃肠道不适，导致恶心呕吐的症状发生。患者还会出现食欲不振、消化不良等症状。</p><p>C项正确，医用碘伏的浓度有0.1%、0.5%、1%、2%四种，一般医学上常用的是1%浓度的碘伏。1%浓度的碘伏可以直接用于除眼睛之外的任何皮肤表面，达到局部消毒的效果。</p><p>D项错误，一般来说，他汀类药物在晚上服用效果更佳。这是因为人体内的胆固醇主要在夜间合成，而他汀类药物正是通过抑制胆固醇合成过程中的关键酶——HMG-CoA还原酶，来降低胆固醇水平。因此，晚上服用可以更有效地发挥药物的降脂作用。</p><p>本题为选非题，故正确答案为D。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "自然科技",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20925,
+      "titleHtml": "<p>完善实施区域协调发展战略机制，要健全推动西部大开发形成新格局、中部地区加快崛起。下列与之相关的举措，表述错误的是：</p>",
+      "type": "single",
+      "globalAccuracy": 65,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "中西部地区要有序承接产业梯度转移，优化产业布局"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "加强现代化交通基础设施体系建设，强化中部地区的大通道格局"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "中部地区超前布局建设未来产业，加快构建以新兴产业为支撑的现代化产业体系"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "把发展特色优势产业作为主攻方向，因地制宜发展新兴产业，加快西部地区产业转型升级"
+        }
+      ],
+      "analysisHtml": "<p>本题考查政治常识。</p><p>2024年3月20日下午，中共中央总书记、国家主席、中央军委主席习近平在湖南省长沙市主持召开新时代推动中部地区崛起座谈会并发表重要讲话。2024年4月23日下午，中共中央总书记、国家主席、中央军委主席习近平在重庆主持召开新时代推动西部大开发座谈会并发表重要讲话。</p><p>A项正确，习近平总书记在新时代推动中部地区崛起座谈会上指出，要加强与其他重大发展战略的衔接，更好融入和支撑新发展格局；习近平总书记在新时代推动西部大开发座谈会上指出，创新跨地区产业协作和优化布局机制，有序承接产业梯度转移。</p><p>B项正确，习近平总书记在新时代推动中部地区崛起座谈会上指出，要加强与其他重大发展战略的衔接，更好融入和支撑新发展格局······加强现代化交通基础设施体系建设，强化中部地区的大通道格局。</p><p>C项错误，习近平总书记在新时代推动中部地区崛起座谈会上强调，立足实体经济这个根基，做大做强先进制造业，积极推进新型工业化，改造提升传统产业，培育壮大新兴产业，超前布局建设未来产业，加快构建以先进制造业为支撑的现代化产业体系。</p><p>D项正确，习近平总书记在新时代推动西部大开发座谈会上强调，要坚持把发展特色优势产业作为主攻方向，因地制宜发展新兴产业，加快西部地区产业转型升级。</p><p>本题为选非题，故正确答案为C。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "理论政策",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20926,
+      "titleHtml": "<p>从所给的四个选项中，选择最合适的一个填入问号处，使之呈现一定的规律性：</p><p><img width=\"600px\" height=\"277px\" src=\"//fb.fbstatic.cn/api/tarzan/images/193a4ba34084b80.png?width=700\" /></p>",
+      "type": "single",
+      "globalAccuracy": 52,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "A"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "B"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "C"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "D"
+        }
+      ],
+      "analysisHtml": "<p>元素组成不同，且无明显属性规律，考虑数量规律。观察发现，题干每幅图形都有线条穿过小白球，考虑线条穿过小白球的数量，数量均为16个，故？处应选择一个线条穿过16个小白球的图形，只有A项符合。</p><p>故正确答案为A。 </p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "图形推理",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20927,
+      "titleHtml": "<p>从所给的四个选项中，选择最合适的一个填入问号处使之呈现一定的规律性：</p><p><img width=\"600px\" height=\"267px\" src=\"//fb.fenbike.cn/api/tarzan/images/193a50fecc3acdc.png?width=700\" /></p>",
+      "type": "single",
+      "globalAccuracy": 36,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "A"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "B"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "C"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "D"
+        }
+      ],
+      "analysisHtml": "<p>思路一：元素组成不同，且属性规律无法选出唯一答案，考虑数量规律。观察发现，题干图形均由直线构成，但整体数直线并无规律。继续观察发现，题干图形线条的端点相连均穿过两条线，如下图所示，故？处的图形端点连线应穿过两条线，只有B项符合。</p><p><img width=\"600px\" height=\"267px\" src=\"//fb.fbstatic.cn/api/tarzan/images/193d28c153bd85e.png?width=700\" /></p><p>故正确答案为B。</p><p>思路二：元素组成不同，且属性规律无法选出唯一答案，考虑数量规律。观察发现，题干图形均由直线构成，但整体数直线并无规律，考虑直线的细化考点。再次观察发现，题干图形出现较多平行线，考虑平行线，其中斜向平行线的组数分别为0、1、0、1、0，如下图所示，故？处的图形斜向平行线组数应为1，只有D项符合。</p><p><img width=\"600px\" height=\"266px\" src=\"//fb.fbstatic.cn/api/tarzan/images/193d28cd6457dd4.png?width=700\" /></p><p>故正确答案为D。</p><p>注：观察图形规律时，优先观察整体性规律，思路一的题干中所有的图形均满足端点相连穿过两条线，而思路二的规律是平行线的组数间隔出现，故粉笔更倾向于思路一。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "图形推理",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20928,
+      "titleHtml": "<p>从所给的四个选项中，选择最合适的一个填入问号处，使之呈现一定的规律性：</p><p><img width=\"600px\" height=\"277px\" src=\"//fb.fbstatic.cn/api/tarzan/images/193a4b8e090c6f0.png?width=700\" /></p>",
+      "type": "single",
+      "globalAccuracy": 61,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "A"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "B"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "C"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "D"
+        }
+      ],
+      "analysisHtml": "<p>元素组成不同，且每幅图形均有黑白两个图形相交，考虑图形间关系。观察发现，题干黑色图形中均存在与白色图形不相交的边，数量分别为3、2、3、2、3，如下图所示，故？处应选择一个黑色图形与白色图形有2条边不相交的图形，只有B项符合。</p><p><img width=\"600px\" height=\"275px\" src=\"//fb.fbstatic.cn/api/tarzan/images/193a4b9fe98b12b.png?width=700\" /></p><p>故正确答案为B。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "图形推理",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20929,
+      "titleHtml": "<p>把下面的六个图形分为两类，使每一类都有各自的共同特征或规律，分类正确的一项是：</p><p><img width=\"500px\" height=\"401px\" src=\"//fb.fbstatic.cn/api/tarzan/images/193a4adfb61d7b7.png?width=700\" /></p>",
+      "type": "single",
+      "globalAccuracy": 42,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "①②③，④⑤⑥"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "①⑤⑥，②③④"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "①③⑤，②④⑥"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "①④⑤，②③⑥"
+        }
+      ],
+      "analysisHtml": "<p>本题为分组分类题目。观察发现，每幅图中均有两个黑点，优先考虑功能元素。图①④⑤中，黑点标记的两个交点均发射出3条线，图②③⑥中，黑点标记的一个交点发射出3条线，另一个交点发射出2条线，即图①④⑤为一组，图②③⑥为一组。</p><p>故正确答案为D。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "图形推理",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20930,
+      "titleHtml": "<p>左图为正方体纸盒的外表面展开图，问以下4个部分中，哪两个可以组合成同样正方体的外表面展开图？</p><p><img width=\"600px\" height=\"181px\" src=\"//fb.fbstatic.cn/api/tarzan/images/193a4c9cf2ea5c2.png?width=700\" /></p>",
+      "type": "single",
+      "globalAccuracy": 60,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "①和②"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "③和④"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "①和④"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "②和③"
+        }
+      ],
+      "analysisHtml": "<p>将图①和图④分别逆时针旋转<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=misDuHztb0QSL2QPyHVgxQ\" />后，按照下图所示的方式拼合在一起即可得到题干外表面展开图（g1和g2拼成了原展开图中的面g，f1和f2拼成了原展开图中的面f）。</p><p><img width=\"450px\" height=\"190px\" src=\"//fb.fbstatic.cn/api/tarzan/images/193a4cacd803f2a.png?width=700\" /></p><p><img width=\"450px\" height=\"183px\" src=\"//fb.fbstatic.cn/api/tarzan/images/193a4cae73fe792.png?width=700\" /></p><p><img width=\"600px\" height=\"149px\" src=\"//fb.fbstatic.cn/api/tarzan/images/193a4cb08ca1c26.png?width=700\" /></p><p>故正确答案为C。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "六面体",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20931,
+      "titleHtml": "<p>一级预防是指在疾病尚未发生时针对病因（或危险因素）所采取的措施，即“防病于未然”。一级预防包括健康促进和健康保护两方面内容，其中，健康促进是促使人们维护和改善他们自身健康的过程；健康保护是对有明确病因（或危险因素）或具备特异预防手段的疾病所采取的措施。</p><p>根据上述定义，下列说法正确的是：</p>",
+      "type": "single",
+      "globalAccuracy": 69,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "采用湿式作业来减少矿工中尘肺的发生率，这属于健康保护"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "接种乙肝疫苗来预防乙型肝炎，这属于健康促进"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "产前检查发现胎儿染色体异常并做出诊断进而终止妊娠，这属于一级预防"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "利用短视频平台向公众普及如何降低“三高”，这属于健康保护"
+        }
+      ],
+      "analysisHtml": "<p>第一步：找出定义关键词。</p><p>一级预防：“在疾病尚未发生时”、“针对病因（或危险因素）所采取的措施”、“防病于未然”；</p><p>健康促进：“促使人们维护和改善他们自身健康”；</p><p>健康保护：“对有明确病因（或危险因素）或具备特异预防手段的疾病所采取的措施”。</p><p>第二步：逐一分析选项。</p><p>A项：选采用湿式作业来减少矿工中尘肺的发生率，长期吸入粉尘是导致尘肺的危险因素，采用湿式作业可以减少粉尘吸入、预防尘肺，符合“对有明确病因（或危险因素）或具备特异预防手段的疾病所采取的措施”，符合“健康保护”定义，说法正确，当选；</p><p>B项：接种乙肝疫苗来预防乙型肝炎，符合“对有明确病因（或危险因素）或具备特异预防手段的疾病所采取的措施”，符合“健康保护”定义，不符合“健康促进”定义，说法错误，排除；</p><p>C项：产前检查发现胎儿染色体异常并做出诊断进而终止妊娠，是在胎儿疾病发生后采取的措施，不符合“在疾病尚未发生时”、“防病于未然”，不符合“一级预防”定义，说法错误，排除；</p><p>D项：利用短视频平台向公众普及如何降低“三高”，符合“促使人们维护和改善他们自身健康”，符合“健康促进”定义，不符合“健康保护”定义，说法错误，排除。</p><p>故正确答案为A。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "定义判断",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20932,
+      "titleHtml": "<p>特种医学是运用医学科学的基本原理和技术方法以及自然科学相关理论与实践知识，研究在特殊环境条件下从业或从事其它活动的所有人群特有的卫生保健需求，解决在实践中涉及到的各种特殊医学问题。特种医学的最终目的是从分子、细胞与整体水平认识特殊环境条件作用于人体所引起的生理、心理及病理变化的现象及规律。</p><p>根据上述定义，下列不属于特种医学研究范畴的是：</p>",
+      "type": "single",
+      "globalAccuracy": 80,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "研究潜水对人体带来的生理变化以及潜水人员在水下环境中所面临的健康风险"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "研究太空环境对航天员的心理影响，探索能够改善航天员心理状况的措施"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "分析人在热带地区的机体变化，研究热带病的诊断、预防和治疗"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "以骨癌为研究对象，探究遗传因素、基因突变、化学因素等在发病中起的作用"
+        }
+      ],
+      "analysisHtml": "<p>第一步：找出定义关键词。</p><p>“在特殊环境条件下”、“所引起的生理、心理及病理变化”。</p><p>第二步：逐一分析选项。</p><p>A项：“潜水”说明“在特殊环境条件下”，研究潜水对人体带来的生理变化以及潜水人员在水下环境中所面临的健康风险，说明研究的对象是在特殊环境下“所引起的生理、心理及病理变化”，符合定义，排除；</p><p>B项：“太空环境”说明“在特殊环境条件下”，研究太空环境对航天员的心理影响，说明研究的对象是在特殊环境下“所引起的生理、心理及病理变化”，符合定义，排除；</p><p>C项：“热带地区”说明“在特殊环境条件下”，分析人在热带地区的机体变化，研究热带病的诊断、预防和治疗，说明研究的对象是在特殊环境下“所引起的生理、心理及病理变化”，符合定义，排除；</p><p>D项：“骨癌”不属于特殊环境，不符合“在特殊环境条件下”、“所引起的生理、心理及病理变化”，不符合定义，当选。</p><p>本题为选非题，故正确答案为D。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "定义判断",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20933,
+      "titleHtml": "<p>全球史观研究的是全球而不是某一个国家或地区的历史；关注的是整个人类，而不是局限于西方人或非西方人。其基本特征是：视世界为一个整体，并从宏观的、联系的角度考察人类社会历史演变走向。</p><p>根据上述定义，下列没有体现全球史观的是：</p>",
+      "type": "single",
+      "globalAccuracy": 76,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "游牧生活方式、奴隶制度、封建制度不是与某地区相联系的特殊制度，而是人类社会制度演化的几种可能"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "伴随着殖民扩张而来的资本主义生产方式，比封建生产方式要先进得多，更能适应生产力的发展要求"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "奥杜威峡谷猿人、克罗马农人和北京人代表了人类演化史上的不同阶段，可以帮助我们更好地了解人类起源"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "鸦片战争反映了大英帝国与清帝国这两个文化中心的激烈碰撞及双方中心——边缘观念的转变"
+        }
+      ],
+      "analysisHtml": "<p>第一步：找出定义关键词。</p><p>“研究的是全球而不是某一个国家或地区的历史”、“关注的是整个人类，而不是局限于西方人或非西方人”、“视世界为一个整体”、“从宏观的、联系的角度考察人类社会历史演变”。</p><p>第二步：逐一分析选项。</p><p>A项：游牧生活方式、奴隶制度、封建制度不是与某地区相联系的特殊制度，符合“研究的是全球而不是某一个国家或地区的历史”，而是人类社会制度演化的几种可能，符合“关注的是整个人类”、“视世界为一个整体”、“从宏观的、联系的角度考察人类社会历史演变”，符合定义，排除；</p><p>B项：伴随着殖民扩张而来的资本主义生产方式，说明资本主义生产方式随着殖民活动扩展到了更多的地方，符合“研究的是全球而不是某一个国家或地区的历史”、“关注的是整个人类”、“不是局限于西方人或非西方人”，比封建生产方式要先进得多，更能适应生产力的发展要求，符合“视世界为一个整体”、“从宏观的、联系的角度考察人类社会历史演变”，符合定义，排除；</p><p>C项：奥杜威峡谷猿人、克罗马农人和北京人代表了人类演化史上的不同阶段，符合“研究的是全球而不是某一个国家或地区的历史”、“关注的是整个人类，而不是局限于西方人或非西方人”，帮助我们更好地了解人类起源，符合“视世界为一个整体”、“从宏观的、联系的角度考察人类社会历史演变”，符合定义，排除；</p><p>D项：鸦片战争反映了大英帝国与清帝国这两个文化中心的激烈碰撞及双方中心——边缘观念的转变，大英帝国和清帝国是两个具体国家的角度去看待鸦片战争，不符合“研究的是全球而不是某一个国家或地区的历史”、“关注的是整个人类，而不是局限于西方人或非西方人”，不符合定义，当选。</p><p>本题为选非题，故正确答案为D。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "定义判断",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20934,
+      "titleHtml": "<p>探索性调研是在调研专题的内容与性质不太明确时，调查人员为了了解问题的性质，确定调研方向与范围而进行的收集初步资料的调查；描述性调研是对市场上存在的客观情况如实地加以描述和反映，从中找出各种因素的内在联系，回答“是什么”的问题。</p><p>根据上述定义，下列属于探索性调研的是：</p>",
+      "type": "single",
+      "globalAccuracy": 72,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "某APP通过让顾客填写在线问卷，同时收集客户后台数据，了解到其主要顾客为18~35岁群体"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "某咖啡品牌发现，只要在线上推出团购链接，其销售额就会显著增加，因此得出结论，团购会促进营业额上升"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "某研究人员对高校辍学现象比较感兴趣，于是访谈了学校辅导员、教师和辍学学生，而后确定了具体的研究方向"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "研究者通过分析5000万条最频繁检索的词汇，与季节性流感传播时期的数据进行比较，成功预测了冬季流感的传播趋势"
+        }
+      ],
+      "analysisHtml": "<p>第一步：找出定义关键词。</p><p>探索性调研：“在调研专题的内容与性质不太明确时”、“为了了解问题的性质，确定调研方向与范围而进行的收集初步资料的调查”；</p><p>描述性调研：“对市场上存在的客观情况如实地加以描述和反映”、“从中找出各种因素的内在联系”。</p><p>第二步：逐一分析选项。</p><p>A项：某APP通过让顾客填写在线问卷和收集客户后台数据，了解到其主要顾客为18~35岁群体，只是对顾客年龄段这个客观情况如实地加以描述，符合“对市场上存在的客观情况如实地加以描述和反映”、“从中找出各种因素的内在联系”，符合“描述性调研”定义，不符合“探索性调研”定义，排除；</p><p>B项：某咖啡品牌发现，只要在线上推出团购链接，其销售额就会显著增加，不明确是否为主动调研，不符合“在调研专题的内容与性质不太明确时”、“为了了解问题的性质，确定调研方向与范围而进行的收集初步资料的调查”，不符合“探索性调研”定义，排除；</p><p>C项：某研究人员对高校辍学现象比较感兴趣，不明确具体调研关于高校辍学的哪些内容，符合“在调研专题的内容与性质不太明确时”，于是访谈了学校辅导员、教师和辍学学生，而后确定了具体的研究方向，符合“为了了解问题的性质，确定调研方向与范围而进行的收集初步资料的调查”，符合“探索性调研”定义，当选；</p><p>D项：研究者通过分析5000万条最频繁检索的词汇，与季节性流感传播时期的数据进行比较，调研的目的就是为了预测冬季流感的传播趋势，不符合“在调研专题的内容与性质不太明确时”，不符合“探索性调研”定义，排除。</p><p>故正确答案为C。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "定义判断",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20935,
+      "titleHtml": "<p>查全率是指检索出的相关文献量与检索系统中相关文献总量的百分比。查准率是指检索出的相关文献量与检索出的文献总量的百分比。检索时间是指根据特定条件搜索或查找特定信息或数据所需的时间，检索时间受到检索系统的性能、数据量的大小、搜索条件的复杂性等多种因素的影响。一般来说，搜索条件越多，检索时间越长。</p><p>根据上述定义，下列说法正确的是：</p>",
+      "type": "single",
+      "globalAccuracy": 78,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "要提高查全率，就要提高查准率"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "检索某一课题时，若数据库中共有相关文献40篇，但只检索出30篇，则查全率为75%"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "检索时间越长，查全率和查准率必然会越高"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "若检索出的相关文献量有60篇，检索出的文献总量有300篇，则查准率为50%"
+        }
+      ],
+      "analysisHtml": "<p>第一步：找出定义关键词。</p><p>查全率：“检索出的相关文献量与检索系统中相关文献总量的百分比”；</p><p>查准率：“检索出的相关文献量与检索出的文献总量的百分比”；</p><p>检索时间：“根据特定条件搜索或查找特定信息或数据所需的时间”、“搜索条件越多，检索时间越长”。</p><p>第二步：逐一分析选项。</p><p>A项：根据“查全率”定义“检索出的相关文献量与检索系统中相关文献总量的百分比”可知，提高查全率需要增加检索出的相关文献量或减少检索系统中相关文献总量，而一方面检索系统中相关文献总量与“查准率”无关，另一方面增加检索出的相关文献量也不意味着需要提高查准率，因此要提高查全率不一定要提高查准率，说法错误，排除；</p><p>B项：数据库中共有相关文献40篇，只检索出30篇，结合“查全率”定义“检索出的相关文献量与检索系统中相关文献总量的百分比”，可得查全率=30÷40×100%=75%，说法正确，当选；</p><p>C项：结合“查全率”“查准率”定义可知，二者仅与检索出的相关文献量、检索系统中相关文献总量、检索出的文献总量有关，与检索时间无关，说法错误，排除；</p><p>D项：检索出的相关文献量有60篇，检索出的文献总量有300篇，结合“查准率”定义“检索出的相关文献量与检索出的文献总量的百分比”，可得查准率=60÷300×100%=20%，说法错误，排除。</p><p>故正确答案为B。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "定义判断",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20936,
+      "titleHtml": "<p>植物第一性生产是指绿色植物通过光合作用固定太阳光能并转化为储存在植物有机体中的化学潜能的过程；植物第二性生产是指动物、微生物利用植物第一性生产量进行的同化、生长、发育和繁殖后代的过程。</p><p>根据上述定义，下列属于植物第二性生产的是：</p>",
+      "type": "single",
+      "globalAccuracy": 61,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "细菌在植物根部周围的腐殖质中增殖并吸收营养"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "细菌分解土壤中的有机物质并利用其进行繁殖"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "蚂蚁在洞穴中贮存食物供其群体消耗"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "仙人掌在沙漠中吸收水分，将吸收的水分储存在细胞组织中"
+        }
+      ],
+      "analysisHtml": "<p>第一步：找出定义关键词。</p><p>植物第一性生产：“绿色植物”、“通过光合作用固定太阳光能并转化为储存在植物有机体中的化学潜能的过程”；</p><p>植物第二性生产：“动物、微生物”、“利用植物第一性生产量进行的同化、生长、发育和繁殖后代的过程”。</p><p>第二步：逐一分析选项。</p><p>A项：细菌在植物根部周围的腐殖质中进行增殖并吸收营养，细菌符合“动物、微生物”、植物根部周围的腐殖质符合“利用植物第一性生产量进行的同化、生长、发育和繁殖后代的过程”，符合定义，当选；</p><p>B项：细菌分解的是土壤中的有机物质，不明确“土壤中的有机物质”是否为“植物第一性生产量”，不符合“利用植物第一性生产量进行的同化、生长、发育和繁殖后代的过程”，不符合定义，排除；</p><p>C项：蚂蚁在洞穴中贮存食物供其群体消耗，不明确该食物是否为“植物第一性生产量”，且贮存食物没有明确体现出同化、生长、发育和繁殖后代的过程，不符合“利用植物第一性生产量进行的同化、生长、发育和繁殖后代的过程”，不符合定义，排除；</p><p>D项：仙人掌不符合“动物、微生物”，不符合定义，排除。</p><p>注：本题中A项也不明确植物根部周围的腐殖质是否一定是植物第一性生产量转化而来，但对比择优，只有A项和植物第一性生产量关联度最大，因此择优选择A项。</p><p>故正确答案为A。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "定义判断",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20937,
+      "titleHtml": "<p>本证是指负有证明责任的当事人提出的用以证明其主张的证据材料；反证是指不负证明责任的当事人为推翻对方的主张，提出的证明相反事实存在的证据材料。</p><p>根据上述定义，下列乙方提出的证据材料属于反证的是：</p>",
+      "type": "single",
+      "globalAccuracy": 43,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "甲指控乙提供的服务未达到合同约定的标准，提交了服务合同和现场照片，乙回应称服务过程中存在不可抗力因素，提交了相关新闻报道"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "甲投资者指控乙公司在财务报告中进行虚假陈述，导致其投资亏损，乙公司提交了与财务报告相关的独立审计报告、银行流水和税务记录等"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "甲主张被告乙在社交媒体上发布了损害其名誉的言论，乙则提交了甲之前在其他社交媒体上发布的类似或更恶劣的言论截图"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "甲公司诉乙未按时交货，提交合同文本为证，乙回应称已交货，提供了交货给丙公司的相关凭证"
+        }
+      ],
+      "analysisHtml": "<p>第一步：找出定义关键词。</p><p>本证：“负有证明责任的当事人”、“提出的用以证明其主张的证据材料”；</p><p>反证：“不负证明责任的当事人”、“提出的证明相反事实存在的证据材料”。</p><p>第二步：逐一分析选项。</p><p>A项：甲指控乙提供的服务未达到合同约定的标准，故甲负有举证责任，乙符合“不负证明责任的当事人”，乙方提出的证据材料是不可抗力因素相关新闻报道，无法证明乙是否达到合同约定的标准，不符合“提出的证明相反事实存在的证据材料”，不符合“反证”定义，排除；</p><p>B项：甲指控乙在财务报告中进行虚假陈述，故甲负有举证责任，乙符合“不负证明责任的当事人”，乙方提出的证据材料是与财务报告相关的独立审计报告、银行流水和税务记录等，其目的是通过展示公司财务的规范和真实情况，反驳甲主张的“乙公司在财务报告中进行虚假陈述”这一事实，即证明该相反事实存在，符合“提出的证明相反事实存在的证据材料”，符合“反证”定义，当选；</p><p>C项：甲主张乙在社交媒体上发布了损害其名誉的言论，故甲负有举证责任，乙符合“不负证明责任的当事人”，乙方提出的证据材料是甲发布过的类似或更恶劣的言论截图，无法证明乙是否损害甲的名誉，不符合“提出的证明相反事实存在的证据材料”，不符合“反证”定义，排除；</p><p>D项：甲诉乙未按时交货，故甲负有举证责任，乙符合“不负证明责任的当事人”，乙方提出的证据材料是交货给丙公司的相关凭证，并未提出交货给甲的凭证，不符合“提出的证明相反事实存在的证据材料”，不符合“反证”定义，排除。</p><p>故正确答案为B。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "定义判断",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20938,
+      "titleHtml": "<p>纵向谈判是指在确定谈判的主要问题后，逐个讨论每一问题和条款，讨论一个问题，解决一个问题，一直到谈判结束。横向谈判是指在确定谈判所涉及的主要问题后，开始逐个讨论预先确定的问题，在某一问题上出现矛盾或分歧时，就把这一问题放在后面，讨论其他问题，如此周而复始地讨论下去，直到所有内容都谈妥为止。</p><p>根据上述定义，下列属于纵向谈判的是：</p>",
+      "type": "single",
+      "globalAccuracy": 77,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "产品采购方和供货方进行谈判，采购方明确产品质量必须高标准，任何谈判条件都让位于质量"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "在资金借贷谈判中，涉及金额、利率、期限、担保等问题，双方在贷款期限上未达成一致意见，便先讨论其他问题，最后再讨论贷款期限"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "一项产品交易谈判，双方确定了价格、质量、运输、保险、索赔等几项内容后，开始就价格进行磋商，如果价格确定不下来，就不谈其他条款"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "K国和F国谈判时，内容涉及领土、贸易往来、科技、医疗等多个领域，双方决定从较不关键的领域开始谈起，争取达成一致建立善意"
+        }
+      ],
+      "analysisHtml": "<p>第一步：找出定义关键词。</p><p>纵向谈判：“在确定谈判的主要问题后，逐个讨论每一问题和条款”、“讨论一个问题，解决一个问题，一直到谈判结束”；</p><p>横向谈判：“在确定谈判所涉及的主要问题后，开始逐个讨论预先确定的问题”、“在某一问题上出现矛盾或分歧时，就把这一问题放在后面，讨论其他问题，如此周而复始地讨论下去，直到所有内容都谈妥为止”。</p><p>第二步：逐一分析选项。</p><p>A项：采购方明确产品质量必须高标准，任何谈判条件都让位于质量，但不明确是否为讨论一个问题，解决一个问题，不符合“讨论一个问题，解决一个问题，一直到谈判结束”，不符合“纵向谈判”定义，排除；</p><p>B项：双方在贷款期限上未达成一致意见，便先讨论其他问题，最后再讨论贷款期限，不符合“讨论一个问题，解决一个问题，一直到谈判结束”，不符合“纵向谈判”定义，排除；</p><p>C项：一项产品交易谈判，双方确定了价格、质量、运输、保险、索赔等几项内容后，开始就价格进行磋商，符合“在确定谈判的主要问题后，逐个讨论每一问题和条款”，如果价格确定不下来，就不谈其他条款，符合“讨论一个问题，解决一个问题，一直到谈判结束”，符合“纵向谈判”定义，当选；</p><p>D项：K国和F国决定从较不关键的领域开始谈起，争取达成一致建立善意，但不明确是否为讨论一个问题，解决一个问题，不符合“讨论一个问题，解决一个问题，一直到谈判结束”，不符合“纵向谈判”定义，排除。</p><p>故正确答案为C。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "定义判断",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20939,
+      "titleHtml": "<p>证明性广告是以有力的证据来让消费者确信产品质量的真实性、可靠性，主要分为两类：①感性证明：借用一定事物，从理性的角度、感性的表达来证明产品的功效；②纯理性论证：借助科学鉴定结论和专家学者的评价，或消费者的现身说法，或实际表演、操作，或借助电视现场直播形式的广告来证明产品的功效。</p><p>根据上述定义，下列不属于证明性广告的是：</p>",
+      "type": "single",
+      "globalAccuracy": 90,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "某手表广告中，一位男士把手表放到鱼缸里浸泡后再拿出来，以证明手表的防水性"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "某地板广告中，舞者在地板上跳踢踏舞，鞋被磨穿但地板完好如初，以证明地板的品质"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "某床垫广告中，床垫被卡车来来回回地辗轧却弹性依旧，以证明床垫的质量之高"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "某牙膏广告中，展示了海外工厂生产的流水线，以证明牙膏的制作和工艺均符合标准"
+        }
+      ],
+      "analysisHtml": "<p>第一步：找出定义关键词。</p><p>证明性广告：“以有力的证据来让消费者确信产品质量的真实性、可靠性”；</p><p>感性证明：“借用一定事物，从理性的角度、感性的表达来证明产品的功效”；</p><p>纯理性论证：“借助科学鉴定结论和专家学者的评价”、“消费者的现身说法”、“实际表演、操作”、“借助电视现场直播形式”、“证明产品的功效”。</p><p>第二步：逐一分析选项。</p><p>A项：广告中男士把手表放到鱼缸里浸泡后再拿出来以证明手表的防水性，属于用实际表演、操作来证明产品的功效，符合“以有力的证据来让消费者确信产品质量的真实性、可靠性”、“实际表演、操作”、“证明产品的功效”，符合“证明性广告”定义，排除；</p><p>B项：广告中舞者在地板上跳舞以证明地板的品质，属于用略带夸张的表现手法来体现地板的质量，符合“以有力的证据来让消费者确信产品质量的真实性、可靠性”、“借用一定事物，从理性的角度、感性的表达来证明产品的功效”，符合“证明性广告”定义，排除；</p><p>C项：广告中床垫被卡车来回辗轧以证明床垫的质量之高，属于用实际表演、操作来证明产品的功效，符合“以有力的证据来让消费者确信产品质量的真实性、可靠性”、“实际表演、操作”、“证明产品的功效”，符合“证明性广告”定义，排除；</p><p>D项：广告中展示海外工厂生产的流水线以证明牙膏的制作和工艺均符合标准，该操作只能证明牙膏生产符合标准，但不能证明牙膏的功效，不符合“以有力的证据来让消费者确信产品质量的真实性、可靠性”、“借用一定事物，从理性的角度、感性的表达来证明产品的功效”、“证明产品的功效”，不符合“证明性广告”定义，当选。</p><p>本题为选非题，故正确答案为D。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "定义判断",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20940,
+      "titleHtml": "<p>载损鉴定是指船方为了明确所承运的货物是否发生了残损，以及残损责任是否属于船方，而向商检机构申请在其卸货过程中检查货物情况，给予公正的鉴定。</p><p>根据上述定义，下列属于载损鉴定范畴的是：</p>",
+      "type": "single",
+      "globalAccuracy": 42,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "甲船向商检机构申请检查船舶卸货前舱口、风筒的封盖和封识情况，以鉴定货物受损的原因"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "乙船向商检机构申请检查舱内货物清单是否与报关清单一致，鉴定货物是否完整"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "丙船向商检机构申请对比装船储罐前检尺及储罐后检尺，以计算输油软管破裂造成的油品泄漏量"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "丁船与戊船相撞后，向商检机构申请检查船体的故障原因，评估船体的技术状况"
+        }
+      ],
+      "analysisHtml": "<p>第一步：找出定义关键词。</p><p>“为了明确所承运的货物是否发生了残损，以及残损责任是否属于船方”。</p><p>第二步：逐一分析选项。</p><p>A项：甲船向商检机构申请检查船舶卸货前舱口、风筒的封盖和封识情况，以鉴定货物受损的原因，是为了明确残损的责任方，符合“为了明确所承运的货物是否发生了残损，以及残损责任是否属于船方”，符合定义，当选；</p><p>B项：乙船向商检机构申请检查舱内货物清单是否与报关清单一致，检查的是清单，而不是货物本身，不是为了明确货物是否发生了残损以及残损责任方，不符合“为了明确所承运的货物是否发生了残损，以及残损责任是否属于船方”，不符合定义，排除；</p><p>C项：丙船向商检机构申请对比装船储罐前检尺及储罐后检尺，是为了计算输油软管破裂造成的油品泄漏量，并不是为了明确残损责任方，不符合“为了明确所承运的货物是否发生了残损，以及残损责任是否属于船方”，不符合定义，排除；</p><p>D项：丁船向商检机构申请检查船体的故障原因，是为了评估船体的技术状况，并不是为了明确残损责任方，不符合“为了明确所承运的货物是否发生了残损，以及残损责任是否属于船方”，不符合定义，排除。</p><p>故正确答案为A。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "定义判断",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20941,
+      "titleHtml": "<p>稻田养鱼：立体农业</p>",
+      "type": "single",
+      "globalAccuracy": 93,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "吊销许可：行政处罚"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "鞋底花纹：强摩擦力"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "节日促销：礼品赠送"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "农民增收：乡村旅游"
+        }
+      ],
+      "analysisHtml": "<p>第一步：判断题干词语间逻辑关系。</p><p>“稻田养鱼”是一种“立体农业”，二者为种属关系。</p><p>第二步：判断选项词语间逻辑关系。</p><p>A项：“吊销许可”是一种“行政处罚”，二者为种属关系，与题干逻辑关系一致，当选；</p><p>B项：“鞋底花纹”具有“强摩擦力”，二者为属性对应关系，与题干逻辑关系不一致，排除；</p><p>C项：“礼品赠送”是一种“节日促销”的辅助手段，二者为种属关系，但顺序与题干相反，排除；</p><p>D项：“乡村旅游”是一种“农民增收”的手段，二者为种属关系，但顺序与题干相反，排除。</p><p>故正确答案为A。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "类比推理",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20942,
+      "titleHtml": "<p>春水煮茶：松花酿酒</p>",
+      "type": "single",
+      "globalAccuracy": 96,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "神龙摆尾：锦鲤成群"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "夏雨裹粽：蒲草织席"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "摘叶题诗：春风拂面"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "梅雨初晴：老马识途"
+        }
+      ],
+      "analysisHtml": "<p>第一步：判断题干词语间逻辑关系。</p><p>“春水煮茶”是指用春天的河水煮茶，“春水”是“煮茶”所用到的原材料，“煮”为工艺，“茶”为成品，“春水煮茶”为原材料、工艺与成品的对应关系。“松花酿酒”是指用松花来酿酒，“松花”即松树的花，“松花”是“酿酒”所用到的原材料，“酿”为工艺，“酒”为成品，“松花酿酒”为原材料、工艺与成品的对应关系。</p><p>第二步：判断选项词语间逻辑关系。</p><p>A项：“神龙”不是“摆尾”的原材料，“锦鲤”不是“成群”的原材料，与题干逻辑关系不一致，排除；</p><p>B项：“夏雨裹粽”是指用夏天的雨水包裹粽子，“夏雨”是“裹粽”所用到的原材料，“裹”为工艺，“粽”为成品，“夏雨裹粽”为原材料、工艺与成品的对应关系。“蒲草织席”是指用蒲草编织草席，“蒲草”是“织席”所用到的原材料，“织”为工艺，“席”为成品，“蒲草织席”为原材料、工艺与成品的对应关系，与题干逻辑关系一致，当选；</p><p>C项：“摘叶”不是“题诗”的原材料，“春风”不是“拂面”的原材料，与题干逻辑关系不一致，排除；</p><p>D项：“梅雨”不是“初晴”的原材料，“老马”不是“识途”的原材料，与题干逻辑关系不一致，排除。</p><p>故正确答案为B。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "类比推理",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20943,
+      "titleHtml": "<p>当局者迷：旁观者清</p>",
+      "type": "single",
+      "globalAccuracy": 66,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "送君千里：终须一别"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "东向而望：不见西墙"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "道远知骥：世伪知贤"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "冬寒抱冰：夏热握火"
+        }
+      ],
+      "analysisHtml": "<p>第一步：判断题干词语间逻辑关系。</p><p>“当局者迷，旁观者清”比喻当事人往往因为对利害得失的考虑太多，认识不客观，反而不及旁观的人看得清楚，二者为并列关系。同时，“迷”和“清”构成反义关系。</p><p>第二步：判断选项词语间逻辑关系。</p><p>A项：“送君千里，终须一别”意思是尽管伴送千里，也终有分别之时，即使“送君千里”，但仍“终须一别”，二者为转折对应关系，与题干逻辑关系不一致，排除；</p><p>B项：“东向而望，不见西墙”意思是向东面看，看不到西面的墙，因为“东向而望”，所以“不见西墙”，二者为因果对应关系，与题干逻辑关系不一致，排除；</p><p>C项：“道远知骥，世伪知贤”意思是路途遥远才可以辨别良马，世间的虚伪狡诈才能鉴别贤才，二者为并列关系，但“骥”和“贤”不构成反义关系，与题干逻辑关系不一致，排除；</p><p>D项：“冬寒抱冰，夏热握火”意思是冬天寒冷却要抱冰，夏天炎热却要握火，二者为并列关系。同时，“冰”和“火”构成反义关系，与题干逻辑关系一致，当选。</p><p>故正确答案为D。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "类比推理",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20944,
+      "titleHtml": "<p>备：德才兼备：戒备森严</p>",
+      "type": "single",
+      "globalAccuracy": 35,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "狼：狼吞虎咽：狼奔豕突"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "兵：短兵相接：草木皆兵"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "绳：结绳而治：绳锯木断"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "假：狐假虎威：不假思索"
+        }
+      ],
+      "analysisHtml": "<p>第一步：判断题干词语间逻辑关系。</p><p>“德才兼备”指既有好的思想品质，又有工作的才干和能力，其中“备”的意思是“具备”；“戒备森严”指警戒防备极其严密，其中“备”的意思是“防备”。“备”在后两词中的含义不同。</p><p>第二步：判断选项词语间逻辑关系。</p><p>A项：“狼吞虎咽”指像狼和虎那样吞咽东西；“狼奔豕突”指如狼和猪那样奔跑冲撞，后两词中“狼”的意思均是“像狼那样”，含义相同，与题干逻辑关系不一致，排除；</p><p>B项：“短兵相接”指敌我逼近，用短兵器交战，其中“兵”的意思是“兵器”；“草木皆兵”指把山上的野草和树木都当作敌兵，其中“兵”的意思是“战士、军队”，“兵”在后两词中的含义不同，与题干逻辑关系一致，当选；</p><p>C项：“结绳而治”指上古没有文字，用结绳记事的方法治理天下，其中“结绳”指将两根绳子扎接起来；“绳锯木断”指以绳当锯，也能锯断木头，后两词中“绳”的意思均是“用两股以上的棉麻纤维或棕草等拧成的条状物”，含义相同，与题干逻辑关系不一致，排除；</p><p>D项：“狐假虎威”指狐狸借着老虎的威风去吓唬其他野兽；“不假思索”形容做事答话敏捷、熟练，用不着考虑，后两词中“假”的意思均是“借用、利用”，含义相同，与题干逻辑关系不一致，排除。</p><p>故正确答案为B。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "类比推理",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20945,
+      "titleHtml": "<p>搜索引擎：互联网：检索技术</p>",
+      "type": "single",
+      "globalAccuracy": 32,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "心电图机：医疗机构：设备"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "子网掩码：主机地址：符号"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "劳动合同：劳动关系：契约"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "工业船舶：工业港口：交通"
+        }
+      ],
+      "analysisHtml": "<p>第一步：判断题干词语间逻辑关系。</p><p>“搜索引擎”是一种基于“互联网”产生的“检索技术”，前两词构成对应关系，第一词和第三词构成包容关系。</p><p>第二步：判断选项词语间逻辑关系。</p><p>A项：“心电图机”是一种“设备”，但“心电图机”不是基于“医疗机构”产生的，而是基于“疾病或医疗需求”产生的，与题干逻辑关系不一致，排除；</p><p>B项：“子网掩码”是一种“符号”，用于将IP地址划分成网络地址和“主机地址”，与题干逻辑关系不一致，排除；</p><p>C项：“劳动合同”是一种基于“劳动关系”产生的“契约”，前两词构成对应关系，第一词和第三词构成包容关系，与题干逻辑关系一致，当选；</p><p>D项：“工业船舶”是一种交通工具，而不是“交通”，与题干逻辑关系不一致，排除。</p><p>故正确答案为C。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "类比推理",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20946,
+      "titleHtml": "<p>党纪教育：正风肃纪：党员</p>",
+      "type": "single",
+      "globalAccuracy": 79,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "病例会诊：诊断救治：患者"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "大气校正：环境监测：气候"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "户外拓展：强身健体：操场"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "应急演练：检验预案：警报"
+        }
+      ],
+      "analysisHtml": "<p>第一步：判断题干词语间逻辑关系。</p><p>党纪教育是为了正风肃纪，二者是方式目的对应关系，党纪教育和正风肃纪的相关对象是党员，是行为与对象的对应关系。</p><p>第二步：判断选项词语间逻辑关系。</p><p>A项：病例会诊是为了诊断救治，二者是方式目的对应关系，病例会诊和诊断救治的相关对象是患者，是行为与对象的对应关系，与题干逻辑关系一致，当选；</p><p>B项：传感器最终测得的地面目标的总辐射亮度并不是地表真实反射率的反映，其中包含了由大气吸收，尤其是散射作用造成的辐射量误差，大气校正是消除这些由大气影响所造成的辐射误差，反演地物真实的表面反射率的过程。大气校正不是为了环境监测，二者不是方式目的对应关系，与题干逻辑关系不一致，排除；</p><p>C项：户外拓展是为了强身健体，二者是方式目的对应关系，但操场是户外拓展的地点，二者是地点对应关系，与题干逻辑关系不一致，排除；</p><p>D项：应急演练是为了检验预案，二者是方式目的对应关系，但警报不是应急演练的对象，与题干逻辑关系不一致，排除。</p><p>故正确答案为A。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "类比推理",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20947,
+      "titleHtml": "<p>采样瓶：窄口瓶：金属瓶</p>",
+      "type": "single",
+      "globalAccuracy": 86,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "针灸针：绣花针：皮肤针"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "躺椅：方条椅：皮椅"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "灭火栓：螺栓：门栓"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "推进舱：返回舱：实验舱"
+        }
+      ],
+      "analysisHtml": "<p>第一步：判断题干词语间逻辑关系。</p><p>采样瓶是用于样品采集的瓶子，是根据功能命名的，窄口瓶是根据形状命名的，金属瓶是根据原材料命名的，三者之间均为交叉关系。</p><p>第二步：判断选项词语间逻辑关系。</p><p>A项：针灸针和绣花针都是根据功能命名的，二者为并列关系中的反对关系；皮肤针是根据作用对象命名的，与题干逻辑关系不一致，排除；</p><p>B项：躺椅是根据功能命名的，方条椅是根据形状命名的，皮椅是根据原材料命名的，三者之间均为交叉关系，与题干逻辑关系一致，当选；</p><p>C项：灭火栓是根据功能命名的，螺栓具有螺纹，是根据形状命名的，门栓是根据作用对象命名的，且三者是三种不同的物品，并非交叉关系，与题干逻辑关系不一致，排除；</p><p>D项：推进舱、返回舱和实验舱均是根据功能命名的，其中推进舱是为飞船提供调整姿态等所需动力的舱体，返回舱是航天员往返太空时乘坐的舱段，三者为并列关系中的反对关系，与题干逻辑关系不一致，排除。</p><p>故正确答案为B。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "类比推理",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20948,
+      "titleHtml": "<p>弹道导弹：射程：弹头数量</p>",
+      "type": "single",
+      "globalAccuracy": 57,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "近视眼镜：瞳距：散瞳时间"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "发射重量：运载火箭：推力"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "节能冰箱：气温：能效等级"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "游戏电脑：散热性能：内存"
+        }
+      ],
+      "analysisHtml": "<p>第一步：判断题干词语间逻辑关系。</p><p>射程和弹头数量是衡量弹道导弹性能的两个指标，二者为并列关系中的反对关系，分别与弹道导弹为对应关系。</p><p>第二步：判断选项词语间逻辑关系。</p><p>A项：瞳距是指人双眼瞳孔之间的距离，散瞳是在应用药物使眼睛的睫状肌完全麻痹，使之失去调节作用的情况下进行的验光，散瞳时间是对应的验光时间，二者并不是衡量近视眼镜性能的指标，与题干逻辑关系不一致，排除；</p><p>B项：发射重量和推力是衡量运载火箭性能的两个指标，但词语顺序与题干相反，与题干逻辑关系不一致，排除；</p><p>C项：能效等级是衡量节能冰箱性能的指标之一，但节能冰箱和气温没有必然联系，与题干逻辑关系不一致，排除；</p><p>D项：散热性能和内存是衡量游戏电脑性能的两个指标，二者为并列关系中的反对关系，分别与游戏电脑为对应关系，与题干逻辑关系一致，当选。</p><p>故正确答案为D。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "类比推理",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20949,
+      "titleHtml": "<p>货币资金 对于 （    ） 相当于 （    ） 对于 民事合同</p>",
+      "type": "single",
+      "globalAccuracy": 80,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "银行存款 民事责任"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "机器设备 赠与合同"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "流动资产 借款合同"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "价值储藏 权益保障"
+        }
+      ],
+      "analysisHtml": "<p>逐一代入选项。</p><p>A项：银行存款是储存在银行的款项，货币资金包括银行存款，二者为包容关系，违反民事合同需要承担民事责任，二者是违反后果对应关系，前后逻辑关系不一致，排除；</p><p>B项：货币资金与机器设备没有明显的逻辑关系，赠与合同是一种民事合同，二者为种属关系，前后逻辑关系不一致，排除；</p><p>C项：货币资金是一种流动资产，借款合同是一种民事合同，二者均为种属关系，前后逻辑关系一致，当选；</p><p>D项：货币资金有价值储藏的功能，民事合同有权益保障的功能，二者均为功能对应关系，但前后逻辑顺序不一致，排除。</p><p>故正确答案为C。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "类比推理",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20950,
+      "titleHtml": "<p>航天器 对于 （    ） 相当于 数据库 对于 （    ）</p>",
+      "type": "single",
+      "globalAccuracy": 48,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "飞行轨道 电子文件"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "空间站 信息系统"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "密封舱 数据表"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "太阳系 云计算"
+        }
+      ],
+      "analysisHtml": "<p>逐一代入选项。</p><p>A项：航天器按照飞行轨道飞行，二者为对应关系；电子文件是数据库的一部分，二者为包容关系中的组成关系，前后逻辑关系不一致，排除；</p><p>B项：空间站是一种在近地轨道长时间运行，可供多名航天员巡访、长期工作和生活的载人航天器，二者为包容关系中的种属关系；数据库是信息系统的一部分，二者是包容关系中的组成关系，前后逻辑关系不一致，排除；</p><p>C项：密封舱是航天器的组成部分，二者为包容关系中的组成关系；数据表是数据库的组成部分，二者为包容关系中的组成关系，前后逻辑关系一致，当选；</p><p>D项：航天器在太阳系中航行，二者为工具与使用地点对应关系；云计算可以将数据库部署在云端，二者为技术对应关系，前后逻辑关系不一致，排除。</p><p>故正确答案为C。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "类比推理",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20951,
+      "titleHtml": "<p>没有农业农村现代化，就没有整个国家现代化。只有推动农业经营模式的变革，才能实现农业农村现代化。只有培育新型农业经营主体，且发展农产品加工业等多元化产业，才能推动农业经营模式的变革。</p><p>由此可以推出：</p>",
+      "type": "single",
+      "globalAccuracy": 79,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "如果实现了农业农村现代化，就能实现整个国家现代化"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "只要推动农业经营模式的变革，就能实现农业农村现代化"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "除非发展农产品加工业等多元化产业，否则无法培育新型农业经营主体"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "只有培育新型农业经营主体，且发展农产品加工业等多元化产业，才能实现整个国家现代化"
+        }
+      ],
+      "analysisHtml": "第一步：翻译题干。<br><br>①国家现代化 -> 农业农村现代化；<br><br>②农业农村现代化 -> 农业经营模式的变革；<br><br>③农业经营模式的变革 -> 培育新型农业经营主体 且 发展农产品加工业等多元化产业。<br><br>①②③串联得到：④国家现代化 -> 农业农村现代化 -> 农业经营模式的变革 -> 培育新型农业经营主体 且 发展农产品加工业等多元化产业。<br><br>第二步：逐一分析选项。<br><br>A项：翻译为农业农村现代化 -> 国家现代化，是对①的肯后，但肯后得不到确定性的结论，排除；<br><br>B项：翻译为农业经营模式的变革 -> 农业农村现代化，是对②的肯后，但肯后得不到确定性的结论，排除；<br><br>C项：翻译为培育新型农业经营主体 -> 发展农产品加工业等多元化产业，是③箭头后且关系的两个方面，二者在题干中不存在推出关系，排除；<br><br>D项：翻译为国家现代化 -> 培育新型农业经营主体 且 发展农产品加工业等多元化产业，是对④的肯前，肯前必肯后，可以推出，当选。<br><br>故正确答案为D。",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "翻译推理",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20952,
+      "titleHtml": "<p>为了解市民对话剧的爱好程度，J市连续三年进行了网络调查。调查结果表明，近三年，宣称自己每月都会去看话剧演出的市民人数占市民总人数的比例不断增加，由5%增加到15%。然而，分析J市大剧院的票房数据，却发现近三年来，来剧院观看话剧的观众人数其实是减少的。</p><p>以下哪项如果为真，不能解释上述现象？</p>",
+      "type": "single",
+      "globalAccuracy": 60,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "近三年里，市民当中不是每月都会去看话剧的人数量在减少"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "为了吸引更多的观众，该市的话剧演出票价比之前调低了一些"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "J市有很多年轻人会选择去小剧场或学校的礼堂观看话剧"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "剧本杀、密室逃脱等新兴娱乐项目在一定程度上分流了话剧的观众"
+        }
+      ],
+      "analysisHtml": "<p>第一步：找出题干矛盾。</p><p>近三年，宣称自己每月都会去看话剧演出的市民人数占市民总人数的比例不断增加。然而，分析J市大剧院的票房数据，却发现近三年来，来剧院观看话剧的观众人数其实是减少的。</p><p>第二步：逐一分析选项。</p><p>A项：选项指出近三年里，市民当中不是每月都会去看话剧的人数量在减少，也就是说，近三年，虽然每月都会去看话剧的人数量在增加，但看话剧的人员构成还包括“不是每月都会去看话剧的人”，这些人的数量在减少，可以解释为什么宣称自己每月都会去看话剧演出人数的比例增加，但来剧院观看话剧的观众人数其实是减少的，可以解释题干矛盾，排除；</p><p>B项：选项指出为了吸引观众，该市的话剧演出票价比之前调低了，调低价格理论上应该吸引更多的顾客，不能解释为什么宣称自己每月都会去看话剧演出人数增加，但去剧院看话剧的观众人数其实是减少的，不能解释题干矛盾，当选；</p><p>C项：选项指出J市很多年轻人会选择去小剧场或学校的礼堂观看话剧，说明小剧场和礼堂分流了来大剧院看话剧的观众，解释了为什么宣称自己每月都会去看话剧演出人数的比例增加，但来“大剧院”观看话剧的观众人数却在减少，可以解释题干矛盾，排除；</p><p>D项：选项指出剧本杀、密室逃脱等新兴娱乐项目在一定程度上分流了话剧的观众，解释了为什么来剧院观看话剧的观众是减少的，相比较AC项，D项解释得比较片面，但是B项更不能解释，对比择优，D项优于B项。</p><p>本题为选非题，故正确答案为B。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "原因解释",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20953,
+      "titleHtml": "<p>一项研究重建了过去25年来鸟类在20多万个地点创造的声音景观，结果发现，现今鸟类的声音强度已经出现了普遍的下降，且不如过去那般高低起伏、动听悦耳。研究者认为，这种现象主要是气候变化导致的。但反对者认为，这与气候无关，主要是因为鸟类社群的组成发生了变化，致使物种减少导致。</p><p>以下哪项如果为真，最能支持研究者的观点？</p>",
+      "type": "single",
+      "globalAccuracy": 73,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "日益严重的变暖趋势导致鸟类社群物种缩窄"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "鸟类的声音变得越来越简单且异质性越来越小"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "一些歌声动听婉转的鸟类正在向高纬度迁移"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "一般来说，体型较小的物种灭绝风险较高"
+        }
+      ],
+      "analysisHtml": "<p>第一步：找出论点和论据。</p><p>论点：这种现象（鸟类的声音强度已经出现了普遍的下降，且不如过去那般高低起伏、动听悦耳）主要是气候变化导致的。</p><p>论据：无。</p><p>本题只有论点没有论据，加强优先考虑补充论据，且本题中“研究者”和“反对者”的观点相反，如果能反驳反对者观点，也可以起到支持研究者观点的效果。</p><p>第二步：逐一分析选项。</p><p>A项：该项说日益严重的变暖趋势导致鸟类社群物种缩窄，说明鸟类社群变化的原因是气候变化，也就意味着导致鸟类的声音强度出现普遍的下降的根本原因是气候变化，削弱了“反对者”观点，即支持了“研究者”观点，可以加强，当选；</p><p>B项：该项说鸟类的声音变得越来越简单且异质性越来越小，强调鸟类声音变化趋势，与论点讨论的鸟类声音强度下降的原因无关，为无关项，无法加强，排除；</p><p>C项：该项说一些歌声动听婉转的鸟类正向高纬度迁移，强调鸟类的迁移情况，与论点讨论的鸟类声音强度下降的原因无关，为无关项，无法加强，排除；</p><p>D项：该项说体型较小的物种灭绝风险较高，鸟类的体型一般较小，说明其灭绝风险可能较高，但与论点讨论的鸟类声音强度下降的原因无关，为无关项，无法加强，排除。</p><p>故正确答案为A。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "加强削弱",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20954,
+      "titleHtml": "<p>卫星在低地球轨道运行，随着时间的推移会逐渐失去高度，最终在与大气层剧烈摩擦中燃烧解体。数年来，在地球大气层中燃烧的卫星数量不断增长。卫星主要由铝构成，当卫星燃烧时，铝会转化成铝的氧化物。因此，研究人员认为，不断发射的卫星会给地球大气层带来危害。</p><p>以下哪项如果为真，最能支持上述结论？</p>",
+      "type": "single",
+      "globalAccuracy": 82,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "据有关部门统计，每天都会有一个老化的卫星在地球大气层中解体"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "在足够浓度下，氧化铝能够催化臭氧与氯气的破坏性反应，导致臭氧分子分裂"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "目前发射的卫星多是大量卫星群构成的星链卫星，卫星之间产生的化学反应无法预测"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "卫星发射后的残骸会逐渐分解为粒子，这些粒子有的会长期停留在地球大气层"
+        }
+      ],
+      "analysisHtml": "<p>第一步：找出论点和论据。</p><p>论点：不断发射的卫星会给地球大气层带来危害。</p><p>论据：数年来，在地球大气层中燃烧的卫星数量不断增长。卫星主要由铝构成，当卫星燃烧时，铝会转化成铝的氧化物。</p><p>本题论点说的是“卫星”和“危害大气层”之间的关系，论据说的是“卫星”和“铝的氧化物”之间的关系，二者话题不一致，加强优先考虑搭桥，即建立“铝的氧化物”与“危害大气层”之间的联系。</p><p>第二步：逐一分析选项。</p><p>A项：选项指出每天都会有一个老化的卫星在大气层中解体，但不明确解体是否会给大气层带来危害，为不明确项，无法加强，排除；</p><p>B项：选项指出足够浓度的氧化铝能催化臭氧和氯气的破坏性反应，导致臭氧分子分裂，建立了“铝的氧化物”与“危害大气层”之间的联系，为搭桥项，可以加强，当选；</p><p>C项：选项指出目前发射的卫星多是大量卫星群构成的星链卫星，卫星之间产生的化学反应无法预测，不明确这些化学反应是否会给大气层带来危害，为不明确项，无法加强，排除；</p><p>D项：选项指出卫星发射后的残骸会逐渐分解为粒子，这些粒子有的会长期停留在大气层，但不明确长期停留在大气层的粒子是否会给大气层带来危害，为不明确项，无法加强，排除。</p><p>故正确答案为B。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "加强削弱",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20955,
+      "titleHtml": "<p>动物体内会存在一些机会致病菌，牙龈卟啉单胞菌就是其中的一种。研究人员发现，如果将牙龈卟啉单胞菌喂给小鼠，它们大脑中的β-淀粉样蛋白（Aβ）沉积会增加，脑内的炎症也会更严重。因此，研究人员认为，牙龈卟啉单胞菌极有可能导致小鼠患上阿尔茨海默症。</p><p>要支持上述研究人员的观点，需要补充的重要前提是：</p>",
+      "type": "single",
+      "globalAccuracy": 83,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "阿尔茨海默症小鼠血脑屏障的通透性增加，细菌容易侵入大脑"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "牙龈卟啉单胞菌会感染口腔引发牙周炎，干扰神经系统"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "研究者曾在阿尔茨海默症患者的脑组织中，发现了牙龈卟啉单胞菌"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "β-淀粉样蛋白的沉积是形成阿尔茨海默症的重要一环"
+        }
+      ],
+      "analysisHtml": "<p>第一步：找出论点和论据。</p><p>论点：牙龈卟啉单胞菌极有可能导致小鼠患上阿尔茨海默症。</p><p>论据：如果将牙龈卟啉单胞菌喂给小鼠，它们大脑中的β-淀粉样蛋白（Aβ）沉积会增加，脑内的炎症也会更严重。</p><p>本题论点说的是“牙龈卟啉单胞菌”和“患上阿尔茨海默症”的关系，论据说的是“牙龈卟啉单胞菌”和“β-淀粉样蛋白沉积”的关系，二者话题不一致，加强优先考虑搭桥，即建立“β-淀粉样蛋白沉积”和“患上阿尔茨海默症”之间的联系。</p><p>第二步：逐一分析选项。</p><p>A项：该项讨论的是阿尔茨海默症小鼠血脑屏障的通透性增加，细菌容易侵入大脑，与论点讨论的牙龈卟啉单胞菌导致小鼠患上阿尔茨海默症无关，为无关项，无法加强，排除；</p><p>B项：该项讨论的是牙龈卟啉单胞菌会感染口腔引发牙周炎，干扰神经系统，但并不明确干扰神经系统与患上阿尔茨海默症之间的关系，为不明确项，无法加强，排除；</p><p>C项：该项讨论的是曾在阿尔茨海默症患者的脑组织中，发现了牙龈卟啉单胞菌，但并不明确牙龈卟啉单胞菌与患上阿尔茨海默症的因果关系，为不明确项，无法加强，排除；</p><p>D项：该项讨论的是β-淀粉样蛋白的沉积是形成阿尔茨海默症的重要一环，即建立了“β-淀粉样蛋白沉积”和“患上阿尔茨海默症”之间的联系，为搭桥项，是论证成立的前提，当选。</p><p>故正确答案为D。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "加强削弱",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20956,
+      "titleHtml": "<p>为分析烧烤类食物对口腔疾病的影响，研究机构针对健康成年人开展了一项长期的追踪研究。结果发现，经常食用烧烤类食物且摄入量较多的健康成年人，未来患上牙龈炎的比例更高。研究机构据此得出结论，频繁、大量食用烧烤类食物是人们罹患牙龈炎的重要因素。</p><p>以下哪项如果为真，最能削弱上述结论？</p>",
+      "type": "single",
+      "globalAccuracy": 47,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "一般来说，父母中如果有一人患牙龈炎，子女患该病的几率将提高20%"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "长期食用煮熟的肉类和长期食用烧烤类食物的人群患牙龈炎的比例接近"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "研究中大量且经常食用烧烤类食物的人有80%都喜欢一边喝啤酒一边吃烧烤"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "研究中男性患牙龈炎的比例比女性高约30%"
+        }
+      ],
+      "analysisHtml": "<p>第一步：找出论点和论据。</p><p>论点：频繁、大量食用烧烤类食物是人们罹患牙龈炎的重要因素。</p><p>论据：经常食用烧烤类食物且摄入量较多的健康成年人，未来患上牙龈炎的比例更高。</p><p>本题论点和论据都在讨论“食用烧烤类食物”和“罹患牙龈炎”的关系，二者话题一致，且论点中存在因果关系，削弱可以考虑削弱论点、因果倒置和他因削弱。</p><p>第二步：逐一分析选项。</p><p>A项：该项指出遗传因素会提高患牙龈炎的几率，与论点讨论的食用烧烤类食物是否更容易患牙龈炎无关，为无关项，无法削弱，排除；</p><p>B项：该项指出长期食用煮熟的肉类和烧烤类食物的人群患牙龈炎的比例相当，与论点讨论的食用烧烤类食物是否更容易患牙龈炎无关，为无关项，无法削弱，排除；</p><p>C项：该项指出大量食用烧烤类食物的人同时有喝啤酒的习惯，在大量食用烧烤类食物的基础上增加了“喝啤酒”这一原因，为他因削弱，可以削弱，当选；</p><p>D项：该项指出研究中男性比女性患牙龈炎的比例高，与论点讨论的食用烧烤类食物是否更容易患牙龈炎无关，为无关项，无法削弱，排除。</p><p>故正确答案为C。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "加强削弱",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20957,
+      "titleHtml": "<p>在非洲东南部稀树草原的林地，每年约有8个月为旱季，雨季极为短暂。这里生活着一种非洲鳉鱼，其胚胎遭遇旱季时细胞会停止分裂，新陈代谢高度减缓，出现“胚胎滞育”现象，直到雨季到来再次生长。人们发现，非洲鳉鱼的胚胎表面有一层特殊的蛋白质纤丝结构，该结构透水性极差，减少了胚胎在干旱条件下的水分流失。有人据此认为，蛋白质纤丝结构是非洲鳉鱼可以在干旱条件下存活很久的主要原因。</p><p>以下哪项如果为真，没有削弱上述结论？</p>",
+      "type": "single",
+      "globalAccuracy": 58,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "在完全没有氧气的条件下，非洲鳉鱼胚胎也能存活约60天"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "非洲鳉鱼体内有一种特殊基因，可以降低干旱期胚胎内细胞的耗氧量和其他活动"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "蛋白质纤丝结构在一些不能耐受干旱的鱼类胚胎中也存在"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "非洲鳉鱼个体差异较大，一些非洲鳉鱼的胚胎中不具有这种蛋白质纤丝结构"
+        }
+      ],
+      "analysisHtml": "<p>第一步：找出论点和论据。</p><p>论点：蛋白质纤丝结构是非洲鳉鱼可以在干旱条件下存活很久的主要原因。</p><p>论据：人们发现，非洲鳉鱼的胚胎表面有一层特殊的蛋白质纤丝结构，该结构透水性极差，减少了胚胎在干旱条件下的水分流失。</p><p>本题论点和论据都在讨论“非洲鳉鱼的蛋白质纤丝结构”和“在干旱条件下存活”的关系，二者话题一致，本题为选非题，排除能削弱的选项即可。</p><p>第二步：逐一分析选项。</p><p>A项：该项说的是无氧条件下鳉鱼胚胎存活的天数，而论点说的是蛋白质纤丝结构是不是它在干旱条件下存活的原因，二者话题不一致，为无关项，无法削弱，当选；</p><p>B项：该项说的是鳉鱼体内的特殊基因可以降低干旱期胚胎内细胞的耗氧量和其他活动，说明可能是鳉鱼体内的这种特殊基因导致其在干旱条件下存活得更久，削弱论点，可以削弱，排除；</p><p>C项：该项说的是有些不能耐受干旱的鱼类胚胎中也有蛋白质纤丝结构，举反例说明蛋白质纤丝结构和在干旱条件下存活之间没有必然的关系，削弱论点，可以削弱，排除；</p><p>D项：该项说的是一些非洲鳉鱼的胚胎中不具有这种蛋白质纤丝结构，举反例说明蛋白质纤丝结构不是非洲鳉鱼在干旱条件下存活的原因，削弱论点，可以削弱，排除。</p><p>本题为选非题，故正确答案为A。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "加强削弱",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20958,
+      "titleHtml": "<p>王博士、李博士、徐博士、黄博士是某实验室的四位实验员。该实验室中有四个玻片标本，编号为①、②、③、④。关于标本，四位实验员有如下说法：</p><p>王博士：四个标本中都没有细胞壁；</p><p>李博士：四个标本中有的标本有细胞壁；</p><p>徐博士：②和④号标本至少有一个没有细胞壁；</p><p>黄博士：④号标本没有细胞壁。</p><p>若四个人中有两人说真话，两人说假话，可以推出：</p>",
+      "type": "single",
+      "globalAccuracy": 67,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "说真话的是王博士和黄博士"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "说真话的是李博士和黄博士"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "说真话的是王博士和徐博士"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "说真话的是李博士和徐博士"
+        }
+      ],
+      "analysisHtml": "<p>第一步：分析题干找关系。</p><p>王：所有的标本都没有细胞壁；</p><p>李：有的标本有细胞壁；</p><p>徐：- ② 或 - ④；</p><p>黄：- ④。</p><p>根据题干条件可知，王和李的说法为矛盾关系，必有一真一假。</p><p>第二步：看其余。</p><p>根据题干条件可知，四人所说的话中有两真两假，故徐和黄的说法也必为一真一假。若黄的说法为真，那么徐的说法也为真，不符合一真一假，与题干条件违背，因此黄的说法为假，徐的说法为真，即④号标本有细胞壁，进而可以得出有的标本有细胞壁，因此李的说法为真，王的说法为假。故说真话的是李博士和徐博士。</p><p>故正确答案为D。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "真假推理",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20959,
+      "titleHtml": "<p>某环境部门对甲、乙、丙、丁、戊五个地区进行了水质采样和评测，在评测结果出来之前，该部门的五位同志做出了如下预测：</p><p>小宋：甲地区是Ⅱ类水质，乙地区是Ⅲ类水质：</p><p>小韩：丙地区是Ⅳ类水质，丁地区是Ⅱ类水质；</p><p>小刘：丙地区是Ⅰ类水质，戊地区是Ⅴ类水质；</p><p>小禾：戊地区是Ⅳ类水质，丁地区是Ⅲ类水质；</p><p>小赵：乙地区是Ⅱ类水质，甲地区是Ⅴ类水质。</p><p>结果出来，五位同志都只猜对了一半。由此可以推出：</p>",
+      "type": "single",
+      "globalAccuracy": 87,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "丁地区Ⅰ类水质，乙地区Ⅱ类水质，丙地区Ⅲ类水质，甲地区Ⅳ类水质，戊地区Ⅴ类水质"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "乙地区Ⅰ类水质，戊地区Ⅱ类水质，丙地区Ⅲ类水质，丁地区Ⅳ类水质，甲地区Ⅴ类水质"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "丙地区Ⅰ类水质，丁地区Ⅱ类水质，乙地区Ⅲ类水质，戊地区Ⅳ类水质，甲地区Ⅴ类水质"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "甲地区Ⅰ类水质，丁地区Ⅱ类水质，乙地区Ⅲ类水质，丙地区Ⅳ类水质，戊地区Ⅴ类水质"
+        }
+      ],
+      "analysisHtml": "<p>题干信息不确定，优先考虑代入法。</p><p>代入A项：小宋的猜测都是错的，不符合题干要求，排除；</p><p>代入B项：小宋的猜测都是错的，不符合题干要求，排除；</p><p>代入C项：每个人的猜测都对了一半，符合题干要求，当选；</p><p>代入D项：小韩的猜测都是对的，不符合题干要求，排除。</p><p>故正确答案为C。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "组合排列",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20960,
+      "titleHtml": "<p>某公司决定从甲、乙、丙、丁、戊、己6个景点中选择其中3个作为团建地点，且有以下要求：如果选甲，就不能选择乙；除非选丙，否则不能选甲；只要选丁，就一定要选戊。据此，有以下四个推论：</p><p>①如果选甲，一定会选己；</p><p>②这三个景点可能选乙、丁、戊，也可能选甲、丙、己；</p><p>③如果没选丁，那一定也没选戊；</p><p>④如果没选甲，可能会选丙。</p><p>上述推论正确的有几项?</p>",
+      "type": "single",
+      "globalAccuracy": 52,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "1项"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "2项"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "3项"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "4项"
+        }
+      ],
+      "analysisHtml": "第一步：翻译题干。<br><br>①甲 -> - 乙；<br><br>②甲 -> 丙；<br><br>③丁 -> 戊。<br><br>第二步：逐一分析选项。<br><br>①：翻译为甲 -> 己，如果选择甲，根据条件①可得一定不选择乙，根据②可得一定会选择丙，为满足6个景点中选择其中3个作为团建地点，剩下一个地点可以选择己还可以选择戊，所以如果选甲，不一定会选己，①推论错误；<br><br>②：当选择丁时，根据条件③可知，一定会选择戊，剩下一个地点有可能会选择乙，此时没有违背题干条件，因此可能选乙、丁、戊。当选择甲时，一定会选择丙而不选择乙，剩下一个地点可以选择己，此时没有违背题干条件，因此可能选甲、丙、己，故②推论正确；<br><br>③：翻译为 - 丁 -> - 戊，- 丁是对③的否前，但否前得不到确定性的结论，所以戊有可能会被选择，当选择甲、丙、戊时，可以不选丁但选择戊，此时没有和题干违背，故③推论错误；<br><br>④：当没有选择甲时，是对条件①和条件②的否前，否前得不到确定性结论，所以丙有可能会被选择，当选择丙、丁、戊时，可以不选择甲有可能选择丙，④推论正确。<br><br>综上，②④推论正确，共2项。<br><br>故正确答案为B。",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "翻译推理",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20961,
+      "titleHtml": "<p>2023年3-12月，我国天然气月度进口量同比增量超过200万吨的月份有几个？</p>",
+      "type": "single",
+      "globalAccuracy": 59,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "1"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "2"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "3"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "4"
+        }
+      ],
+      "analysisHtml": "<p>根据题干“······同比增量超过······万吨······”，可判定本题为增长量比较问题。定位图1可知：2022年3-12月和2023年3-12月我国天然气月度进口量。根据公式：增长量=现期量-基期量，可得2023年3-12月天然气月度进口量同比增量分别为：</p><p>3月：887-798=89万吨&lt;200万吨；</p><p>4月：898-809=89万吨&lt;200万吨；</p><p>5月：1064-907=157万吨&lt;200万吨；</p><p>6月：1039-872=167万吨&lt;200万吨；</p><p>7月：1031-870=161万吨&lt;200万吨；</p><p>8月：1086-885=201万吨&gt;200万吨；</p><p>9月：1015-1015=0万吨&lt;200万吨；</p><p>10月：879-761=118万吨&lt;200万吨；</p><p>11月：1095-1032=63万吨&lt;200万吨；</p><p>12月：1265-1028=237万吨&gt;200万吨。</p><p>综上所述，2023年3-12月天然气月度进口量同比增量超过200万吨的月份有8月和12月，共2个月份。</p><p>故正确答案为B。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "资料分析",
+      "materialHtml": "<img width=\"600px\" height=\"400px\" src=\"//fb.fenbike.cn/api/tarzan/images/193a4ef6fdab24b.png?width=700\"><br><img width=\"600px\" height=\"400px\" src=\"//fb.fenbike.cn/api/tarzan/images/193a4d2350d5ead.png?width=700\">",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20962,
+      "titleHtml": "<p>2022年，我国天然气第四季度进口量比第一季度多约多少万吨？</p>",
+      "type": "single",
+      "globalAccuracy": 88,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "585"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "650"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "755"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "1240"
+        }
+      ],
+      "analysisHtml": "<p>根据题干“······比······多”，可判定本题为增长量计算问题。定位图1可得：2022年1-2月和3月，我国天然气进口量分别为1268万吨、798万吨；2022年10-12月，我国天然气进口量分别为761万吨、1032万吨、1028万吨。根据公式：增长量=现期量-基期量，可得2022年我国天然气第四季度进口量比第一季度多（761+1032+1028）-（1268+798）=2821-2066=755万吨。</p><p>故正确答案为C。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "资料分析",
+      "materialHtml": "<img width=\"600px\" height=\"400px\" src=\"//fb.fenbike.cn/api/tarzan/images/193a4ef6fdab24b.png?width=700\"><br><img width=\"600px\" height=\"400px\" src=\"//fb.fenbike.cn/api/tarzan/images/193a4d2350d5ead.png?width=700\">",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20963,
+      "titleHtml": "<p>2023年3-12月，我国天然气月度进口量同比增速最高的月份，当月天然气月度产量同比增加多少亿立方米？</p>",
+      "type": "single",
+      "globalAccuracy": 34,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "4"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "10"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "13"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "39"
+        }
+      ],
+      "analysisHtml": "本题考查增长量计算。<br><br>观察数据，6、7、8、12月增长相对明显，增长率比较，增长率=（现期量÷基期量）-1，只需要比较其 现期量÷基期量大小即可。6月：1039÷872，7月：1031÷870，8月：1086÷885，12月：1265÷1028，直除商首三位分别为119，118，122，123，故12月的增速最大。读数可得2023年12月天然气月度产量208亿立方米，2022年12月天然气月度产量204亿立方米，根据增长量=现期量-基期量，故所求同比增量为208-204=4亿立方米。<br><br>因此，选择A选项。",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "资料分析",
+      "materialHtml": "<img width=\"600px\" height=\"400px\" src=\"//fb.fenbike.cn/api/tarzan/images/193a4ef6fdab24b.png?width=700\"><br><img width=\"600px\" height=\"400px\" src=\"//fb.fenbike.cn/api/tarzan/images/193a4d2350d5ead.png?width=700\">",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20964,
+      "titleHtml": "<p>2023年3-12月，我国天然气月度进口量与月度产量的比值最高的月份是：</p>",
+      "type": "single",
+      "globalAccuracy": 77,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "8月"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "9月"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "11月"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "12月"
+        }
+      ],
+      "analysisHtml": "<p>根据题干“······比值最高的月份”，可判定本题为比值比较问题。定位图1可得：2023年8月、9月、11月、12月我国天然气月度进口量分别为1086万吨、1015万吨、1095万吨、1265万吨。定位图2可得：2023年8月、9月、11月、12月我国天然气月度产量分别为181亿立方米、179亿立方米、199亿立方米、208亿立方米。则2023年8月、9月、11月、12月我国天然气月度进口量与月度产量的比值分别为：2023年8月：1086/181=6.0；2023年9月：1015/179=6⁻；2023年11月：1095/199=5.5⁻；2023年12月：1265/208=6⁺。比较可得，比值最高的月份是2023年12月。</p><p>故正确答案为D。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "资料分析",
+      "materialHtml": "<img width=\"600px\" height=\"400px\" src=\"//fb.fenbike.cn/api/tarzan/images/193a4ef6fdab24b.png?width=700\"><br><img width=\"600px\" height=\"400px\" src=\"//fb.fenbike.cn/api/tarzan/images/193a4d2350d5ead.png?width=700\">",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20965,
+      "titleHtml": "<p>以下折线图最能反映2023年哪几个月天然气月度产量同比增量的变化趋势？</p><p><img width=\"300px\" height=\"185px\" src=\"//fb.fbstatic.cn/api/tarzan/images/193aa0cbe0a1ccb.png?width=700\" /></p>",
+      "type": "single",
+      "globalAccuracy": 63,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "5-8月"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "6-9月"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "7-10月"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "8-11月"
+        }
+      ],
+      "analysisHtml": "<p>根据题干“以下折线图最能反映2023年哪几个月······同比增量的变化趋势”，可判定本题为增长量比较问题。定位图2可知2022年3-12月、2023年3-12月天然气月度产量。根据公式：增长量=现期量-基期量。则2023年5-11月天然气月度产量同比增量分别为：</p><p>5月：190-177=13亿立方米；</p><p>6月：183-173=10亿立方米；</p><p>7月：184-171=13亿立方米；</p><p>8月：181-142=39亿立方米；</p><p>9月：179-164=15亿立方米；</p><p>10月：190-185=5亿立方米；</p><p>11月：199-189=10亿立方米。</p><p>综上可知，符合先下降两个月后上升趋势的为8-11月。</p><p>故正确答案为D。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "资料分析",
+      "materialHtml": "<img width=\"600px\" height=\"400px\" src=\"//fb.fenbike.cn/api/tarzan/images/193a4ef6fdab24b.png?width=700\"><br><img width=\"600px\" height=\"400px\" src=\"//fb.fenbike.cn/api/tarzan/images/193a4d2350d5ead.png?width=700\">",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20966,
+      "titleHtml": "<p>2024年4月，我国东部地区固定电话用户数环比减少10万户以上的省市有几个？</p>",
+      "type": "single",
+      "globalAccuracy": 84,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "1"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "2"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "3"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "4"
+        }
+      ],
+      "analysisHtml": "<p>根据题干“······环比减少10万户以上的省市有几个”，可判定本题为增长量计算问题。定位统计表可知2024年3月、4月我国东部地区各省市固定电话用户数。根据公式：增长量=现期量-基期量，可得2024年4月我国东部地区各省市固定电话用户数环比增长量如下：</p><p>北京：458.6-460.6=-2万户；</p><p>天津：316.2-317.5=-1.3万户；</p><p>河北：576.2-578.7=-2.5万户；</p><p>上海：600.2-606.5=-6.3万户；</p><p>江苏：1134.3-1138.7=-4.4万户；</p><p>浙江：1044.0-1048.1=-4.1万户；</p><p>福建：665.6-667.4=-1.8万户；</p><p>山东：1092.1-1094.9=-2.8万户；</p><p>广东：1751.4-1763.2=-11.8万户；</p><p>海南：179.6-179.8=-0.2万户。</p><p>比较可知，2024年4月，我国东部地区固定电话用户数环比减少10万户以上的省市只有广东，共1个。</p><p>故正确答案为A。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "资料分析",
+      "materialHtml": "<img width=\"636px\" height=\"339px\" src=\"//fb.fbstatic.cn/api/tarzan/images/193a50001d399f1.png?width=700\">",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20967,
+      "titleHtml": "<p>2024年4月，我国东部地区移动电话用户数合计占全国比重在以下哪个范围内？</p>",
+      "type": "single",
+      "globalAccuracy": 75,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "40%以下"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "40%~42%之间"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "42%~44%之间"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "44%以上"
+        }
+      ],
+      "analysisHtml": "<p>根据题干“2024年4月······占······比重在以下哪个范围内”，结合材料时间有2024年4月，可判定本题为现期比重问题。定位表格可知，2024年4月东部地区移动电话用户数合计为76251.0万户，全国移动电话用户数合计为175886.3万户。故2024年4月，我国东部地区移动电话用户数合计占全国比重<img flag=\"tex\" src=\"//fb.fenbike.cn/api/planet/accessories/formulas?latex=q09Q2vEchHtJbdnJxU5VwJItCLFmZ_0YPu0_b6yRXZWF-RK1K9U9o5CXHjDBlDrQ8LCg09xtqE0r2yQ1gPtq7DGdY7bMVA8kZPNox0kxKezme6huIFr7CE_hEaCs2pJo3RZUpFq4GK-k8Dej1obbgQ\" />，在C项范围内。</p><p>故正确答案为C。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "资料分析",
+      "materialHtml": "<img width=\"636px\" height=\"339px\" src=\"//fb.fbstatic.cn/api/tarzan/images/193a50001d399f1.png?width=700\">",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20968,
+      "titleHtml": "<p>2024年3月，我国东部地区固定电话用户数最高的4个省市，其5G用户数之和在以下哪个范围内？</p>",
+      "type": "single",
+      "globalAccuracy": 79,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "2.5亿户以下"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "2.5亿~2.7亿户之间"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "2.7亿~3亿户之间"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "3亿户以上"
+        }
+      ],
+      "analysisHtml": "<p>定位统计表可知2024年3月我国东部地区固定电话用户数及5G用户数。观察发现，我国东部地区固定电话用户数最高的4个省市分别为：广东（1763.2万户）、江苏（1138.7万户）、山东（1094.9万户）、浙江（1048.1万户），上述4个省市的5G用户数之和为：<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=OSqSUsBYj0RqRJ5pp5eaf1RXN2WxsUP7Q--XxuRrUVXlrY6BHGxzHJAMJeJ9dMhm1eRAER8KIJ9ZXaQL4tSVWn_278Ai4kc0Srvv5n6MvnDPG3nIgZjYfBCb1FOdxGOV\" />亿户，在B项范围内。</p><p>故正确答案为B。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "资料分析",
+      "materialHtml": "<img width=\"636px\" height=\"339px\" src=\"//fb.fbstatic.cn/api/tarzan/images/193a50001d399f1.png?width=700\">",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20969,
+      "titleHtml": "<p>以下省市中，2024年4月5G用户数占移动电话用户数的比重最高的是：</p>",
+      "type": "single",
+      "globalAccuracy": 63,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "北京"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "上海"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "浙江"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "山东"
+        }
+      ],
+      "analysisHtml": "<p>根据题干“2024年4月······占······比重最高的是”，结合材料时间，可判定本题为现期比重问题。定位表格材料可知2024年4月北京、上海、浙江和山东的5G用户数和移动电话用户数。结合公式：比重<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=ENG1-D-nqZhIk8gs4ilun2EGN1pSWFH0nEZO5D2kE_w\" />，则2024年4月5G用户数占移动电话用户数的比重为：北京：<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=t-AWA8ImICyMSsA_ZQODhIkcaCnVYlSaFwxqDdugtQB1u-QpVwYB3E3D6RFDNA5ZxWGXKkuUef8U7FibVwHlsY-sWMcn7FlWPj0X_cV2wXI\" />；上海：<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=8o8HBMVF9azRH43Iu2r1jvD33pDzTgWiAp5s_gT9kf0\" />；浙江：<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=pRP60QA8PFlJobVYs5HVqxxxC-Iz324v6Ydc9QqRUQ9LooCxY-7F1DpXxKOU-0yhlW6jnq3NSy93R8XPzpCvGwDq1WrtoOsa19lwYu9oMHw\" />；山东：<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=hPoSfRraD7ZktfNRwx9cpcQxXtXX6cOfUcucl-lYOFE\" />。比较可得，比重最高的是北京。</p><p>故正确答案为A。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "资料分析",
+      "materialHtml": "<img width=\"636px\" height=\"339px\" src=\"//fb.fbstatic.cn/api/tarzan/images/193a50001d399f1.png?width=700\">",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20970,
+      "titleHtml": "<p>已知2024年4月我国西部地区固定电话用户数为5324.4万户，以下饼状图中，最能准确反映2024年4月我国东部地区（斜线）、西部地区（白色）和其他地区（灰色）固定电话用户数比例关系的是：</p><p><img width=\"594px\" height=\"561px\" src=\"//fb.fbstatic.cn/api/tarzan/images/193a4b12d899660.png?width=700\" /></p>",
+      "type": "single",
+      "globalAccuracy": 77,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "A"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "B"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "C"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "D"
+        }
+      ],
+      "analysisHtml": "<p>根据题干“已知2024年4月我国······最能准确反映······比例关系的是”，结合材料时间为2024年4月，可判定本题为现期比重问题。定位统计表可得，2024年4月全国固定电话用户数17114.8万户，东部地区7818.2万户；结合题干可得，2024年4月西部地区固定电话用户数5324.4万户。根据公式：比重<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=ENG1-D-nqZhIk8gs4ilun2EGN1pSWFH0nEZO5D2kE_w\" />，则东部地区占比<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=0FmEIAvVk96BmzNCS_cpTIY8wWL5IOeo5PjsT_2ttKouNGwBACcv28FwqZwY86L8-l4orfRgdnVwtkzsJe7pVdHkhbbvOUwdXX80F3ktBtk\" />，占比不足<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=ooQwY__8ryHhTUFSi8bMHg\" />，排除C项；西部地区占比<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=WsLxXoFY5SOha0yhHB--56vREoEE_wOA678Fjfwz4pRuw1d3pim5Y2yEFLFVgEUirSQXoMeViHy3_tcGd_BJ0A2xpJa5IUQjvxNrRY9FZzA\" />，占比不足<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=HWUiiW14_FCicOnaJCTMGw\" />，且明显大于<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=9FH_UkQdvmu2YOEIH8q1-g\" />，排除A、B两项，D项当选。</p><p>故正确答案为D。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "资料分析",
+      "materialHtml": "<img width=\"636px\" height=\"339px\" src=\"//fb.fbstatic.cn/api/tarzan/images/193a50001d399f1.png?width=700\">",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20971,
+      "titleHtml": "<p>2023年，我国互联网企业投入的研发经费占业务收入的比重比上年下降了约多少个百分点？</p>",
+      "type": "single",
+      "globalAccuracy": 60,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "0.2"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "0.6"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "1.9"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "9.8"
+        }
+      ],
+      "analysisHtml": "<p>根据题干“2023年······占······的比重比上年下降了约多少个百分点”，可判定本题为两期比重问题。定位文字材料第一段可得：2023年，我国互联网企业完成互联网业务收入17483亿元（B），同比增长6.8%（b）。共投入研发经费943.2亿元（A），同比下降3.7%（a）。根据公式：两期比重差<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=zxfa9A6xUawIJ66d3xjHxB9GutTAUCDjKH1zIHYS_LfRfQoHxXKOIJNNUR43vlBr\" />，则所求为<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=rVJjzhbTGtDSq0NzDzDIvK57F_QylIeA2kwlspicadCW0MtYoCG0shTBTHrnOaIQ9CovjdrVdh8rqyhaJ9eUs_wjos8gGym1D2FkDseS0l1hQO5cdafNf0LOZmU2bOPl1lAFjPLR1TBGVbmjXkGjmg\" /><img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=gvjDOiebzbdT0YnFsnNOMr2C0kBfxB5qrXbWGpTtcIPUIQlH4hOdfVY6Gmb3ghBo\" />，即2023年，我国互联网企业投入的研发经费占业务收入的比重比上年下降了约0.6个百分点。</p><p>故正确答案为B。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "资料分析",
+      "materialHtml": "<p>        2023年，我国互联网企业完成互联网业务收入17483亿元，同比增长6.8%。实现利润总额1295亿元，同比增长0.5%。共投入研发经费943.2亿元，同比下降3.7%。</p><p>        2023年，东部地区互联网企业完成互联网业务收入15608亿元，同比增长7.3%；中部地区互联网企业完成互联网业务收入781.6亿元，同比增长8.1%；西部地区互联网企业完成互联网业务收入1054亿元，同比增长0.2%；东北地区互联网企业完成互联网业务收入39.4亿元，同比下降25.1%。</p><p>        2023年，京津冀地区互联网企业完成互联网业务收入6777亿元，同比增长6.4%；长三角地区（上海、浙江、江苏和安徽）互联网企业完成互联网业务收入6624亿元，同比增长12.9%。</p><p>        2023年，互联网企业互联网业务累计收入居前5名的省级行政区为北京（5721.4亿元，增长4.2%）、上海（4167.8亿元，增长17.5%）、浙江（1955.9亿元，增长4.8%）、广东（1754.5亿元，下降4.6%）和天津（981.7亿元，增长20.3%）。全国互联网企业互联网业务增速实现正增长的省级行政区有16个，数量较2022年全年增长3个。</p>",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20972,
+      "titleHtml": "<p>2023年，东部地区互联网企业完成互联网业务收入同比增量是西部地区的：</p>",
+      "type": "single",
+      "globalAccuracy": 51,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "10倍以下"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "10～50倍之间"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "50～300倍之间"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "300倍以上"
+        }
+      ],
+      "analysisHtml": "<p>根据题干“2023年······是······的多少倍”，结合选项为倍数且材料时间为2023年，可判定本题为现期倍数问题。定位文字材料第二段可得：2023年，东部地区互联网企业完成互联网业务收入15608亿元，同比增长7.3%；西部地区互联网企业完成互联网业务收入1054亿元，同比增长0.2%。根据公式：增长量<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=EJne-omLhZ0FR1-iNdylh0LmKGv8wpOQUAnm9CrbNr7GYflxxHB-By4iswU1BlQgC0NQaXUUmUFBT3IefeIpwA\" />，可得2023年东部地区互联网企业完成互联网业务收入同比增量<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=HYFLo_xYajMX5-jEqJjqbu2KIXGJ0mFb5Fj8q4R_nO5xBcybgsl9lN_dYrlHXccdRov1Wt2WBKsIjdoaCj0ZZ8hBLOl6JFWucbAwtA8NwRIgx-x2hyA2QM14bWP73QP35enN0IL8bVxgqUNaQUHP2Nhe3CBr2owV2TcR7wgIlIc\" />亿元；西部地区互联网企业完成互联网业务收入同比增量<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=zp3tDgLycXj_dWs8ex2PWXeNtiswFMXXBueQGVvHQA1bfof8IhmPtZDWH8JNty_GoTEqgOeE0OzlC5UPNQQaGG6iHZFiFYaEHZ0DihREYIqnEaEhwEc5y8pb0Cg_ugjLo-GcL9Ba8Luei3utfrSmirhuxqM-AQjnLbcPIEy-2SE\" />亿元。则所求倍数为<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=m0omJkerMwkycROjlOWL6vONq18Yknzp9qrdjnzbCig1m2OVgKuRwKblHc_tKNx6\" />倍，在D项范围内。</p><p>故正确答案为D。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "资料分析",
+      "materialHtml": "<p>        2023年，我国互联网企业完成互联网业务收入17483亿元，同比增长6.8%。实现利润总额1295亿元，同比增长0.5%。共投入研发经费943.2亿元，同比下降3.7%。</p><p>        2023年，东部地区互联网企业完成互联网业务收入15608亿元，同比增长7.3%；中部地区互联网企业完成互联网业务收入781.6亿元，同比增长8.1%；西部地区互联网企业完成互联网业务收入1054亿元，同比增长0.2%；东北地区互联网企业完成互联网业务收入39.4亿元，同比下降25.1%。</p><p>        2023年，京津冀地区互联网企业完成互联网业务收入6777亿元，同比增长6.4%；长三角地区（上海、浙江、江苏和安徽）互联网企业完成互联网业务收入6624亿元，同比增长12.9%。</p><p>        2023年，互联网企业互联网业务累计收入居前5名的省级行政区为北京（5721.4亿元，增长4.2%）、上海（4167.8亿元，增长17.5%）、浙江（1955.9亿元，增长4.8%）、广东（1754.5亿元，下降4.6%）和天津（981.7亿元，增长20.3%）。全国互联网企业互联网业务增速实现正增长的省级行政区有16个，数量较2022年全年增长3个。</p>",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20973,
+      "titleHtml": "<p>2023年，河北互联网企业完成互联网业务收入约占全国的：</p>",
+      "type": "single",
+      "globalAccuracy": 73,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "0.4%"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "0.7%"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "1.2%"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "1.9%"
+        }
+      ],
+      "analysisHtml": "<p>根据题干“2023年······占······的”，结合选项为百分数且材料时间为2023年，可判定本题为现期比重问题。定位文字材料第一段可得：2023年，我国互联网企业完成互联网业务收入17483亿元；定位文字材料第三、四段可得：2023年，京津冀地区互联网企业完成互联网业务收入6777亿元；2023年，互联网企业互联网业务累计收入居前5名的省级行政区为北京（5721.4亿元）······天津（981.7亿元）。根据公式：<img flag=\"tex\" src=\"//fb.fenbike.cn/api/planet/accessories/formulas?latex=21ACqjcsToqt4YNLoy9UBQhRuBiDrCX25Ch7RsBL_lM-cQrxjO8w69Yo3U_0zF71\" />，则2023年，河北互联网企业完成互联网业务收入约占全国的<img flag=\"tex\" src=\"//fb.fenbike.cn/api/planet/accessories/formulas?latex=bYsmja9mZY8wxFupNVLozAOoeS1jAs1CXERO-YwY6KfrtfdJSC6EBkEP5g_iQU0yv_bTn75orbSZ2okg12FYhz997wlfFFLyppe6Ymcfg-A\" />。</p><p>故正确答案为A。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "资料分析",
+      "materialHtml": "<p>        2023年，我国互联网企业完成互联网业务收入17483亿元，同比增长6.8%。实现利润总额1295亿元，同比增长0.5%。共投入研发经费943.2亿元，同比下降3.7%。</p><p>        2023年，东部地区互联网企业完成互联网业务收入15608亿元，同比增长7.3%；中部地区互联网企业完成互联网业务收入781.6亿元，同比增长8.1%；西部地区互联网企业完成互联网业务收入1054亿元，同比增长0.2%；东北地区互联网企业完成互联网业务收入39.4亿元，同比下降25.1%。</p><p>        2023年，京津冀地区互联网企业完成互联网业务收入6777亿元，同比增长6.4%；长三角地区（上海、浙江、江苏和安徽）互联网企业完成互联网业务收入6624亿元，同比增长12.9%。</p><p>        2023年，互联网企业互联网业务累计收入居前5名的省级行政区为北京（5721.4亿元，增长4.2%）、上海（4167.8亿元，增长17.5%）、浙江（1955.9亿元，增长4.8%）、广东（1754.5亿元，下降4.6%）和天津（981.7亿元，增长20.3%）。全国互联网企业互联网业务增速实现正增长的省级行政区有16个，数量较2022年全年增长3个。</p>",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20974,
+      "titleHtml": "<p>2023年，互联网企业互联网业务累计收入居前5名的省级行政区完成互联网业务收入比上年：</p>",
+      "type": "single",
+      "globalAccuracy": 75,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "减少了不到500亿元"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "减少了500亿元以上"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "增长了不到500亿元"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "增长了500亿元以上"
+        }
+      ],
+      "analysisHtml": "本题考查增长量的计算，需要计算 2023 年互联网企业互联网业务累计收入居前 5 名的省级行政区完成互联网业务收入较上年的变化量，判断其是增长还是减少以及具体的金额范围。<br>2023 年，互联网企业互联网业务累计收入居前 5 名的省级行政区为北京（5721.4 亿元，增长 4.2%）、上海（4167.8 亿元，增长 17.5%）、浙江（1955.9 亿元，增长 4.8%）、广东（1754.5 亿元，下降 4.6%）和天津（981.7 亿元，增长 20.3%）。<br>分析各地区增长情况：北京、上海、浙江、天津的收入均增长，只有广东下降。<br>计算广东省的增长量：将（-4.6%）近似为-（1/20），根据增长量计算公式，广东省的增长量为 1755/-19≈-92亿元。<br>计算北京市的增长量：将（4.2%）近似为（1/25），则北京市的增长量为 5721/26≈220亿元。<br>计算上海市的增长量：将（17.5%）近似为（1/6），则上海的增长量为 4168/7≈600亿元。<br>计算广东省、北京和上海的增长量合计：-92+220+600=728亿元，超过 500 亿元。<br>因此，选择 D 选项。",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "资料分析",
+      "materialHtml": "<p>        2023年，我国互联网企业完成互联网业务收入17483亿元，同比增长6.8%。实现利润总额1295亿元，同比增长0.5%。共投入研发经费943.2亿元，同比下降3.7%。</p><p>        2023年，东部地区互联网企业完成互联网业务收入15608亿元，同比增长7.3%；中部地区互联网企业完成互联网业务收入781.6亿元，同比增长8.1%；西部地区互联网企业完成互联网业务收入1054亿元，同比增长0.2%；东北地区互联网企业完成互联网业务收入39.4亿元，同比下降25.1%。</p><p>        2023年，京津冀地区互联网企业完成互联网业务收入6777亿元，同比增长6.4%；长三角地区（上海、浙江、江苏和安徽）互联网企业完成互联网业务收入6624亿元，同比增长12.9%。</p><p>        2023年，互联网企业互联网业务累计收入居前5名的省级行政区为北京（5721.4亿元，增长4.2%）、上海（4167.8亿元，增长17.5%）、浙江（1955.9亿元，增长4.8%）、广东（1754.5亿元，下降4.6%）和天津（981.7亿元，增长20.3%）。全国互联网企业互联网业务增速实现正增长的省级行政区有16个，数量较2022年全年增长3个。</p>",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20975,
+      "titleHtml": "<p>能够从上述资料中推出的是：</p>",
+      "type": "single",
+      "globalAccuracy": 70,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "2023年，我国互联网企业实现利润总额同比增长了不到6亿元"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "2023年，西部地区互联网企业完成互联网业务收入占全国比重高于上年水平"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "2023年，江苏和安徽互联网企业完成互联网业务收入占长三角地区的一成以下"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "2022年，全国互联网企业互联网业务增速实现正增长的省级行政区有19个"
+        }
+      ],
+      "analysisHtml": "<p>A项：定位文字材料第一段可得：2023年，我国互联网企业实现利润总额1295亿元，同比增长0.5%。根据公式：增长量<img flag=\"tex\" src=\"//fb.fenbike.cn/api/planet/accessories/formulas?latex=EJne-omLhZ0FR1-iNdylh0LmKGv8wpOQUAnm9CrbNr4Ty9K9UsjpIhVB8T7qB98Ui9Aq6cR4aA5ztR8pDk2DVw\" />，则所求增长量<img flag=\"tex\" src=\"//fb.fenbike.cn/api/planet/accessories/formulas?latex=56Jhs18MXE7V9nxIvJWX2PepWRA2b_FJJ2av0A8g1o2veTbv-fmIEkhL1jNoqPJH6BTb6Yt1aAigPRuhXXsXnnXNL4Ox0ypIa4GlyAUxTdX2BYZ2T9O38hBRRyoNXgJ7fpzZM_C1l5ijvJm391QioXfwlX3dCUK-S8Fbift9AHw\" />亿元&gt;6亿元，错误；</p><p>B项：定位文字材料第一段可得：2023年，我国互联网企业完成互联网业务收入17483亿元，同比增长6.8%（b）。定位文字材料第二段，2023年，西部地区互联网企业完成互联网业务收入1054亿元，同比增长0.2%（a）。根据两期比重比较结论“当部分增长率（a）&lt;整体增长率（b）时，比重下降”，由于a（0.2%）&lt;b（6.8%），则2023年西部地区互联网企业完成互联网业务收入占全国比重低于上年水平，错误；</p><p>C项：定位文字材料第三段可得：2023年，长三角地区(上海、浙江、江苏和安徽)互联网企业完成互联网业务收入6624亿元；定位文字材料第四段，2023年，互联网企业互联网业务累计收入居前5名的省级行政区······上海(4167.8亿元，增长17.5%)、浙江(1955.9亿元，增长4.8%)······。则2023年，江苏和安徽互联网企业完成互联网业务收入占长三角地区的比重<img flag=\"tex\" src=\"//fb.fenbike.cn/api/planet/accessories/formulas?latex=TasTo4igOQUxD8qom6VfFQ-In35X3EDimIFVP4aJeKGHtJVKlxeSRauxO8SxIL3J1IDLd4W9u4dJEAmWv1HYHdafePyiVivue2_xLV_JpWxRWPZYDdn8E83pay5Q2t6DkDTyeixKWxHSWeZZxXAEw8VU27yiAptG7nShf6OqeHP8EI-F84IDGW2JDwwuIArh\" /><img flag=\"tex\" src=\"//fb.fenbike.cn/api/planet/accessories/formulas?latex=PbQcJWT5_GAB1Bt6UJf8gp-RE8yFUlshdZeafBRCI02XHmBVtaXtfieKlX7SSfHVHQmi3vdKgV9Ao7l_BlO48FIE8mmtqQPddjVaM6rPyMw\" />，即所占比重在一成以下，正确；</p><p>D项：定位文字材料第四段可得：2023年，全国互联网企业互联网业务增速实现正增长的省级行政区有16个，数量较2022年全年增长3个，则2022年全国互联网企业互联网业务增速实现正增长的省级行政区有16-3=13个，错误；</p><p>故正确答案为C。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "资料分析",
+      "materialHtml": "<p>        2023年，我国互联网企业完成互联网业务收入17483亿元，同比增长6.8%。实现利润总额1295亿元，同比增长0.5%。共投入研发经费943.2亿元，同比下降3.7%。</p><p>        2023年，东部地区互联网企业完成互联网业务收入15608亿元，同比增长7.3%；中部地区互联网企业完成互联网业务收入781.6亿元，同比增长8.1%；西部地区互联网企业完成互联网业务收入1054亿元，同比增长0.2%；东北地区互联网企业完成互联网业务收入39.4亿元，同比下降25.1%。</p><p>        2023年，京津冀地区互联网企业完成互联网业务收入6777亿元，同比增长6.4%；长三角地区（上海、浙江、江苏和安徽）互联网企业完成互联网业务收入6624亿元，同比增长12.9%。</p><p>        2023年，互联网企业互联网业务累计收入居前5名的省级行政区为北京（5721.4亿元，增长4.2%）、上海（4167.8亿元，增长17.5%）、浙江（1955.9亿元，增长4.8%）、广东（1754.5亿元，下降4.6%）和天津（981.7亿元，增长20.3%）。全国互联网企业互联网业务增速实现正增长的省级行政区有16个，数量较2022年全年增长3个。</p>",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20976,
+      "titleHtml": "<p>截至2024年2月，我国交流充电桩数量环比增量比直流充电桩数量环比增量：</p>",
+      "type": "single",
+      "globalAccuracy": 58,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "低不到1万台"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "低1万台以上"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "高不到1万台"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "高1万台以上"
+        }
+      ],
+      "analysisHtml": "<p>根据题干“截至2024年2月······环比增量比······环比增量”，可判定本题为增长量计算问题。定位文字材料可得：截至2024年2月，我国直流充电桩123.9万台，环比增长2.1%；交流充电桩158.6万台，环比增长1.2%。根据公式：增长量<img flag=\"tex\" src=\"//fb.fenbike.cn/api/planet/accessories/formulas?latex=EJne-omLhZ0FR1-iNdylh_ynHkRFXpTONd3tmUaYtLk\" />，则所求增长量差值<img flag=\"tex\" src=\"//fb.fenbike.cn/api/planet/accessories/formulas?latex=eS9XuLw0pIC9YFQnUH1UYSWs9qTUe5rMBMa1KyBluiiVhgd6qyE9PvG1nhcNbZQkPGUPMjAutWV34142iz5Vxw\" /><img flag=\"tex\" src=\"//fb.fenbike.cn/api/planet/accessories/formulas?latex=5QHkSifvan-Z3Fxie9mWraUvNZ522clz1-VvfCElx2MuRHOjrB_EYYaW6_QhFNuzSqszWO6QUcK2HVRVSzIceAQS1ediyCCB0p-SD7jBM5-HedHo3WGep0QllVTwedCE8mZTfFWxT4hcwHOCJzNjLA\" /><img flag=\"tex\" src=\"//fb.fenbike.cn/api/planet/accessories/formulas?latex=eS9XuLw0pIC9YFQnUH1UYVrTxf0YarfpfbVtft5vUL78vjl5CZLilWgOo-qSQdF0\" /><img flag=\"tex\" src=\"//fb.fenbike.cn/api/planet/accessories/formulas?latex=BtOXg4tNeEWfkWOnyLjGEvGUwCqkRMz_MNn7bcQsuT4\" />万台，即低不到1万台。</p><p>故正确答案为A。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "资料分析",
+      "materialHtml": "截至2024年2月，我国公共充电桩数量为282.6万台，环比增加4.4万台，同比增长51.3%。其中直流充电桩123.9万台，环比增长2.1%；交流充电桩158.6万台，环比增长1.2%。<br><img width=\"600px\" height=\"465px\" src=\"//fb.fbstatic.cn/api/tarzan/images/193a4d046c05df3.png?width=700\"><br><img width=\"600px\" height=\"303px\" src=\"//fb.fbstatic.cn/api/tarzan/images/193a4c06e95ecd1.png?width=700\">",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20977,
+      "titleHtml": "<p>2023年下半年，我国月均新增公共充电桩约多少万台？</p>",
+      "type": "single",
+      "globalAccuracy": 68,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "6.5"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "7.9"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "8.8"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "9.6"
+        }
+      ],
+      "analysisHtml": "<p>根据题干“2023年下半年······月均······多少万台”，可判定本题为现期平均数问题。定位图1可得：2023年6月、12月，我国公共充电桩累计数量分别为214.9万台、272.6万台。则2023年下半年（7-12月），我国公共充电桩新增总量=272.6-214.9=57.7万台，所求月均新增量<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=h7dmhMDdKhW-IDVkfh6RRXarzdFdMdN7DPXt-Tb7N7zA4kBCezzHzaFjn-bn_uYwWVZmplz6KroRW_22uwMAqw\" />万台。</p><p>故正确答案为D。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "资料分析",
+      "materialHtml": "截至2024年2月，我国公共充电桩数量为282.6万台，环比增加4.4万台，同比增长51.3%。其中直流充电桩123.9万台，环比增长2.1%；交流充电桩158.6万台，环比增长1.2%。<br><img width=\"600px\" height=\"465px\" src=\"//fb.fbstatic.cn/api/tarzan/images/193a4d046c05df3.png?width=700\"><br><img width=\"600px\" height=\"303px\" src=\"//fb.fbstatic.cn/api/tarzan/images/193a4c06e95ecd1.png?width=700\">",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20978,
+      "titleHtml": "<p>截至2024年2月，我国公共充电桩数量前10省市公共充电桩总数占全国的比重约为：</p>",
+      "type": "single",
+      "globalAccuracy": 75,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "61%"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "66%"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "71%"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "76%"
+        }
+      ],
+      "analysisHtml": "<p>根据“截至2024年2月······占······比重约为”，结合材料时间为2024年2月，可判定本题为现期比重问题。定位文字材料可得：截至2024年2月，我国公共充电桩数量为282.6万台。定位图2可得：截至2024年2月我国公共充电桩数量前10省市公共充电桩数量分别为57.2万台、23.4万台、22.4万台、17.9万台、14.8万台、14.3万台、13.0万台、13.0万台、12.5万台、11.3万台。根据公式：比重<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=ENG1-D-nqZhIk8gs4ilun2EGN1pSWFH0nEZO5D2kE_w\" />，可得所求<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=W5Qhd5aofVxwGHZqFnxqKdvS7NSo-e4nCQN7mt3193fPTfPT_NKLl3lHHeAxP4q6oLrqCNtKNxeBPn10yAl6M1V2KuC4VJv_QyicUkgYo7U\" /><img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=5QHkSifvan-Z3Fxie9mWrZcUJP47n9a512O4OLhrAOTHRw4l1fJLOzdKTU6g7CVpbKJ6qTgPhhUwTd69ffoz0Q\" /><img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=9WUKBscZxXVTB94F5vFdfpFdFfPxC0Ksu2JYHiRk3Do\" />，与C项最接近。</p><p>故正确答案为C。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "资料分析",
+      "materialHtml": "截至2024年2月，我国公共充电桩数量为282.6万台，环比增加4.4万台，同比增长51.3%。其中直流充电桩123.9万台，环比增长2.1%；交流充电桩158.6万台，环比增长1.2%。<br><img width=\"600px\" height=\"465px\" src=\"//fb.fbstatic.cn/api/tarzan/images/193a4d046c05df3.png?width=700\"><br><img width=\"600px\" height=\"303px\" src=\"//fb.fbstatic.cn/api/tarzan/images/193a4c06e95ecd1.png?width=700\">",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20979,
+      "titleHtml": "<p>已知截至2024年2月广东公共充电桩数量同比增加17.2万台，则同期广东公共充电桩数量占全国比重同比：</p>",
+      "type": "single",
+      "globalAccuracy": 50,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "上升3个百分点以上"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "上升不到3个百分点"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "下降3个百分点以上"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "下降不到3个百分点"
+        }
+      ],
+      "analysisHtml": "<p>根据题干“已知截至2024年2月······占······同比”，结合选项为上升/下降+百分点，可判定本题为两期比重问题。定位文字材料可得：截至2024年2月我国公共充电桩数量为282.6万台（B），同比增速为51.3%（b）；定位图2以及题干补充条件可得：截至2024年2月广东公共充电桩数量为57.2万台（A），同比增加17.2万台，根据公式：增长率<img flag=\"tex\" src=\"//fb.fenbike.cn/api/planet/accessories/formulas?latex=YhxW5s1EwB6cOha3ZeYq_nLNyoZES7_-QVGsHhPATLOdCaABJEMG51p7iWZQGQc4\" />，则截至2024年2月广东公共充电桩数量同比增速<img flag=\"tex\" src=\"//fb.fenbike.cn/api/planet/accessories/formulas?latex=4CX-eURnMOz_Qm7n_N8Qckixx1W-d4baq3wc9XDF0Vg\" /><img flag=\"tex\" src=\"//fb.fenbike.cn/api/planet/accessories/formulas?latex=KzOxSwbYn571f0imoBjBYmyJ257N-EKhViHU-XomrgU\" />（a）。根据公式：两期比重差<img flag=\"tex\" src=\"//fb.fenbike.cn/api/planet/accessories/formulas?latex=SFhSsVS3J-AD_jpB2GBk8bpayjWbjQwlt8WOlLFULG3HdV2Rd6sadggQUb1NVScR\" />，则截至2024年2月广东公共充电桩数量占全国比重较上年同期变化为<img flag=\"tex\" src=\"//fb.fenbike.cn/api/planet/accessories/formulas?latex=HmAiQxjg0ow6xB5t9O_4vIySIjVc4JD2Tllsle5wpuDx0lfc-MPylBplpiYCD7q8i_is06QsQ4-0E0Wt4SpWBA\" /><img flag=\"tex\" src=\"//fb.fenbike.cn/api/planet/accessories/formulas?latex=5QHkSifvan-Z3Fxie9mWrddbV0UqBX0UZAlXpMZyM6cFPoDoPwWIrrTnwxgqc4P7\" /><img flag=\"tex\" src=\"//fb.fenbike.cn/api/planet/accessories/formulas?latex=sys7dW-waA12o-X1YLmMKqWm5FRizzFtvc1dzledwvc\" />，即下降了不到3个百分点。</p><p>故正确答案为D。</p>",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "资料分析",
+      "materialHtml": "截至2024年2月，我国公共充电桩数量为282.6万台，环比增加4.4万台，同比增长51.3%。其中直流充电桩123.9万台，环比增长2.1%；交流充电桩158.6万台，环比增长1.2%。<br><img width=\"600px\" height=\"465px\" src=\"//fb.fbstatic.cn/api/tarzan/images/193a4d046c05df3.png?width=700\"><br><img width=\"600px\" height=\"303px\" src=\"//fb.fbstatic.cn/api/tarzan/images/193a4c06e95ecd1.png?width=700\">",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 20980,
+      "titleHtml": "<p>以下折线图最能准确反映2023年哪几个月我国公共充电桩累计数量同比增量的变化趋势？</p><p><img width=\"230px\" height=\"117px\" src=\"//fb.fbstatic.cn/api/tarzan/images/193a4e37301f29a.png?width=700\" /></p>",
+      "type": "single",
+      "globalAccuracy": 50,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "5-8月"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "6-9月"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "7-10月"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "8-11月"
+        }
+      ],
+      "analysisHtml": "本题考查增长量的比较，需要根据给定的折线图，找出能准确反映 2023 年哪几个月我国公共充电桩累计数量同比增量变化趋势的选项。<br><br>根据增长量比较口诀“大大则大，一大一小看乘积”进行分析。<br><br>由于 2023 年 7 月（40.6%）、8 月（40.4%）和 9 月（39.9%）的增长率非常接近，所以现期量大的，增长量大。又因为现期量 2023 年 7 月（221.1）＜8 月（227.2）＜9 月（246.2），所以增长量 2023 年 7 月＜8 月＜9 月，据此可排除 C、D 选项。<br><br>进一步比较 2023 年 6 月和 7 月的数据，2023年6月的现期量×增长率（214.9×46.8%≈215×47%≈101）＞7月的现期量×增长率（221.1×40.6%≈220×41%=90.2），所以 2023 年 6 月的增长量大于 7 月，可排除 A 选项。<br><br>经判断，B 选项的变化趋势和折线图相符。",
+      "source": "2025年天津公务员录用考试《行测》",
+      "tag": "资料分析",
+      "materialHtml": "截至2024年2月，我国公共充电桩数量为282.6万台，环比增加4.4万台，同比增长51.3%。其中直流充电桩123.9万台，环比增长2.1%；交流充电桩158.6万台，环比增长1.2%。<br><img width=\"600px\" height=\"465px\" src=\"//fb.fbstatic.cn/api/tarzan/images/193a4d046c05df3.png?width=700\"><br><img width=\"600px\" height=\"303px\" src=\"//fb.fbstatic.cn/api/tarzan/images/193a4c06e95ecd1.png?width=700\">",
+      "userAnswer": null,
+      "memorize": false
+    }
+  ]
+}

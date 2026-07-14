@@ -1,0 +1,4383 @@
+{
+  "id": null,
+  "sid": 19460,
+  "source": "2024年浙江公务员录用考试《行测》A类",
+  "model": "[{\"name\":\"常识判断\",\"snum\":1,\"enum\":20},{\"name\":\"言语理解\",\"snum\":21,\"enum\":50},{\"name\":\"数量关系\",\"snum\":51,\"enum\":70},{\"name\":\"判断推理\",\"snum\":71,\"enum\":110},{\"name\":\"资料分析\",\"snum\":111,\"enum\":125}]",
+  "questions": [
+    {
+      "id": 23480,
+      "titleHtml": "能够从上述资料中推出的是：",
+      "type": "single",
+      "globalAccuracy": 57,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "2022年上半年，视频型体育彩票销售额同比减少超过15万元"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "2021年上半年，全国体育彩票销售额占全国彩票销售额的70%以上"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "四类体育彩票2022年6月的销售额均超过上半年每月的平均销售额"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "2022年6月，福利彩票中基诺型销售额同比增量是即开型的1.5倍以上"
+        }
+      ],
+      "analysisHtml": "A项：定位表格材料可得，2022年1-6月累计视频型体育彩票销售额0.0046亿元，同比增长-25.9%。根据公式：增长量<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?fontSize=18&amp;latex=EJne-omLhZ0FR1-iNdylhy1E2s40T8ZGCHzU6IQPSThTFFUUcKontQPVFrp3cQHG\">，可得2022年上半年，视频型体育彩票销售额同比增量<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?fontSize=18&amp;latex=ACpXdE_b3dZLzUUFlAsq2fSLhw380H6_LMRv_Vp0CRsohV7JeT_LJC-Mz_ZStvlyDKk0UzfMJlOvdNJV6ilT_w\"><img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?fontSize=18&amp;latex=TKGrwzS6ZgeBY1WggUtGgS-A9P_osF-sv6oJ4iJ1EnIaJH8aUuU8BqElAnhn8FNVAV81Cm4qZWpdK-uiiGx4R9sagD0KwHWYlxZ0ukgK1Ck\">= -(46÷3)=-15⁺万元，即同比减少超过15万元，正确；<br><br>B项：基期比重计算。2022年上半年体育彩票销售额 = 1072亿元，同比下降3.2%。福利彩票销售额 = 748.6亿元，同比增长10.6%。计算2021年基期值：体育彩票基期=1072÷（1-3.2%）≈1110；福利彩票基期=748.6÷（1+10.6%）≈677。2021年全国彩票销售额 ≈ 1110 + 677 = 1787亿元。体育彩票占比 =1110÷1787≈62%，比重不到70%。B项错误。<br><br>C项：平均数比较。即开型体彩2022年上半年销售额 = 161.1亿元。每月平均销售额 =161.1÷6≈27。2022年6月即开型销售额 = 25.9亿元 < 27亿元。并非所有类型6月销售额都高于平均值。C项错误。<br><br>D项：定位表格材料可得，2022年6月全国福利彩票中，即开型销售额28.3亿元，同比增长30.3%；基诺型销售额30.7亿元，同比增长44.2%。根据公式：增长量<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?fontSize=18&amp;latex=EJne-omLhZ0FR1-iNdylhy1E2s40T8ZGCHzU6IQPSThTFFUUcKontQPVFrp3cQHG\">，可得2022年6月，即开型福利彩票销售额同比增量<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?fontSize=18&amp;latex=Ozez5mBLu0zhYK3Y2_pYN8-xXBxhEBiMiDKrOEDgtkaaJWHe5-pw7WeuWe-EqnnD\"><img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?fontSize=18&amp;latex=FV2X76P6ujJIBvEuUGo1w8lBm4jGjW3ohIrEPS-PNq2XlYtjSU3qIx_AaXLAlincK1NdMS9wZgr5JUDFsmskCw\"><img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?fontSize=18&amp;latex=OepOvfCaFNjgPIwro9iuVBHZdpNxKKKxvr32DQI9r9ukuT2iu9NhqtamoBQwxN_A\">亿元，基诺型福利彩票销售额同比增量<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?fontSize=18&amp;latex=pN1qAt4lVMGszdFnNx688G611anz6P-V8UsYIonrlbuvIMd2i3FtUb6rbeIdMVgR\"><img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?fontSize=18&amp;latex=5QHkSifvan-Z3Fxie9mWrYhOy58IohTrTD8mfHQKIX7NieyfnSYZ6xqR0ixAct2WzS_dH6Xa8k1ot6NzE9r3QQ\"><img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?fontSize=18&amp;latex=HY1id9GvdhH2yNUVIK4cYKhgzfu94CjqdW9j2tHdgzQX2ZeD95YpoBvTjbTJz0F8\">亿元，则福利彩票中基诺型销售额同比增量是即开型的<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?fontSize=18&amp;latex=6ER-GF8Ha0mEM_dCi-RSzXk2QeLlna5flBt11P10zItDBgOxv8neKO2wReYlYO4fz59zNZlLGMHGph7igkK30g\">倍，错误。<br><br>故正确答案为A。",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "资料分析",
+      "materialHtml": "<img width=\"700px\" height=\"367px\" src=\"//fb.fenbike.cn/api/tarzan/images/18c813e70768dba.png?width=700\">",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23481,
+      "titleHtml": "2021年一季度，浙江软件业务收入累计值约为多少亿元？",
+      "type": "single",
+      "globalAccuracy": 91,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "1600"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "1640"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "1680"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "1800"
+        }
+      ],
+      "analysisHtml": "<p>根据题干“2021年一季度······多少亿元”，结合材料时间为2022年一季度，可判定本题为基期计算问题。定位表格材料可得，2022年一季度浙江软件业务收入累计值为1725.91亿元，同比增长5.4%。根据公式：基期量<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?fontSize=18&amp;latex=EJne-omLhZ0FR1-iNdylh0LmKGv8wpOQUAnm9CrbNr7VhNnzqTPoNQtYF-7ybl37\">，则所求为<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?fontSize=18&amp;latex=RjFVmoFlVI8MbiiYHLmnIVqCHbd1yPPwZYgiwUda2Ro\"><img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?fontSize=18&amp;latex=c4-UiLRj_li-q3spMHtoi4tpiswpSbZ0wWrXxiUEkT-NzuLceZuUfhPhdIdOXAHD\">亿元。故正确答案为B。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "资料分析",
+      "materialHtml": "<img width=\"689px\" height=\"541px\" src=\"//fb.fenbike.cn/api/tarzan/images/18c8504ae88f99b.png?width=700\">",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23482,
+      "titleHtml": "2022年一季度，表中信息技术服务收入累计值排名前三的省市，其信息技术服务收入累计值之和约占全国累计值的多少？",
+      "type": "single",
+      "globalAccuracy": 83,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "51%"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "53%"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "55%"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "57%"
+        }
+      ],
+      "analysisHtml": "<p>根据题干“2022年一季度······占······”，结合材料时间为2022年一季度，可判定本题为现期比重问题。定位表格材料可得，2022年一季度信息技术服务收入累计值排名前三的省市为北京、广东、江苏，数值分别为2894.97、2610.26、1697.25亿元，全国累计值为13102.09亿元。根据公式：比重<img flag=\"tex\" src=\"//fb.fenbike.cn/api/planet/accessories/formulas?fontSize=18&amp;latex=ENG1-D-nqZhIk8gs4ilun2EGN1pSWFH0nEZO5D2kE_w\">，则所求为<img flag=\"tex\" src=\"//fb.fenbike.cn/api/planet/accessories/formulas?fontSize=18&amp;latex=vU5WtsDGpii5TJOgZRLjxvRCu2r3xThGvFH7H6seDRRLaLEsWyfl7DpXUowON1yZ\"><img flag=\"tex\" src=\"//fb.fenbike.cn/api/planet/accessories/formulas?fontSize=18&amp;latex=5QHkSifvan-Z3Fxie9mWreXDzk2YxlLHB1ip_WHuxVi7K_zxCM0DuvTYYsPZoyBg7Z9aG5pK_PHONnwTdqKIfRb2MZDfgx2qs8jcBD0X-1A\">。故正确答案为C。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "资料分析",
+      "materialHtml": "<img width=\"689px\" height=\"541px\" src=\"//fb.fenbike.cn/api/tarzan/images/18c8504ae88f99b.png?width=700\">",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23483,
+      "titleHtml": "2022年一季度，表中信息技术服务收入累计值同比增速快于软件业务收入累计值同比增速的省市有几个？",
+      "type": "single",
+      "globalAccuracy": 89,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "2"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "6"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "8"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "9"
+        }
+      ],
+      "analysisHtml": "根据题干“2022年一季度······同比增速······”，可判定本题为一般增长率问题。定位表格材料可得，2022年一季度各省市信息技术服务收入累计值同比增速和软件业务收入累计值同比增速。经比较，符合题意的有贵州（101.4%＞100.8%）、北京（13.9%＞13.2%）、河北（21.7%＞20.3%）、上海（22%＞17.6%）、江苏（11.7%＞10.5%）、福建（17.5%＞15.7%）、山东（24.8%＞18%）、广东（10.2%＞6.1%），共8个。<br>故正确答案为C。",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "资料分析",
+      "materialHtml": "<img width=\"689px\" height=\"541px\" src=\"//fb.fenbike.cn/api/tarzan/images/18c8504ae88f99b.png?width=700\">",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23484,
+      "titleHtml": "2022年一季度，表中软件业务收入累计值同比增量最大的省市的软件业务收入累计值约是同比增量最小的省市的多少倍?",
+      "type": "single",
+      "globalAccuracy": 71,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "7"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "8"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "9"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "10"
+        }
+      ],
+      "analysisHtml": "本题考查现期倍数计算，需要找出表中软件业务收入累计值同比增量最大和最小的省市，然后计算最大省市的软件业务收入累计值是最小省市的多少倍。<br>根据增长量比较口诀“大大则大、一大一小看乘积”，判断出北京（4394.68，13.2%）的同比增量最大，天津（420.08，2.1%）的同比增量最小。<br>因为选项首位不同，对分母从左向右截取前两位，分子舍相同处理，计算北京的软件业务收入累计值是天津的倍数：439÷42≈10倍。<br>因此，选择D选项。",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "资料分析",
+      "materialHtml": "<img width=\"689px\" height=\"541px\" src=\"//fb.fenbike.cn/api/tarzan/images/18c8504ae88f99b.png?width=700\">",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23485,
+      "titleHtml": "下列饼图中，最能准确反映2022年一季度北京（斜线）、上海（灰色）、广东（白色）软件业务收入中除信息技术服务收入以外收入累计值所占比例的是：",
+      "type": "single",
+      "globalAccuracy": 82,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "<img width=\"180px\" height=\"180px\" src=\"//fb.fbstatic.cn/api/tarzan/images/18c852b69c11792.png?width=700\">"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "<img width=\"180px\" height=\"180px\" src=\"//fb.fbstatic.cn/api/tarzan/images/18c852b80c4a283.png?width=700\">"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "<img width=\"180px\" height=\"180px\" src=\"//fb.fenbike.cn/api/tarzan/images/18c852b996b01e6.png?width=700\">"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "<img width=\"180px\" height=\"180px\" src=\"//fb.fbstatic.cn/api/tarzan/images/18c852c8a672267.png?width=700\">"
+        }
+      ],
+      "analysisHtml": "本题考查比重比较，需要根据给定数据计算 2022 年一季度北京、上海、广东软件业务收入中除信息技术服务收入以外收入累计值，并比较它们在整体中所占的比重，从而选出最能准确反映该比例的饼图。<br>根据公式“除信息技术服务收入以外收入 = 软件业务收入 - 信息技术服务收入”，对数据截三位进行计算：<br>北京：439 - 289 = 150；<br>上海：165 - 113 = 52；<br>广东：379 - 261 = 118。<br>根据比重公式“比重 = 部分/整体”（整体相同，部分越大对应的比重越大）进行分析：<br>因为北京的部分值 150 大于广东的部分值 118，所以北京所占比重应大于广东，据此排除 C 项；<br>又因为广东的部分值 118 大于上海部分值 52 的 2 倍，所以广东所占比重应大于上海的 2 倍，据此排除 B、D 项。<br>因此，选择 A 选项。",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "资料分析",
+      "materialHtml": "<img width=\"689px\" height=\"541px\" src=\"//fb.fenbike.cn/api/tarzan/images/18c8504ae88f99b.png?width=700\">",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23486,
+      "titleHtml": " H市2023年第14周哨点医院报告流感样病例中，0~4岁组占比比25~59岁组高约多少个百分点？",
+      "type": "single",
+      "globalAccuracy": 89,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "2"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "4"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "6"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "8"
+        }
+      ],
+      "analysisHtml": "<p>根据题干“······2023年第14周······中，······占比比······高约多少个百分点”，可判定本题为现期比重问题。定位材料第一段和最后一段可得：2023年第14周，H市流感哨点监测医院（哨点医院）共报告流感样病例5187例，其中，0~4岁组1472例，25~59岁组1266例。根据公式：比重<img flag=\"tex\" src=\"//fb.fenbike.cn/api/planet/accessories/formulas?fontSize=18&amp;latex=ENG1-D-nqZhIk8gs4ilun2EGN1pSWFH0nEZO5D2kE_w\">，则题干所求<img flag=\"tex\" src=\"//fb.fenbike.cn/api/planet/accessories/formulas?fontSize=18&amp;latex=R2cfOe9v4l71aodojafxtw0zCX4yIr9jlXuznadudqxG1shWWQhG5bUf49A7mtw7BhS5xJO5Ehe6kGmigJqJk7mszNXDMzDxfjqHVLsEhlQ\">，即高约4个百分点。故正确答案为B。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "资料分析",
+      "materialHtml": "&emsp;&emsp;2023年第14周，H市流感哨点监测医院（哨点医院）共报告流感样病例5187例，本周监测门诊就诊病人总数86749例，比上周增加5.76%，流感样病例的就诊比例（ILI%）为5.98%。<br>\r\n<b>（一）哨点医院ILI%监测情况</b><br>\r\n&emsp;&emsp;本周哨点医院共报告流感样病例总数为5187例，比上周增加4.49%，比去年同期减少56.16%，其中国家级哨点医院455例，比上周减少6.57%，比去年同期减少55.04%。城区哨点医院1899例，比上周减少19.40%，比去年同期减少55.46%；郊区、县（市）哨点医院3288例，比上周增加26.07%，比去年同期减少56.55%。本周全市哨点医院ILI%为5.98%，比上周低0.07个百分点，其中国家级哨点医院ILI%为2.12%，比上周高0.23个百分点。城区哨点医院ILI%为4.45%，比上周低0.56个百分点；郊区、县（市）哨点医院ILI%为7.46%，比上周高0.01个百分点。<br>\r\n<b>（二）哨点医院ILI%纵向比较</b><br>\r\n&emsp;&emsp;2023年第14周全市哨点医院ILI%为5.98%，比2022年同期低7.56个百分点，比2021年同期低0.66个百分点，其中国家级哨点医院ILI%为2.12%，比2022年同期低3.36个百分点，比2021年同期低4.67个百分点。城区哨点医院ILI%为4.45%，比2022年同期低6.81个百分点，比2021年同期低2.08个百分点；郊区、县（市）哨点医院ILI%为7.46%，比2022年同期低7.82个百分点，比2021年同期高0.54个百分点。<br>\r\n<b>（三）各年龄组流感样病例构成情况</b><br>\r\n&emsp;&emsp;2023年第14周各年龄组报告的流感样病例构成情况为：0~4岁组1472例，5~14岁组1103例，15~24岁组406例，25~59岁组1266例，60岁以上组940例。",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23487,
+      "titleHtml": "2023年第13周，H市郊区、县（市）哨点医院报告流感样病例约是城区的多少倍？",
+      "type": "single",
+      "globalAccuracy": 63,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "1.7"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "1.5"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "1.3"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "1.1"
+        }
+      ],
+      "analysisHtml": "<p>根据题干“2023年第13周······约是······的多少倍”，结合材料时间为2023年第14周，可判定本题为基期倍数问题。定位材料第二段可得：（2023年第14周）本周哨点医院共报告流感样病例总数为5187例，城区哨点医院1899例（B），比上周减少19.40%（b），郊区、县（市）哨点医院3288例（A），比上周增加26.07%（a）。根据公式：基期倍数<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?fontSize=18&amp;latex=zxfa9A6xUawIJ66d3xjHxApst5cZ_fgiL8jbnpY_DsBWChoKDQ0EoWN5SygubvAr\">，则题干所求<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?fontSize=18&amp;latex=OsIFEMgF516VylLslmqu1TN8bPgzDj1PtpLSenRLr2_4JvzXu2s0Tk8dTHUDxT6DRyD5f7gZED0WTP2LhpWorA\"><img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?fontSize=18&amp;latex=T4Ej3gt4FHoxLaXR2TZgAsCAABLzHf0Bh8G6wWcM8wJ9x1qYq01AFdOMTb8jU_5X0QHg1FH6AD6CtEyoXVvgyUnyekwxmwtR1oHjN2f-ge0\">，与D项最接近。故正确答案为D。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "资料分析",
+      "materialHtml": "&emsp;&emsp;2023年第14周，H市流感哨点监测医院（哨点医院）共报告流感样病例5187例，本周监测门诊就诊病人总数86749例，比上周增加5.76%，流感样病例的就诊比例（ILI%）为5.98%。<br>\r\n<b>（一）哨点医院ILI%监测情况</b><br>\r\n&emsp;&emsp;本周哨点医院共报告流感样病例总数为5187例，比上周增加4.49%，比去年同期减少56.16%，其中国家级哨点医院455例，比上周减少6.57%，比去年同期减少55.04%。城区哨点医院1899例，比上周减少19.40%，比去年同期减少55.46%；郊区、县（市）哨点医院3288例，比上周增加26.07%，比去年同期减少56.55%。本周全市哨点医院ILI%为5.98%，比上周低0.07个百分点，其中国家级哨点医院ILI%为2.12%，比上周高0.23个百分点。城区哨点医院ILI%为4.45%，比上周低0.56个百分点；郊区、县（市）哨点医院ILI%为7.46%，比上周高0.01个百分点。<br>\r\n<b>（二）哨点医院ILI%纵向比较</b><br>\r\n&emsp;&emsp;2023年第14周全市哨点医院ILI%为5.98%，比2022年同期低7.56个百分点，比2021年同期低0.66个百分点，其中国家级哨点医院ILI%为2.12%，比2022年同期低3.36个百分点，比2021年同期低4.67个百分点。城区哨点医院ILI%为4.45%，比2022年同期低6.81个百分点，比2021年同期低2.08个百分点；郊区、县（市）哨点医院ILI%为7.46%，比2022年同期低7.82个百分点，比2021年同期高0.54个百分点。<br>\r\n<b>（三）各年龄组流感样病例构成情况</b><br>\r\n&emsp;&emsp;2023年第14周各年龄组报告的流感样病例构成情况为：0~4岁组1472例，5~14岁组1103例，15~24岁组406例，25~59岁组1266例，60岁以上组940例。",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23488,
+      "titleHtml": "2021年第14周，H市全市哨点医院ILI%、国家级哨点医院ILI%、城区哨点医院ILI%和郊区、县（市）哨点医院ILI%从大到小排序为：",
+      "type": "single",
+      "globalAccuracy": 86,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "城区>全市>国家级>郊区、县（市）"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "郊区、县（市）>城区>全市>国家级"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "郊区、县（市）>国家级>全市>城区"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "城区>国家级>全市>郊区、县（市）"
+        }
+      ],
+      "analysisHtml": "定位材料第三段可得：2023年第14周全市哨点医院ILI%为5.98%，比2021年同期低0.66个百分点；国家级哨点医院ILI%为2.12%，比2021年同期低4.67个百分点；城区哨点医院ILI%为4.45%，比2021年同期低2.08个百分点；郊区、县（市）哨点医院ILI%为7.46%，比2021年同期高0.54个百分点。则2021年第14周H市城区哨点医院ILI%为4.45%+2.08%=6.5%⁺，国家级哨点医院ILI%为2.12%+4.67%=6.7%⁺，即国家级＞城区，排除A、B、D三项，C项当选。<br>故正确答案为C。",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "资料分析",
+      "materialHtml": "&emsp;&emsp;2023年第14周，H市流感哨点监测医院（哨点医院）共报告流感样病例5187例，本周监测门诊就诊病人总数86749例，比上周增加5.76%，流感样病例的就诊比例（ILI%）为5.98%。<br>\r\n<b>（一）哨点医院ILI%监测情况</b><br>\r\n&emsp;&emsp;本周哨点医院共报告流感样病例总数为5187例，比上周增加4.49%，比去年同期减少56.16%，其中国家级哨点医院455例，比上周减少6.57%，比去年同期减少55.04%。城区哨点医院1899例，比上周减少19.40%，比去年同期减少55.46%；郊区、县（市）哨点医院3288例，比上周增加26.07%，比去年同期减少56.55%。本周全市哨点医院ILI%为5.98%，比上周低0.07个百分点，其中国家级哨点医院ILI%为2.12%，比上周高0.23个百分点。城区哨点医院ILI%为4.45%，比上周低0.56个百分点；郊区、县（市）哨点医院ILI%为7.46%，比上周高0.01个百分点。<br>\r\n<b>（二）哨点医院ILI%纵向比较</b><br>\r\n&emsp;&emsp;2023年第14周全市哨点医院ILI%为5.98%，比2022年同期低7.56个百分点，比2021年同期低0.66个百分点，其中国家级哨点医院ILI%为2.12%，比2022年同期低3.36个百分点，比2021年同期低4.67个百分点。城区哨点医院ILI%为4.45%，比2022年同期低6.81个百分点，比2021年同期低2.08个百分点；郊区、县（市）哨点医院ILI%为7.46%，比2022年同期低7.82个百分点，比2021年同期高0.54个百分点。<br>\r\n<b>（三）各年龄组流感样病例构成情况</b><br>\r\n&emsp;&emsp;2023年第14周各年龄组报告的流感样病例构成情况为：0~4岁组1472例，5~14岁组1103例，15~24岁组406例，25~59岁组1266例，60岁以上组940例。",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23489,
+      "titleHtml": "2022年第14周，H市哨点医院监测门诊就诊病人总数约多少例？",
+      "type": "single",
+      "globalAccuracy": 44,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "87000"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "89000"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "91000"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "93000"
+        }
+      ],
+      "analysisHtml": "根据题干“2022年第14周······约多少例”，结合材料时间为2023年第14周，且材料中给出了2023年第14周H市哨点医院共报告流感样病例总数和流感样病例的就诊比例（ILI%）及其同比变化情况，可判定本题为基期比重问题。定位材料第二段可得：（2023年第14周，H市）哨点医院共报告流感样病例总数为5187例，比去年同期减少56.16%。根据公式：基期量<img flag=\"tex\" src=\"//fb.fenbike.cn/api/planet/accessories/formulas?fontSize=18&amp;latex=EJne-omLhZ0FR1-iNdylh0LmKGv8wpOQUAnm9CrbNr7VhNnzqTPoNQtYF-7ybl37\">，则2022年第14周，H市哨点医院共报告流感样病例总数<img flag=\"tex\" src=\"//fb.fenbike.cn/api/planet/accessories/formulas?fontSize=18&amp;latex=nOGwuUppjIN5d3SFz5zaHU3lrT3tP0JAlh6Ga_3OpnnUZqjKlczRgq8TWFSgCDeqIzVMU8tkramHGgHy0chP1g\">例；定位材料第三段可得：2023年第14周全市哨点医院ILI%（流感样病例的就诊比例）为5.98%，比2022年同期低7.56个百分点。则2022年第14周全市哨点医院ILI%（流感样病例的就诊比例）=5.98%+7.56%=13.54%。根据公式：整体<img flag=\"tex\" src=\"//fb.fenbike.cn/api/planet/accessories/formulas?fontSize=18&amp;latex=ENG1-D-nqZhIk8gs4ilunwu-qQKLgSxjo9EKDeVOTZI\">，则题干所求<img flag=\"tex\" src=\"//fb.fenbike.cn/api/planet/accessories/formulas?fontSize=18&amp;latex=aXmzcEfHfCfii85cjZR45eVgmin8vNlJdKnS8XQDsJRh21mA9oR7wqBi13z2eIm9NbXWyOkIRUijF2dZ9ZqONahjl6o-n90Qs_Axxa97Tw8\">例，对应A项。<br>故正确答案为A。",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "资料分析",
+      "materialHtml": "&emsp;&emsp;2023年第14周，H市流感哨点监测医院（哨点医院）共报告流感样病例5187例，本周监测门诊就诊病人总数86749例，比上周增加5.76%，流感样病例的就诊比例（ILI%）为5.98%。<br>\r\n<b>（一）哨点医院ILI%监测情况</b><br>\r\n&emsp;&emsp;本周哨点医院共报告流感样病例总数为5187例，比上周增加4.49%，比去年同期减少56.16%，其中国家级哨点医院455例，比上周减少6.57%，比去年同期减少55.04%。城区哨点医院1899例，比上周减少19.40%，比去年同期减少55.46%；郊区、县（市）哨点医院3288例，比上周增加26.07%，比去年同期减少56.55%。本周全市哨点医院ILI%为5.98%，比上周低0.07个百分点，其中国家级哨点医院ILI%为2.12%，比上周高0.23个百分点。城区哨点医院ILI%为4.45%，比上周低0.56个百分点；郊区、县（市）哨点医院ILI%为7.46%，比上周高0.01个百分点。<br>\r\n<b>（二）哨点医院ILI%纵向比较</b><br>\r\n&emsp;&emsp;2023年第14周全市哨点医院ILI%为5.98%，比2022年同期低7.56个百分点，比2021年同期低0.66个百分点，其中国家级哨点医院ILI%为2.12%，比2022年同期低3.36个百分点，比2021年同期低4.67个百分点。城区哨点医院ILI%为4.45%，比2022年同期低6.81个百分点，比2021年同期低2.08个百分点；郊区、县（市）哨点医院ILI%为7.46%，比2022年同期低7.82个百分点，比2021年同期高0.54个百分点。<br>\r\n<b>（三）各年龄组流感样病例构成情况</b><br>\r\n&emsp;&emsp;2023年第14周各年龄组报告的流感样病例构成情况为：0~4岁组1472例，5~14岁组1103例，15~24岁组406例，25~59岁组1266例，60岁以上组940例。",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23490,
+      "titleHtml": "能够从上述材料中推出的是：",
+      "type": "single",
+      "globalAccuracy": 50,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "从2021年到2023年，H市第14周哨点医院ILI%逐年上升"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "2023年第14周，H市哨点医院报告流感样病例同比减少超过6000例"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "2023年第13周，H市国家级哨点医院报告流感样病例占全市比例超过10%"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "2023年第14周H市哨点医院报告流感样病例中，占比低于20%的年龄组有3个"
+        }
+      ],
+      "analysisHtml": "<p>A项：定位材料第三段可得：2023年第14周H市哨点医院ILI%为5.98%，比2022年同期低7.56个百分点，比2021年同期低0.66个百分点。因2023年第14周H市哨点医院ILI%比2022年同期低，故并非逐年上升，错误；</p><p>B项：定位材料第二段可得：2023年第14周H市哨点医院共报告流感样病例总数为5187例，比去年同期减少56.16%。根据公式：增长量<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?fontSize=18&amp;latex=EJne-omLhZ0FR1-iNdylh0LmKGv8wpOQUAnm9CrbNr7GYflxxHB-By4iswU1BlQgC0NQaXUUmUFBT3IefeIpwA\">，则2023年第14周，H市哨点医院报告流感样病例同比减少量<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?fontSize=18&amp;latex=nOGwuUppjIN5d3SFz5zaHamiEpzzp1Uud5RQ7IFZZn817uevYgKcTG1E2cu7LIMI_BStkvEktYttBNEp7W-Jt87p3B9tqnOT4niS2qAoo_31Erh9J1ma40zICai_jqJU\">例，即减少超过6000例，正确；</p><p>C项：定位材料第二段可得：2023年第14周H市哨点医院共报告流感样病例总数为5187例（B），比上周增加4.49%（b），其中国家级哨点医院455例（A），比上周减少6.57%（a）。根据公式：基期比重<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?fontSize=18&amp;latex=zxfa9A6xUawIJ66d3xjHxIyfwGgV23Fj-_SJlS_kLduPNGvwB4ZcuPWzoAsYDbfS\">，则2023年第13周，H市国家级哨点医院报告流感样病例占全市比例<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?fontSize=18&amp;latex=0cok8kbhkQmePbEbkbkCYzYkfJbb-43QtLxLbENeiEEhet3zt2kobPIQzIiJKpXGQ8WrmwjOoce3UAp7RBLkSg\"><img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?fontSize=18&amp;latex=5QHkSifvan-Z3Fxie9mWrdtBhVfMoxD-wW9gsoFo1lRMAg7rdDR-XDhVmTIfYi8FzkJc4Un-9FgLjM0XGk4MIDdOm2ZLbkAJsE6Dt-ys2qi6RuoOUmeoX0vZ5EWLEOVCE3_4SE_bAptsu6Ofs-K7QQ\">＜10%，错误；</p><p>D项：定位材料第二、四段可得：2023年第14周H市哨点医院共报告流感样病例总数为5187例；各年龄组报告的流感样病例构成情况为：0~4岁组1472例，5~14岁组1103例，15~24岁组406例，25~59岁组1266例，60岁以上组940例。根据公式：部分=整体×比重，5187×20%=1037.4例，则2023年第14周H市哨点医院报告流感样病例中，占比低于20%的年龄组即流感样病例低于1037.4例的年龄组有15~24岁组（406例）、60岁以上组（940例），共2个，错误。</p><p>故正确答案为B。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "资料分析",
+      "materialHtml": "&emsp;&emsp;2023年第14周，H市流感哨点监测医院（哨点医院）共报告流感样病例5187例，本周监测门诊就诊病人总数86749例，比上周增加5.76%，流感样病例的就诊比例（ILI%）为5.98%。<br>\r\n<b>（一）哨点医院ILI%监测情况</b><br>\r\n&emsp;&emsp;本周哨点医院共报告流感样病例总数为5187例，比上周增加4.49%，比去年同期减少56.16%，其中国家级哨点医院455例，比上周减少6.57%，比去年同期减少55.04%。城区哨点医院1899例，比上周减少19.40%，比去年同期减少55.46%；郊区、县（市）哨点医院3288例，比上周增加26.07%，比去年同期减少56.55%。本周全市哨点医院ILI%为5.98%，比上周低0.07个百分点，其中国家级哨点医院ILI%为2.12%，比上周高0.23个百分点。城区哨点医院ILI%为4.45%，比上周低0.56个百分点；郊区、县（市）哨点医院ILI%为7.46%，比上周高0.01个百分点。<br>\r\n<b>（二）哨点医院ILI%纵向比较</b><br>\r\n&emsp;&emsp;2023年第14周全市哨点医院ILI%为5.98%，比2022年同期低7.56个百分点，比2021年同期低0.66个百分点，其中国家级哨点医院ILI%为2.12%，比2022年同期低3.36个百分点，比2021年同期低4.67个百分点。城区哨点医院ILI%为4.45%，比2022年同期低6.81个百分点，比2021年同期低2.08个百分点；郊区、县（市）哨点医院ILI%为7.46%，比2022年同期低7.82个百分点，比2021年同期高0.54个百分点。<br>\r\n<b>（三）各年龄组流感样病例构成情况</b><br>\r\n&emsp;&emsp;2023年第14周各年龄组报告的流感样病例构成情况为：0~4岁组1472例，5~14岁组1103例，15~24岁组406例，25~59岁组1266例，60岁以上组940例。",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23366,
+      "titleHtml": "<p>习近平总书记在学习贯彻习近平新时代中国特色社会主义思想主题教育工作会议上指出，开展此次主题教育，意义重大，下列关于此次主题教育的意义，表述正确的有几项？</p><p>①这是统一全党思想意志行动、始终保持党的强大凝聚力、战斗力的必然要求</p><p>②这是推动全党积极担当作为、不断开创事业发展新局面的必然要求</p><p>③这是深入推进全面从严治党、以党的自我革命引领社会革命的必然要求</p><p>④对于统一全党思想、解决党内存在的突出问题、始终保持党同人民群众血肉联系、推动党和国家事业发展，具有重要意义 </p>",
+      "type": "single",
+      "globalAccuracy": 78,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "1"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "2"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "3"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "4"
+        }
+      ],
+      "analysisHtml": "<p>本题考查政治常识。</p><p>2023年4月3日，学习贯彻习近平新时代中国特色社会主义思想主题教育工作会议在北京召开。中共中央总书记、国家主席、中央军委主席习近平出席会议并发表重要讲话。</p><p>①正确，习近平在讲话中指出：“第一，这是统一全党思想意志行动、始终保持党的强大凝聚力、战斗力的必然要求。团结统一是党的生命，是党的力量所在。思想上的统一是党的团结统一最深厚最持久最可靠的保证。”</p><p>②正确，习近平在讲话中指出：“第二，这是推动全党积极担当作为、不断开创事业发展新局面的必然要求。全面建成社会主义现代化强国、实现第二个百年奋斗目标，以中国式现代化全面推进中华民族伟大复兴，是全党全国各族人民在新时代新征程的中心任务。”</p><p>③正确，习近平在讲话中指出：“第三，这是深入推进全面从严治党、以党的自我革命引领社会革命的必然要求。治国必先治党，党兴才能国强。”</p><p>④正确，习近平在讲话中指出：“以县处级以上领导干部为重点在全党深入开展学习贯彻新时代中国特色社会主义思想主题教育，是贯彻落实党的二十大精神的重大举措，对于统一全党思想、解决党内存在的突出问题、始终保持党同人民群众血肉联系、推动党和国家事业发展，具有重要意义。”</p><p>故①②③④均表述正确，有4项。</p><p>故正确答案为D。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "理论政策",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23367,
+      "titleHtml": "<p>今年是共建“一带一路”倡议提出十周年。下列属于十年来共建“一带一路”倡议取得的成果的有：</p><p>①阿尔及利亚一号通信卫星 </p><p>②巴基斯坦瓜达尔港 </p><p>③中欧班列 </p><p>④非洲疾控中心总部大楼</p><p>⑤坦赞铁路（坦桑尼亚到赞比亚）</p>",
+      "type": "single",
+      "globalAccuracy": 49,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "2"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "3"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "4"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "5"
+        }
+      ],
+      "analysisHtml": "<p>本题考查政治常识。</p><p>①正确，2017年12月，由中国研制的阿尔及利亚一号通信卫星搭乘长征三号乙运载火箭从西昌卫星发射中心发射升空。2018年4月，中阿双方举行了在轨交付仪式。自此，阿尔及利亚拥有了第一颗通信卫星。属于“一带一路”倡议取得的成果。</p><p>②正确，十年来，“一带一路”重要先行先试项目中巴经济走廊建设不断深入，为巴基斯坦基础设施互联互通和工业化助力。印在巴基斯坦纸币上的瓜达尔港就是中巴两国2015年确定的“1+4”合作中的重要一环。瓜达尔港地理位置优越，有力推动了南亚中亚的互联互通。属于“一带一路”倡议取得的成果。</p><p>③正确，中欧班列已成为共建“一带一路”的旗舰项目和标志性品牌。截至2023年10月，中欧班列已联通中国境内112座城市，途经11个亚洲国家和地区的100多座城市，通达欧洲25个国家和地区的200多座城市。属于“一带一路”倡议取得的成果。</p><p>④正确，2023年10月18日，新华网介绍“一带一路”的100个故事：两年多前杂草丛生、垃圾成堆的荒地上，如今耸立起一座崭新的现代化建筑，这是位于埃塞俄比亚的非洲疾控中心总部大楼。属于“一带一路”倡议取得的成果。</p><p>⑤错误，坦赞铁路东起坦桑尼亚首都达累斯萨拉姆，西至赞比亚的新卡皮里姆波希，与赞比亚既有铁路接轨，全长1860.5公里。1970年10月26日正式开工，1975年6月7日全线铺通，同年10月23日全面建成并试运营。1976年7月14日正式移交给坦、赞两国政府。“一带一路”倡议始于2013年，故坦赞铁路（坦桑尼亚到赞比亚）不属于“一带一路”倡议取得的成果。</p><p>故①②③④均属于“一带一路”倡议取得的成果。</p><p>故正确答案为C。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "理论政策",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23368,
+      "titleHtml": "<p>亚太经合组织（APEC）峰会于11月11日至17日在美国加利福尼亚州旧金山举行，下列与本次会议有关的说法不正确的是：</p>",
+      "type": "single",
+      "globalAccuracy": 19,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "中国曾经在2001年和2014年在上海和北京两次举办APEC会议"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "APEC会议集中关注贸易和经济议题，会标是一个椭圆的地球模型，绿色表示森林，蓝色表示海水"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "旧金山是清末华人对美国城市圣弗朗西斯科的称呼，与之对应的还有新金山，指澳大利亚的墨尔本"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "加利福尼亚州是美国经济总量最大，人口最多的州。首府位于萨克拉门托，州内还有洛杉矶等著名城市"
+        }
+      ],
+      "analysisHtml": "<p>本题考查政治常识。</p><p>A项正确，亚太经合组织（APEC）是亚太地区层级最高、领域最广、最具影响力的经济合作机制。2001年在上海举办，会议推动亚太经合组织在多边贸易体制发展、人力资源能力建设、电子APEC、新经济及反恐合作等多个领域取得积极进展，达成了旨在加速实现茂物目标的上海共识；2014年在北京举办，会议重点讨论了推动区域经济一体化，促进经济创新发展、改革与增长，加强全方位基础设施与互联互通建设三项重点议题。</p><p>B项错误，APEC的会标是一个椭圆的地球模型，绿色表示国家，蓝色表示海水，中间是白色的APEC英文字母。</p><p>C项正确，旧金山又称“圣弗朗西斯科”“三藩市”，19世纪美国淘金热的中心地区，早期华人劳工移居于此之后，将其称之为“金山”，直到在澳大利亚的墨尔本发现金矿后，为了与被称作“新金山”的墨尔本做出区别，而改称其为“旧金山”。</p><p>D项正确，加利福尼亚州是美国西部太平洋沿岸的一个州，州政府位于萨克拉门托，主要城市有旧金山、洛杉矶、圣地亚哥、圣荷西等，是全美人口最多、经济最发达的州之一。</p><p>本题为选非题，故正确答案为B。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "理论政策",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23369,
+      "titleHtml": "<p>维护国家安全，人人有责。今年以来，国家安全机关破获间谍案的新闻时有报道，下列有关间谍罪的说法正确的是：</p>",
+      "type": "single",
+      "globalAccuracy": 16,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "犯间谍罪，情节较轻的，处三年以下有期徒刑"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "为敌人指示轰击目标的行为是间谍罪的一种行为表现"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "为境外组织刺探国家秘密的行为是间谍罪的一种行为表现"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "掌握国家秘密的国家工作人员叛逃境外属于间谍罪的加重情节"
+        }
+      ],
+      "analysisHtml": "<p>本题考查法律常识。</p><p>A、D两项错误，B项正确，根据《中华人民共和国刑法》第一百一十条规定：“有下列间谍行为之一，危害国家安全的，处十年以上有期徒刑或者无期徒刑；情节较轻的，处三年以上十年以下有期徒刑：（一）参加间谍组织或者接受间谍组织及其代理人的任务的；（二）为敌人指示轰击目标的。”因此，犯间谍罪，情节较轻的，处三年以上十年以下有期徒刑；间谍罪无加重情节。</p><p>C项错误，根据《中华人民共和国刑法》第一百一十一条规定：“为境外的机构、组织、人员窃取、刺探、收买、非法提供国家秘密或者情报的，处五年以上十年以下有期徒刑；情节特别严重的，处十年以上有期徒刑或者无期徒刑；情节较轻的，处五年以下有期徒刑、拘役、管制或者剥夺政治权利。”本条是关于为境外窃取、刺探、收买、非法提供国家秘密、情报罪的规定，因此，为境外组织刺探国家秘密的行为构成为境外刺探国家秘密罪。</p><p>故正确答案为B。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "法律",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23370,
+      "titleHtml": "<p>下列情形中小王不用承担民事责任的是：</p>",
+      "type": "single",
+      "globalAccuracy": 84,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "小王带朋友小张去洗浴中心洗澡，小张更衣时因地滑摔成重伤，并摔碎了玉观音挂坠"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "小王将自己的汽车号牌出借给朋友小李，小李因疲劳驾驶导致汽车翻滚，车上一名乘客当场死亡"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "小王下班开车顺便将朋友小刘送回家，因为与小刘聊天分心闯了红灯，紧急刹车时和其他车辆相撞，小刘脑袋被磕破"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "小王受朋友小邓委托在公园里临时看护小邓4岁的儿子小宝，在小王转身抽烟的间隙，小宝把同龄人小明的脸抓伤，还把小明的手表扔进了河里"
+        }
+      ],
+      "analysisHtml": "<p>本题考查法律常识。</p><p>A项错误，根据《中华人民共和国民法典》第一千一百九十八条第一款规定：“宾馆、商场、银行、车站、机场、体育场馆、娱乐场所等经营场所、公共场所的经营者、管理者或者群众性活动的组织者，未尽到安全保障义务，造成他人损害的，应当承担侵权责任。”选项中，小张更衣时因地滑摔成重伤，应由未尽到安全保障义务的洗浴中心的经营者、管理者承担责任，小王不用承担民事责任。</p><p>B项正确，根据《最高人民法院关于审理道路交通事故损害赔偿案件适用法律若干问题的解释（2020年修正）》第三条规定：“套牌机动车发生交通事故造成损害，属于该机动车一方责任，当事人请求由套牌机动车的所有人或者管理人承担赔偿责任的，人民法院应予支持；被套牌机动车所有人或者管理人同意套牌的，应当与套牌机动车的所有人或者管理人承担连带责任。” 选项中，事故原因是小李疲劳驾驶，因此该事故属于小李的责任，即机动车一方责任。小王即被套牌的机动车一方同意将自己的车牌借出给小李，应与小李承担连带责任。</p><p>C项正确，根据《中华人民共和国民法典》第一千二百一十七条规定：“非营运机动车发生交通事故造成无偿搭乘人损害，属于该机动车一方责任的，应当减轻其赔偿责任，但是机动车使用人有故意或者重大过失的除外。”选项中，小王与小刘聊天分心闯了红灯，紧急刹车时和其他车辆相撞，该事故属于小王驾驶的机动车这一方责任，小王应对无偿搭乘人小刘的损害承担赔偿责任。</p><p>D项正确，根据《中华人民共和国民法典》第一千一百八十九条规定：“无民事行为能力人、限制民事行为能力人造成他人损害，监护人将监护职责委托给他人的，监护人应当承担侵权责任；受托人有过错的，承担相应的责任。”选项中，小王作为受托人未履行好监护职责，具有过错，应承担相应责任。</p><p>本题为选非题，故正确答案为A。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "法律",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23371,
+      "titleHtml": "<p>养老保险是社会保障制度的重要组成部分。关于我国的养老保险，下列说法正确的选项是：</p>",
+      "type": "single",
+      "globalAccuracy": 24,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "城乡居民基本养老保险按月缴费，强制参保"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "养老保险基金不得用于投资股票、股票基金、股指期货"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "参加个人养老金，参加人每年缴纳的费用不得超过12000元"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "养老保险体系“三支柱”中，企业年金和职业年金的占比最低"
+        }
+      ],
+      "analysisHtml": "<p>本题考查经济常识。</p><p>A项错误，城乡居民基本养老保险是国家根据《社会保险法》规定建立的以保障参保城乡居民老年基本生活为目标的基本养老保险制度之一，是由政府主导，采取个人缴费、政府补贴、集体补助、社会资助相结合的筹资方式，实行个人账户养老金和基础养老金相结合的待遇支付政策。参保是非强制的，由符合参保条件的人员自愿参保。缴纳时可以按月缴纳，也可以按年缴纳。</p><p>B项错误，《基本养老保险基金投资管理办法》第三十七条规定：“（三）投资股票、股票基金、混合基金、股票型养老金产品的比例，合计不得高于养老基金资产净值的30%。养老基金不得用于向他人贷款和提供担保，不得直接投资于权证，但因投资股票、分离交易可转换债等投资品种而衍生获得的权证，应当在权证上市交易之日起10个交易日内卖出。”</p><p>C项正确，《国务院办公厅关于推动个人养老金发展的意见》的“四、缴费水平”中规定：“参加人每年缴纳个人养老金的上限为12000元。人力资源社会保障部、财政部根据经济社会发展水平和多层次、多支柱养老保险体系发展情况等因素适时调整缴费上限。”</p><p>D项错误，根据世界银行社会养老保险三支柱体系理论，第一支柱为国家举办的基本养老保险制度，第二支柱为企业（单位）举办的企业（职业）年金制度，第三支柱为个人参与的个人养老金制度。当前我国养老保险体系“三支柱”中，占比最低的是个人养老金。</p><p>故正确答案为C。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "经济",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23372,
+      "titleHtml": "<p>下列关于关税说法不正确的是：</p>",
+      "type": "single",
+      "globalAccuracy": 48,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "征收出口关税会增加货物成本，不利于本国货物在国际市场的竞争"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "如果在缴纳期限内未履行纳税义务，海关可以要求其额外缴纳滞纳金"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "政府对进出口商品都可以征收关税，可用于调节贸易平衡以及保护本国经济"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "因故退还的中国出口货物，免征进口关税，已征收的出口关税，也应予以退还"
+        }
+      ],
+      "analysisHtml": "<p>本题考查经济常识。</p><p>A项正确，出口税是对本国出口的货物在运出国境时征收的一种关税。征收出口关税会增加出口货物的成本，不利于本国货物在国际市场的竞争。</p><p>B项正确，根据《中华人民共和国海关法》第六十条规定：“进出口货物的纳税义务人，应当自海关填发税款缴款书之日起十五日内缴纳税款；逾期缴纳的，由海关征收滞纳金······”</p><p>C项正确，关税是引进出口商品经过一国关境时，由政府所设置的海关向其引进出口商所征收的税收。政府对进出口商品都可征收关税，作为一种经济手段，关税既可以保护本国产业，促进经济发展，又可以用于财政收入和贸易平衡调节。</p><p>D项错误，因故退还的我国出口货物，由原发货人或者他们的代理人申报进境，并提供原出口单证，经海关审查核实，可以免征进口关税。但是，已征收的出口关税，不予退还。 </p><p>本题为选非题，故正确答案为D。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "经济",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23373,
+      "titleHtml": "<p>下列毛泽东诗句与其创作时期，对应正确的是：</p>",
+      "type": "single",
+      "globalAccuracy": 34,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "问苍茫大地，谁主沉浮？——大革命时期"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "钟山风雨起苍黄，百万雄师过大江——抗日战争时期"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "神女应无恙，当惊世界殊——解放战争时期"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "俱往矣，数风流人物，还看今朝——社会主义建设时期"
+        }
+      ],
+      "analysisHtml": "<p>本题考查毛中特。</p><p>A项正确，“问苍茫大地，谁主沉浮？”出自《沁园春·长沙》，意思是这苍茫大地的盛衰兴废，由谁来决定主宰呢？这首词创作于1925年，毛泽东重游橘子洲，感慨万千，写下了这首著名的《沁园春·长沙》，对应大革命时期。大革命时期即1924年1月至1927年7月的第一次国内革命战争时期。</p><p>B项错误，“钟山风雨起苍黄，百万雄师过大江”出自《七律·人民解放军占领南京》，意思是革命的暴风雨震荡着蒋家王朝都城南京，解放军以百万雄师突破长江天险，直捣蒋军苦心经营三个半月的根据地——南京城。这是毛泽东于1949年4月所写的诗，纪念南京解放、庆祝革命胜利，对应解放战争时期。</p><p>C项错误，“神女应无恙，当惊世界殊”出自《水调歌头·游泳》，意思是神女想必很健康，但她会惊愕世界变了模样。这首词是毛泽东1956年在武汉畅游长江时的感兴之作，对应社会主义建设时期。</p><p>D项错误，“俱往矣，数风流人物，还看今朝”出自《沁园春·雪》，意思是这些人物全都过去了，数一数能建功立业的英雄人物，还要看今天的人们。这是毛泽东于1936年2月所写的词，对应抗日战争时期。</p><p>故正确答案为A。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "毛泽东思想",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23374,
+      "titleHtml": "<p>“心悬八阵图，初对策，再出师，共仰神明传将略；日击三分鼎，东连吴，北拒魏，常怀谨慎励臣躬”这是我国某个著名景点的楹联。下列哪一副对联也挂在这地方？</p>",
+      "type": "single",
+      "globalAccuracy": 67,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "四面湖山归眼底，万家忧乐到心头"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "成大事以小心，一生谨慎；仰宗臣之遗像，万古清高"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "大肚能容，容天下难容之事；开口便笑，笑世间可笑之人"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "舟系洞庭，世上疮痍空有泪；魂归洛水，人间改换已无诗"
+        }
+      ],
+      "analysisHtml": "<p>本题考查人文常识。</p><p>“心悬八阵图，初对策，再出师，共仰神明传将略；目击三分鼎，东联吴，北拒魏，常怀谨慎励臣躬”是成都武侯祠的楹联，对应的人物为诸葛亮。</p><p>A项错误，“四面湖山归眼底，万家忧乐到心头”是湖南岳阳楼的对联，“四面湖山”和“万家忧乐”都取自北宋范仲淹的《岳阳楼记》。</p><p>B项正确，“成大事以小心，一生谨慎；仰宗臣之遗像，万古清高”是成都武侯祠的对联，对应的人物为诸葛亮。</p><p>C项错误，“大肚能容，容天下难容之事；开口便笑，笑世间可笑之人”是北京潭柘寺弥勒佛像前的对联。</p><p>D项错误，“舟系洞庭，世上疮痍空有泪；魂归洛水，人间改换已无诗”是洞庭湖畔怀甫亭的楹联，对应的人物为杜甫。</p><p>故正确答案为B。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "人文历史",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23375,
+      "titleHtml": "<p>一些古诗文中蕴含着丰富的物理学原理，下列选项中古诗句所描述的自然现象与物品涉及的物理知识不相同的是：</p>",
+      "type": "single",
+      "globalAccuracy": 43,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "“一道残阳铺水中”与“凸透镜”"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "“会挽雕弓如满月”与“蹦床”"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "“两岸青山相对出”与“跑步机”"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "“花气袭人知骤暖”与“水银温度计”"
+        }
+      ],
+      "analysisHtml": "<p>本题考查科技常识。</p><p>A项错误，光的反射指光在传播到不同物质时，在分界面上改变传播方向又返回原来物质中的现象。“一道残阳铺水中”是平面镜成像，蕴含的是光的反射原理。光的折射指光从一种介质斜射入另一种介质时，传播方向发生改变，从而使光线在不同介质的交界处发生偏折的现象。“凸透镜”蕴含的是光的折射原理。</p><p>B项正确，弹性势能指物体由于发生弹性形变，各部分之间存在着弹性力的相互作用而具有的势能。动能指物体由于做机械运动而具有的能。“会挽雕弓如满月”中的拉弓射箭和“蹦床”蕴含的都是弹性势能和动能之间的转换原理。</p><p>C项正确，物体的运动和静止都是相对的，物体的运动与静止与所选的参照物有关。“两岸青山相对出”以船为参照物，两岸的青山就是运动的。“跑步机”以跑步机的皮带为参照物，人就是运动的。两者蕴含的都是运动和静止的相对性原理。</p><p>D项正确，分子热运动指一切微观粒子（包括分子、离子、原子等）都在不停地做无规则的运动。温度越高，热运动则越剧烈。“花气袭人知骤暖”和“水银温度计”的热胀冷缩原理蕴含的都是分子的热运动原理。</p><p>本题为选非题，故正确答案为A。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "自然科技",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23376,
+      "titleHtml": "<p>下列与少数民族有关的说法不正确的是：</p>",
+      "type": "single",
+      "globalAccuracy": 48,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "回族是中国人口最多的少数民族，各省、自治区、直辖市均有分布"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "哈萨克族代表性乐器冬不拉，其音域范围宽广，适合弹奏节奏快，奔放的曲子"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "苗族“好五色衣裳”服饰式样繁多、色彩艳丽，银饰、苗绣、蜡染是苗族服饰的主要特色"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "蒙古族在中国、蒙古国、俄罗斯等多国都有分布，全世界蒙古族约1000万人，其中在我国的占50%以上"
+        }
+      ],
+      "analysisHtml": "<p>本题考查人文常识。</p><p>A项错误，我国第七次人口普查公布的数据显示，我国少数民族中，壮族的人口最多，为19568546人。排在第四位的是回族，11377914人。回族是我国人口分布最广的少数民族，全国的31个省、自治区、直辖市均有分布（不包括台湾省），宁夏回族自治区是其主要聚居区。</p><p>B项正确，哈萨克族的民族乐器主要有冬不拉和胡布兹、斯布孜合等。其中冬不拉音域范围宽广，适合弹奏一些节奏快速、奔放的曲子。冬不拉音量并不大，但音色优美。演奏的基本方法是弹与挑，一般弹用于重拍，挑用于轻拍。</p><p>C项正确，苗族服饰，苗语叫“呕欠”。苗族服饰样式繁多，色彩艳丽，衣裙的颜色主要是红、黑、白、黄、蓝五种，基本保持其先民“好五色衣服”“衣裳斑斓”（见《后汉书·南蛮传》）的传统。银饰、苗绣、蜡染是苗族服饰的主要特色。</p><p>D项正确，蒙古族是主要分布于东亚地区的一个传统游牧民族，是中国的少数民族之一，同时也是蒙古国的主体民族。此外，蒙古族在俄罗斯等亚欧国家也有分布。全世界蒙古族约1000万人，根据《中国统计年鉴-2021》，其中中国境内蒙古族的人口数为6290204人，占50%以上。</p><p>本题为选非题，故正确答案为A。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "人文历史",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23377,
+      "titleHtml": "<p>下列关下我国交通运输网络的说法，不正确的是：</p>",
+      "type": "single",
+      "globalAccuracy": 49,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "我国公路网“五纵七横”国道主干线总规模约3.5万公里"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "我国铁路的“三横五纵”中，京哈、京包线属于东西向的铁路线"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "长江干线航道起点为云南水富港，终点是长江入海口，全长2000多公里，货运量居全球内河第一"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "京广铁路线跨越的省、市、区有京、冀、豫、鄂、湘、粤，是我国铁路网的中轴、客运量最大的南北大动脉"
+        }
+      ],
+      "analysisHtml": "<p>本题考查地理国情。</p><p>A项正确，全国公路网的主骨架由“五纵七横”12条国道主干线和公路主枢纽及信息系统构成，是全国公路网的主骨架，主要路线都采用高速公路技术标准，总里程约3.5万公里。5条纵线是：同江-三亚、北京-福州、北京-珠海、二连浩特-河口、重庆-湛江。7条横线是:绥芬河-满洲里、丹东-拉萨、青岛-银川、连云港-霍尔果斯、上海-成都、上海-瑞丽、衡阳-昆明。</p><p>B项错误，我国铁路的“三横五纵”南北向的铁路线主要包括：京哈-京广线，京九线，京沪线，北同蒲-太焦-焦柳线，宝成-成昆线；东西向的铁路线主要包括：京包-包兰线，陇海-兰新线，沪杭-浙赣-湘黔-贵昆线（沪昆线）。京哈线属于南北向的铁路。</p><p>C项正确，长江是中国第一大河，是横贯我国东西的水运大动脉，素有“黄金水道”之称。长江干线航道上起云南水富港，下至长江入海口，全长2838公里。长江是货运量位居全球内河第一（因为长江流域人口数亿而且经济发达）的黄金水道，长江通道是我国国土空间开发最重要的东西轴线，在区域发展总体格局中具有重要战略地位。</p><p>D项正确，京广铁路北起北京（简称京），途径河北省（简称冀）、河南省（简称豫）、湖北省（简称鄂）、湖南省（简称湘），南到广东省（简称粤），串联中国华北、华中和华南地区，是中国最重要的南北铁路交通大动脉，是我国铁路网的中轴，也是中国经由省会城市最多、连接其它线路最多、客运量最大、运输最繁忙的普速铁路。</p><p>本题为选非题，故正确答案为B。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "地理国情",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23378,
+      "titleHtml": "<p>2023年7月31日国务院总理李强主持国务院常务会议。决定核准山东石岛湾、福建宁德、辽宁徐大堡核电项目。关于核电，下列说法不正确的是：</p>",
+      "type": "single",
+      "globalAccuracy": 25,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "核电站大体可分为利用核能生产蒸汽的核岛和利用蒸汽发电的常规岛两部分"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "核电站的燃料是重金属元素铀，铀-235是自然界存在的易于发生裂变的唯一核素"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "自1951年美国实验增殖1号首次利用核能发电以来，世界核电已有70多年的发展历史"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "核反应堆是核电站的关键设计，核反应堆是一个能维持和控制核聚变反应，从而实现核能-热能转换的装置"
+        }
+      ],
+      "analysisHtml": "<p>本题考查科技常识。</p><p>A项正确，核电站是利用原子核内部蕴藏的能量产生电能的发电站，大体可分为两部分：一部分是利用核能生产蒸汽的核岛，包括反应堆装置和一回路系统；另一部分是利用蒸汽发电的常规岛，包括汽轮发电机系统。</p><p>B项正确，核电站使用的燃料是重金属元素铀，铀235是铀元素里中子数为143的放射性同位素，是自然界存在的易于发生裂变的唯一核素，主要用做核反应中的核燃料，也是制造核武器的主要原料之一。</p><p>C项正确，自1951年12月美国实验增殖堆1号（EBR-1）首次利用核能发电，1954年6月苏联第一座核电厂首次向电网送电，世界核电至今已有70多年的发展历史。</p><p>D项错误，核反应堆又称为原子能反应堆或反应堆，是核电站的关键设备。核燃料在反应堆中发生特殊形式的“燃烧”（可控自持链式核裂变反应）产生热量，使核能转变成热能来加热水或其它介质，最终转化为电能。</p><p>本题为选非题，故正确答案为D。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "自然科技",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23379,
+      "titleHtml": "<p>某高校艺术团排演历史舞台剧，下列舞台剧中的设置不符合史实的有：</p>",
+      "type": "single",
+      "globalAccuracy": 60,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "战国时期，某诸侯宴请宾客时，安排了投壶游戏"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "雍正时期某官员的卧房内放有一只珐琅彩红地花瓶"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "汉朝官员上制前，仆人为其穿上有仙鹤图案补子的官服"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "施耐庵常去茶坊听人讲解历史故事，为创作《水浒传》搜集素材"
+        }
+      ],
+      "analysisHtml": "<p>本题考查人文常识。</p><p>A项正确，投壶是把箭向壶里投，投中多者为胜，负者照规定的杯数喝酒。它是中国古代士大夫宴饮时做的一种投掷游戏，也是一种礼仪。在战国时期较为盛行，尤其是在唐朝，得到了发扬光大。因此，历史舞台剧中，战国时期安排投壶游戏符合史实。</p><p>B项正确，珐琅彩瓷是清代康熙晚期在康熙皇帝的授意下，将铜胎画珐琅技法成功地移植到瓷胎上而创烧的彩瓷新品种。以雍正、乾隆时期的产量最大，乾隆以后即少有制作。因此，历史舞台剧中，雍正时期某官员卧房摆放珐琅彩红地花瓶符合史实。</p><p>C项错误，补服，又称补褂、外褂，前后各缀有一块“补子”，用以区别官职差别，从我国的明朝开始出现，并一直延续到清朝灭亡时逐渐退出历史的舞台。补子用飞禽代表文官，如一品文官用仙鹤补；用猛兽代表武官，如一品武官用麒麟补。因此，历史舞台剧中，汉朝官员身着有仙鹤图案补子的官服不符合史实。</p><p>D项正确，据史料记载，茶坊最早见于唐代《封氏闻见记》：“自邹、齐、沧、棣，渐至京邑，城市多开店铺，煮茶卖之，不问道俗，投钱取饮。”这里所说的“煮茶卖之”，就是指在店铺里用沸水冲泡茶叶，并向顾客收费提供饮用。可见，茶坊在唐代就已经出现，而施耐庵生活在元末明初。因此，历史舞台剧中，施耐庵常去茶坊的情节设置符合史实。</p><p>本题为选非题，故正确答案为C。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "人文历史",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23380,
+      "titleHtml": "<p>乌克兰问题有着复杂的历史经纬，下列关于乌克兰历史的说法，不正确的是：</p>",
+      "type": "single",
+      "globalAccuracy": 30,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "定都于基辅的基辅罗斯是最早的东斯拉夫人国家，也被认为是三个现代东斯拉夫民族国家（俄罗斯、乌克兰和白俄罗斯）的前身"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "利沃夫是乌克兰西部重要城市，该城市的归属曾多次变迁，先后被波兰、奥匈帝国、苏联、乌克兰等国家管辖"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "1648年，乌克兰哥萨克首领赫梅利尼茨基发动了反抗波兰统治的乌克兰民族起义，并于1654年和当时的沙俄签订佩列亚斯拉夫尔条约，宣誓效忠沙皇"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "1954年作为庆祝佩列亚斯拉夫条约签订三百周年系列活动的一部分，苏联将顿涅茨克从俄罗斯划给乌克兰"
+        }
+      ],
+      "analysisHtml": "<p>本题考查人文常识。</p><p>A项正确，东斯拉夫人是欧洲最为古老和最为庞大的部族集团——斯拉夫人的一个东部支系。基辅罗斯是公元882年诺夫哥罗德王公奥列格（维京人）征服基辅及其附近地区后建立的以东斯拉夫人为主体的东欧君主制国家，首都是基辅，是最早的东斯拉夫人国家。根据史学史的观点，基辅罗斯被认为是三个现代东斯拉夫民族国家（乌克兰、俄罗斯及白俄罗斯）的前身。</p><p>B项正确，利沃夫是乌克兰西部的政治、经济、文化、教育中心。历史上，利沃夫几易国别。14世纪时，曾归波兰管辖；1772年，伴随着瓜分波兰的狂潮，利沃夫改隶属奥地利（奥匈帝国）；第一次世界大战后，短命的西乌克兰人民共和国也以这里为统治中心，之后，这座城市再度回归波兰；1939年德苏联合入侵波兰以后，利沃夫成为苏联的领土；直到1991年，苏联解体，乌克兰获得独立，利沃夫才归乌克兰管辖。</p><p>C项正确，鲍格丹·赫梅利尼茨基是乌克兰哥萨克首领。1648年1月，他发动了反抗波兰统治的乌克兰民族起义；同年底攻占基辅城，成为全乌克兰统领。1654年1月8日，在乌克兰的佩列亚斯拉夫尔，由赫梅利尼茨基与沙皇阿列克谢的代表签订佩列亚斯拉夫尔条约。根据条约，乌克兰正式并入俄国，但保留自治权和自己的军队。随后举行哥萨克会议，条约获得通过，哥萨克宣誓效忠沙皇。</p><p>D项错误，1954年，是俄罗斯和哥萨克骑士签订《佩列亚斯拉夫和约》，即俄乌合并300周年。为了纪念这一重要日子，赫鲁晓夫将原属于俄罗斯的克里米亚划给乌克兰，而非顿涅茨克。顿涅茨克位于乌克兰东南部，是乌克兰第四大城市。</p><p>本题为选非题，故正确答案为D。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "人文历史",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23381,
+      "titleHtml": "<p>某地质博物馆举办矿物展览会，下列对其展出的各类矿物的介绍不正确的是：</p>",
+      "type": "single",
+      "globalAccuracy": 49,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "赤铁矿常用来提取硫，制造硫酸"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "锡石是工业上用于炼锡的主要原料"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "单一银矿较少见，常与有色重金属铜、铅、锌等的硫化矿物共生"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "石墨和金刚石是同一种元素，因为外界条件不同而结晶成的不同矿物"
+        }
+      ],
+      "analysisHtml": "<p>本题考查科技常识。</p><p>A项错误，赤铁矿是氧化铁的主要矿物形式，铁主要由赤铁矿冶炼而成。我国生产硫酸用的硫铁矿主要有黄铁矿、磁黄铁矿和白铁矿三种，在生产中要求其具有较高纯度，不能有杂质和有害组分混入，通常都要经过选矿流程，当获得含硫量在40％以上时方可使用。</p><p>B项正确，锡具有熔点低、耐腐蚀和易改变其他金属性能等优点，可用于核发电、飞机发动机等技术领域。锡石的含锡量高达78%左右，是最常见的锡矿物，也是锡最主要的矿石矿物，属于提炼锡的重要矿物。</p><p>C项正确，银在自然界中有单质存在，但绝大部分是以化合态的形式存在于银矿石中，单一银矿较少见，常形成硫化物和似硫化物，与铅、锌、铜等亲硫元素共生，所以能在硫化物矿床里找到银。</p><p>D项正确，石墨和金刚石都属于碳单质，它们的化学性质相同，但不是同种物质，而是由相同元素构成的同素异型体，属于因外界条件不同而结晶成的不同矿物。</p><p>本题为选非题，故正确答案为A。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "自然科技",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23382,
+      "titleHtml": "<p>下列与数学有关的说法正确的是：</p>",
+      "type": "single",
+      "globalAccuracy": 27,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "欧拉、高斯和黎曼均来自同一个国家"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "哥德巴赫猜想和庞加莱猜想均未被证明"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "菲尔兹奖每四年颁发一次，获奖者必须未满40岁"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "我国著名数学家苏步青被誉为“整体微分几何之父”"
+        }
+      ],
+      "analysisHtml": "<p>本题考查人文常识。</p><p>A项错误，莱昂哈德·欧拉，1707年生于瑞士巴塞尔，数学家、物理学家兼工程师，被公认为人类历史上成就最为斐然的数学家之一；约翰·卡尔·弗里德里希·高斯，1777年生于德国不伦瑞克，著名数学家、物理学家、天文学家、几何学家，大地测量学家；波恩哈德·黎曼，1826年生于德国，著名的数学家，他在数学分析和微分几何方面作出过重要贡献，他开创了黎曼几何，并且给后来爱因斯坦的广义相对论提供了数学基础。</p><p>B项错误，哥德巴赫猜想源于1742年克里斯蒂安·哥德巴赫提出的一个疑问：“是否每个大于2的偶数都可以表示为两个素（质）数之和？”，截止目前，并未被完全证明；庞加莱猜想指“任何一个单连通的，闭的三维流形一定同胚于一个三维的球面”，2006年6月3日，哈佛大学教授、著名数学家、菲尔兹奖得主丘成桐在中国科学院晨兴数学研究中心宣布，在美、俄等国科学家的工作基础上，中山大学朱熹平教授和旅美数学家、清华大学兼职教授曹怀东已经彻底证明了庞加莱猜想。</p><p>C项正确，菲尔兹奖每四年在国际数学家大会上颁发一次，以表彰现有工作的杰出数学成就和对未来成就的承诺，每次授予2至4名有卓越贡献的数学家。获奖者必须在该年元旦前未满40岁。</p><p>D项错误，苏步青，浙江温州平阳人，祖籍福建省泉州市，中国科学院院士，中国著名的数学家、教育家，中国微分几何学派创始人，被誉为“东方国度上灿烂的数学明星”“东方第一几何学家”“数学之王”。陈省身，1911年10月28日生于浙江嘉兴秀水县，是20世纪最伟大的几何学家之一，被誉为“整体微分几何之父”。</p><p>故正确答案为C。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "人文历史",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23383,
+      "titleHtml": "<p>潮汐，是发生在沿海地区的一种自然现象。下列关于潮汐的说法不正确的是：</p><p>①人类的祖先为了表示生潮的时刻，把发生在早晨的高潮叫潮，发生在晚上的高潮叫汐。月球对地球海水有吸引力，人们把吸引海水涨潮的力叫引潮力</p><p>②一般正对着月亮的地方引潮力就大，而背对着月亮的海水所受引潮力变小，海水在离心力作用下，向背对月球的地方膨胀，于是会出现涨潮。潮汐的周期是24小时48分钟</p><p>③一昼夜之间，地球上大部分海水有2次涨落。潮汐中还蕴藏着巨大能量</p><p>④潮汐发电是靠海水的动能来实现的</p>",
+      "type": "single",
+      "globalAccuracy": 23,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "①"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "②"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "③"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "④"
+        }
+      ],
+      "analysisHtml": "<p>本题考查科技常识。</p><p>①正确，潮汐是发生在沿海地区的一种自然现象，是指海水在天体（主要是月球和太阳）引潮力作用下所产生的周期性运动。人类的祖先为了表示生潮的时刻，把发生在早晨的高潮叫潮，发生在晚上的高潮叫汐，统称为潮汐。在万有引力的作用下，月球对地球上的海水有吸引力，人们把吸引海水涨潮的力叫引潮力。</p><p>②③正确，地球表面各地离月亮的远近不一样，所以，各处海水所受的引潮力也出现差异，一般正对着月亮的地方引潮力就大，而背对着月亮的海水所受引潮力变小，离心力变大了，海水在离心力的作用下，向背对月亮那面跑，于是也会出现涨潮。月亮绕地球一周是24小时48分钟，潮汐的周期也是24小时48分钟，一昼夜之间大部分海水有一次面向月亮，一次背对月亮，海水自然有两次涨落。潮汐中还蕴藏着巨大能量，其大小与潮量和潮差成正比。</p><p>④错误，潮汐发电是靠海水的势能来实现的。潮汐发电与普通水力发电原理类似，通过出水库，在涨潮时将海水储存在水库内，以势能的形式保存，然后，在落潮时放出海水，利用高、低潮位之间的落差，推动水轮机旋转，带动发电机发电。</p><p>本题为选非题，故正确答案为D。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "自然科技",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23384,
+      "titleHtml": "<p>下列关于家用电器的说法正确的是：</p>",
+      "type": "single",
+      "globalAccuracy": 54,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "电磁炉加热不产生明火，因此使用电磁炉不会造成火灾"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "家用电器一般都有安全使用年限，燃气灶具的安全使用年限为10年"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "一般将直接使用220v交流电、大于1200W的用电器称为大功率电器"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "电磁炉通过电磁感应工作，有电磁辐射；微波炉利用磁控管工作，没有电磁辐射"
+        }
+      ],
+      "analysisHtml": "<p>本题考查科技常识。</p><p>A项错误，电磁炉是通过电子线路板部分产生交变磁场来工作的，加热食物的时候不产生明火，但是电磁炉使用不当也是有火灾隐患的。电磁炉着火主要是因为炉面附近的木屑、纸屑、油渍等易燃材料，或者电磁炉本身存在缺陷，导致电路出现短路、漏电等情况，引发火灾。</p><p>B项错误，《家用电器安全使用年限》是中国家用电器协会发布的系列团体标准，其中明确，家用电器安全使用年限的计算方式应从购买日期记起，并连续计算。冰箱、葡萄酒柜、空调的安全使用年限为10年；燃气灶、吸油烟机、储水式电热水器、净水机、食具消毒柜、洗衣机和干衣机的安全使用年限为8年。</p><p>C项正确，一般将直接使用220v交流电、大于1200W的用电器称为大功率电器。像电水壶、电磁炉、微波炉等都属于大功率电器。</p><p>D项错误，电磁炉的加热原理是利用电磁感应产生的磁场加热食物，因此它会产生一定的电磁辐射。微波炉通过产生微波辐射来加热食物，微波辐射是一种特定频率的电磁辐射，其频率通常在2.4GHz至2.5GHz之间，位于无线电波和红外线之间。</p><p>故正确答案为C。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "自然科技",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23385,
+      "titleHtml": "<p>2023年9月-10月，第19届亚运会在浙江省杭州市顺利举行。下列有关说法正确的是：</p>",
+      "type": "single",
+      "globalAccuracy": 27,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "杭州亚运会赛事奖牌“湖山\"灵感来自河姆渡文化"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "新中国历史上获得的首枚亚运会金牌来自于射击项目"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "本届杭州亚运会桥牌和电子竞技首次成为亚运会正式竞赛项目"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "亚运会的前身是东亚运动会，是世界上最早出现的洲际国际竞赛"
+        }
+      ],
+      "analysisHtml": "<p>本题考查人文常识。</p><p>A项错误，2023年6月15日，杭州第19届亚运会倒计时100天主题活动在中国杭州电竞中心举行，杭州亚运会奖牌正式发布。奖牌取名为“湖山”，它的设计灵感源自五千年良渚文明，展示中国江南文化，呈现杭州山水景观。它将方形玉琮和圆形奖章融为一体，蕴含美美与共、和而不同的亚运精神。</p><p>B项正确，苏之渤是我国射击队运动员，1974年苏之渤参加了在伊朗举办的第七届亚运会，成为中国参加综合性运动会男子自选手枪慢射第一枚个人金牌获得者，这也是中国参加亚运会以来第一次获得金牌。所以新中国在亚运会上获得的第一枚金牌来自于射击项目。</p><p>C项错误，在保持40个大项目不变的前提下，杭州亚运会增设了霹雳舞和电子竞技两个竞赛项目，以吸引更多年轻观众的关注和参与。</p><p>D项错误，亚洲运动会的前身是“远东运动会”，原名为“远东奥林匹克运动会”，20世纪初由菲律宾、中国、日本三国发起，每两年一届，共举办了十届，是世界上最早出现的洲际国际竞赛。</p><p>故正确答案为B。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "人文历史",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23386,
+      "titleHtml": "<p>下调网约车平台抽成比例并不是“<u>            </u>”。对平台来说，每一单的抽成少了，但给司机切实减负了，司机更有动力去改善服务，打车成本降低，服务质量提升，会吸引更多乘客选择平台出行，强化规模效应。</p><p>填入画横线部分最恰当的一项是：</p>",
+      "type": "single",
+      "globalAccuracy": 78,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "拔苗助长"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "空头支票"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "零和博弈"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "双赢游戏"
+        }
+      ],
+      "analysisHtml": "<p>根据后文可知，下调网约车平台抽成比例虽会使平台单笔订单的抽成减少，但有助于给司机减负，也会促进平台自身的良性发展，强化规模效应，故抽成减少是双赢之举。横线前出现“不是”，故横线处所填成语与后文语义相反，需表达下调网约车平台抽成比例仅对一方有好处，C项“零和博弈”指参与博弈的各方，在严格竞争下，一方的收益必然意味着另一方的损失，博弈各方的收益和损失相加总和永远为“零”，双方不存在合作的可能，符合文意，当选。</p><p>A项“拔苗助长”比喻违反事物发展的客观规律，急于求成反而坏事，文段未体现“违反事物的发展规律”，与文意不符，排除；</p><p>B项“空头支票”指不能兑现，取不到钱的支票，比喻不准备实现的诺言，与文意不符，排除；</p><p>D项“双赢游戏”指双方都能得益的游戏，与文意相悖，排除。</p><p>故正确答案为C。</p><p>【文段出处】澎湃新闻《【社论】下调抽成比例：多方共赢才能长远》</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "逻辑填空",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23387,
+      "titleHtml": "<p>近日，科学家用一种<u>            </u>的原材料——蟹壳，制造出对环境友好的锌电池。这款电池的电解质由名为壳聚糖的生物材料制成。材料来源广泛，其中最<u>        </u>的来源是螃蟹和虾等甲壳类动物的外骨骼。这种新型电解质可五个月内完全分解，仅留下锌，对环境污染更小。</p><p>依次填入画横线部分最恰当的一项是：</p>",
+      "type": "single",
+      "globalAccuracy": 38,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "触手可及 主要"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "意想不到 丰富"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "随处可见 方便"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "出人意表 合适"
+        }
+      ],
+      "analysisHtml": "<p>第一空，首句指出科学家用蟹壳制造锌电池，这一做法颠覆了平常人对电池制造的理解，也难以想象，B项“意想不到”指料想不到，没有料到，D项“出人意表”指事物出乎人们意料之外，均符合文意，保留。A项“触手可及”指近在手边，一伸手就可以接触到，形容很容易，C项“随处可见”指到处可以看见，形容非常普通、常见，搭配的“蟹壳”显然并没有那么常见易得，均搭配不当，排除。</p><p>第二空，横线前“其中”指“材料来源广泛”，由此可知后文应表示在广泛的材料来源中最多的来源是什么，因此横线处应体现出“多”之意，B项“丰富”指种类多、数量大，符合文意，当选。D项“合适”指适合实际情况或客观要求，与文意不符，排除。</p><p>故正确答案为B。</p><p>【文段出处】科技日报《科学家用蟹壳制成可生物降解电池，千次循环后能源效率仍为99.7%》</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "逻辑填空",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23388,
+      "titleHtml": "<p>数字经济健康发展，有利于推动构建新发展格局。当前，世界百年未有之大变局持续<u>        </u>，新一轮科技变革<u>            </u>，全球产业链趋向本土化重构。作为以数据为核心要素、以数字技术为主要手段、以互联网为重要载体的新型经济形态，数字经济正全面融入人类社会各领域。</p><p>依次填入画横线部分最恰当的一项是：</p>",
+      "type": "single",
+      "globalAccuracy": 44,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "深化 方兴未艾"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "加重 如火如荼"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "更迭 愈演愈烈"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "演变 风起云涌"
+        }
+      ],
+      "analysisHtml": "<p>第一空，搭配“变局”，且根据文意可知，横线处应体现世界百年未有之大变局持续发展之意。A项“深化”指向更深处发展，D项“演变”指发展变化，均与“变局”搭配恰当，且符合文意，保留。B项“加重”指增加重量或程度，常搭配“负担”“语气”等，与“变局”搭配不当，且文段强调世界百年未有之大变局持续发展，而非程度增加，与文意不符，排除；C项“更迭”指轮流更替，常搭配“政权”“技术”“产品”等，与“变局”搭配不当，且“更迭”强调不同事物的轮流更替，而文段强调世界局势自身变化大，与文意不符，排除。</p><p>第二空，搭配“新一轮科技变革”。A项“方兴未艾”指事物刚刚兴起、发展，一时不会终止，最常与“新事物”进行搭配，对应“新一轮”的科技变革最为准确，且“未艾”指一时不会终止，与前文“持续”和后文“正全面融入人类社会各领域”对应准确，衔接得当，当选。D项“风起云涌”形容事物迅速发展，声势浩大，无法体现出“新”，与前后文的对应不及A项准确，排除。</p><p>故正确答案为A。</p><p>【文段出处】《数字经济赋能新发展格局》</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "逻辑填空",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23389,
+      "titleHtml": "<p>时至今日，互联网上不断刷新的信息与碎片化的记忆，让那种足以令一代人<u>        </u>的宏大事件越来越少了。信息变得高度密集，却又彼此孤立，而且<u>            </u>，快速的信息流动击穿一切时间和空间的边界，那种因为同在一个时代或同处一个地方而形成的群体意识也愈加淡薄。</p><p>依次填入画横线部分最恰当的一项是：</p>",
+      "type": "single",
+      "globalAccuracy": 32,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "回忆 纷繁复杂"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "铭记 无迹可循"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "见证 如出一辙"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "共享 稍纵即逝"
+        }
+      ],
+      "analysisHtml": "<p>本题可从第二空入手，根据后文“快速的信息流动击穿一切时间和空间的边界”可知，信息应是快速流动的，横线处所填成语应表达快速之意，D项“稍纵即逝”形容时间或机会等很容易过去，符合文意，保留。A项“纷繁复杂”指头绪、表象多而且复杂，B项“无迹可循”指没有踪迹可以寻求，C项“如出一辙”比喻言论或行动完全一样，均与文意不符，排除。</p><p>第一空，代入验证，D项“共享”指共同享用，可与后文“因为同在一个时代或同处一个地方而形成的群体意识也愈加淡薄”形成对应，当选。</p><p>故正确答案为D。</p><p>【文段出处】光明日报《广阔的虚拟世界，也不过是无边现实世界的一部分》</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "逻辑填空",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23390,
+      "titleHtml": "<p>当下，一批电视剧佳作综合运用人物、故事等艺术元素，<u>        </u>现实生活，为人民画像，为时代放歌。其中既有<u>            </u>的家国情怀、革命史诗、英雄故事，也有微观细致的市井故事、邻里乡情、社会万象，将涵盖国家、社会和个人梦想的“中国梦”讲述得温馨感人、生动活泼。</p><p>依次填入画横线部分最恰当的一项是：</p>",
+      "type": "single",
+      "globalAccuracy": 29,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "聚焦 可歌可泣"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "观照 大气磅礴"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "刻画 波澜壮阔"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "着眼 彪炳史册"
+        }
+      ],
+      "analysisHtml": "<p>本题可从第二空入手，横线处同时搭配“家国情怀”“革命史诗”“英雄故事”，且根据“既有······也有······”可知，横线处成语与“微观细致”语义相反，应体现气势宏大之意。B项“大气磅礴”形容气势雄伟浩大，与“家国情怀”“革命史诗”“英雄故事”均搭配恰当，且符合文意，保留。A项“可歌可泣”指悲壮的事迹使人非常感动，无法体现气势宏大之意，排除；C项“波澜壮阔”比喻声势雄壮或规模宏大，常搭配历史、征程等，D项“彪炳史册”形容伟大的业绩流传千秋万代，常搭配成就、奇迹等，均与“家国情怀”搭配不当，排除。</p><p>第一空，代入验证，横线处搭配“现实生活”，且根据“为人民画像，为时代放歌”可知，横线处词语应体现观察、反映之意，B项“观照”指仔细观察，审视，符合文意，当选。</p><p>故正确答案为B。</p><p>【文段出处】光明日报《抒写时代精神 展现美好生活》</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "逻辑填空",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23391,
+      "titleHtml": "<p>不必对预制菜<u>            </u>，以讹传讹，但是，上班族点外卖点到预制菜，和未成年学生长期吃食堂的预制菜，其健康影响不能<u>            </u>。</p><p>依次填入画横线部分最恰当的一项是：</p>",
+      "type": "single",
+      "globalAccuracy": 31,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "杯弓蛇影 同日而语"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "夸大其词 置若罔闻"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "将信将疑 混为一谈"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "谈虎色变 视而不见"
+        }
+      ],
+      "analysisHtml": "<p>第一空，横线处成语与“以讹传讹”构成并列结构，“以讹传讹”指把本来就不正确的话又错误地传出去，越传越错，故横线处成语应表达人们对于预制菜存有误解，持有消极、反感的态度，A项“杯弓蛇影”比喻因疑神疑鬼而引起恐惧，B项“夸大其词”指把事情说得超过原有的程度，D项“谈虎色变”比喻一提及某事就非常害怕，均符合文意，保留。C项“将信将疑”指有点相信，又有点怀疑，文段并未涉及信任的话题，与文意无关，排除。</p><p>第二空，由“但是”可知，文段前后构成转折关系，语义相反。根据前文表述的对待预制菜这一现象无需过度担心可知，后文应论述其需注意的问题，又根据“上班族点外卖点到预制菜，和未成年学生长期吃食堂的预制菜”可知，上班族点到预制菜是个偶发事件，未成年长期吃食堂预制菜是长期持续过程，两种不同情况下的健康影响程度是不同的，故横线处成语应体现预制菜在不同情况下对健康的影响是不一样的，不能同等看待。A项“同日而语”指把两件事或两个人同等看待、相提并论，通常用于否定表述中，与前文“不能”连用，符合文意，当选。B项“置若罔闻”指放在一边，好像没有听见似的，指不去过问或不予关心，D项“视而不见”指不注意，不重视，睁着眼却没看见，均与文意不符，排除。</p><p>故正确答案为A。</p><p>【文段出处】澎湃社论《预制菜进校园不是一件小事》</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "逻辑填空",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23392,
+      "titleHtml": "<p>近年来，一些旅游资源丰富的地方，成了旅游负面新闻的“重灾区”，围绕旅游服务产生的纠纷和维权事故<u>            </u>。当地职能部门一定要有危机意识，真正对游客的旅游体验负责，别以为“天下美景独一份”，把<u>            </u>、灰色生意当成活跃旅游市场的“捷径”。</p><p>依次填入画横线部分最恰当的一项是：</p>",
+      "type": "single",
+      "globalAccuracy": 81,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "屡见不鲜 旁门左道"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "司空见惯 投机取巧"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "罄竹难书 营私舞弊"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "铺天盖地 歪风邪气"
+        }
+      ],
+      "analysisHtml": "<p>第一空，搭配“纠纷和事故”，且根据“重灾区”可知，横线处应体现旅游服务产生的纠纷和维权事故非常多的意思，A项“屡见不鲜”指多次见到就不觉得新奇了，B项“司空见惯”指某事常见，不足为奇，D项“铺天盖地”形容来势猛，声势大，到处都是，均符合文意，保留。C项“罄竹难书”形容罪行多得写不尽，多搭配“罪行”，与“纠纷和事故”搭配不当，排除。</p><p>第二空，根据“捷径”可知，横线处应表示一种速成的方法或手段，且与“灰色生意”构成并列关系，A项“旁门左道”泛指不正派的东西，“门”与“道”对应“径”，符合文意，当选。B项“投机取巧”指用不正当的手段谋取私利，无法与“捷径”构成形象化对应，且无法与“灰色生意”构成并列关系，排除；D项“歪风邪气”指不良的作风和风气，与“捷径”语义无关，排除。</p><p>故正确答案为A。</p><p>【文段出处】澎湃新闻《<b>[</b>社论<b>]</b>真正对游客的旅游体验负责》</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "逻辑填空",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23393,
+      "titleHtml": "<p>图画书以图为主，文字很少，看似简单，实则<u>            </u>，内涵很深，需要创作者有细腻的生活经验、丰厚的审美素养，并能洞悉儿童的认知特点。当前市场上图画书品质<u>            </u>，一个重要原因就是有些创作者脱离生活，且缺乏必要的相关素养。</p><p>依次填入画横线部分最恰当的一项是：</p>",
+      "type": "single",
+      "globalAccuracy": 84,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "自成一体 粗制滥造"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "别有洞天 滥竽充数"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "各有千秋 鱼龙混杂"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "包罗万象 参差不齐"
+        }
+      ],
+      "analysisHtml": "<p>第一空，根据“看似······实则······”可知，横线处所填成语应与“简单”语义相反，且与“内涵很深”构成近义并列，B项“别有洞天”指另有一个境界，常用来形容风景奇特或艺术创作引人入胜，能够体现出图画书有我们看不到的一面之意，D项“包罗万象”形容内容丰富，无所不有，与“简单”语义相反，均符合文意，保留。A项“自成一体”指在某种学术、艺术或技术上有独创的见解或独特的做法，形成自己的体系和风格，其相反应为“不独特”而非“不简单”，与文意无关，排除；C项“各有千秋”比喻在同一层次内各人有各人的长处，各人有各人的特色，一般搭配多个主体，与“图画书”这一单一主体搭配不当，排除。</p><p>第二空，横线处所填成语搭配“当前市场上图画书品质”，且根据后文“一个重要原因就是有些创作者脱离生活，且缺乏必要的相关素养”可知，横线处所填成语应体现出当前市场上图画书品质有好有坏，D项“参差不齐”形容很不整齐或水平不一，置于此处可体现出当前市场上的图画书品质水平不一，符合文意，当选。B项“滥竽充数”比喻没有真才实学的人混在内行人之中，或以次充好，主语多搭配残次品，与“当前市场上图画书品质”这一有好有坏的大集合搭配不当，排除。</p><p>故正确答案为D。</p><p>【文段出处】光明日报《把最好的阅读融入最珍贵的童年——中国原创图画书发展现状调研》</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "逻辑填空",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23394,
+      "titleHtml": "<p>快速发展的农村电商深度<u>        </u>农村居民的“生活圈”。农村物流等电商基础设施的不断完善，<u>        </u>了农村居民消费的时空限制，刺激了他们的消费需求，让便捷购买<u>            </u>的商品成为可能。农村电商既满足了农村居民物质和精神方面的需求，也推动实现了农村消费的扩容与升级。</p><p>依次填入画横线部分最恰当的一项是：</p>",
+      "type": "single",
+      "globalAccuracy": 53,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "融入 突破 琳琅满目"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "植入 打破 物美价廉"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "根植 重塑 名副其实"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "参与 超越 物超所值"
+        }
+      ],
+      "analysisHtml": "<p>第一空，搭配“‘生活圈’”，A项“融入”指融合，混入，混合，B项“植入”指像植树那样把一物安放到另一物中，插入，C项“根植”指扎根，均与“‘生活圈’”搭配恰当，保留。D项“参与”指介入，参加，通常搭配工作、活动、项目等，与“‘生活圈’”搭配不当，排除。</p><p>第二空，搭配“时空限制”，A项“突破”指集中兵力向一点进攻或反攻，打开缺口；超过，打破，B项“打破”指突破原有的限制、拘束，均与“时空限制”搭配恰当，保留。C项“重塑”指重新塑造，与“时空限制”搭配不当，排除。</p><p>第三空，搭配“购买”以及“商品”，且根据“农村电商······推动实现了农村消费的扩容与升级”可知，横线处应体现出农村电商让农民可以更便捷地购买到好的商品之意，B项“物美价廉”指价钱便宜，货物又好，“购买物美价廉的商品”搭配恰当，当选。A项“琳琅满目”比喻充满了美好珍贵的事物，虽符合文意，但“购买琳琅满目的商品”搭配不当，排除A项。</p><p>故正确答案为B。</p><p>【文段出处】《从农村电商发展中读懂中国｜光明网评论员》</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "逻辑填空",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23395,
+      "titleHtml": "<p>科技合作是构建更加开放、包容、普惠、平衡、共赢的经济全球化的<u>            </u>。全球化和开放型经济是过去几十年人类进步的两个关键因素。当世界正朝着以知识为基础的经济跃进，对中国采取科技<u>        </u>打压正在损害知识的产生和创新，与增进人类科技进步与共同福祉<u>            </u>。</p><p>依次填入画横线部分最恰当的一项是：</p>",
+      "type": "single",
+      "globalAccuracy": 58,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "成功之道 封锁 适得其反"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "必然之果 束缚 殊途同归"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "应有之义 遏制 背道而驰"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "必由之路 围猎 南辕北辙"
+        }
+      ],
+      "analysisHtml": "<p>第一空，根据文意可知，横线处所填成语应体现科技合作是构建更加开放、包容、普惠、平衡、共赢的经济全球化的重要举措，C项“应有之义” 指应该有的道德、行为或义理，D项“必由之路”指事物发展必须遵循的规律或必须经历的过程，均符合文意，保留。A项“成功之道”是指成功之后总结的经验，文段并未体现该事情已经成功之意，与文意不符，排除；B项“必然之果”指注定的结果，根据文段可知，“构建······经济全球化”是要实现的目标和结果，而非“科技合作”，排除。</p><p>第二空，根据“打压”可知，横线处所填词语应体现对中国科技采取不正当的压制行为，C项“遏制”指阻止、控制，D项“围猎”指四面合围而猎，均符合文意，保留。</p><p>第三空，根据文意可知，增进人类科技进步与共同福祉是我们要实现的目标和正确的前进方向，而对中国科技采取打压的做法，损害了知识的产生和创新，故横线处所填成语要体现出做法偏离了正确的方向，C项“背道而驰”指朝着相反的方向走，比喻方向、目标完全相反，一般指背离了正确的道路，符合文段语境，当选。D项“南辕北辙”比喻行动和目的相反，文段并未提及对中国科技打压的目的，且该成语通常用于单个主语，不符合文段语境，排除。</p><p>故正确答案为C。</p><p>【文段出处】《遏制打压只会催生中国科技创新动力》</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "逻辑填空",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23396,
+      "titleHtml": "<p>先秦儒学传世文献与出土文献中，存在着大量的引诗叙事。这些引诗叙事或因其义理方式不够“纯粹”，或因其文献形态不够“经典”，往往被<u>            </u>，甚至被忽视乃至遗忘其思想价值。然而这些引诗叙事，并不是先秦儒学诸子<u>            </u>的。研究先秦儒学的引诗叙事，是还原先秦儒学的原始生命、<u>        </u>先秦儒学的诗性智慧、彰显先秦儒学的中国哲学特质的重要路径。</p><p>依次填入画横线部分最恰当的一项是：</p>",
+      "type": "single",
+      "globalAccuracy": 66,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "轻描淡写 率性而为 突出"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "一带而过 随意而为 昭示"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "弃如敝屣 随心所欲 揭示"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "熟视无睹 随其所宜 凸显"
+        }
+      ],
+      "analysisHtml": "<p>第一空，根据“甚至”可知，横线处所填成语应比“忽视”程度更轻，A项“轻描淡写”指说话写文章把重要问题轻轻带过，不加重视，B项“一带而过”指捎带着就顺过去了，均符合文意，保留。C项“弃如敝屣”比喻毫不可惜地抛弃掉，置于此处程度过重，排除；D项“熟视无睹”形容对事物漫不经心或不重视，与“忽视”程度无明显差异，排除。</p><p>第二空，根据后文可知，研究先秦儒学的引诗叙事可以感受到先秦儒学的原始生命、诗性智慧、中国哲学特质，横线处所填成语应体现这些引诗叙事是有依据的、有依托的，并不是先秦儒学诸子随意写的，B项“随意而为”指随着自己的意愿做事，符合文意，保留。A项“率性而为”指按照自己的性情行事，侧重真性情，文段并未强调先秦儒学诸子是否真性情，与文段语义对应不及B项准确，排除。</p><p>第三空，代入验证，搭配“诗性智慧”，B项“昭示”指明白地表示或宣布，与“诗性智慧”搭配恰当，当选。</p><p>故正确答案为B。</p><p>【文段出处】光明日报《先秦儒学引诗叙事的思想价值》</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "逻辑填空",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23397,
+      "titleHtml": "<p>有研究者主张，汉语溯源应从造字义入手，揭示其特征义，结合训诂材料和文献例证，从语素相互选择和古今沟通的角度，<u>        </u>词语产生的构词理据和意义变化等。只有这样，才有可能真正找到字词产生的<u>        </u>，在纷繁复杂的词义系统里<u>            </u>，层层深入，探明真相。</p><p>依次填入画横线部分最恰当的一项是：</p>",
+      "type": "single",
+      "globalAccuracy": 90,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "体会 根源 寻踪觅源"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "探究 源头 抽丝剥茧"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "追寻 意义 抽丁拔楔"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "分析 原因 举重若轻"
+        }
+      ],
+      "analysisHtml": "<p>第一空，根据“汉语溯源应从造字义入手，揭示其特征义”可知，横线处意在表达对“词语产生的构词理据和意义变化”进行深入的研究。B项“探究”指探索研究或探寻追究，D项“分析”指把一件事物、一种现象、一个概念分成较简单的组成部分，找出这些部分的本质属性和彼此之间的关系，均符合文意，保留。A项“体会”指体验领会，C项“追寻”指追踪寻找，均缺乏“深入研究”或“揭示本质”的含义，与文意不符，排除。</p><p>第二空，根据“汉语溯源应从造字义入手”可知，文段主要围绕“汉语溯源”展开，横线处应意在表达只有如此才能找到字词产生的发源。B项“源头”指水发源的地方，符合文意，保留。D项“原因”指造成某种结果或引起另一件事情发生的条件，与“汉语溯源”对应不当，排除。</p><p>第三空，代入验证，横线处通过逗号与“层层深入，探明真相”并列。B项“抽丝剥茧”形容分析事物极为细致，而且一步一步很有层次，与文意相符，当选。</p><p>故正确答案为B。</p><p>【文段出处】光明日报《溯源汉语字词 讲好文化故事》</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "逻辑填空",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23398,
+      "titleHtml": "<p>就文化优势而言，除了文本、唱腔、演艺、舞美等，杂剧还有一个别的古典文学品种<u>            </u>的特点，就是入世性，以及由此而来的普及性和强大影响力。几百年来，<u>            </u>的杂剧，潜移默化地<u>        </u>着民众的是非荣辱观。</p><p>依次填入画横线部分最恰当的一项是：</p>",
+      "type": "single",
+      "globalAccuracy": 76,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "望其项背 脍炙人口 支配"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "望尘莫及 源远流长 孕育"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "无出其右 博采众长 建构"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "无可比拟 寓教于乐 塑造"
+        }
+      ],
+      "analysisHtml": "<p>第一空，根据横线前“就文化优势而言”可知，横线处应体现杂剧比别的古典文学品种更好之意，B项“望尘莫及”指远远望着前面人马行走时扬起来的尘土而追赶不上，比喻远远落在后面，C项“无出其右”指没有能超过他的，D项“无可比拟”形容独一无二，特别突出，均可体现杂剧的优势，符合文意，保留。A项“望其项背”比喻赶得上，与文意相悖，排除。</p><p>第二空，搭配“杂剧”，根据横线前强调杂剧的“入世性，以及由此而来的普及性和强大影响力”以及横线后“民众的是非荣辱观”可知，横线处也应体现杂剧的入世性，即内容通俗易懂、接地气，D项“寓教于乐”指兼具教育性和趣味性，可以体现杂剧的通俗性和对社会的教育意义，保留。B项“源远流长”形容历史悠久，C项“博采众长”意思是从多方面吸取各家的长处，均和“入世性”无关，排除。</p><p>第三空，代入验证，D项“塑造”指通过培养、改造使人或事物达到某种预定的目标，与“民众的是非荣辱观”搭配恰当，当选。</p><p>故正确答案为D。</p><p>【文段出处】光明网《大学者改写的小故事》</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "逻辑填空",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23399,
+      "titleHtml": "<p>①摊贩有生存需求，且能便利百姓生活，但城市运行需要合理的秩序，经营占道、噪声扰民、环境污染等问题也亟待破解</p><p>②事实上，许多城市对街头摊贩的管理，都经历了从绝对禁止到逐步开放、分类管理的过程</p><p>③如何求取最大公约数</p><p>④结合城市发展和百姓需求实际，引导小商小贩依法依规经营，是城市治理精细化的题中应有之义</p><p>⑤实践告诉我们，倾听百姓心声，做到统筹兼顾很关键</p><p>⑥摊贩是城市商业的组成部分，对摊贩的服务与监管，是一道需要同时破解“几难”的必答题。</p><p>将以上6个句子重新排列，语序正确的一项是：</p>",
+      "type": "single",
+      "globalAccuracy": 86,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "⑤④③①⑥②"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "⑤③④⑥①②"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "⑥⑤③④②①"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "⑥①③⑤②④"
+        }
+      ],
+      "analysisHtml": "<p>对比选项，确定首句。⑤句介绍倾听百姓心声，做到统筹兼顾十分关键，⑥句指出对摊贩的服务与监管是需要解决的问题。根据逻辑顺序，应先引出问题，再对其进行回答，故⑤句应在⑥句之后，排除A、B两项。</p><p>对比C、D两项发现，③句和⑤句先后顺序不一致，③句提出求取最大限度共同价值的问题，⑤句介绍具体做法，即倾听百姓心声，要统筹兼顾，按照逻辑顺序，应先提出问题，再进行解答，故③句应在⑤句之前，排除C项。且观察D项还可发现，①句承接⑥句，具体指出经营占道、噪声扰民、环境污染等问题亟待解决，可对⑥句中“几难”进行详细的解释说明，衔接恰当，D项当选。</p><p>故正确答案为D。</p><p>【文段出处】正观新闻《人民日报：便民不扰民，治理需精细》</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "语句排序",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23400,
+      "titleHtml": "<p>①由此，他们能够证明颜色来自玻璃内部形成的颗粒，而颜色取决于颗粒的大小</p><p>②物理学家使用彩色玻璃来过滤特殊波长的光，为了优化他们的实验，他们开始自己制造玻璃，这带来了重要的发现：单一物质可以产生完全不同颜色的玻璃</p><p>③在19世纪和20世纪，当物理学家开始研究光的光学特性时，玻璃工匠的知识被利用起来</p><p>④最古老的彩色玻璃的考古发现可以追溯到几千年前</p><p>⑤玻璃工匠通过试验逐渐理解了如何制作出七彩缤纷的玻璃，他们添加了银、金和镉等物质，并尝试用不同的温度来制造出色度不同的美丽玻璃</p><p>⑥例如，硒化镉和硫化镉的混合物可以使玻璃变成黄色或红色，具体取决于玻璃的熔化温度和冷却方式</p><p>将以上6个句子重新排序，语序正确的一项是：</p>",
+      "type": "single",
+      "globalAccuracy": 64,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "③②①④⑥⑤"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "⑤④③⑥②①"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "②④③⑤⑥①"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "④⑤③②⑥①"
+        }
+      ],
+      "analysisHtml": "<p>对比选项，确定首句。首句分别为②句、③句、④句、⑤句，②句介绍物理学家在光学实验中尝试自己制作玻璃以及关于玻璃的新发现，③句引出物理学家与玻璃工匠的知识之间的关系，④句介绍最古老的彩色玻璃可以追溯到几千年前，⑤句介绍玻璃工匠如何制作出色度不同的玻璃，四句话均不具备明显的首句以及非首句特征，但是按照行文逻辑可知，应先引出物理学家和玻璃工匠的知识之间的关系，再具体介绍物理学家在实验中尝试自己制作玻璃，并有了关于玻璃的新发现，故③句应在②句之前，排除C项。</p><p>继续观察，⑥句出现“例如”，举例说明硒化镉和硫化镉的混合物可以使玻璃变成黄色或红色，可知前文应提及该例证的观点，结合选项该观点可能为④句、③句、②句，④句介绍最古老的彩色玻璃可以追溯到几千年前，并非⑥句论证的观点，排除A项；③句引出物理学家与玻璃工匠的知识之间的关系，与⑥句衔接尚可，但⑥句后衔接②句显然不合逻辑，②句引出物理学家的新发现，即单一物质可以产生不同颜色的玻璃，为⑥句论证的观点，故②句应在⑥句之前，排除B项，锁定D项。</p><p>故正确答案为D。</p><p>【文段出处】返朴《2023化学诺奖量子点：元素周期表从此拥有第三个维度》</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "语句排序",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23401,
+      "titleHtml": "<p>依次填入①、②处最恰当的一项是：</p>",
+      "type": "single",
+      "globalAccuracy": 40,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "对话 正确和清晰"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "交流 系统和全面"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "交互 稳定和精确"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "互动 完整和明确"
+        }
+      ],
+      "analysisHtml": "<p>本题可从②处入手，根据“需要······避免······”可知，前后语义相反，故②处应填入与“随机或含糊不清”语义相反的词语，“随机”即随意的，“含糊不清”即躲躲闪闪，缺乏明确的表态，C项“稳定”即稳固安定，没有变动，“精确”即非常准确、非常正确，可以与后文构成反义并列，保留。A项“正确”即符合事实、道理或某种公认的标准，B项“系统”即有条理的、连贯的，D项“完整”即具有或保持着应有的部分，没有损坏或残缺，均无法与“随机”构成反义并列，排除。</p><p>①处，代入验证，C项“交互”指相互联系交流，常见用法为“人机交互”，与“模型与患者”搭配恰当，当选。</p><p>故正确答案为C。</p><p>【文段出处】科技日报《当“望闻问切”遇上人工智能》</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "篇章阅读",
+      "materialHtml": "&emsp; 未来将大语言模型应用于医学可能会成为一种趋势。在分诊问诊等临床咨询阶段，利用模型与患者进行①，收集到完整、准确的信息并形成初步意见，再将其交给专业医生进行最终判断，这在一定程度上可以减少因为信息收集不充分、患者主诉不明确等问题带来的误诊和漏诊。据报道，用于寻医问诊的大语言模型在国内已经出现。<br>&emsp;大语言模型能够融合原本分散在少数人手里的顶尖医疗知识，提供更加普惠的医疗知识服务。未来若能搜集到大型三甲医院的医生对于某些疾病的认知并将其导入大语言模型进行整合、学习，一些医疗资源不充足的地区也有可能享受到高质量的医疗服务。<br>&emsp;与以聊天为“主业”的ChatGPT相比，用于医疗的大语言模型需要给出尽可能②的结论，避免因为随机或含糊不清的回答，误导医生选择错误的诊疗方案。目前看来，完全依赖大模型进行独立推理并直接向医生输出结果，这种模式在医学场景中较难达到足够高的准确率，也较难获得医生的认同。大部分医疗领域的大语言模型会选用知识图谱进行辅助，除了预训练过程中需要纳入足够多的医学专业数据外，在模型设计中，也需要重视它对知识图谱的利用能力，以及基于图谱的推理能力。“③”的技术路径，可能会是促进大模型在医学场景落地的更优选择。",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23402,
+      "titleHtml": "<p>填入③处最恰当的一项是：</p>",
+      "type": "single",
+      "globalAccuracy": 74,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "大模型+医生"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "知识图谱+医生"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "知识图谱+大模型"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "医学专业数据+大模型"
+        }
+      ],
+      "analysisHtml": "<p>③处在第三段结尾，需结合前文内容进行判断。第三段开篇阐述用于医疗的大语言模型需要给医生更为明确的结论，随后指出仅依靠大模型向医生输出结果会带来一些问题，后文接着介绍大部分医疗领域的大语言模型会结合知识图谱使其发挥最大作用。③处所在句子阐述的是采用这种技术路径可能会让大模型在医学场景中成为更好的选择。故③处的技术路径指的是前文论述的大模型和知识图谱相结合的路径，对应C项。</p><p>A、B两项的“医生”及D项的“医学专业数据”均与前文阐述的路径不一致，无法与前文衔接，排除。</p><p>故正确答案为C。</p><p>【文段出处】科技日报《当“望闻问切”遇上人工智能》</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "篇章阅读",
+      "materialHtml": "&emsp; 未来将大语言模型应用于医学可能会成为一种趋势。在分诊问诊等临床咨询阶段，利用模型与患者进行①，收集到完整、准确的信息并形成初步意见，再将其交给专业医生进行最终判断，这在一定程度上可以减少因为信息收集不充分、患者主诉不明确等问题带来的误诊和漏诊。据报道，用于寻医问诊的大语言模型在国内已经出现。<br>&emsp;大语言模型能够融合原本分散在少数人手里的顶尖医疗知识，提供更加普惠的医疗知识服务。未来若能搜集到大型三甲医院的医生对于某些疾病的认知并将其导入大语言模型进行整合、学习，一些医疗资源不充足的地区也有可能享受到高质量的医疗服务。<br>&emsp;与以聊天为“主业”的ChatGPT相比，用于医疗的大语言模型需要给出尽可能②的结论，避免因为随机或含糊不清的回答，误导医生选择错误的诊疗方案。目前看来，完全依赖大模型进行独立推理并直接向医生输出结果，这种模式在医学场景中较难达到足够高的准确率，也较难获得医生的认同。大部分医疗领域的大语言模型会选用知识图谱进行辅助，除了预训练过程中需要纳入足够多的医学专业数据外，在模型设计中，也需要重视它对知识图谱的利用能力，以及基于图谱的推理能力。“③”的技术路径，可能会是促进大模型在医学场景落地的更优选择。",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23403,
+      "titleHtml": "<p>对这几段文字理解不正确的一项是：</p>",
+      "type": "single",
+      "globalAccuracy": 72,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "大语言模型提供的诊疗方案可能比专业医生更准确"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "大语言模型的应用可以帮助基层医院提升医疗水平"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "大语言模型可有效解决城乡医疗资源不均衡的问题"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "大语言模型未来可以代替医生为患者提供医疗服务"
+        }
+      ],
+      "analysisHtml": "<p>A项，根据第一段“这在一定程度上可以减少因为信息收集不充分、患者主诉不明确等问题带来的误诊和漏诊”可知，表述正确，排除；</p><p>B项，根据第二段“未来若能搜集到大型三甲医院的医生对于某些疾病的认知并将其导入大语言模型进行整合、学习，一些医疗资源不充足的地区也有可能享受到高质量的医疗服务”可知，表述正确，排除；</p><p>C项，根据第二段“大语言模型能够融合原本分散在少数人手里的顶尖医疗知识，提供更加普惠的医疗知识服务”“一些医疗资源不充足的地区也有可能享受到高质量的医疗服务”可知，表述正确，排除；</p><p>D项，根据第三段“目前看来，完全依赖大模型进行独立推理并直接向医生输出结果，这种模式在医学场景中较难达到足够高的准确率，也较难获得医生的认同”可知，大语言模型仍存在一定问题，“未来可以代替”无中生有且表述过于绝对，当选。</p><p>本题为选非题，故正确答案为D。</p><p>【文段出处】科技日报《当“望闻问切”遇上人工智能》</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "篇章阅读",
+      "materialHtml": "&emsp; 未来将大语言模型应用于医学可能会成为一种趋势。在分诊问诊等临床咨询阶段，利用模型与患者进行①，收集到完整、准确的信息并形成初步意见，再将其交给专业医生进行最终判断，这在一定程度上可以减少因为信息收集不充分、患者主诉不明确等问题带来的误诊和漏诊。据报道，用于寻医问诊的大语言模型在国内已经出现。<br>&emsp;大语言模型能够融合原本分散在少数人手里的顶尖医疗知识，提供更加普惠的医疗知识服务。未来若能搜集到大型三甲医院的医生对于某些疾病的认知并将其导入大语言模型进行整合、学习，一些医疗资源不充足的地区也有可能享受到高质量的医疗服务。<br>&emsp;与以聊天为“主业”的ChatGPT相比，用于医疗的大语言模型需要给出尽可能②的结论，避免因为随机或含糊不清的回答，误导医生选择错误的诊疗方案。目前看来，完全依赖大模型进行独立推理并直接向医生输出结果，这种模式在医学场景中较难达到足够高的准确率，也较难获得医生的认同。大部分医疗领域的大语言模型会选用知识图谱进行辅助，除了预训练过程中需要纳入足够多的医学专业数据外，在模型设计中，也需要重视它对知识图谱的利用能力，以及基于图谱的推理能力。“③”的技术路径，可能会是促进大模型在医学场景落地的更优选择。",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23404,
+      "titleHtml": "<p>根据这几段文字，下列说法一定不正确的是：</p>",
+      "type": "single",
+      "globalAccuracy": 83,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "有大气和磁场就会出现极光"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "极光是一种强烈的电磁干扰源"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "水星上没有大气，不可能出现极光"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "极光是一种绚丽多彩的等离子体现象"
+        }
+      ],
+      "analysisHtml": "<p>A项，根据第一段“极光是由于来自磁层和太阳风的带电高能粒子被行星磁场导引带进行星大气层，并与高层大气（热层）中的原子碰撞造成的发光现象”可知，极光需要来自磁层和太阳风的带电高能粒子与高层大气中的原子碰撞才能产生，只有“大气”和“磁场”，没有“来自磁层和太阳风的带电高能粒子”这一条件，也不会出现极光，表述过于绝对，当选；</p><p>B项，根据第二段“极光会对地球上的无线电波、卫星信号、电力线路等产生不利的影响”与“人们可以了解太阳活动和地球环境之间的相互作用和变化，从而提高对太阳风暴、地磁风暴、电离层扰动等现象的预报和防护能力”可知，极光会对信号等产生影响，表述正确，排除；</p><p>C项，根据第一段“极光是由于来自磁层和太阳风的带电高能粒子被行星磁场导引带进行星大气层，并与高层大气（热层）中的原子碰撞造成的发光现象”可知，如果没有大气，来自磁层和太阳风的带电高能粒子无法与高层大气（热层）中的原子碰撞，也就无法出现极光，表述正确，排除；</p><p>D项，根据第一段“极光是由于来自磁层和太阳风的带电高能粒子被行星磁场导引带进行星大气层，并与高层大气（热层）中的原子碰撞造成的发光现象”与第二段“通过对极光进行模拟和实验，人们可以探索等离子体发光和加速的机制和方法”可知，极光是发光的等离子体现象，且根据常识可知，极光有多种多样的形态和颜色，表述正确，排除。</p><p>本题为选非题，故正确答案为A。</p><p>【文段出处】《绚丽多彩的极光也能被人为制造！带你了解极光背后的原理》《极光：不只是瑰丽奇景还蕴含大量信息》</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "篇章阅读",
+      "materialHtml": "&emsp;极光是由于来自磁层和太阳风的带电高能粒子被行星磁场导引带进行星大气层，并与高层大气（热层）中的原子碰撞造成的发光现象。<br>&emsp;极光会对地球上的无线电波、卫星信号、电力线路等产生不利的影响。通过对极光进行观测和研究，人们可以了解太阳活动和地球环境之间的相互作用和变化，从而提高对太阳风暴、地磁风暴、电离层扰动等现象的预报和防护能力。同时，通过对极光进行模拟和实验，人们可以探索等离子体发光和加速的机制和方法，从而为人类利用等离子体进行能源开发和材料加工等提供了新的思路和技术。<br>&emsp;科学家还可以通过极光了解、总结外部空间变化规律，进而更加深入地研究极端空间天气事件，为设计设备仪器提供重要参考依据。比如说要设计一个使用寿命为100年的电力体系，就需要考虑如何应对百年难遇的大事件。如果将阈值设定得过高，就会增加成本。但若我们大致掌握了空间变化规律，就能以此设置设备的阈值，控制成本。",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23405,
+      "titleHtml": "<p>对这几段文字理解正确的一项是：</p>",
+      "type": "single",
+      "globalAccuracy": 67,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "人类可以利用极光进行能源开发和材料加工"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "极光会影响通信、电力、导航系统的正常运行"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "观测和研究极光有助于延长电力体系的使用寿命"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "极光具有强大的破坏力，但观测和研究它可以化害为利"
+        }
+      ],
+      "analysisHtml": "<p>A项，根据第二段“通过对极光进行模拟和实验······从而为人类利用等离子体进行能源开发和材料加工等提供了新的思路和技术”可知，人类利用的是“等离子体”而非“极光”，偷换概念，排除；</p><p>B项，根据第二段“极光会对地球上的无线电波、卫星信号、电力线路等产生不利的影响”可知，表述正确，当选；</p><p>C项，根据第三段“比如说要设计一个使用寿命为100年的电力体系······如果将阈值设定得过高，就会增加成本。但若我们大致掌握了空间变化规律，就能以此设置设备的阈值，控制成本”可知，观测和研究极光有助于“控制成本”而非“延长电力体系的使用寿命”，偷换概念，排除；</p><p>D项，“强大的破坏力”程度过重，文章只提及“不利的影响”，且“化害为利”无中生有，文章提到研究和观测极光有好处，但是并未提及可以将害处转化为好处，排除。</p><p>故正确答案为B。</p><p>【文段出处】《绚丽多彩的极光也能被人为制造！带你了解极光背后的原理》《极光：不只是瑰丽奇景还蕴含大量信息》</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "篇章阅读",
+      "materialHtml": "&emsp;极光是由于来自磁层和太阳风的带电高能粒子被行星磁场导引带进行星大气层，并与高层大气（热层）中的原子碰撞造成的发光现象。<br>&emsp;极光会对地球上的无线电波、卫星信号、电力线路等产生不利的影响。通过对极光进行观测和研究，人们可以了解太阳活动和地球环境之间的相互作用和变化，从而提高对太阳风暴、地磁风暴、电离层扰动等现象的预报和防护能力。同时，通过对极光进行模拟和实验，人们可以探索等离子体发光和加速的机制和方法，从而为人类利用等离子体进行能源开发和材料加工等提供了新的思路和技术。<br>&emsp;科学家还可以通过极光了解、总结外部空间变化规律，进而更加深入地研究极端空间天气事件，为设计设备仪器提供重要参考依据。比如说要设计一个使用寿命为100年的电力体系，就需要考虑如何应对百年难遇的大事件。如果将阈值设定得过高，就会增加成本。但若我们大致掌握了空间变化规律，就能以此设置设备的阈值，控制成本。",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23406,
+      "titleHtml": "<p>古代女子发髻类型繁多。堕马髻是梳在一侧，呈下堕状；飞仙髻是绾发于顶，呈飞动状；十字髻是将头发盘成一个“十”字形的发髻，再将余发在头的两侧各盘一鬟直垂至肩，用簪、钗固定而成；垂挂髻是将发从头顶平分两股，结成髻，垂挂于两侧，额前饰有垂发。</p><p>根据上述描述，下列发型和名称对应正确的是：</p>",
+      "type": "single",
+      "globalAccuracy": 96,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "<p><img width=\"82px\" height=\"76px\" src=\"//fb.fbstatic.cn/api/tarzan/images/18c852ce7170977.png?width=700\" />十字髻</p>"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "<p><img width=\"79px\" height=\"76px\" src=\"//fb.fenbike.cn/api/tarzan/images/18c852b34cc793d.png?width=700\" />堕马髻</p>"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "<p><img width=\"85px\" height=\"85px\" src=\"//fb.fbstatic.cn/api/tarzan/images/18c852bab1d35b7.png?width=700\" />垂挂髻</p>"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "<p><img width=\"76px\" height=\"88px\" src=\"//fb.fenbike.cn/api/tarzan/images/18c852c14f8e2d7.png?width=700\" />飞仙髻</p>"
+        }
+      ],
+      "analysisHtml": "<p>A项，根据“十字髻是将头发盘成一个‘十’字形的发髻，再将余发在头的两侧各盘一鬟直垂至肩，用簪、钗固定而成”可知，图片中发型归于一侧而非形成“十”字形，故图片发型与名称对应错误，排除；</p><p>B项，根据“堕马髻是梳在一侧，呈下堕状”可知，图片中发型呈两个圆环状，而非梳在一侧，故图片发型与名称对应错误，排除；</p><p>C项，根据“垂挂髻是将发从头顶平分两股，结成髻，垂挂于两侧，额前饰有垂发”可知，图片发型与名称对应正确，当选；</p><p>D项，根据“飞仙髻是绾发于顶，呈飞动状”可知，图片中发髻垂在耳侧而非绾于头顶，故图片发型与名称对应错误，排除。</p><p>故正确答案为C。</p><p>【文段出处】《那些你叫不上名字的古代发髻》《古代发髻之美，由内而外！》</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "细节判断",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23407,
+      "titleHtml": "<p>现下的非遗资源正被作为一种审美意识驱使下的文化资本推向市场。传统技艺、美术等具有固定表现形式和物质载体的非遗项目，被开发为可复制形式、可批量生产的有形商品流通、销售。而民间文学、表演艺术、民俗等没有特定物质载体的非遗项目，产出的则是以视觉、听觉、触觉等感官体验为主导的无形产品，它们被采用全媒体、数字化的生产模式向公众传播并获得盈利。<u>                    </u>，却拥有商品的属性和价值。</p><p>填入画横线处最恰当的一项是：</p>",
+      "type": "single",
+      "globalAccuracy": 90,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "非物质文化商品丧失了可复制性"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "这些非遗产品固然没有实体样态"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "这些非遗项目尽管市场拓展度低"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "文化产品虽需要特定的物质载体"
+        }
+      ],
+      "analysisHtml": "<p>横线出现在文段尾句，且为尾句的分句，故需结合横线前内容以及尾句内容进行分析。文段开篇介绍现下的非遗资源被作为文化资本推向市场这一背景，随后介绍具有固定表现形式和物质载体的非遗项目被开发为有形商品流通、销售，紧接着指出一些没有特定物质载体的非遗项目，产出的则是无形产品，并以全媒体、数字化的生产模式向公众传播并获得盈利。结合横线后“却拥有商品的属性和价值”以及前文内容可知，横线处应围绕“没有特定物质载体的非遗项目”进行介绍，对应B项。</p><p>A项，“丧失了可复制性”文段并未提及，无中生有，排除；</p><p>C项，“市场拓展度低”文段并未提及，无中生有，排除；</p><p>D项，“需要特定的物质载体”文段并未提及，无中生有，且“文化产品”概念扩大，文段讨论的核心话题为“非遗项目”，排除。</p><p>故正确答案为B。</p><p>【文段出处】《经济学视角下的非遗保护》</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "语句填空",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23408,
+      "titleHtml": "<p>传统基因组学将不同碱基以线性的形式存储于染色体上，并且多基于一个参考基因组来获取一个物种的基因信息。但是，线性基因组不能同时体现一个物种中不同个体的遗传变异情况，而且大片段的插入、缺失、拷贝数等变异类型也无法有效鉴定。而图形基因组的出现正好解决了这一难题。它突破了传统线性基因组只能存储一个个体遗传信息的局限性，可以存储、展示某类群中不同个体的遗传变异信息，从而真正代表一个类群的遗传信息。</p><p>这段文字没有提到：</p>",
+      "type": "single",
+      "globalAccuracy": 89,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "传统基因组学获取物种基因信息所使用的方式"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "线性基因组在鉴定基因片段变异类型上的局限"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "图形基因组研究对线性基因组研究的比较优势"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "图形基因组研究对线性基因组研究成果的借鉴"
+        }
+      ],
+      "analysisHtml": "<p>A项，根据“传统基因组学将不同碱基以线性的形式存储于染色体上，并且多基于一个参考基因组来获取一个物种的基因信息”可知，“获取物种基因信息所使用的方式”文段已提及，排除；</p><p>B项，根据“线性基因组不能同时体现一个物种中不同个体的遗传变异情况，而且大片段的插入、缺失、拷贝数等变异类型也无法有效鉴定”可知，“在鉴定基因片段变异类型上的局限”文段已提及，排除；</p><p>C项，根据“它突破了传统线性基因组只能存储一个个体遗传信息的局限性，可以存储、展示某类群中不同个体的遗传变异信息，从而真正代表一个类群的遗传信息”可知，“比较优势”文段已提及，排除；</p><p>D项，“研究成果的借鉴”文段未提及，当选。</p><p>本题为选非题，故正确答案为D。</p><p>【文段出处】《中国科研人员揭示 水稻基因组中的“隐藏”变异》</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "细节判断",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23409,
+      "titleHtml": "<p>过去二十多年来，有关中国文明起源的考古发现迎来了前所未有的高潮，良渚、陶寺、石峁、石家河等古城及相关考古遗存的揭示，充分展现了早期中国文明丰富多样的发展模式。考古发现与研究显示，早期中国文明是一个存在密切联系的互动圈，是一个相对独立且完整的体系，但并不封闭。不过，“中原中心论”并没有完全消失，它的升级版就是“华夏-边缘论”，即认为农耕区的中国文明才是华夏中心，其余是边缘。这种考察视角有失偏颇，与真实历史不符，我们应该从更大范围的互动中来考察中国文明的形成过程。</p><p>这是一篇文章的引言部分，这篇文章主要讨论的是：</p>",
+      "type": "single",
+      "globalAccuracy": 49,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "早期中国文明的互动和演进模式"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "“中原中心论”观点的来源和缺陷"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "考古对追溯中国文明起源的重要价值"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "地理环境对中国文明演进的重要影响"
+        }
+      ],
+      "analysisHtml": "<p>本题为接语选择题，应通读文段，重点关注文段最后谈论的核心话题。文段开篇指出有关中国文明起源的考古展现了早期中国文明丰富的发展模式，接着提到早期中国文明是一个互动圈，完整但不封闭，后文通过“不过”进行转折，转折后指出“中原中心论”并未完全消失，只是升级为“华夏-边缘论”，尾句指出这种考察视角依然有失偏颇，应该从更大范围的互动中考察中国文明的形成过程。故文段最后重点谈论的核心话题为从互动角度探讨研究中国文明的形成过程，根据话题一致原则，后文应继续围绕这一话题展开，对应A项。</p><p>B项，“‘中原中心论’”为前文论述的话题，并非文段最后谈论的核心话题，排除；</p><p>C项，为前文已经论述过的内容，后文不会再继续论述，排除；</p><p>D项，偏离文段最后谈论的核心话题“互动”，排除。</p><p>故正确答案为A。</p><p>【文段出处】《从四大板块看史前中国文明的演进与互动》</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "推断下文",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23410,
+      "titleHtml": "<p>智能计算机技术成为开启数字文化产业未来畅想的金钥匙。如果说传统文化产业发展的原动力源于文化消费的市场化，那么在数字化转型期，市场的无形之手已变成数字化之手，文化产业消费市场越来越多地由头部数字平台承接并管理，<u>                    </u>，同样的逻辑亦能解释文化产业的持续数字化对于前沿技术的强劲需求。虚拟现实、增强现实、人工智能、区块链以及不断创新的各类应用软件技术，正全面应用于文化产业大发展中，通过“技术+文化”赋能文化产业创新，改变文化产业面貌。</p><p>填入画横线部分最恰当的一项是：</p>",
+      "type": "single",
+      "globalAccuracy": 62,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "选择优质的数字技术平台成为企业发展关键"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "坚持技术创新才能促进文化产业高质量发展"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "智能数字技术成为发展文化产业新一轮动力"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "要同时有效发挥有形之手和无形之手的作用"
+        }
+      ],
+      "analysisHtml": "<p>横线位于文段中间，需结合上下文语境进行分析。文段开篇提出观点，智能计算机技术是数字文化产业发展的金钥匙。接下来指出，数字化转型期文化产业发展的动力已转变为数字化之手，文化产业消费市场越来越多地由头部数字平台承接并管理，强调数字技术对文化产业的重要作用。横线后通过“亦能解释”引导并列，从“文化产业的持续数字化对前沿技术有强劲需求”角度进行解释，即文化产业数字化需要前沿技术的支持，尾句列举各种前沿技术推动文化产业发生巨大变化。故横线前后均围绕“数字技术”“文化产业”展开论述，横线处也应围绕此展开，体现出数字技术对文化产业的重要作用，对应C项。</p><p>A项，“企业发展”偏离文段核心话题，文段论述核心话题为“文化产业”，排除；</p><p>B项，“技术”概念范围扩大，文段论述的是“数字技术”，且“创新”仅能对应后文，无法与上文进行衔接，排除；</p><p>D项，“有形之手”指政府的作用，文段并未提及政府，无法与上下文进行衔接，排除。</p><p>故正确答案为C。</p><p>【文段出处】《人工智能技术打造数字文化产业新形态》</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "语句填空",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23411,
+      "titleHtml": "<p>武夷茶农原先遵循江南炒青绿茶的风尚，后来改为品赏发酵陈茶的浓郁口感。明清两代，一直以江南炒青或蒸青的新茶为尚，讲究的是早春新出的茶芽，在清明与谷雨期间采摘制作，如虎丘茶、龙井茶、松萝茶等，成为茶人的新宠。比较例外的是蒸青的罗岕茶，但也是初夏的新茶，保有新鲜的春天气息。到了清初的武夷山地区，却在全国流行鲜嫩新茶的氛围中，产生影响近现代流行的饮茶方式，开始喝陈茶，饮用发酵过后的茶叶，有的是轻微发酵，有的是重发酵，有的则是完全发酵。</p><p>下列说法与这段文字不相符的是：</p>",
+      "type": "single",
+      "globalAccuracy": 30,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "明清两代江南地区一直流行饮用绿茶"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "江南炒青或蒸青都用早春新茶作原料"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "明代武夷山地区饮茶风尚受江南影响"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "饮用发酵茶是清初出现的一种新方式"
+        }
+      ],
+      "analysisHtml": "<p>A项，根据“明清两代，一直以江南炒青或蒸青的新茶为尚······如虎丘茶、龙井茶、松萝茶等，成为茶人的新宠”可知，表述正确，排除；</p><p>B项，根据“比较例外的是蒸青的罗岕茶，但也是初夏的新茶，保有新鲜的春天气息”可知，蒸青并非都用早春新茶作原料，也会用初夏新茶，表述错误，当选；</p><p>C项，根据“武夷茶农原先遵循江南炒青绿茶的风尚，后来改为品赏发酵陈茶的浓郁口感”以及“到了清初的武夷山地区，却在全国流行鲜嫩新茶的氛围中，产生影响近现代流行的饮茶方式，开始喝陈茶”可知，明代时，武夷山茶农遵循江南炒青绿茶的风尚，即武夷山地区饮茶风尚受江南影响，表述正确，排除；</p><p>D项，根据“到了清初的武夷山地区······开始喝陈茶，饮用发酵过后的茶叶，有的是轻微发酵，有的是重发酵，有的则是完全发酵”可知，表述正确，排除。</p><p>本题为选非题，故正确答案为B。</p><p>【文段出处】光明日报《小壶细盏天地宽——工夫茶茶器文化流变》</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "细节判断",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23412,
+      "titleHtml": "<p>“行星撞击说”认为，6500万年前，一颗小行星撞击了地球，撞入墨西哥尤卡坦半岛，并在希克苏鲁伯镇附近形成一个宽约160公里、深约20公里的陨石坑。撞击产生的威力相当于100亿颗二战时期使用的原子弹，导致地球上75%的动植物灭绝。行星撞击还引发了森林大火和海啸，并将硫喷射到大气中，遮蔽了太阳，从而导致了全球变冷，最终使恐龙灭绝。最新研究显示，钻探取自希克苏鲁伯陨坑的岩石中含有爆炸性熔融、大地震、海啸、泥石流和森林大火导致的约130米厚的沉积物。研究人员认为，这些都是在小行星撞击地球后24小时内形成的。</p><p>这段文字意在：</p>",
+      "type": "single",
+      "globalAccuracy": 76,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "介绍“行星撞击说”又有了新的研究证据"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "证明小行星撞击地球最终导致恐龙灭绝"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "强调行星撞击地球所产生的后果十分严重"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "说明“行星撞击说”得到越来越多人的认可"
+        }
+      ],
+      "analysisHtml": "<p>文段开篇介绍“行星撞击说”的具体内容，随后说明了行星撞击地球所产生的严重后果。接着通过“最新研究”引出话题——希克苏鲁伯陨坑岩石中的沉积物，文段末尾说明了岩石中的沉积物是小行星撞击地球后24小时内形成的。故文段主要说明了新的研究发现进一步证明了“行星撞击说”，对应A项。</p><p>B项，“行星撞击说”只是恐龙灭绝原因的一种假设，“小行星撞击地球最终导致恐龙灭绝”表述过于绝对，且“恐龙灭绝”仅为行星撞击地球所产生的严重后果之一，表述片面，排除；</p><p>C项，对应文段结论之前的内容，非重点，排除；</p><p>D项，“得到越来越多人的认可”文段并未提及，无中生有，排除。</p><p>故正确答案为A。</p><p>【文段出处】新华社《“小行星撞地球致恐龙灭绝”假说添佐证》</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "中心理解",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23413,
+      "titleHtml": "<p>在市场需求的推动下，企业会不断投入研发，开发出新技术，满足消费者的新需求，从而获得更高的利润。为了持续发展，企业又会将这些利润用于研发，推动技术不断进步，从而获得更多的利润。这就是人类的技术循环过程，这个过程不断推动着技术和经济的发展。但归根到底，是对利润的追求，而不是对道德的追求，驱动着人类文明的发展。从这个角度，市场需求是技术进步的基础，技术是经济发展的副产品。</p><p>这段文字意在说明：</p>",
+      "type": "single",
+      "globalAccuracy": 56,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "利润主导了人类技术循环过程"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "高利润的实现是企业唯一目标"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "市场的需求催生了技术的进步"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "技术的进步推动了经济的发展"
+        }
+      ],
+      "analysisHtml": "<p>文段开篇指出市场需求推动企业开发出新技术，满足消费者新需求，获得更高利润。随后又表明企业为持续发展，将利润再次投入，从而不断推动技术进步，获得更多利润。紧接着指出这就是技术循环过程，然后通过“但”进行转折，强调是对利润的追求驱动着人类文明的发展，尾句通过指代词“从这个角度”对上文进行概括总结，强调市场需求是技术进步的基础。故整个文段核心话题为“市场需求”，对应C项。</p><p>A项，“利润主导技术循环过程”对应文段分述部分的内容，非重点，排除；</p><p>B项，“高利润”对应文段分述部分的内容，非重点，且“唯一目标”表述过于绝对，排除；</p><p>D项，偏离文段核心话题“市场需求”，且根据“技术是经济发展的副产品”可知，选项表述与文意相悖，排除。</p><p>故正确答案为C。</p><p>【文段出处】南方周末《高大上的芯片与挖矿、打游戏有何关系？技术进步是市场需求催生的》</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "中心理解",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23414,
+      "titleHtml": "<p>对于珊瑚礁来说，海水温度的上升会导致与之共生并提供食物的藻类的大量丧失，从而导致珊瑚礁“白化”甚至死亡。更糟糕的是，由于海洋吸收了大量的二氧化碳，海水酸化严重，珊瑚礁的生长进一步减缓。健康的珊瑚礁是25%以上的海洋生物的家园，并且可以保护海岸线免受风暴和侵蚀，还可以为当地社区提供经济收入和就业机会（比如旅游业）。虽然珊瑚礁在不受干扰的环境下具有较快的恢复能力，但在全球变暖的大进程下，珊瑚礁的总体数量呈现出逐年下降的趋势。据联合国环境规划署估计，世界上25%至50%的珊瑚礁已经遭到破坏，如果不大幅减少温室气体排放，到2100年，所有海域内的珊瑚礁都将死亡。</p><p>这段文字意在强调：</p>",
+      "type": "single",
+      "globalAccuracy": 93,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "导致海洋热浪发生的直接原因是温室气体排放"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "海水温度上升将严重威胁所有海洋生物的生存"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "减少温室气体排放以保护珊瑚礁已经刻不容缓"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "珊瑚礁对海洋环境和人类社会都具有重大影响"
+        }
+      ],
+      "analysisHtml": "<p>文段首先介绍了海水温度上升给珊瑚礁带来的严重危害，接着通过程度词“更糟糕的是”强调了温室气体二氧化碳对珊瑚礁的影响，然后介绍了珊瑚礁对海洋和人类的重要性，最后通过反面提对策指出如果不大幅减少温室气体排放，未来所有海域内的珊瑚礁都将死亡。故文段重点强调要通过减少温室气体排放保护珊瑚礁，对应C项。</p><p>A项，“导致海洋热浪”属于非重点内容，且未包含文段主题词“珊瑚礁”，排除；</p><p>B项，“所有海洋生物”将文段主题词“珊瑚礁”范围扩大，且为问题表述，非重点，排除；</p><p>D项，“珊瑚礁对海洋环境和人类社会的影响”对应前文内容，非重点，排除。</p><p>故正确答案为C。</p><p>【文段出处】《大海不是在变暖，而是在沸腾》</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "中心理解",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23415,
+      "titleHtml": "<p>中华民族现代文明与西方现代文明的区别是多方面的，但最为根本的区别，就是两种文明遵循的逻辑不同。西方现代文明遵循的是资本逻辑，以资本为中心；中华民族现代文明遵循的是人的逻辑，以人民为中心。从历史上看，西方现代文明确实是按照资本逻辑发展起来的，随着资本的发展，西方现代文明在世界范围内传播与扩展。资本成为西方现代文明的决定性力量。中华民族现代文明与之相反，它首要关注的是人的生存发展，所要追求的是人民的根本利益，最终实现人的全面发展。这是中华民族现代文明最为显著的特点和本质特征。</p><p>这段文字意在强调：</p>",
+      "type": "single",
+      "globalAccuracy": 51,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "中华民族现代文明是以人为本的文明"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "不同逻辑的遵循将文明引向不同方向"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "中华民族与西方在现代文明发展的异同"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "资本是成就西方现代文明的决定性力量"
+        }
+      ],
+      "analysisHtml": "<p>文段开篇先介绍中西方现代文明最大的区别在于其遵循的逻辑不同，即“西方现代文明遵循的是资本逻辑”“中华民族现代文明遵循的是人的逻辑”。接下来进一步阐述按照资本逻辑发展起来的西方现代文明非常重视资本的决定性作用，而中华民族现代文明恰恰“与之相反”，更加重视人的生存、利益与全面发展。尾句通过“最为显著”“本质特征”等程度词再次强调中华民族现代文明的特征是以人为本，对应A项。</p><p>B项，文段讨论的核心话题是“中华民族现代文明”，而非“文明”，概念扩大，排除；</p><p>C项，“异同”指不同和相同两个方面，而文段主要论述了中西方现代文明的“异”，并利用这种对比突出中华民族现代文明以人为本的重要特性，“同”无中生有，排除；</p><p>D项，文段讨论的核心话题是“中华民族现代文明”，“西方现代文明”偏离文段核心话题，排除。</p><p>故正确答案为A。</p><p>【文段出处】《从人的逻辑看中华民族现代文明》</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "中心理解",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23416,
+      "titleHtml": "<p>3，-5，6，-9，11，-15，18，-23，（    ）</p>",
+      "type": "single",
+      "globalAccuracy": 92,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "-33"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "27"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "35"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "45"
+        }
+      ],
+      "analysisHtml": "<p>观察发现数列项数较多，考虑多重数列。优先交叉看，奇数项数列：3，6，11，18，（    ），无明显特征，考虑作差，后项减前项可得：3，5，7，（    ），是公差为2的等差数列，下一项为7+2=9，故所求项为9+18=27；偶数项数列：-5，-9，-15，-23，无明显特征，考虑作差，后项减前项可得：-4，-6，-8，是公差为-2的等差数列。</p><p>故正确答案为B。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "数字推理",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23417,
+      "titleHtml": "<p>3，6，15，39，102，267，（    ）</p>",
+      "type": "single",
+      "globalAccuracy": 52,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "666"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "669"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "696"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "699"
+        }
+      ],
+      "analysisHtml": "<p>数列无明显特征，且变化较快，优先考虑递推数列。观察发现：6×3-3=15，15×3-6=39，39×3-15=102，102×3-39=267，规律为：第二项×3-第一项=第三项，故所求项为267×3-102=699。</p><p>故正确答案为D。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "数字推理",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23418,
+      "titleHtml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mfrac><mn>1</mn><mn>9</mn></mfrac></math>，729，9，81，27，（    ）",
+      "type": "single",
+      "globalAccuracy": 53,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "27<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><msqrt><mi>3</mi></msqrt></math>"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "36"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "36<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><msqrt><mi>3</mi></msqrt></math>"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "45"
+        }
+      ],
+      "analysisHtml": "数列变化起伏较大，且存在典型幂次数，优先考虑幂次数列。原数列可转化为：<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><msup><mn>3</mn><mrow><mo>−</mo><mn>2</mn></mrow></msup><mo>,</mo><msup><mn>3</mn><mrow><mn>6</mn></mrow></msup><mo>,</mo><msup><mn>3</mn><mrow><mn>2</mn></mrow></msup><mo>,</mo><msup><mn>3</mn><mrow><mn>4</mn></mrow></msup><mo>,</mo><msup><mn>3</mn><mrow><mn>3</mn></mrow></msup></math>，（    ）。数列的底数均为3，指数依次为：-2，6，2，4，3，（    ），无明显特征，考虑作差，后项减前项得到新数列：8，-4，2，-1，（    ），是公比为 -0.5的等比数列，则所求项的指数为 -1×(-0.5)+3=<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mfrac><mn>7</mn><mn>2</mn></mfrac></math>。故所求项为<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><msup><mn>3</mn><mrow><mfrac><mn>7</mn><mn>2</mn></mfrac></mrow></msup></math>=27<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><msqrt><mi>3</mi></msqrt></math><br>故正确答案为A。",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "数字推理",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23419,
+      "titleHtml": "9，18，31<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mfrac><mn>1</mn><mn>2</mn></mfrac></math>，51<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mfrac><mn>3</mn><mn>4</mn></mfrac></math>，82<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mfrac><mn>1</mn><mn>8</mn></mfrac></math>，（    ）",
+      "type": "single",
+      "globalAccuracy": 40,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "96<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mfrac><mn>1</mn><mn>32</mn></mfrac></math>"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "102<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mfrac><mn>3</mn><mn>16</mn></mfrac></math>"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "124<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mfrac><mn>5</mn><mn>32</mn></mfrac></math>"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "127<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mfrac><mn>11</mn><mn>16</mn></mfrac></math>"
+        }
+      ],
+      "analysisHtml": "<p>数列大部分为分数，考虑分数数列。观察无明显规律，考虑作差。后项减前项得到新数列：9，<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=DaupXpX1__lJLA4nWCqecA\" />，<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=ajsNwAL93oU-wLGabiD11Q\" />，<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=kiuebw2n_tbf8eiEaen7eg\" />，（    ），将新数列转化为：<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=gCjhfUR4CF7CRTJ4PormZg\" />，<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=Wd3veFDfIxk1E22KWcSPgA\" />，<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=YuJhLYjQJCS5U-kGoHeexA\" />，<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=j3A14mDu68DDjoGrUpB8Xw\" />，（    ）。新数列分子部分：9，27，81，243，（    ），是公比为3的等比数列，则下一项分子部分为243×3=729；新数列分母部分：1，2，4，8，（    ），是公比为2的等比数列，则下一项分母部分为8×2=16，故新数列下一项为<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=33b9KtMAUAvWFB15Mt1iZKd_RXcifQpztduZLX6qeQ2_rEvnlkLDORqO6bp7mzuo\" />。所求项为<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=OAf_-IGLDHNGr55hfSZg2rG-EwZMUTlhS7tSOiho8sVVIvxhQL1ZOk9Hls6qoK9d\" />。</p><p>故正确答案为D。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "数字推理",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23420,
+      "titleHtml": "<p>1.4，4.2，21，147，1323，（    ）</p>",
+      "type": "single",
+      "globalAccuracy": 84,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "12043"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "13042"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "14553"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "16048"
+        }
+      ],
+      "analysisHtml": "<p>数列相邻两项之间有明显的倍数关系，优先考虑作商。后项÷前项得到新数列：3，5，7，9，（    ），是公差为2的等差数列，则新数列下一项为9+2=11。故所求项为1323×11=14553。</p><p>故正确答案为C。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "数字推理",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23421,
+      "titleHtml": "<p>时钟的分针顶点距离圆心5厘米，现在时间为7：30，那么接下来时针和分针第三次成直角的时候，分针顶点走过的长度累计为多少厘米？</p>",
+      "type": "single",
+      "globalAccuracy": 46,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mfrac><mn>156</mn><mn>11</mn></mfrac><mi>π</mi></math>"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "15π"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mfrac><mn>47</mn><mn>3</mn></mfrac><mi>π"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mfrac><mn>33</mn><mn>2</mn></mfrac><mi>π"
+        }
+      ],
+      "analysisHtml": "由题意可知，7：30至8：00之间会有一次直角，根据每小时有两次时针和分针成直角的情况，可知8：00至9：00之间会有两次直角，故第三次时针和分针成直角的时间是9：00。7：30到9：00经过1.5小时，分针每小时走1个圆周，因此分针共走了1.5个圆周。根据公式：周长=2πr，可知分针顶点走过的长度累计为1.5×2π×5=15π厘米。故正确答案为B。",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "几何问题",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23422,
+      "titleHtml": "<p>有一批零件，如果由甲、乙两人加工，20小时可以完成，需要支付酬劳1200元；如果由甲、丙两人加工，15小时可以完成，需要支付酬劳1350元；如果由乙、丙两人加工，12小时可以完成，需要支付酬劳1320元。现在安排3人都参与加工，并要求在13小时以内完成，那么最少需要支付酬劳多少元？</p>",
+      "type": "single",
+      "globalAccuracy": 27,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "1270"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "1280"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "1290"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "1300"
+        }
+      ],
+      "analysisHtml": "赋值这批零件的工作总量为60（20、15、12的最小公倍数），则甲乙的效率和为3；甲丙的效率和为4；乙丙的效率和为5。根据题意，可知甲乙合作1小时所需酬劳为1200÷20=60元，甲丙合作1小时所需酬劳为1350÷15=90元，乙丙合作1小时所需酬劳为1320÷12=110元。进一步可推出甲、乙、丙各自的效率及工作1小时的酬劳，如下<br><table><thead><tr><th></th><th>甲</th><th>乙</th><th>丙</th></tr></thead><tbody><tr><td>效率</td><td>1</td><td>2</td><td>3</td></tr><tr><td>酬劳</td><td>20</td><td>40</td><td>70</td></tr><tr><td>单位效率酬劳</td><td>20</td><td>20</td><td>70/3</td></tr></tbody></table><br>要想支付的酬劳尽可能少，应让单位效率酬劳少的人多干活儿，即甲乙干13小时，剩余的工作由丙来干，则丙的工作时间为（60－1×13－2×13）÷3＝7小时，故最少需要支付酬劳60×13+70×7=1270元。<br>因此，选择A选项。",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "工程问题",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23423,
+      "titleHtml": "<p>小张和小王的年龄之和为45岁。5年之后小李的年龄比小张的3倍少16岁。已知小张的年龄比小王小，那么再过5年，3人的平均年龄最大可能为多少岁？</p>",
+      "type": "single",
+      "globalAccuracy": 41,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "45"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "48"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "50"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "54"
+        }
+      ],
+      "analysisHtml": "设小张今年x岁，则5年后小李3（x+5）-16=（3x-1）岁。再过5年，即10年后，小张和小王的年龄之和为45+10+10=65岁，小李年龄为3x-1+5=（3x+4）岁，则3人的平均年龄为<math xmlns=\"http://www.w3.org/1998/Math/MathML\" ><mfrac><mrow><mn>65</mn><mo>+</mo><mo stretchy=\"false\">(</mo><mn>3</mn><mi>x</mi><mo>+</mo><mn>4</mn><mo stretchy=\"false\">)</mo></mrow><mn>3</mn></mfrac></math>=(x+23)岁。要想3人的平均年龄最大，则x取最大值。根据“小张和小王的年龄之和为45岁”且“小张的年龄比小王小”，可知小张的年龄＜<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mfrac><mn>45</mn><mn>2</mn></mfrac></math>=22.5岁，可得x最大为22，因此再过5年，3人的平均年龄最大为22+23=45岁。故正确答案为A。",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "年龄问题",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23424,
+      "titleHtml": "<p>甲、乙两店同时开展促销活动，甲店单件商品的标价超过50元可以立减20元后再打9折，乙店单件商品的标价超过50元可以打8折后再立减10元。现两家店都在销售3种商品，相同商品在两店价格相同，分别为45元、75元、85元，某人准备购买其中两种商品各一件，最少的花费在以下哪个范围之内？</p>",
+      "type": "single",
+      "globalAccuracy": 56,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "90元以下"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "90~93元"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "93~96元"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "96元以上"
+        }
+      ],
+      "analysisHtml": "<p>根据题意，购买3种商品在甲、乙两店的花费如下表：</p><p><img width=\"596px\" height=\"107px\" src=\"//fb.fenbike.cn/api/tarzan/images/18c814584870b3f.png?width=700\" /></p><p>比较可得，购买其中两种商品各一件，最少花费45+49.5=94.5元，在C项范围内。</p><p>故正确答案为C。</p><p>备注：同一家店，85元商品的花费一定高于75元商品，实际计算时算出75元商品在甲、乙两店的花费均大于45元，即可确定花费最少的情况，无须再计算85元商品进行比较。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "经济利润",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23425,
+      "titleHtml": "<p>甲、乙两个施工队共同完成一项工程需要20天。甲、乙两队合作4天后，乙队因故退出6天后回归，回归时工程总量已完成40%。为保证按时完工，乙队回归时带来了丙施工队，甲、乙、丙三队共同工作10天后刚好完成工程。问甲、乙、丙队的效率比为多少？</p>",
+      "type": "single",
+      "globalAccuracy": 60,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "3：6：10"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "4：8：15"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "6：3：2"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "10：5：3"
+        }
+      ],
+      "analysisHtml": "根据题意，可得4×（甲+乙）+6甲=20×（甲+乙）×40%，解得甲：乙=2：1。赋值甲的效率为2，乙的效率为1，则该项工程的总量为20×（2+1）=60。根据“甲、乙、丙三队共同工作10天后刚好完成工程”，可得10×（甲+乙+丙）=60×（1-40%），解得丙=0.6，则甲、乙、丙队的效率比为2：1：0.6=10：5：3。",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "工程问题",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23426,
+      "titleHtml": "<p>甲、乙两人以相同速度一起骑车从A地前往B地。同行1小时后，两人休息20分钟，然后甲继续原速出发，此时乙发现有重要物品未带，原速返回A地去取，到达A地后立即开车前往B地。最终乙比甲提前12分钟到达B地。已知开车速度是骑行速度的5倍，那么甲全程用了多少分钟？</p>",
+      "type": "single",
+      "globalAccuracy": 49,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "165"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "175"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "185"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "195"
+        }
+      ],
+      "analysisHtml": "<p>题干中只给出时间，没有具体的速度和路程，考虑用赋值法解题，赋值甲、乙两人骑车的速度均为1，则乙开车的速度为5。根据“乙原速返回A地”，可知乙返回A地需要1小时，此时甲骑行了1+1=2小时=120分钟。设从A地前往B地乙开车的时间为t分钟，则甲骑行的时间为（120+t+12）分钟，根据公式：路程=速度×时间，可得1×（120+t+12）=5×t，解得t=33，则甲全程用时=骑行时间+休息时间=（120+33+12）+20=185分钟。</p><p>故正确答案为C。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "行程问题",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23427,
+      "titleHtml": "<p>某公司组织面试，每位考生都要回答甲、乙、丙、丁、戊5道试题，作答顺序随机安排。已知小张第二题是甲题、第四题是丁题，小王第三题是乙题，那么两人作答顺序完全相同的概率是：</p>",
+      "type": "single",
+      "globalAccuracy": 36,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mfrac><mn>1</mn><mn>72</mn></mfrac></math>"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mfrac><mn>1</mn><mn>48</mn></mfrac></math>"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mfrac><mn>1</mn><mn>36</mn></mfrac></math>"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mfrac><mn>1</mn><mn>24</mn></mfrac></math>"
+        }
+      ],
+      "analysisHtml": "根据公式：概率=满足情况数÷总情况数，分析如下，①总情况数：小张除了2题顺序固定，剩余3题全排列，有<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><msubsup><mi>A</mi><mn>3</mn><mn>3</mn></msubsup></math>种情况；小王除了1题顺序固定，剩余4题全排列，有<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><msubsup><mi>A</mi><mn>4</mn><mn>4</mn></msubsup></math>种情况，则总情况数有<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><msubsup><mi>A</mi><mn>3</mn><mn>3</mn></msubsup></math>×<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><msubsup><mi>A</mi><mn>4</mn><mn>4</mn></msubsup></math>=144种。②满足条件情况数：要求两人作答顺序完全相同，即第二题是甲题、第三题是乙题、第四题是丁题，这3题顺序固定，剩余2题全排列，小张有<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><msubsup><mi>A</mi><mn>2</mn><mn>2</mn></msubsup></math>种情况，小王只有与小张完全相同的1种情况，则满足条件情况数有<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><msubsup><mi>A</mi><mn>2</mn><mn>2</mn></msubsup></math>×1=2种。故所求概率=2/144=1/72<br>故正确答案为A。",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "概率问题",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23428,
+      "titleHtml": "<p>有一组算式1+1、2+3、3+5、4+7、1+9、2+11、3+13、4+15、1+17、2+19、3+21、4+23、1+25、2+27、······和为2021的是第几个算式？</p>",
+      "type": "single",
+      "globalAccuracy": 60,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "507"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "1010"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "1012"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "1014"
+        }
+      ],
+      "analysisHtml": "<p>方法一：根据题干可得，算式加号前为“1、2、3、4”四个数进行周期循环，加号后是首项为1、公差为2的等差数列，题干信息充分，可代入选项验证：</p><p>代入A项，根据<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=dtrnag66J_iKwvhq3gOb81mD-11t0c8c5HvNnjtExmOB3LdaHLdn95rWi16OSAEs\" />，则加号前数字为3，即加号后数字=2021-3=2018。根据等差数列通项公式：<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=qro4QkX3RYVM4VGBbZ-gvzi3mg5X6E7RY1Luw0WLKhM\" />，则有<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=ZSiAqsHhJOnYomGaoXDHut1qahVOjKxrNgT25d0faD0\" /><img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=FXVEdN9pxTenlv6ikUGIAg\" />，即第507个算式加号后数字为<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=4Px42z39n8foGtmH_9DO8w\" /><img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=20dMK4w_YKBYZlsh3p0DEw\" /><img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=v5Fe4AISF3yBjrQ_Lz30xQ\" />，不符合要求，排除；</p><p>代入B项，根据<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=I_PlaIFiJY3IAtDqFWqFg706MQsoKzOAUhifaMuQ1PD06M71HJVayYwZ7nXv9kB3\" />，则加号前数字为2，即加号后数字=2021-2=2019。根据等差数列通项公式，则有<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=B5uZHlUPcspWh4ue9NOQ7g6vinDJAuuv6joe0F7u-FY\" /><img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=VFqM7xNF4YTsvyEXSAPcjQ\" />，即第1010个算式加号后数字为2019，符合要求，当选。</p><p>方法二：根据题干可得，加和为2021的情况有“1+2020”、“2+2019”、“3+2018”、“4+2017”四种。因加号后均为奇数，可排除“1+2020”、“3+2018”两种情况。验证剩余情况：假设该算式为“2+2019”，根据等差数列通项公式：<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=Z0aRFpFm0Q49c0EP74STJb9ZRIugJWeWpiABqwQT5Ps\" />，可得<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=scOQeWIS4sg9Dj9yu5QjjkZxP2jelDnJ5B4IJamUgKc\" />，则<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=JyG9ZBZynN0I0mu12SrriuYaai2TtGDbL4n4_pVXoyQ\" />；根据<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=I_PlaIFiJY3IAtDqFWqFg706MQsoKzOAUhifaMuQ1PD06M71HJVayYwZ7nXv9kB3\" />，则加号前数字为2，符合要求，无需验证其余情况。</p><p>故正确答案为B。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "计算问题",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23429,
+      "titleHtml": "<p>某公司招聘员工，来应聘的男女人数比是18：17，最后被录取的有280人，其中男女人数比是3：4，未被录取的男女人数比是6：5。问来应聘的共有多少人？</p>",
+      "type": "single",
+      "globalAccuracy": 69,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "630"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "720"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "1050"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "1400"
+        }
+      ],
+      "analysisHtml": "<p>方法一：由于被录取的有280人，其中男女人数比是3：4，可知被录取的男女人数分别为：<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=BG_oSHtwAyFMmKkrrAgPV89Pvmu-ZKcuhAQ1Dptvg1o\" />人、280-120=160人。设来应聘的男性人数为18x人、女性人数为17x人，根据未被录取的男女人数比是6：5，可知<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=3Eo3fB_ZymDHIYf2DaReF5JFqBOuXm4VbseD8uePr3LbnzHbwvJIF5b_xsevQohH\" />，解得x=30。则来应聘的共有<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=BgxJRn2dbZHqi145nLirEdS33ZNyF4Vx0KAZQQh95Ko\" />人。</p><p>方法二：来应聘的男女人数比是18：17，可知来应聘的总人数是18+17=35的倍数，选项720不是35的倍数，排除B项。根据未被录取的男女人数比是6：5，可知未被录取人数是6+5=11的倍数。而应聘总人数-录取人数=未被录取人数，代入剩余选项：A项，630-280=350，不是11倍数，排除；D项、1400-280=1120，不是11倍数，排除。C项，1050-280=770，是11倍数，当选。</p><p>故正确答案为C。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "和差倍比",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23430,
+      "titleHtml": "<p>一块空地如下图所示，AD、BC均与底边垂直，三角形ACD为等腰直角三角形，且AG、DE、CF长度均相等。现在图中阴影部分种上草皮，已知DF长80米，BC长160米，那么草皮面积为多少平方米？</p><p><img width=\"201px\" height=\"223px\" src=\"//fb.fenbike.cn/api/tarzan/images/18c813c05ffa068.png?width=700\" /></p>",
+      "type": "single",
+      "globalAccuracy": 37,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "3200"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "3600"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "4000"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "4800"
+        }
+      ],
+      "analysisHtml": "<p>设AG、DE、CF长度均为x米，则DC=DF-CF=（80-x）米，EC=DE+DC=x+（80-x）=80米。根据题意，AD=DC，则GD=AD-AG=（80-x）-x=（80-2x）米。根据公式：<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=fbJFSZulG4md2Nr6iANvZm5c6sGk03lCID-3HPX6XGGy7jlxJDCddm17BDCRvRm3\" />，则<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=L_OkgPdVnhUsaUXrBlr6X47qTijrOtmg2GidPo8Bjti-MRn9MgD9u0RukBDrrZZA\" /><img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=sRetF_XkmA2Z-OVtLx-IeVM3c5i0FwyBEdPXn-5aAMO1HjqZ4c8zTNgLrxaSvGjq\" />平方米；<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=JlCLuZWsfRng0h_SyCRPqYCJVrkXWhsJDTxBj-ooujzMWfp6tANCqVxAJNLBYV_u\" /><img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=sRetF_XkmA2Z-OVtLx-IeVa2NWR-ZZ8xZyx-UnmUeXs\" />平方米。故草皮面积<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=-cSFWi2q3nHPBWxNPwjVBrfPhn1NMDB2JlulzVzkQaBsF-UL1i2kaFEGZ2TtmygI\" /><img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=-C9Gz-ddoIsSa1j_hactMTKSHvkdSSHKWwxD7SK-OKk\" />平方米。</p><p>故正确答案为A。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "几何问题",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23431,
+      "titleHtml": "<p>某工厂有100个零件，从1-100编号后将编号为奇数的零件拿掉，余下50个零件按顺序重新从1开始编号后将编号为奇数的零件拿掉，重复上述操作直到剩下一个零件，那么余下这个零件最初的编号是多少？</p>",
+      "type": "single",
+      "globalAccuracy": 58,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "32"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "50"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "64"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "100"
+        }
+      ],
+      "analysisHtml": "<p>方法一：根据题意，每次都将编号为奇数的零件拿掉，即每次剩下的零件都是当前编号为偶数（即除以2为整数）的零件，考虑代入排除。</p><p>经过第一轮操作：32÷2=16，50÷2=25，64÷2=32，100÷2=50，可知只有编号为50的零件被拿掉，排除B项；</p><p>经过第二轮操作：32÷4=8，64÷4=16，100÷4=25，可知只有编号为100的零件被拿掉，排除D项；</p><p>剩余两项中，64÷2=32，可知64的下一轮刚好是32，即编号为32的零件先于64被拿掉，排除A项。</p><p>方法二：根据题意，每次都是将零件重新从1开始编号后将编号为奇数的零件拿掉，即每次剩下的零件都是当前编号为偶数（即除以2为整数）的零件，且下一次该零件的编号为<img flag=\"tex\" src=\"//fb.fenbike.cn/api/planet/accessories/formulas?latex=DIfrf5taTswgDwqxkekjsGk8rEqI7RmVX4A6Vr85QBs\" />（如当前编号为100，下一次编号为<img flag=\"tex\" src=\"//fb.fenbike.cn/api/planet/accessories/formulas?latex=WRqte3hGOkm4OwO_6-M2iqCpsqQXlFirGr93H2q0MG8\" />）。</p><p>由此进行推导，在第n轮中编号为a的零件，若<img flag=\"tex\" src=\"//fb.fenbike.cn/api/planet/accessories/formulas?latex=N_yZ6zqx0xqpzyl9JHGMiQ\" />为整数，则该零件可保留到第n+1轮，且其在第n+1轮中的编号为<img flag=\"tex\" src=\"//fb.fenbike.cn/api/planet/accessories/formulas?latex=N_yZ6zqx0xqpzyl9JHGMiQ\" />；同理，若<img flag=\"tex\" src=\"//fb.fenbike.cn/api/planet/accessories/formulas?latex=FHn-_lviAxWJicu-uTCSeJ3vziCO6LQrbwdxAykSQuY\" />为整数，则该零件可保留到第n+2轮。以此类推，初始编号中包含越多2因数的零件，能保留下来的轮数越多。结合选项分析，A项<img flag=\"tex\" src=\"//fb.fenbike.cn/api/planet/accessories/formulas?latex=-8O5rX5Oan_oZt1pYglOWQ\" />，B项<img flag=\"tex\" src=\"//fb.fenbike.cn/api/planet/accessories/formulas?latex=_Q2Wf1XM4a7HGzvdLOeohA\" />，C项<img flag=\"tex\" src=\"//fb.fenbike.cn/api/planet/accessories/formulas?latex=33NsI0Cdrk5f56Pcjc9eJw\" />，D项<img flag=\"tex\" src=\"//fb.fenbike.cn/api/planet/accessories/formulas?latex=D22ClMZMsDV1PDGgF64kBg\" />，即C项包含的2因数最多。</p><p>故正确答案为C。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "计算问题",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23432,
+      "titleHtml": "<p>如图所示有25个点，行、列都以相等的间隔排列。用其中4个点作为顶点连接成正方形，那么有多少种不同边长的正方形？</p><p><img width=\"239px\" height=\"205px\" src=\"//fb.fenbike.cn/api/tarzan/images/18c813ce2af9e9f.png?width=700\" /></p>",
+      "type": "single",
+      "globalAccuracy": 16,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "4"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "5"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "6"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "7"
+        }
+      ],
+      "analysisHtml": "将同一行、同一列两点之间的距离赋值为1。要求选出4个点作为顶点连接成正方形，对正方形在一条边上的两个点分情况讨论：<br>（1）在一条边上的两个点在同一行或列上，正方形边长有1、2共2种情况，如下图所示。<br><img width=\"376px\" height=\"180px\" src=\"//fb.fbstatic.cn/api/tarzan/images/18c8148b2242fe6.png?width=700\"><br>（2）在一条边上的两个点在同一条斜线上，正方形边长有<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><msqrt><mi>2</mi></msqrt></math>、2<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><msqrt><mi>2</mi></msqrt></math>、3<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><msqrt><mi>2</mi></msqrt></math>共3种情况，如下图所示。<br><img width=\"586px\" height=\"184px\" src=\"//fb.fbstatic.cn/api/tarzan/images/18c81491d0653ab.png?width=700\"><br>（3）在一条边上的两个点既不在同一行或列上，也不在同一条斜线上，正方形边长有<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><msqrt><mi>5</mi></msqrt></math>、<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><msqrt><mi>10</mi></msqrt></math>共2种情况，如下图所示。<br><img width=\"407px\" height=\"183px\" src=\"//fb.fbstatic.cn/api/tarzan/images/18c81496f6852fa.png?width=700\"><br>综上，共有2+3+2=7种不同边长的正方形。<br>故正确答案为D。",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "几何问题",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23433,
+      "titleHtml": "<p>某同学在某天12：15-13：15内随机一个时刻开始午睡，午睡时长为0-1小时内的随机时间。问该同学在14：00之后起床的概率为：</p>",
+      "type": "single",
+      "globalAccuracy": 39,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mfrac><mn>1</mn><mn>16</mn></mfrac></math>"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mfrac><mn>1</mn><mn>32</mn></mfrac></math>"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mfrac><mn>1</mn><mn>48</mn></mfrac></math>"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mfrac><mn>1</mn><mn>64</mn></mfrac></math>"
+        }
+      ],
+      "analysisHtml": "设该同学开始午睡的时间为x，起床的时间为y。如下图所示，直线12：15≤x≤13：15，x≤y≤x+1h围成的平行四边形ABCD区域即为该同学可能的起床时间。结合题意，午睡时长为0-1小时，要想满足该同学在14：00之后起床，则开始午睡的时间要在13：00-13：15之间，最晚的起床时间对应14：00-14：15之间，即图中三角形DEF对应的阴影区域。假设每分钟对应的长度为1，则△DEF面积=0.5×15×15=112.5，平行四边形ABCD面积=2×△ABC面积=2×0.5×60×60=3600，故所求概率为112.5/3600=<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mfrac><mn>1</mn><mn>32</mn></mfrac></math><br><img width=\"289px\" height=\"314px\" src=\"//fb.fbstatic.cn/api/tarzan/images/18c814ae5d7e305.png?width=700\"><br>故正确答案为B。",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "概率问题",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23434,
+      "titleHtml": "<p>某班级有6名学生坐在一排，上课铃响后慌乱中回到座位上，结果只有2人坐到了自己的位置，只有2个相邻的同学坐到了对方的位置。问有多少种这样的情况？</p>",
+      "type": "single",
+      "globalAccuracy": 37,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "12"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "18"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "24"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "36"
+        }
+      ],
+      "analysisHtml": "<p>假设这6名学生依次为a、b、c、d、e、f。根据“只有2人坐到了自己的位置，只有2个相邻的同学坐到了对方的位置”，可知剩下的6-2-2=2人坐错位置且其位置不相邻。分情况讨论如下：</p><p>①若a、b相邻的同学坐到了对方的位置，则坐错位置且其位置不相邻的2人可以为c和e、c和f、d和f，有3种情况；</p><p>②若b、c相邻的同学坐到了对方的位置，则坐错位置且其位置不相邻的2人可以为a和d、a和e、a和f、d和f，有4种情况；</p><p>③若c、d相邻的同学坐到了对方的位置，则坐错位置且其位置不相邻的2人可以为a和e、a和f、b和e、b和f，有4种情况；</p><p>④若d、e相邻的同学坐到了对方的位置，则坐错位置且其位置不相邻的2人可以为a和c、a和f、b和f、c和f，有4种情况；</p><p>⑤若e、f相邻的同学坐到了对方的位置，则坐错位置且其位置不相邻的2人可以为a和c、a和d、b和d，有3种情况。</p><p>分类相加，则所求情况共有3+4+4+4+3=18种。</p><p>故正确答案为B。</p><p>【考场思维】分类讨论中①和⑤的情况是类似的，②和④的情况是类似的，所以只需讨论①②③的情况数，就可以计算总情况数=3×2+4×2+4=18种。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "排列组合",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23435,
+      "titleHtml": "<p>某自助餐厅提供羊肉串，小王怕浪费每次最多只拿3串。已知他正好吃了10串，那么他共有多少种不同的拿法？</p>",
+      "type": "single",
+      "globalAccuracy": 21,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "44"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "81"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "149"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "274"
+        }
+      ],
+      "analysisHtml": "<p>方法一：根据题意可知，小王每次只能拿1串、2串或3串，一共吃了10串。若有3次拿了3串，1次拿了1串，则一共取餐4次，即这4次取餐中有3次是拿了3串，有<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><msubsup><mi>C</mi><mn>4</mn><mn>3</mn></msubsup></math>种不同的取餐情况。同理，不同拿法可列表如下：</p><p><img width=\"683px\" height=\"499px\" src=\"//fb.fenbike.cn/api/tarzan/images/18c813ff088e905.png?width=700\" /></p><p>则所求总情况共有4+6+30+15+20+60+42+8+1+15+35+28+9+1=274种。</p><p>方法二：爬楼梯模型。本题可以理解为一共爬了10级台阶，每次可以爬1至3级。</p><p>先对简单情况进行讨论：</p><p>①爬上1级台阶，只有一次上了1级，共1种情况；</p><p>②爬上2级台阶，上楼梯的情况有（1，1）、（2），共2种情况；</p><p>③爬上3级台阶，上楼梯的情况有（1，1，1）、（1，2）、（2，1）、（3），共4种情况；</p><p>④爬上4级台阶，可以对最后一次上的台阶数进行分类讨论：</p><p>a.最后一次爬了3级，则需先爬了1级台阶，同①有1种情况；</p><p>b.最后一次爬了2级，则需先爬了2级台阶，同②有2种情况；</p><p>c.最后一次爬了1级，则需先爬了3级台阶，同③有4种情况；</p><p>所以爬4级台阶的情况数为a.b.c.三类情况数之和，即等于爬1级、2级、3级的情况数之和，共1+2+4=7种情况。</p><p>以此类推，由于最后一次可以爬1至3级台阶，所以爬上n（n＞3）级台阶情况数等于爬n-3级、n-2级、n-1级的情况数之和，则有：</p><p>爬上5级台阶的情况数等于爬2级、3级、4级的情况数之和，共2+4+7=13种情况；</p><p>爬上6级台阶的情况数等于爬3级、4级、5级的情况数之和，共4+7+13=24种情况；</p><p>爬上7级台阶的情况数等于爬4级、5级、6级的情况数之和，共7+13+24=44种情况；</p><p>爬上8级台阶的情况数等于爬5级、6级、7级的情况数之和，共13+24+44=81种情况；</p><p>爬上9级台阶的情况数等于爬6级、7级、8级的情况数之和，共24+44+81=149种情况；</p><p>爬上10级台阶的情况数等于爬7级、8级、9级的情况数之和，共44+81+149=274种情况，即题目所求情况为274种。</p><p>故正确答案为D。</p><p>【考场思维】因为每次最多能拿3串，所以最后一次取的串数只有3、2、1串，则前面几次需要取的串数应为7、8、9串，因此拿10串的方法数等于拿7串、8串、9串的情况数之和。观察选项数字A+B+C=D，大胆推测前三个选项分别为拿7串、8串、9串的情况数，则D项为答案。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "排列组合",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23436,
+      "titleHtml": "<p>从所给的四个选项中，选择最合适的一个填入问号处，使之呈现一定的规律性：</p><p><img width=\"600px\" height=\"266px\" src=\"//fb.fenbike.cn/api/tarzan/images/18c8148b63c69e7.png?width=700\" /></p>",
+      "type": "single",
+      "globalAccuracy": 60,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "A"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "B"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "C"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "D"
+        }
+      ],
+      "analysisHtml": "<p>元素组成不同，且无明显属性规律，考虑数量规律。题干图形分割明显，优先考虑面数量，但整体数面无规律。继续观察发现，题干图形均存在最大面，且最大面的边数依次为3、4、5、6、7，故？处图形最大面的边数应为8，只有B项符合。</p><p>故正确答案为B。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "图形推理",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23437,
+      "titleHtml": "<p>从所给的四个选项中，选择最合适的一个填入问号处，使之呈现一定的规律性：</p><p><img width=\"600px\" height=\"276px\" src=\"//fb.fbstatic.cn/api/tarzan/images/18c81490825d340.png?width=700\" /></p>",
+      "type": "single",
+      "globalAccuracy": 71,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "A"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "B"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "C"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "D"
+        }
+      ],
+      "analysisHtml": "<p>元素组成不同，且无明显属性规律，考虑数量规律。观察发现，题干图形均由直线和曲线构成，且直线和曲线出现明显相交，考虑曲直交点数。题干图形的曲直交点数均为3，故？处图形的曲直交点数应为3，只有D项符合。</p><p>故正确答案为D。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "图形推理",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23438,
+      "titleHtml": "<p>从所给的四个选项中，选择最合适的一个填入问号处，使之呈现一定的规律性：</p><p><img width=\"600px\" height=\"280px\" src=\"//fb.fbstatic.cn/api/tarzan/images/18c814958568ad9.png?width=700\" /></p>",
+      "type": "single",
+      "globalAccuracy": 57,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "A"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "B"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "C"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "D"
+        }
+      ],
+      "analysisHtml": "<p>元素组成不同，且无明显属性规律，考虑数量规律。观察发现，题干图形封闭区域明显，优先考虑数面，题干图形的面数量依次为3、5、4、5、6，单独数面无规律。继续观察发现，题干图形的外框均为多边形，考虑外框直线数，外框直线数依次为3、5、4、5、6，可知面数量与外框直线数量相等，只有A项符合。</p><p>故正确答案为A。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "图形推理",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23439,
+      "titleHtml": "<p>把下面的六个图形分为两类，使每一类图形都有各自的共同特征或规律，分类正确的一项是：</p><p><img width=\"648px\" height=\"127px\" src=\"//fb.fenbike.cn/api/tarzan/images/18cb4f7f0e92826.png?width=700\" /></p>",
+      "type": "single",
+      "globalAccuracy": 61,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "①④⑤，②③⑥"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "①②⑥，③④⑤"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "①⑤⑥，②③④"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "①③④，②⑤⑥"
+        }
+      ],
+      "analysisHtml": "<p>本题为分组分类题目。元素组成不同，且无明显属性规律，考虑数量规律。观察发现，题干图形均由直线构成，考虑直线数，但整体数直线没有规律。继续观察发现，题干存在成对的平行线，考虑平行线，发现图①②⑥中均含有两组平行线，图③④⑤中均含有一组平行线，即图①②⑥为一组，图③④⑤为一组。</p><p><img width=\"661px\" height=\"133px\" src=\"//fb.fenbike.cn/api/tarzan/images/18cb4f82ee73b98.png?width=700\" /></p><p>故正确答案为B。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "图形推理",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23440,
+      "titleHtml": "<p>把下面的六个图形分为两类，使每一类图形都有各自的共同特征或规律，分类正确的一项是：</p><p><img width=\"600px\" height=\"122px\" src=\"//fb.fbstatic.cn/api/tarzan/images/18c814a80651a34.png?width=700\" /></p>",
+      "type": "single",
+      "globalAccuracy": 83,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "①②③，④⑤⑥"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "①③④，②⑤⑥"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "①④⑥，②③⑤"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "①⑤⑥，②③④"
+        }
+      ],
+      "analysisHtml": "<p>本题为分组分类题目。图形元素组成不同，且无明显属性规律，考虑数量规律。观察发现，图①⑤⑥中的黑球数量均为9，图②③④中的黑球数量均为7，即图①⑤⑥为一组，图②③④为一组。</p><p>故正确答案为D。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "图形推理",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23441,
+      "titleHtml": "<p>把下面的六个图形分为两类，使每一类图形都有各自的共同特征或规律，分类正确的一项是：</p><p><img width=\"600px\" height=\"130px\" src=\"//fb.fbstatic.cn/api/tarzan/images/18c814b7a5c9f40.png?width=700\" /></p>",
+      "type": "single",
+      "globalAccuracy": 90,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "①②⑥，③④⑤"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "①③④，②⑤⑥"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "①③⑥，②④⑤"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "①④⑥，②③⑤"
+        }
+      ],
+      "analysisHtml": "<p>本题为分组分类题目。观察发现，每幅图形都有两个小黑点，优先考虑功能元素。图①③⑥中两个小黑点标记的两个面均相交于边，图②④⑤中两个小黑点标记的两个面均相交于点，即图①③⑥为一组，图②④⑤为一组。</p><p>故正确答案为C。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "图形推理",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23442,
+      "titleHtml": "<p>把下面的六个图形分为两类，使每一类图形都有各自的共同特征或规律，分类正确的一项是：</p><p><img width=\"600px\" height=\"132px\" src=\"//fb.fbstatic.cn/api/tarzan/images/18c81445e822d11.png?width=700\" /></p>",
+      "type": "single",
+      "globalAccuracy": 70,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "①④⑥，②③⑤"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "①②③，④⑤⑥"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "①③④，②⑤⑥"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "①②④，③⑤⑥"
+        }
+      ],
+      "analysisHtml": "<p>本题为分组分类题目。元素组成不同，且无明显属性规律，考虑数量规律。观察发现，题干图形均为多边形被分割，面数量无规律，但框内有明显能一笔画成的线条，优先考虑笔画数。图①②③为一笔画图形，图④⑤⑥为两笔画图形，即图①②③为一组，图④⑤⑥为一组。</p><p>故正确答案为B。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "图形推理",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23443,
+      "titleHtml": "<p>把下面的六个图形分为两类，使每一类图形都有各自的共同特征或规律，分类正确的一项是：</p><p><img width=\"600px\" height=\"138px\" src=\"//fb.fbstatic.cn/api/tarzan/images/18c8144cb552a14.png?width=700\" /></p>",
+      "type": "single",
+      "globalAccuracy": 92,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "①③④，②⑤⑥"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "①③⑥，②④⑤"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "①②⑤，③④⑥"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "①④⑥，②③⑤"
+        }
+      ],
+      "analysisHtml": "<p>本题为分组分类题目。元素组成不同，且题干出现等腰元素，优先考虑对称性。观察发现，图①③④均是轴对称图形，且均只有一条对称轴，图②⑤⑥均是既轴对称又中心对称图形，且均有两条互相垂直的对称轴。即图①③④为一组，图②⑤⑥为一组。</p><p>故正确答案为A。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "图形推理",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23444,
+      "titleHtml": "<p>左边给定的是纸盒的外表面展开图，右边哪项能够由它折叠而成？</p><p><img width=\"600px\" height=\"164px\" src=\"//fb.fbstatic.cn/api/tarzan/images/18c84c48633aaba.png?width=700\" /></p>",
+      "type": "single",
+      "globalAccuracy": 80,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "A"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "B"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "C"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "D"
+        }
+      ],
+      "analysisHtml": "<p>对题干展开图进行编号，如下图所示，逐一分析选项：</p><p><img width=\"600px\" height=\"160px\" src=\"//fb.fenbike.cn/api/tarzan/images/18c84c4eb33fa0e.png?width=700\" /></p><p>A项：选项出现面h、面k，题干展开图中这两个面的公共边对应面h内大三角形的边，选项中这两个面的公共边对应面h内小直角三角形的直角边，选项与题干展开图不一致，排除；</p><p>B项：选项由面f、面g、面e构成，题干展开图中这三个面的公共点与面e中的斜线不相交，而选项中这三个面的公共点与面e中的斜线相交，选项与题干展开图不一致，排除；</p><p><img width=\"600px\" height=\"165px\" src=\"//fb.fenbike.cn/api/tarzan/images/18c84c50228401c.png?width=700\" /></p><p>C项：选项由面h、面k和面g（不可能是面f，因面h与面f为相对面，相对面不能同时出现）构成，选项与题干展开图一致，当选；</p><p>D项：选项由面f、面g和面k构成，题干展开图中面f和面g的公共边分别挨着两个面中的小三角形，而选项中面f与面g的公共边分别挨着两个面中的大三角形，选项与题干展开图不一致，排除。</p><p><img width=\"600px\" height=\"155px\" src=\"//fb.fenbike.cn/api/tarzan/images/18c84c52807d116.png?width=700\" /></p><p>故正确答案为C。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "六面体",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23445,
+      "titleHtml": "<p>左边的立体图形是由①、②和③组成的，下列哪项可以填入问号处？</p><p><img width=\"600px\" height=\"368px\" src=\"//fb.fbstatic.cn/api/tarzan/images/18c8145e59d049d.png?width=700\" /></p>",
+      "type": "single",
+      "globalAccuracy": 34,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "A"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "B"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "C"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "D"
+        }
+      ],
+      "analysisHtml": "<p>本题考查立体拼合。如下图所示，题干立体图形可以由①、②以及A项拼合而成。</p><p><img width=\"600px\" height=\"348px\" src=\"//fb.fbstatic.cn/api/tarzan/images/18c814a62b94d43.png?width=700\" /></p><p>故正确答案为A。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "立体拼合",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23446,
+      "titleHtml": "<p>素数是指在大于1的自然数中，除了1和它本身以外不再有其他因数的自然数，孪生素数是指两个相差为2的素数。</p><p>根据上述定义，下列均属于孪生素数的是：</p>",
+      "type": "single",
+      "globalAccuracy": 91,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "2和3；101和103"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "29和31；41和43"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "5和7；623和625"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "11和13；69和71"
+        }
+      ],
+      "analysisHtml": "<p>第一步：找出定义关键词。</p><p>素数：“大于1的自然数”、“除了1和它本身以外不再有其他因数”；</p><p>孪生素数：“两个相差为2的素数”。</p><p>第二步：逐一分析选项。</p><p>A项：2和3相差为1，不符合“两个相差为2的素数”，不符合定义，排除；</p><p>B项：29、31、41、43这4个数字均符合“大于1的自然数”、“除了1和它本身以外不再有其他因数”，因此这4个数字均为素数，且29和31、41和43的差均为2，符合“两个相差为2的素数”，故29和31、41和43均为孪生素数，符合定义，当选；</p><p>C项：623的因数包括1、7、89、623，625的因数包括1、5、25、125、625，二者均不符合“除了1和它本身以外不再有其他因数”，不符合“素数”定义，也就不符合“两个相差为2的素数”，不符合定义，排除；</p><p>D项：69的因数包括1、3、23、69，不符合“除了1和它本身以外不再有其他因数”，不符合“素数”定义，也就不符合“两个相差为2的素数”，不符合定义，排除。</p><p>故正确答案为B。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "定义判断",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23447,
+      "titleHtml": "<p>军事威慑是指国家或政治集团，通过显示武力或表示准备用武力的决心，迫使对方屈从于自己的意志，不敢采取或升级敌对行动的军事行动。</p><p>根据上述定义，下列情形不属于军事威慑的是：</p>",
+      "type": "single",
+      "globalAccuracy": 81,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "在关系紧张的国家周边进行军事演习"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "对外宣布正在研发某项高端军事技术"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "对关系紧张国家的战略物资实施禁运"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "有针对性地大规模部署军事进攻设施"
+        }
+      ],
+      "analysisHtml": "<p>第一步：找出定义关键词。</p><p>“国家或政治集团”、“通过显示武力或表示准备用武力的决心”、“迫使对方屈从于自己的意志，不敢采取或升级敌对行动的军事行动”。</p><p>第二步：逐一分析选项。</p><p>A项：在关系紧张的国家周边进行军事演习，这是显示武力的一种形式，符合“国家或政治集团”、“通过显示武力或表示准备用武力的决心”，军事演习的目的是震慑对方，符合“迫使对方屈从于自己的意志，不敢采取或升级敌对行动的军事行动”，符合定义，排除；</p><p>B项：对外宣布正在研发某项高端军事技术，其中高端军事技术是军事实力的一种表现，符合“国家或政治集团”、“通过显示武力或表示准备用武力的决心”，对外宣布的目的是震慑对方，符合“迫使对方屈从于自己的意志，不敢采取或升级敌对行动的军事行动”，符合定义，排除；</p><p>C项：对关系紧张国家的战略物资实施禁运，这是一种经济遏制的手段，不是军事行动，不符合“通过显示武力或表示准备用武力的决心”、“迫使对方屈从于自己的意志，不敢采取或升级敌对行动的军事行动”，不符合定义，当选；</p><p>D项：有针对性地大规模部署军事进攻设施，这显示了武力或准备用武力的决心，符合“国家或政治集团”、“通过显示武力或表示准备用武力的决心”，部署军事进攻设施的目的是震慑对方，符合“迫使对方屈从于自己的意志，不敢采取或升级敌对行动的军事行动”，符合定义，排除。</p><p>本题为选非题，故正确答案为C。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "定义判断",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23448,
+      "titleHtml": "<p>述补短语是由述语和补语前后两部分组成的，补语用来补充说明述语的动作行为的情况、结果、处所、数量、时间等；述宾短语是由述语和宾语前后两部分组成的，宾语是述语所表示的动作或现象所支配或关涉到的对象。</p><p>根据上述定义，下列属于述补短语的是：</p>",
+      "type": "single",
+      "globalAccuracy": 50,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "力度刚好"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "打开电脑"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "反应强烈"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "大江东去"
+        }
+      ],
+      "analysisHtml": "<p>第一步：找出定义关键词。</p><p>述补短语：“由述语和补语前后两部分组成”、“补语用来补充说明述语的动作行为的情况、结果、处所、数量、时间等”；</p><p>述宾短语：“由述语和宾语前后两部分组成”、“宾语是述语所表示的动作或现象所支配或关涉到的对象”。</p><p>第二步：逐一分析选项。</p><p>A项：“力度刚好”的前后两部分为“力度”和“刚好”，“刚好”用来说明“力度”的情况，但“力度”是指力量的强度，它不是动作行为，不符合“补语用来补充说明述语的动作行为的情况、结果、处所、数量、时间等”，不符合“述补短语”的定义，排除；</p><p>B项：“打开电脑”的前后两部分为“打开”和“电脑”，“打开”是动作，“电脑”是“打开”的对象，符合“由述语和宾语前后两部分组成”、“宾语是述语所表示的动作或现象所支配或关涉到的对象”，符合“述宾短语”的定义，不符合“述补短语”的定义，排除；</p><p>C项：“反应强烈”的前后两部分为“反应”和“强烈”，“反应”是动作，“强烈”用来补充说明“反应”的情况，符合“由述语和补语前后两部分组成”、“补语用来补充说明述语的动作行为的情况、结果、处所、数量、时间等”，符合“述补短语”的定义，当选；</p><p>D项：“大江东去”的前后两部分为“大江”和“东去”，“东去”用来说明“大江”的情况，但“大江”不是动作行为，不符合“补语用来补充说明述语的动作行为的情况、结果、处所、数量、时间等”，不符合“述补短语”的定义，排除。</p><p>故正确答案为C。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "定义判断",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23449,
+      "titleHtml": "<p>外向投射是指将自己不喜欢的观念、冲动或品质夸张性地归于他人，以避免或减轻内心的不安与痛苦的心理防御机制。</p><p>根据上述定义，下列属于外向投射的是：</p>",
+      "type": "single",
+      "globalAccuracy": 96,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "小赵考试没有考好愤而撕了试卷"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "小钱做了坏事后，为减轻内疚感，转而投身慈善事业"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "小孙其实很自卑，但在实际行动和言谈中却表现出过分自信"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "小李骨折住院时常常焦躁不安，动辄发怒，责怪家人照料不周，埋怨医务人员未尽心尽责"
+        }
+      ],
+      "analysisHtml": "<p>第一步：找出定义关键词。</p><p>“将自己不喜欢的观念、冲动或品质夸张性地归于他人”、“以避免或减轻内心的不安与痛苦”。</p><p>第二步：逐一分析选项。</p><p>A项：小赵因没考好而撕了试卷，并不涉及他人，不符合“将自己不喜欢的观念、冲动或品质夸张性地归于他人”，不符合定义，排除；</p><p>B项：小钱做了坏事后，通过投身慈善事业来减轻内疚感，并非是将自己不喜欢的观念归于他人，不符合“将自己不喜欢的观念、冲动或品质夸张性地归于他人”，不符合定义，排除；</p><p>C项：小孙虽然自卑但行动和言语中表现出过分自信，并非是将自己不喜欢的观念归于他人，不符合“将自己不喜欢的观念、冲动或品质夸张性地归于他人”，不符合定义，排除；</p><p>D项：小李住院时焦躁不安，动辄发怒，并责怪家人和医务人员，符合“将自己不喜欢的观念、冲动或品质夸张性地归于他人”、“以避免或减轻内心的不安与痛苦”，符合定义，当选。</p><p>故正确答案为D。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "定义判断",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23450,
+      "titleHtml": "<p>20世纪60年代，已是制成品出口主要国家的荷兰发现大量天然气，荷兰政府大力发展天然气业，出口剧增，国际收入出现顺差，经济显现繁荣景象，但蓬勃发展的天然气业却严重打击了荷兰的农业和其他工业部门，削弱了制成品出口行业的国际竞争力。到20世纪70年代，荷兰遭受到通货膨胀上升、制成品出口下降、收入增长率降低、失业率增加的困扰。这种资源产业在繁荣时期价格膨胀是以牺牲其他行业为代价的现象，国际上称之为“荷兰病”。</p><p>根据上述定义，下列属于“荷兰病”的是：</p>",
+      "type": "single",
+      "globalAccuracy": 66,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "经济极不发达的甲国在其国境内发现了大油田，创造了大量就业机会，大大提高了国民收入水平"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "十年前，乙国的经济支柱产业是汽车制造业，目前该国已转型为金融大国，汽车制造行业不断萎缩"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "丙国经济常年依赖农产品出口，在农业上投入了大量劳动力，导致该国其他行业的发展一直停滞不前"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "重工业国家丁国发现了大量矿藏资源，大批工人向采矿业转移，导致工业人才流失，工业生产力逐年下降，供求矛盾加剧"
+        }
+      ],
+      "analysisHtml": "<p>第一步：找出定义关键词。</p><p>“资源产业在繁荣时期价格膨胀”、“以牺牲其他行业为代价”。</p><p>第二步：逐一分析选项。</p><p>A项：经济极不发达的甲国在其国境内发现了大油田，创造了大量就业机会，提高了国民收入水平，并未提及影响其他行业，不符合“以牺牲其他行业为代价”，不符合定义，排除；</p><p>B项：乙国从经济支柱产业是汽车制造业转型为金融大国，说明该国发展的是金融产业，而非资源产业，不符合“资源产业在繁荣时期价格膨胀”，不符合定义，排除；</p><p>C项：丙国经济常年依赖农产品出口，在农业上投入大量劳动力，说明该国农业较为繁荣，符合“资源产业在繁荣时期价格膨胀”，导致该国其他行业的发展一直停滞不前，说明发展农业牺牲了其他行业的发展，符合“以牺牲其他行业为代价”，符合定义，保留；</p><p>D项：重工业国家丁国发现了大量矿藏资源，大批工人向采矿业转移，说明该国采矿业较为繁荣，符合“资源产业在繁荣时期价格膨胀”，最终导致工业人才流失，工业生产力逐年下降，说明发展采矿业导致其他行业衰落，符合“以牺牲其他行业为代价”，符合定义，保留。</p><p>对比C、D两项，题干的故事背景是围绕“荷兰发现大量天然气”展开的，为发展该产业，牺牲了其他产业的发展，故本题所表达的“资源”应该更接近于石油、天然气、矿产等狭义的资源，D项明确的提到了“矿藏资源”，跟题干表述的内容更贴近与匹配，对比择优，D项当选。</p><p>故正确答案为D。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "定义判断",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23451,
+      "titleHtml": "<p>防卫不适时，是指在不法侵害行为尚未开始，或者已经结束的情况下，对不法侵害者实行的防卫行为；假想防卫，是指行为人由于主观认识上的错误，误认为有不法侵害的存在，实施防卫行为结果造成损害的行为；挑拨防卫，是指以挑拨寻衅等不正当手段，故意激怒对方，引诱对方对自己进行侵害，然后以“正当防卫”为借口，实行加害的行为。</p><p>根据上述定义，下列说法正确的是：</p>",
+      "type": "single",
+      "globalAccuracy": 88,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "甲和乙驾车行驶时发生剐蹭，二人下车后发生口角，甲从车内拿出裁纸刀，乙见状立刻回到车内，驾车将甲撞伤，乙的行为属于挑拨防卫"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "甲因住楼上的乙家经常发出噪音，上楼与乙理论未果，二人不欢而散。翌日，甲、乙迎面碰见，乙认为甲要伺机报复，便先袭击了甲，乙的行为属于防卫不适时"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "甲、乙二人在饭店吃饭，酒后发生肢体冲突，此时乙的朋友丙进入饭店，试图劝阻二人，甲认为丙是乙叫来的打手，便拿起酒瓶将乙和丙打伤，甲的行为属于假想防卫"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "甲将自己的房屋出租给乙，租期一年，三个月后甲、乙因设施损坏问题发生争吵，争吵间甲说乙如果敢动手就不退还押金，乙气不过，将甲打成重伤，甲的行为属于挑拨防卫"
+        }
+      ],
+      "analysisHtml": "<p>第一步：找出定义关键词。</p><p>防卫不适时：“在不法侵害行为尚未开始，或者已经结束的情况下”、“对不法侵害者实行的防卫行为”；</p><p>假想防卫：“行为人由于主观认识上的错误”、“误认为有不法侵害的存在”、“造成损害”；</p><p>挑拨防卫：“以挑拨寻衅等不正当手段”、“故意激怒对方”、“引诱对方对自己进行侵害”、“以‘正当防卫’为借口，实行加害”。</p><p>第二步：逐一分析选项。</p><p>A项：乙与甲争吵后，见甲拿出裁纸刀，乙回到车内，驾车将甲撞伤，其中并没有体现乙使用了不正当手段去激怒甲，不符合“以挑拨寻衅等不正当手段”、“故意激怒对方”，也没有体现乙是故意引诱甲来侵害自己，不符合“引诱对方对自己进行侵害”，乙的行为不属于挑拨防卫，该项说法错误，排除；</p><p>B项：甲、乙争吵后再相遇，乙认为甲要报复自己便先袭击了甲，其中二人再相遇时甲并未做出任何举动，说明甲并不存在不法行为，不符合“在不法侵害行为尚未开始，或者已经结束的情况下”，乙的行为不属于防卫不适时，该项说法错误，排除；</p><p>C项：甲与乙发生冲突时，误认为前来劝架的丙是乙叫的打手，便将乙和丙二人打伤，其中丙是来劝架的，却被甲误认成打手，说明甲存在主观上的认识错误，符合“行为人由于主观认识上的错误”、“误认为有不法侵害的存在”，甲将乙和丙打伤，符合“造成损害”，甲的行为属于假想防卫，该项说法正确，当选；</p><p>D项：甲对乙说如果敢动手就不退还押金，乙随后将甲打成重伤，受伤的是甲，甲并没有对乙实行加害，不符合“以‘正当防卫’为借口，实行加害”，甲的行为不属于挑拨防卫，该项说法错误，排除。</p><p>故正确答案为C。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "定义判断",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23452,
+      "titleHtml": "<p>自然法主张一定的权利因为人类本性中的美德而固然存在，由自然赋予；成文法是指国家机关依照一定的程序制定和颁布的，表现为条文形式的法律文件；习惯法是指独立于国家制定法之外，依据某种社会权威和社会组织，具有一定强制性的行为规范的总和。</p><p>根据上述定义，下列属于习惯法的是：</p>",
+      "type": "single",
+      "globalAccuracy": 71,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "举事以为人者，众助之；举事以自为者，众去之"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "凡教唆词讼，及为人作词状，增减情罪诬告人者，与犯人同罪"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "上圣卓然先行敬让博爱之德者，众心说而从之。从之成群，是为君矣；归而往之，是为王矣"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "议得我辈同行业者，不与现在行家弟兄亲戚，以及管账之人合伙合业，以防明充暗顶之渐，违者公罚"
+        }
+      ],
+      "analysisHtml": "<p>第一步：找出定义关键词。</p><p>自然法：“一定的权利因为人类本性中的美德而固然存在，由自然赋予”；</p><p>成文法：“国家机关”、“依照一定的程序制定和颁布”、“表现为条文形式的法律文件”；</p><p>习惯法：“独立于国家制定法之外”、“依据某种社会权威和社会组织”、“具有一定强制性的行为规范的总和”。</p><p>第二步：逐一分析选项。</p><p>A项：出自《淮南子·兵略训》，意思为：做事情是为了众人，那么众人就会都来帮助他；做事情是为了自己，那么众人就会纷纷弃他而去。该项指出为公还是为私是能否赢得人心的关键，倡导人们为了众人而去做事情，不涉及强制性的行为规范，不符合“具有一定强制性的行为规范的总和”，不符合“习惯法”定义，排除；</p><p>B项：出自《大清律例》，意思为：教唆他人诉讼，及为他人作诉状，用来增减他人罪行，诬告人与犯人同罪。该项是国家机关颁布的法律文件，符合“国家机关”、“表现为条文形式的法律文件”，符合“成文法”定义，不符合“习惯法”定义，排除；</p><p>C项：出自《汉书·刑法志》，意思为：前代的圣人特意率先讲求恭敬谦让和博爱的道德，大众心中高兴就跟从他们了。跟从他们的人形成了群体，他们就成了君主；都争着去归附他们，他们就成了王。该项指出仁爱谦让是王道的根本，不涉及强制性的行为规范，不符合“具有一定强制性的行为规范的总和”，不符合“习惯法”定义，排除；</p><p>D项：出自《吴县纱缎业行规条约碑》，意思为：从事我们这一行业的人，不能与现在行家的弟兄亲戚、管账人合伙合业，以防止行业内部的恶性竞争，违反的人会被惩罚。该项为某一行业的内部规定，符合“独立于国家制定法之外”、“依据某种社会权威和社会组织”，违反行规条约的人会被惩罚，说明行规条约具有一定强制性，符合“具有一定强制性的行为规范的总和”，符合“习惯法”定义，当选。</p><p>故正确答案为D。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "定义判断",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23453,
+      "titleHtml": "<p>锚定效应是指当人们需要对某个事件做定量估测时，会将先前获得的某些特定数值作为起始值，起始值像锚一样制约着估测值。在做决策时，倾向于过度利用这一起始值，快速做出判断，但这种判断往往是与现实有偏差的。</p><p>根据上述定义，下列不涉及锚定效应的是：</p>",
+      "type": "single",
+      "globalAccuracy": 33,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "小李原本6点下班，最近调整为5点下班，他觉得下班后的时间变得很长"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "在奢侈品店看到一款百元包会觉得便宜，在地摊上看到同款百元包会觉得贵"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "小王听说某护肤品卖200元，但他去超市后发现，该护肤品在搞促销，只卖100元，他非常惊喜，觉得“太便宜了”，于是一次性买了5瓶"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "先让两组参与者判断尼罗河的长度是否长于5000km/短于5000km，再让两组参与者分别估计尼罗河的具体长度，结果发现，被询问“是否长于5000km”的参与者比被询问“是否短于5000km”的参与者报告的尼罗河具体长度更长"
+        }
+      ],
+      "analysisHtml": "<p>第一步：找出定义关键词。</p><p>“将先前获得的某些特定数值作为起始值”、“起始值像锚一样制约着估测值”、“做决策时，倾向于过度利用这一起始值”、“判断往往是与现实有偏差的”。</p><p>第二步：逐一分析选项。</p><p>A项：小李原本6点下班，最近调整为5点下班，他觉得下班后的时间变得很长，提早下班后时间确实比以前长了，他的判断没有偏差，不符合“判断往往是与现实有偏差的”，不符合定义，当选；</p><p>B项：奢侈品店看到一款百元包会觉得便宜，是因为以奢侈品高昂的价格为起始值，对比店里的百元包，会觉得便宜；在地摊上看到同款百元包会觉得贵，是因为以地摊上的其他商品为起始值，来判断地摊同款百元包，会觉得贵，但包是同款，且价格没变，改变的是对其的判断，符合“将先前获得的某些特定数值作为起始值”、“起始值像锚一样制约着估测值”、“做决策时，倾向于过度利用这一起始值”、“判断往往是与现实有偏差的”，符合定义，排除；</p><p>C项：某护肤品卖200元，但超市搞促销只卖100元，小王觉得“太便宜了”，于是一次性买了5瓶，是以过去的价格200元为起始值，来确定现在100元是便宜的，小王认为这个价格很划算，于是决定购买很多，符合“将先前获得的某些特定数值作为起始值”、“起始值像锚一样制约着估测值”、“做决策时，倾向于过度利用这一起始值”、“判断往往是与现实有偏差的”，符合定义，排除；</p><p>D项：先让两组参与者判断尼罗河的长度是否长于5000km/短于5000km，即给定一个起始值，符合“将先前获得的某些特定数值作为起始值”，再让两组参与者分别估计尼罗河的具体长度，结果发现，被询问“是否长于5000km”的参与者比被询问“是否短于5000km”的参与者报告的尼罗河具体长度更长，这是在锚（长于5000km/短于5000km）的暗示下，人们在判断具体长度时会不自觉地给予起始值过多的重视，导致两组参与者的判断存在偏差，符合“起始值像锚一样制约着估测值”、“做决策时，倾向于过度利用这一起始值”、“判断往往是与现实有偏差的”，符合定义，排除。</p><p>注：有同学可能会纠结A项的“很长”也是一种偏差，只多了一小时，是“长”而不是“很长”，但具体的感受因人而异，不好说清。经过多方查证，锚定效应又叫沉锚效应，B、C、D三项均能找到类似案例，具体如下所示：</p><p>B项案例：</p><p><img width=\"600px\" height=\"89px\" src=\"//fb.fenbike.cn/api/tarzan/images/18c81452bc7b71b.png?width=700\" /></p><p>C项案例：</p><p><img width=\"600px\" height=\"75px\" src=\"//fb.fenbike.cn/api/tarzan/images/18c8145625e7b14.png?width=700\" /></p><p>D项案例：</p><p><img width=\"600px\" height=\"85px\" src=\"//fb.fenbike.cn/api/tarzan/images/18c81458c71e439.png?width=700\" /></p><p>因此综合来看，A项最优。</p><p>本题为选非题，故正确答案为A。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "定义判断",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23454,
+      "titleHtml": "<p>电子官僚主义是指近些年随着电子化、信息化而产生的一种官僚主义形式，主要表现为过度依赖电子化政务、信息化管理、网上办理、台账管理等形式，不考虑实际工作问题，其实质上是脱离实际、脱离群众、高高在上。</p><p>根据上述定义，下列不属于电子官僚主义的是：</p>",
+      "type": "single",
+      "globalAccuracy": 69,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "某县政府召集乡镇干部开会，传达上级会议和文件精神，要求无法现场参会的人员线上参会、电子签到"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "某年轻干部不深入一线、不下乡调研，通过各式各样的“电子台账”，坐在办公室里就完成本部门的任务"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "某上级部门要求下级部门所有工作都要签订“项目责任书”，要求线上实时更新、反馈和上报各种材料和数据"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "某部门强调“规范审批、落实责任”，即使线下完成的审批事项也要求服务对象在信息化系统中再次提交留痕"
+        }
+      ],
+      "analysisHtml": "<p>第一步：找出定义关键词。</p><p>“过度依赖电子化政务、信息化管理、网上办理、台账管理等形式”、“不考虑实际工作问题”、“实质上是脱离实际、脱离群众、高高在上”。</p><p>第二步：逐一分析选项。</p><p>A项：某县政府要求无法现场参会的人员线上参会、电子签到，目的是确保乡镇干部可以及时了解到上级会议和文件精神，是对工作有帮助的表现，不符合“不考虑实际工作问题”，不符合定义，当选；</p><p>B项：某年轻干部既不深入一线，也不下乡调研，通过各种“电子台账”，只坐在办公室里完成任务，是一种脱离实际、脱离群众的行为，符合“过度依赖电子化政务、信息化管理、网上办理、台账管理等形式”、“不考虑实际工作问题”、“实质上是脱离实际、脱离群众、高高在上”，符合定义，排除；</p><p>C项：某上级部门要求下级部门针对各种材料和数据都要线上实时更新、反馈和上报，是一种过度依赖电子化政务系统的表现，符合“过度依赖电子化政务、信息化管理、网上办理、台账管理等形式”，符合定义，排除；</p><p>D项：某部门要求即使线下完成的审批事项，服务对象也要在信息化系统中再次提交留痕，该行为依赖电子化政务系统，增加了工作负担，符合“过度依赖电子化政务、信息化管理、网上办理、台账管理等形式”、“不考虑实际工作问题”，符合定义，排除。</p><p>本题为选非题，故正确答案为A。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "定义判断",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23455,
+      "titleHtml": "<p>学习重组性迁移是指重新组合原有认知系统中某些构成要素或成分，调整各成分间的关系或建立新的联系，从而应用于新情境；学习同化性迁移是指不改变原有的认知结构，直接将原有的认知经验应用到本质特征相同的一类事物中去。</p><p>根据上述定义，下列属于学习重组性迁移的是：</p>",
+      "type": "single",
+      "globalAccuracy": 93,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "小张认为某现象符合马太效应，所以用其来分析"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "小李套用从书本上学到的数学公式解答数学应用题"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "源于西方的新发展观可直接解释东南亚国家的一些发展问题"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "将工程学的某个理论适当修改，用来解释教育领域的相关问题"
+        }
+      ],
+      "analysisHtml": "<p>第一步：找出定义关键词。</p><p>学习重组性迁移：“重新组合原有认知系统中某些构成要素或成分，调整各成分间的关系或建立新的联系”、“应用于新情境”；</p><p>学习同化性迁移：“不改变原有的认知结构”、“直接将原有的认知经验应用到本质特征相同的一类事物”。</p><p>第二步：逐一分析选项。</p><p>A项：小张只是利用马太效应来分析符合该效应的现象，没有涉及重组、调整原有的马太效应理论，不符合“重新组合原有认知系统中某些构成要素或成分，调整各成分间的关系或建立新的联系”，不符合“学习重组性迁移”的定义，排除；</p><p>B项：小李直接将理论知识即数学公式应用于解题中，没有涉及重组、调整原有的数学公式，不符合“重新组合原有认知系统中某些构成要素或成分，调整各成分间的关系或建立新的联系”，不符合“学习重组性迁移”的定义，排除；</p><p>C项：用源于西方的新发展观直接解释东南亚国家的一些发展问题，没有涉及重组、调整原有的源于西方的新发展观，不符合“重新组合原有认知系统中某些构成要素或成分，调整各成分间的关系或建立新的联系”，不符合“学习重组性迁移”的定义，排除；</p><p>D项：将工程学的某个理论适当修改，说明对原有的工程学理论进行了调整，符合“重新组合原有认知系统中某些构成要素或成分，调整各成分间的关系或建立新的联系”，用来解释教育领域的相关问题‍，说明应用到了新情境，符合“应用于新情境”，符合“学习重组性迁移”的定义，当选。</p><p>故正确答案为D。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "定义判断",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23456,
+      "titleHtml": "<p>觉察：察觉</p>",
+      "type": "single",
+      "globalAccuracy": 95,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "互相：相互"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "和平：平和"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "黄金：金黄"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "年少：少年"
+        }
+      ],
+      "analysisHtml": "<p>第一步：判断题干词语间逻辑关系。</p><p>“觉察”和“察觉”均指发觉，看出来，二者是近义关系。</p><p>第二步：判断选项词语间逻辑关系。</p><p>A项：“互相”表示彼此同样对待的关系；“相互”指互相，二者是近义关系，与题干逻辑关系一致，保留；</p><p>B项：“和平”是指没有战争的状态；“平和”是指性情或言行温和，二者不是近义关系，与题干逻辑关系不一致，排除；</p><p>C项：“黄金”指金子；“金黄”指黄而微红略像金子的颜色，二者不是近义关系，与题干逻辑关系不一致，排除；</p><p>D项：“年少”形容年轻，也可指青年男子；“少年”是指人十岁左右到十五六岁的阶段，也可指青年男子，二者在指代青年男子时，可以理解为近义关系，与题干逻辑关系一致，保留。</p><p>对比A、D两项，题干两个词都是动词，A项“互相”和“相互”均为副词，而D项“年少”多用作形容词，“少年”是名词，故A项与题干逻辑关系更为一致，当选。</p><p>故正确答案为A。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "类比推理",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23457,
+      "titleHtml": "<p>米醋：米酒</p>",
+      "type": "single",
+      "globalAccuracy": 80,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "茶壶：茶砖"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "水库：水沟"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "棉花：棉衣"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "石雕：石碑"
+        }
+      ],
+      "analysisHtml": "<p>第一步：判断题干词语间逻辑关系。</p><p>米醋和米酒是两种由米为原材料制作而成的食品，二者的原材料相同。</p><p>第二步：判断选项词语间逻辑关系。</p><p>A项：茶砖是外形像砖一样的茶叶，与茶壶的原材料不同，与题干逻辑关系不一致，排除；</p><p>B项：水库是拦洪蓄水和调节水流的人工湖，水沟是人工挖掘的水道，但二者都不涉及原材料，与题干逻辑关系不一致，排除；</p><p>C项：棉花是制作棉衣的原材料，二者为原材料与成品的对应关系，与题干逻辑关系不一致，排除；</p><p>D项：石雕和石碑是两种由石头为原材料制作而成的物品，二者的原材料相同，与题干逻辑关系一致，当选。</p><p>故正确答案为D。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "类比推理",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23458,
+      "titleHtml": "<p>比赛：规则：公平</p>",
+      "type": "single",
+      "globalAccuracy": 60,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "驾驶：警察：秩序"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "表演：剧本：原创"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "手术：灯光：明亮"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "爬山：手杖：结实"
+        }
+      ],
+      "analysisHtml": "<p>第一步：判断题干词语间逻辑关系。</p><p>比赛一定需要公平的规则，三者构成对应关系。</p><p>第二步：判断选项词语间逻辑关系。</p><p>A项：驾驶需要秩序，警察维持秩序，与题干逻辑关系不一致，排除；</p><p>B项：表演不一定需要原创的剧本，也可以即兴表演，与题干逻辑关系不一致，排除；</p><p>C项：手术一定需要明亮的灯光，三者构成对应关系，与题干逻辑关系一致，当选；</p><p>D项：爬山不一定需要结实的手杖，也可以不用手杖，与题干逻辑关系不一致，排除。</p><p>故正确答案为C。</p><p>备注：本题为争议题。若题干理解成依据公平的规则比赛，前两个词语为依据对应关系，B项可以理解成依据原创的剧本表演，与题干逻辑关系一致，故B项也可能为正确答案，本题出得不够严谨，争议题不纠结，学习基本解题思路即可。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "类比推理",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23459,
+      "titleHtml": "<p>乌鸡：公鸡：雏鸡</p>",
+      "type": "single",
+      "globalAccuracy": 66,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "军刀：钢刀：菜刀"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "城门：石门：拱门"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "质数：单数：负数"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "泰山：名山：高山"
+        }
+      ],
+      "analysisHtml": "<p>第一步：判断题干词语间逻辑关系。</p><p>乌鸡、公鸡和雏鸡是从品种、性别、生长阶段三个不同的角度进行划分的，三者互为交叉关系。</p><p>第二步：判断选项词语间逻辑关系。</p><p>A项：军刀和菜刀是根据功能进行划分的，二者为并列关系，与题干逻辑关系不一致，排除；</p><p>B项：城门、石门和拱门是从用途、原材料、形状三个不同的角度进行划分的，三者互为交叉关系，与题干逻辑关系一致，当选；</p><p>C项：质数是指在大于1的自然数中，除了1和它本身以外不再有其他因数的自然数，单数指正的奇数，二者与负数均不是交叉关系，与题干逻辑关系不一致，排除；</p><p>D项：泰山既是名山也是高山，泰山与后两个词语均为种属关系，与题干逻辑关系不一致，排除。</p><p>故正确答案为B。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "类比推理",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23460,
+      "titleHtml": "<p>钟表：电子表：机械表</p>",
+      "type": "single",
+      "globalAccuracy": 61,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "火车：动车：轿车"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "计算：笔算：心算"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "武器：火器：兵器"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "家常菜：鲁菜：粤菜"
+        }
+      ],
+      "analysisHtml": "<p>第一步：判断题干词语间逻辑关系。</p><p>电子表和机械表都是钟表的一种，后两词为并列关系，与第一词均为种属关系。</p><p>第二步：判断选项词语间逻辑关系。</p><p>A项：动车是火车的一种，二者为种属关系，但火车和轿车都是交通工具，二者为并列关系，与题干逻辑关系不一致，排除；</p><p>B项：笔算和心算都是计算的一种，后两词为并列关系，与第一词均为种属关系，与题干逻辑关系一致，当选；</p><p>C项：武器别称兵器，二者为全同关系，火器也称作热武器或热兵器，与第一词和第三词均为种属关系，与题干逻辑关系不一致，排除；</p><p>D项：鲁菜和粤菜是根据菜系进行分类的，二者为并列关系，与家常菜均为交叉关系，与题干逻辑关系不一致，排除。</p><p>故正确答案为B。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "类比推理",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23461,
+      "titleHtml": "<p>茅草：草屋：屋檐</p>",
+      "type": "single",
+      "globalAccuracy": 91,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "马匹：马车：车轮"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "茶叶：茶杯：杯盖"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "船帆：帆船：船锚"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "树木：木桌：桌腿"
+        }
+      ],
+      "analysisHtml": "<p>第一步：判断题干词语间逻辑关系。</p><p>茅草是建造草屋的原材料，二者是原材料与成品对应关系，屋檐是草屋的组成部分，二者是包容关系中的组成关系。</p><p>第二步：判断选项词语间逻辑关系。</p><p>A项：马匹和车轮都是马车的组成部分，第一词、第三词均与第二词构成组成关系，与题干逻辑关系不一致，排除；</p><p>B项：茶杯用来泡茶叶，二者不是原材料与成品对应关系，与题干逻辑关系不一致，排除；</p><p>C项：船帆是帆船的组成部分，二者是组成关系，与题干逻辑关系不一致，排除；</p><p>D项：树木是制作木桌的原材料，二者是原材料与成品对应关系，桌腿是木桌的组成部分，二者是组成关系，与题干逻辑关系一致，当选。</p><p>故正确答案为D。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "类比推理",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23462,
+      "titleHtml": "<p>外资企业：国有企业：集体企业</p>",
+      "type": "single",
+      "globalAccuracy": 16,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "篮球比赛：男足比赛：女足比赛"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "水力发电：火力发电：潮汐发电"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "多程机票：单程机票：往返机票"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "巾帼英雄：民族英雄：抗日英雄"
+        }
+      ],
+      "analysisHtml": "<p>第一步：判断题干词语间逻辑关系。</p><p>企业根据投资者的地区不同分为内资企业、外资企业和港、澳、台商投资企业；内资企业包括国有企业、集体企业等，第二词和第三词为并列关系，均与第一词构成反向种属关系。</p><p>第二步：判断选项词语间逻辑关系。</p><p>A项：篮球比赛和足球比赛为并列关系，足球比赛包括男足比赛和女足比赛，第二词和第三词为并列关系，均与第一词构成反向种属关系，与题干逻辑关系一致，当选；</p><p>B项：水力发电和火力发电为并列关系，与题干逻辑关系不一致，排除；</p><p>C项：多程机票和单程机票为并列关系，与题干逻辑关系不一致，排除；</p><p>D项：巾帼英雄即女性英雄，有的巾帼英雄是抗日英雄，有的巾帼英雄不是抗日英雄，有的抗日英雄是巾帼英雄，有的抗日英雄不是巾帼英雄，二者为交叉关系；且抗日英雄是民族英雄，第二词和第三词为种属关系，与题干逻辑关系不一致，排除。</p><p>故正确答案为A。</p><p>注：本题题干后两词为反对关系，A项后两词为矛盾关系，可能有同学觉得逻辑关系并不完全一致。请注意在三组词的类比中，考查区分矛盾和反对关系的情况不是特别多，建议优先看成并列关系，选不出唯一答案时，再区分矛盾和反对关系。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "类比推理",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23463,
+      "titleHtml": "<p>雷阵雨 对于 （    ） 相当于 （    ） 对于 金砖五国</p>",
+      "type": "single",
+      "globalAccuracy": 37,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "极端天气 俄罗斯"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "多云转晴 东盟十国"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "阵雨 合作组织"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "雷雨交加 发展中国家"
+        }
+      ],
+      "analysisHtml": "<p>逐一代入选项。</p><p>A项：极端天气是对罕见的、且对人类社会和生态系统产生破坏的天气现象的统称，雷阵雨不是极端天气，二者为反向种属关系；金砖五国包含巴西、俄罗斯、印度、中国和南非，俄罗斯是金砖五国的成员国，二者为组成关系，前后逻辑关系不一致，排除；</p><p>B项：雷阵雨和多云转晴是两种不同的天气现象，二者为并列关系；东盟十国和金砖五国是两个不同的国家合作组织，二者为并列关系，前后逻辑关系一致，当选；</p><p>C项：雷阵雨是伴有雷电的阵雨，二者为种属关系；金砖五国是国际合作性质的组织，二者为种属关系，但词语前后顺序相反，前后逻辑关系不一致，排除；</p><p>D项：雷阵雨具有雷雨交加的特点，二者为属性的对应关系；金砖五国的五个国家都是发展中国家，发展中国家是金砖五国的特点，二者为属性的对应关系，但词语前后顺序相反，前后逻辑关系不一致，排除。</p><p>故正确答案为B。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "类比推理",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23464,
+      "titleHtml": "<p>销售平台 对于 （    ） 相当于 （    ） 对于 剪纸艺术</p>",
+      "type": "single",
+      "globalAccuracy": 84,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "销售渠道 文化遗产"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "商品 窗花"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "电子商铺 手工艺术"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "客服人员 艺术院校"
+        }
+      ],
+      "analysisHtml": "<p>逐一代入选项。</p><p>A项：销售平台是销售渠道的一种，二者为种属关系；剪纸艺术是文化遗产的一种，二者为种属关系，但前后顺序相反，前后逻辑关系不一致，排除；</p><p>B项：销售平台售卖商品，二者为对应关系；窗花是剪纸艺术的一种，二者为种属关系，前后逻辑关系不一致，排除；</p><p>C项：电子商铺是销售平台的一种，二者为种属关系；剪纸艺术是手工艺术的一种，二者为种属关系，前后逻辑关系一致，当选；</p><p>D项：客服人员在销售平台工作，二者为职业和工作地点的对应关系；艺术院校和剪纸艺术没有必然联系，前后逻辑关系不一致，排除。</p><p>故正确答案为C。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "类比推理",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23465,
+      "titleHtml": "<p>建筑工人 对于 （    ） 相当于 （    ） 对于 汽车芯片</p>",
+      "type": "single",
+      "globalAccuracy": 74,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "高楼大厦；芯片厂商"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "焊工；手机芯片"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "建筑；汽车"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "工人宿舍；汽车零件"
+        }
+      ],
+      "analysisHtml": "<p>逐一代入选项。</p><p>A项：建筑工人建造高楼大厦，二者为工作成果的对应关系；芯片厂商制造汽车芯片，二者为工作成果的对应关系，前后逻辑关系一致，当选；</p><p>B项：有的建筑工人是焊工，有的建筑工人不是焊工，有的焊工是建筑工人，有的焊工不是建筑工人，二者为交叉关系；手机芯片和汽车芯片是两种不同应用领域的芯片，二者为并列关系，前后逻辑关系不一致，排除；</p><p>C项：建筑工人建造建筑，二者为工作成果的对应关系；但汽车不建造汽车芯片，汽车芯片是汽车的组成部分，前后逻辑关系不一致，排除；</p><p>D项：建筑工人居住在工人宿舍，二者为居住地点的对应关系；汽车芯片是汽车零件，二者为种属关系，前后逻辑关系不一致，排除。</p><p>故正确答案为A。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "类比推理",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23466,
+      "titleHtml": "<p>某酒店张贴这样的标语：严禁携带易燃品、易爆品、危险品入住。</p><p>以下哪项陈述中所包含的逻辑错误与题干中的最相似？</p>",
+      "type": "single",
+      "globalAccuracy": 84,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "许多农户养了鸡、鸭、家禽，大大增加了收入"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "罗先生收藏了许多古代的工笔画、写意画、山水画"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "花园里开着五颜六色的红花、黄花、粉花，甚为美丽"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "小红在文具店里购买了铅笔、橡皮、小刀等学习用品"
+        }
+      ],
+      "analysisHtml": "<p>第一步：分析题干逻辑错误。</p><p>题干中的易燃品、易爆品均属于危险品，所犯的逻辑错误是将包容关系错误地理解为并列关系。</p><p>第二步：逐一分析选项。</p><p>A项：选项中的鸡、鸭均属于家禽，所犯的逻辑错误是将包容关系错误地理解为并列关系，与题干的逻辑错误一致，当选；</p><p>B项：选项中的工笔画和写意画是两种不同的绘画技法，但山水画是根据画面内容分类的，所犯的逻辑错误是将交叉关系错误地理解为并列关系，与题干的逻辑错误不一致，排除；</p><p>C项：选项中红花、黄花、粉花是三种不同颜色的花，属于同一层级，三者为并列关系，与题干的逻辑错误不一致，排除；</p><p>D项：选项中铅笔、橡皮、小刀均属于文具，属于同一层级，三者为并列关系，与题干的逻辑错误不一致，排除。</p><p>故正确答案为A。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "结构相似",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23467,
+      "titleHtml": "<p>张、王、李、赵、钱、孙6人是某单位的优秀员工，在全面深化改革方面取得了很大的成就，现有甲、乙、丙、丁四种奖项可以申报，每名员工只能申报一种奖项，且每种奖项都有1至2名员工申报，已知以下情况：</p><p>（1）申报乙奖的员工比甲奖的多；</p><p>（2）申报丁奖的员工比丙奖的多；</p><p>（3）若李、赵中至少有1名申报甲奖，则王申报丁奖；</p><p>（4）若张、李、赵中至少有1名申报乙奖，则只有钱申报丁奖；</p><p>（5）孙申报丙奖。</p><p>根据以上信息，可以得出以下哪项结论？</p>",
+      "type": "single",
+      "globalAccuracy": 54,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "张申报丙奖"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "赵、钱申报乙奖"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "王、李申报丁奖"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "李、赵申报丁奖"
+        }
+      ],
+      "analysisHtml": "第一步：分析题干条件。<br>（1）申报乙奖人数>申报甲奖人数；<br>（2）申报丁奖人数>申报丙奖人数；<br>（3）李申报甲奖 或 赵申报甲奖 -> 王申报丁奖；<br>（4）张申报乙奖 或 李申报乙奖 或 赵申报乙奖 -> 只有钱申报丁奖；<br>（5）孙申报丙奖；<br>（6）张、王、李、赵、钱、孙6人，每名员工只能申报一种奖项，且每种奖项都有1至2名员工申报。<br>第二步：根据题干条件进行推理。<br>根据条件（1）、（2）、（6）可以推出，申报乙、丁两种奖项的人数均为2，申报甲、丙两种奖项的人数均为1，结合条件（5）可以推出申报丙奖的只有孙，排除A项；<br>根据上述“申报丁奖的人数为2”可以推出“只有钱申报丁奖”一定不成立，是对条件（4）的否后，否后必否前，可以推出张没有申报乙奖 且 李没有申报乙奖 且 赵没有申报乙奖，结合条件（5）可知，孙申报丙奖，则申报乙奖的为王、钱，排除B、C两项；<br>继续推理，验证D项。根据上述“申报乙奖的为王、钱”可以推出，王不申报丁奖，是对条件（3）的否后，否后必否前，可以推出李没有申报甲奖 且 赵没有申报甲奖，则申报甲奖的只能为张，李、赵只能申报丁奖。综上所述，D项为真，当选。<br><img width=\"534px\" height=\"83px\" src=\"//fb.fbstatic.cn/api/tarzan/images/18cb4dd871f91c9.png?width=700\"><br>故正确答案为D。",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "组合排列",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23468,
+      "titleHtml": "<p>市美术馆近期举办“小读者”系列活动，活动包含若干项目。报名情况如下：</p><p>（1）小读者在艺术阅读和版画实践课中至少参加了一个；</p><p>（2）小读者如果参加了艺术阅读，则没有参加书法小课堂；</p><p>（3）小苏参加了书法小课堂；</p><p>美术馆馆长知道上述情况后断定，小苏也参加了手工剪纸活动。以下哪项如果为真，可以成为美术馆馆长判断的前提？</p>",
+      "type": "single",
+      "globalAccuracy": 63,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "小苏没有参加艺术阅读"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "小苏没有参加版画实践课"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "参加了手工剪纸活动的也参加了版画实践课"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "不参加手工剪纸活动的都不参加版画实践课"
+        }
+      ],
+      "analysisHtml": "第一步：找出论点和论据。<br>论点：小苏参加了手工剪纸活动。<br>论据：（1）艺术阅读 或 版画实践课；<br>（2）艺术阅读 -> - 书法小课堂；<br>（3）小苏参加了书法小课堂。<br>论据（3）“小苏参加了书法小课堂”是对论据（2）“艺术阅读-> - 书法小课堂”的否后，根据“否后必否前”可以推出，小苏没有参加艺术阅读，结合论据（1）“艺术阅读 或 版画实践课”，根据“或关系否一推一”可以推出，小苏参加了版画实践课。<br>本题需要找出论点成立的前提，可优先考虑搭桥，即建立“小苏参加了版画实践课”和“小苏参加了手工剪纸活动”之间的联系。<br>第二步：逐一分析选项。<br>A项：“小苏没有参加艺术阅读”，根据论据（1）可知，小苏参加了版画实践课，但不能推出小苏参加了手工剪纸活动，不是论点成立的前提，排除；<br>B项：“小苏没有参加版画实践课”，与题干论据不符，无法推出结论，排除；<br>C项：该项翻译为：手工剪纸活动->版画实践课，论据已经推出“小苏参加了版画实践课”，而小苏参加了版画实践课是对该项的肯后，无法推出小苏参加了手工剪纸活动，不是论点成立的前提，排除；<br>D项：该项翻译为：版画实践课->手工剪纸活动，论据已经推出“小苏参加了版画实践课”，根据该项可知小苏也参加了手工剪纸活动，为搭桥项，是论点成立的前提，当选。<br>故正确答案为D。",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "加强削弱",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23469,
+      "titleHtml": "<p>“经常掰手指发出响声是一种不健康的习惯，因为掰手指发出的响声实际上是关节互相摩擦的声音，经常掰手指会磨损手指关节导致手指关节炎。”为验证这一观点，研究人员将200余名实验对象分为2组进行了严谨的对比实验，经长期观察后得出了结论：经常掰手指作响与手指关节炎没有明显的相关性。</p><p>以下哪项如果为真，最有可能是研究人员通过实验得到的论据？</p>",
+      "type": "single",
+      "globalAccuracy": 50,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "掰手指发出的声响是关节腔中滑液气泡破裂的声音，并非关节摩擦的声音"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "与不掰手指的人相比，经常掰手指的人手部握力和关节强度均有不同程度下降"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "经统计，手指关节炎与病患年龄显著相关，年龄越大，患手指关节炎的概率越高"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "经统计，实验期间，在经常掰手指的实验组中，仅有1人因遗传因素患手指关节炎"
+        }
+      ],
+      "analysisHtml": "<p>第一步：找出论点和论据。</p><p>论点：经常掰手指作响与手指关节炎没有明显的相关性。</p><p>论据：无。</p><p>本题问哪项最有可能是研究人员通过实验得到的论据，优先考虑补充论据。</p><p>第二步：逐一分析选项。</p><p>A项：该项指出掰手指发出的声响与关节摩擦无关，解释了论点为什么成立，但不是通过实验得到的论据，排除；</p><p>B项：该项指出经常掰手指的人手部握力和关节强度均有不同程度下降，握力和关节强度的下降不利于关节的健康，有一定的削弱作用，不是通过实验得到的论据，排除；</p><p>C项：该项指出手指关节炎与病患年龄显著相关，而论点说的是经常掰手指作响与手指关节炎的关系，话题不一致，不是通过实验得到的论据，排除；</p><p>D项：该项指出在经常掰手指的实验组中只有1人是因为遗传因素患手指关节炎，说明实验中经常掰手指组没有人因掰手指患上关节炎，即使没有提及另一组的实验结果，也能证明论点的成立，且是通过实验可以得到的论据，当选。</p><p>故正确答案为D。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "加强削弱",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23470,
+      "titleHtml": "<p>体温调节模式假说认为，变温动物因为需要吸收外部热量调节体温，因此代谢率通常较低，而恒温动物由内部产生热量，代谢率较高，因此变温动物比恒温动物衰老速度慢。就像人们觉得老鼠衰老快，是因为它们新陈代谢率很高，而海龟衰老慢，是因为它们新陈代谢率很低。</p><p>以下哪项如果为真，最能削弱上述假说?</p>",
+      "type": "single",
+      "globalAccuracy": 40,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "有壳这种物理特征保护，海龟的衰老速度较慢，寿命更长"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "研究显示，变温动物的衰老率远高于或远低于相似体型恒温动物的衰老率"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "得出上述假说的研究主要集中在动物园的动物或少数野生动物中，且获得的证据参差不齐"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "部分变温动物的衰老可忽略不计，包括青蛙、海龟等，一旦过了繁殖期，它们死亡的可能性不会随着年龄的增长而改变"
+        }
+      ],
+      "analysisHtml": "<p>第一步：找出论点和论据。</p><p>论点：变温动物比恒温动物衰老速度慢。</p><p>论据：①变温动物因为需要吸收外部热量调节体温，因此代谢率通常较低，而恒温动物由内部产生热量，代谢率较高。</p><p>②人们觉得老鼠衰老快，是因为它们新陈代谢率很高，而海龟衰老慢，是因为它们新陈代谢率很低。</p><p>本题论点和论据都在讨论变温动物比恒温动物的衰老速度慢，二者话题一致，削弱优先考虑削弱论点。</p><p>第二步：逐一分析选项。</p><p>A项：该项指出海龟衰老速度较慢是因为有壳的保护，说明海龟衰老速度较慢的原因并不是新陈代谢率低，削弱论据，保留；</p><p>B项：该项指出变温动物的衰老率远高于或远低于相似体型恒温动物的衰老率，也就是说变温动物的衰老率不一定比恒温动物衰老速度慢，而论点是说变温动物比恒温动物衰老速度慢，削弱论点，保留；</p><p>C项：该项指出得出体温调节模式假说的研究涉及的动物样本数量较少，且获得的证据参差不齐，说明该研究结果可能无法真实地反映总体情况，可以削弱，保留；</p><p>D项：该项指出部分变温动物的衰老可忽略不计，说明部分变温动物的衰老速度非常慢，且未与恒温动物的衰老速度进行比较，无法削弱，排除。</p><p>对比A、B、C三项，A项为削弱论据，B项是直接削弱论点，C项是通过质疑得出论点的研究样本来削弱论点，但论点和论据中都并未直接说明研究过程，且结合下面原文来看，作者先提及了C项，后又提及了B项来削弱前面的观点，因此出题时可能更倾向于B项力度更强，所以小粉笔择优把答案定为B项。</p><p>原文内容：</p><p><img width=\"600px\" height=\"464px\" src=\"//fb.fbstatic.cn/api/tarzan/images/18cb4e804e60971.png?width=700\" /></p><p>故正确答案为B。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "加强削弱",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23471,
+      "titleHtml": "<p>近日，某地区出现一例感染性腹泻病例，经诊断为霍乱。得知此消息后，生活在该地区附近的小李提醒身边的人说：“霍乱是甲类传染病，致死率非常高，近期应该减少出门，减少感染几率。”</p><p>以下哪项如果为真，最能反驳小李的观点？</p>",
+      "type": "single",
+      "globalAccuracy": 81,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "从2018年开始，我国霍乱病例不断下降，近5年无死亡病例"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "霍乱主要通过粪口途径传播，不会通过空气或皮肤接触传播"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "接触霍乱患者或带菌者后，只要及时清洁和消毒即可避免感染"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "霍乱由于发病急、病情重、传染快、传播广泛被列为甲类传染病"
+        }
+      ],
+      "analysisHtml": "<p>第一步：找出论点和论据。</p><p>论点：近期应该减少出门，减少感染几率。</p><p>论据：霍乱是甲类传染病，致死率非常高。</p><p>论点和论据讨论的均与霍乱有关，话题一致，削弱优先考虑削弱论点。</p><p>第二步：逐一分析选项。</p><p>A项：指出从2018年开始，我国霍乱病例不断下降，近5年无死亡病例，举例说明霍乱致死率可能并不高，有一定的削弱力度，保留；</p><p>B项：指出霍乱主要通过粪口途径传播，不会通过空气或皮肤接触传播，说明尽管该地区附近有霍乱病例，正常出门也并不容易导致感染，因此无需通过减少出门的方式来减少感染几率，削弱论点，可以削弱，保留；</p><p>C项：指出接触霍乱患者或带菌者后，只要及时清洁和消毒即可避免感染，表明“及时清洁和消毒”可以减少感染几率，而论点讨论的是“减少出门”可以减少感染几率，话题不一致，为无关项，无法削弱，排除；</p><p>D项：指出霍乱由于发病急、病情重、传染快、传播广泛被列为甲类传染病，是对论据的重复，可以加强，无法削弱，排除。</p><p>对比A、B两项，题干论点讨论的是减少感染的问题，B项与题干的论点话题更为一致，而A项只涉及到我国近5年的情况，不够全面，且并没有涉及到感染，故B项削弱力度大于A项，当选。</p><p>故正确答案为B。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "加强削弱",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23472,
+      "titleHtml": "<p>进入秋季以来，国际化肥价格呈爆发式上涨，氮肥、磷肥、钾肥比上一年同期都有大幅上涨。对此，有关专家表示，近期受多种因素叠加影响，化肥价格上涨明显，但价格与市场需求量相关，国内肥料价格很快就会回到正常水平。</p><p>专家最不可能基于以下哪项得出上述观点？</p>",
+      "type": "single",
+      "globalAccuracy": 75,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "肥价过高，粮价不稳，经销商和农户购肥积极性减弱"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "农业用肥即将度过高峰期进入淡季，需求量将会下降"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "原料价格上涨，生产成本过高，多家化肥企业暂停生产"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "我国延长收紧化肥出口时间，变相增加了国内化肥供应"
+        }
+      ],
+      "analysisHtml": "<p>第一步：找出论点和论据。</p><p>论点：价格与市场需求量相关，国内肥料价格很快就会回到正常水平。</p><p>论据：无。</p><p>本题只有论点，没有论据，加强优先考虑补充论据，且本题为选非题，排除三个能够加强的选项即可。</p><p>第二步：逐一分析选项。</p><p>A项：选项指出肥价过高会导致经销商和农户购肥积极性减弱，说明化肥需求量会下降，需求量下降会导致价格降低，因此肥料价格可能会回到正常水平，补充论据，可以加强，排除；</p><p>B项：选项指出农业用肥即将进入淡季，需求量将会下降，需求量下降会导致价格降低，因此肥料价格可能会回到正常水平，补充论据，可以加强，排除；</p><p>C项：选项指出原料价格上涨，生产成本过高，多家化肥企业暂停生产，因此供应量会减少，可能会使价格再次上涨，肥料价格无法回到正常水平，为削弱项，无法加强，当选；</p><p>D项：指出我国延长收紧化肥出口时间，变相增加了国内化肥供应，供应量增加可能会导致价格降低，因此肥料价格可能会回到正常水平，补充论据，可以加强，排除。</p><p>本题为选非题，故正确答案为C。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "加强削弱",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23473,
+      "titleHtml": "<p>男性的性染色体为XY，Y来自父亲，X来自母亲；女性的性染色体为XX，来自父母双方。一项研究表明，决定智商的人类基因绝大部分来自X染色体。因此，男性智商只取决于母亲的智商，女性智商则取决于双亲的智商。</p><p>以下哪项如果为真，最能质疑上述结论？</p>",
+      "type": "single",
+      "globalAccuracy": 25,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "男性发生智力障碍的概率是女性的1.4-1.9倍"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "X染色体40%以上的基因在大脑中表达，这一比例远高于Y染色体"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "母亲与儿子的智商相关程度比父亲与儿子的智商相关程度高约10%"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "该研究结果通过统计分析大量人类智商数据得出，并非由基因测序获得"
+        }
+      ],
+      "analysisHtml": "<p>第一步：找出论点和论据。</p><p>论点：男性智商只取决于母亲的智商，女性智商则取决于双亲的智商。</p><p>论据：决定智商的人类基因绝大部分来自X染色体。</p><p>本题的论据和论点都是在讨论人类智商取决于谁，二者话题一致，削弱优先考虑削弱论点。</p><p>第二步：逐一分析选项。</p><p>A项：该项讨论的是男性发生智力障碍的概率高于女性，与论点讨论的人类智商取决于谁无关，为无关项，无法削弱，排除；</p><p>B项：该项讨论的是X染色体上的基因在大脑中表达的比例远高于Y染色体，无法削弱论点讨论的人类智商取决于谁，无法削弱，排除；</p><p>C项：该项讨论的是母亲与儿子的智商相关程度比父亲与儿子的智商相关程度高约10%，说明父亲也会影响男性的智商，削弱了“男性智商只取决于母亲的智商”，削弱论点，保留；</p><p>D项：该项讨论的是该研究结果通过统计分析大量人类智商数据得出，并非由基因测序获得，而研究结果讨论的恰是基因来自哪条染色体，说明研究方法有问题，削弱论据，保留。</p><p>对比C、D两项，C项削弱论点的力度强于D项削弱论据的力度，故C项当选。</p><p>故正确答案为C。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "加强削弱",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23474,
+      "titleHtml": "<p>近日，某款磁性笔销量大增，买家主要是中小学生。磁性笔由多个磁力小部件组成，依靠强大的磁性可任意变换出不同的造型，颇具娱乐性。磁性笔商家称，磁性笔能开发智力，寓教于乐，让孩子爱上写字，学龄以上孩子都可以安全使用。</p><p>以下哪项如果为真，最能质疑商家的说法？</p>",
+      "type": "single",
+      "globalAccuracy": 55,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "该磁性笔磁力小部件重金属超标，可能对使用者健康造成危害"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "某调查发现，初三的大部分学生认为磁性笔很无聊，是给小孩子玩的"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "家长普遍反映，孩子上课只顾着玩磁性笔，听课效率比以前下降了很多"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "一个四岁孩子在玩磁性笔时不慎吞咽了散落的磁力小部件，造成肠穿孔"
+        }
+      ],
+      "analysisHtml": "<p>第一步：找出论点和论据。</p><p>论点：磁性笔能开发智力，寓教于乐，让孩子爱上写字，学龄以上孩子都可以安全使用。</p><p>论据：无。</p><p>本题只有论点没有论据，削弱优先考虑削弱论点。</p><p>第二步：逐一分析选项。</p><p>A项：该项说的是磁性笔可能危害使用者健康，说明包括学龄以上孩子在内的使用者在使用磁性笔时存在安全隐患，削弱论点，可以削弱，当选；</p><p>B项：该项说的是初三大部分学生认为磁性笔无聊，而论点说的是磁性笔是否能够开发智力，让孩子爱上写字，安全使用，二者话题不一致，为无关项，不能削弱，排除；</p><p>C项：该项说的是磁性笔会影响孩子的听课效率，而论点说的是磁性笔是否能够开发智力，让孩子爱上写字，安全使用，二者话题不一致，为无关项，不能削弱，排除；</p><p>D项：该项说的是一个四岁孩子误吞磁性笔的磁力小部件造成肠穿孔，而论点说的是学龄以上孩子使用磁性笔是否安全，我国的学龄以上儿童一般为六岁以上，二者主体不一致，为无关项，不能削弱，排除。</p><p>故正确答案为A。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "加强削弱",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23475,
+      "titleHtml": "<p>研究人员从分析受试者的呼吸开始，筛选可用于生物识别认证的化合物，共发现了28种可行的化合物。在此基础上，他们开发了一个有16个通道的嗅觉传感器阵列，每个通道都可识别特定范围的化合物。传感器数据随后被传递到机器学习系统中，分析每个人的呼吸组成，并以此区分个人的特征。研究人员根据结果表示，呼吸可作为身份验证的识别信号。</p><p>以下哪项如果为真，最能削弱上述观点？</p>",
+      "type": "single",
+      "globalAccuracy": 64,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "实验受试者仅20人，样本量太少"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "呼吸样本波动性极高，很容易受饮食、环境甚至情绪影响"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "16个嗅觉传感器通道较少，识别呼吸的个人特征时准确率并不稳定"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "即使患呼吸道疾病，一个人呼吸运动的独特性也会在很长时间内保持不变"
+        }
+      ],
+      "analysisHtml": "<p>第一步：找出论点和论据。</p><p>论点：呼吸可作为身份验证的识别信号。</p><p>论据：研究人员开发了一个有16个通道的嗅觉传感器阵列，每个通道都可识别特定范围的化合物。传感器数据随后被传递到机器学习系统中，分析每个人的呼吸组成，并以此区分个人的特征。</p><p>本题论点和论据均在讨论通过分析呼吸组成，可以区分个人的特征并由此进行身份验证，二者话题一致，削弱优先考虑削弱论点。</p><p>第二步：逐一分析选项。</p><p>A项：该项说实验样本量太少，说明实验不科学，可以削弱，保留；</p><p>B项：该项说呼吸样本波动性极高，很容易受饮食、环境甚至情绪影响，说明无法通过呼吸进行身份验证，可以削弱，保留；</p><p>C项：该项说实验中用到的嗅觉传感器通道数量较少，识别时准确率不稳定，说明实验设备不足，可以削弱，保留；</p><p>D项：该项说即使患呼吸道疾病，一个人呼吸运动的独特性也会在很长时间内保持不变，说明呼吸特征几乎不受疾病影响，所以可以通过呼吸进行身份验证，有一定的加强作用，无法削弱，排除。</p><p>对比A、B、C三项，A项说的是实验样本数量少，B项说的是实验对象本身存在问题，C项说的是实验的工具有问题，这三者中，B项实验本身的对象对实验的影响最大，对论点的削弱作用更强，故B项削弱力度强于A、C两项，当选。</p><p>故正确答案为B。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "加强削弱",
+      "materialHtml": "",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23476,
+      "titleHtml": "<p>2021年上半年，全国彩票销售额约为多少亿元？</p>",
+      "type": "single",
+      "globalAccuracy": 83,
+      "correctAnswer": "0",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "1780"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "1810"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "1840"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "1880"
+        }
+      ],
+      "analysisHtml": "<p>根据题干“2021年上半年，全国彩票销售额约为多少亿元”，结合材料时间为2022年1-6月，且全国彩票销售额为福利彩票销售额与体育彩票销售额之和，可判定本题为基期和差问题。定位表格材料可得：2022年1-6月累计福利彩票销售额748.6亿元，同比增长10.6%；体育彩票销售额1072亿元，同比增长-3.2%。根据公式：基期量<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=EJne-omLhZ0FR1-iNdylh7ggmdEaxPldU5-KOoxgtWk\" />，则2021年上半年全国彩票销售额=2021年上半年福利彩票销售额+2021年上半年体育彩票销售额<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=cdrH26BnsCtbvhhvGaajWRSwGZm3Q5vxLNtuCUiatLefuPJVo5CCe2xf20ZGRposdEKLEnTovD6VAdfYxpV2ew\" /><img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=Jz1QwWKfUvkYb5cYlvu5Wj-Ak1DaofXVJ5vhKBaSojabgCglF-cRKBBuDmHUHQrEBNSYPBTkW5rfM-yP5152sg\" /><img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=vbatVGpbWW0yqsGumGgwXOmunhebQkhlEU4vnxzIVXM\" />亿元。</p><p>故正确答案为A。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "资料分析",
+      "materialHtml": "<img width=\"700px\" height=\"367px\" src=\"//fb.fenbike.cn/api/tarzan/images/18c813e70768dba.png?width=700\">",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23477,
+      "titleHtml": "<p>2022年1-4月，福利彩票平均每月销售额约为多少亿元？</p>",
+      "type": "single",
+      "globalAccuracy": 79,
+      "correctAnswer": "2",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "110"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "115"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "120"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "125"
+        }
+      ],
+      "analysisHtml": "<p>根据题干“2022年1-4月······平均每月······亿元”，可判定本题为现期平均数问题。定位表格材料可得：2022年6月福利彩票销售额130.8亿元，环比增长-0.5%；2022年1-6月累计福利彩票销售额748.6亿元。由于1-4月=1-6月-6月-5月，根据公式：基期量<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=EJne-omLhZ0FR1-iNdylh7ggmdEaxPldU5-KOoxgtWk\" />，则2022年1-4月福利彩票销售额<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=k_p8VVu4S7Y0bNFxhR8dCIvN9KmDDNno58DiSVWGUJI8a0C4dshdF33bcAMBxEBr\" /><img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=2LgzjturKJ628dYdk1zR0c2t-FvcNW-dkE3vCPZ2Wg8\" />亿元。根据公式：平均每月销售额<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=IoWAigYsc2Qp81N46MQbbTDkaCcIxv05hr_wg4ThTfpJINoC0_AsgHnnizX-TLlZ\" />，则2022年1-4月福利彩票平均每月销售额<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=lZvExy2yHRSjtnbTXyGT3GWti4wCycm9BvHFJ68651s\" />亿元，与C项最接近。</p><p>故正确答案为C。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "资料分析",
+      "materialHtml": "<img width=\"700px\" height=\"367px\" src=\"//fb.fenbike.cn/api/tarzan/images/18c813e70768dba.png?width=700\">",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23478,
+      "titleHtml": "<p>2022年6月，福利彩票中乐透数字型销售额占比比体育彩票中乐透数字型销售额占比：</p>",
+      "type": "single",
+      "globalAccuracy": 83,
+      "correctAnswer": "3",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "低不到20个百分点"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "高不到20个百分点"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "低20个百分点以上"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "高20个百分点以上"
+        }
+      ],
+      "analysisHtml": "<p>根据题干“2022年6月······占比······”，可判定本题为现期比重问题。定位表格材料可得：2022年6月福利彩票销售额130.8亿元，其中乐透数字型销售额71.8亿元；体育彩票销售额189亿元，其中乐透数字型销售额58.6亿元。根据公式：比重<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=ENG1-D-nqZhIk8gs4ilun2EGN1pSWFH0nEZO5D2kE_w\" />，则所求<img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=vmR3fukFkC_vzQGGYC8vcrfIbwpCmjBzm-nJmFdw3dPZyKJwk4qeX86AVtt2bH9K\" /><img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=5QHkSifvan-Z3Fxie9mWrQRpwGt5lbuVlWW-53i9kFZqKqrynM7HnaMQkI9aOg7g\" /><img flag=\"tex\" src=\"//fb.fbstatic.cn/api/planet/accessories/formulas?latex=M0YYaKbOagU5eg72Wbg15WqHDB5c0ZvXILVZYtW-HAk\" />，即高20个百分点以上。</p><p>故正确答案为D。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "资料分析",
+      "materialHtml": "<img width=\"700px\" height=\"367px\" src=\"//fb.fenbike.cn/api/tarzan/images/18c813e70768dba.png?width=700\">",
+      "userAnswer": null,
+      "memorize": false
+    },
+    {
+      "id": 23479,
+      "titleHtml": "<p>下列饼图中，最能体现2021年上半年福利彩票中乐透数字型（灰色）、即开型（白色）、基诺型（斜线）占比的是：</p>",
+      "type": "single",
+      "globalAccuracy": 80,
+      "correctAnswer": "1",
+      "options": [
+        {
+          "label": "A",
+          "value": "0",
+          "text": "<img width=\"180px\" height=\"180px\" src=\"//fb.fbstatic.cn/api/tarzan/images/18c814ab24418d5.png?width=700\" />"
+        },
+        {
+          "label": "B",
+          "value": "1",
+          "text": "<img width=\"180px\" height=\"180px\" src=\"//fb.fbstatic.cn/api/tarzan/images/18c814acb360261.png?width=700\" />"
+        },
+        {
+          "label": "C",
+          "value": "2",
+          "text": "<img width=\"180px\" height=\"180px\" src=\"//fb.fbstatic.cn/api/tarzan/images/18c814ae0797a08.png?width=700\" />"
+        },
+        {
+          "label": "D",
+          "value": "3",
+          "text": "<img width=\"180px\" height=\"180px\" src=\"//fb.fbstatic.cn/api/tarzan/images/18c814af731ff25.png?width=700\" />"
+        }
+      ],
+      "analysisHtml": "<p>根据题干“······2021年上半年福利彩票中······占比的是”，结合材料时间为2022年1-6月，可判定本题为基期比重问题。定位表格材料可得：2022年1-6月累计福利彩票销售额748.6亿元（B），同比增长10.6%（b），其中乐透数字型销售额433.1亿元（A），同比增长-6%（a）；即开型销售额175.6亿元，同比增长33.2%；基诺型销售额139.9亿元，同比增长65.5%。根据公式：基期量<img flag=\"tex\" src=\"//fb.fenbike.cn/api/planet/accessories/formulas?latex=EJne-omLhZ0FR1-iNdylh7ggmdEaxPldU5-KOoxgtWk\" />，可得2021年上半年即开型销售额为<img flag=\"tex\" src=\"//fb.fenbike.cn/api/planet/accessories/formulas?latex=pdEYhGvLkI4vzOTrZ2qvBPZ_mIeoFWq8z3qeJheppBM\" />亿元，基诺型销售额为<img flag=\"tex\" src=\"//fb.fenbike.cn/api/planet/accessories/formulas?latex=VK8kxh8EsbjW7hTKZp8EphUFj3KME4GPCi_9Qy0XNZA\" />亿元，前者分子大分母小，其分数值大，则即开型占比（白色部分）＞基诺型占比（斜线部分），排除C、D两项。根据公式：基期比重<img flag=\"tex\" src=\"//fb.fenbike.cn/api/planet/accessories/formulas?latex=zxfa9A6xUawIJ66d3xjHxApst5cZ_fgiL8jbnpY_DsBWChoKDQ0EoWN5SygubvAr\" />，可得2021年上半年乐透数字型销售额占福利彩票销售额的比重为<img flag=\"tex\" src=\"//fb.fenbike.cn/api/planet/accessories/formulas?latex=5d6ez8fgDdZwb-TQiQY0Q8Mx6Xxj_gpuoJOoc40OgeEXbwYvoteouSwwCegnC02w0RCYWYF9Xv8vpOvF0BIn3A\" /><img flag=\"tex\" src=\"//fb.fenbike.cn/api/planet/accessories/formulas?latex=dfOq7aZve6UGe4mBYZXPdXZECP2tKisLGdL-d9r12bush7sZkbEK4fZLmPhEXyZK\" />，排除A项，B项当选。</p><p>故正确答案为B。</p>",
+      "source": "2024年浙江公务员录用考试《行测》A类",
+      "tag": "资料分析",
+      "materialHtml": "<img width=\"700px\" height=\"367px\" src=\"//fb.fenbike.cn/api/tarzan/images/18c813e70768dba.png?width=700\">",
+      "userAnswer": null,
+      "memorize": false
+    }
+  ]
+}

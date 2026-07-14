@@ -20,9 +20,8 @@ dist/
 build/
 tsconfig.tsbuildinfo
 
-# SaDuck scraping materials kept locally, not part of the product repo
-docs/scraping/
-tools/saduck-scraper/
+# SaDuck authentication state stays local; normalized question data and tools are versioned.
+tools/saduck-scraper/**/storage-state.json
 
 # Secrets / local env
 .env
