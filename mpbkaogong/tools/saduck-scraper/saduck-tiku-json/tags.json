@@ -1,0 +1,547 @@
+[
+  {
+    "id": "政治理论",
+    "parentId": null,
+    "sort": 1,
+    "zqc": 0,
+    "cwc": 0,
+    "count": 0,
+    "ise": false,
+    "children": [
+      {
+        "id": "马克思主义",
+        "parentId": "政治理论",
+        "sort": 1,
+        "zqc": 0,
+        "cwc": 0,
+        "count": 49,
+        "ise": false,
+        "children": []
+      },
+      {
+        "id": "理论政策",
+        "parentId": "政治理论",
+        "sort": 1,
+        "zqc": 0,
+        "cwc": 0,
+        "count": 566,
+        "ise": false,
+        "children": []
+      },
+      {
+        "id": "毛泽东思想",
+        "parentId": "政治理论",
+        "sort": 1,
+        "zqc": 0,
+        "cwc": 0,
+        "count": 5,
+        "ise": false,
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "常识判断",
+    "parentId": null,
+    "sort": 2,
+    "zqc": 0,
+    "cwc": 0,
+    "count": 0,
+    "ise": false,
+    "children": [
+      {
+        "id": "法律",
+        "parentId": "常识判断",
+        "sort": 1,
+        "zqc": 0,
+        "cwc": 0,
+        "count": 205,
+        "ise": false,
+        "children": []
+      },
+      {
+        "id": "人文历史",
+        "parentId": "常识判断",
+        "sort": 1,
+        "zqc": 0,
+        "cwc": 0,
+        "count": 215,
+        "ise": false,
+        "children": []
+      },
+      {
+        "id": "自然科技",
+        "parentId": "常识判断",
+        "sort": 1,
+        "zqc": 0,
+        "cwc": 0,
+        "count": 237,
+        "ise": false,
+        "children": []
+      },
+      {
+        "id": "经济",
+        "parentId": "常识判断",
+        "sort": 1,
+        "zqc": 0,
+        "cwc": 0,
+        "count": 43,
+        "ise": false,
+        "children": []
+      },
+      {
+        "id": "地理国情",
+        "parentId": "常识判断",
+        "sort": 1,
+        "zqc": 0,
+        "cwc": 0,
+        "count": 50,
+        "ise": false,
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "言语理解",
+    "parentId": null,
+    "sort": 3,
+    "zqc": 0,
+    "cwc": 0,
+    "count": 0,
+    "ise": false,
+    "children": [
+      {
+        "id": "逻辑填空",
+        "parentId": "言语理解",
+        "sort": 1,
+        "zqc": 0,
+        "cwc": 0,
+        "count": 762,
+        "ise": false,
+        "children": []
+      },
+      {
+        "id": "中心理解",
+        "parentId": "言语理解",
+        "sort": 1,
+        "zqc": 0,
+        "cwc": 0,
+        "count": 381,
+        "ise": false,
+        "children": []
+      },
+      {
+        "id": "细节判断",
+        "parentId": "言语理解",
+        "sort": 1,
+        "zqc": 0,
+        "cwc": 0,
+        "count": 197,
+        "ise": false,
+        "children": []
+      },
+      {
+        "id": "语句填空",
+        "parentId": "言语理解",
+        "sort": 1,
+        "zqc": 0,
+        "cwc": 0,
+        "count": 113,
+        "ise": false,
+        "children": []
+      },
+      {
+        "id": "标题填入",
+        "parentId": "言语理解",
+        "sort": 1,
+        "zqc": 0,
+        "cwc": 0,
+        "count": 72,
+        "ise": false,
+        "children": []
+      },
+      {
+        "id": "推断下文",
+        "parentId": "言语理解",
+        "sort": 1,
+        "zqc": 0,
+        "cwc": 0,
+        "count": 59,
+        "ise": false,
+        "children": []
+      },
+      {
+        "id": "语句排序",
+        "parentId": "言语理解",
+        "sort": 1,
+        "zqc": 0,
+        "cwc": 0,
+        "count": 106,
+        "ise": false,
+        "children": []
+      },
+      {
+        "id": "词句理解",
+        "parentId": "言语理解",
+        "sort": 1,
+        "zqc": 0,
+        "cwc": 0,
+        "count": 19,
+        "ise": false,
+        "children": []
+      },
+      {
+        "id": "篇章阅读",
+        "parentId": "言语理解",
+        "sort": 1,
+        "zqc": 0,
+        "cwc": 0,
+        "count": 151,
+        "ise": false,
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "数量关系",
+    "parentId": null,
+    "sort": 4,
+    "zqc": 0,
+    "cwc": 0,
+    "count": 0,
+    "ise": false,
+    "children": [
+      {
+        "id": "数字推理",
+        "parentId": "数量关系",
+        "sort": 0,
+        "zqc": 0,
+        "cwc": 0,
+        "count": 88,
+        "ise": false,
+        "children": []
+      },
+      {
+        "id": "工程问题",
+        "parentId": "数量关系",
+        "sort": 1,
+        "zqc": 0,
+        "cwc": 0,
+        "count": 66,
+        "ise": false,
+        "children": []
+      },
+      {
+        "id": "经济利润",
+        "parentId": "数量关系",
+        "sort": 1,
+        "zqc": 0,
+        "cwc": 0,
+        "count": 54,
+        "ise": false,
+        "children": []
+      },
+      {
+        "id": "行程问题",
+        "parentId": "数量关系",
+        "sort": 1,
+        "zqc": 0,
+        "cwc": 0,
+        "count": 82,
+        "ise": false,
+        "children": []
+      },
+      {
+        "id": "几何问题",
+        "parentId": "数量关系",
+        "sort": 1,
+        "zqc": 0,
+        "cwc": 0,
+        "count": 123,
+        "ise": false,
+        "children": []
+      },
+      {
+        "id": "容斥问题",
+        "parentId": "数量关系",
+        "sort": 1,
+        "zqc": 0,
+        "cwc": 0,
+        "count": 18,
+        "ise": false,
+        "children": []
+      },
+      {
+        "id": "排列组合",
+        "parentId": "数量关系",
+        "sort": 1,
+        "zqc": 0,
+        "cwc": 0,
+        "count": 79,
+        "ise": false,
+        "children": []
+      },
+      {
+        "id": "概率问题",
+        "parentId": "数量关系",
+        "sort": 1,
+        "zqc": 0,
+        "cwc": 0,
+        "count": 74,
+        "ise": false,
+        "children": []
+      },
+      {
+        "id": "和差倍比",
+        "parentId": "数量关系",
+        "sort": 1,
+        "zqc": 0,
+        "cwc": 0,
+        "count": 151,
+        "ise": false,
+        "children": []
+      },
+      {
+        "id": "溶液问题",
+        "parentId": "数量关系",
+        "sort": 1,
+        "zqc": 0,
+        "cwc": 0,
+        "count": 12,
+        "ise": false,
+        "children": []
+      },
+      {
+        "id": "最值问题",
+        "parentId": "数量关系",
+        "sort": 1,
+        "zqc": 0,
+        "cwc": 0,
+        "count": 47,
+        "ise": false,
+        "children": []
+      },
+      {
+        "id": "计算问题",
+        "parentId": "数量关系",
+        "sort": 1,
+        "zqc": 0,
+        "cwc": 0,
+        "count": 88,
+        "ise": false,
+        "children": []
+      },
+      {
+        "id": "年龄问题",
+        "parentId": "数量关系",
+        "sort": 1,
+        "zqc": 0,
+        "cwc": 0,
+        "count": 19,
+        "ise": false,
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "判断推理",
+    "parentId": null,
+    "sort": 5,
+    "zqc": 0,
+    "cwc": 0,
+    "count": 0,
+    "ise": false,
+    "children": [
+      {
+        "id": "科学推理",
+        "parentId": "判断推理",
+        "sort": 1,
+        "zqc": 0,
+        "cwc": 0,
+        "count": 47,
+        "ise": false,
+        "children": []
+      },
+      {
+        "id": "图形推理",
+        "parentId": "判断推理",
+        "sort": 1,
+        "zqc": 0,
+        "cwc": 0,
+        "count": 382,
+        "ise": false,
+        "children": []
+      },
+      {
+        "id": "空间重构",
+        "parentId": "判断推理",
+        "sort": 1,
+        "zqc": 0,
+        "cwc": 0,
+        "count": 9,
+        "ise": false,
+        "children": []
+      },
+      {
+        "id": "立体拼合",
+        "parentId": "判断推理",
+        "sort": 1,
+        "zqc": 0,
+        "cwc": 0,
+        "count": 24,
+        "ise": false,
+        "children": []
+      },
+      {
+        "id": "六面体",
+        "parentId": "判断推理",
+        "sort": 1,
+        "zqc": 0,
+        "cwc": 0,
+        "count": 45,
+        "ise": false,
+        "children": []
+      },
+      {
+        "id": "截面图",
+        "parentId": "判断推理",
+        "sort": 1,
+        "zqc": 0,
+        "cwc": 0,
+        "count": 15,
+        "ise": false,
+        "children": []
+      },
+      {
+        "id": "三视图",
+        "parentId": "判断推理",
+        "sort": 1,
+        "zqc": 0,
+        "cwc": 0,
+        "count": 23,
+        "ise": false,
+        "children": []
+      },
+      {
+        "id": "平面问题",
+        "parentId": "判断推理",
+        "sort": 1,
+        "zqc": 0,
+        "cwc": 0,
+        "count": 29,
+        "ise": false,
+        "children": []
+      },
+      {
+        "id": "定义判断",
+        "parentId": "判断推理",
+        "sort": 1,
+        "zqc": 0,
+        "cwc": 0,
+        "count": 477,
+        "ise": false,
+        "children": []
+      },
+      {
+        "id": "类比推理",
+        "parentId": "判断推理",
+        "sort": 1,
+        "zqc": 0,
+        "cwc": 0,
+        "count": 453,
+        "ise": false,
+        "children": []
+      },
+      {
+        "id": "翻译推理",
+        "parentId": "判断推理",
+        "sort": 1,
+        "zqc": 0,
+        "cwc": 0,
+        "count": 49,
+        "ise": false,
+        "children": []
+      },
+      {
+        "id": "真假推理",
+        "parentId": "判断推理",
+        "sort": 1,
+        "zqc": 0,
+        "cwc": 0,
+        "count": 21,
+        "ise": false,
+        "children": []
+      },
+      {
+        "id": "组合排列",
+        "parentId": "判断推理",
+        "sort": 1,
+        "zqc": 0,
+        "cwc": 0,
+        "count": 66,
+        "ise": false,
+        "children": []
+      },
+      {
+        "id": "组合排列（材料）",
+        "parentId": "判断推理",
+        "sort": 1,
+        "zqc": 0,
+        "cwc": 0,
+        "count": 39,
+        "ise": false,
+        "children": []
+      },
+      {
+        "id": "加强削弱",
+        "parentId": "判断推理",
+        "sort": 1,
+        "zqc": 0,
+        "cwc": 0,
+        "count": 384,
+        "ise": false,
+        "children": []
+      },
+      {
+        "id": "结构相似",
+        "parentId": "判断推理",
+        "sort": 1,
+        "zqc": 0,
+        "cwc": 0,
+        "count": 32,
+        "ise": false,
+        "children": []
+      },
+      {
+        "id": "原因解释",
+        "parentId": "判断推理",
+        "sort": 1,
+        "zqc": 0,
+        "cwc": 0,
+        "count": 29,
+        "ise": false,
+        "children": []
+      },
+      {
+        "id": "日常结论",
+        "parentId": "判断推理",
+        "sort": 1,
+        "zqc": 0,
+        "cwc": 0,
+        "count": 24,
+        "ise": false,
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "资料分析",
+    "parentId": null,
+    "sort": 6,
+    "zqc": 0,
+    "cwc": 0,
+    "count": 1092,
+    "ise": false,
+    "children": []
+  }
+]
