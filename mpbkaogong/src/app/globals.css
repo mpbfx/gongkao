@@ -173,69 +173,100 @@
 }
 
 @layer components {
-  @media (min-width: 64rem) {
-    .student-shell,
-    .student-auth {
-      --background: #f4f0e8;
-      --foreground: #172238;
-      --card: #fbf8f1;
-      --card-foreground: #172238;
-      --popover: #fffdf8;
-      --popover-foreground: #172238;
-      --primary: #d65a3a;
-      --primary-foreground: #fffaf3;
-      --secondary: #eee7da;
-      --secondary-foreground: #29374d;
-      --muted: #e9e4da;
-      --muted-foreground: #626b73;
-      --accent: #b8842f;
-      --accent-foreground: #fffaf3;
-      --destructive: #b83d32;
-      --success: #2e7665;
-      --success-foreground: #fffaf3;
-      --warning: #9a6b20;
-      --warning-foreground: #fffaf3;
-      --info: #345b77;
-      --info-foreground: #fffaf3;
-      --border: #c8ced2;
-      --input: #b8c0c4;
-      --ring: #d65a3a;
-      --chart-1: #d65a3a;
-      --chart-2: #2e7665;
-      --chart-3: #b8842f;
-      --chart-4: #345b77;
-      --chart-5: #8d5146;
-      --sidebar: #12232a;
-      --sidebar-foreground: #f7f1e7;
-      --sidebar-primary: #d65a3a;
-      --sidebar-primary-foreground: #fffaf3;
-      --sidebar-accent: #1f393c;
-      --sidebar-accent-foreground: #fffaf3;
-      --sidebar-border: rgb(244 240 232 / 0.14);
-      --sidebar-ring: #e8795b;
-      --student-heading-font: "Songti SC", "STSong", "SimSun", ui-serif, serif;
-      background-color: var(--background);
-      background-image:
-        radial-gradient(circle at 18% 12%, rgb(255 255 255 / 0.72), transparent 31rem),
-        repeating-linear-gradient(0deg, rgb(23 34 56 / 0.018) 0 1px, transparent 1px 4px);
-      background-size: auto, auto;
-    }
+  /*
+   * Keep the student product identity independent from responsive layout.
+   * Previously these tokens only existed above the lg breakpoint, so merely
+   * narrowing the window swapped the whole product back to the default blue
+   * shadcn palette. Breakpoints below should change layout, never the theme.
+   */
+  .student-shell,
+  .student-auth {
+    --background: #f4f0e8;
+    --foreground: #172238;
+    --card: #fbf8f1;
+    --card-foreground: #172238;
+    --popover: #fffdf8;
+    --popover-foreground: #172238;
+    --primary: #d65a3a;
+    --primary-foreground: #fffaf3;
+    --secondary: #eee7da;
+    --secondary-foreground: #29374d;
+    --muted: #e9e4da;
+    --muted-foreground: #626b73;
+    --accent: #b8842f;
+    --accent-foreground: #fffaf3;
+    --destructive: #b83d32;
+    --success: #2e7665;
+    --success-foreground: #fffaf3;
+    --warning: #9a6b20;
+    --warning-foreground: #fffaf3;
+    --info: #345b77;
+    --info-foreground: #fffaf3;
+    --border: #c8ced2;
+    --input: #b8c0c4;
+    --ring: #d65a3a;
+    --chart-1: #d65a3a;
+    --chart-2: #2e7665;
+    --chart-3: #b8842f;
+    --chart-4: #345b77;
+    --chart-5: #8d5146;
+    --sidebar: #12232a;
+    --sidebar-foreground: #f7f1e7;
+    --sidebar-primary: #d65a3a;
+    --sidebar-primary-foreground: #fffaf3;
+    --sidebar-accent: #1f393c;
+    --sidebar-accent-foreground: #fffaf3;
+    --sidebar-border: rgb(244 240 232 / 0.14);
+    --sidebar-ring: #e8795b;
+    --student-heading-font: "Songti SC", "STSong", "SimSun", ui-serif, serif;
+    background-color: var(--background);
+    background-image:
+      radial-gradient(circle at 18% 12%, rgb(255 255 255 / 0.72), transparent 31rem),
+      repeating-linear-gradient(0deg, rgb(23 34 56 / 0.018) 0 1px, transparent 1px 4px);
+    background-size: auto, auto;
+  }
 
+  .student-shell .student-heading,
+  .student-auth .student-heading,
+  .student-shell [data-slot="card-title"] {
+    font-family: var(--student-heading-font);
+    letter-spacing: -0.015em;
+  }
+
+  .student-shell .student-topbar {
+    border-color: rgb(23 34 56 / 0.16);
+    background-color: rgb(244 240 232 / 0.92);
+    box-shadow: 0 1px 0 rgb(255 255 255 / 0.65) inset;
+  }
+
+  .student-shell-v2 {
+    --radius: 0.2rem;
+  }
+
+  .student-shell-v2 [data-slot="card"] {
+    border-color: rgb(23 34 56 / 0.34);
+    background-color: rgb(251 248 241 / 0.64);
+  }
+
+  .student-shell-v2 [data-slot="button"] {
+    font-weight: 600;
+    letter-spacing: 0.03em;
+  }
+
+  .student-shell-v2 input,
+  .student-shell-v2 select,
+  .student-shell-v2 textarea {
+    background-color: rgb(255 253 248 / 0.66);
+  }
+
+  .student-practice-focus {
+    --background: #ecebe6;
+  }
+
+  @media (min-width: 64rem) {
     .student-shell:not(.student-shell-v2) [data-slot="card"],
     .student-auth [data-slot="card"] {
       box-shadow: 0 12px 30px rgb(23 34 56 / 0.065), 0 1px 0 rgb(255 255 255 / 0.72) inset;
-    }
-
-    .student-shell .student-heading,
-    .student-auth .student-heading,
-    .student-shell [data-slot="card-title"] {
-      font-family: var(--student-heading-font);
-      letter-spacing: -0.015em;
-    }
-
-    .student-shell .student-topbar {
-      background-color: rgb(244 240 232 / 0.92);
-      box-shadow: 0 1px 0 rgb(255 255 255 / 0.65) inset;
     }
 
     .student-shell .student-brand-mark {
@@ -249,7 +280,6 @@
     }
 
     .student-shell-v2 {
-      --radius: 0.2rem;
       min-width: 64rem;
     }
 
@@ -393,19 +423,6 @@
 
     .student-shell-v2 [data-slot="card"] {
       box-shadow: none;
-      border-color: rgb(23 34 56 / 0.34);
-      background-color: rgb(251 248 241 / 0.64);
-    }
-
-    .student-shell-v2 [data-slot="button"] {
-      font-weight: 600;
-      letter-spacing: 0.03em;
-    }
-
-    .student-shell-v2 input,
-    .student-shell-v2 select,
-    .student-shell-v2 textarea {
-      background-color: rgb(255 253 248 / 0.66);
     }
 
     .student-shell-v2 .editorial-action-card [data-slot="card-header"] {
@@ -634,9 +651,6 @@
       box-shadow: none;
     }
 
-    .student-practice-focus {
-      --background: #ecebe6;
-    }
   }
 
   .learning-situation-page .editorial-folio {

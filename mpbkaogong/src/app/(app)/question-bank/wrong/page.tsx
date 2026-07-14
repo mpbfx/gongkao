@@ -46,7 +46,7 @@ export default async function WrongQuestionsPage({ searchParams }: WrongQuestion
         title: "错题复盘工作台",
       }}
     >
-      <StudentPage wide className="gap-3 py-3 lg:gap-0 lg:py-3 xl:max-w-none xl:px-3 2xl:px-5">
+      <StudentPage layout="workspace" className="gap-3 py-3 lg:gap-0 lg:py-3 xl:px-3 2xl:px-5">
         <WrongReviewWorkspace
           data={data}
           highRepeatCount={highRepeatCount}

@@ -13,11 +13,10 @@ export default async function ExamGoalPage() {
 
   return (
     <AppShell>
-      <StudentPage wide>
+      <StudentPage layout="content">
         <PageHeader
-          eyebrow="备考目标"
-          title="先确定考试，再建立真实 benchmark"
-          description="目标考试决定基准试卷和后续训练顺序。更换目标不会清除已有练习、错题和知识点记录。"
+          title="设置备考目标"
+          summary={<span>目标考试决定基准试卷和后续训练顺序</span>}
         />
         <ExamGoalWorkspace papers={papers} goal={goal} />
       </StudentPage>
