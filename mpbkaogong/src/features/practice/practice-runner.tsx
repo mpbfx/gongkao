@@ -9,6 +9,7 @@ import {
   ChevronRight,
   Grid3X3,
   LoaderCircle,
+  MessageSquare,
   Pause,
   PencilLine,
   Play,
@@ -21,6 +22,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useAppHeader } from "@/components/layout/app-header-context";
 import { DraftCanvas } from "@/components/practice/draft-canvas";
 import { RichHtml } from "@/components/question/rich-html";
+import { ResponsiveDrawer, StickyActionBar } from "@/components/student/interaction-overlays";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
 import { Button, buttonVariants } from "@/components/ui/button";
@@ -196,6 +198,7 @@ export function PracticeRunner({
   const [hasPendingSubmit, setHasPendingSubmit] = useState(false);
   const [scratchByQuestionId, setScratchByQuestionId] = useState<Record<string, PracticeScratchDraft>>({});
   const [showAnswerSheet, setShowAnswerSheet] = useState(false);
+  const [showTutor, setShowTutor] = useState(false);
   const [timeExpired, setTimeExpired] = useState(false);
   const [isOnline, setIsOnline] = useState(() =>
     typeof window === "undefined" ? true : window.navigator.onLine
@@ -1025,6 +1028,11 @@ export function PracticeRunner({
       <aside
         className="flex flex-col gap-4 lg:sticky lg:top-20 lg:h-[calc(100dvh-6rem)] lg:min-h-0"
       >
+        {isResultMode ? (
+          <Button type="button" variant="outline" className="hidden lg:flex" onClick={() => setShowTutor(true)}>
+            <MessageSquare data-icon="inline-start" />围绕本题问助教
+          </Button>
+        ) : null}
         {!isResultMode ? <Card size="sm" className="hidden lg:flex">
           <CardContent className="flex flex-col gap-3">
             <div className="flex items-start justify-between gap-3">
@@ -1088,19 +1096,22 @@ export function PracticeRunner({
           </CardContent>
         </Card>
 
-        {isResultMode ? (
+      </aside>
+
+      {isResultMode ? (
+        <ResponsiveDrawer open={showTutor} onOpenChange={setShowTutor} title="讲题助教" description="围绕当前题目的思路、错因和知识点继续追问。">
           <TutorPanel
             questionId={question.id}
             sessionId={initialSession.id}
             variant="dock"
             heightMode="fill"
-            className="hidden min-h-[22rem] flex-1 rounded-xl lg:flex"
+            className="h-full min-h-[32rem] rounded-none border-0 shadow-none"
             contextLabel={`我的答案：${currentResult?.answer || "未作答"}；正确答案：${currentResult?.correctAnswer || question.correctAnswer || "暂无"}`}
           />
-        ) : null}
-      </aside>
+        </ResponsiveDrawer>
+      ) : null}
 
-      <div className="fixed inset-x-0 bottom-0 z-30 border-t bg-background/95 p-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))] shadow-[0_-8px_24px_rgb(15_23_42/0.08)] backdrop-blur lg:hidden">
+      <StickyActionBar className="fixed inset-x-0 z-30 block min-h-0 p-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))] lg:hidden">
         <div className="mx-auto grid max-w-3xl gap-2">
           <div className="flex min-w-0 items-center justify-between gap-3 px-1 text-xs sm:text-sm">
             <div className="truncate font-medium">{actionBarPrimaryText}</div>
@@ -1173,10 +1184,14 @@ export function PracticeRunner({
                 <Send data-icon="inline-start" />
                 提交
               </Button>
-            ) : null}
+            ) : (
+              <Button type="button" size="sm" className="min-w-20 flex-1 px-3" onClick={() => setShowTutor(true)}>
+                <MessageSquare data-icon="inline-start" />问助教
+              </Button>
+            )}
           </div>
         </div>
-      </div>
+      </StickyActionBar>
 
       <Dialog open={showAnswerSheet} onOpenChange={(open) => setShowAnswerSheet(open)}>
         <DialogContent variant="sheet" className="p-4 lg:hidden">

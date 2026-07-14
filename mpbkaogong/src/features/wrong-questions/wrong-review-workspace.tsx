@@ -18,6 +18,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import { RichHtml } from "@/components/question/rich-html";
+import { FilterPopover } from "@/components/student/interaction-overlays";
 import { Alert, AlertAction, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
 import { Button, buttonVariants } from "@/components/ui/button";
@@ -217,11 +218,13 @@ function WrongQuestionPane({
   selected,
   isRestoring,
   onRestore,
+  onOpenTutor,
   scrollRef,
 }: {
   selected: FlatWrongQuestion;
   isRestoring: boolean;
   onRestore: (item: WrongQuestionDTO) => void;
+  onOpenTutor?: () => void;
   scrollRef?: React.RefObject<HTMLDivElement | null>;
 }) {
   const { item, group } = selected;
@@ -235,6 +238,11 @@ function WrongQuestionPane({
           <span className="truncate text-muted-foreground">{group.tagName}</span>
         </div>
         <div className="flex shrink-0 items-center gap-2 text-xs text-muted-foreground">
+          {onOpenTutor ? (
+            <Button type="button" variant="outline" size="sm" className="h-7 xl:hidden" onClick={onOpenTutor}>
+              <MessageSquare data-icon="inline-start" />问助教
+            </Button>
+          ) : null}
           <Link
             href={`/knowledge?questionId=${encodeURIComponent(item.questionId)}${group.tagId ? `&tagId=${encodeURIComponent(group.tagId)}` : ""}${item.lastAnswer?.sessionId ? `&sessionId=${encodeURIComponent(item.lastAnswer.sessionId)}` : ""}`}
             className={cn(buttonVariants({ variant: "ghost", size: "sm" }), "h-7")}
@@ -379,14 +387,17 @@ function WrongQueuePane({
           ) : null}
 
           {!query.includeResolved && knowledgeFilters.length > 0 ? (
-            <div className="mt-2 flex gap-1 overflow-x-auto pb-0.5">
+            <div className="mt-2 flex items-center justify-between gap-2">
+              {query.tagId ? <span className="truncate text-xs text-primary">已筛选知识点</span> : <span className="text-xs text-muted-foreground">按知识点查看</span>}
+              <FilterPopover label="筛选" activeCount={query.tagId ? 1 : 0} className="[&_button]:h-7 [&_button]:px-2 [&_button]:text-xs">
+                <div className="flex flex-wrap gap-2">
               {knowledgeFilters.map((item) => (
                 <Link
                   key={item.tagId}
                   href={buildWrongHref({ tagId: item.tagId })}
                   className={cn(
                     buttonVariants({ variant: query.tagId === item.tagId ? "default" : "outline", size: "sm" }),
-                    "h-7 shrink-0 px-2 text-xs"
+                    "h-8 shrink-0 px-2 text-xs"
                   )}
                 >
                   {item.tagName}
@@ -400,6 +411,8 @@ function WrongQueuePane({
                   清除
                 </Link>
               ) : null}
+                </div>
+              </FilterPopover>
             </div>
           ) : null}
         </div>
@@ -549,6 +562,11 @@ export function WrongReviewWorkspace({
     setMobileOpen(false);
   }
 
+  function openTutor() {
+    setMobileTab("tutor");
+    setMobileOpen(true);
+  }
+
   if (flatItems.length === 0) {
     return (
       <section className="border bg-card p-8 text-center">
@@ -602,7 +620,7 @@ export function WrongReviewWorkspace({
         </div>
       ) : null}
 
-      <div className="min-w-0 overflow-hidden border bg-card shadow-sm xl:grid xl:h-full xl:grid-cols-[14rem_minmax(0,1fr)_21rem] 2xl:grid-cols-[17rem_minmax(0,1fr)_24rem]">
+      <div className="min-w-0 overflow-hidden border bg-card shadow-sm xl:grid xl:h-full xl:grid-cols-[18rem_minmax(0,1fr)_21rem] 2xl:grid-cols-[19rem_minmax(0,1fr)_24rem]">
         <WrongQueuePane
           flatItems={flatItems}
           highRepeatCount={highRepeatCount}
@@ -621,6 +639,7 @@ export function WrongReviewWorkspace({
               selected={selected}
               isRestoring={restoringId === selected.item.id}
               onRestore={restoreWrongQuestion}
+              onOpenTutor={openTutor}
               scrollRef={detailScrollRef}
             />
             <WrongTutorPane item={selected.item} />

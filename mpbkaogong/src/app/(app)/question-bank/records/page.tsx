@@ -1,4 +1,4 @@
-import { ArrowRight, CheckCircle2, FileText, RotateCcw, Target } from "lucide-react";
+import { ArrowRight, FileText, RotateCcw } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
@@ -15,10 +15,8 @@ import {
 } from "@/components/ui/card";
 import {
   EmptyState,
-  MetricStrip,
   PageHeader,
   StudentPage,
-  TrainingPanel,
 } from "@/components/student/page-building-blocks";
 import { requireUser } from "@/lib/auth/guards";
 import { cleanLearningTitle } from "@/lib/display-title";
@@ -106,12 +104,17 @@ export default async function RecordsPage({ searchParams }: RecordsPageProps) {
   const data = await listPracticeRecords(user, query);
   return (
     <AppShell>
-      <StudentPage wide className="records-editorial-page">
+      <StudentPage layout="wide" className="records-editorial-page">
         <PageHeader
           eyebrow="复盘记录"
-          title="把每次练习变成下一次提分"
-          description="先看整体趋势，再进入单次练习回看解析、用时和错题来源。"
-          actions={
+          title="练习记录"
+          summary={
+            <>
+              <span>累计 {data.summary.totalSessions} 次 · {data.summary.totalQuestions} 题</span>
+              <span>整体正确率 {data.summary.overallAccuracy ?? "0.00"}%</span>
+            </>
+          }
+          secondaryActions={
             query.mode ? (
               <Link href="/question-bank/records" className={cn(buttonVariants({ variant: "outline" }))}>
                 <RotateCcw data-icon="inline-start" />
@@ -121,31 +124,7 @@ export default async function RecordsPage({ searchParams }: RecordsPageProps) {
           }
         />
 
-        <MetricStrip
-          className="lg:grid-cols-2"
-          items={[
-            {
-              label: "累计练习",
-              value: data.summary.totalSessions,
-              description: `${data.summary.totalQuestions} 题`,
-              icon: FileText,
-              tone: "info",
-            },
-            {
-              label: "整体正确率",
-              value: `${data.summary.overallAccuracy ?? "0.00"}%`,
-              description: `${data.summary.correctCount} 正确`,
-              icon: Target,
-              tone: "success",
-            },
-          ]}
-        />
-
-        <TrainingPanel
-          title="历史记录"
-          description={`第 ${data.pagination.page} / ${data.pagination.totalPages} 页`}
-          icon={CheckCircle2}
-        >
+        <section className="flex flex-col gap-3 border-y border-foreground/35 py-3 md:flex-row md:items-center md:justify-between">
           <div className="flex gap-2 overflow-x-auto pb-1">
             {modeFilters.map((filter) => {
               const isActive = (query.mode ?? "") === filter.value;
@@ -165,7 +144,8 @@ export default async function RecordsPage({ searchParams }: RecordsPageProps) {
               );
             })}
           </div>
-        </TrainingPanel>
+          <span className="shrink-0 text-xs text-muted-foreground">第 {data.pagination.page} / {data.pagination.totalPages} 页</span>
+        </section>
 
         {data.items.length > 0 ? (
           <>
@@ -218,31 +198,11 @@ export default async function RecordsPage({ searchParams }: RecordsPageProps) {
                     <Badge variant={Number(record.accuracy ?? 0) >= 70 ? "success" : "warning"}>{record.accuracy ?? "0.00"}%</Badge>
                   </div>
                 </CardHeader>
-                <CardContent>
-                  <div className="grid grid-cols-2 gap-3 text-sm md:grid-cols-5 lg:gap-0 lg:divide-x lg:rounded-lg lg:border lg:bg-background/55">
-                    <div className="rounded-lg bg-muted px-3 py-2 lg:rounded-none lg:bg-transparent">
-                      <div className="text-muted-foreground">已答</div>
-                      <div className="font-mono font-medium tabular-nums">
-                        {record.answeredCount}/{record.totalCount}
-                      </div>
-                    </div>
-                    <div className="rounded-lg bg-muted px-3 py-2 lg:rounded-none lg:bg-transparent">
-                      <div className="text-muted-foreground">正确</div>
-                      <div className="font-mono font-medium tabular-nums">{record.correctCount}</div>
-                    </div>
-                    <div className="rounded-lg bg-muted px-3 py-2 lg:rounded-none lg:bg-transparent">
-                      <div className="text-muted-foreground">错误</div>
-                      <div className="font-mono font-medium tabular-nums">{record.wrongCount}</div>
-                    </div>
-                    <div className="rounded-lg bg-muted px-3 py-2 lg:rounded-none lg:bg-transparent">
-                      <div className="text-muted-foreground">未答</div>
-                      <div className="font-mono font-medium tabular-nums">{record.unansweredCount}</div>
-                    </div>
-                    <div className="rounded-lg bg-muted px-3 py-2 lg:rounded-none lg:bg-transparent">
-                      <div className="text-muted-foreground">用时</div>
-                      <div className="font-mono font-medium tabular-nums">{formatDuration(record.elapsedSeconds)}</div>
-                    </div>
-                  </div>
+                <CardContent className="flex flex-wrap gap-x-4 gap-y-1 border-t pt-3 text-sm text-muted-foreground">
+                  <span>已答 <strong className="font-mono text-foreground">{record.answeredCount}/{record.totalCount}</strong></span>
+                  <span>正确 <strong className="font-mono text-success">{record.correctCount}</strong></span>
+                  <span>错误 <strong className="font-mono text-destructive">{record.wrongCount}</strong></span>
+                  <span>用时 <strong className="font-mono text-foreground">{formatDuration(record.elapsedSeconds)}</strong></span>
                 </CardContent>
                 <CardFooter className="lg:border-t-0 lg:bg-transparent lg:pt-0">
                   <Link

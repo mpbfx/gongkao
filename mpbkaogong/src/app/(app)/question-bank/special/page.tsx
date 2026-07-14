@@ -34,20 +34,24 @@ export default async function SpecialPracticePage({
 
   return (
     <AppShell>
-      <StudentPage wide className="special-editorial-page">
+      <StudentPage layout="wide" className="special-editorial-page">
         <PageHeader
-          eyebrow="专项提分"
-          title="按知识点组一套更精准的练习"
-          description="选择知识点和题量，系统会生成一组适合集中突破的训练。"
-          actions={<DailyPracticeAction dailyPractice={dailyPractice} className="w-full md:w-auto" />}
+          title="专项练习"
+          summary={<span>选择一个知识点和本次题量</span>}
+          secondaryActions={<DailyPracticeAction dailyPractice={dailyPractice} className="w-full md:w-auto" />}
         />
 
-        <FoundationTrainingPanel progress={foundation} initialTagId={foundationTag} />
-
-        <section className="mt-8">
-          <h2 className="student-heading mb-4 text-xl font-semibold">自由专项练习</h2>
+        <section>
           <SpecialPracticeBuilder tags={tags} />
         </section>
+
+        <details open={Boolean(foundationTag)} className="group border-y border-foreground/40 bg-card/25">
+          <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between px-4 font-medium focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none">
+            叶子类型筑基
+            <span className="text-xs text-muted-foreground">{foundation.passedCount}/{foundation.totalCount} 已通过</span>
+          </summary>
+          <div className="border-t p-4"><FoundationTrainingPanel progress={foundation} initialTagId={foundationTag} /></div>
+        </details>
       </StudentPage>
     </AppShell>
   );

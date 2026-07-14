@@ -31,8 +31,7 @@ export default async function Home() {
     <AppShell>
       <StudentPage wide className="home-editorial-page lg:gap-0 lg:px-0 lg:pb-0 lg:pt-0">
         <section className="border-b border-foreground/25">
-          <div className="grid lg:grid-cols-[minmax(0,1.15fr)_minmax(24rem,0.85fr)]">
-            <div className="flex flex-col justify-center px-5 py-10 md:px-8 lg:min-h-[32rem] lg:px-12 xl:px-16">
+          <div className="flex min-h-[22rem] flex-col justify-center px-5 py-10 md:px-8 lg:min-h-[25rem] lg:px-12 xl:px-16">
               <div className="flex items-center gap-3 text-xs font-semibold tracking-[0.22em] text-primary">
                 <span>{user ? "今日训练" : "公考之路 · 精准到分"}</span>
                 <span className="h-px w-12 bg-primary" />
@@ -72,32 +71,29 @@ export default async function Home() {
                   </Link>
                 ) : null}
               </div>
-            </div>
+          </div>
 
-            <aside className="border-t border-foreground/25 bg-card/40 p-5 md:p-8 lg:border-l lg:border-t-0 lg:p-10">
-              <div className="border-b-2 border-foreground pb-4">
-                <span className="text-xs tracking-[0.2em] text-muted-foreground">LEARNING LEDGER</span>
-                <h2 className="student-heading mt-2 text-2xl font-semibold">学习账簿</h2>
-              </div>
-
-              {overview ? (
-                <>
-                  <dl className="grid grid-cols-3 border-b border-foreground/25">
+          {overview ? (
+            <dl className="grid grid-cols-3 border-t border-foreground/25 bg-card/45 lg:px-10 xl:px-14">
                     {[
                       ["累计练习", overview.summary.totalSessions, "组"],
                       ["正确率", overview.summary.overallAccuracy ?? "0.00", "%"],
                       ["待复盘", overview.wrongSummary.unresolvedCount, "题"],
                     ].map(([label, value, unit]) => (
-                      <div key={label} className="border-r border-foreground/20 px-3 py-5 last:border-r-0">
+                      <div key={label} className="border-r border-foreground/20 px-3 py-4 last:border-r-0 lg:px-6">
                         <dt className="text-xs text-muted-foreground">{label}</dt>
-                        <dd className="student-heading mt-1 text-2xl font-semibold tabular-nums">
+                        <dd className="student-heading mt-1 text-xl font-semibold tabular-nums lg:text-2xl">
                           {value}<span className="ml-1 text-xs font-normal">{unit}</span>
                         </dd>
                       </div>
                     ))}
-                  </dl>
+            </dl>
+          ) : null}
+        </section>
 
-                  <div className="mt-7 flex items-center justify-between border-b border-foreground/25 pb-3">
+        {overview ? (
+          <section className="px-5 py-6 md:px-8 lg:px-12 lg:py-8 xl:px-16">
+                  <div className="flex items-center justify-between border-b-2 border-foreground pb-3">
                     <h3 className="student-heading flex items-center gap-2 font-semibold">
                       <History className="size-4" aria-hidden="true" />
                       最近练习
@@ -106,7 +102,7 @@ export default async function Home() {
                       查看全部
                     </Link>
                   </div>
-                  <div className="divide-y divide-foreground/15">
+                  <div className="divide-y divide-foreground/15 border-b border-foreground/25">
                     {overview.recentRecords.length > 0 ? overview.recentRecords.slice(0, 3).map((record) => (
                       <Link key={record.id} href={`/practice/${record.id}?review=1`} className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 py-3 text-sm hover:text-primary">
                         <span className="min-w-0">
@@ -121,15 +117,8 @@ export default async function Home() {
                       <p className="py-6 text-sm text-muted-foreground">完成第一组练习后，这里会显示最近记录。</p>
                     )}
                   </div>
-                </>
-              ) : (
-                <div className="py-10 text-sm leading-7 text-muted-foreground">
-                  登录后可查看累计练习、正确率、待复盘错题和最近记录。
-                </div>
-              )}
-            </aside>
-          </div>
-        </section>
+          </section>
+        ) : null}
       </StudentPage>
     </AppShell>
   );
