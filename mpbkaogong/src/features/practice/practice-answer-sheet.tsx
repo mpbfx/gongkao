@@ -1,6 +1,5 @@
 import { Grid3X3 } from "lucide-react";
 
-import { Badge } from "@/components/ui/badge";
 import {
   questionStatusLabel,
   stripPracticeHtml,
@@ -58,7 +57,7 @@ export function PracticeAnswerSheet<TQuestion extends AnswerSheetQuestion>({
             {isMemorizeMode ? `共 ${totalCount} 题` : `已答 ${answeredCount} / ${totalCount}`}
           </p>
         </div>
-        <Badge variant="outline">{completionPercent}%</Badge>
+        <span className="shrink-0 text-xs tabular-nums text-muted-foreground">完成 {completionPercent}%</span>
       </div>
       <div className="h-1.5 shrink-0 overflow-hidden rounded-full bg-muted">
         <div className="h-full rounded-full bg-primary" style={{ width: `${completionPercent}%` }} />
