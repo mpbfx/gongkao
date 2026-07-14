@@ -40,6 +40,7 @@ function DialogContent({
       <DialogBackdrop />
       <DialogPrimitive.Popup
         data-slot="dialog-content"
+        data-variant={variant}
         initialFocus={initialFocus ?? true}
         finalFocus={finalFocus ?? true}
         className={cn(
