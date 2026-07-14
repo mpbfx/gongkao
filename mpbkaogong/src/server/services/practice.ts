@@ -3,35 +3,72 @@ import { z } from "zod";
 import type { Prisma } from "@/generated/prisma/client";
 import type { AuthenticatedUser } from "@/lib/auth/guards";
 import { prisma } from "@/lib/db/prisma";
-import { ConflictError, MembershipRequiredError, NotFoundError } from "@/server/services/errors";
+import { BusinessError, ConflictError, MembershipRequiredError, NotFoundError } from "@/server/services/errors";
 import { hasActiveMembership } from "@/server/services/membership";
+import { evaluateFoundationRound, evaluatePracticeAnswers } from "@/server/services/practice-evaluation";
 import { toPaperModel } from "@/server/services/papers";
 import {
   decimalToString,
-  normalizeAnswer,
   normalizeRichHtml,
   toQuestionDto,
 } from "@/server/services/questions";
 
+const practicePurposeSchema = z.enum([
+  "PRACTICE",
+  "BASELINE",
+  "FOUNDATION",
+  "MOCK",
+  "TIME_PRESSURE",
+  "WRONG_REVIEW",
+]);
+const practiceTimingModeSchema = z.enum(["UNTYPED", "STRICT", "FLEXIBLE"]);
+const practiceEventTypeSchema = z.enum([
+  "QUESTION_VIEW",
+  "ANSWER_CHANGE",
+  "SKIP",
+  "RETURN",
+  "PAUSE",
+  "RESUME",
+  "TIME_EXPIRED",
+]);
+
 export const createPaperSessionSchema = z.object({
   paperId: z.string().min(1),
   mode: z.literal("PAPER").optional(),
+  purpose: practicePurposeSchema.exclude(["FOUNDATION", "WRONG_REVIEW"]).default("PRACTICE"),
+  timingMode: practiceTimingModeSchema.default("UNTYPED"),
+  timeLimitSeconds: z.coerce.number().int().min(600).max(18_000).nullish(),
 });
 
 export const submitSessionSchema = z.object({
   elapsedSeconds: z.coerce.number().int().min(0).default(0),
+  pauseCount: z.coerce.number().int().min(0).default(0),
+  pausedSeconds: z.coerce.number().int().min(0).default(0),
   answers: z
     .array(
       z.object({
         questionId: z.string().min(1),
         answer: z.string().trim().nullable().optional(),
         timeSpentSeconds: z.coerce.number().int().min(0).default(0),
+        decisionNote: z.string().trim().max(500).nullable().optional(),
       })
     )
+    .default([]),
+  events: z
+    .array(
+      z.object({
+        questionId: z.string().min(1).nullable().optional(),
+        type: practiceEventTypeSchema,
+        occurredAt: z.coerce.date(),
+        payload: z.record(z.string(), z.unknown()).nullable().optional(),
+      })
+    )
+    .max(5000)
     .default([]),
 });
 
 export type SubmitSessionInput = z.infer<typeof submitSessionSchema>;
+export type CreatePaperSessionInput = z.infer<typeof createPaperSessionSchema>;
 
 function getSessionModel(
   answers: Array<{
@@ -103,12 +140,20 @@ export function sessionSummary(session: {
   title: string;
   mode: string;
   status: string;
+  purpose?: string;
+  timingMode?: string;
   totalCount: number;
   answeredCount: number;
   correctCount: number;
   wrongCount: number;
   unansweredCount: number;
   elapsedSeconds: number;
+  timeLimitSeconds?: number | null;
+  pauseCount?: number;
+  pausedSeconds?: number;
+  score?: unknown;
+  maxScore?: unknown;
+  reflectionText?: string | null;
   accuracy?: unknown;
   submittedAt?: Date | null;
   createdAt: Date;
@@ -119,12 +164,20 @@ export function sessionSummary(session: {
     title: session.title,
     mode: session.mode,
     status: session.status,
+    purpose: session.purpose ?? "PRACTICE",
+    timingMode: session.timingMode ?? "UNTYPED",
     totalCount: session.totalCount,
     answeredCount: session.answeredCount,
     correctCount: session.correctCount,
     wrongCount: session.wrongCount,
     unansweredCount: session.unansweredCount,
     elapsedSeconds: session.elapsedSeconds,
+    timeLimitSeconds: session.timeLimitSeconds ?? null,
+    pauseCount: session.pauseCount ?? 0,
+    pausedSeconds: session.pausedSeconds ?? 0,
+    score: decimalToString(session.score),
+    maxScore: decimalToString(session.maxScore),
+    reflectionText: session.reflectionText ?? null,
     accuracy: decimalToString(session.accuracy),
     submittedAt: session.submittedAt?.toISOString() ?? null,
     createdAt: session.createdAt.toISOString(),
@@ -188,6 +241,7 @@ export async function createQuestionPracticeSession({
   questions,
   sourceTagIdsJson,
   difficulty,
+  purpose = "PRACTICE",
 }: {
   user: AuthenticatedUser;
   mode: "SPECIAL" | "DAILY" | "WRONG" | "MEMORIZE";
@@ -195,12 +249,14 @@ export async function createQuestionPracticeSession({
   questions: QuestionForSession[];
   sourceTagIdsJson?: Prisma.InputJsonValue;
   difficulty?: "EASY" | "MEDIUM" | "HARD" | "UNKNOWN" | null;
+  purpose?: "PRACTICE" | "FOUNDATION" | "WRONG_REVIEW";
 }) {
   const session = await prisma.practiceSession.create({
     data: {
       userId: user.id,
       mode,
       status: "IN_PROGRESS",
+      purpose,
       title,
       sourceTagIdsJson,
       difficulty,
@@ -231,7 +287,20 @@ export async function createQuestionPracticeSession({
   };
 }
 
-export async function createPaperPracticeSession(user: AuthenticatedUser, paperId: string) {
+export async function createPaperPracticeSession(
+  user: AuthenticatedUser,
+  input: CreatePaperSessionInput
+) {
+  if (input.purpose === "BASELINE") {
+    const existing = await prisma.practiceSession.findFirst({
+      where: { userId: user.id, purpose: "BASELINE", status: "IN_PROGRESS" },
+      select: { id: true },
+      orderBy: { createdAt: "desc" },
+    });
+    if (existing) return getPracticeSessionDetail(user, existing.id);
+  }
+
+  const paperId = input.paperId;
   const paper = await prisma.paper.findFirst({
     where: {
       id: paperId,
@@ -265,11 +334,21 @@ export async function createPaperPracticeSession(user: AuthenticatedUser, paperI
     throw new MembershipRequiredError("该试卷需要会员权限");
   }
 
+  const timeLimitSeconds = input.timingMode === "UNTYPED"
+    ? null
+    : (input.timeLimitSeconds ?? paper.durationSeconds);
+  if (input.timingMode !== "UNTYPED" && !timeLimitSeconds) {
+    throw new BusinessError("该试卷尚未配置时限，请先设置本次练习时长");
+  }
+
   const session = await prisma.practiceSession.create({
     data: {
       userId: user.id,
       mode: "PAPER",
       status: "IN_PROGRESS",
+      purpose: input.purpose,
+      timingMode: input.timingMode,
+      timeLimitSeconds,
       title: paper.title,
       paperId: paper.id,
       totalCount: paper.questions.length,
@@ -346,6 +425,7 @@ export async function getPracticeSessionDetail(user: AuthenticatedUser, sessionI
       answer: answer.answer,
       isCorrect: answer.isCorrect,
       timeSpentSeconds: answer.timeSpentSeconds,
+      decisionNote: answer.decisionNote,
       answeredAt: answer.answeredAt?.toISOString() ?? null,
     })),
   };
@@ -369,7 +449,10 @@ export async function submitPracticeSession(
           include: {
             question: {
               include: {
-                tag: { select: { id: true } },
+                tag: { select: { id: true, name: true } },
+                paperQuestions: {
+                  select: { paperId: true, sectionName: true, score: true },
+                },
               },
             },
           },
@@ -385,41 +468,51 @@ export async function submitPracticeSession(
       throw new ConflictError("该练习已提交，不能重复提交");
     }
 
-    const answerMap = new Map(input.answers.map((answer) => [answer.questionId, answer]));
-    let answeredCount = 0;
-    let correctCount = 0;
+    const sessionQuestionIds = new Set(session.answers.map((answer) => answer.questionId));
+    if (input.events.some((event) => event.questionId && !sessionQuestionIds.has(event.questionId))) {
+      throw new ConflictError("行为记录包含本练习之外的题目");
+    }
 
+    const answerMap = new Map(input.answers.map((answer) => [answer.questionId, answer]));
+    const evaluation = evaluatePracticeAnswers(
+      session.answers.map((answerRow) => {
+        const paperQuestion = session.paperId
+          ? answerRow.question.paperQuestions.find((item) => item.paperId === session.paperId)
+          : null;
+        return {
+          questionId: answerRow.questionId,
+          correctAnswer: answerRow.question.correctAnswer,
+          score: paperQuestion?.score ? Number(paperQuestion.score) : 1,
+          sectionName: paperQuestion?.sectionName ?? answerRow.question.tag?.name ?? "综合",
+        };
+      }),
+      input.answers
+    );
+    const evaluatedByQuestionId = new Map(
+      evaluation.answers.map((answer) => [answer.questionId, answer])
+    );
     const answerRows = session.answers.map((answerRow) => {
       const submittedAnswer = answerMap.get(answerRow.questionId);
-      const answer = normalizeAnswer(submittedAnswer?.answer);
-      const correctAnswer = normalizeAnswer(answerRow.question.correctAnswer);
-      const isAnswered = answer.length > 0;
-      const isCorrect = isAnswered && answer === correctAnswer;
-
-      if (isAnswered) {
-        answeredCount += 1;
-      }
-
-      if (isCorrect) {
-        correctCount += 1;
-      }
-
+      const evaluated = evaluatedByQuestionId.get(answerRow.questionId);
+      if (!evaluated) throw new ConflictError("练习题目评分失败");
       return {
-        questionId: answerRow.questionId,
+        ...evaluated,
         tagId: answerRow.question.tagId,
         sortOrder: answerRow.sortOrder,
-        answer: isAnswered ? answer : null,
-        correctAnswer,
-        isCorrect: isAnswered ? isCorrect : false,
-        timeSpentSeconds: submittedAnswer?.timeSpentSeconds ?? 0,
+        decisionNote: submittedAnswer?.decisionNote?.trim() || null,
         analysisHtml: normalizeRichHtml(answerRow.question.analysisHtml),
       };
     });
-
-    const totalCount = session.answers.length;
-    const wrongCount = answeredCount - correctCount;
-    const unansweredCount = totalCount - answeredCount;
-    const accuracy = totalCount > 0 ? Number(((correctCount / totalCount) * 100).toFixed(2)) : 0;
+    const {
+      totalCount,
+      answeredCount,
+      correctCount,
+      wrongCount,
+      unansweredCount,
+      accuracy,
+      score,
+      maxScore,
+    } = evaluation;
 
     const savedAnswers = await Promise.all(
       answerRows.map((answer) =>
@@ -434,6 +527,7 @@ export async function submitPracticeSession(
             answer: answer.answer,
             isCorrect: answer.isCorrect,
             timeSpentSeconds: answer.timeSpentSeconds,
+            decisionNote: answer.decisionNote,
             answeredAt: answer.answer ? now : null,
             sortOrder: answer.sortOrder,
           },
@@ -444,12 +538,88 @@ export async function submitPracticeSession(
             answer: answer.answer,
             isCorrect: answer.isCorrect,
             timeSpentSeconds: answer.timeSpentSeconds,
+            decisionNote: answer.decisionNote,
             answeredAt: answer.answer ? now : null,
             sortOrder: answer.sortOrder,
           },
         })
       )
     );
+
+    if (input.events.length > 0) {
+      await tx.practiceEvent.createMany({
+        data: input.events.map((event) => ({
+          sessionId: session.id,
+          userId: user.id,
+          questionId: event.questionId ?? null,
+          type: event.type,
+          payloadJson: event.payload as Prisma.InputJsonValue | undefined,
+          occurredAt: event.occurredAt,
+        })),
+      });
+    }
+
+    const tagRounds = new Map<
+      string,
+      { answeredCount: number; correctCount: number; wrongCount: number }
+    >();
+    for (const answer of answerRows) {
+      if (!answer.tagId) continue;
+      const group = tagRounds.get(answer.tagId) ?? {
+        answeredCount: 0,
+        correctCount: 0,
+        wrongCount: 0,
+      };
+      group.answeredCount += answer.answer ? 1 : 0;
+      group.correctCount += answer.answer && answer.isCorrect ? 1 : 0;
+      group.wrongCount += answer.answer && !answer.isCorrect ? 1 : 0;
+      tagRounds.set(answer.tagId, group);
+    }
+
+    for (const [tagId, round] of tagRounds) {
+      const previous = await tx.userTagStats.findUnique({
+        where: { userId_tagId: { userId: user.id, tagId } },
+      });
+      const nextAnswered = (previous?.answeredCount ?? 0) + round.answeredCount;
+      const nextCorrect = (previous?.correctCount ?? 0) + round.correctCount;
+      const foundation = session.purpose === "FOUNDATION"
+        ? evaluateFoundationRound({ totalCount, correctCount: round.correctCount })
+        : null;
+      const foundationData = foundation
+        ? {
+            foundationStatus: foundation.passed ? ("PASSED" as const) : ("TRAINING" as const),
+            foundationRoundCount: (previous?.foundationRoundCount ?? 0) + 1,
+            lastRoundCorrect: round.correctCount,
+            bestRoundCorrect: Math.max(previous?.bestRoundCorrect ?? 0, round.correctCount),
+            passedAt: foundation.passed ? (previous?.passedAt ?? now) : previous?.passedAt,
+          }
+        : {};
+
+      await tx.userTagStats.upsert({
+        where: { userId_tagId: { userId: user.id, tagId } },
+        update: {
+          answeredCount: nextAnswered,
+          correctCount: nextCorrect,
+          wrongCount: (previous?.wrongCount ?? 0) + round.wrongCount,
+          accuracy: nextAnswered > 0 ? Number(((nextCorrect / nextAnswered) * 100).toFixed(2)) : null,
+          lastPracticedAt: now,
+          ...foundationData,
+        },
+        create: {
+          userId: user.id,
+          tagId,
+          answeredCount: round.answeredCount,
+          correctCount: round.correctCount,
+          wrongCount: round.wrongCount,
+          accuracy:
+            round.answeredCount > 0
+              ? Number(((round.correctCount / round.answeredCount) * 100).toFixed(2))
+              : null,
+          lastPracticedAt: now,
+          ...foundationData,
+        },
+      });
+    }
 
     await Promise.all(
       savedAnswers.map((savedAnswer, index) => {
@@ -508,13 +678,25 @@ export async function submitPracticeSession(
         unansweredCount,
         accuracy,
         elapsedSeconds: input.elapsedSeconds,
+        pauseCount: input.pauseCount,
+        pausedSeconds: input.pausedSeconds,
+        score,
+        maxScore,
         submittedAt: now,
       },
     });
 
+    if (session.purpose === "BASELINE") {
+      await tx.userExamGoal.updateMany({
+        where: { userId: user.id, baselineSessionId: null },
+        data: { baselineSessionId: session.id },
+      });
+    }
+
     return {
       session: updatedSession,
       answers: answerRows,
+      sections: evaluation.sections,
     };
   });
 
@@ -528,6 +710,11 @@ export async function submitPracticeSession(
     unansweredCount: submitted.session.unansweredCount,
     accuracy: decimalToString(submitted.session.accuracy),
     elapsedSeconds: submitted.session.elapsedSeconds,
+    pauseCount: submitted.session.pauseCount,
+    pausedSeconds: submitted.session.pausedSeconds,
+    score: decimalToString(submitted.session.score),
+    maxScore: decimalToString(submitted.session.maxScore),
     answers: submitted.answers,
+    sections: submitted.sections,
   };
 }

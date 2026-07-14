@@ -8,7 +8,7 @@ export async function POST(request: Request) {
     const user = await requireUser();
     const body = createPaperSessionSchema.parse(await request.json());
 
-    return apiOk(await createPaperPracticeSession(user, body.paperId));
+    return apiOk(await createPaperPracticeSession(user, body));
   } catch (error) {
     return apiErrorFromUnknown(error);
   }

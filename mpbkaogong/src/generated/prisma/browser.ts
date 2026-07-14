@@ -93,6 +93,11 @@ export type PracticeSession = Prisma.PracticeSessionModel
  */
 export type PracticeAnswer = Prisma.PracticeAnswerModel
 /**
+ * Model PracticeEvent
+ * 
+ */
+export type PracticeEvent = Prisma.PracticeEventModel
+/**
  * Model WrongQuestion
  * 
  */
@@ -107,6 +112,11 @@ export type UserStatsSnapshot = Prisma.UserStatsSnapshotModel
  * 
  */
 export type UserTagStats = Prisma.UserTagStatsModel
+/**
+ * Model UserExamGoal
+ * 
+ */
+export type UserExamGoal = Prisma.UserExamGoalModel
 /**
  * Model AgentConfig
  * 
@@ -137,3 +147,23 @@ export type AgentFeedback = Prisma.AgentFeedbackModel
  * 
  */
 export type ImportJob = Prisma.ImportJobModel
+/**
+ * Model KnowledgeSource
+ * 
+ */
+export type KnowledgeSource = Prisma.KnowledgeSourceModel
+/**
+ * Model KnowledgeChunk
+ * 
+ */
+export type KnowledgeChunk = Prisma.KnowledgeChunkModel
+/**
+ * Model KnowledgeChatSession
+ * 
+ */
+export type KnowledgeChatSession = Prisma.KnowledgeChatSessionModel
+/**
+ * Model KnowledgeChatMessage
+ * 
+ */
+export type KnowledgeChatMessage = Prisma.KnowledgeChatMessageModel

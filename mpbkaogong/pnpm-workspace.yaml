@@ -1,0 +1,11 @@
+allowBuilds:
+  '@google/genai': true
+  '@playwright/browser-chromium': true
+  '@prisma/engines': true
+  '@swc/core': true
+  esbuild: true
+  onnxruntime-node: true
+  prisma: true
+  protobufjs: true
+  sharp: true
+  unrs-resolver: true

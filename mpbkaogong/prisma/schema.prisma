@@ -41,6 +41,27 @@ enum PracticeStatus {
   ABANDONED
 }
 
+enum PracticePurpose {
+  PRACTICE
+  BASELINE
+  FOUNDATION
+  MOCK
+  TIME_PRESSURE
+  WRONG_REVIEW
+}
+
+enum PracticeTimingMode {
+  UNTYPED
+  STRICT
+  FLEXIBLE
+}
+
+enum FoundationStatus {
+  NOT_STARTED
+  TRAINING
+  PASSED
+}
+
 enum MembershipStatus {
   ACTIVE
   EXPIRED
@@ -71,19 +92,22 @@ model User {
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 
-  accounts             Account[]
-  sessions             Session[]
-  memberships          Membership[]
-  practiceSessions     PracticeSession[]
-  practiceAnswers      PracticeAnswer[]
-  wrongQuestions       WrongQuestion[]
-  statsSnapshots       UserStatsSnapshot[]
-  tagStats             UserTagStats[]
-  agentRecommendations AgentRecommendation[]
-  agentTutorMessages   AgentTutorMessage[]
-  mistakeReviews       QuestionMistakeReview[]
-  agentFeedback        AgentFeedback[]
-  importJobs           ImportJob[]
+  accounts              Account[]
+  sessions              Session[]
+  memberships           Membership[]
+  practiceSessions      PracticeSession[]
+  practiceAnswers       PracticeAnswer[]
+  wrongQuestions        WrongQuestion[]
+  statsSnapshots        UserStatsSnapshot[]
+  tagStats              UserTagStats[]
+  agentRecommendations  AgentRecommendation[]
+  agentTutorMessages    AgentTutorMessage[]
+  mistakeReviews        QuestionMistakeReview[]
+  agentFeedback         AgentFeedback[]
+  importJobs            ImportJob[]
+  knowledgeChatSessions KnowledgeChatSession[]
+  examGoal              UserExamGoal?
+  practiceEvents        PracticeEvent[]
 }
 
 model Account {
@@ -143,22 +167,28 @@ model Membership {
 }
 
 model QuestionTag {
-  id             String   @id @default(cuid())
-  name           String
-  slug           String   @unique
-  parentId       String?
-  sortOrder      Int      @default(0)
-  isMaterialOnly Boolean  @default(false)
-  isActive       Boolean  @default(true)
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+  id              String   @id @default(cuid())
+  name            String
+  slug            String   @unique
+  parentId        String?
+  sortOrder       Int      @default(0)
+  isMaterialOnly  Boolean  @default(false)
+  isActive        Boolean  @default(true)
+  depth           Int      @default(0)
+  path            String?
+  isLeaf          Boolean  @default(false)
+  taxonomySource  String?
+  taxonomyVersion String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 
-  parent         QuestionTag?    @relation("QuestionTagTree", fields: [parentId], references: [id])
-  children       QuestionTag[]   @relation("QuestionTagTree")
-  questions      Question[]
-  wrongQuestions WrongQuestion[]
-  tagStats       UserTagStats[]
-  mistakeReviews QuestionMistakeReview[]
+  parent          QuestionTag?            @relation("QuestionTagTree", fields: [parentId], references: [id])
+  children        QuestionTag[]           @relation("QuestionTagTree")
+  questions       Question[]
+  wrongQuestions  WrongQuestion[]
+  tagStats        UserTagStats[]
+  mistakeReviews  QuestionMistakeReview[]
+  knowledgeChunks KnowledgeChunk[]
 
   @@index([parentId])
   @@index([isActive])
@@ -236,6 +266,7 @@ model Paper {
   province        String?
   examType        String?
   difficultyScore Decimal?  @db.Decimal(3, 1)
+  durationSeconds Int?
   isVipOnly       Boolean   @default(false)
   isActive        Boolean   @default(true)
   createdAt       DateTime  @default(now())
@@ -244,6 +275,7 @@ model Paper {
 
   questions PaperQuestion[]
   sessions  PracticeSession[]
+  examGoals UserExamGoal[]
 
   @@index([year])
   @@index([province])
@@ -296,35 +328,46 @@ model DailyPracticeQuestion {
 }
 
 model PracticeSession {
-  id               String         @id @default(cuid())
+  id               String             @id @default(cuid())
   userId           String
   mode             PracticeMode
-  status           PracticeStatus @default(IN_PROGRESS)
+  status           PracticeStatus     @default(IN_PROGRESS)
+  purpose          PracticePurpose    @default(PRACTICE)
+  timingMode       PracticeTimingMode @default(UNTYPED)
   title            String
   paperId          String?
   sourceTagIdsJson Json?
   difficulty       Difficulty?
-  totalCount       Int            @default(0)
-  answeredCount    Int            @default(0)
-  correctCount     Int            @default(0)
-  wrongCount       Int            @default(0)
-  unansweredCount  Int            @default(0)
-  elapsedSeconds   Int            @default(0)
-  accuracy         Decimal?       @db.Decimal(5, 2)
+  totalCount       Int                @default(0)
+  answeredCount    Int                @default(0)
+  correctCount     Int                @default(0)
+  wrongCount       Int                @default(0)
+  unansweredCount  Int                @default(0)
+  elapsedSeconds   Int                @default(0)
+  timeLimitSeconds Int?
+  pauseCount       Int                @default(0)
+  pausedSeconds    Int                @default(0)
+  accuracy         Decimal?           @db.Decimal(5, 2)
+  score            Decimal?           @db.Decimal(8, 2)
+  maxScore         Decimal?           @db.Decimal(8, 2)
+  reflectionText   String?            @db.Text
   submittedAt      DateTime?
-  createdAt        DateTime       @default(now())
-  updatedAt        DateTime       @updatedAt
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
 
-  user                        User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
-  paper                       Paper?                @relation(fields: [paperId], references: [id])
+  user                        User                    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  paper                       Paper?                  @relation(fields: [paperId], references: [id])
   answers                     PracticeAnswer[]
-  sourceAgentRecommendations  AgentRecommendation[] @relation("AgentRecommendationSource")
-  startedAgentRecommendations AgentRecommendation[] @relation("AgentRecommendationStarted")
+  sourceAgentRecommendations  AgentRecommendation[]   @relation("AgentRecommendationSource")
+  startedAgentRecommendations AgentRecommendation[]   @relation("AgentRecommendationStarted")
   agentTutorMessages          AgentTutorMessage[]
   mistakeReviews              QuestionMistakeReview[]
+  baselineForGoal             UserExamGoal?           @relation("GoalBaselineSession")
+  events                      PracticeEvent[]
 
   @@index([userId])
   @@index([mode])
+  @@index([purpose])
   @@index([status])
   @@index([paperId])
   @@index([createdAt])
@@ -339,15 +382,16 @@ model PracticeAnswer {
   answer           String?
   isCorrect        Boolean?
   timeSpentSeconds Int       @default(0)
+  decisionNote     String?   @db.Text
   sortOrder        Int
   answeredAt       DateTime?
   createdAt        DateTime  @default(now())
   updatedAt        DateTime  @updatedAt
 
-  session      PracticeSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
-  user         User            @relation(fields: [userId], references: [id], onDelete: Cascade)
-  question     Question        @relation(fields: [questionId], references: [id])
-  wrongSources WrongQuestion[] @relation("WrongQuestionLastAnswer")
+  session        PracticeSession         @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  user           User                    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  question       Question                @relation(fields: [questionId], references: [id])
+  wrongSources   WrongQuestion[]         @relation("WrongQuestionLastAnswer")
   mistakeReviews QuestionMistakeReview[]
 
   @@unique([sessionId, questionId])
@@ -356,6 +400,24 @@ model PracticeAnswer {
   @@index([questionId])
   @@index([isCorrect])
   @@index([createdAt])
+}
+
+model PracticeEvent {
+  id          String   @id @default(cuid())
+  sessionId   String
+  userId      String
+  questionId  String?
+  type        String
+  payloadJson Json?
+  occurredAt  DateTime
+  createdAt   DateTime @default(now())
+
+  session PracticeSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  user    User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([sessionId, occurredAt])
+  @@index([userId, occurredAt])
+  @@index([questionId])
 }
 
 model WrongQuestion {
@@ -400,15 +462,20 @@ model UserStatsSnapshot {
 }
 
 model UserTagStats {
-  id              String    @id @default(cuid())
-  userId          String
-  tagId           String
-  answeredCount   Int       @default(0)
-  correctCount    Int       @default(0)
-  wrongCount      Int       @default(0)
-  accuracy        Decimal?  @db.Decimal(5, 2)
-  lastPracticedAt DateTime?
-  updatedAt       DateTime  @updatedAt
+  id                   String           @id @default(cuid())
+  userId               String
+  tagId                String
+  answeredCount        Int              @default(0)
+  correctCount         Int              @default(0)
+  wrongCount           Int              @default(0)
+  accuracy             Decimal?         @db.Decimal(5, 2)
+  lastPracticedAt      DateTime?
+  foundationStatus     FoundationStatus @default(NOT_STARTED)
+  foundationRoundCount Int              @default(0)
+  lastRoundCorrect     Int?
+  bestRoundCorrect     Int?
+  passedAt             DateTime?
+  updatedAt            DateTime         @updatedAt
 
   user User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   tag  QuestionTag @relation(fields: [tagId], references: [id])
@@ -418,6 +485,21 @@ model UserTagStats {
   @@index([tagId])
   @@index([accuracy])
   @@index([lastPracticedAt])
+}
+
+model UserExamGoal {
+  id                String   @id @default(cuid())
+  userId            String   @unique
+  targetPaperId     String
+  baselineSessionId String?  @unique
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  user            User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  targetPaper     Paper            @relation(fields: [targetPaperId], references: [id])
+  baselineSession PracticeSession? @relation("GoalBaselineSession", fields: [baselineSessionId], references: [id], onDelete: SetNull)
+
+  @@index([targetPaperId])
 }
 
 model AgentConfig {
@@ -470,9 +552,9 @@ model AgentTutorMessage {
   metadataJson Json?
   createdAt    DateTime @default(now())
 
-  user     User             @relation(fields: [userId], references: [id], onDelete: Cascade)
-  question Question         @relation(fields: [questionId], references: [id])
-  session  PracticeSession? @relation(fields: [sessionId], references: [id])
+  user           User                    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  question       Question                @relation(fields: [questionId], references: [id])
+  session        PracticeSession?        @relation(fields: [sessionId], references: [id])
   mistakeReviews QuestionMistakeReview[]
 
   @@index([userId])
@@ -536,7 +618,7 @@ model AgentFeedback {
 
 model ImportJob {
   id          String   @id @default(cuid())
-  userId      String
+  userId      String?
   type        String
   filename    String
   status      String
@@ -547,9 +629,86 @@ model ImportJob {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
 
   @@index([userId])
   @@index([status])
   @@index([createdAt])
+}
+
+model KnowledgeSource {
+  id          String   @id @default(cuid())
+  type        String   @default("BILIBILI_SUBTITLE")
+  title       String
+  bvid        String
+  partNo      Int
+  sourceFile  String
+  contentHash String?
+  durationMs  Int?
+  status      String   @default("PENDING")
+  lastError   String?  @db.Text
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  chunks KnowledgeChunk[]
+
+  @@unique([bvid, partNo])
+  @@index([status])
+  @@index([contentHash])
+  @@index([updatedAt])
+}
+
+model KnowledgeChunk {
+  id            String   @id @default(cuid())
+  sourceId      String
+  chunkNo       Int
+  startMs       Int
+  endMs         Int
+  rawText       String   @db.Text
+  cleanText     String   @db.Text
+  keywords      String?  @db.Text
+  category      String?
+  tagId         String?
+  contentHash   String   @unique
+  vectorPointId String   @unique
+  indexStatus   String   @default("PENDING")
+  indexError    String?  @db.Text
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  source KnowledgeSource @relation(fields: [sourceId], references: [id], onDelete: Cascade)
+  tag    QuestionTag?    @relation(fields: [tagId], references: [id], onDelete: SetNull)
+
+  @@unique([sourceId, chunkNo])
+  @@index([sourceId])
+  @@index([tagId])
+  @@index([category])
+  @@index([indexStatus])
+}
+
+model KnowledgeChatSession {
+  id        String   @id @default(cuid())
+  userId    String
+  title     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user     User                   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  messages KnowledgeChatMessage[]
+
+  @@index([userId, updatedAt])
+}
+
+model KnowledgeChatMessage {
+  id            String   @id @default(cuid())
+  sessionId     String
+  role          String
+  content       String   @db.Text
+  citationsJson Json?
+  metadataJson  Json?
+  createdAt     DateTime @default(now())
+
+  session KnowledgeChatSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  @@index([sessionId, createdAt])
 }

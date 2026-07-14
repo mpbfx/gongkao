@@ -10,6 +10,8 @@ type PracticeResultSummary = {
   unansweredCount: number;
   accuracy: string | null;
   elapsedSeconds: number;
+  score?: string | null;
+  maxScore?: string | null;
 };
 
 function formatDuration(seconds: number) {
@@ -47,6 +49,7 @@ export function PracticeResultOverview({
       </div>
       <dl className="flex min-w-0 flex-1 items-center overflow-x-auto">
         {[
+          ...(summary.maxScore ? [["得分", `${summary.score ?? "0"}/${summary.maxScore}`, "text-primary"]] : []),
           ["正确率", `${summary.accuracy ?? "0.00"}%`, "text-primary"],
           ["正确", String(summary.correctCount), "text-success"],
           ["错误", String(summary.wrongCount), "text-destructive"],

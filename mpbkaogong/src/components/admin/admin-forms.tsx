@@ -41,6 +41,7 @@ type PaperFormValue = {
   province?: string | null;
   examType?: string | null;
   difficultyScore?: string | number | null;
+  durationSeconds?: number | null;
   isVipOnly?: boolean;
   isActive?: boolean;
   questionsText?: string;
@@ -217,7 +218,7 @@ export function PaperForm({
             <Input id="slug" name="slug" defaultValue={paper?.slug ?? ""} />
           </Field>
         </div>
-        <div className="grid gap-4 md:grid-cols-4">
+        <div className="grid gap-4 md:grid-cols-5">
           <Field>
             <FieldLabel htmlFor="year">年份</FieldLabel>
             <Input id="year" name="year" type="number" defaultValue={paper?.year ?? ""} />
@@ -233,6 +234,10 @@ export function PaperForm({
           <Field>
             <FieldLabel htmlFor="difficultyScore">难度分</FieldLabel>
             <Input id="difficultyScore" name="difficultyScore" type="number" step="0.1" defaultValue={paper?.difficultyScore ?? ""} />
+          </Field>
+          <Field>
+            <FieldLabel htmlFor="durationMinutes">时限（分钟）</FieldLabel>
+            <Input id="durationMinutes" name="durationMinutes" type="number" min="10" max="300" defaultValue={paper?.durationSeconds ? Math.round(paper.durationSeconds / 60) : ""} />
           </Field>
         </div>
         <div className="grid gap-4 md:grid-cols-2">

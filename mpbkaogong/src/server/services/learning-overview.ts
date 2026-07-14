@@ -6,6 +6,7 @@ import {
   listWrongQuestions,
   wrongQuestionsQuerySchema,
 } from "@/server/services/wrong-questions";
+import { getNextTrainingAction } from "@/server/services/training-plan";
 
 type ActionTone = "primary" | "info" | "warning" | "success";
 
@@ -23,10 +24,11 @@ function modeLabel(mode: string) {
 }
 
 export async function getLearningOverview(user: AuthenticatedUser) {
-  const [dailyPractice, records, wrongQuestions] = await Promise.all([
+  const [dailyPractice, records, wrongQuestions, primaryAction] = await Promise.all([
     getTodayDailyPractice(user).catch(() => null),
     listPracticeRecords(user, recordsQuerySchema.parse({ pageSize: 3 })),
     listWrongQuestions(user, wrongQuestionsQuerySchema.parse({})),
+    getNextTrainingAction(user),
   ]);
   const unresolvedWrongCount = wrongQuestions.summary.unresolvedCount;
   const recentRecords = records.items.map((record) => ({
@@ -112,5 +114,6 @@ export async function getLearningOverview(user: AuthenticatedUser) {
     wrongSummary: wrongQuestions.summary,
     weakTags,
     recommendedActions: recommendedActions.slice(0, 4),
+    primaryAction,
   };
 }
