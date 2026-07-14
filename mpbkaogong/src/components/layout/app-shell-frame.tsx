@@ -69,7 +69,7 @@ export function AppShellFrame({
   return (
     <div
       className={cn(
-        "student-shell student-shell-v2 min-h-dvh bg-background text-foreground [--app-sidebar-width:10.75rem]",
+        "student-shell student-shell-v2 min-h-dvh bg-background text-foreground [--app-sidebar-width:11.5rem]",
         isPracticeFocus && "student-practice-focus [--app-sidebar-width:0rem]"
       )}
     >

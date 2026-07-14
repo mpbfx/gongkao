@@ -5,10 +5,9 @@ import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { BottomSheet } from "@/components/student/interaction-overlays";
 import {
   filterTags,
   normalizeTagSearch,
@@ -113,6 +112,7 @@ export function SpecialPracticeBuilder({ tags }: { tags: TagNode[] }) {
   const [count, setCount] = useState(10);
   const [isPending, setIsPending] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
+  const [mobileConfigOpen, setMobileConfigOpen] = useState(false);
   const normalizedSearch = normalizeTagSearch(searchQuery);
   const visibleTags = useMemo(() => filterTags(tags, normalizedSearch), [normalizedSearch, tags]);
   const actualCount = selected ? Math.min(count, selected.questionCount) : 0;
@@ -131,6 +131,7 @@ export function SpecialPracticeBuilder({ tags }: { tags: TagNode[] }) {
     setSelected({ id: tag.id, name: tag.name, questionCount: tag.questionCount });
     setCount(Math.min(10, tag.questionCount));
     setMessage(null);
+    setMobileConfigOpen(window.matchMedia("(max-width: 1023px)").matches);
   }
 
   async function startSpecialPractice() {
@@ -163,14 +164,42 @@ export function SpecialPracticeBuilder({ tags }: { tags: TagNode[] }) {
     }
   }
 
+  const trainingSetup = selected ? (
+    <>
+      <h3 className="student-heading text-2xl font-semibold">{selected.name}</h3>
+      <p className="mt-2 text-sm text-muted-foreground">当前可用 {selected.questionCount} 题</p>
+      <div className="mt-6">
+        <div className="mb-2 text-sm font-medium">本次题量</div>
+        <div className="grid grid-cols-3 gap-2">
+          {[5, 10, 20].map((preset) => (
+            <Button key={preset} type="button" variant={count === preset ? "default" : "outline"} size="sm" onClick={() => setCount(preset)}>
+              {preset} 题
+            </Button>
+          ))}
+        </div>
+        {actualCount < count ? <p className="mt-2 text-xs text-muted-foreground">库存不足，本次使用 {actualCount} 题。</p> : null}
+      </div>
+      <Button type="button" className="mt-7 h-12 w-full" disabled={isPending || actualCount <= 0} onClick={startSpecialPractice}>
+        {isPending ? <LoaderCircle className="animate-spin" data-icon="inline-start" /> : <Play data-icon="inline-start" />}
+        {isPending ? "正在创建" : `开始 ${actualCount} 题`}
+      </Button>
+      {message ? (
+        <Alert variant="destructive" className="mt-4">
+          <AlertTitle>创建失败</AlertTitle>
+          <AlertDescription>{message}</AlertDescription>
+        </Alert>
+      ) : null}
+    </>
+  ) : null;
+
   return (
-    <Card className="mx-auto max-w-5xl overflow-hidden">
-      <CardHeader className="border-b">
-        <CardTitle>选择一个知识点</CardTitle>
-        <CardDescription>每次只练一个具体知识点，系统会按题库库存自动调整题量。</CardDescription>
-      </CardHeader>
-      <CardContent className="grid gap-6 pt-5 lg:grid-cols-[minmax(0,1fr)_18rem]">
-        <div className="min-w-0">
+    <section className="special-editorial-workspace mx-auto w-full max-w-6xl overflow-hidden border-y-2 border-foreground bg-card/45">
+      <header className="border-b border-foreground/35 px-4 py-4 md:px-6">
+        <h2 className="student-heading text-xl font-semibold">选择知识点</h2>
+        <p className="mt-1 text-sm text-muted-foreground">每次练习一个叶子知识点，题量不超过当前库存。</p>
+      </header>
+      <div className="grid lg:grid-cols-[minmax(0,1fr)_20rem]">
+        <div className="min-w-0 p-4 md:p-6">
           <label className="mb-4 block">
             <span className="sr-only">搜索知识点</span>
             <div className="relative">
@@ -193,41 +222,15 @@ export function SpecialPracticeBuilder({ tags }: { tags: TagNode[] }) {
           </div>
         </div>
 
-        <aside className="border-t pt-5 lg:border-l lg:border-t-0 lg:pl-6 lg:pt-0">
-          <span className="text-xs font-semibold tracking-[0.18em] text-muted-foreground">本次训练</span>
-          {selected ? (
-            <>
-              <h3 className="student-heading mt-3 text-2xl font-semibold">{selected.name}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">当前可用 {selected.questionCount} 题</p>
-              <div className="mt-6">
-                <div className="mb-2 text-sm font-medium">题量</div>
-                <div className="grid grid-cols-3 gap-2">
-                  {[5, 10, 20].map((preset) => (
-                    <Button key={preset} type="button" variant={count === preset ? "default" : "outline"} size="sm" onClick={() => setCount(preset)}>
-                      {preset} 题
-                    </Button>
-                  ))}
-                </div>
-                {actualCount < count ? <p className="mt-2 text-xs text-muted-foreground">库存不足时将自动生成 {actualCount} 题。</p> : null}
-              </div>
-              <Button type="button" className="mt-7 h-12 w-full" disabled={isPending || actualCount <= 0} onClick={startSpecialPractice}>
-                {isPending ? <LoaderCircle className="animate-spin" data-icon="inline-start" /> : <Play data-icon="inline-start" />}
-                {isPending ? "正在创建" : `开始 ${actualCount} 题`}
-              </Button>
-            </>
-          ) : (
-            <div className="mt-4 border border-dashed p-5 text-sm leading-6 text-muted-foreground">从左侧展开分类，选择一个具体知识点即可开始。</div>
-          )}
-
-          {message ? (
-            <Alert variant="destructive" className="mt-4">
-              <AlertTitle>无法开始</AlertTitle>
-              <AlertDescription>{message}</AlertDescription>
-            </Alert>
-          ) : null}
-          {selected ? <Badge variant="outline" className="mt-4">一次只练一个知识点</Badge> : null}
+        <aside className="hidden border-l border-foreground/30 bg-muted/20 p-6 lg:block">
+          <span className="mb-4 block text-xs font-semibold text-muted-foreground">本次训练</span>
+          {trainingSetup ?? <div className="border border-dashed p-5 text-sm leading-6 text-muted-foreground">选择一个具体知识点后设置题量。</div>}
         </aside>
-      </CardContent>
-    </Card>
+      </div>
+
+      <BottomSheet open={mobileConfigOpen && Boolean(selected)} onOpenChange={setMobileConfigOpen} title="本次训练" description="确认知识点和题量后开始练习。" className="lg:hidden">
+        <div className="p-4">{trainingSetup}</div>
+      </BottomSheet>
+    </section>
   );
 }
