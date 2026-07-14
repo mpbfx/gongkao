@@ -102,6 +102,43 @@ export async function persistTutorSuccess({
   });
 }
 
+export async function persistTutorChatSuccess({
+  userId,
+  context,
+  answer,
+  runtime,
+  userMessageId,
+}: {
+  userId: string;
+  context: TutorQuestionContext;
+  answer: string;
+  runtime: RuntimeMetadata;
+  userMessageId: string;
+}) {
+  return prisma.$transaction(async (tx) => {
+    const assistantMessage = await tx.agentTutorMessage.create({
+      data: {
+        userId,
+        questionId: context.questionId,
+        sessionId: context.sessionId,
+        role: "ASSISTANT",
+        content: answer,
+        metadataJson: {
+          runtime: "pi",
+          status: "completed",
+          ...runtime,
+          userMessageId,
+        } as Prisma.InputJsonValue,
+      },
+    });
+    await tx.agentTutorMessage.update({
+      where: { id: userMessageId },
+      data: { metadataJson: { runtime: "pi", turnId: runtime.turnId, status: "completed" } },
+    });
+    return assistantMessage;
+  });
+}
+
 function metadataRecord(value: unknown): Record<string, unknown> | null {
   return value && typeof value === "object" && !Array.isArray(value) ? (value as Record<string, unknown>) : null;
 }

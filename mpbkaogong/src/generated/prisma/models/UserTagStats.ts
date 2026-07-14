@@ -31,6 +31,9 @@ export type UserTagStatsAvgAggregateOutputType = {
   correctCount: number | null
   wrongCount: number | null
   accuracy: runtime.Decimal | null
+  foundationRoundCount: number | null
+  lastRoundCorrect: number | null
+  bestRoundCorrect: number | null
 }
 
 export type UserTagStatsSumAggregateOutputType = {
@@ -38,6 +41,9 @@ export type UserTagStatsSumAggregateOutputType = {
   correctCount: number | null
   wrongCount: number | null
   accuracy: runtime.Decimal | null
+  foundationRoundCount: number | null
+  lastRoundCorrect: number | null
+  bestRoundCorrect: number | null
 }
 
 export type UserTagStatsMinAggregateOutputType = {
@@ -49,6 +55,11 @@ export type UserTagStatsMinAggregateOutputType = {
   wrongCount: number | null
   accuracy: runtime.Decimal | null
   lastPracticedAt: Date | null
+  foundationStatus: $Enums.FoundationStatus | null
+  foundationRoundCount: number | null
+  lastRoundCorrect: number | null
+  bestRoundCorrect: number | null
+  passedAt: Date | null
   updatedAt: Date | null
 }
 
@@ -61,6 +72,11 @@ export type UserTagStatsMaxAggregateOutputType = {
   wrongCount: number | null
   accuracy: runtime.Decimal | null
   lastPracticedAt: Date | null
+  foundationStatus: $Enums.FoundationStatus | null
+  foundationRoundCount: number | null
+  lastRoundCorrect: number | null
+  bestRoundCorrect: number | null
+  passedAt: Date | null
   updatedAt: Date | null
 }
 
@@ -73,6 +89,11 @@ export type UserTagStatsCountAggregateOutputType = {
   wrongCount: number
   accuracy: number
   lastPracticedAt: number
+  foundationStatus: number
+  foundationRoundCount: number
+  lastRoundCorrect: number
+  bestRoundCorrect: number
+  passedAt: number
   updatedAt: number
   _all: number
 }
@@ -83,6 +104,9 @@ export type UserTagStatsAvgAggregateInputType = {
   correctCount?: true
   wrongCount?: true
   accuracy?: true
+  foundationRoundCount?: true
+  lastRoundCorrect?: true
+  bestRoundCorrect?: true
 }
 
 export type UserTagStatsSumAggregateInputType = {
@@ -90,6 +114,9 @@ export type UserTagStatsSumAggregateInputType = {
   correctCount?: true
   wrongCount?: true
   accuracy?: true
+  foundationRoundCount?: true
+  lastRoundCorrect?: true
+  bestRoundCorrect?: true
 }
 
 export type UserTagStatsMinAggregateInputType = {
@@ -101,6 +128,11 @@ export type UserTagStatsMinAggregateInputType = {
   wrongCount?: true
   accuracy?: true
   lastPracticedAt?: true
+  foundationStatus?: true
+  foundationRoundCount?: true
+  lastRoundCorrect?: true
+  bestRoundCorrect?: true
+  passedAt?: true
   updatedAt?: true
 }
 
@@ -113,6 +145,11 @@ export type UserTagStatsMaxAggregateInputType = {
   wrongCount?: true
   accuracy?: true
   lastPracticedAt?: true
+  foundationStatus?: true
+  foundationRoundCount?: true
+  lastRoundCorrect?: true
+  bestRoundCorrect?: true
+  passedAt?: true
   updatedAt?: true
 }
 
@@ -125,6 +162,11 @@ export type UserTagStatsCountAggregateInputType = {
   wrongCount?: true
   accuracy?: true
   lastPracticedAt?: true
+  foundationStatus?: true
+  foundationRoundCount?: true
+  lastRoundCorrect?: true
+  bestRoundCorrect?: true
+  passedAt?: true
   updatedAt?: true
   _all?: true
 }
@@ -224,6 +266,11 @@ export type UserTagStatsGroupByOutputType = {
   wrongCount: number
   accuracy: runtime.Decimal | null
   lastPracticedAt: Date | null
+  foundationStatus: $Enums.FoundationStatus
+  foundationRoundCount: number
+  lastRoundCorrect: number | null
+  bestRoundCorrect: number | null
+  passedAt: Date | null
   updatedAt: Date
   _count: UserTagStatsCountAggregateOutputType | null
   _avg: UserTagStatsAvgAggregateOutputType | null
@@ -259,6 +306,11 @@ export type UserTagStatsWhereInput = {
   wrongCount?: Prisma.IntFilter<"UserTagStats"> | number
   accuracy?: Prisma.DecimalNullableFilter<"UserTagStats"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   lastPracticedAt?: Prisma.DateTimeNullableFilter<"UserTagStats"> | Date | string | null
+  foundationStatus?: Prisma.EnumFoundationStatusFilter<"UserTagStats"> | $Enums.FoundationStatus
+  foundationRoundCount?: Prisma.IntFilter<"UserTagStats"> | number
+  lastRoundCorrect?: Prisma.IntNullableFilter<"UserTagStats"> | number | null
+  bestRoundCorrect?: Prisma.IntNullableFilter<"UserTagStats"> | number | null
+  passedAt?: Prisma.DateTimeNullableFilter<"UserTagStats"> | Date | string | null
   updatedAt?: Prisma.DateTimeFilter<"UserTagStats"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   tag?: Prisma.XOR<Prisma.QuestionTagScalarRelationFilter, Prisma.QuestionTagWhereInput>
@@ -273,6 +325,11 @@ export type UserTagStatsOrderByWithRelationInput = {
   wrongCount?: Prisma.SortOrder
   accuracy?: Prisma.SortOrderInput | Prisma.SortOrder
   lastPracticedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  foundationStatus?: Prisma.SortOrder
+  foundationRoundCount?: Prisma.SortOrder
+  lastRoundCorrect?: Prisma.SortOrderInput | Prisma.SortOrder
+  bestRoundCorrect?: Prisma.SortOrderInput | Prisma.SortOrder
+  passedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
   tag?: Prisma.QuestionTagOrderByWithRelationInput
@@ -292,6 +349,11 @@ export type UserTagStatsWhereUniqueInput = Prisma.AtLeast<{
   wrongCount?: Prisma.IntFilter<"UserTagStats"> | number
   accuracy?: Prisma.DecimalNullableFilter<"UserTagStats"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   lastPracticedAt?: Prisma.DateTimeNullableFilter<"UserTagStats"> | Date | string | null
+  foundationStatus?: Prisma.EnumFoundationStatusFilter<"UserTagStats"> | $Enums.FoundationStatus
+  foundationRoundCount?: Prisma.IntFilter<"UserTagStats"> | number
+  lastRoundCorrect?: Prisma.IntNullableFilter<"UserTagStats"> | number | null
+  bestRoundCorrect?: Prisma.IntNullableFilter<"UserTagStats"> | number | null
+  passedAt?: Prisma.DateTimeNullableFilter<"UserTagStats"> | Date | string | null
   updatedAt?: Prisma.DateTimeFilter<"UserTagStats"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   tag?: Prisma.XOR<Prisma.QuestionTagScalarRelationFilter, Prisma.QuestionTagWhereInput>
@@ -306,6 +368,11 @@ export type UserTagStatsOrderByWithAggregationInput = {
   wrongCount?: Prisma.SortOrder
   accuracy?: Prisma.SortOrderInput | Prisma.SortOrder
   lastPracticedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  foundationStatus?: Prisma.SortOrder
+  foundationRoundCount?: Prisma.SortOrder
+  lastRoundCorrect?: Prisma.SortOrderInput | Prisma.SortOrder
+  bestRoundCorrect?: Prisma.SortOrderInput | Prisma.SortOrder
+  passedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.UserTagStatsCountOrderByAggregateInput
   _avg?: Prisma.UserTagStatsAvgOrderByAggregateInput
@@ -326,6 +393,11 @@ export type UserTagStatsScalarWhereWithAggregatesInput = {
   wrongCount?: Prisma.IntWithAggregatesFilter<"UserTagStats"> | number
   accuracy?: Prisma.DecimalNullableWithAggregatesFilter<"UserTagStats"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   lastPracticedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"UserTagStats"> | Date | string | null
+  foundationStatus?: Prisma.EnumFoundationStatusWithAggregatesFilter<"UserTagStats"> | $Enums.FoundationStatus
+  foundationRoundCount?: Prisma.IntWithAggregatesFilter<"UserTagStats"> | number
+  lastRoundCorrect?: Prisma.IntNullableWithAggregatesFilter<"UserTagStats"> | number | null
+  bestRoundCorrect?: Prisma.IntNullableWithAggregatesFilter<"UserTagStats"> | number | null
+  passedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"UserTagStats"> | Date | string | null
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"UserTagStats"> | Date | string
 }
 
@@ -336,6 +408,11 @@ export type UserTagStatsCreateInput = {
   wrongCount?: number
   accuracy?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   lastPracticedAt?: Date | string | null
+  foundationStatus?: $Enums.FoundationStatus
+  foundationRoundCount?: number
+  lastRoundCorrect?: number | null
+  bestRoundCorrect?: number | null
+  passedAt?: Date | string | null
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutTagStatsInput
   tag: Prisma.QuestionTagCreateNestedOneWithoutTagStatsInput
@@ -350,6 +427,11 @@ export type UserTagStatsUncheckedCreateInput = {
   wrongCount?: number
   accuracy?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   lastPracticedAt?: Date | string | null
+  foundationStatus?: $Enums.FoundationStatus
+  foundationRoundCount?: number
+  lastRoundCorrect?: number | null
+  bestRoundCorrect?: number | null
+  passedAt?: Date | string | null
   updatedAt?: Date | string
 }
 
@@ -360,6 +442,11 @@ export type UserTagStatsUpdateInput = {
   wrongCount?: Prisma.IntFieldUpdateOperationsInput | number
   accuracy?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   lastPracticedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  foundationStatus?: Prisma.EnumFoundationStatusFieldUpdateOperationsInput | $Enums.FoundationStatus
+  foundationRoundCount?: Prisma.IntFieldUpdateOperationsInput | number
+  lastRoundCorrect?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bestRoundCorrect?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  passedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutTagStatsNestedInput
   tag?: Prisma.QuestionTagUpdateOneRequiredWithoutTagStatsNestedInput
@@ -374,6 +461,11 @@ export type UserTagStatsUncheckedUpdateInput = {
   wrongCount?: Prisma.IntFieldUpdateOperationsInput | number
   accuracy?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   lastPracticedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  foundationStatus?: Prisma.EnumFoundationStatusFieldUpdateOperationsInput | $Enums.FoundationStatus
+  foundationRoundCount?: Prisma.IntFieldUpdateOperationsInput | number
+  lastRoundCorrect?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bestRoundCorrect?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  passedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -386,6 +478,11 @@ export type UserTagStatsCreateManyInput = {
   wrongCount?: number
   accuracy?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   lastPracticedAt?: Date | string | null
+  foundationStatus?: $Enums.FoundationStatus
+  foundationRoundCount?: number
+  lastRoundCorrect?: number | null
+  bestRoundCorrect?: number | null
+  passedAt?: Date | string | null
   updatedAt?: Date | string
 }
 
@@ -396,6 +493,11 @@ export type UserTagStatsUpdateManyMutationInput = {
   wrongCount?: Prisma.IntFieldUpdateOperationsInput | number
   accuracy?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   lastPracticedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  foundationStatus?: Prisma.EnumFoundationStatusFieldUpdateOperationsInput | $Enums.FoundationStatus
+  foundationRoundCount?: Prisma.IntFieldUpdateOperationsInput | number
+  lastRoundCorrect?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bestRoundCorrect?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  passedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -408,6 +510,11 @@ export type UserTagStatsUncheckedUpdateManyInput = {
   wrongCount?: Prisma.IntFieldUpdateOperationsInput | number
   accuracy?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   lastPracticedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  foundationStatus?: Prisma.EnumFoundationStatusFieldUpdateOperationsInput | $Enums.FoundationStatus
+  foundationRoundCount?: Prisma.IntFieldUpdateOperationsInput | number
+  lastRoundCorrect?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bestRoundCorrect?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  passedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -441,6 +548,11 @@ export type UserTagStatsCountOrderByAggregateInput = {
   wrongCount?: Prisma.SortOrder
   accuracy?: Prisma.SortOrder
   lastPracticedAt?: Prisma.SortOrder
+  foundationStatus?: Prisma.SortOrder
+  foundationRoundCount?: Prisma.SortOrder
+  lastRoundCorrect?: Prisma.SortOrder
+  bestRoundCorrect?: Prisma.SortOrder
+  passedAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
@@ -449,6 +561,9 @@ export type UserTagStatsAvgOrderByAggregateInput = {
   correctCount?: Prisma.SortOrder
   wrongCount?: Prisma.SortOrder
   accuracy?: Prisma.SortOrder
+  foundationRoundCount?: Prisma.SortOrder
+  lastRoundCorrect?: Prisma.SortOrder
+  bestRoundCorrect?: Prisma.SortOrder
 }
 
 export type UserTagStatsMaxOrderByAggregateInput = {
@@ -460,6 +575,11 @@ export type UserTagStatsMaxOrderByAggregateInput = {
   wrongCount?: Prisma.SortOrder
   accuracy?: Prisma.SortOrder
   lastPracticedAt?: Prisma.SortOrder
+  foundationStatus?: Prisma.SortOrder
+  foundationRoundCount?: Prisma.SortOrder
+  lastRoundCorrect?: Prisma.SortOrder
+  bestRoundCorrect?: Prisma.SortOrder
+  passedAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
@@ -472,6 +592,11 @@ export type UserTagStatsMinOrderByAggregateInput = {
   wrongCount?: Prisma.SortOrder
   accuracy?: Prisma.SortOrder
   lastPracticedAt?: Prisma.SortOrder
+  foundationStatus?: Prisma.SortOrder
+  foundationRoundCount?: Prisma.SortOrder
+  lastRoundCorrect?: Prisma.SortOrder
+  bestRoundCorrect?: Prisma.SortOrder
+  passedAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
@@ -480,6 +605,9 @@ export type UserTagStatsSumOrderByAggregateInput = {
   correctCount?: Prisma.SortOrder
   wrongCount?: Prisma.SortOrder
   accuracy?: Prisma.SortOrder
+  foundationRoundCount?: Prisma.SortOrder
+  lastRoundCorrect?: Prisma.SortOrder
+  bestRoundCorrect?: Prisma.SortOrder
 }
 
 export type UserTagStatsCreateNestedManyWithoutUserInput = {
@@ -566,6 +694,10 @@ export type UserTagStatsUncheckedUpdateManyWithoutTagNestedInput = {
   deleteMany?: Prisma.UserTagStatsScalarWhereInput | Prisma.UserTagStatsScalarWhereInput[]
 }
 
+export type EnumFoundationStatusFieldUpdateOperationsInput = {
+  set?: $Enums.FoundationStatus
+}
+
 export type UserTagStatsCreateWithoutUserInput = {
   id?: string
   answeredCount?: number
@@ -573,6 +705,11 @@ export type UserTagStatsCreateWithoutUserInput = {
   wrongCount?: number
   accuracy?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   lastPracticedAt?: Date | string | null
+  foundationStatus?: $Enums.FoundationStatus
+  foundationRoundCount?: number
+  lastRoundCorrect?: number | null
+  bestRoundCorrect?: number | null
+  passedAt?: Date | string | null
   updatedAt?: Date | string
   tag: Prisma.QuestionTagCreateNestedOneWithoutTagStatsInput
 }
@@ -585,6 +722,11 @@ export type UserTagStatsUncheckedCreateWithoutUserInput = {
   wrongCount?: number
   accuracy?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   lastPracticedAt?: Date | string | null
+  foundationStatus?: $Enums.FoundationStatus
+  foundationRoundCount?: number
+  lastRoundCorrect?: number | null
+  bestRoundCorrect?: number | null
+  passedAt?: Date | string | null
   updatedAt?: Date | string
 }
 
@@ -626,6 +768,11 @@ export type UserTagStatsScalarWhereInput = {
   wrongCount?: Prisma.IntFilter<"UserTagStats"> | number
   accuracy?: Prisma.DecimalNullableFilter<"UserTagStats"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   lastPracticedAt?: Prisma.DateTimeNullableFilter<"UserTagStats"> | Date | string | null
+  foundationStatus?: Prisma.EnumFoundationStatusFilter<"UserTagStats"> | $Enums.FoundationStatus
+  foundationRoundCount?: Prisma.IntFilter<"UserTagStats"> | number
+  lastRoundCorrect?: Prisma.IntNullableFilter<"UserTagStats"> | number | null
+  bestRoundCorrect?: Prisma.IntNullableFilter<"UserTagStats"> | number | null
+  passedAt?: Prisma.DateTimeNullableFilter<"UserTagStats"> | Date | string | null
   updatedAt?: Prisma.DateTimeFilter<"UserTagStats"> | Date | string
 }
 
@@ -636,6 +783,11 @@ export type UserTagStatsCreateWithoutTagInput = {
   wrongCount?: number
   accuracy?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   lastPracticedAt?: Date | string | null
+  foundationStatus?: $Enums.FoundationStatus
+  foundationRoundCount?: number
+  lastRoundCorrect?: number | null
+  bestRoundCorrect?: number | null
+  passedAt?: Date | string | null
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutTagStatsInput
 }
@@ -648,6 +800,11 @@ export type UserTagStatsUncheckedCreateWithoutTagInput = {
   wrongCount?: number
   accuracy?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   lastPracticedAt?: Date | string | null
+  foundationStatus?: $Enums.FoundationStatus
+  foundationRoundCount?: number
+  lastRoundCorrect?: number | null
+  bestRoundCorrect?: number | null
+  passedAt?: Date | string | null
   updatedAt?: Date | string
 }
 
@@ -685,6 +842,11 @@ export type UserTagStatsCreateManyUserInput = {
   wrongCount?: number
   accuracy?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   lastPracticedAt?: Date | string | null
+  foundationStatus?: $Enums.FoundationStatus
+  foundationRoundCount?: number
+  lastRoundCorrect?: number | null
+  bestRoundCorrect?: number | null
+  passedAt?: Date | string | null
   updatedAt?: Date | string
 }
 
@@ -695,6 +857,11 @@ export type UserTagStatsUpdateWithoutUserInput = {
   wrongCount?: Prisma.IntFieldUpdateOperationsInput | number
   accuracy?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   lastPracticedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  foundationStatus?: Prisma.EnumFoundationStatusFieldUpdateOperationsInput | $Enums.FoundationStatus
+  foundationRoundCount?: Prisma.IntFieldUpdateOperationsInput | number
+  lastRoundCorrect?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bestRoundCorrect?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  passedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tag?: Prisma.QuestionTagUpdateOneRequiredWithoutTagStatsNestedInput
 }
@@ -707,6 +874,11 @@ export type UserTagStatsUncheckedUpdateWithoutUserInput = {
   wrongCount?: Prisma.IntFieldUpdateOperationsInput | number
   accuracy?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   lastPracticedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  foundationStatus?: Prisma.EnumFoundationStatusFieldUpdateOperationsInput | $Enums.FoundationStatus
+  foundationRoundCount?: Prisma.IntFieldUpdateOperationsInput | number
+  lastRoundCorrect?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bestRoundCorrect?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  passedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -718,6 +890,11 @@ export type UserTagStatsUncheckedUpdateManyWithoutUserInput = {
   wrongCount?: Prisma.IntFieldUpdateOperationsInput | number
   accuracy?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   lastPracticedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  foundationStatus?: Prisma.EnumFoundationStatusFieldUpdateOperationsInput | $Enums.FoundationStatus
+  foundationRoundCount?: Prisma.IntFieldUpdateOperationsInput | number
+  lastRoundCorrect?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bestRoundCorrect?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  passedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -729,6 +906,11 @@ export type UserTagStatsCreateManyTagInput = {
   wrongCount?: number
   accuracy?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   lastPracticedAt?: Date | string | null
+  foundationStatus?: $Enums.FoundationStatus
+  foundationRoundCount?: number
+  lastRoundCorrect?: number | null
+  bestRoundCorrect?: number | null
+  passedAt?: Date | string | null
   updatedAt?: Date | string
 }
 
@@ -739,6 +921,11 @@ export type UserTagStatsUpdateWithoutTagInput = {
   wrongCount?: Prisma.IntFieldUpdateOperationsInput | number
   accuracy?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   lastPracticedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  foundationStatus?: Prisma.EnumFoundationStatusFieldUpdateOperationsInput | $Enums.FoundationStatus
+  foundationRoundCount?: Prisma.IntFieldUpdateOperationsInput | number
+  lastRoundCorrect?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bestRoundCorrect?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  passedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutTagStatsNestedInput
 }
@@ -751,6 +938,11 @@ export type UserTagStatsUncheckedUpdateWithoutTagInput = {
   wrongCount?: Prisma.IntFieldUpdateOperationsInput | number
   accuracy?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   lastPracticedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  foundationStatus?: Prisma.EnumFoundationStatusFieldUpdateOperationsInput | $Enums.FoundationStatus
+  foundationRoundCount?: Prisma.IntFieldUpdateOperationsInput | number
+  lastRoundCorrect?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bestRoundCorrect?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  passedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -762,6 +954,11 @@ export type UserTagStatsUncheckedUpdateManyWithoutTagInput = {
   wrongCount?: Prisma.IntFieldUpdateOperationsInput | number
   accuracy?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   lastPracticedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  foundationStatus?: Prisma.EnumFoundationStatusFieldUpdateOperationsInput | $Enums.FoundationStatus
+  foundationRoundCount?: Prisma.IntFieldUpdateOperationsInput | number
+  lastRoundCorrect?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bestRoundCorrect?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  passedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -776,6 +973,11 @@ export type UserTagStatsSelect<ExtArgs extends runtime.Types.Extensions.Internal
   wrongCount?: boolean
   accuracy?: boolean
   lastPracticedAt?: boolean
+  foundationStatus?: boolean
+  foundationRoundCount?: boolean
+  lastRoundCorrect?: boolean
+  bestRoundCorrect?: boolean
+  passedAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   tag?: boolean | Prisma.QuestionTagDefaultArgs<ExtArgs>
@@ -792,10 +994,15 @@ export type UserTagStatsSelectScalar = {
   wrongCount?: boolean
   accuracy?: boolean
   lastPracticedAt?: boolean
+  foundationStatus?: boolean
+  foundationRoundCount?: boolean
+  lastRoundCorrect?: boolean
+  bestRoundCorrect?: boolean
+  passedAt?: boolean
   updatedAt?: boolean
 }
 
-export type UserTagStatsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "tagId" | "answeredCount" | "correctCount" | "wrongCount" | "accuracy" | "lastPracticedAt" | "updatedAt", ExtArgs["result"]["userTagStats"]>
+export type UserTagStatsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "tagId" | "answeredCount" | "correctCount" | "wrongCount" | "accuracy" | "lastPracticedAt" | "foundationStatus" | "foundationRoundCount" | "lastRoundCorrect" | "bestRoundCorrect" | "passedAt" | "updatedAt", ExtArgs["result"]["userTagStats"]>
 export type UserTagStatsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   tag?: boolean | Prisma.QuestionTagDefaultArgs<ExtArgs>
@@ -816,6 +1023,11 @@ export type $UserTagStatsPayload<ExtArgs extends runtime.Types.Extensions.Intern
     wrongCount: number
     accuracy: runtime.Decimal | null
     lastPracticedAt: Date | null
+    foundationStatus: $Enums.FoundationStatus
+    foundationRoundCount: number
+    lastRoundCorrect: number | null
+    bestRoundCorrect: number | null
+    passedAt: Date | null
     updatedAt: Date
   }, ExtArgs["result"]["userTagStats"]>
   composites: {}
@@ -1196,6 +1408,11 @@ export interface UserTagStatsFieldRefs {
   readonly wrongCount: Prisma.FieldRef<"UserTagStats", 'Int'>
   readonly accuracy: Prisma.FieldRef<"UserTagStats", 'Decimal'>
   readonly lastPracticedAt: Prisma.FieldRef<"UserTagStats", 'DateTime'>
+  readonly foundationStatus: Prisma.FieldRef<"UserTagStats", 'FoundationStatus'>
+  readonly foundationRoundCount: Prisma.FieldRef<"UserTagStats", 'Int'>
+  readonly lastRoundCorrect: Prisma.FieldRef<"UserTagStats", 'Int'>
+  readonly bestRoundCorrect: Prisma.FieldRef<"UserTagStats", 'Int'>
+  readonly passedAt: Prisma.FieldRef<"UserTagStats", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"UserTagStats", 'DateTime'>
 }
     

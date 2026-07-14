@@ -7,20 +7,29 @@ import {
 } from "@/components/student/page-building-blocks";
 import { DailyPracticeAction } from "@/features/daily-practice/daily-practice-action";
 import { SpecialPracticeBuilder } from "@/features/special/special-practice-builder";
+import { FoundationTrainingPanel } from "@/features/special/foundation-training-panel";
 import { requireUser } from "@/lib/auth/guards";
 import { getTodayDailyPractice } from "@/server/services/daily-practice";
 import { listActiveTagsTree } from "@/server/services/tags";
+import { getFoundationProgress } from "@/server/services/foundation-training";
 
-export default async function SpecialPracticePage() {
+export default async function SpecialPracticePage({
+  searchParams,
+}: {
+  searchParams?: Promise<Record<string, string | string[] | undefined>>;
+}) {
   const user = await requireUser().catch(() => null);
 
   if (!user) {
     redirect("/login?callbackUrl=/question-bank/special");
   }
 
-  const [tags, dailyPractice] = await Promise.all([
+  const rawParams = await searchParams;
+  const foundationTag = Array.isArray(rawParams?.foundation) ? rawParams?.foundation[0] : rawParams?.foundation;
+  const [tags, dailyPractice, foundation] = await Promise.all([
     listActiveTagsTree(),
     getTodayDailyPractice(user).catch(() => null),
+    getFoundationProgress(user),
   ]);
 
   return (
@@ -33,7 +42,10 @@ export default async function SpecialPracticePage() {
           actions={<DailyPracticeAction dailyPractice={dailyPractice} className="w-full md:w-auto" />}
         />
 
-        <section>
+        <FoundationTrainingPanel progress={foundation} initialTagId={foundationTag} />
+
+        <section className="mt-8">
+          <h2 className="student-heading mb-4 text-xl font-semibold">自由专项练习</h2>
           <SpecialPracticeBuilder tags={tags} />
         </section>
       </StudentPage>

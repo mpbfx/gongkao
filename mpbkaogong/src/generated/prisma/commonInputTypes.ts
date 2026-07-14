@@ -311,6 +311,20 @@ export type EnumPracticeStatusFilter<$PrismaModel = never> = {
   not?: Prisma.NestedEnumPracticeStatusFilter<$PrismaModel> | $Enums.PracticeStatus
 }
 
+export type EnumPracticePurposeFilter<$PrismaModel = never> = {
+  equals?: $Enums.PracticePurpose | Prisma.EnumPracticePurposeFieldRefInput<$PrismaModel>
+  in?: $Enums.PracticePurpose[]
+  notIn?: $Enums.PracticePurpose[]
+  not?: Prisma.NestedEnumPracticePurposeFilter<$PrismaModel> | $Enums.PracticePurpose
+}
+
+export type EnumPracticeTimingModeFilter<$PrismaModel = never> = {
+  equals?: $Enums.PracticeTimingMode | Prisma.EnumPracticeTimingModeFieldRefInput<$PrismaModel>
+  in?: $Enums.PracticeTimingMode[]
+  notIn?: $Enums.PracticeTimingMode[]
+  not?: Prisma.NestedEnumPracticeTimingModeFilter<$PrismaModel> | $Enums.PracticeTimingMode
+}
+
 export type JsonNullableFilter<$PrismaModel = never> =
 | Prisma.PatchUndefined<
     Prisma.Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
@@ -362,6 +376,26 @@ export type EnumPracticeStatusWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumPracticeStatusFilter<$PrismaModel>
 }
 
+export type EnumPracticePurposeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.PracticePurpose | Prisma.EnumPracticePurposeFieldRefInput<$PrismaModel>
+  in?: $Enums.PracticePurpose[]
+  notIn?: $Enums.PracticePurpose[]
+  not?: Prisma.NestedEnumPracticePurposeWithAggregatesFilter<$PrismaModel> | $Enums.PracticePurpose
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumPracticePurposeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumPracticePurposeFilter<$PrismaModel>
+}
+
+export type EnumPracticeTimingModeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.PracticeTimingMode | Prisma.EnumPracticeTimingModeFieldRefInput<$PrismaModel>
+  in?: $Enums.PracticeTimingMode[]
+  notIn?: $Enums.PracticeTimingMode[]
+  not?: Prisma.NestedEnumPracticeTimingModeWithAggregatesFilter<$PrismaModel> | $Enums.PracticeTimingMode
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumPracticeTimingModeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumPracticeTimingModeFilter<$PrismaModel>
+}
+
 export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
 | Prisma.PatchUndefined<
     Prisma.Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
@@ -410,6 +444,23 @@ export type BoolNullableWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
   _min?: Prisma.NestedBoolNullableFilter<$PrismaModel>
   _max?: Prisma.NestedBoolNullableFilter<$PrismaModel>
+}
+
+export type EnumFoundationStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.FoundationStatus | Prisma.EnumFoundationStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.FoundationStatus[]
+  notIn?: $Enums.FoundationStatus[]
+  not?: Prisma.NestedEnumFoundationStatusFilter<$PrismaModel> | $Enums.FoundationStatus
+}
+
+export type EnumFoundationStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.FoundationStatus | Prisma.EnumFoundationStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.FoundationStatus[]
+  notIn?: $Enums.FoundationStatus[]
+  not?: Prisma.NestedEnumFoundationStatusWithAggregatesFilter<$PrismaModel> | $Enums.FoundationStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumFoundationStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumFoundationStatusFilter<$PrismaModel>
 }
 
 export type JsonFilter<$PrismaModel = never> =
@@ -794,6 +845,20 @@ export type NestedEnumPracticeStatusFilter<$PrismaModel = never> = {
   not?: Prisma.NestedEnumPracticeStatusFilter<$PrismaModel> | $Enums.PracticeStatus
 }
 
+export type NestedEnumPracticePurposeFilter<$PrismaModel = never> = {
+  equals?: $Enums.PracticePurpose | Prisma.EnumPracticePurposeFieldRefInput<$PrismaModel>
+  in?: $Enums.PracticePurpose[]
+  notIn?: $Enums.PracticePurpose[]
+  not?: Prisma.NestedEnumPracticePurposeFilter<$PrismaModel> | $Enums.PracticePurpose
+}
+
+export type NestedEnumPracticeTimingModeFilter<$PrismaModel = never> = {
+  equals?: $Enums.PracticeTimingMode | Prisma.EnumPracticeTimingModeFieldRefInput<$PrismaModel>
+  in?: $Enums.PracticeTimingMode[]
+  notIn?: $Enums.PracticeTimingMode[]
+  not?: Prisma.NestedEnumPracticeTimingModeFilter<$PrismaModel> | $Enums.PracticeTimingMode
+}
+
 export type NestedEnumDifficultyNullableFilter<$PrismaModel = never> = {
   equals?: $Enums.Difficulty | Prisma.EnumDifficultyFieldRefInput<$PrismaModel> | null
   in?: $Enums.Difficulty[] | null
@@ -819,6 +884,26 @@ export type NestedEnumPracticeStatusWithAggregatesFilter<$PrismaModel = never> =
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumPracticeStatusFilter<$PrismaModel>
   _max?: Prisma.NestedEnumPracticeStatusFilter<$PrismaModel>
+}
+
+export type NestedEnumPracticePurposeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.PracticePurpose | Prisma.EnumPracticePurposeFieldRefInput<$PrismaModel>
+  in?: $Enums.PracticePurpose[]
+  notIn?: $Enums.PracticePurpose[]
+  not?: Prisma.NestedEnumPracticePurposeWithAggregatesFilter<$PrismaModel> | $Enums.PracticePurpose
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumPracticePurposeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumPracticePurposeFilter<$PrismaModel>
+}
+
+export type NestedEnumPracticeTimingModeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.PracticeTimingMode | Prisma.EnumPracticeTimingModeFieldRefInput<$PrismaModel>
+  in?: $Enums.PracticeTimingMode[]
+  notIn?: $Enums.PracticeTimingMode[]
+  not?: Prisma.NestedEnumPracticeTimingModeWithAggregatesFilter<$PrismaModel> | $Enums.PracticeTimingMode
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumPracticeTimingModeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumPracticeTimingModeFilter<$PrismaModel>
 }
 
 export type NestedJsonNullableFilter<$PrismaModel = never> =
@@ -866,6 +951,23 @@ export type NestedBoolNullableWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
   _min?: Prisma.NestedBoolNullableFilter<$PrismaModel>
   _max?: Prisma.NestedBoolNullableFilter<$PrismaModel>
+}
+
+export type NestedEnumFoundationStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.FoundationStatus | Prisma.EnumFoundationStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.FoundationStatus[]
+  notIn?: $Enums.FoundationStatus[]
+  not?: Prisma.NestedEnumFoundationStatusFilter<$PrismaModel> | $Enums.FoundationStatus
+}
+
+export type NestedEnumFoundationStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.FoundationStatus | Prisma.EnumFoundationStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.FoundationStatus[]
+  notIn?: $Enums.FoundationStatus[]
+  not?: Prisma.NestedEnumFoundationStatusWithAggregatesFilter<$PrismaModel> | $Enums.FoundationStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumFoundationStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumFoundationStatusFilter<$PrismaModel>
 }
 
 export type NestedJsonFilter<$PrismaModel = never> =

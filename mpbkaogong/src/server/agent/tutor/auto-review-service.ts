@@ -17,6 +17,7 @@ async function analyzeQuestion(user: AuthenticatedUser, sessionId: string, quest
     context,
     messages: [],
     prompt: automaticReviewPrompt,
+    enableKnowledge: false,
   });
 
   await prisma.$transaction((tx) =>

@@ -1,0 +1,40 @@
+description: 公考课程字幕检索评测
+providers:
+  - file://tools/knowledge/promptfoo-provider.ts
+prompts:
+  - "{{prompt}}"
+defaultTest:
+  assert:
+    - type: contains
+      value: '"url":"https://www.bilibili.com/video/'
+tests:
+  - vars: { prompt: "基期量的计算公式是什么" }
+  - vars: { prompt: "现期量和基期量怎么区分" }
+  - vars: { prompt: "增长率比较有哪些快速方法" }
+  - vars: { prompt: "资料分析两期比重怎么计算" }
+  - vars: { prompt: "平均数增长率公式" }
+  - vars: { prompt: "间隔增长率怎么求" }
+  - vars: { prompt: "判断推理中的加强论证" }
+  - vars: { prompt: "削弱论证优先看什么" }
+  - vars: { prompt: "必要条件和充分条件区别" }
+  - vars: { prompt: "翻译推理的逆否命题" }
+  - vars: { prompt: "图形推理位置规律" }
+  - vars: { prompt: "图形推理数量规律" }
+  - vars: { prompt: "定义判断怎么快速定位关键词" }
+  - vars: { prompt: "类比推理中的组成关系" }
+  - vars: { prompt: "言语理解中心理解题" }
+  - vars: { prompt: "意图判断题怎么做" }
+  - vars: { prompt: "逻辑填空如何辨析词语" }
+  - vars: { prompt: "片段阅读中的转折关系" }
+  - vars: { prompt: "数量关系工程问题" }
+  - vars: { prompt: "行程问题相遇公式" }
+  - vars: { prompt: "排列组合捆绑法" }
+  - vars: { prompt: "概率问题分类讨论" }
+  - vars: { prompt: "容斥原理三集合公式" }
+  - vars: { prompt: "年龄问题怎么列方程" }
+  - vars: { prompt: "申论概括题如何找要点" }
+  - vars: { prompt: "申论提出对策题" }
+  - vars: { prompt: "申论综合分析题结构" }
+  - vars: { prompt: "公文写作格式" }
+  - vars: { prompt: "常识判断法律题" }
+  - vars: { prompt: "考试时间不够如何取舍题目" }

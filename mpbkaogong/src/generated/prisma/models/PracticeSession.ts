@@ -33,7 +33,12 @@ export type PracticeSessionAvgAggregateOutputType = {
   wrongCount: number | null
   unansweredCount: number | null
   elapsedSeconds: number | null
+  timeLimitSeconds: number | null
+  pauseCount: number | null
+  pausedSeconds: number | null
   accuracy: runtime.Decimal | null
+  score: runtime.Decimal | null
+  maxScore: runtime.Decimal | null
 }
 
 export type PracticeSessionSumAggregateOutputType = {
@@ -43,7 +48,12 @@ export type PracticeSessionSumAggregateOutputType = {
   wrongCount: number | null
   unansweredCount: number | null
   elapsedSeconds: number | null
+  timeLimitSeconds: number | null
+  pauseCount: number | null
+  pausedSeconds: number | null
   accuracy: runtime.Decimal | null
+  score: runtime.Decimal | null
+  maxScore: runtime.Decimal | null
 }
 
 export type PracticeSessionMinAggregateOutputType = {
@@ -51,6 +61,8 @@ export type PracticeSessionMinAggregateOutputType = {
   userId: string | null
   mode: $Enums.PracticeMode | null
   status: $Enums.PracticeStatus | null
+  purpose: $Enums.PracticePurpose | null
+  timingMode: $Enums.PracticeTimingMode | null
   title: string | null
   paperId: string | null
   difficulty: $Enums.Difficulty | null
@@ -60,7 +72,13 @@ export type PracticeSessionMinAggregateOutputType = {
   wrongCount: number | null
   unansweredCount: number | null
   elapsedSeconds: number | null
+  timeLimitSeconds: number | null
+  pauseCount: number | null
+  pausedSeconds: number | null
   accuracy: runtime.Decimal | null
+  score: runtime.Decimal | null
+  maxScore: runtime.Decimal | null
+  reflectionText: string | null
   submittedAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -71,6 +89,8 @@ export type PracticeSessionMaxAggregateOutputType = {
   userId: string | null
   mode: $Enums.PracticeMode | null
   status: $Enums.PracticeStatus | null
+  purpose: $Enums.PracticePurpose | null
+  timingMode: $Enums.PracticeTimingMode | null
   title: string | null
   paperId: string | null
   difficulty: $Enums.Difficulty | null
@@ -80,7 +100,13 @@ export type PracticeSessionMaxAggregateOutputType = {
   wrongCount: number | null
   unansweredCount: number | null
   elapsedSeconds: number | null
+  timeLimitSeconds: number | null
+  pauseCount: number | null
+  pausedSeconds: number | null
   accuracy: runtime.Decimal | null
+  score: runtime.Decimal | null
+  maxScore: runtime.Decimal | null
+  reflectionText: string | null
   submittedAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -91,6 +117,8 @@ export type PracticeSessionCountAggregateOutputType = {
   userId: number
   mode: number
   status: number
+  purpose: number
+  timingMode: number
   title: number
   paperId: number
   sourceTagIdsJson: number
@@ -101,7 +129,13 @@ export type PracticeSessionCountAggregateOutputType = {
   wrongCount: number
   unansweredCount: number
   elapsedSeconds: number
+  timeLimitSeconds: number
+  pauseCount: number
+  pausedSeconds: number
   accuracy: number
+  score: number
+  maxScore: number
+  reflectionText: number
   submittedAt: number
   createdAt: number
   updatedAt: number
@@ -116,7 +150,12 @@ export type PracticeSessionAvgAggregateInputType = {
   wrongCount?: true
   unansweredCount?: true
   elapsedSeconds?: true
+  timeLimitSeconds?: true
+  pauseCount?: true
+  pausedSeconds?: true
   accuracy?: true
+  score?: true
+  maxScore?: true
 }
 
 export type PracticeSessionSumAggregateInputType = {
@@ -126,7 +165,12 @@ export type PracticeSessionSumAggregateInputType = {
   wrongCount?: true
   unansweredCount?: true
   elapsedSeconds?: true
+  timeLimitSeconds?: true
+  pauseCount?: true
+  pausedSeconds?: true
   accuracy?: true
+  score?: true
+  maxScore?: true
 }
 
 export type PracticeSessionMinAggregateInputType = {
@@ -134,6 +178,8 @@ export type PracticeSessionMinAggregateInputType = {
   userId?: true
   mode?: true
   status?: true
+  purpose?: true
+  timingMode?: true
   title?: true
   paperId?: true
   difficulty?: true
@@ -143,7 +189,13 @@ export type PracticeSessionMinAggregateInputType = {
   wrongCount?: true
   unansweredCount?: true
   elapsedSeconds?: true
+  timeLimitSeconds?: true
+  pauseCount?: true
+  pausedSeconds?: true
   accuracy?: true
+  score?: true
+  maxScore?: true
+  reflectionText?: true
   submittedAt?: true
   createdAt?: true
   updatedAt?: true
@@ -154,6 +206,8 @@ export type PracticeSessionMaxAggregateInputType = {
   userId?: true
   mode?: true
   status?: true
+  purpose?: true
+  timingMode?: true
   title?: true
   paperId?: true
   difficulty?: true
@@ -163,7 +217,13 @@ export type PracticeSessionMaxAggregateInputType = {
   wrongCount?: true
   unansweredCount?: true
   elapsedSeconds?: true
+  timeLimitSeconds?: true
+  pauseCount?: true
+  pausedSeconds?: true
   accuracy?: true
+  score?: true
+  maxScore?: true
+  reflectionText?: true
   submittedAt?: true
   createdAt?: true
   updatedAt?: true
@@ -174,6 +234,8 @@ export type PracticeSessionCountAggregateInputType = {
   userId?: true
   mode?: true
   status?: true
+  purpose?: true
+  timingMode?: true
   title?: true
   paperId?: true
   sourceTagIdsJson?: true
@@ -184,7 +246,13 @@ export type PracticeSessionCountAggregateInputType = {
   wrongCount?: true
   unansweredCount?: true
   elapsedSeconds?: true
+  timeLimitSeconds?: true
+  pauseCount?: true
+  pausedSeconds?: true
   accuracy?: true
+  score?: true
+  maxScore?: true
+  reflectionText?: true
   submittedAt?: true
   createdAt?: true
   updatedAt?: true
@@ -282,6 +350,8 @@ export type PracticeSessionGroupByOutputType = {
   userId: string
   mode: $Enums.PracticeMode
   status: $Enums.PracticeStatus
+  purpose: $Enums.PracticePurpose
+  timingMode: $Enums.PracticeTimingMode
   title: string
   paperId: string | null
   sourceTagIdsJson: runtime.JsonValue | null
@@ -292,7 +362,13 @@ export type PracticeSessionGroupByOutputType = {
   wrongCount: number
   unansweredCount: number
   elapsedSeconds: number
+  timeLimitSeconds: number | null
+  pauseCount: number
+  pausedSeconds: number
   accuracy: runtime.Decimal | null
+  score: runtime.Decimal | null
+  maxScore: runtime.Decimal | null
+  reflectionText: string | null
   submittedAt: Date | null
   createdAt: Date
   updatedAt: Date
@@ -326,6 +402,8 @@ export type PracticeSessionWhereInput = {
   userId?: Prisma.StringFilter<"PracticeSession"> | string
   mode?: Prisma.EnumPracticeModeFilter<"PracticeSession"> | $Enums.PracticeMode
   status?: Prisma.EnumPracticeStatusFilter<"PracticeSession"> | $Enums.PracticeStatus
+  purpose?: Prisma.EnumPracticePurposeFilter<"PracticeSession"> | $Enums.PracticePurpose
+  timingMode?: Prisma.EnumPracticeTimingModeFilter<"PracticeSession"> | $Enums.PracticeTimingMode
   title?: Prisma.StringFilter<"PracticeSession"> | string
   paperId?: Prisma.StringNullableFilter<"PracticeSession"> | string | null
   sourceTagIdsJson?: Prisma.JsonNullableFilter<"PracticeSession">
@@ -336,7 +414,13 @@ export type PracticeSessionWhereInput = {
   wrongCount?: Prisma.IntFilter<"PracticeSession"> | number
   unansweredCount?: Prisma.IntFilter<"PracticeSession"> | number
   elapsedSeconds?: Prisma.IntFilter<"PracticeSession"> | number
+  timeLimitSeconds?: Prisma.IntNullableFilter<"PracticeSession"> | number | null
+  pauseCount?: Prisma.IntFilter<"PracticeSession"> | number
+  pausedSeconds?: Prisma.IntFilter<"PracticeSession"> | number
   accuracy?: Prisma.DecimalNullableFilter<"PracticeSession"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: Prisma.DecimalNullableFilter<"PracticeSession"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: Prisma.DecimalNullableFilter<"PracticeSession"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: Prisma.StringNullableFilter<"PracticeSession"> | string | null
   submittedAt?: Prisma.DateTimeNullableFilter<"PracticeSession"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"PracticeSession"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"PracticeSession"> | Date | string
@@ -347,6 +431,8 @@ export type PracticeSessionWhereInput = {
   startedAgentRecommendations?: Prisma.AgentRecommendationListRelationFilter
   agentTutorMessages?: Prisma.AgentTutorMessageListRelationFilter
   mistakeReviews?: Prisma.QuestionMistakeReviewListRelationFilter
+  baselineForGoal?: Prisma.XOR<Prisma.UserExamGoalNullableScalarRelationFilter, Prisma.UserExamGoalWhereInput> | null
+  events?: Prisma.PracticeEventListRelationFilter
 }
 
 export type PracticeSessionOrderByWithRelationInput = {
@@ -354,6 +440,8 @@ export type PracticeSessionOrderByWithRelationInput = {
   userId?: Prisma.SortOrder
   mode?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  purpose?: Prisma.SortOrder
+  timingMode?: Prisma.SortOrder
   title?: Prisma.SortOrder
   paperId?: Prisma.SortOrderInput | Prisma.SortOrder
   sourceTagIdsJson?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -364,7 +452,13 @@ export type PracticeSessionOrderByWithRelationInput = {
   wrongCount?: Prisma.SortOrder
   unansweredCount?: Prisma.SortOrder
   elapsedSeconds?: Prisma.SortOrder
+  timeLimitSeconds?: Prisma.SortOrderInput | Prisma.SortOrder
+  pauseCount?: Prisma.SortOrder
+  pausedSeconds?: Prisma.SortOrder
   accuracy?: Prisma.SortOrderInput | Prisma.SortOrder
+  score?: Prisma.SortOrderInput | Prisma.SortOrder
+  maxScore?: Prisma.SortOrderInput | Prisma.SortOrder
+  reflectionText?: Prisma.SortOrderInput | Prisma.SortOrder
   submittedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -375,6 +469,8 @@ export type PracticeSessionOrderByWithRelationInput = {
   startedAgentRecommendations?: Prisma.AgentRecommendationOrderByRelationAggregateInput
   agentTutorMessages?: Prisma.AgentTutorMessageOrderByRelationAggregateInput
   mistakeReviews?: Prisma.QuestionMistakeReviewOrderByRelationAggregateInput
+  baselineForGoal?: Prisma.UserExamGoalOrderByWithRelationInput
+  events?: Prisma.PracticeEventOrderByRelationAggregateInput
   _relevance?: Prisma.PracticeSessionOrderByRelevanceInput
 }
 
@@ -386,6 +482,8 @@ export type PracticeSessionWhereUniqueInput = Prisma.AtLeast<{
   userId?: Prisma.StringFilter<"PracticeSession"> | string
   mode?: Prisma.EnumPracticeModeFilter<"PracticeSession"> | $Enums.PracticeMode
   status?: Prisma.EnumPracticeStatusFilter<"PracticeSession"> | $Enums.PracticeStatus
+  purpose?: Prisma.EnumPracticePurposeFilter<"PracticeSession"> | $Enums.PracticePurpose
+  timingMode?: Prisma.EnumPracticeTimingModeFilter<"PracticeSession"> | $Enums.PracticeTimingMode
   title?: Prisma.StringFilter<"PracticeSession"> | string
   paperId?: Prisma.StringNullableFilter<"PracticeSession"> | string | null
   sourceTagIdsJson?: Prisma.JsonNullableFilter<"PracticeSession">
@@ -396,7 +494,13 @@ export type PracticeSessionWhereUniqueInput = Prisma.AtLeast<{
   wrongCount?: Prisma.IntFilter<"PracticeSession"> | number
   unansweredCount?: Prisma.IntFilter<"PracticeSession"> | number
   elapsedSeconds?: Prisma.IntFilter<"PracticeSession"> | number
+  timeLimitSeconds?: Prisma.IntNullableFilter<"PracticeSession"> | number | null
+  pauseCount?: Prisma.IntFilter<"PracticeSession"> | number
+  pausedSeconds?: Prisma.IntFilter<"PracticeSession"> | number
   accuracy?: Prisma.DecimalNullableFilter<"PracticeSession"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: Prisma.DecimalNullableFilter<"PracticeSession"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: Prisma.DecimalNullableFilter<"PracticeSession"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: Prisma.StringNullableFilter<"PracticeSession"> | string | null
   submittedAt?: Prisma.DateTimeNullableFilter<"PracticeSession"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"PracticeSession"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"PracticeSession"> | Date | string
@@ -407,6 +511,8 @@ export type PracticeSessionWhereUniqueInput = Prisma.AtLeast<{
   startedAgentRecommendations?: Prisma.AgentRecommendationListRelationFilter
   agentTutorMessages?: Prisma.AgentTutorMessageListRelationFilter
   mistakeReviews?: Prisma.QuestionMistakeReviewListRelationFilter
+  baselineForGoal?: Prisma.XOR<Prisma.UserExamGoalNullableScalarRelationFilter, Prisma.UserExamGoalWhereInput> | null
+  events?: Prisma.PracticeEventListRelationFilter
 }, "id">
 
 export type PracticeSessionOrderByWithAggregationInput = {
@@ -414,6 +520,8 @@ export type PracticeSessionOrderByWithAggregationInput = {
   userId?: Prisma.SortOrder
   mode?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  purpose?: Prisma.SortOrder
+  timingMode?: Prisma.SortOrder
   title?: Prisma.SortOrder
   paperId?: Prisma.SortOrderInput | Prisma.SortOrder
   sourceTagIdsJson?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -424,7 +532,13 @@ export type PracticeSessionOrderByWithAggregationInput = {
   wrongCount?: Prisma.SortOrder
   unansweredCount?: Prisma.SortOrder
   elapsedSeconds?: Prisma.SortOrder
+  timeLimitSeconds?: Prisma.SortOrderInput | Prisma.SortOrder
+  pauseCount?: Prisma.SortOrder
+  pausedSeconds?: Prisma.SortOrder
   accuracy?: Prisma.SortOrderInput | Prisma.SortOrder
+  score?: Prisma.SortOrderInput | Prisma.SortOrder
+  maxScore?: Prisma.SortOrderInput | Prisma.SortOrder
+  reflectionText?: Prisma.SortOrderInput | Prisma.SortOrder
   submittedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -443,6 +557,8 @@ export type PracticeSessionScalarWhereWithAggregatesInput = {
   userId?: Prisma.StringWithAggregatesFilter<"PracticeSession"> | string
   mode?: Prisma.EnumPracticeModeWithAggregatesFilter<"PracticeSession"> | $Enums.PracticeMode
   status?: Prisma.EnumPracticeStatusWithAggregatesFilter<"PracticeSession"> | $Enums.PracticeStatus
+  purpose?: Prisma.EnumPracticePurposeWithAggregatesFilter<"PracticeSession"> | $Enums.PracticePurpose
+  timingMode?: Prisma.EnumPracticeTimingModeWithAggregatesFilter<"PracticeSession"> | $Enums.PracticeTimingMode
   title?: Prisma.StringWithAggregatesFilter<"PracticeSession"> | string
   paperId?: Prisma.StringNullableWithAggregatesFilter<"PracticeSession"> | string | null
   sourceTagIdsJson?: Prisma.JsonNullableWithAggregatesFilter<"PracticeSession">
@@ -453,7 +569,13 @@ export type PracticeSessionScalarWhereWithAggregatesInput = {
   wrongCount?: Prisma.IntWithAggregatesFilter<"PracticeSession"> | number
   unansweredCount?: Prisma.IntWithAggregatesFilter<"PracticeSession"> | number
   elapsedSeconds?: Prisma.IntWithAggregatesFilter<"PracticeSession"> | number
+  timeLimitSeconds?: Prisma.IntNullableWithAggregatesFilter<"PracticeSession"> | number | null
+  pauseCount?: Prisma.IntWithAggregatesFilter<"PracticeSession"> | number
+  pausedSeconds?: Prisma.IntWithAggregatesFilter<"PracticeSession"> | number
   accuracy?: Prisma.DecimalNullableWithAggregatesFilter<"PracticeSession"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: Prisma.DecimalNullableWithAggregatesFilter<"PracticeSession"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: Prisma.DecimalNullableWithAggregatesFilter<"PracticeSession"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: Prisma.StringNullableWithAggregatesFilter<"PracticeSession"> | string | null
   submittedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"PracticeSession"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"PracticeSession"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"PracticeSession"> | Date | string
@@ -463,6 +585,8 @@ export type PracticeSessionCreateInput = {
   id?: string
   mode: $Enums.PracticeMode
   status?: $Enums.PracticeStatus
+  purpose?: $Enums.PracticePurpose
+  timingMode?: $Enums.PracticeTimingMode
   title: string
   sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   difficulty?: $Enums.Difficulty | null
@@ -472,7 +596,13 @@ export type PracticeSessionCreateInput = {
   wrongCount?: number
   unansweredCount?: number
   elapsedSeconds?: number
+  timeLimitSeconds?: number | null
+  pauseCount?: number
+  pausedSeconds?: number
   accuracy?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: string | null
   submittedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -483,6 +613,8 @@ export type PracticeSessionCreateInput = {
   startedAgentRecommendations?: Prisma.AgentRecommendationCreateNestedManyWithoutStartedSessionInput
   agentTutorMessages?: Prisma.AgentTutorMessageCreateNestedManyWithoutSessionInput
   mistakeReviews?: Prisma.QuestionMistakeReviewCreateNestedManyWithoutSessionInput
+  baselineForGoal?: Prisma.UserExamGoalCreateNestedOneWithoutBaselineSessionInput
+  events?: Prisma.PracticeEventCreateNestedManyWithoutSessionInput
 }
 
 export type PracticeSessionUncheckedCreateInput = {
@@ -490,6 +622,8 @@ export type PracticeSessionUncheckedCreateInput = {
   userId: string
   mode: $Enums.PracticeMode
   status?: $Enums.PracticeStatus
+  purpose?: $Enums.PracticePurpose
+  timingMode?: $Enums.PracticeTimingMode
   title: string
   paperId?: string | null
   sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -500,7 +634,13 @@ export type PracticeSessionUncheckedCreateInput = {
   wrongCount?: number
   unansweredCount?: number
   elapsedSeconds?: number
+  timeLimitSeconds?: number | null
+  pauseCount?: number
+  pausedSeconds?: number
   accuracy?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: string | null
   submittedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -509,12 +649,16 @@ export type PracticeSessionUncheckedCreateInput = {
   startedAgentRecommendations?: Prisma.AgentRecommendationUncheckedCreateNestedManyWithoutStartedSessionInput
   agentTutorMessages?: Prisma.AgentTutorMessageUncheckedCreateNestedManyWithoutSessionInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedCreateNestedManyWithoutSessionInput
+  baselineForGoal?: Prisma.UserExamGoalUncheckedCreateNestedOneWithoutBaselineSessionInput
+  events?: Prisma.PracticeEventUncheckedCreateNestedManyWithoutSessionInput
 }
 
 export type PracticeSessionUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   mode?: Prisma.EnumPracticeModeFieldUpdateOperationsInput | $Enums.PracticeMode
   status?: Prisma.EnumPracticeStatusFieldUpdateOperationsInput | $Enums.PracticeStatus
+  purpose?: Prisma.EnumPracticePurposeFieldUpdateOperationsInput | $Enums.PracticePurpose
+  timingMode?: Prisma.EnumPracticeTimingModeFieldUpdateOperationsInput | $Enums.PracticeTimingMode
   title?: Prisma.StringFieldUpdateOperationsInput | string
   sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   difficulty?: Prisma.NullableEnumDifficultyFieldUpdateOperationsInput | $Enums.Difficulty | null
@@ -524,7 +668,13 @@ export type PracticeSessionUpdateInput = {
   wrongCount?: Prisma.IntFieldUpdateOperationsInput | number
   unansweredCount?: Prisma.IntFieldUpdateOperationsInput | number
   elapsedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  timeLimitSeconds?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pauseCount?: Prisma.IntFieldUpdateOperationsInput | number
+  pausedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
   accuracy?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -535,6 +685,8 @@ export type PracticeSessionUpdateInput = {
   startedAgentRecommendations?: Prisma.AgentRecommendationUpdateManyWithoutStartedSessionNestedInput
   agentTutorMessages?: Prisma.AgentTutorMessageUpdateManyWithoutSessionNestedInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUpdateManyWithoutSessionNestedInput
+  baselineForGoal?: Prisma.UserExamGoalUpdateOneWithoutBaselineSessionNestedInput
+  events?: Prisma.PracticeEventUpdateManyWithoutSessionNestedInput
 }
 
 export type PracticeSessionUncheckedUpdateInput = {
@@ -542,6 +694,8 @@ export type PracticeSessionUncheckedUpdateInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   mode?: Prisma.EnumPracticeModeFieldUpdateOperationsInput | $Enums.PracticeMode
   status?: Prisma.EnumPracticeStatusFieldUpdateOperationsInput | $Enums.PracticeStatus
+  purpose?: Prisma.EnumPracticePurposeFieldUpdateOperationsInput | $Enums.PracticePurpose
+  timingMode?: Prisma.EnumPracticeTimingModeFieldUpdateOperationsInput | $Enums.PracticeTimingMode
   title?: Prisma.StringFieldUpdateOperationsInput | string
   paperId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -552,7 +706,13 @@ export type PracticeSessionUncheckedUpdateInput = {
   wrongCount?: Prisma.IntFieldUpdateOperationsInput | number
   unansweredCount?: Prisma.IntFieldUpdateOperationsInput | number
   elapsedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  timeLimitSeconds?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pauseCount?: Prisma.IntFieldUpdateOperationsInput | number
+  pausedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
   accuracy?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -561,6 +721,8 @@ export type PracticeSessionUncheckedUpdateInput = {
   startedAgentRecommendations?: Prisma.AgentRecommendationUncheckedUpdateManyWithoutStartedSessionNestedInput
   agentTutorMessages?: Prisma.AgentTutorMessageUncheckedUpdateManyWithoutSessionNestedInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedUpdateManyWithoutSessionNestedInput
+  baselineForGoal?: Prisma.UserExamGoalUncheckedUpdateOneWithoutBaselineSessionNestedInput
+  events?: Prisma.PracticeEventUncheckedUpdateManyWithoutSessionNestedInput
 }
 
 export type PracticeSessionCreateManyInput = {
@@ -568,6 +730,8 @@ export type PracticeSessionCreateManyInput = {
   userId: string
   mode: $Enums.PracticeMode
   status?: $Enums.PracticeStatus
+  purpose?: $Enums.PracticePurpose
+  timingMode?: $Enums.PracticeTimingMode
   title: string
   paperId?: string | null
   sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -578,7 +742,13 @@ export type PracticeSessionCreateManyInput = {
   wrongCount?: number
   unansweredCount?: number
   elapsedSeconds?: number
+  timeLimitSeconds?: number | null
+  pauseCount?: number
+  pausedSeconds?: number
   accuracy?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: string | null
   submittedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -588,6 +758,8 @@ export type PracticeSessionUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   mode?: Prisma.EnumPracticeModeFieldUpdateOperationsInput | $Enums.PracticeMode
   status?: Prisma.EnumPracticeStatusFieldUpdateOperationsInput | $Enums.PracticeStatus
+  purpose?: Prisma.EnumPracticePurposeFieldUpdateOperationsInput | $Enums.PracticePurpose
+  timingMode?: Prisma.EnumPracticeTimingModeFieldUpdateOperationsInput | $Enums.PracticeTimingMode
   title?: Prisma.StringFieldUpdateOperationsInput | string
   sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   difficulty?: Prisma.NullableEnumDifficultyFieldUpdateOperationsInput | $Enums.Difficulty | null
@@ -597,7 +769,13 @@ export type PracticeSessionUpdateManyMutationInput = {
   wrongCount?: Prisma.IntFieldUpdateOperationsInput | number
   unansweredCount?: Prisma.IntFieldUpdateOperationsInput | number
   elapsedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  timeLimitSeconds?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pauseCount?: Prisma.IntFieldUpdateOperationsInput | number
+  pausedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
   accuracy?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -608,6 +786,8 @@ export type PracticeSessionUncheckedUpdateManyInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   mode?: Prisma.EnumPracticeModeFieldUpdateOperationsInput | $Enums.PracticeMode
   status?: Prisma.EnumPracticeStatusFieldUpdateOperationsInput | $Enums.PracticeStatus
+  purpose?: Prisma.EnumPracticePurposeFieldUpdateOperationsInput | $Enums.PracticePurpose
+  timingMode?: Prisma.EnumPracticeTimingModeFieldUpdateOperationsInput | $Enums.PracticeTimingMode
   title?: Prisma.StringFieldUpdateOperationsInput | string
   paperId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -618,7 +798,13 @@ export type PracticeSessionUncheckedUpdateManyInput = {
   wrongCount?: Prisma.IntFieldUpdateOperationsInput | number
   unansweredCount?: Prisma.IntFieldUpdateOperationsInput | number
   elapsedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  timeLimitSeconds?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pauseCount?: Prisma.IntFieldUpdateOperationsInput | number
+  pausedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
   accuracy?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -645,6 +831,8 @@ export type PracticeSessionCountOrderByAggregateInput = {
   userId?: Prisma.SortOrder
   mode?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  purpose?: Prisma.SortOrder
+  timingMode?: Prisma.SortOrder
   title?: Prisma.SortOrder
   paperId?: Prisma.SortOrder
   sourceTagIdsJson?: Prisma.SortOrder
@@ -655,7 +843,13 @@ export type PracticeSessionCountOrderByAggregateInput = {
   wrongCount?: Prisma.SortOrder
   unansweredCount?: Prisma.SortOrder
   elapsedSeconds?: Prisma.SortOrder
+  timeLimitSeconds?: Prisma.SortOrder
+  pauseCount?: Prisma.SortOrder
+  pausedSeconds?: Prisma.SortOrder
   accuracy?: Prisma.SortOrder
+  score?: Prisma.SortOrder
+  maxScore?: Prisma.SortOrder
+  reflectionText?: Prisma.SortOrder
   submittedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -668,7 +862,12 @@ export type PracticeSessionAvgOrderByAggregateInput = {
   wrongCount?: Prisma.SortOrder
   unansweredCount?: Prisma.SortOrder
   elapsedSeconds?: Prisma.SortOrder
+  timeLimitSeconds?: Prisma.SortOrder
+  pauseCount?: Prisma.SortOrder
+  pausedSeconds?: Prisma.SortOrder
   accuracy?: Prisma.SortOrder
+  score?: Prisma.SortOrder
+  maxScore?: Prisma.SortOrder
 }
 
 export type PracticeSessionMaxOrderByAggregateInput = {
@@ -676,6 +875,8 @@ export type PracticeSessionMaxOrderByAggregateInput = {
   userId?: Prisma.SortOrder
   mode?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  purpose?: Prisma.SortOrder
+  timingMode?: Prisma.SortOrder
   title?: Prisma.SortOrder
   paperId?: Prisma.SortOrder
   difficulty?: Prisma.SortOrder
@@ -685,7 +886,13 @@ export type PracticeSessionMaxOrderByAggregateInput = {
   wrongCount?: Prisma.SortOrder
   unansweredCount?: Prisma.SortOrder
   elapsedSeconds?: Prisma.SortOrder
+  timeLimitSeconds?: Prisma.SortOrder
+  pauseCount?: Prisma.SortOrder
+  pausedSeconds?: Prisma.SortOrder
   accuracy?: Prisma.SortOrder
+  score?: Prisma.SortOrder
+  maxScore?: Prisma.SortOrder
+  reflectionText?: Prisma.SortOrder
   submittedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -696,6 +903,8 @@ export type PracticeSessionMinOrderByAggregateInput = {
   userId?: Prisma.SortOrder
   mode?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  purpose?: Prisma.SortOrder
+  timingMode?: Prisma.SortOrder
   title?: Prisma.SortOrder
   paperId?: Prisma.SortOrder
   difficulty?: Prisma.SortOrder
@@ -705,7 +914,13 @@ export type PracticeSessionMinOrderByAggregateInput = {
   wrongCount?: Prisma.SortOrder
   unansweredCount?: Prisma.SortOrder
   elapsedSeconds?: Prisma.SortOrder
+  timeLimitSeconds?: Prisma.SortOrder
+  pauseCount?: Prisma.SortOrder
+  pausedSeconds?: Prisma.SortOrder
   accuracy?: Prisma.SortOrder
+  score?: Prisma.SortOrder
+  maxScore?: Prisma.SortOrder
+  reflectionText?: Prisma.SortOrder
   submittedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -718,7 +933,12 @@ export type PracticeSessionSumOrderByAggregateInput = {
   wrongCount?: Prisma.SortOrder
   unansweredCount?: Prisma.SortOrder
   elapsedSeconds?: Prisma.SortOrder
+  timeLimitSeconds?: Prisma.SortOrder
+  pauseCount?: Prisma.SortOrder
+  pausedSeconds?: Prisma.SortOrder
   accuracy?: Prisma.SortOrder
+  score?: Prisma.SortOrder
+  maxScore?: Prisma.SortOrder
 }
 
 export type PracticeSessionScalarRelationFilter = {
@@ -823,6 +1043,14 @@ export type EnumPracticeStatusFieldUpdateOperationsInput = {
   set?: $Enums.PracticeStatus
 }
 
+export type EnumPracticePurposeFieldUpdateOperationsInput = {
+  set?: $Enums.PracticePurpose
+}
+
+export type EnumPracticeTimingModeFieldUpdateOperationsInput = {
+  set?: $Enums.PracticeTimingMode
+}
+
 export type NullableEnumDifficultyFieldUpdateOperationsInput = {
   set?: $Enums.Difficulty | null
 }
@@ -839,6 +1067,36 @@ export type PracticeSessionUpdateOneRequiredWithoutAnswersNestedInput = {
   upsert?: Prisma.PracticeSessionUpsertWithoutAnswersInput
   connect?: Prisma.PracticeSessionWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.PracticeSessionUpdateToOneWithWhereWithoutAnswersInput, Prisma.PracticeSessionUpdateWithoutAnswersInput>, Prisma.PracticeSessionUncheckedUpdateWithoutAnswersInput>
+}
+
+export type PracticeSessionCreateNestedOneWithoutEventsInput = {
+  create?: Prisma.XOR<Prisma.PracticeSessionCreateWithoutEventsInput, Prisma.PracticeSessionUncheckedCreateWithoutEventsInput>
+  connectOrCreate?: Prisma.PracticeSessionCreateOrConnectWithoutEventsInput
+  connect?: Prisma.PracticeSessionWhereUniqueInput
+}
+
+export type PracticeSessionUpdateOneRequiredWithoutEventsNestedInput = {
+  create?: Prisma.XOR<Prisma.PracticeSessionCreateWithoutEventsInput, Prisma.PracticeSessionUncheckedCreateWithoutEventsInput>
+  connectOrCreate?: Prisma.PracticeSessionCreateOrConnectWithoutEventsInput
+  upsert?: Prisma.PracticeSessionUpsertWithoutEventsInput
+  connect?: Prisma.PracticeSessionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PracticeSessionUpdateToOneWithWhereWithoutEventsInput, Prisma.PracticeSessionUpdateWithoutEventsInput>, Prisma.PracticeSessionUncheckedUpdateWithoutEventsInput>
+}
+
+export type PracticeSessionCreateNestedOneWithoutBaselineForGoalInput = {
+  create?: Prisma.XOR<Prisma.PracticeSessionCreateWithoutBaselineForGoalInput, Prisma.PracticeSessionUncheckedCreateWithoutBaselineForGoalInput>
+  connectOrCreate?: Prisma.PracticeSessionCreateOrConnectWithoutBaselineForGoalInput
+  connect?: Prisma.PracticeSessionWhereUniqueInput
+}
+
+export type PracticeSessionUpdateOneWithoutBaselineForGoalNestedInput = {
+  create?: Prisma.XOR<Prisma.PracticeSessionCreateWithoutBaselineForGoalInput, Prisma.PracticeSessionUncheckedCreateWithoutBaselineForGoalInput>
+  connectOrCreate?: Prisma.PracticeSessionCreateOrConnectWithoutBaselineForGoalInput
+  upsert?: Prisma.PracticeSessionUpsertWithoutBaselineForGoalInput
+  disconnect?: Prisma.PracticeSessionWhereInput | boolean
+  delete?: Prisma.PracticeSessionWhereInput | boolean
+  connect?: Prisma.PracticeSessionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PracticeSessionUpdateToOneWithWhereWithoutBaselineForGoalInput, Prisma.PracticeSessionUpdateWithoutBaselineForGoalInput>, Prisma.PracticeSessionUncheckedUpdateWithoutBaselineForGoalInput>
 }
 
 export type PracticeSessionCreateNestedOneWithoutSourceAgentRecommendationsInput = {
@@ -909,6 +1167,8 @@ export type PracticeSessionCreateWithoutUserInput = {
   id?: string
   mode: $Enums.PracticeMode
   status?: $Enums.PracticeStatus
+  purpose?: $Enums.PracticePurpose
+  timingMode?: $Enums.PracticeTimingMode
   title: string
   sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   difficulty?: $Enums.Difficulty | null
@@ -918,7 +1178,13 @@ export type PracticeSessionCreateWithoutUserInput = {
   wrongCount?: number
   unansweredCount?: number
   elapsedSeconds?: number
+  timeLimitSeconds?: number | null
+  pauseCount?: number
+  pausedSeconds?: number
   accuracy?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: string | null
   submittedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -928,12 +1194,16 @@ export type PracticeSessionCreateWithoutUserInput = {
   startedAgentRecommendations?: Prisma.AgentRecommendationCreateNestedManyWithoutStartedSessionInput
   agentTutorMessages?: Prisma.AgentTutorMessageCreateNestedManyWithoutSessionInput
   mistakeReviews?: Prisma.QuestionMistakeReviewCreateNestedManyWithoutSessionInput
+  baselineForGoal?: Prisma.UserExamGoalCreateNestedOneWithoutBaselineSessionInput
+  events?: Prisma.PracticeEventCreateNestedManyWithoutSessionInput
 }
 
 export type PracticeSessionUncheckedCreateWithoutUserInput = {
   id?: string
   mode: $Enums.PracticeMode
   status?: $Enums.PracticeStatus
+  purpose?: $Enums.PracticePurpose
+  timingMode?: $Enums.PracticeTimingMode
   title: string
   paperId?: string | null
   sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -944,7 +1214,13 @@ export type PracticeSessionUncheckedCreateWithoutUserInput = {
   wrongCount?: number
   unansweredCount?: number
   elapsedSeconds?: number
+  timeLimitSeconds?: number | null
+  pauseCount?: number
+  pausedSeconds?: number
   accuracy?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: string | null
   submittedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -953,6 +1229,8 @@ export type PracticeSessionUncheckedCreateWithoutUserInput = {
   startedAgentRecommendations?: Prisma.AgentRecommendationUncheckedCreateNestedManyWithoutStartedSessionInput
   agentTutorMessages?: Prisma.AgentTutorMessageUncheckedCreateNestedManyWithoutSessionInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedCreateNestedManyWithoutSessionInput
+  baselineForGoal?: Prisma.UserExamGoalUncheckedCreateNestedOneWithoutBaselineSessionInput
+  events?: Prisma.PracticeEventUncheckedCreateNestedManyWithoutSessionInput
 }
 
 export type PracticeSessionCreateOrConnectWithoutUserInput = {
@@ -989,6 +1267,8 @@ export type PracticeSessionScalarWhereInput = {
   userId?: Prisma.StringFilter<"PracticeSession"> | string
   mode?: Prisma.EnumPracticeModeFilter<"PracticeSession"> | $Enums.PracticeMode
   status?: Prisma.EnumPracticeStatusFilter<"PracticeSession"> | $Enums.PracticeStatus
+  purpose?: Prisma.EnumPracticePurposeFilter<"PracticeSession"> | $Enums.PracticePurpose
+  timingMode?: Prisma.EnumPracticeTimingModeFilter<"PracticeSession"> | $Enums.PracticeTimingMode
   title?: Prisma.StringFilter<"PracticeSession"> | string
   paperId?: Prisma.StringNullableFilter<"PracticeSession"> | string | null
   sourceTagIdsJson?: Prisma.JsonNullableFilter<"PracticeSession">
@@ -999,7 +1279,13 @@ export type PracticeSessionScalarWhereInput = {
   wrongCount?: Prisma.IntFilter<"PracticeSession"> | number
   unansweredCount?: Prisma.IntFilter<"PracticeSession"> | number
   elapsedSeconds?: Prisma.IntFilter<"PracticeSession"> | number
+  timeLimitSeconds?: Prisma.IntNullableFilter<"PracticeSession"> | number | null
+  pauseCount?: Prisma.IntFilter<"PracticeSession"> | number
+  pausedSeconds?: Prisma.IntFilter<"PracticeSession"> | number
   accuracy?: Prisma.DecimalNullableFilter<"PracticeSession"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: Prisma.DecimalNullableFilter<"PracticeSession"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: Prisma.DecimalNullableFilter<"PracticeSession"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: Prisma.StringNullableFilter<"PracticeSession"> | string | null
   submittedAt?: Prisma.DateTimeNullableFilter<"PracticeSession"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"PracticeSession"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"PracticeSession"> | Date | string
@@ -1009,6 +1295,8 @@ export type PracticeSessionCreateWithoutPaperInput = {
   id?: string
   mode: $Enums.PracticeMode
   status?: $Enums.PracticeStatus
+  purpose?: $Enums.PracticePurpose
+  timingMode?: $Enums.PracticeTimingMode
   title: string
   sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   difficulty?: $Enums.Difficulty | null
@@ -1018,7 +1306,13 @@ export type PracticeSessionCreateWithoutPaperInput = {
   wrongCount?: number
   unansweredCount?: number
   elapsedSeconds?: number
+  timeLimitSeconds?: number | null
+  pauseCount?: number
+  pausedSeconds?: number
   accuracy?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: string | null
   submittedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1028,6 +1322,8 @@ export type PracticeSessionCreateWithoutPaperInput = {
   startedAgentRecommendations?: Prisma.AgentRecommendationCreateNestedManyWithoutStartedSessionInput
   agentTutorMessages?: Prisma.AgentTutorMessageCreateNestedManyWithoutSessionInput
   mistakeReviews?: Prisma.QuestionMistakeReviewCreateNestedManyWithoutSessionInput
+  baselineForGoal?: Prisma.UserExamGoalCreateNestedOneWithoutBaselineSessionInput
+  events?: Prisma.PracticeEventCreateNestedManyWithoutSessionInput
 }
 
 export type PracticeSessionUncheckedCreateWithoutPaperInput = {
@@ -1035,6 +1331,8 @@ export type PracticeSessionUncheckedCreateWithoutPaperInput = {
   userId: string
   mode: $Enums.PracticeMode
   status?: $Enums.PracticeStatus
+  purpose?: $Enums.PracticePurpose
+  timingMode?: $Enums.PracticeTimingMode
   title: string
   sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   difficulty?: $Enums.Difficulty | null
@@ -1044,7 +1342,13 @@ export type PracticeSessionUncheckedCreateWithoutPaperInput = {
   wrongCount?: number
   unansweredCount?: number
   elapsedSeconds?: number
+  timeLimitSeconds?: number | null
+  pauseCount?: number
+  pausedSeconds?: number
   accuracy?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: string | null
   submittedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1053,6 +1357,8 @@ export type PracticeSessionUncheckedCreateWithoutPaperInput = {
   startedAgentRecommendations?: Prisma.AgentRecommendationUncheckedCreateNestedManyWithoutStartedSessionInput
   agentTutorMessages?: Prisma.AgentTutorMessageUncheckedCreateNestedManyWithoutSessionInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedCreateNestedManyWithoutSessionInput
+  baselineForGoal?: Prisma.UserExamGoalUncheckedCreateNestedOneWithoutBaselineSessionInput
+  events?: Prisma.PracticeEventUncheckedCreateNestedManyWithoutSessionInput
 }
 
 export type PracticeSessionCreateOrConnectWithoutPaperInput = {
@@ -1085,6 +1391,8 @@ export type PracticeSessionCreateWithoutAnswersInput = {
   id?: string
   mode: $Enums.PracticeMode
   status?: $Enums.PracticeStatus
+  purpose?: $Enums.PracticePurpose
+  timingMode?: $Enums.PracticeTimingMode
   title: string
   sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   difficulty?: $Enums.Difficulty | null
@@ -1094,7 +1402,13 @@ export type PracticeSessionCreateWithoutAnswersInput = {
   wrongCount?: number
   unansweredCount?: number
   elapsedSeconds?: number
+  timeLimitSeconds?: number | null
+  pauseCount?: number
+  pausedSeconds?: number
   accuracy?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: string | null
   submittedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1104,6 +1418,8 @@ export type PracticeSessionCreateWithoutAnswersInput = {
   startedAgentRecommendations?: Prisma.AgentRecommendationCreateNestedManyWithoutStartedSessionInput
   agentTutorMessages?: Prisma.AgentTutorMessageCreateNestedManyWithoutSessionInput
   mistakeReviews?: Prisma.QuestionMistakeReviewCreateNestedManyWithoutSessionInput
+  baselineForGoal?: Prisma.UserExamGoalCreateNestedOneWithoutBaselineSessionInput
+  events?: Prisma.PracticeEventCreateNestedManyWithoutSessionInput
 }
 
 export type PracticeSessionUncheckedCreateWithoutAnswersInput = {
@@ -1111,6 +1427,8 @@ export type PracticeSessionUncheckedCreateWithoutAnswersInput = {
   userId: string
   mode: $Enums.PracticeMode
   status?: $Enums.PracticeStatus
+  purpose?: $Enums.PracticePurpose
+  timingMode?: $Enums.PracticeTimingMode
   title: string
   paperId?: string | null
   sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1121,7 +1439,13 @@ export type PracticeSessionUncheckedCreateWithoutAnswersInput = {
   wrongCount?: number
   unansweredCount?: number
   elapsedSeconds?: number
+  timeLimitSeconds?: number | null
+  pauseCount?: number
+  pausedSeconds?: number
   accuracy?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: string | null
   submittedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1129,6 +1453,8 @@ export type PracticeSessionUncheckedCreateWithoutAnswersInput = {
   startedAgentRecommendations?: Prisma.AgentRecommendationUncheckedCreateNestedManyWithoutStartedSessionInput
   agentTutorMessages?: Prisma.AgentTutorMessageUncheckedCreateNestedManyWithoutSessionInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedCreateNestedManyWithoutSessionInput
+  baselineForGoal?: Prisma.UserExamGoalUncheckedCreateNestedOneWithoutBaselineSessionInput
+  events?: Prisma.PracticeEventUncheckedCreateNestedManyWithoutSessionInput
 }
 
 export type PracticeSessionCreateOrConnectWithoutAnswersInput = {
@@ -1151,6 +1477,8 @@ export type PracticeSessionUpdateWithoutAnswersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   mode?: Prisma.EnumPracticeModeFieldUpdateOperationsInput | $Enums.PracticeMode
   status?: Prisma.EnumPracticeStatusFieldUpdateOperationsInput | $Enums.PracticeStatus
+  purpose?: Prisma.EnumPracticePurposeFieldUpdateOperationsInput | $Enums.PracticePurpose
+  timingMode?: Prisma.EnumPracticeTimingModeFieldUpdateOperationsInput | $Enums.PracticeTimingMode
   title?: Prisma.StringFieldUpdateOperationsInput | string
   sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   difficulty?: Prisma.NullableEnumDifficultyFieldUpdateOperationsInput | $Enums.Difficulty | null
@@ -1160,7 +1488,13 @@ export type PracticeSessionUpdateWithoutAnswersInput = {
   wrongCount?: Prisma.IntFieldUpdateOperationsInput | number
   unansweredCount?: Prisma.IntFieldUpdateOperationsInput | number
   elapsedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  timeLimitSeconds?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pauseCount?: Prisma.IntFieldUpdateOperationsInput | number
+  pausedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
   accuracy?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1170,6 +1504,8 @@ export type PracticeSessionUpdateWithoutAnswersInput = {
   startedAgentRecommendations?: Prisma.AgentRecommendationUpdateManyWithoutStartedSessionNestedInput
   agentTutorMessages?: Prisma.AgentTutorMessageUpdateManyWithoutSessionNestedInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUpdateManyWithoutSessionNestedInput
+  baselineForGoal?: Prisma.UserExamGoalUpdateOneWithoutBaselineSessionNestedInput
+  events?: Prisma.PracticeEventUpdateManyWithoutSessionNestedInput
 }
 
 export type PracticeSessionUncheckedUpdateWithoutAnswersInput = {
@@ -1177,6 +1513,8 @@ export type PracticeSessionUncheckedUpdateWithoutAnswersInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   mode?: Prisma.EnumPracticeModeFieldUpdateOperationsInput | $Enums.PracticeMode
   status?: Prisma.EnumPracticeStatusFieldUpdateOperationsInput | $Enums.PracticeStatus
+  purpose?: Prisma.EnumPracticePurposeFieldUpdateOperationsInput | $Enums.PracticePurpose
+  timingMode?: Prisma.EnumPracticeTimingModeFieldUpdateOperationsInput | $Enums.PracticeTimingMode
   title?: Prisma.StringFieldUpdateOperationsInput | string
   paperId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1187,7 +1525,13 @@ export type PracticeSessionUncheckedUpdateWithoutAnswersInput = {
   wrongCount?: Prisma.IntFieldUpdateOperationsInput | number
   unansweredCount?: Prisma.IntFieldUpdateOperationsInput | number
   elapsedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  timeLimitSeconds?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pauseCount?: Prisma.IntFieldUpdateOperationsInput | number
+  pausedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
   accuracy?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1195,12 +1539,16 @@ export type PracticeSessionUncheckedUpdateWithoutAnswersInput = {
   startedAgentRecommendations?: Prisma.AgentRecommendationUncheckedUpdateManyWithoutStartedSessionNestedInput
   agentTutorMessages?: Prisma.AgentTutorMessageUncheckedUpdateManyWithoutSessionNestedInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedUpdateManyWithoutSessionNestedInput
+  baselineForGoal?: Prisma.UserExamGoalUncheckedUpdateOneWithoutBaselineSessionNestedInput
+  events?: Prisma.PracticeEventUncheckedUpdateManyWithoutSessionNestedInput
 }
 
-export type PracticeSessionCreateWithoutSourceAgentRecommendationsInput = {
+export type PracticeSessionCreateWithoutEventsInput = {
   id?: string
   mode: $Enums.PracticeMode
   status?: $Enums.PracticeStatus
+  purpose?: $Enums.PracticePurpose
+  timingMode?: $Enums.PracticeTimingMode
   title: string
   sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   difficulty?: $Enums.Difficulty | null
@@ -1210,23 +1558,33 @@ export type PracticeSessionCreateWithoutSourceAgentRecommendationsInput = {
   wrongCount?: number
   unansweredCount?: number
   elapsedSeconds?: number
+  timeLimitSeconds?: number | null
+  pauseCount?: number
+  pausedSeconds?: number
   accuracy?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: string | null
   submittedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutPracticeSessionsInput
   paper?: Prisma.PaperCreateNestedOneWithoutSessionsInput
   answers?: Prisma.PracticeAnswerCreateNestedManyWithoutSessionInput
+  sourceAgentRecommendations?: Prisma.AgentRecommendationCreateNestedManyWithoutSourceSessionInput
   startedAgentRecommendations?: Prisma.AgentRecommendationCreateNestedManyWithoutStartedSessionInput
   agentTutorMessages?: Prisma.AgentTutorMessageCreateNestedManyWithoutSessionInput
   mistakeReviews?: Prisma.QuestionMistakeReviewCreateNestedManyWithoutSessionInput
+  baselineForGoal?: Prisma.UserExamGoalCreateNestedOneWithoutBaselineSessionInput
 }
 
-export type PracticeSessionUncheckedCreateWithoutSourceAgentRecommendationsInput = {
+export type PracticeSessionUncheckedCreateWithoutEventsInput = {
   id?: string
   userId: string
   mode: $Enums.PracticeMode
   status?: $Enums.PracticeStatus
+  purpose?: $Enums.PracticePurpose
+  timingMode?: $Enums.PracticeTimingMode
   title: string
   paperId?: string | null
   sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1237,7 +1595,325 @@ export type PracticeSessionUncheckedCreateWithoutSourceAgentRecommendationsInput
   wrongCount?: number
   unansweredCount?: number
   elapsedSeconds?: number
+  timeLimitSeconds?: number | null
+  pauseCount?: number
+  pausedSeconds?: number
   accuracy?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: string | null
+  submittedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  answers?: Prisma.PracticeAnswerUncheckedCreateNestedManyWithoutSessionInput
+  sourceAgentRecommendations?: Prisma.AgentRecommendationUncheckedCreateNestedManyWithoutSourceSessionInput
+  startedAgentRecommendations?: Prisma.AgentRecommendationUncheckedCreateNestedManyWithoutStartedSessionInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUncheckedCreateNestedManyWithoutSessionInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedCreateNestedManyWithoutSessionInput
+  baselineForGoal?: Prisma.UserExamGoalUncheckedCreateNestedOneWithoutBaselineSessionInput
+}
+
+export type PracticeSessionCreateOrConnectWithoutEventsInput = {
+  where: Prisma.PracticeSessionWhereUniqueInput
+  create: Prisma.XOR<Prisma.PracticeSessionCreateWithoutEventsInput, Prisma.PracticeSessionUncheckedCreateWithoutEventsInput>
+}
+
+export type PracticeSessionUpsertWithoutEventsInput = {
+  update: Prisma.XOR<Prisma.PracticeSessionUpdateWithoutEventsInput, Prisma.PracticeSessionUncheckedUpdateWithoutEventsInput>
+  create: Prisma.XOR<Prisma.PracticeSessionCreateWithoutEventsInput, Prisma.PracticeSessionUncheckedCreateWithoutEventsInput>
+  where?: Prisma.PracticeSessionWhereInput
+}
+
+export type PracticeSessionUpdateToOneWithWhereWithoutEventsInput = {
+  where?: Prisma.PracticeSessionWhereInput
+  data: Prisma.XOR<Prisma.PracticeSessionUpdateWithoutEventsInput, Prisma.PracticeSessionUncheckedUpdateWithoutEventsInput>
+}
+
+export type PracticeSessionUpdateWithoutEventsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  mode?: Prisma.EnumPracticeModeFieldUpdateOperationsInput | $Enums.PracticeMode
+  status?: Prisma.EnumPracticeStatusFieldUpdateOperationsInput | $Enums.PracticeStatus
+  purpose?: Prisma.EnumPracticePurposeFieldUpdateOperationsInput | $Enums.PracticePurpose
+  timingMode?: Prisma.EnumPracticeTimingModeFieldUpdateOperationsInput | $Enums.PracticeTimingMode
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  difficulty?: Prisma.NullableEnumDifficultyFieldUpdateOperationsInput | $Enums.Difficulty | null
+  totalCount?: Prisma.IntFieldUpdateOperationsInput | number
+  answeredCount?: Prisma.IntFieldUpdateOperationsInput | number
+  correctCount?: Prisma.IntFieldUpdateOperationsInput | number
+  wrongCount?: Prisma.IntFieldUpdateOperationsInput | number
+  unansweredCount?: Prisma.IntFieldUpdateOperationsInput | number
+  elapsedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  timeLimitSeconds?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pauseCount?: Prisma.IntFieldUpdateOperationsInput | number
+  pausedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  accuracy?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutPracticeSessionsNestedInput
+  paper?: Prisma.PaperUpdateOneWithoutSessionsNestedInput
+  answers?: Prisma.PracticeAnswerUpdateManyWithoutSessionNestedInput
+  sourceAgentRecommendations?: Prisma.AgentRecommendationUpdateManyWithoutSourceSessionNestedInput
+  startedAgentRecommendations?: Prisma.AgentRecommendationUpdateManyWithoutStartedSessionNestedInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUpdateManyWithoutSessionNestedInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewUpdateManyWithoutSessionNestedInput
+  baselineForGoal?: Prisma.UserExamGoalUpdateOneWithoutBaselineSessionNestedInput
+}
+
+export type PracticeSessionUncheckedUpdateWithoutEventsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  mode?: Prisma.EnumPracticeModeFieldUpdateOperationsInput | $Enums.PracticeMode
+  status?: Prisma.EnumPracticeStatusFieldUpdateOperationsInput | $Enums.PracticeStatus
+  purpose?: Prisma.EnumPracticePurposeFieldUpdateOperationsInput | $Enums.PracticePurpose
+  timingMode?: Prisma.EnumPracticeTimingModeFieldUpdateOperationsInput | $Enums.PracticeTimingMode
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  paperId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  difficulty?: Prisma.NullableEnumDifficultyFieldUpdateOperationsInput | $Enums.Difficulty | null
+  totalCount?: Prisma.IntFieldUpdateOperationsInput | number
+  answeredCount?: Prisma.IntFieldUpdateOperationsInput | number
+  correctCount?: Prisma.IntFieldUpdateOperationsInput | number
+  wrongCount?: Prisma.IntFieldUpdateOperationsInput | number
+  unansweredCount?: Prisma.IntFieldUpdateOperationsInput | number
+  elapsedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  timeLimitSeconds?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pauseCount?: Prisma.IntFieldUpdateOperationsInput | number
+  pausedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  accuracy?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  answers?: Prisma.PracticeAnswerUncheckedUpdateManyWithoutSessionNestedInput
+  sourceAgentRecommendations?: Prisma.AgentRecommendationUncheckedUpdateManyWithoutSourceSessionNestedInput
+  startedAgentRecommendations?: Prisma.AgentRecommendationUncheckedUpdateManyWithoutStartedSessionNestedInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUncheckedUpdateManyWithoutSessionNestedInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedUpdateManyWithoutSessionNestedInput
+  baselineForGoal?: Prisma.UserExamGoalUncheckedUpdateOneWithoutBaselineSessionNestedInput
+}
+
+export type PracticeSessionCreateWithoutBaselineForGoalInput = {
+  id?: string
+  mode: $Enums.PracticeMode
+  status?: $Enums.PracticeStatus
+  purpose?: $Enums.PracticePurpose
+  timingMode?: $Enums.PracticeTimingMode
+  title: string
+  sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  difficulty?: $Enums.Difficulty | null
+  totalCount?: number
+  answeredCount?: number
+  correctCount?: number
+  wrongCount?: number
+  unansweredCount?: number
+  elapsedSeconds?: number
+  timeLimitSeconds?: number | null
+  pauseCount?: number
+  pausedSeconds?: number
+  accuracy?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: string | null
+  submittedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutPracticeSessionsInput
+  paper?: Prisma.PaperCreateNestedOneWithoutSessionsInput
+  answers?: Prisma.PracticeAnswerCreateNestedManyWithoutSessionInput
+  sourceAgentRecommendations?: Prisma.AgentRecommendationCreateNestedManyWithoutSourceSessionInput
+  startedAgentRecommendations?: Prisma.AgentRecommendationCreateNestedManyWithoutStartedSessionInput
+  agentTutorMessages?: Prisma.AgentTutorMessageCreateNestedManyWithoutSessionInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewCreateNestedManyWithoutSessionInput
+  events?: Prisma.PracticeEventCreateNestedManyWithoutSessionInput
+}
+
+export type PracticeSessionUncheckedCreateWithoutBaselineForGoalInput = {
+  id?: string
+  userId: string
+  mode: $Enums.PracticeMode
+  status?: $Enums.PracticeStatus
+  purpose?: $Enums.PracticePurpose
+  timingMode?: $Enums.PracticeTimingMode
+  title: string
+  paperId?: string | null
+  sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  difficulty?: $Enums.Difficulty | null
+  totalCount?: number
+  answeredCount?: number
+  correctCount?: number
+  wrongCount?: number
+  unansweredCount?: number
+  elapsedSeconds?: number
+  timeLimitSeconds?: number | null
+  pauseCount?: number
+  pausedSeconds?: number
+  accuracy?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: string | null
+  submittedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  answers?: Prisma.PracticeAnswerUncheckedCreateNestedManyWithoutSessionInput
+  sourceAgentRecommendations?: Prisma.AgentRecommendationUncheckedCreateNestedManyWithoutSourceSessionInput
+  startedAgentRecommendations?: Prisma.AgentRecommendationUncheckedCreateNestedManyWithoutStartedSessionInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUncheckedCreateNestedManyWithoutSessionInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedCreateNestedManyWithoutSessionInput
+  events?: Prisma.PracticeEventUncheckedCreateNestedManyWithoutSessionInput
+}
+
+export type PracticeSessionCreateOrConnectWithoutBaselineForGoalInput = {
+  where: Prisma.PracticeSessionWhereUniqueInput
+  create: Prisma.XOR<Prisma.PracticeSessionCreateWithoutBaselineForGoalInput, Prisma.PracticeSessionUncheckedCreateWithoutBaselineForGoalInput>
+}
+
+export type PracticeSessionUpsertWithoutBaselineForGoalInput = {
+  update: Prisma.XOR<Prisma.PracticeSessionUpdateWithoutBaselineForGoalInput, Prisma.PracticeSessionUncheckedUpdateWithoutBaselineForGoalInput>
+  create: Prisma.XOR<Prisma.PracticeSessionCreateWithoutBaselineForGoalInput, Prisma.PracticeSessionUncheckedCreateWithoutBaselineForGoalInput>
+  where?: Prisma.PracticeSessionWhereInput
+}
+
+export type PracticeSessionUpdateToOneWithWhereWithoutBaselineForGoalInput = {
+  where?: Prisma.PracticeSessionWhereInput
+  data: Prisma.XOR<Prisma.PracticeSessionUpdateWithoutBaselineForGoalInput, Prisma.PracticeSessionUncheckedUpdateWithoutBaselineForGoalInput>
+}
+
+export type PracticeSessionUpdateWithoutBaselineForGoalInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  mode?: Prisma.EnumPracticeModeFieldUpdateOperationsInput | $Enums.PracticeMode
+  status?: Prisma.EnumPracticeStatusFieldUpdateOperationsInput | $Enums.PracticeStatus
+  purpose?: Prisma.EnumPracticePurposeFieldUpdateOperationsInput | $Enums.PracticePurpose
+  timingMode?: Prisma.EnumPracticeTimingModeFieldUpdateOperationsInput | $Enums.PracticeTimingMode
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  difficulty?: Prisma.NullableEnumDifficultyFieldUpdateOperationsInput | $Enums.Difficulty | null
+  totalCount?: Prisma.IntFieldUpdateOperationsInput | number
+  answeredCount?: Prisma.IntFieldUpdateOperationsInput | number
+  correctCount?: Prisma.IntFieldUpdateOperationsInput | number
+  wrongCount?: Prisma.IntFieldUpdateOperationsInput | number
+  unansweredCount?: Prisma.IntFieldUpdateOperationsInput | number
+  elapsedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  timeLimitSeconds?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pauseCount?: Prisma.IntFieldUpdateOperationsInput | number
+  pausedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  accuracy?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutPracticeSessionsNestedInput
+  paper?: Prisma.PaperUpdateOneWithoutSessionsNestedInput
+  answers?: Prisma.PracticeAnswerUpdateManyWithoutSessionNestedInput
+  sourceAgentRecommendations?: Prisma.AgentRecommendationUpdateManyWithoutSourceSessionNestedInput
+  startedAgentRecommendations?: Prisma.AgentRecommendationUpdateManyWithoutStartedSessionNestedInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUpdateManyWithoutSessionNestedInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewUpdateManyWithoutSessionNestedInput
+  events?: Prisma.PracticeEventUpdateManyWithoutSessionNestedInput
+}
+
+export type PracticeSessionUncheckedUpdateWithoutBaselineForGoalInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  mode?: Prisma.EnumPracticeModeFieldUpdateOperationsInput | $Enums.PracticeMode
+  status?: Prisma.EnumPracticeStatusFieldUpdateOperationsInput | $Enums.PracticeStatus
+  purpose?: Prisma.EnumPracticePurposeFieldUpdateOperationsInput | $Enums.PracticePurpose
+  timingMode?: Prisma.EnumPracticeTimingModeFieldUpdateOperationsInput | $Enums.PracticeTimingMode
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  paperId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  difficulty?: Prisma.NullableEnumDifficultyFieldUpdateOperationsInput | $Enums.Difficulty | null
+  totalCount?: Prisma.IntFieldUpdateOperationsInput | number
+  answeredCount?: Prisma.IntFieldUpdateOperationsInput | number
+  correctCount?: Prisma.IntFieldUpdateOperationsInput | number
+  wrongCount?: Prisma.IntFieldUpdateOperationsInput | number
+  unansweredCount?: Prisma.IntFieldUpdateOperationsInput | number
+  elapsedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  timeLimitSeconds?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pauseCount?: Prisma.IntFieldUpdateOperationsInput | number
+  pausedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  accuracy?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  answers?: Prisma.PracticeAnswerUncheckedUpdateManyWithoutSessionNestedInput
+  sourceAgentRecommendations?: Prisma.AgentRecommendationUncheckedUpdateManyWithoutSourceSessionNestedInput
+  startedAgentRecommendations?: Prisma.AgentRecommendationUncheckedUpdateManyWithoutStartedSessionNestedInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUncheckedUpdateManyWithoutSessionNestedInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedUpdateManyWithoutSessionNestedInput
+  events?: Prisma.PracticeEventUncheckedUpdateManyWithoutSessionNestedInput
+}
+
+export type PracticeSessionCreateWithoutSourceAgentRecommendationsInput = {
+  id?: string
+  mode: $Enums.PracticeMode
+  status?: $Enums.PracticeStatus
+  purpose?: $Enums.PracticePurpose
+  timingMode?: $Enums.PracticeTimingMode
+  title: string
+  sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  difficulty?: $Enums.Difficulty | null
+  totalCount?: number
+  answeredCount?: number
+  correctCount?: number
+  wrongCount?: number
+  unansweredCount?: number
+  elapsedSeconds?: number
+  timeLimitSeconds?: number | null
+  pauseCount?: number
+  pausedSeconds?: number
+  accuracy?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: string | null
+  submittedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutPracticeSessionsInput
+  paper?: Prisma.PaperCreateNestedOneWithoutSessionsInput
+  answers?: Prisma.PracticeAnswerCreateNestedManyWithoutSessionInput
+  startedAgentRecommendations?: Prisma.AgentRecommendationCreateNestedManyWithoutStartedSessionInput
+  agentTutorMessages?: Prisma.AgentTutorMessageCreateNestedManyWithoutSessionInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewCreateNestedManyWithoutSessionInput
+  baselineForGoal?: Prisma.UserExamGoalCreateNestedOneWithoutBaselineSessionInput
+  events?: Prisma.PracticeEventCreateNestedManyWithoutSessionInput
+}
+
+export type PracticeSessionUncheckedCreateWithoutSourceAgentRecommendationsInput = {
+  id?: string
+  userId: string
+  mode: $Enums.PracticeMode
+  status?: $Enums.PracticeStatus
+  purpose?: $Enums.PracticePurpose
+  timingMode?: $Enums.PracticeTimingMode
+  title: string
+  paperId?: string | null
+  sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  difficulty?: $Enums.Difficulty | null
+  totalCount?: number
+  answeredCount?: number
+  correctCount?: number
+  wrongCount?: number
+  unansweredCount?: number
+  elapsedSeconds?: number
+  timeLimitSeconds?: number | null
+  pauseCount?: number
+  pausedSeconds?: number
+  accuracy?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: string | null
   submittedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1245,6 +1921,8 @@ export type PracticeSessionUncheckedCreateWithoutSourceAgentRecommendationsInput
   startedAgentRecommendations?: Prisma.AgentRecommendationUncheckedCreateNestedManyWithoutStartedSessionInput
   agentTutorMessages?: Prisma.AgentTutorMessageUncheckedCreateNestedManyWithoutSessionInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedCreateNestedManyWithoutSessionInput
+  baselineForGoal?: Prisma.UserExamGoalUncheckedCreateNestedOneWithoutBaselineSessionInput
+  events?: Prisma.PracticeEventUncheckedCreateNestedManyWithoutSessionInput
 }
 
 export type PracticeSessionCreateOrConnectWithoutSourceAgentRecommendationsInput = {
@@ -1256,6 +1934,8 @@ export type PracticeSessionCreateWithoutStartedAgentRecommendationsInput = {
   id?: string
   mode: $Enums.PracticeMode
   status?: $Enums.PracticeStatus
+  purpose?: $Enums.PracticePurpose
+  timingMode?: $Enums.PracticeTimingMode
   title: string
   sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   difficulty?: $Enums.Difficulty | null
@@ -1265,7 +1945,13 @@ export type PracticeSessionCreateWithoutStartedAgentRecommendationsInput = {
   wrongCount?: number
   unansweredCount?: number
   elapsedSeconds?: number
+  timeLimitSeconds?: number | null
+  pauseCount?: number
+  pausedSeconds?: number
   accuracy?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: string | null
   submittedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1275,6 +1961,8 @@ export type PracticeSessionCreateWithoutStartedAgentRecommendationsInput = {
   sourceAgentRecommendations?: Prisma.AgentRecommendationCreateNestedManyWithoutSourceSessionInput
   agentTutorMessages?: Prisma.AgentTutorMessageCreateNestedManyWithoutSessionInput
   mistakeReviews?: Prisma.QuestionMistakeReviewCreateNestedManyWithoutSessionInput
+  baselineForGoal?: Prisma.UserExamGoalCreateNestedOneWithoutBaselineSessionInput
+  events?: Prisma.PracticeEventCreateNestedManyWithoutSessionInput
 }
 
 export type PracticeSessionUncheckedCreateWithoutStartedAgentRecommendationsInput = {
@@ -1282,6 +1970,8 @@ export type PracticeSessionUncheckedCreateWithoutStartedAgentRecommendationsInpu
   userId: string
   mode: $Enums.PracticeMode
   status?: $Enums.PracticeStatus
+  purpose?: $Enums.PracticePurpose
+  timingMode?: $Enums.PracticeTimingMode
   title: string
   paperId?: string | null
   sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1292,7 +1982,13 @@ export type PracticeSessionUncheckedCreateWithoutStartedAgentRecommendationsInpu
   wrongCount?: number
   unansweredCount?: number
   elapsedSeconds?: number
+  timeLimitSeconds?: number | null
+  pauseCount?: number
+  pausedSeconds?: number
   accuracy?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: string | null
   submittedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1300,6 +1996,8 @@ export type PracticeSessionUncheckedCreateWithoutStartedAgentRecommendationsInpu
   sourceAgentRecommendations?: Prisma.AgentRecommendationUncheckedCreateNestedManyWithoutSourceSessionInput
   agentTutorMessages?: Prisma.AgentTutorMessageUncheckedCreateNestedManyWithoutSessionInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedCreateNestedManyWithoutSessionInput
+  baselineForGoal?: Prisma.UserExamGoalUncheckedCreateNestedOneWithoutBaselineSessionInput
+  events?: Prisma.PracticeEventUncheckedCreateNestedManyWithoutSessionInput
 }
 
 export type PracticeSessionCreateOrConnectWithoutStartedAgentRecommendationsInput = {
@@ -1322,6 +2020,8 @@ export type PracticeSessionUpdateWithoutSourceAgentRecommendationsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   mode?: Prisma.EnumPracticeModeFieldUpdateOperationsInput | $Enums.PracticeMode
   status?: Prisma.EnumPracticeStatusFieldUpdateOperationsInput | $Enums.PracticeStatus
+  purpose?: Prisma.EnumPracticePurposeFieldUpdateOperationsInput | $Enums.PracticePurpose
+  timingMode?: Prisma.EnumPracticeTimingModeFieldUpdateOperationsInput | $Enums.PracticeTimingMode
   title?: Prisma.StringFieldUpdateOperationsInput | string
   sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   difficulty?: Prisma.NullableEnumDifficultyFieldUpdateOperationsInput | $Enums.Difficulty | null
@@ -1331,7 +2031,13 @@ export type PracticeSessionUpdateWithoutSourceAgentRecommendationsInput = {
   wrongCount?: Prisma.IntFieldUpdateOperationsInput | number
   unansweredCount?: Prisma.IntFieldUpdateOperationsInput | number
   elapsedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  timeLimitSeconds?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pauseCount?: Prisma.IntFieldUpdateOperationsInput | number
+  pausedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
   accuracy?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1341,6 +2047,8 @@ export type PracticeSessionUpdateWithoutSourceAgentRecommendationsInput = {
   startedAgentRecommendations?: Prisma.AgentRecommendationUpdateManyWithoutStartedSessionNestedInput
   agentTutorMessages?: Prisma.AgentTutorMessageUpdateManyWithoutSessionNestedInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUpdateManyWithoutSessionNestedInput
+  baselineForGoal?: Prisma.UserExamGoalUpdateOneWithoutBaselineSessionNestedInput
+  events?: Prisma.PracticeEventUpdateManyWithoutSessionNestedInput
 }
 
 export type PracticeSessionUncheckedUpdateWithoutSourceAgentRecommendationsInput = {
@@ -1348,6 +2056,8 @@ export type PracticeSessionUncheckedUpdateWithoutSourceAgentRecommendationsInput
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   mode?: Prisma.EnumPracticeModeFieldUpdateOperationsInput | $Enums.PracticeMode
   status?: Prisma.EnumPracticeStatusFieldUpdateOperationsInput | $Enums.PracticeStatus
+  purpose?: Prisma.EnumPracticePurposeFieldUpdateOperationsInput | $Enums.PracticePurpose
+  timingMode?: Prisma.EnumPracticeTimingModeFieldUpdateOperationsInput | $Enums.PracticeTimingMode
   title?: Prisma.StringFieldUpdateOperationsInput | string
   paperId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1358,7 +2068,13 @@ export type PracticeSessionUncheckedUpdateWithoutSourceAgentRecommendationsInput
   wrongCount?: Prisma.IntFieldUpdateOperationsInput | number
   unansweredCount?: Prisma.IntFieldUpdateOperationsInput | number
   elapsedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  timeLimitSeconds?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pauseCount?: Prisma.IntFieldUpdateOperationsInput | number
+  pausedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
   accuracy?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1366,6 +2082,8 @@ export type PracticeSessionUncheckedUpdateWithoutSourceAgentRecommendationsInput
   startedAgentRecommendations?: Prisma.AgentRecommendationUncheckedUpdateManyWithoutStartedSessionNestedInput
   agentTutorMessages?: Prisma.AgentTutorMessageUncheckedUpdateManyWithoutSessionNestedInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedUpdateManyWithoutSessionNestedInput
+  baselineForGoal?: Prisma.UserExamGoalUncheckedUpdateOneWithoutBaselineSessionNestedInput
+  events?: Prisma.PracticeEventUncheckedUpdateManyWithoutSessionNestedInput
 }
 
 export type PracticeSessionUpsertWithoutStartedAgentRecommendationsInput = {
@@ -1383,6 +2101,8 @@ export type PracticeSessionUpdateWithoutStartedAgentRecommendationsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   mode?: Prisma.EnumPracticeModeFieldUpdateOperationsInput | $Enums.PracticeMode
   status?: Prisma.EnumPracticeStatusFieldUpdateOperationsInput | $Enums.PracticeStatus
+  purpose?: Prisma.EnumPracticePurposeFieldUpdateOperationsInput | $Enums.PracticePurpose
+  timingMode?: Prisma.EnumPracticeTimingModeFieldUpdateOperationsInput | $Enums.PracticeTimingMode
   title?: Prisma.StringFieldUpdateOperationsInput | string
   sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   difficulty?: Prisma.NullableEnumDifficultyFieldUpdateOperationsInput | $Enums.Difficulty | null
@@ -1392,7 +2112,13 @@ export type PracticeSessionUpdateWithoutStartedAgentRecommendationsInput = {
   wrongCount?: Prisma.IntFieldUpdateOperationsInput | number
   unansweredCount?: Prisma.IntFieldUpdateOperationsInput | number
   elapsedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  timeLimitSeconds?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pauseCount?: Prisma.IntFieldUpdateOperationsInput | number
+  pausedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
   accuracy?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1402,6 +2128,8 @@ export type PracticeSessionUpdateWithoutStartedAgentRecommendationsInput = {
   sourceAgentRecommendations?: Prisma.AgentRecommendationUpdateManyWithoutSourceSessionNestedInput
   agentTutorMessages?: Prisma.AgentTutorMessageUpdateManyWithoutSessionNestedInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUpdateManyWithoutSessionNestedInput
+  baselineForGoal?: Prisma.UserExamGoalUpdateOneWithoutBaselineSessionNestedInput
+  events?: Prisma.PracticeEventUpdateManyWithoutSessionNestedInput
 }
 
 export type PracticeSessionUncheckedUpdateWithoutStartedAgentRecommendationsInput = {
@@ -1409,6 +2137,8 @@ export type PracticeSessionUncheckedUpdateWithoutStartedAgentRecommendationsInpu
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   mode?: Prisma.EnumPracticeModeFieldUpdateOperationsInput | $Enums.PracticeMode
   status?: Prisma.EnumPracticeStatusFieldUpdateOperationsInput | $Enums.PracticeStatus
+  purpose?: Prisma.EnumPracticePurposeFieldUpdateOperationsInput | $Enums.PracticePurpose
+  timingMode?: Prisma.EnumPracticeTimingModeFieldUpdateOperationsInput | $Enums.PracticeTimingMode
   title?: Prisma.StringFieldUpdateOperationsInput | string
   paperId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1419,7 +2149,13 @@ export type PracticeSessionUncheckedUpdateWithoutStartedAgentRecommendationsInpu
   wrongCount?: Prisma.IntFieldUpdateOperationsInput | number
   unansweredCount?: Prisma.IntFieldUpdateOperationsInput | number
   elapsedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  timeLimitSeconds?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pauseCount?: Prisma.IntFieldUpdateOperationsInput | number
+  pausedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
   accuracy?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1427,12 +2163,16 @@ export type PracticeSessionUncheckedUpdateWithoutStartedAgentRecommendationsInpu
   sourceAgentRecommendations?: Prisma.AgentRecommendationUncheckedUpdateManyWithoutSourceSessionNestedInput
   agentTutorMessages?: Prisma.AgentTutorMessageUncheckedUpdateManyWithoutSessionNestedInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedUpdateManyWithoutSessionNestedInput
+  baselineForGoal?: Prisma.UserExamGoalUncheckedUpdateOneWithoutBaselineSessionNestedInput
+  events?: Prisma.PracticeEventUncheckedUpdateManyWithoutSessionNestedInput
 }
 
 export type PracticeSessionCreateWithoutAgentTutorMessagesInput = {
   id?: string
   mode: $Enums.PracticeMode
   status?: $Enums.PracticeStatus
+  purpose?: $Enums.PracticePurpose
+  timingMode?: $Enums.PracticeTimingMode
   title: string
   sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   difficulty?: $Enums.Difficulty | null
@@ -1442,7 +2182,13 @@ export type PracticeSessionCreateWithoutAgentTutorMessagesInput = {
   wrongCount?: number
   unansweredCount?: number
   elapsedSeconds?: number
+  timeLimitSeconds?: number | null
+  pauseCount?: number
+  pausedSeconds?: number
   accuracy?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: string | null
   submittedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1452,6 +2198,8 @@ export type PracticeSessionCreateWithoutAgentTutorMessagesInput = {
   sourceAgentRecommendations?: Prisma.AgentRecommendationCreateNestedManyWithoutSourceSessionInput
   startedAgentRecommendations?: Prisma.AgentRecommendationCreateNestedManyWithoutStartedSessionInput
   mistakeReviews?: Prisma.QuestionMistakeReviewCreateNestedManyWithoutSessionInput
+  baselineForGoal?: Prisma.UserExamGoalCreateNestedOneWithoutBaselineSessionInput
+  events?: Prisma.PracticeEventCreateNestedManyWithoutSessionInput
 }
 
 export type PracticeSessionUncheckedCreateWithoutAgentTutorMessagesInput = {
@@ -1459,6 +2207,8 @@ export type PracticeSessionUncheckedCreateWithoutAgentTutorMessagesInput = {
   userId: string
   mode: $Enums.PracticeMode
   status?: $Enums.PracticeStatus
+  purpose?: $Enums.PracticePurpose
+  timingMode?: $Enums.PracticeTimingMode
   title: string
   paperId?: string | null
   sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1469,7 +2219,13 @@ export type PracticeSessionUncheckedCreateWithoutAgentTutorMessagesInput = {
   wrongCount?: number
   unansweredCount?: number
   elapsedSeconds?: number
+  timeLimitSeconds?: number | null
+  pauseCount?: number
+  pausedSeconds?: number
   accuracy?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: string | null
   submittedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1477,6 +2233,8 @@ export type PracticeSessionUncheckedCreateWithoutAgentTutorMessagesInput = {
   sourceAgentRecommendations?: Prisma.AgentRecommendationUncheckedCreateNestedManyWithoutSourceSessionInput
   startedAgentRecommendations?: Prisma.AgentRecommendationUncheckedCreateNestedManyWithoutStartedSessionInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedCreateNestedManyWithoutSessionInput
+  baselineForGoal?: Prisma.UserExamGoalUncheckedCreateNestedOneWithoutBaselineSessionInput
+  events?: Prisma.PracticeEventUncheckedCreateNestedManyWithoutSessionInput
 }
 
 export type PracticeSessionCreateOrConnectWithoutAgentTutorMessagesInput = {
@@ -1499,6 +2257,8 @@ export type PracticeSessionUpdateWithoutAgentTutorMessagesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   mode?: Prisma.EnumPracticeModeFieldUpdateOperationsInput | $Enums.PracticeMode
   status?: Prisma.EnumPracticeStatusFieldUpdateOperationsInput | $Enums.PracticeStatus
+  purpose?: Prisma.EnumPracticePurposeFieldUpdateOperationsInput | $Enums.PracticePurpose
+  timingMode?: Prisma.EnumPracticeTimingModeFieldUpdateOperationsInput | $Enums.PracticeTimingMode
   title?: Prisma.StringFieldUpdateOperationsInput | string
   sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   difficulty?: Prisma.NullableEnumDifficultyFieldUpdateOperationsInput | $Enums.Difficulty | null
@@ -1508,7 +2268,13 @@ export type PracticeSessionUpdateWithoutAgentTutorMessagesInput = {
   wrongCount?: Prisma.IntFieldUpdateOperationsInput | number
   unansweredCount?: Prisma.IntFieldUpdateOperationsInput | number
   elapsedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  timeLimitSeconds?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pauseCount?: Prisma.IntFieldUpdateOperationsInput | number
+  pausedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
   accuracy?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1518,6 +2284,8 @@ export type PracticeSessionUpdateWithoutAgentTutorMessagesInput = {
   sourceAgentRecommendations?: Prisma.AgentRecommendationUpdateManyWithoutSourceSessionNestedInput
   startedAgentRecommendations?: Prisma.AgentRecommendationUpdateManyWithoutStartedSessionNestedInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUpdateManyWithoutSessionNestedInput
+  baselineForGoal?: Prisma.UserExamGoalUpdateOneWithoutBaselineSessionNestedInput
+  events?: Prisma.PracticeEventUpdateManyWithoutSessionNestedInput
 }
 
 export type PracticeSessionUncheckedUpdateWithoutAgentTutorMessagesInput = {
@@ -1525,6 +2293,8 @@ export type PracticeSessionUncheckedUpdateWithoutAgentTutorMessagesInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   mode?: Prisma.EnumPracticeModeFieldUpdateOperationsInput | $Enums.PracticeMode
   status?: Prisma.EnumPracticeStatusFieldUpdateOperationsInput | $Enums.PracticeStatus
+  purpose?: Prisma.EnumPracticePurposeFieldUpdateOperationsInput | $Enums.PracticePurpose
+  timingMode?: Prisma.EnumPracticeTimingModeFieldUpdateOperationsInput | $Enums.PracticeTimingMode
   title?: Prisma.StringFieldUpdateOperationsInput | string
   paperId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1535,7 +2305,13 @@ export type PracticeSessionUncheckedUpdateWithoutAgentTutorMessagesInput = {
   wrongCount?: Prisma.IntFieldUpdateOperationsInput | number
   unansweredCount?: Prisma.IntFieldUpdateOperationsInput | number
   elapsedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  timeLimitSeconds?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pauseCount?: Prisma.IntFieldUpdateOperationsInput | number
+  pausedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
   accuracy?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1543,12 +2319,16 @@ export type PracticeSessionUncheckedUpdateWithoutAgentTutorMessagesInput = {
   sourceAgentRecommendations?: Prisma.AgentRecommendationUncheckedUpdateManyWithoutSourceSessionNestedInput
   startedAgentRecommendations?: Prisma.AgentRecommendationUncheckedUpdateManyWithoutStartedSessionNestedInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedUpdateManyWithoutSessionNestedInput
+  baselineForGoal?: Prisma.UserExamGoalUncheckedUpdateOneWithoutBaselineSessionNestedInput
+  events?: Prisma.PracticeEventUncheckedUpdateManyWithoutSessionNestedInput
 }
 
 export type PracticeSessionCreateWithoutMistakeReviewsInput = {
   id?: string
   mode: $Enums.PracticeMode
   status?: $Enums.PracticeStatus
+  purpose?: $Enums.PracticePurpose
+  timingMode?: $Enums.PracticeTimingMode
   title: string
   sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   difficulty?: $Enums.Difficulty | null
@@ -1558,7 +2338,13 @@ export type PracticeSessionCreateWithoutMistakeReviewsInput = {
   wrongCount?: number
   unansweredCount?: number
   elapsedSeconds?: number
+  timeLimitSeconds?: number | null
+  pauseCount?: number
+  pausedSeconds?: number
   accuracy?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: string | null
   submittedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1568,6 +2354,8 @@ export type PracticeSessionCreateWithoutMistakeReviewsInput = {
   sourceAgentRecommendations?: Prisma.AgentRecommendationCreateNestedManyWithoutSourceSessionInput
   startedAgentRecommendations?: Prisma.AgentRecommendationCreateNestedManyWithoutStartedSessionInput
   agentTutorMessages?: Prisma.AgentTutorMessageCreateNestedManyWithoutSessionInput
+  baselineForGoal?: Prisma.UserExamGoalCreateNestedOneWithoutBaselineSessionInput
+  events?: Prisma.PracticeEventCreateNestedManyWithoutSessionInput
 }
 
 export type PracticeSessionUncheckedCreateWithoutMistakeReviewsInput = {
@@ -1575,6 +2363,8 @@ export type PracticeSessionUncheckedCreateWithoutMistakeReviewsInput = {
   userId: string
   mode: $Enums.PracticeMode
   status?: $Enums.PracticeStatus
+  purpose?: $Enums.PracticePurpose
+  timingMode?: $Enums.PracticeTimingMode
   title: string
   paperId?: string | null
   sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1585,7 +2375,13 @@ export type PracticeSessionUncheckedCreateWithoutMistakeReviewsInput = {
   wrongCount?: number
   unansweredCount?: number
   elapsedSeconds?: number
+  timeLimitSeconds?: number | null
+  pauseCount?: number
+  pausedSeconds?: number
   accuracy?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: string | null
   submittedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1593,6 +2389,8 @@ export type PracticeSessionUncheckedCreateWithoutMistakeReviewsInput = {
   sourceAgentRecommendations?: Prisma.AgentRecommendationUncheckedCreateNestedManyWithoutSourceSessionInput
   startedAgentRecommendations?: Prisma.AgentRecommendationUncheckedCreateNestedManyWithoutStartedSessionInput
   agentTutorMessages?: Prisma.AgentTutorMessageUncheckedCreateNestedManyWithoutSessionInput
+  baselineForGoal?: Prisma.UserExamGoalUncheckedCreateNestedOneWithoutBaselineSessionInput
+  events?: Prisma.PracticeEventUncheckedCreateNestedManyWithoutSessionInput
 }
 
 export type PracticeSessionCreateOrConnectWithoutMistakeReviewsInput = {
@@ -1615,6 +2413,8 @@ export type PracticeSessionUpdateWithoutMistakeReviewsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   mode?: Prisma.EnumPracticeModeFieldUpdateOperationsInput | $Enums.PracticeMode
   status?: Prisma.EnumPracticeStatusFieldUpdateOperationsInput | $Enums.PracticeStatus
+  purpose?: Prisma.EnumPracticePurposeFieldUpdateOperationsInput | $Enums.PracticePurpose
+  timingMode?: Prisma.EnumPracticeTimingModeFieldUpdateOperationsInput | $Enums.PracticeTimingMode
   title?: Prisma.StringFieldUpdateOperationsInput | string
   sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   difficulty?: Prisma.NullableEnumDifficultyFieldUpdateOperationsInput | $Enums.Difficulty | null
@@ -1624,7 +2424,13 @@ export type PracticeSessionUpdateWithoutMistakeReviewsInput = {
   wrongCount?: Prisma.IntFieldUpdateOperationsInput | number
   unansweredCount?: Prisma.IntFieldUpdateOperationsInput | number
   elapsedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  timeLimitSeconds?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pauseCount?: Prisma.IntFieldUpdateOperationsInput | number
+  pausedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
   accuracy?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1634,6 +2440,8 @@ export type PracticeSessionUpdateWithoutMistakeReviewsInput = {
   sourceAgentRecommendations?: Prisma.AgentRecommendationUpdateManyWithoutSourceSessionNestedInput
   startedAgentRecommendations?: Prisma.AgentRecommendationUpdateManyWithoutStartedSessionNestedInput
   agentTutorMessages?: Prisma.AgentTutorMessageUpdateManyWithoutSessionNestedInput
+  baselineForGoal?: Prisma.UserExamGoalUpdateOneWithoutBaselineSessionNestedInput
+  events?: Prisma.PracticeEventUpdateManyWithoutSessionNestedInput
 }
 
 export type PracticeSessionUncheckedUpdateWithoutMistakeReviewsInput = {
@@ -1641,6 +2449,8 @@ export type PracticeSessionUncheckedUpdateWithoutMistakeReviewsInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   mode?: Prisma.EnumPracticeModeFieldUpdateOperationsInput | $Enums.PracticeMode
   status?: Prisma.EnumPracticeStatusFieldUpdateOperationsInput | $Enums.PracticeStatus
+  purpose?: Prisma.EnumPracticePurposeFieldUpdateOperationsInput | $Enums.PracticePurpose
+  timingMode?: Prisma.EnumPracticeTimingModeFieldUpdateOperationsInput | $Enums.PracticeTimingMode
   title?: Prisma.StringFieldUpdateOperationsInput | string
   paperId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1651,7 +2461,13 @@ export type PracticeSessionUncheckedUpdateWithoutMistakeReviewsInput = {
   wrongCount?: Prisma.IntFieldUpdateOperationsInput | number
   unansweredCount?: Prisma.IntFieldUpdateOperationsInput | number
   elapsedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  timeLimitSeconds?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pauseCount?: Prisma.IntFieldUpdateOperationsInput | number
+  pausedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
   accuracy?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1659,12 +2475,16 @@ export type PracticeSessionUncheckedUpdateWithoutMistakeReviewsInput = {
   sourceAgentRecommendations?: Prisma.AgentRecommendationUncheckedUpdateManyWithoutSourceSessionNestedInput
   startedAgentRecommendations?: Prisma.AgentRecommendationUncheckedUpdateManyWithoutStartedSessionNestedInput
   agentTutorMessages?: Prisma.AgentTutorMessageUncheckedUpdateManyWithoutSessionNestedInput
+  baselineForGoal?: Prisma.UserExamGoalUncheckedUpdateOneWithoutBaselineSessionNestedInput
+  events?: Prisma.PracticeEventUncheckedUpdateManyWithoutSessionNestedInput
 }
 
 export type PracticeSessionCreateManyUserInput = {
   id?: string
   mode: $Enums.PracticeMode
   status?: $Enums.PracticeStatus
+  purpose?: $Enums.PracticePurpose
+  timingMode?: $Enums.PracticeTimingMode
   title: string
   paperId?: string | null
   sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1675,7 +2495,13 @@ export type PracticeSessionCreateManyUserInput = {
   wrongCount?: number
   unansweredCount?: number
   elapsedSeconds?: number
+  timeLimitSeconds?: number | null
+  pauseCount?: number
+  pausedSeconds?: number
   accuracy?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: string | null
   submittedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1685,6 +2511,8 @@ export type PracticeSessionUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   mode?: Prisma.EnumPracticeModeFieldUpdateOperationsInput | $Enums.PracticeMode
   status?: Prisma.EnumPracticeStatusFieldUpdateOperationsInput | $Enums.PracticeStatus
+  purpose?: Prisma.EnumPracticePurposeFieldUpdateOperationsInput | $Enums.PracticePurpose
+  timingMode?: Prisma.EnumPracticeTimingModeFieldUpdateOperationsInput | $Enums.PracticeTimingMode
   title?: Prisma.StringFieldUpdateOperationsInput | string
   sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   difficulty?: Prisma.NullableEnumDifficultyFieldUpdateOperationsInput | $Enums.Difficulty | null
@@ -1694,7 +2522,13 @@ export type PracticeSessionUpdateWithoutUserInput = {
   wrongCount?: Prisma.IntFieldUpdateOperationsInput | number
   unansweredCount?: Prisma.IntFieldUpdateOperationsInput | number
   elapsedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  timeLimitSeconds?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pauseCount?: Prisma.IntFieldUpdateOperationsInput | number
+  pausedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
   accuracy?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1704,12 +2538,16 @@ export type PracticeSessionUpdateWithoutUserInput = {
   startedAgentRecommendations?: Prisma.AgentRecommendationUpdateManyWithoutStartedSessionNestedInput
   agentTutorMessages?: Prisma.AgentTutorMessageUpdateManyWithoutSessionNestedInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUpdateManyWithoutSessionNestedInput
+  baselineForGoal?: Prisma.UserExamGoalUpdateOneWithoutBaselineSessionNestedInput
+  events?: Prisma.PracticeEventUpdateManyWithoutSessionNestedInput
 }
 
 export type PracticeSessionUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   mode?: Prisma.EnumPracticeModeFieldUpdateOperationsInput | $Enums.PracticeMode
   status?: Prisma.EnumPracticeStatusFieldUpdateOperationsInput | $Enums.PracticeStatus
+  purpose?: Prisma.EnumPracticePurposeFieldUpdateOperationsInput | $Enums.PracticePurpose
+  timingMode?: Prisma.EnumPracticeTimingModeFieldUpdateOperationsInput | $Enums.PracticeTimingMode
   title?: Prisma.StringFieldUpdateOperationsInput | string
   paperId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1720,7 +2558,13 @@ export type PracticeSessionUncheckedUpdateWithoutUserInput = {
   wrongCount?: Prisma.IntFieldUpdateOperationsInput | number
   unansweredCount?: Prisma.IntFieldUpdateOperationsInput | number
   elapsedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  timeLimitSeconds?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pauseCount?: Prisma.IntFieldUpdateOperationsInput | number
+  pausedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
   accuracy?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1729,12 +2573,16 @@ export type PracticeSessionUncheckedUpdateWithoutUserInput = {
   startedAgentRecommendations?: Prisma.AgentRecommendationUncheckedUpdateManyWithoutStartedSessionNestedInput
   agentTutorMessages?: Prisma.AgentTutorMessageUncheckedUpdateManyWithoutSessionNestedInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedUpdateManyWithoutSessionNestedInput
+  baselineForGoal?: Prisma.UserExamGoalUncheckedUpdateOneWithoutBaselineSessionNestedInput
+  events?: Prisma.PracticeEventUncheckedUpdateManyWithoutSessionNestedInput
 }
 
 export type PracticeSessionUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   mode?: Prisma.EnumPracticeModeFieldUpdateOperationsInput | $Enums.PracticeMode
   status?: Prisma.EnumPracticeStatusFieldUpdateOperationsInput | $Enums.PracticeStatus
+  purpose?: Prisma.EnumPracticePurposeFieldUpdateOperationsInput | $Enums.PracticePurpose
+  timingMode?: Prisma.EnumPracticeTimingModeFieldUpdateOperationsInput | $Enums.PracticeTimingMode
   title?: Prisma.StringFieldUpdateOperationsInput | string
   paperId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1745,7 +2593,13 @@ export type PracticeSessionUncheckedUpdateManyWithoutUserInput = {
   wrongCount?: Prisma.IntFieldUpdateOperationsInput | number
   unansweredCount?: Prisma.IntFieldUpdateOperationsInput | number
   elapsedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  timeLimitSeconds?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pauseCount?: Prisma.IntFieldUpdateOperationsInput | number
+  pausedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
   accuracy?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1756,6 +2610,8 @@ export type PracticeSessionCreateManyPaperInput = {
   userId: string
   mode: $Enums.PracticeMode
   status?: $Enums.PracticeStatus
+  purpose?: $Enums.PracticePurpose
+  timingMode?: $Enums.PracticeTimingMode
   title: string
   sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   difficulty?: $Enums.Difficulty | null
@@ -1765,7 +2621,13 @@ export type PracticeSessionCreateManyPaperInput = {
   wrongCount?: number
   unansweredCount?: number
   elapsedSeconds?: number
+  timeLimitSeconds?: number | null
+  pauseCount?: number
+  pausedSeconds?: number
   accuracy?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: string | null
   submittedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1775,6 +2637,8 @@ export type PracticeSessionUpdateWithoutPaperInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   mode?: Prisma.EnumPracticeModeFieldUpdateOperationsInput | $Enums.PracticeMode
   status?: Prisma.EnumPracticeStatusFieldUpdateOperationsInput | $Enums.PracticeStatus
+  purpose?: Prisma.EnumPracticePurposeFieldUpdateOperationsInput | $Enums.PracticePurpose
+  timingMode?: Prisma.EnumPracticeTimingModeFieldUpdateOperationsInput | $Enums.PracticeTimingMode
   title?: Prisma.StringFieldUpdateOperationsInput | string
   sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   difficulty?: Prisma.NullableEnumDifficultyFieldUpdateOperationsInput | $Enums.Difficulty | null
@@ -1784,7 +2648,13 @@ export type PracticeSessionUpdateWithoutPaperInput = {
   wrongCount?: Prisma.IntFieldUpdateOperationsInput | number
   unansweredCount?: Prisma.IntFieldUpdateOperationsInput | number
   elapsedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  timeLimitSeconds?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pauseCount?: Prisma.IntFieldUpdateOperationsInput | number
+  pausedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
   accuracy?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1794,6 +2664,8 @@ export type PracticeSessionUpdateWithoutPaperInput = {
   startedAgentRecommendations?: Prisma.AgentRecommendationUpdateManyWithoutStartedSessionNestedInput
   agentTutorMessages?: Prisma.AgentTutorMessageUpdateManyWithoutSessionNestedInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUpdateManyWithoutSessionNestedInput
+  baselineForGoal?: Prisma.UserExamGoalUpdateOneWithoutBaselineSessionNestedInput
+  events?: Prisma.PracticeEventUpdateManyWithoutSessionNestedInput
 }
 
 export type PracticeSessionUncheckedUpdateWithoutPaperInput = {
@@ -1801,6 +2673,8 @@ export type PracticeSessionUncheckedUpdateWithoutPaperInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   mode?: Prisma.EnumPracticeModeFieldUpdateOperationsInput | $Enums.PracticeMode
   status?: Prisma.EnumPracticeStatusFieldUpdateOperationsInput | $Enums.PracticeStatus
+  purpose?: Prisma.EnumPracticePurposeFieldUpdateOperationsInput | $Enums.PracticePurpose
+  timingMode?: Prisma.EnumPracticeTimingModeFieldUpdateOperationsInput | $Enums.PracticeTimingMode
   title?: Prisma.StringFieldUpdateOperationsInput | string
   sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   difficulty?: Prisma.NullableEnumDifficultyFieldUpdateOperationsInput | $Enums.Difficulty | null
@@ -1810,7 +2684,13 @@ export type PracticeSessionUncheckedUpdateWithoutPaperInput = {
   wrongCount?: Prisma.IntFieldUpdateOperationsInput | number
   unansweredCount?: Prisma.IntFieldUpdateOperationsInput | number
   elapsedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  timeLimitSeconds?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pauseCount?: Prisma.IntFieldUpdateOperationsInput | number
+  pausedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
   accuracy?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1819,6 +2699,8 @@ export type PracticeSessionUncheckedUpdateWithoutPaperInput = {
   startedAgentRecommendations?: Prisma.AgentRecommendationUncheckedUpdateManyWithoutStartedSessionNestedInput
   agentTutorMessages?: Prisma.AgentTutorMessageUncheckedUpdateManyWithoutSessionNestedInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedUpdateManyWithoutSessionNestedInput
+  baselineForGoal?: Prisma.UserExamGoalUncheckedUpdateOneWithoutBaselineSessionNestedInput
+  events?: Prisma.PracticeEventUncheckedUpdateManyWithoutSessionNestedInput
 }
 
 export type PracticeSessionUncheckedUpdateManyWithoutPaperInput = {
@@ -1826,6 +2708,8 @@ export type PracticeSessionUncheckedUpdateManyWithoutPaperInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   mode?: Prisma.EnumPracticeModeFieldUpdateOperationsInput | $Enums.PracticeMode
   status?: Prisma.EnumPracticeStatusFieldUpdateOperationsInput | $Enums.PracticeStatus
+  purpose?: Prisma.EnumPracticePurposeFieldUpdateOperationsInput | $Enums.PracticePurpose
+  timingMode?: Prisma.EnumPracticeTimingModeFieldUpdateOperationsInput | $Enums.PracticeTimingMode
   title?: Prisma.StringFieldUpdateOperationsInput | string
   sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   difficulty?: Prisma.NullableEnumDifficultyFieldUpdateOperationsInput | $Enums.Difficulty | null
@@ -1835,7 +2719,13 @@ export type PracticeSessionUncheckedUpdateManyWithoutPaperInput = {
   wrongCount?: Prisma.IntFieldUpdateOperationsInput | number
   unansweredCount?: Prisma.IntFieldUpdateOperationsInput | number
   elapsedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  timeLimitSeconds?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pauseCount?: Prisma.IntFieldUpdateOperationsInput | number
+  pausedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
   accuracy?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  score?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  maxScore?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  reflectionText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1852,6 +2742,7 @@ export type PracticeSessionCountOutputType = {
   startedAgentRecommendations: number
   agentTutorMessages: number
   mistakeReviews: number
+  events: number
 }
 
 export type PracticeSessionCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1860,6 +2751,7 @@ export type PracticeSessionCountOutputTypeSelect<ExtArgs extends runtime.Types.E
   startedAgentRecommendations?: boolean | PracticeSessionCountOutputTypeCountStartedAgentRecommendationsArgs
   agentTutorMessages?: boolean | PracticeSessionCountOutputTypeCountAgentTutorMessagesArgs
   mistakeReviews?: boolean | PracticeSessionCountOutputTypeCountMistakeReviewsArgs
+  events?: boolean | PracticeSessionCountOutputTypeCountEventsArgs
 }
 
 /**
@@ -1907,12 +2799,21 @@ export type PracticeSessionCountOutputTypeCountMistakeReviewsArgs<ExtArgs extend
   where?: Prisma.QuestionMistakeReviewWhereInput
 }
 
+/**
+ * PracticeSessionCountOutputType without action
+ */
+export type PracticeSessionCountOutputTypeCountEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PracticeEventWhereInput
+}
+
 
 export type PracticeSessionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   userId?: boolean
   mode?: boolean
   status?: boolean
+  purpose?: boolean
+  timingMode?: boolean
   title?: boolean
   paperId?: boolean
   sourceTagIdsJson?: boolean
@@ -1923,7 +2824,13 @@ export type PracticeSessionSelect<ExtArgs extends runtime.Types.Extensions.Inter
   wrongCount?: boolean
   unansweredCount?: boolean
   elapsedSeconds?: boolean
+  timeLimitSeconds?: boolean
+  pauseCount?: boolean
+  pausedSeconds?: boolean
   accuracy?: boolean
+  score?: boolean
+  maxScore?: boolean
+  reflectionText?: boolean
   submittedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -1934,6 +2841,8 @@ export type PracticeSessionSelect<ExtArgs extends runtime.Types.Extensions.Inter
   startedAgentRecommendations?: boolean | Prisma.PracticeSession$startedAgentRecommendationsArgs<ExtArgs>
   agentTutorMessages?: boolean | Prisma.PracticeSession$agentTutorMessagesArgs<ExtArgs>
   mistakeReviews?: boolean | Prisma.PracticeSession$mistakeReviewsArgs<ExtArgs>
+  baselineForGoal?: boolean | Prisma.PracticeSession$baselineForGoalArgs<ExtArgs>
+  events?: boolean | Prisma.PracticeSession$eventsArgs<ExtArgs>
   _count?: boolean | Prisma.PracticeSessionCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["practiceSession"]>
 
@@ -1944,6 +2853,8 @@ export type PracticeSessionSelectScalar = {
   userId?: boolean
   mode?: boolean
   status?: boolean
+  purpose?: boolean
+  timingMode?: boolean
   title?: boolean
   paperId?: boolean
   sourceTagIdsJson?: boolean
@@ -1954,13 +2865,19 @@ export type PracticeSessionSelectScalar = {
   wrongCount?: boolean
   unansweredCount?: boolean
   elapsedSeconds?: boolean
+  timeLimitSeconds?: boolean
+  pauseCount?: boolean
+  pausedSeconds?: boolean
   accuracy?: boolean
+  score?: boolean
+  maxScore?: boolean
+  reflectionText?: boolean
   submittedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type PracticeSessionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "mode" | "status" | "title" | "paperId" | "sourceTagIdsJson" | "difficulty" | "totalCount" | "answeredCount" | "correctCount" | "wrongCount" | "unansweredCount" | "elapsedSeconds" | "accuracy" | "submittedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["practiceSession"]>
+export type PracticeSessionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "mode" | "status" | "purpose" | "timingMode" | "title" | "paperId" | "sourceTagIdsJson" | "difficulty" | "totalCount" | "answeredCount" | "correctCount" | "wrongCount" | "unansweredCount" | "elapsedSeconds" | "timeLimitSeconds" | "pauseCount" | "pausedSeconds" | "accuracy" | "score" | "maxScore" | "reflectionText" | "submittedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["practiceSession"]>
 export type PracticeSessionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   paper?: boolean | Prisma.PracticeSession$paperArgs<ExtArgs>
@@ -1969,6 +2886,8 @@ export type PracticeSessionInclude<ExtArgs extends runtime.Types.Extensions.Inte
   startedAgentRecommendations?: boolean | Prisma.PracticeSession$startedAgentRecommendationsArgs<ExtArgs>
   agentTutorMessages?: boolean | Prisma.PracticeSession$agentTutorMessagesArgs<ExtArgs>
   mistakeReviews?: boolean | Prisma.PracticeSession$mistakeReviewsArgs<ExtArgs>
+  baselineForGoal?: boolean | Prisma.PracticeSession$baselineForGoalArgs<ExtArgs>
+  events?: boolean | Prisma.PracticeSession$eventsArgs<ExtArgs>
   _count?: boolean | Prisma.PracticeSessionCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -1982,12 +2901,16 @@ export type $PracticeSessionPayload<ExtArgs extends runtime.Types.Extensions.Int
     startedAgentRecommendations: Prisma.$AgentRecommendationPayload<ExtArgs>[]
     agentTutorMessages: Prisma.$AgentTutorMessagePayload<ExtArgs>[]
     mistakeReviews: Prisma.$QuestionMistakeReviewPayload<ExtArgs>[]
+    baselineForGoal: Prisma.$UserExamGoalPayload<ExtArgs> | null
+    events: Prisma.$PracticeEventPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     userId: string
     mode: $Enums.PracticeMode
     status: $Enums.PracticeStatus
+    purpose: $Enums.PracticePurpose
+    timingMode: $Enums.PracticeTimingMode
     title: string
     paperId: string | null
     sourceTagIdsJson: runtime.JsonValue | null
@@ -1998,7 +2921,13 @@ export type $PracticeSessionPayload<ExtArgs extends runtime.Types.Extensions.Int
     wrongCount: number
     unansweredCount: number
     elapsedSeconds: number
+    timeLimitSeconds: number | null
+    pauseCount: number
+    pausedSeconds: number
     accuracy: runtime.Decimal | null
+    score: runtime.Decimal | null
+    maxScore: runtime.Decimal | null
+    reflectionText: string | null
     submittedAt: Date | null
     createdAt: Date
     updatedAt: Date
@@ -2349,6 +3278,8 @@ export interface Prisma__PracticeSessionClient<T, Null = never, ExtArgs extends 
   startedAgentRecommendations<T extends Prisma.PracticeSession$startedAgentRecommendationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PracticeSession$startedAgentRecommendationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AgentRecommendationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   agentTutorMessages<T extends Prisma.PracticeSession$agentTutorMessagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PracticeSession$agentTutorMessagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AgentTutorMessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   mistakeReviews<T extends Prisma.PracticeSession$mistakeReviewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PracticeSession$mistakeReviewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuestionMistakeReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  baselineForGoal<T extends Prisma.PracticeSession$baselineForGoalArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PracticeSession$baselineForGoalArgs<ExtArgs>>): Prisma.Prisma__UserExamGoalClient<runtime.Types.Result.GetResult<Prisma.$UserExamGoalPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  events<T extends Prisma.PracticeSession$eventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PracticeSession$eventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PracticeEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2382,6 +3313,8 @@ export interface PracticeSessionFieldRefs {
   readonly userId: Prisma.FieldRef<"PracticeSession", 'String'>
   readonly mode: Prisma.FieldRef<"PracticeSession", 'PracticeMode'>
   readonly status: Prisma.FieldRef<"PracticeSession", 'PracticeStatus'>
+  readonly purpose: Prisma.FieldRef<"PracticeSession", 'PracticePurpose'>
+  readonly timingMode: Prisma.FieldRef<"PracticeSession", 'PracticeTimingMode'>
   readonly title: Prisma.FieldRef<"PracticeSession", 'String'>
   readonly paperId: Prisma.FieldRef<"PracticeSession", 'String'>
   readonly sourceTagIdsJson: Prisma.FieldRef<"PracticeSession", 'Json'>
@@ -2392,7 +3325,13 @@ export interface PracticeSessionFieldRefs {
   readonly wrongCount: Prisma.FieldRef<"PracticeSession", 'Int'>
   readonly unansweredCount: Prisma.FieldRef<"PracticeSession", 'Int'>
   readonly elapsedSeconds: Prisma.FieldRef<"PracticeSession", 'Int'>
+  readonly timeLimitSeconds: Prisma.FieldRef<"PracticeSession", 'Int'>
+  readonly pauseCount: Prisma.FieldRef<"PracticeSession", 'Int'>
+  readonly pausedSeconds: Prisma.FieldRef<"PracticeSession", 'Int'>
   readonly accuracy: Prisma.FieldRef<"PracticeSession", 'Decimal'>
+  readonly score: Prisma.FieldRef<"PracticeSession", 'Decimal'>
+  readonly maxScore: Prisma.FieldRef<"PracticeSession", 'Decimal'>
+  readonly reflectionText: Prisma.FieldRef<"PracticeSession", 'String'>
   readonly submittedAt: Prisma.FieldRef<"PracticeSession", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"PracticeSession", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"PracticeSession", 'DateTime'>
@@ -2880,6 +3819,49 @@ export type PracticeSession$mistakeReviewsArgs<ExtArgs extends runtime.Types.Ext
   take?: number
   skip?: number
   distinct?: Prisma.QuestionMistakeReviewScalarFieldEnum | Prisma.QuestionMistakeReviewScalarFieldEnum[]
+}
+
+/**
+ * PracticeSession.baselineForGoal
+ */
+export type PracticeSession$baselineForGoalArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the UserExamGoal
+   */
+  select?: Prisma.UserExamGoalSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the UserExamGoal
+   */
+  omit?: Prisma.UserExamGoalOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserExamGoalInclude<ExtArgs> | null
+  where?: Prisma.UserExamGoalWhereInput
+}
+
+/**
+ * PracticeSession.events
+ */
+export type PracticeSession$eventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PracticeEvent
+   */
+  select?: Prisma.PracticeEventSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PracticeEvent
+   */
+  omit?: Prisma.PracticeEventOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PracticeEventInclude<ExtArgs> | null
+  where?: Prisma.PracticeEventWhereInput
+  orderBy?: Prisma.PracticeEventOrderByWithRelationInput | Prisma.PracticeEventOrderByWithRelationInput[]
+  cursor?: Prisma.PracticeEventWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PracticeEventScalarFieldEnum | Prisma.PracticeEventScalarFieldEnum[]
 }
 
 /**

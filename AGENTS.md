@@ -34,6 +34,53 @@ Recent commits use short, imperative summaries such as `Compress tutor composer`
 
 Never commit `.env.local`, credentials, API keys, or production data. Review generated Prisma migrations before committing them. Treat changes to `CLIProxyAPI/` as submodule pointer updates and document the referenced upstream revision.
 
+## Training-Flow Implementation Guidelines
+
+The student product is a deterministic training system, not a collection of loosely connected quiz pages. Preserve the flow from exam goal, benchmark, leaf-type foundation practice, review, timed retest, and wrong-question practice.
+
+### Domain boundaries
+
+- Keep question source and learning intent separate. `PracticeMode` describes where questions come from; `PracticePurpose` describes why the session exists. Do not overload one field with both meanings.
+- Keep scoring, foundation-pass rules, next-action selection, and comparison calculations in small pure functions. Pages and client components should render service results rather than reimplement business rules.
+- Treat the server as authoritative for scores, correctness, mastery, wrong-question state, and tag statistics. Client calculations are display-only.
+- Give each workflow one clear owner: exam-goal services select benchmarks, practice services create and submit sessions, foundation services select leaf questions, and comparison services compare submitted papers.
+
+### KISS and coupling control
+
+- Prefer deterministic rule services over new agents, queues, workflow engines, or global state stores when the rule can be expressed directly.
+- Introduce a component, hook, or service only when it has one stable responsibility and removes real duplication or state coupling. Do not split short cohesive code merely to increase file count.
+- Extract focused hooks for complex browser concerns such as timing, offline drafts, and event logging. Keep persistence and scoring out of presentation components.
+- Handle states supported by the current product: loading, empty inventory, offline drafts, timed expiry, repeated submission, and ownership checks. Avoid speculative state branches.
+- Do not create parallel sources of truth. Aggregate tables such as `UserTagStats` must be updated in the same transaction as submitted answers and covered by tests.
+
+### Practice and taxonomy rules
+
+- A foundation round uses exactly 15 questions from one active leaf tag and passes at 9 correct answers. Ordinary special practice does not change foundation status.
+- A leaf with fewer than 15 active questions is reported as insufficient inventory and excluded from foundation completion totals. Do not fabricate questions or mark it complete.
+- Prefer unseen questions, then historical wrong questions, then least-recently practiced questions. Keep selection logic in the foundation service.
+- Parent tags are navigation and aggregation nodes. Bind practice to stored leaf taxonomy data instead of inferring parents from Chinese display names at runtime.
+- Show taxonomy hints after submission or during review when showing them before answering would reveal the solving method.
+
+### Submission, timing, and offline data
+
+- Submit answers, scores, behavior events, wrong-question changes, and tag statistics in one database transaction. Reject repeated submission before changing aggregates.
+- Strict timed sessions hide pause controls and lock answers at expiry. Flexible timed sessions record pause count and paused seconds. Untimed sessions retain count-up behavior.
+- Batch behavior events with final submission instead of sending a request for every click. Keep the event vocabulary small: view, answer change, skip, return, pause, resume, and expiry.
+- Extend IndexedDB draft shapes with optional fields and defaults so existing drafts remain readable. Preserve answers, per-question time, notes, scratch work, timing state, and pending submission together.
+
+### Tutor and review data
+
+- Interactive tutor messages support open-ended follow-up questions but do not rewrite structured mistake analysis on every turn.
+- Automatic post-submission review owns the structured mistake record for a practice answer. Keep chat persistence and mistake-review persistence separate.
+- Learning comparisons report observable facts such as score, time, module accuracy, skips, returns, and answer changes. Do not invent psychological conclusions from behavior data.
+
+### Verification expectations
+
+- Add boundary tests for pure rules, especially 8/15 versus 9/15, weighted-score fallback, benchmark matching, and comparison deltas.
+- Add service tests for transactionally updated answers, events, wrong questions, and tag statistics, including repeated-submission protection.
+- After schema changes, run Prisma validation and generation, apply the development migration, then run `npm run lint`, `npm run typecheck`, `npm test`, and `npm run build`.
+- Verify timed, offline, result-comparison, foundation, and wrong-review flows at mobile width and at 1280px and 1440px desktop widths.
+
 ## Frontend Product and Design Philosophy
 
 ### Scope and product truth

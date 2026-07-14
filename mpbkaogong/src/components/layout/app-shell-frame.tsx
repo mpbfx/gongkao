@@ -9,6 +9,7 @@ import {
   BookOpen,
   ClipboardList,
   Home,
+  LibraryBig,
 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 
@@ -26,6 +27,7 @@ const navItems = [
   { number: "03", label: "专项提分", shortLabel: "专项", href: "/question-bank/special", icon: BookOpen },
   { number: "04", label: "错题复盘", shortLabel: "错题", href: "/question-bank/wrong", icon: BookMarked },
   { number: "05", label: "学习情况", shortLabel: "学情", href: "/dashboard", icon: BarChart3 },
+  { number: "06", label: "课程知识", shortLabel: "课程", href: "/knowledge", icon: LibraryBig },
 ];
 
 export function AppShellFrame({
@@ -158,7 +160,7 @@ export function AppShellFrame({
 
           {!hideMobileNav ? (
             <nav className="fixed inset-x-0 bottom-0 z-30 border-t bg-background/95 pb-[env(safe-area-inset-bottom)] shadow-[0_-8px_24px_rgb(15_23_42/0.08)] backdrop-blur lg:hidden">
-              <div className="grid h-16 grid-cols-5">
+              <div className="grid h-16 grid-cols-6">
                 {mobileNavItems.map((item) => {
                   const Icon = item.icon;
                   const active = isActive(item.href);
