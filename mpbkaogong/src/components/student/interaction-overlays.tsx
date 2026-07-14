@@ -61,6 +61,7 @@ export function FilterPopover({
       {open ? (
         <div
           id={panelId}
+          data-slot="student-filter-popover"
           role="dialog"
           aria-label={label}
           className="absolute right-0 top-[calc(100%+0.5rem)] z-40 w-[min(24rem,calc(100vw-2rem))] border bg-popover p-4 text-popover-foreground shadow-xl"

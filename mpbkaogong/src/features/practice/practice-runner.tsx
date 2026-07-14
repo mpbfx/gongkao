@@ -10,6 +10,7 @@ import {
   Grid3X3,
   LoaderCircle,
   MessageSquare,
+  MoreHorizontal,
   Pause,
   PencilLine,
   Play,
@@ -199,6 +200,8 @@ export function PracticeRunner({
   const [scratchByQuestionId, setScratchByQuestionId] = useState<Record<string, PracticeScratchDraft>>({});
   const [showAnswerSheet, setShowAnswerSheet] = useState(false);
   const [showTutor, setShowTutor] = useState(false);
+  const [showDecisionNote, setShowDecisionNote] = useState(false);
+  const [showTools, setShowTools] = useState(false);
   const [timeExpired, setTimeExpired] = useState(false);
   const [isOnline, setIsOnline] = useState(() =>
     typeof window === "undefined" ? true : window.navigator.onLine
@@ -210,6 +213,7 @@ export function PracticeRunner({
   const isMemorizeMode = initialSession.mode === "MEMORIZE";
   const answeredCount = Object.values(answers).filter((answer) => normalizeAnswer(answer).length > 0).length;
   const completionRate = questions.length > 0 ? answeredCount / questions.length : 0;
+  const unansweredCount = Math.max(0, questions.length - answeredCount);
   const isResultMode = initialSession.status === "SUBMITTED" || isMemorizeMode || Boolean(submitResult);
   const { events, setEvents, record, recordVisit } = usePracticeEventLog(question.id);
   const timer = usePracticeTimer({
@@ -880,6 +884,24 @@ export function PracticeRunner({
         <section className="flex min-w-0 flex-col gap-4">
           <Card className="practice-question-paper">
             <CardContent className="relative flex flex-col gap-4 pt-1">
+            {!isResultMode ? (
+              <div className="flex min-h-11 items-center justify-between gap-3 border-b border-foreground/20 pb-3">
+                <div className="min-w-0">
+                  <div className="student-heading text-sm font-semibold">
+                    第 {currentIndex + 1} / {questions.length} 题
+                  </div>
+                  {question.sectionName ? <div className="mt-0.5 truncate text-xs text-muted-foreground">{question.sectionName}</div> : null}
+                </div>
+                <div className="flex shrink-0 items-center gap-2">
+                  <span className={cn("text-xs", isOnline ? "text-success" : "text-warning")}>
+                    {isOnline ? "已自动保存" : "已保存到本机"}
+                  </span>
+                  <Button type="button" variant="ghost" size="sm" className="hidden h-8 lg:inline-flex" onClick={() => setShowDecisionNote(true)}>
+                    <PencilLine data-icon="inline-start" />记录想法
+                  </Button>
+                </div>
+              </div>
+            ) : null}
             {isResultMode ? (
               <div className="hidden items-center justify-between gap-3 border-b border-dashed pb-3 lg:flex">
                 <Button
@@ -930,7 +952,7 @@ export function PracticeRunner({
                     className={cn(
                       "flex min-h-12 w-full items-start gap-3 rounded-lg border bg-card px-3 py-3 text-left text-sm transition-colors",
                       "focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none",
-                      state === "selected" && "border-primary bg-primary text-primary-foreground",
+                      state === "selected" && "border-primary bg-primary/10 text-foreground shadow-[inset_3px_0_0_var(--primary)]",
                       state === "correct" && "border-success bg-success/10 text-success",
                       state === "wrong" && "border-destructive bg-destructive/10 text-destructive",
                       isResultMode && "disabled:opacity-100",
@@ -953,20 +975,24 @@ export function PracticeRunner({
             </div>
 
             {!isResultMode ? (
-              <details className="border-y border-foreground/20 py-2">
-                <summary className="cursor-pointer text-sm font-medium">一句话记录想法或决策</summary>
-                <Textarea
-                  className="mt-3 min-h-20"
-                  maxLength={500}
-                  disabled={isPracticePaused || timeExpired}
-                  value={decisionNotesByQuestionId[question.id] ?? ""}
-                  placeholder="例如：这道题太难，先跳过。"
-                  onChange={(event) => setDecisionNotesByQuestionId((current) => ({
-                    ...current,
-                    [question.id]: event.target.value,
-                  }))}
-                />
-              </details>
+              <div className="flex items-center justify-between gap-3 border-t border-foreground/20 pt-4">
+                <Button
+                  type="button"
+                  variant="outline"
+                  disabled={currentIndex === 0}
+                  onClick={() => goToQuestion(currentIndex - 1)}
+                >
+                  <ChevronLeft data-icon="inline-start" />上一题
+                </Button>
+                <Button
+                  type="button"
+                  variant="outline"
+                  disabled={currentIndex === questions.length - 1}
+                  onClick={() => goToQuestion(currentIndex + 1)}
+                >
+                  下一题<ChevronRight data-icon="inline-end" />
+                </Button>
+              </div>
             ) : null}
 
             {isResultMode ? (
@@ -1026,64 +1052,35 @@ export function PracticeRunner({
       </div>
 
       <aside
-        className="flex flex-col gap-4 lg:sticky lg:top-20 lg:h-[calc(100dvh-6rem)] lg:min-h-0"
+        className={cn(
+          "flex flex-col gap-4 lg:sticky lg:top-20 lg:h-[calc(100dvh-6rem)] lg:min-h-0",
+          isPracticePaused && "pointer-events-none opacity-40"
+        )}
       >
         {isResultMode ? (
           <Button type="button" variant="outline" className="hidden lg:flex" onClick={() => setShowTutor(true)}>
             <MessageSquare data-icon="inline-start" />围绕本题问助教
           </Button>
         ) : null}
-        {!isResultMode ? <Card size="sm" className="hidden lg:flex">
-          <CardContent className="flex flex-col gap-3">
-            <div className="flex items-start justify-between gap-3">
-              <div>
-                <div className="font-medium">{actionBarPrimaryText}</div>
-                <div className="mt-1 text-sm text-muted-foreground">{actionBarSecondaryText}</div>
-              </div>
-              <Badge variant={isPracticePaused ? "warning" : "outline"}>
-                {isResultMode ? "回看" : isPracticePaused ? "暂停" : "训练中"}
-              </Badge>
+        {!isResultMode ? (
+          <div className="hidden items-center justify-between gap-2 border-y border-foreground/25 py-2 lg:flex">
+            <div className="min-w-0">
+              <div className="text-xs text-muted-foreground">{actionBarPrimaryText}</div>
+              <div className="mt-0.5 font-mono text-sm font-medium tabular-nums">{actionBarSecondaryText}</div>
             </div>
-            <div className="grid grid-cols-2 gap-2">
-              <Button
-                type="button"
-                variant="outline"
-                disabled={currentIndex === 0}
-                onClick={() => goToQuestion(currentIndex - 1)}
-              >
-                <ChevronLeft data-icon="inline-start" />
-                上一题
-              </Button>
-              <Button
-                type="button"
-                variant="outline"
-                disabled={currentIndex === questions.length - 1}
-                onClick={() => goToQuestion(currentIndex + 1)}
-              >
-                下一题
-                <ChevronRight data-icon="inline-end" />
+            <div className="flex shrink-0 items-center gap-1">
+              {initialSession.timingMode !== "STRICT" ? (
+                <Button type="button" variant="ghost" size="sm" className="h-8" onClick={togglePause}>
+                  {isPracticePaused ? <Play data-icon="inline-start" /> : <Pause data-icon="inline-start" />}
+                  {isPracticePaused ? "继续" : "暂停"}
+                </Button>
+              ) : null}
+              <Button type="button" variant="ghost" size="sm" className="h-8" onClick={() => setShowDraftCanvas(true)}>
+                <PencilLine data-icon="inline-start" />草稿
               </Button>
             </div>
-            {!isResultMode && initialSession.timingMode !== "STRICT" ? (
-              <Button type="button" variant="outline" onClick={togglePause}>
-                {isPracticePaused ? <Play data-icon="inline-start" /> : <Pause data-icon="inline-start" />}
-                {isPracticePaused ? "继续答题" : "暂停答题"}
-              </Button>
-            ) : null}
-            {!isResultMode || currentScratch ? (
-              <Button type="button" variant="outline" onClick={() => setShowDraftCanvas(true)}>
-                <PencilLine data-icon="inline-start" />
-                {isResultMode ? "草稿回看" : "草稿"}
-              </Button>
-            ) : null}
-            {!isResultMode ? (
-              <Button type="button" onClick={() => setShowSubmitDialog(true)}>
-                <Send data-icon="inline-start" />
-                提交练习
-              </Button>
-            ) : null}
-          </CardContent>
-        </Card> : null}
+          </div>
+        ) : null}
 
         <Card
           className={cn(
@@ -1094,6 +1091,13 @@ export function PracticeRunner({
           <CardContent className="flex min-h-0 flex-1 flex-col gap-3 overflow-hidden">
             {answerSheetContent}
           </CardContent>
+          {!isResultMode ? (
+            <div className="shrink-0 border-t bg-card/70 p-3">
+              <Button type="button" className="w-full" onClick={() => setShowSubmitDialog(true)}>
+                <Send data-icon="inline-start" />提交练习
+              </Button>
+            </div>
+          ) : null}
         </Card>
 
       </aside>
@@ -1124,7 +1128,7 @@ export function PracticeRunner({
               size="sm"
               className="size-11 shrink-0 px-0"
               aria-label="上一题"
-              disabled={currentIndex === 0}
+              disabled={currentIndex === 0 || isPracticePaused}
               onClick={() => goToQuestion(currentIndex - 1)}
             >
               <ChevronLeft data-icon="inline-start" />
@@ -1135,7 +1139,7 @@ export function PracticeRunner({
               size="sm"
               className="size-11 shrink-0 px-0"
               aria-label="下一题"
-              disabled={currentIndex === questions.length - 1}
+              disabled={currentIndex === questions.length - 1 || isPracticePaused}
               onClick={() => goToQuestion(currentIndex + 1)}
             >
               <ChevronRight data-icon="inline-end" />
@@ -1146,32 +1150,21 @@ export function PracticeRunner({
               size="sm"
               className="size-11 shrink-0 px-0"
               aria-label="答题卡"
+              disabled={isPracticePaused}
               onClick={() => setShowAnswerSheet(true)}
             >
               <Grid3X3 data-icon="inline-start" />
             </Button>
-            {!isResultMode && initialSession.timingMode !== "STRICT" ? (
-              <Button
-                type="button"
-                variant="outline"
-                size="sm"
-                className="size-11 shrink-0 px-0"
-                aria-label={isPracticePaused ? "继续答题" : "暂停答题"}
-                onClick={togglePause}
-              >
-                {isPracticePaused ? <Play data-icon="inline-start" /> : <Pause data-icon="inline-start" />}
-              </Button>
-            ) : null}
             {!isResultMode || currentScratch ? (
               <Button
                 type="button"
                 variant="outline"
                 size="sm"
                 className="size-11 shrink-0 px-0"
-                aria-label={isResultMode ? "查看草稿" : "草稿"}
-                onClick={() => setShowDraftCanvas(true)}
+                aria-label="更多练习工具"
+                onClick={() => setShowTools(true)}
               >
-                <PencilLine data-icon="inline-start" />
+                <MoreHorizontal data-icon="inline-start" />
               </Button>
             ) : null}
             {!isResultMode ? (
@@ -1179,6 +1172,7 @@ export function PracticeRunner({
                 type="button"
                 size="sm"
                 className="min-w-20 flex-1 px-3"
+                disabled={isPracticePaused}
                 onClick={() => setShowSubmitDialog(true)}
               >
                 <Send data-icon="inline-start" />
@@ -1192,6 +1186,60 @@ export function PracticeRunner({
           </div>
         </div>
       </StickyActionBar>
+
+      <Dialog open={showDecisionNote} onOpenChange={setShowDecisionNote}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>记录本题想法</DialogTitle>
+            <DialogDescription>这条记录会和答案、用时一起保存在本次练习草稿中。</DialogDescription>
+          </DialogHeader>
+          <DialogBody>
+            <Textarea
+              className="min-h-32"
+              maxLength={500}
+              disabled={isPracticePaused || timeExpired}
+              value={decisionNotesByQuestionId[question.id] ?? ""}
+              placeholder="例如：先排除明显不符合条件的选项。"
+              onChange={(event) => setDecisionNotesByQuestionId((current) => ({
+                ...current,
+                [question.id]: event.target.value,
+              }))}
+            />
+          </DialogBody>
+          <DialogFooter>
+            <DialogClose className="border-border bg-card px-3 text-sm font-medium hover:bg-secondary hover:text-secondary-foreground">
+              完成
+            </DialogClose>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={showTools} onOpenChange={setShowTools}>
+        <DialogContent variant="sheet" className="p-4 lg:hidden">
+          <DialogHeader>
+            <DialogTitle>练习工具</DialogTitle>
+            <DialogDescription>草稿和暂停不会改变当前答案。</DialogDescription>
+          </DialogHeader>
+          <DialogBody className="grid gap-2">
+            {!isResultMode && initialSession.timingMode !== "STRICT" ? (
+              <Button type="button" variant="outline" className="justify-start" onClick={() => { setShowTools(false); togglePause(); }}>
+                {isPracticePaused ? <Play data-icon="inline-start" /> : <Pause data-icon="inline-start" />}
+                {isPracticePaused ? "继续答题" : "暂停答题"}
+              </Button>
+            ) : null}
+            {!isResultMode || currentScratch ? (
+              <Button type="button" variant="outline" className="justify-start" onClick={() => { setShowTools(false); setShowDraftCanvas(true); }}>
+                <PencilLine data-icon="inline-start" />{isResultMode ? "查看草稿" : "打开草稿"}
+              </Button>
+            ) : null}
+            {!isResultMode ? (
+              <Button type="button" variant="outline" className="justify-start" onClick={() => { setShowTools(false); setShowDecisionNote(true); }}>
+                <PencilLine data-icon="inline-start" />记录本题想法
+              </Button>
+            ) : null}
+          </DialogBody>
+        </DialogContent>
+      </Dialog>
 
       <Dialog open={showAnswerSheet} onOpenChange={(open) => setShowAnswerSheet(open)}>
         <DialogContent variant="sheet" className="p-4 lg:hidden">
@@ -1212,17 +1260,17 @@ export function PracticeRunner({
       <Dialog open={showSubmitDialog} onOpenChange={(open) => setShowSubmitDialog(open)}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>{completionRate < 0.5 ? "完成率不足 50%" : "确认提交练习"}</DialogTitle>
+            <DialogTitle>{unansweredCount > 0 ? `还有 ${unansweredCount} 题未作答` : "确认提交练习"}</DialogTitle>
             <DialogDescription>
               已答 {answeredCount} / {questions.length} 题，提交后选项不可再修改。
             </DialogDescription>
           </DialogHeader>
           <DialogBody>
-            {completionRate < 0.5 ? (
+            {unansweredCount > 0 ? (
               <Alert variant="warning">
                 <AlertTriangle aria-hidden="true" />
-                <AlertTitle>作答数量较少</AlertTitle>
-                <AlertDescription>当前完成率较低，建议继续作答后再提交。</AlertDescription>
+                <AlertTitle>未答题会按当前状态提交</AlertTitle>
+                <AlertDescription>返回继续作答可通过答题卡快速定位未答题。</AlertDescription>
               </Alert>
             ) : (
               <p className="text-sm text-muted-foreground">
@@ -1238,11 +1286,11 @@ export function PracticeRunner({
               className="border-border bg-card px-3 text-sm font-medium hover:bg-secondary hover:text-secondary-foreground"
               disabled={isSubmitting}
             >
-              取消
+              返回继续作答
             </DialogClose>
             <Button type="button" disabled={isSubmitting} onClick={() => void submitPractice()}>
               {isSubmitting ? <LoaderCircle data-icon="inline-start" className="animate-spin" /> : null}
-              {isOnline ? "确认提交" : "保存提交草稿"}
+              {isOnline ? (unansweredCount > 0 ? "仍然提交" : "提交并查看结果") : "保存提交草稿"}
             </Button>
           </DialogFooter>
         </DialogContent>

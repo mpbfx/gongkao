@@ -263,6 +263,71 @@
     --background: #ecebe6;
   }
 
+  /* Dialog portals mount below <body>, outside .student-shell. Re-apply the
+   * editorial paper language here so overlays do not fall back to the default
+   * shadcn blue/rounded treatment. */
+  body:has(.student-shell-v2) [data-slot="dialog-backdrop"] {
+    background: rgb(23 34 56 / 0.42);
+    backdrop-filter: blur(2px);
+  }
+
+  body:has(.student-shell-v2) [data-slot="dialog-content"] {
+    --background: #f4f0e8;
+    --foreground: #172238;
+    --card: #fffdf8;
+    --card-foreground: #172238;
+    --muted: #e9e4da;
+    --muted-foreground: #626b73;
+    --border: #aeb7ba;
+    --ring: #d65a3a;
+    border-color: rgb(23 34 56 / 0.42);
+    border-radius: 0.25rem;
+    background-color: #fffdf8;
+    background-image: repeating-linear-gradient(0deg, rgb(23 34 56 / 0.018) 0 1px, transparent 1px 4px);
+    box-shadow: 0 1.25rem 3.5rem rgb(23 34 56 / 0.22), 0 1px rgb(255 255 255 / 0.85) inset;
+  }
+
+  body:has(.student-shell-v2) [data-slot="dialog-content"][data-variant="sheet"] {
+    border-radius: 0.7rem 0.7rem 0 0;
+    border-bottom: 0;
+  }
+
+  body:has(.student-shell-v2) [data-slot="dialog-content"][data-variant="assistant"] {
+    border-radius: 0.7rem 0.7rem 0 0;
+    border-bottom: 0;
+  }
+
+  @media (min-width: 48rem) {
+    body:has(.student-shell-v2) [data-slot="dialog-content"][data-variant="assistant"] {
+      border-radius: 0.35rem 0 0 0.35rem;
+      border-right: 0;
+      border-bottom: 1px solid rgb(23 34 56 / 0.42);
+    }
+  }
+
+  body:has(.student-shell-v2) [data-slot="dialog-header"] {
+    border-color: rgb(23 34 56 / 0.22);
+    background: rgb(248 244 235 / 0.82);
+  }
+
+  body:has(.student-shell-v2) [data-slot="dialog-title"] {
+    font-family: var(--student-heading-font);
+    letter-spacing: -0.01em;
+  }
+
+  body:has(.student-shell-v2) [data-slot="dialog-footer"] {
+    border-color: rgb(23 34 56 / 0.22);
+    background: rgb(233 228 218 / 0.52);
+  }
+
+  .student-shell-v2 [data-slot="student-filter-popover"] {
+    border-color: rgb(23 34 56 / 0.38);
+    border-radius: 0.2rem;
+    background-color: #fffdf8;
+    background-image: repeating-linear-gradient(0deg, rgb(23 34 56 / 0.018) 0 1px, transparent 1px 4px);
+    box-shadow: 0 0.75rem 1.75rem rgb(23 34 56 / 0.16), 0 1px rgb(255 255 255 / 0.8) inset;
+  }
+
   @media (min-width: 64rem) {
     .student-shell:not(.student-shell-v2) [data-slot="card"],
     .student-auth [data-slot="card"] {
