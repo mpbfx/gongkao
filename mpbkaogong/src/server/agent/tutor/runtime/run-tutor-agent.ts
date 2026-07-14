@@ -23,6 +23,7 @@ const toolLabels: Record<string, string> = {
   get_learner_mistake_patterns: "正在读取个人错题模式",
   get_previous_reviews: "正在读取历史错因复盘",
   search_related_questions: "正在检索同类题",
+  search_course_knowledge: "正在检索课程知识",
   submit_mistake_review: "正在整理本题复盘",
 };
 
@@ -52,6 +53,8 @@ export async function runTutorAgent({
   signal,
   emit = () => undefined,
   streamFn,
+  enableKnowledge = true,
+  requireReview = true,
 }: {
   userId: string;
   context: TutorQuestionContext;
@@ -60,10 +63,19 @@ export async function runTutorAgent({
   signal?: AbortSignal;
   emit?: Emit;
   streamFn?: StreamFn;
+  enableKnowledge?: boolean;
+  requireReview?: boolean;
 }) {
   if (signal?.aborted) throw new TutorRuntimeError("讲解已取消。", "cancelled");
   const startedAt = Date.now();
-  const { agent, counters, reviewSubmission } = createTutorAgent({ userId, context, messages, streamFn });
+  const { agent, counters, reviewSubmission } = createTutorAgent({
+    userId,
+    context,
+    messages,
+    streamFn,
+    enableKnowledge,
+    requireReview,
+  });
   let timedOut = false;
   let limited = false;
   const timeout = setTimeout(() => {
@@ -75,7 +87,7 @@ export async function runTutorAgent({
   if (signal?.aborted) agent.abort();
 
   const unsubscribe = agent.subscribe(async (event) => {
-    await handleAgentEvent(event, emit, () => reviewSubmission.value, () => {
+    await handleAgentEvent(event, emit, () => reviewSubmission.value, requireReview, () => {
       counters.turns += 1;
       if (counters.turns > tutorRuntimeLimits.maxTurns) {
         limited = true;
@@ -106,13 +118,23 @@ export async function runTutorAgent({
 
   const finalMessage = finalAssistant(agent.state.messages);
   const answer = finalMessage ? assistantText(finalMessage) : "";
-  if (!answer || !reviewSubmission.value) {
-    throw new TutorRuntimeError("模型没有生成完整回答和结构化复盘。", "invalid_result");
+  if (!answer || (requireReview && !reviewSubmission.value)) {
+    throw new TutorRuntimeError(
+      requireReview ? "模型没有生成完整回答和结构化复盘。" : "模型没有生成完整回答。",
+      "invalid_result"
+    );
   }
 
   return {
     answer,
-    review: reviewSubmission.value,
+    review: reviewSubmission.value ?? {
+      mistakeCause: "UNKNOWN",
+      confidence: "LOW",
+      causeSummary: "自由追问未更新结构化错因。",
+      fastestPath: "以本轮自然语言回答为准。",
+      transferRule: "完成自动复盘后再汇总稳定规律。",
+      suggestedPrompts: ["为什么不选我选的这个？", "有没有更快的做法？"],
+    },
     durationMs: Date.now() - startedAt,
     turns: counters.turns,
     toolNames: [...counters.toolNames],
@@ -125,13 +147,18 @@ async function handleAgentEvent(
   event: AgentEvent,
   emit: Emit,
   getReview: () => TutorMistakeReview | undefined,
+  requireReview: boolean,
   onTurn: () => void
 ) {
   if (event.type === "turn_start") {
     onTurn();
     await emit({ type: "status", phase: "thinking", label: "正在理解你的问题" });
   }
-  if (event.type === "message_update" && event.assistantMessageEvent.type === "text_delta" && getReview()) {
+  if (
+    event.type === "message_update"
+    && event.assistantMessageEvent.type === "text_delta"
+    && (!requireReview || getReview())
+  ) {
     await emit({ type: "token", content: event.assistantMessageEvent.delta });
   }
   if (event.type === "tool_execution_start") {

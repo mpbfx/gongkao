@@ -58,6 +58,36 @@ export const PracticeStatus = {
 export type PracticeStatus = (typeof PracticeStatus)[keyof typeof PracticeStatus]
 
 
+export const PracticePurpose = {
+  PRACTICE: 'PRACTICE',
+  BASELINE: 'BASELINE',
+  FOUNDATION: 'FOUNDATION',
+  MOCK: 'MOCK',
+  TIME_PRESSURE: 'TIME_PRESSURE',
+  WRONG_REVIEW: 'WRONG_REVIEW'
+} as const
+
+export type PracticePurpose = (typeof PracticePurpose)[keyof typeof PracticePurpose]
+
+
+export const PracticeTimingMode = {
+  UNTYPED: 'UNTYPED',
+  STRICT: 'STRICT',
+  FLEXIBLE: 'FLEXIBLE'
+} as const
+
+export type PracticeTimingMode = (typeof PracticeTimingMode)[keyof typeof PracticeTimingMode]
+
+
+export const FoundationStatus = {
+  NOT_STARTED: 'NOT_STARTED',
+  TRAINING: 'TRAINING',
+  PASSED: 'PASSED'
+} as const
+
+export type FoundationStatus = (typeof FoundationStatus)[keyof typeof FoundationStatus]
+
+
 export const MembershipStatus = {
   ACTIVE: 'ACTIVE',
   EXPIRED: 'EXPIRED',

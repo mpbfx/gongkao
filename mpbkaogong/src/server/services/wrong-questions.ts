@@ -233,6 +233,7 @@ export async function createWrongQuestionPracticeSession(
     title: `错题练习：${tagName}`,
     questions: selectedWrongQuestions.map((wrongQuestion) => wrongQuestion.question),
     sourceTagIdsJson: input.tagId ? [{ tagId: input.tagId, num: requestedCount }] : undefined,
+    purpose: "WRONG_REVIEW",
   });
 }
 

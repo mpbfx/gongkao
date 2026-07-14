@@ -221,7 +221,7 @@ export type ImportJobGroupByArgs<ExtArgs extends runtime.Types.Extensions.Intern
 
 export type ImportJobGroupByOutputType = {
   id: string
-  userId: string
+  userId: string | null
   type: string
   filename: string
   status: string
@@ -258,7 +258,7 @@ export type ImportJobWhereInput = {
   OR?: Prisma.ImportJobWhereInput[]
   NOT?: Prisma.ImportJobWhereInput | Prisma.ImportJobWhereInput[]
   id?: Prisma.StringFilter<"ImportJob"> | string
-  userId?: Prisma.StringFilter<"ImportJob"> | string
+  userId?: Prisma.StringNullableFilter<"ImportJob"> | string | null
   type?: Prisma.StringFilter<"ImportJob"> | string
   filename?: Prisma.StringFilter<"ImportJob"> | string
   status?: Prisma.StringFilter<"ImportJob"> | string
@@ -268,12 +268,12 @@ export type ImportJobWhereInput = {
   errorJson?: Prisma.JsonNullableFilter<"ImportJob">
   createdAt?: Prisma.DateTimeFilter<"ImportJob"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ImportJob"> | Date | string
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
 }
 
 export type ImportJobOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
+  userId?: Prisma.SortOrderInput | Prisma.SortOrder
   type?: Prisma.SortOrder
   filename?: Prisma.SortOrder
   status?: Prisma.SortOrder
@@ -292,7 +292,7 @@ export type ImportJobWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.ImportJobWhereInput | Prisma.ImportJobWhereInput[]
   OR?: Prisma.ImportJobWhereInput[]
   NOT?: Prisma.ImportJobWhereInput | Prisma.ImportJobWhereInput[]
-  userId?: Prisma.StringFilter<"ImportJob"> | string
+  userId?: Prisma.StringNullableFilter<"ImportJob"> | string | null
   type?: Prisma.StringFilter<"ImportJob"> | string
   filename?: Prisma.StringFilter<"ImportJob"> | string
   status?: Prisma.StringFilter<"ImportJob"> | string
@@ -302,12 +302,12 @@ export type ImportJobWhereUniqueInput = Prisma.AtLeast<{
   errorJson?: Prisma.JsonNullableFilter<"ImportJob">
   createdAt?: Prisma.DateTimeFilter<"ImportJob"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ImportJob"> | Date | string
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
 }, "id">
 
 export type ImportJobOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
+  userId?: Prisma.SortOrderInput | Prisma.SortOrder
   type?: Prisma.SortOrder
   filename?: Prisma.SortOrder
   status?: Prisma.SortOrder
@@ -329,7 +329,7 @@ export type ImportJobScalarWhereWithAggregatesInput = {
   OR?: Prisma.ImportJobScalarWhereWithAggregatesInput[]
   NOT?: Prisma.ImportJobScalarWhereWithAggregatesInput | Prisma.ImportJobScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"ImportJob"> | string
-  userId?: Prisma.StringWithAggregatesFilter<"ImportJob"> | string
+  userId?: Prisma.StringNullableWithAggregatesFilter<"ImportJob"> | string | null
   type?: Prisma.StringWithAggregatesFilter<"ImportJob"> | string
   filename?: Prisma.StringWithAggregatesFilter<"ImportJob"> | string
   status?: Prisma.StringWithAggregatesFilter<"ImportJob"> | string
@@ -352,12 +352,12 @@ export type ImportJobCreateInput = {
   errorJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutImportJobsInput
+  user?: Prisma.UserCreateNestedOneWithoutImportJobsInput
 }
 
 export type ImportJobUncheckedCreateInput = {
   id?: string
-  userId: string
+  userId?: string | null
   type: string
   filename: string
   status: string
@@ -380,12 +380,12 @@ export type ImportJobUpdateInput = {
   errorJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutImportJobsNestedInput
+  user?: Prisma.UserUpdateOneWithoutImportJobsNestedInput
 }
 
 export type ImportJobUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.StringFieldUpdateOperationsInput | string
   filename?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
@@ -399,7 +399,7 @@ export type ImportJobUncheckedUpdateInput = {
 
 export type ImportJobCreateManyInput = {
   id?: string
-  userId: string
+  userId?: string | null
   type: string
   filename: string
   status: string
@@ -426,7 +426,7 @@ export type ImportJobUpdateManyMutationInput = {
 
 export type ImportJobUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   type?: Prisma.StringFieldUpdateOperationsInput | string
   filename?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
@@ -605,7 +605,7 @@ export type ImportJobScalarWhereInput = {
   OR?: Prisma.ImportJobScalarWhereInput[]
   NOT?: Prisma.ImportJobScalarWhereInput | Prisma.ImportJobScalarWhereInput[]
   id?: Prisma.StringFilter<"ImportJob"> | string
-  userId?: Prisma.StringFilter<"ImportJob"> | string
+  userId?: Prisma.StringNullableFilter<"ImportJob"> | string | null
   type?: Prisma.StringFilter<"ImportJob"> | string
   filename?: Prisma.StringFilter<"ImportJob"> | string
   status?: Prisma.StringFilter<"ImportJob"> | string
@@ -683,7 +683,7 @@ export type ImportJobSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   errorJson?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.ImportJob$userArgs<ExtArgs>
 }, ExtArgs["result"]["importJob"]>
 
 
@@ -704,17 +704,17 @@ export type ImportJobSelectScalar = {
 
 export type ImportJobOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "type" | "filename" | "status" | "totalRows" | "successRows" | "failedRows" | "errorJson" | "createdAt" | "updatedAt", ExtArgs["result"]["importJob"]>
 export type ImportJobInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.ImportJob$userArgs<ExtArgs>
 }
 
 export type $ImportJobPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "ImportJob"
   objects: {
-    user: Prisma.$UserPayload<ExtArgs>
+    user: Prisma.$UserPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    userId: string
+    userId: string | null
     type: string
     filename: string
     status: string
@@ -1064,7 +1064,7 @@ readonly fields: ImportJobFieldRefs;
  */
 export interface Prisma__ImportJobClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  user<T extends Prisma.ImportJob$userArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ImportJob$userArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1450,6 +1450,25 @@ export type ImportJobDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Int
    * Limit how many ImportJobs to delete.
    */
   limit?: number
+}
+
+/**
+ * ImportJob.user
+ */
+export type ImportJob$userArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the User
+   */
+  select?: Prisma.UserSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the User
+   */
+  omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  where?: Prisma.UserWhereInput
 }
 
 /**

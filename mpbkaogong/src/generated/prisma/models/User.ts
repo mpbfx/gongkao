@@ -227,6 +227,9 @@ export type UserWhereInput = {
   mistakeReviews?: Prisma.QuestionMistakeReviewListRelationFilter
   agentFeedback?: Prisma.AgentFeedbackListRelationFilter
   importJobs?: Prisma.ImportJobListRelationFilter
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionListRelationFilter
+  examGoal?: Prisma.XOR<Prisma.UserExamGoalNullableScalarRelationFilter, Prisma.UserExamGoalWhereInput> | null
+  practiceEvents?: Prisma.PracticeEventListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -252,6 +255,9 @@ export type UserOrderByWithRelationInput = {
   mistakeReviews?: Prisma.QuestionMistakeReviewOrderByRelationAggregateInput
   agentFeedback?: Prisma.AgentFeedbackOrderByRelationAggregateInput
   importJobs?: Prisma.ImportJobOrderByRelationAggregateInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionOrderByRelationAggregateInput
+  examGoal?: Prisma.UserExamGoalOrderByWithRelationInput
+  practiceEvents?: Prisma.PracticeEventOrderByRelationAggregateInput
   _relevance?: Prisma.UserOrderByRelevanceInput
 }
 
@@ -281,6 +287,9 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   mistakeReviews?: Prisma.QuestionMistakeReviewListRelationFilter
   agentFeedback?: Prisma.AgentFeedbackListRelationFilter
   importJobs?: Prisma.ImportJobListRelationFilter
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionListRelationFilter
+  examGoal?: Prisma.XOR<Prisma.UserExamGoalNullableScalarRelationFilter, Prisma.UserExamGoalWhereInput> | null
+  practiceEvents?: Prisma.PracticeEventListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -336,6 +345,9 @@ export type UserCreateInput = {
   mistakeReviews?: Prisma.QuestionMistakeReviewCreateNestedManyWithoutUserInput
   agentFeedback?: Prisma.AgentFeedbackCreateNestedManyWithoutUserInput
   importJobs?: Prisma.ImportJobCreateNestedManyWithoutUserInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionCreateNestedManyWithoutUserInput
+  examGoal?: Prisma.UserExamGoalCreateNestedOneWithoutUserInput
+  practiceEvents?: Prisma.PracticeEventCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -361,6 +373,9 @@ export type UserUncheckedCreateInput = {
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedCreateNestedManyWithoutUserInput
   agentFeedback?: Prisma.AgentFeedbackUncheckedCreateNestedManyWithoutUserInput
   importJobs?: Prisma.ImportJobUncheckedCreateNestedManyWithoutUserInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionUncheckedCreateNestedManyWithoutUserInput
+  examGoal?: Prisma.UserExamGoalUncheckedCreateNestedOneWithoutUserInput
+  practiceEvents?: Prisma.PracticeEventUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -386,6 +401,9 @@ export type UserUpdateInput = {
   mistakeReviews?: Prisma.QuestionMistakeReviewUpdateManyWithoutUserNestedInput
   agentFeedback?: Prisma.AgentFeedbackUpdateManyWithoutUserNestedInput
   importJobs?: Prisma.ImportJobUpdateManyWithoutUserNestedInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionUpdateManyWithoutUserNestedInput
+  examGoal?: Prisma.UserExamGoalUpdateOneWithoutUserNestedInput
+  practiceEvents?: Prisma.PracticeEventUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -411,6 +429,9 @@ export type UserUncheckedUpdateInput = {
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedUpdateManyWithoutUserNestedInput
   agentFeedback?: Prisma.AgentFeedbackUncheckedUpdateManyWithoutUserNestedInput
   importJobs?: Prisma.ImportJobUncheckedUpdateManyWithoutUserNestedInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionUncheckedUpdateManyWithoutUserNestedInput
+  examGoal?: Prisma.UserExamGoalUncheckedUpdateOneWithoutUserNestedInput
+  practiceEvents?: Prisma.PracticeEventUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -494,6 +515,11 @@ export type UserMinOrderByAggregateInput = {
 export type UserScalarRelationFilter = {
   is?: Prisma.UserWhereInput
   isNot?: Prisma.UserWhereInput
+}
+
+export type UserNullableScalarRelationFilter = {
+  is?: Prisma.UserWhereInput | null
+  isNot?: Prisma.UserWhereInput | null
 }
 
 export type StringFieldUpdateOperationsInput = {
@@ -586,6 +612,20 @@ export type UserUpdateOneRequiredWithoutPracticeAnswersNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPracticeAnswersInput, Prisma.UserUpdateWithoutPracticeAnswersInput>, Prisma.UserUncheckedUpdateWithoutPracticeAnswersInput>
 }
 
+export type UserCreateNestedOneWithoutPracticeEventsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPracticeEventsInput, Prisma.UserUncheckedCreateWithoutPracticeEventsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPracticeEventsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutPracticeEventsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPracticeEventsInput, Prisma.UserUncheckedCreateWithoutPracticeEventsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPracticeEventsInput
+  upsert?: Prisma.UserUpsertWithoutPracticeEventsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPracticeEventsInput, Prisma.UserUpdateWithoutPracticeEventsInput>, Prisma.UserUncheckedUpdateWithoutPracticeEventsInput>
+}
+
 export type UserCreateNestedOneWithoutWrongQuestionsInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutWrongQuestionsInput, Prisma.UserUncheckedCreateWithoutWrongQuestionsInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutWrongQuestionsInput
@@ -626,6 +666,20 @@ export type UserUpdateOneRequiredWithoutTagStatsNestedInput = {
   upsert?: Prisma.UserUpsertWithoutTagStatsInput
   connect?: Prisma.UserWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTagStatsInput, Prisma.UserUpdateWithoutTagStatsInput>, Prisma.UserUncheckedUpdateWithoutTagStatsInput>
+}
+
+export type UserCreateNestedOneWithoutExamGoalInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutExamGoalInput, Prisma.UserUncheckedCreateWithoutExamGoalInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutExamGoalInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutExamGoalNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutExamGoalInput, Prisma.UserUncheckedCreateWithoutExamGoalInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutExamGoalInput
+  upsert?: Prisma.UserUpsertWithoutExamGoalInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutExamGoalInput, Prisma.UserUpdateWithoutExamGoalInput>, Prisma.UserUncheckedUpdateWithoutExamGoalInput>
 }
 
 export type UserCreateNestedOneWithoutAgentRecommendationsInput = {
@@ -690,12 +744,28 @@ export type UserCreateNestedOneWithoutImportJobsInput = {
   connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUpdateOneRequiredWithoutImportJobsNestedInput = {
+export type UserUpdateOneWithoutImportJobsNestedInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutImportJobsInput, Prisma.UserUncheckedCreateWithoutImportJobsInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutImportJobsInput
   upsert?: Prisma.UserUpsertWithoutImportJobsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
   connect?: Prisma.UserWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutImportJobsInput, Prisma.UserUpdateWithoutImportJobsInput>, Prisma.UserUncheckedUpdateWithoutImportJobsInput>
+}
+
+export type UserCreateNestedOneWithoutKnowledgeChatSessionsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutKnowledgeChatSessionsInput, Prisma.UserUncheckedCreateWithoutKnowledgeChatSessionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutKnowledgeChatSessionsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutKnowledgeChatSessionsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutKnowledgeChatSessionsInput, Prisma.UserUncheckedCreateWithoutKnowledgeChatSessionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutKnowledgeChatSessionsInput
+  upsert?: Prisma.UserUpsertWithoutKnowledgeChatSessionsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutKnowledgeChatSessionsInput, Prisma.UserUpdateWithoutKnowledgeChatSessionsInput>, Prisma.UserUncheckedUpdateWithoutKnowledgeChatSessionsInput>
 }
 
 export type UserCreateWithoutAccountsInput = {
@@ -720,6 +790,9 @@ export type UserCreateWithoutAccountsInput = {
   mistakeReviews?: Prisma.QuestionMistakeReviewCreateNestedManyWithoutUserInput
   agentFeedback?: Prisma.AgentFeedbackCreateNestedManyWithoutUserInput
   importJobs?: Prisma.ImportJobCreateNestedManyWithoutUserInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionCreateNestedManyWithoutUserInput
+  examGoal?: Prisma.UserExamGoalCreateNestedOneWithoutUserInput
+  practiceEvents?: Prisma.PracticeEventCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAccountsInput = {
@@ -744,6 +817,9 @@ export type UserUncheckedCreateWithoutAccountsInput = {
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedCreateNestedManyWithoutUserInput
   agentFeedback?: Prisma.AgentFeedbackUncheckedCreateNestedManyWithoutUserInput
   importJobs?: Prisma.ImportJobUncheckedCreateNestedManyWithoutUserInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionUncheckedCreateNestedManyWithoutUserInput
+  examGoal?: Prisma.UserExamGoalUncheckedCreateNestedOneWithoutUserInput
+  practiceEvents?: Prisma.PracticeEventUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAccountsInput = {
@@ -784,6 +860,9 @@ export type UserUpdateWithoutAccountsInput = {
   mistakeReviews?: Prisma.QuestionMistakeReviewUpdateManyWithoutUserNestedInput
   agentFeedback?: Prisma.AgentFeedbackUpdateManyWithoutUserNestedInput
   importJobs?: Prisma.ImportJobUpdateManyWithoutUserNestedInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionUpdateManyWithoutUserNestedInput
+  examGoal?: Prisma.UserExamGoalUpdateOneWithoutUserNestedInput
+  practiceEvents?: Prisma.PracticeEventUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -808,6 +887,9 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedUpdateManyWithoutUserNestedInput
   agentFeedback?: Prisma.AgentFeedbackUncheckedUpdateManyWithoutUserNestedInput
   importJobs?: Prisma.ImportJobUncheckedUpdateManyWithoutUserNestedInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionUncheckedUpdateManyWithoutUserNestedInput
+  examGoal?: Prisma.UserExamGoalUncheckedUpdateOneWithoutUserNestedInput
+  practiceEvents?: Prisma.PracticeEventUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutSessionsInput = {
@@ -832,6 +914,9 @@ export type UserCreateWithoutSessionsInput = {
   mistakeReviews?: Prisma.QuestionMistakeReviewCreateNestedManyWithoutUserInput
   agentFeedback?: Prisma.AgentFeedbackCreateNestedManyWithoutUserInput
   importJobs?: Prisma.ImportJobCreateNestedManyWithoutUserInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionCreateNestedManyWithoutUserInput
+  examGoal?: Prisma.UserExamGoalCreateNestedOneWithoutUserInput
+  practiceEvents?: Prisma.PracticeEventCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSessionsInput = {
@@ -856,6 +941,9 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedCreateNestedManyWithoutUserInput
   agentFeedback?: Prisma.AgentFeedbackUncheckedCreateNestedManyWithoutUserInput
   importJobs?: Prisma.ImportJobUncheckedCreateNestedManyWithoutUserInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionUncheckedCreateNestedManyWithoutUserInput
+  examGoal?: Prisma.UserExamGoalUncheckedCreateNestedOneWithoutUserInput
+  practiceEvents?: Prisma.PracticeEventUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSessionsInput = {
@@ -896,6 +984,9 @@ export type UserUpdateWithoutSessionsInput = {
   mistakeReviews?: Prisma.QuestionMistakeReviewUpdateManyWithoutUserNestedInput
   agentFeedback?: Prisma.AgentFeedbackUpdateManyWithoutUserNestedInput
   importJobs?: Prisma.ImportJobUpdateManyWithoutUserNestedInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionUpdateManyWithoutUserNestedInput
+  examGoal?: Prisma.UserExamGoalUpdateOneWithoutUserNestedInput
+  practiceEvents?: Prisma.PracticeEventUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -920,6 +1011,9 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedUpdateManyWithoutUserNestedInput
   agentFeedback?: Prisma.AgentFeedbackUncheckedUpdateManyWithoutUserNestedInput
   importJobs?: Prisma.ImportJobUncheckedUpdateManyWithoutUserNestedInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionUncheckedUpdateManyWithoutUserNestedInput
+  examGoal?: Prisma.UserExamGoalUncheckedUpdateOneWithoutUserNestedInput
+  practiceEvents?: Prisma.PracticeEventUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutMembershipsInput = {
@@ -944,6 +1038,9 @@ export type UserCreateWithoutMembershipsInput = {
   mistakeReviews?: Prisma.QuestionMistakeReviewCreateNestedManyWithoutUserInput
   agentFeedback?: Prisma.AgentFeedbackCreateNestedManyWithoutUserInput
   importJobs?: Prisma.ImportJobCreateNestedManyWithoutUserInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionCreateNestedManyWithoutUserInput
+  examGoal?: Prisma.UserExamGoalCreateNestedOneWithoutUserInput
+  practiceEvents?: Prisma.PracticeEventCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutMembershipsInput = {
@@ -968,6 +1065,9 @@ export type UserUncheckedCreateWithoutMembershipsInput = {
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedCreateNestedManyWithoutUserInput
   agentFeedback?: Prisma.AgentFeedbackUncheckedCreateNestedManyWithoutUserInput
   importJobs?: Prisma.ImportJobUncheckedCreateNestedManyWithoutUserInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionUncheckedCreateNestedManyWithoutUserInput
+  examGoal?: Prisma.UserExamGoalUncheckedCreateNestedOneWithoutUserInput
+  practiceEvents?: Prisma.PracticeEventUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutMembershipsInput = {
@@ -1008,6 +1108,9 @@ export type UserUpdateWithoutMembershipsInput = {
   mistakeReviews?: Prisma.QuestionMistakeReviewUpdateManyWithoutUserNestedInput
   agentFeedback?: Prisma.AgentFeedbackUpdateManyWithoutUserNestedInput
   importJobs?: Prisma.ImportJobUpdateManyWithoutUserNestedInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionUpdateManyWithoutUserNestedInput
+  examGoal?: Prisma.UserExamGoalUpdateOneWithoutUserNestedInput
+  practiceEvents?: Prisma.PracticeEventUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutMembershipsInput = {
@@ -1032,6 +1135,9 @@ export type UserUncheckedUpdateWithoutMembershipsInput = {
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedUpdateManyWithoutUserNestedInput
   agentFeedback?: Prisma.AgentFeedbackUncheckedUpdateManyWithoutUserNestedInput
   importJobs?: Prisma.ImportJobUncheckedUpdateManyWithoutUserNestedInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionUncheckedUpdateManyWithoutUserNestedInput
+  examGoal?: Prisma.UserExamGoalUncheckedUpdateOneWithoutUserNestedInput
+  practiceEvents?: Prisma.PracticeEventUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutPracticeSessionsInput = {
@@ -1056,6 +1162,9 @@ export type UserCreateWithoutPracticeSessionsInput = {
   mistakeReviews?: Prisma.QuestionMistakeReviewCreateNestedManyWithoutUserInput
   agentFeedback?: Prisma.AgentFeedbackCreateNestedManyWithoutUserInput
   importJobs?: Prisma.ImportJobCreateNestedManyWithoutUserInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionCreateNestedManyWithoutUserInput
+  examGoal?: Prisma.UserExamGoalCreateNestedOneWithoutUserInput
+  practiceEvents?: Prisma.PracticeEventCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutPracticeSessionsInput = {
@@ -1080,6 +1189,9 @@ export type UserUncheckedCreateWithoutPracticeSessionsInput = {
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedCreateNestedManyWithoutUserInput
   agentFeedback?: Prisma.AgentFeedbackUncheckedCreateNestedManyWithoutUserInput
   importJobs?: Prisma.ImportJobUncheckedCreateNestedManyWithoutUserInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionUncheckedCreateNestedManyWithoutUserInput
+  examGoal?: Prisma.UserExamGoalUncheckedCreateNestedOneWithoutUserInput
+  practiceEvents?: Prisma.PracticeEventUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutPracticeSessionsInput = {
@@ -1120,6 +1232,9 @@ export type UserUpdateWithoutPracticeSessionsInput = {
   mistakeReviews?: Prisma.QuestionMistakeReviewUpdateManyWithoutUserNestedInput
   agentFeedback?: Prisma.AgentFeedbackUpdateManyWithoutUserNestedInput
   importJobs?: Prisma.ImportJobUpdateManyWithoutUserNestedInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionUpdateManyWithoutUserNestedInput
+  examGoal?: Prisma.UserExamGoalUpdateOneWithoutUserNestedInput
+  practiceEvents?: Prisma.PracticeEventUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPracticeSessionsInput = {
@@ -1144,6 +1259,9 @@ export type UserUncheckedUpdateWithoutPracticeSessionsInput = {
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedUpdateManyWithoutUserNestedInput
   agentFeedback?: Prisma.AgentFeedbackUncheckedUpdateManyWithoutUserNestedInput
   importJobs?: Prisma.ImportJobUncheckedUpdateManyWithoutUserNestedInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionUncheckedUpdateManyWithoutUserNestedInput
+  examGoal?: Prisma.UserExamGoalUncheckedUpdateOneWithoutUserNestedInput
+  practiceEvents?: Prisma.PracticeEventUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutPracticeAnswersInput = {
@@ -1168,6 +1286,9 @@ export type UserCreateWithoutPracticeAnswersInput = {
   mistakeReviews?: Prisma.QuestionMistakeReviewCreateNestedManyWithoutUserInput
   agentFeedback?: Prisma.AgentFeedbackCreateNestedManyWithoutUserInput
   importJobs?: Prisma.ImportJobCreateNestedManyWithoutUserInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionCreateNestedManyWithoutUserInput
+  examGoal?: Prisma.UserExamGoalCreateNestedOneWithoutUserInput
+  practiceEvents?: Prisma.PracticeEventCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutPracticeAnswersInput = {
@@ -1192,6 +1313,9 @@ export type UserUncheckedCreateWithoutPracticeAnswersInput = {
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedCreateNestedManyWithoutUserInput
   agentFeedback?: Prisma.AgentFeedbackUncheckedCreateNestedManyWithoutUserInput
   importJobs?: Prisma.ImportJobUncheckedCreateNestedManyWithoutUserInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionUncheckedCreateNestedManyWithoutUserInput
+  examGoal?: Prisma.UserExamGoalUncheckedCreateNestedOneWithoutUserInput
+  practiceEvents?: Prisma.PracticeEventUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutPracticeAnswersInput = {
@@ -1232,6 +1356,9 @@ export type UserUpdateWithoutPracticeAnswersInput = {
   mistakeReviews?: Prisma.QuestionMistakeReviewUpdateManyWithoutUserNestedInput
   agentFeedback?: Prisma.AgentFeedbackUpdateManyWithoutUserNestedInput
   importJobs?: Prisma.ImportJobUpdateManyWithoutUserNestedInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionUpdateManyWithoutUserNestedInput
+  examGoal?: Prisma.UserExamGoalUpdateOneWithoutUserNestedInput
+  practiceEvents?: Prisma.PracticeEventUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPracticeAnswersInput = {
@@ -1256,6 +1383,133 @@ export type UserUncheckedUpdateWithoutPracticeAnswersInput = {
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedUpdateManyWithoutUserNestedInput
   agentFeedback?: Prisma.AgentFeedbackUncheckedUpdateManyWithoutUserNestedInput
   importJobs?: Prisma.ImportJobUncheckedUpdateManyWithoutUserNestedInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionUncheckedUpdateManyWithoutUserNestedInput
+  examGoal?: Prisma.UserExamGoalUncheckedUpdateOneWithoutUserNestedInput
+  practiceEvents?: Prisma.PracticeEventUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutPracticeEventsInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  passwordHash?: string | null
+  role?: $Enums.UserRole
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  memberships?: Prisma.MembershipCreateNestedManyWithoutUserInput
+  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput
+  practiceAnswers?: Prisma.PracticeAnswerCreateNestedManyWithoutUserInput
+  wrongQuestions?: Prisma.WrongQuestionCreateNestedManyWithoutUserInput
+  statsSnapshots?: Prisma.UserStatsSnapshotCreateNestedManyWithoutUserInput
+  tagStats?: Prisma.UserTagStatsCreateNestedManyWithoutUserInput
+  agentRecommendations?: Prisma.AgentRecommendationCreateNestedManyWithoutUserInput
+  agentTutorMessages?: Prisma.AgentTutorMessageCreateNestedManyWithoutUserInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewCreateNestedManyWithoutUserInput
+  agentFeedback?: Prisma.AgentFeedbackCreateNestedManyWithoutUserInput
+  importJobs?: Prisma.ImportJobCreateNestedManyWithoutUserInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionCreateNestedManyWithoutUserInput
+  examGoal?: Prisma.UserExamGoalCreateNestedOneWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutPracticeEventsInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  passwordHash?: string | null
+  role?: $Enums.UserRole
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutUserInput
+  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput
+  practiceAnswers?: Prisma.PracticeAnswerUncheckedCreateNestedManyWithoutUserInput
+  wrongQuestions?: Prisma.WrongQuestionUncheckedCreateNestedManyWithoutUserInput
+  statsSnapshots?: Prisma.UserStatsSnapshotUncheckedCreateNestedManyWithoutUserInput
+  tagStats?: Prisma.UserTagStatsUncheckedCreateNestedManyWithoutUserInput
+  agentRecommendations?: Prisma.AgentRecommendationUncheckedCreateNestedManyWithoutUserInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUncheckedCreateNestedManyWithoutUserInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedCreateNestedManyWithoutUserInput
+  agentFeedback?: Prisma.AgentFeedbackUncheckedCreateNestedManyWithoutUserInput
+  importJobs?: Prisma.ImportJobUncheckedCreateNestedManyWithoutUserInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionUncheckedCreateNestedManyWithoutUserInput
+  examGoal?: Prisma.UserExamGoalUncheckedCreateNestedOneWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutPracticeEventsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutPracticeEventsInput, Prisma.UserUncheckedCreateWithoutPracticeEventsInput>
+}
+
+export type UserUpsertWithoutPracticeEventsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutPracticeEventsInput, Prisma.UserUncheckedUpdateWithoutPracticeEventsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutPracticeEventsInput, Prisma.UserUncheckedCreateWithoutPracticeEventsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutPracticeEventsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutPracticeEventsInput, Prisma.UserUncheckedUpdateWithoutPracticeEventsInput>
+}
+
+export type UserUpdateWithoutPracticeEventsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  memberships?: Prisma.MembershipUpdateManyWithoutUserNestedInput
+  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput
+  practiceAnswers?: Prisma.PracticeAnswerUpdateManyWithoutUserNestedInput
+  wrongQuestions?: Prisma.WrongQuestionUpdateManyWithoutUserNestedInput
+  statsSnapshots?: Prisma.UserStatsSnapshotUpdateManyWithoutUserNestedInput
+  tagStats?: Prisma.UserTagStatsUpdateManyWithoutUserNestedInput
+  agentRecommendations?: Prisma.AgentRecommendationUpdateManyWithoutUserNestedInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUpdateManyWithoutUserNestedInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewUpdateManyWithoutUserNestedInput
+  agentFeedback?: Prisma.AgentFeedbackUpdateManyWithoutUserNestedInput
+  importJobs?: Prisma.ImportJobUpdateManyWithoutUserNestedInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionUpdateManyWithoutUserNestedInput
+  examGoal?: Prisma.UserExamGoalUpdateOneWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutPracticeEventsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutUserNestedInput
+  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput
+  practiceAnswers?: Prisma.PracticeAnswerUncheckedUpdateManyWithoutUserNestedInput
+  wrongQuestions?: Prisma.WrongQuestionUncheckedUpdateManyWithoutUserNestedInput
+  statsSnapshots?: Prisma.UserStatsSnapshotUncheckedUpdateManyWithoutUserNestedInput
+  tagStats?: Prisma.UserTagStatsUncheckedUpdateManyWithoutUserNestedInput
+  agentRecommendations?: Prisma.AgentRecommendationUncheckedUpdateManyWithoutUserNestedInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUncheckedUpdateManyWithoutUserNestedInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedUpdateManyWithoutUserNestedInput
+  agentFeedback?: Prisma.AgentFeedbackUncheckedUpdateManyWithoutUserNestedInput
+  importJobs?: Prisma.ImportJobUncheckedUpdateManyWithoutUserNestedInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionUncheckedUpdateManyWithoutUserNestedInput
+  examGoal?: Prisma.UserExamGoalUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type UserCreateWithoutWrongQuestionsInput = {
@@ -1280,6 +1534,9 @@ export type UserCreateWithoutWrongQuestionsInput = {
   mistakeReviews?: Prisma.QuestionMistakeReviewCreateNestedManyWithoutUserInput
   agentFeedback?: Prisma.AgentFeedbackCreateNestedManyWithoutUserInput
   importJobs?: Prisma.ImportJobCreateNestedManyWithoutUserInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionCreateNestedManyWithoutUserInput
+  examGoal?: Prisma.UserExamGoalCreateNestedOneWithoutUserInput
+  practiceEvents?: Prisma.PracticeEventCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutWrongQuestionsInput = {
@@ -1304,6 +1561,9 @@ export type UserUncheckedCreateWithoutWrongQuestionsInput = {
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedCreateNestedManyWithoutUserInput
   agentFeedback?: Prisma.AgentFeedbackUncheckedCreateNestedManyWithoutUserInput
   importJobs?: Prisma.ImportJobUncheckedCreateNestedManyWithoutUserInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionUncheckedCreateNestedManyWithoutUserInput
+  examGoal?: Prisma.UserExamGoalUncheckedCreateNestedOneWithoutUserInput
+  practiceEvents?: Prisma.PracticeEventUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutWrongQuestionsInput = {
@@ -1344,6 +1604,9 @@ export type UserUpdateWithoutWrongQuestionsInput = {
   mistakeReviews?: Prisma.QuestionMistakeReviewUpdateManyWithoutUserNestedInput
   agentFeedback?: Prisma.AgentFeedbackUpdateManyWithoutUserNestedInput
   importJobs?: Prisma.ImportJobUpdateManyWithoutUserNestedInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionUpdateManyWithoutUserNestedInput
+  examGoal?: Prisma.UserExamGoalUpdateOneWithoutUserNestedInput
+  practiceEvents?: Prisma.PracticeEventUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutWrongQuestionsInput = {
@@ -1368,6 +1631,9 @@ export type UserUncheckedUpdateWithoutWrongQuestionsInput = {
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedUpdateManyWithoutUserNestedInput
   agentFeedback?: Prisma.AgentFeedbackUncheckedUpdateManyWithoutUserNestedInput
   importJobs?: Prisma.ImportJobUncheckedUpdateManyWithoutUserNestedInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionUncheckedUpdateManyWithoutUserNestedInput
+  examGoal?: Prisma.UserExamGoalUncheckedUpdateOneWithoutUserNestedInput
+  practiceEvents?: Prisma.PracticeEventUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutStatsSnapshotsInput = {
@@ -1392,6 +1658,9 @@ export type UserCreateWithoutStatsSnapshotsInput = {
   mistakeReviews?: Prisma.QuestionMistakeReviewCreateNestedManyWithoutUserInput
   agentFeedback?: Prisma.AgentFeedbackCreateNestedManyWithoutUserInput
   importJobs?: Prisma.ImportJobCreateNestedManyWithoutUserInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionCreateNestedManyWithoutUserInput
+  examGoal?: Prisma.UserExamGoalCreateNestedOneWithoutUserInput
+  practiceEvents?: Prisma.PracticeEventCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutStatsSnapshotsInput = {
@@ -1416,6 +1685,9 @@ export type UserUncheckedCreateWithoutStatsSnapshotsInput = {
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedCreateNestedManyWithoutUserInput
   agentFeedback?: Prisma.AgentFeedbackUncheckedCreateNestedManyWithoutUserInput
   importJobs?: Prisma.ImportJobUncheckedCreateNestedManyWithoutUserInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionUncheckedCreateNestedManyWithoutUserInput
+  examGoal?: Prisma.UserExamGoalUncheckedCreateNestedOneWithoutUserInput
+  practiceEvents?: Prisma.PracticeEventUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutStatsSnapshotsInput = {
@@ -1456,6 +1728,9 @@ export type UserUpdateWithoutStatsSnapshotsInput = {
   mistakeReviews?: Prisma.QuestionMistakeReviewUpdateManyWithoutUserNestedInput
   agentFeedback?: Prisma.AgentFeedbackUpdateManyWithoutUserNestedInput
   importJobs?: Prisma.ImportJobUpdateManyWithoutUserNestedInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionUpdateManyWithoutUserNestedInput
+  examGoal?: Prisma.UserExamGoalUpdateOneWithoutUserNestedInput
+  practiceEvents?: Prisma.PracticeEventUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutStatsSnapshotsInput = {
@@ -1480,6 +1755,9 @@ export type UserUncheckedUpdateWithoutStatsSnapshotsInput = {
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedUpdateManyWithoutUserNestedInput
   agentFeedback?: Prisma.AgentFeedbackUncheckedUpdateManyWithoutUserNestedInput
   importJobs?: Prisma.ImportJobUncheckedUpdateManyWithoutUserNestedInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionUncheckedUpdateManyWithoutUserNestedInput
+  examGoal?: Prisma.UserExamGoalUncheckedUpdateOneWithoutUserNestedInput
+  practiceEvents?: Prisma.PracticeEventUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutTagStatsInput = {
@@ -1504,6 +1782,9 @@ export type UserCreateWithoutTagStatsInput = {
   mistakeReviews?: Prisma.QuestionMistakeReviewCreateNestedManyWithoutUserInput
   agentFeedback?: Prisma.AgentFeedbackCreateNestedManyWithoutUserInput
   importJobs?: Prisma.ImportJobCreateNestedManyWithoutUserInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionCreateNestedManyWithoutUserInput
+  examGoal?: Prisma.UserExamGoalCreateNestedOneWithoutUserInput
+  practiceEvents?: Prisma.PracticeEventCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutTagStatsInput = {
@@ -1528,6 +1809,9 @@ export type UserUncheckedCreateWithoutTagStatsInput = {
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedCreateNestedManyWithoutUserInput
   agentFeedback?: Prisma.AgentFeedbackUncheckedCreateNestedManyWithoutUserInput
   importJobs?: Prisma.ImportJobUncheckedCreateNestedManyWithoutUserInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionUncheckedCreateNestedManyWithoutUserInput
+  examGoal?: Prisma.UserExamGoalUncheckedCreateNestedOneWithoutUserInput
+  practiceEvents?: Prisma.PracticeEventUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutTagStatsInput = {
@@ -1568,6 +1852,9 @@ export type UserUpdateWithoutTagStatsInput = {
   mistakeReviews?: Prisma.QuestionMistakeReviewUpdateManyWithoutUserNestedInput
   agentFeedback?: Prisma.AgentFeedbackUpdateManyWithoutUserNestedInput
   importJobs?: Prisma.ImportJobUpdateManyWithoutUserNestedInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionUpdateManyWithoutUserNestedInput
+  examGoal?: Prisma.UserExamGoalUpdateOneWithoutUserNestedInput
+  practiceEvents?: Prisma.PracticeEventUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTagStatsInput = {
@@ -1592,6 +1879,133 @@ export type UserUncheckedUpdateWithoutTagStatsInput = {
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedUpdateManyWithoutUserNestedInput
   agentFeedback?: Prisma.AgentFeedbackUncheckedUpdateManyWithoutUserNestedInput
   importJobs?: Prisma.ImportJobUncheckedUpdateManyWithoutUserNestedInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionUncheckedUpdateManyWithoutUserNestedInput
+  examGoal?: Prisma.UserExamGoalUncheckedUpdateOneWithoutUserNestedInput
+  practiceEvents?: Prisma.PracticeEventUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutExamGoalInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  passwordHash?: string | null
+  role?: $Enums.UserRole
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  memberships?: Prisma.MembershipCreateNestedManyWithoutUserInput
+  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput
+  practiceAnswers?: Prisma.PracticeAnswerCreateNestedManyWithoutUserInput
+  wrongQuestions?: Prisma.WrongQuestionCreateNestedManyWithoutUserInput
+  statsSnapshots?: Prisma.UserStatsSnapshotCreateNestedManyWithoutUserInput
+  tagStats?: Prisma.UserTagStatsCreateNestedManyWithoutUserInput
+  agentRecommendations?: Prisma.AgentRecommendationCreateNestedManyWithoutUserInput
+  agentTutorMessages?: Prisma.AgentTutorMessageCreateNestedManyWithoutUserInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewCreateNestedManyWithoutUserInput
+  agentFeedback?: Prisma.AgentFeedbackCreateNestedManyWithoutUserInput
+  importJobs?: Prisma.ImportJobCreateNestedManyWithoutUserInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionCreateNestedManyWithoutUserInput
+  practiceEvents?: Prisma.PracticeEventCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutExamGoalInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  passwordHash?: string | null
+  role?: $Enums.UserRole
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutUserInput
+  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput
+  practiceAnswers?: Prisma.PracticeAnswerUncheckedCreateNestedManyWithoutUserInput
+  wrongQuestions?: Prisma.WrongQuestionUncheckedCreateNestedManyWithoutUserInput
+  statsSnapshots?: Prisma.UserStatsSnapshotUncheckedCreateNestedManyWithoutUserInput
+  tagStats?: Prisma.UserTagStatsUncheckedCreateNestedManyWithoutUserInput
+  agentRecommendations?: Prisma.AgentRecommendationUncheckedCreateNestedManyWithoutUserInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUncheckedCreateNestedManyWithoutUserInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedCreateNestedManyWithoutUserInput
+  agentFeedback?: Prisma.AgentFeedbackUncheckedCreateNestedManyWithoutUserInput
+  importJobs?: Prisma.ImportJobUncheckedCreateNestedManyWithoutUserInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionUncheckedCreateNestedManyWithoutUserInput
+  practiceEvents?: Prisma.PracticeEventUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutExamGoalInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutExamGoalInput, Prisma.UserUncheckedCreateWithoutExamGoalInput>
+}
+
+export type UserUpsertWithoutExamGoalInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutExamGoalInput, Prisma.UserUncheckedUpdateWithoutExamGoalInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutExamGoalInput, Prisma.UserUncheckedCreateWithoutExamGoalInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutExamGoalInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutExamGoalInput, Prisma.UserUncheckedUpdateWithoutExamGoalInput>
+}
+
+export type UserUpdateWithoutExamGoalInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  memberships?: Prisma.MembershipUpdateManyWithoutUserNestedInput
+  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput
+  practiceAnswers?: Prisma.PracticeAnswerUpdateManyWithoutUserNestedInput
+  wrongQuestions?: Prisma.WrongQuestionUpdateManyWithoutUserNestedInput
+  statsSnapshots?: Prisma.UserStatsSnapshotUpdateManyWithoutUserNestedInput
+  tagStats?: Prisma.UserTagStatsUpdateManyWithoutUserNestedInput
+  agentRecommendations?: Prisma.AgentRecommendationUpdateManyWithoutUserNestedInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUpdateManyWithoutUserNestedInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewUpdateManyWithoutUserNestedInput
+  agentFeedback?: Prisma.AgentFeedbackUpdateManyWithoutUserNestedInput
+  importJobs?: Prisma.ImportJobUpdateManyWithoutUserNestedInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionUpdateManyWithoutUserNestedInput
+  practiceEvents?: Prisma.PracticeEventUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutExamGoalInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutUserNestedInput
+  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput
+  practiceAnswers?: Prisma.PracticeAnswerUncheckedUpdateManyWithoutUserNestedInput
+  wrongQuestions?: Prisma.WrongQuestionUncheckedUpdateManyWithoutUserNestedInput
+  statsSnapshots?: Prisma.UserStatsSnapshotUncheckedUpdateManyWithoutUserNestedInput
+  tagStats?: Prisma.UserTagStatsUncheckedUpdateManyWithoutUserNestedInput
+  agentRecommendations?: Prisma.AgentRecommendationUncheckedUpdateManyWithoutUserNestedInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUncheckedUpdateManyWithoutUserNestedInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedUpdateManyWithoutUserNestedInput
+  agentFeedback?: Prisma.AgentFeedbackUncheckedUpdateManyWithoutUserNestedInput
+  importJobs?: Prisma.ImportJobUncheckedUpdateManyWithoutUserNestedInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionUncheckedUpdateManyWithoutUserNestedInput
+  practiceEvents?: Prisma.PracticeEventUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutAgentRecommendationsInput = {
@@ -1616,6 +2030,9 @@ export type UserCreateWithoutAgentRecommendationsInput = {
   mistakeReviews?: Prisma.QuestionMistakeReviewCreateNestedManyWithoutUserInput
   agentFeedback?: Prisma.AgentFeedbackCreateNestedManyWithoutUserInput
   importJobs?: Prisma.ImportJobCreateNestedManyWithoutUserInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionCreateNestedManyWithoutUserInput
+  examGoal?: Prisma.UserExamGoalCreateNestedOneWithoutUserInput
+  practiceEvents?: Prisma.PracticeEventCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAgentRecommendationsInput = {
@@ -1640,6 +2057,9 @@ export type UserUncheckedCreateWithoutAgentRecommendationsInput = {
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedCreateNestedManyWithoutUserInput
   agentFeedback?: Prisma.AgentFeedbackUncheckedCreateNestedManyWithoutUserInput
   importJobs?: Prisma.ImportJobUncheckedCreateNestedManyWithoutUserInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionUncheckedCreateNestedManyWithoutUserInput
+  examGoal?: Prisma.UserExamGoalUncheckedCreateNestedOneWithoutUserInput
+  practiceEvents?: Prisma.PracticeEventUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAgentRecommendationsInput = {
@@ -1680,6 +2100,9 @@ export type UserUpdateWithoutAgentRecommendationsInput = {
   mistakeReviews?: Prisma.QuestionMistakeReviewUpdateManyWithoutUserNestedInput
   agentFeedback?: Prisma.AgentFeedbackUpdateManyWithoutUserNestedInput
   importJobs?: Prisma.ImportJobUpdateManyWithoutUserNestedInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionUpdateManyWithoutUserNestedInput
+  examGoal?: Prisma.UserExamGoalUpdateOneWithoutUserNestedInput
+  practiceEvents?: Prisma.PracticeEventUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAgentRecommendationsInput = {
@@ -1704,6 +2127,9 @@ export type UserUncheckedUpdateWithoutAgentRecommendationsInput = {
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedUpdateManyWithoutUserNestedInput
   agentFeedback?: Prisma.AgentFeedbackUncheckedUpdateManyWithoutUserNestedInput
   importJobs?: Prisma.ImportJobUncheckedUpdateManyWithoutUserNestedInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionUncheckedUpdateManyWithoutUserNestedInput
+  examGoal?: Prisma.UserExamGoalUncheckedUpdateOneWithoutUserNestedInput
+  practiceEvents?: Prisma.PracticeEventUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutAgentTutorMessagesInput = {
@@ -1728,6 +2154,9 @@ export type UserCreateWithoutAgentTutorMessagesInput = {
   mistakeReviews?: Prisma.QuestionMistakeReviewCreateNestedManyWithoutUserInput
   agentFeedback?: Prisma.AgentFeedbackCreateNestedManyWithoutUserInput
   importJobs?: Prisma.ImportJobCreateNestedManyWithoutUserInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionCreateNestedManyWithoutUserInput
+  examGoal?: Prisma.UserExamGoalCreateNestedOneWithoutUserInput
+  practiceEvents?: Prisma.PracticeEventCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAgentTutorMessagesInput = {
@@ -1752,6 +2181,9 @@ export type UserUncheckedCreateWithoutAgentTutorMessagesInput = {
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedCreateNestedManyWithoutUserInput
   agentFeedback?: Prisma.AgentFeedbackUncheckedCreateNestedManyWithoutUserInput
   importJobs?: Prisma.ImportJobUncheckedCreateNestedManyWithoutUserInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionUncheckedCreateNestedManyWithoutUserInput
+  examGoal?: Prisma.UserExamGoalUncheckedCreateNestedOneWithoutUserInput
+  practiceEvents?: Prisma.PracticeEventUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAgentTutorMessagesInput = {
@@ -1792,6 +2224,9 @@ export type UserUpdateWithoutAgentTutorMessagesInput = {
   mistakeReviews?: Prisma.QuestionMistakeReviewUpdateManyWithoutUserNestedInput
   agentFeedback?: Prisma.AgentFeedbackUpdateManyWithoutUserNestedInput
   importJobs?: Prisma.ImportJobUpdateManyWithoutUserNestedInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionUpdateManyWithoutUserNestedInput
+  examGoal?: Prisma.UserExamGoalUpdateOneWithoutUserNestedInput
+  practiceEvents?: Prisma.PracticeEventUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAgentTutorMessagesInput = {
@@ -1816,6 +2251,9 @@ export type UserUncheckedUpdateWithoutAgentTutorMessagesInput = {
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedUpdateManyWithoutUserNestedInput
   agentFeedback?: Prisma.AgentFeedbackUncheckedUpdateManyWithoutUserNestedInput
   importJobs?: Prisma.ImportJobUncheckedUpdateManyWithoutUserNestedInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionUncheckedUpdateManyWithoutUserNestedInput
+  examGoal?: Prisma.UserExamGoalUncheckedUpdateOneWithoutUserNestedInput
+  practiceEvents?: Prisma.PracticeEventUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutMistakeReviewsInput = {
@@ -1840,6 +2278,9 @@ export type UserCreateWithoutMistakeReviewsInput = {
   agentTutorMessages?: Prisma.AgentTutorMessageCreateNestedManyWithoutUserInput
   agentFeedback?: Prisma.AgentFeedbackCreateNestedManyWithoutUserInput
   importJobs?: Prisma.ImportJobCreateNestedManyWithoutUserInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionCreateNestedManyWithoutUserInput
+  examGoal?: Prisma.UserExamGoalCreateNestedOneWithoutUserInput
+  practiceEvents?: Prisma.PracticeEventCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutMistakeReviewsInput = {
@@ -1864,6 +2305,9 @@ export type UserUncheckedCreateWithoutMistakeReviewsInput = {
   agentTutorMessages?: Prisma.AgentTutorMessageUncheckedCreateNestedManyWithoutUserInput
   agentFeedback?: Prisma.AgentFeedbackUncheckedCreateNestedManyWithoutUserInput
   importJobs?: Prisma.ImportJobUncheckedCreateNestedManyWithoutUserInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionUncheckedCreateNestedManyWithoutUserInput
+  examGoal?: Prisma.UserExamGoalUncheckedCreateNestedOneWithoutUserInput
+  practiceEvents?: Prisma.PracticeEventUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutMistakeReviewsInput = {
@@ -1904,6 +2348,9 @@ export type UserUpdateWithoutMistakeReviewsInput = {
   agentTutorMessages?: Prisma.AgentTutorMessageUpdateManyWithoutUserNestedInput
   agentFeedback?: Prisma.AgentFeedbackUpdateManyWithoutUserNestedInput
   importJobs?: Prisma.ImportJobUpdateManyWithoutUserNestedInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionUpdateManyWithoutUserNestedInput
+  examGoal?: Prisma.UserExamGoalUpdateOneWithoutUserNestedInput
+  practiceEvents?: Prisma.PracticeEventUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutMistakeReviewsInput = {
@@ -1928,6 +2375,9 @@ export type UserUncheckedUpdateWithoutMistakeReviewsInput = {
   agentTutorMessages?: Prisma.AgentTutorMessageUncheckedUpdateManyWithoutUserNestedInput
   agentFeedback?: Prisma.AgentFeedbackUncheckedUpdateManyWithoutUserNestedInput
   importJobs?: Prisma.ImportJobUncheckedUpdateManyWithoutUserNestedInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionUncheckedUpdateManyWithoutUserNestedInput
+  examGoal?: Prisma.UserExamGoalUncheckedUpdateOneWithoutUserNestedInput
+  practiceEvents?: Prisma.PracticeEventUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutAgentFeedbackInput = {
@@ -1952,6 +2402,9 @@ export type UserCreateWithoutAgentFeedbackInput = {
   agentTutorMessages?: Prisma.AgentTutorMessageCreateNestedManyWithoutUserInput
   mistakeReviews?: Prisma.QuestionMistakeReviewCreateNestedManyWithoutUserInput
   importJobs?: Prisma.ImportJobCreateNestedManyWithoutUserInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionCreateNestedManyWithoutUserInput
+  examGoal?: Prisma.UserExamGoalCreateNestedOneWithoutUserInput
+  practiceEvents?: Prisma.PracticeEventCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAgentFeedbackInput = {
@@ -1976,6 +2429,9 @@ export type UserUncheckedCreateWithoutAgentFeedbackInput = {
   agentTutorMessages?: Prisma.AgentTutorMessageUncheckedCreateNestedManyWithoutUserInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedCreateNestedManyWithoutUserInput
   importJobs?: Prisma.ImportJobUncheckedCreateNestedManyWithoutUserInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionUncheckedCreateNestedManyWithoutUserInput
+  examGoal?: Prisma.UserExamGoalUncheckedCreateNestedOneWithoutUserInput
+  practiceEvents?: Prisma.PracticeEventUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAgentFeedbackInput = {
@@ -2016,6 +2472,9 @@ export type UserUpdateWithoutAgentFeedbackInput = {
   agentTutorMessages?: Prisma.AgentTutorMessageUpdateManyWithoutUserNestedInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUpdateManyWithoutUserNestedInput
   importJobs?: Prisma.ImportJobUpdateManyWithoutUserNestedInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionUpdateManyWithoutUserNestedInput
+  examGoal?: Prisma.UserExamGoalUpdateOneWithoutUserNestedInput
+  practiceEvents?: Prisma.PracticeEventUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAgentFeedbackInput = {
@@ -2040,6 +2499,9 @@ export type UserUncheckedUpdateWithoutAgentFeedbackInput = {
   agentTutorMessages?: Prisma.AgentTutorMessageUncheckedUpdateManyWithoutUserNestedInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedUpdateManyWithoutUserNestedInput
   importJobs?: Prisma.ImportJobUncheckedUpdateManyWithoutUserNestedInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionUncheckedUpdateManyWithoutUserNestedInput
+  examGoal?: Prisma.UserExamGoalUncheckedUpdateOneWithoutUserNestedInput
+  practiceEvents?: Prisma.PracticeEventUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutImportJobsInput = {
@@ -2064,6 +2526,9 @@ export type UserCreateWithoutImportJobsInput = {
   agentTutorMessages?: Prisma.AgentTutorMessageCreateNestedManyWithoutUserInput
   mistakeReviews?: Prisma.QuestionMistakeReviewCreateNestedManyWithoutUserInput
   agentFeedback?: Prisma.AgentFeedbackCreateNestedManyWithoutUserInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionCreateNestedManyWithoutUserInput
+  examGoal?: Prisma.UserExamGoalCreateNestedOneWithoutUserInput
+  practiceEvents?: Prisma.PracticeEventCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutImportJobsInput = {
@@ -2088,6 +2553,9 @@ export type UserUncheckedCreateWithoutImportJobsInput = {
   agentTutorMessages?: Prisma.AgentTutorMessageUncheckedCreateNestedManyWithoutUserInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedCreateNestedManyWithoutUserInput
   agentFeedback?: Prisma.AgentFeedbackUncheckedCreateNestedManyWithoutUserInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionUncheckedCreateNestedManyWithoutUserInput
+  examGoal?: Prisma.UserExamGoalUncheckedCreateNestedOneWithoutUserInput
+  practiceEvents?: Prisma.PracticeEventUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutImportJobsInput = {
@@ -2128,6 +2596,9 @@ export type UserUpdateWithoutImportJobsInput = {
   agentTutorMessages?: Prisma.AgentTutorMessageUpdateManyWithoutUserNestedInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUpdateManyWithoutUserNestedInput
   agentFeedback?: Prisma.AgentFeedbackUpdateManyWithoutUserNestedInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionUpdateManyWithoutUserNestedInput
+  examGoal?: Prisma.UserExamGoalUpdateOneWithoutUserNestedInput
+  practiceEvents?: Prisma.PracticeEventUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutImportJobsInput = {
@@ -2152,6 +2623,133 @@ export type UserUncheckedUpdateWithoutImportJobsInput = {
   agentTutorMessages?: Prisma.AgentTutorMessageUncheckedUpdateManyWithoutUserNestedInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedUpdateManyWithoutUserNestedInput
   agentFeedback?: Prisma.AgentFeedbackUncheckedUpdateManyWithoutUserNestedInput
+  knowledgeChatSessions?: Prisma.KnowledgeChatSessionUncheckedUpdateManyWithoutUserNestedInput
+  examGoal?: Prisma.UserExamGoalUncheckedUpdateOneWithoutUserNestedInput
+  practiceEvents?: Prisma.PracticeEventUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutKnowledgeChatSessionsInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  passwordHash?: string | null
+  role?: $Enums.UserRole
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  memberships?: Prisma.MembershipCreateNestedManyWithoutUserInput
+  practiceSessions?: Prisma.PracticeSessionCreateNestedManyWithoutUserInput
+  practiceAnswers?: Prisma.PracticeAnswerCreateNestedManyWithoutUserInput
+  wrongQuestions?: Prisma.WrongQuestionCreateNestedManyWithoutUserInput
+  statsSnapshots?: Prisma.UserStatsSnapshotCreateNestedManyWithoutUserInput
+  tagStats?: Prisma.UserTagStatsCreateNestedManyWithoutUserInput
+  agentRecommendations?: Prisma.AgentRecommendationCreateNestedManyWithoutUserInput
+  agentTutorMessages?: Prisma.AgentTutorMessageCreateNestedManyWithoutUserInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewCreateNestedManyWithoutUserInput
+  agentFeedback?: Prisma.AgentFeedbackCreateNestedManyWithoutUserInput
+  importJobs?: Prisma.ImportJobCreateNestedManyWithoutUserInput
+  examGoal?: Prisma.UserExamGoalCreateNestedOneWithoutUserInput
+  practiceEvents?: Prisma.PracticeEventCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutKnowledgeChatSessionsInput = {
+  id?: string
+  name?: string | null
+  email?: string | null
+  emailVerified?: Date | string | null
+  image?: string | null
+  passwordHash?: string | null
+  role?: $Enums.UserRole
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutUserInput
+  practiceSessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutUserInput
+  practiceAnswers?: Prisma.PracticeAnswerUncheckedCreateNestedManyWithoutUserInput
+  wrongQuestions?: Prisma.WrongQuestionUncheckedCreateNestedManyWithoutUserInput
+  statsSnapshots?: Prisma.UserStatsSnapshotUncheckedCreateNestedManyWithoutUserInput
+  tagStats?: Prisma.UserTagStatsUncheckedCreateNestedManyWithoutUserInput
+  agentRecommendations?: Prisma.AgentRecommendationUncheckedCreateNestedManyWithoutUserInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUncheckedCreateNestedManyWithoutUserInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedCreateNestedManyWithoutUserInput
+  agentFeedback?: Prisma.AgentFeedbackUncheckedCreateNestedManyWithoutUserInput
+  importJobs?: Prisma.ImportJobUncheckedCreateNestedManyWithoutUserInput
+  examGoal?: Prisma.UserExamGoalUncheckedCreateNestedOneWithoutUserInput
+  practiceEvents?: Prisma.PracticeEventUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutKnowledgeChatSessionsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutKnowledgeChatSessionsInput, Prisma.UserUncheckedCreateWithoutKnowledgeChatSessionsInput>
+}
+
+export type UserUpsertWithoutKnowledgeChatSessionsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutKnowledgeChatSessionsInput, Prisma.UserUncheckedUpdateWithoutKnowledgeChatSessionsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutKnowledgeChatSessionsInput, Prisma.UserUncheckedCreateWithoutKnowledgeChatSessionsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutKnowledgeChatSessionsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutKnowledgeChatSessionsInput, Prisma.UserUncheckedUpdateWithoutKnowledgeChatSessionsInput>
+}
+
+export type UserUpdateWithoutKnowledgeChatSessionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  memberships?: Prisma.MembershipUpdateManyWithoutUserNestedInput
+  practiceSessions?: Prisma.PracticeSessionUpdateManyWithoutUserNestedInput
+  practiceAnswers?: Prisma.PracticeAnswerUpdateManyWithoutUserNestedInput
+  wrongQuestions?: Prisma.WrongQuestionUpdateManyWithoutUserNestedInput
+  statsSnapshots?: Prisma.UserStatsSnapshotUpdateManyWithoutUserNestedInput
+  tagStats?: Prisma.UserTagStatsUpdateManyWithoutUserNestedInput
+  agentRecommendations?: Prisma.AgentRecommendationUpdateManyWithoutUserNestedInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUpdateManyWithoutUserNestedInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewUpdateManyWithoutUserNestedInput
+  agentFeedback?: Prisma.AgentFeedbackUpdateManyWithoutUserNestedInput
+  importJobs?: Prisma.ImportJobUpdateManyWithoutUserNestedInput
+  examGoal?: Prisma.UserExamGoalUpdateOneWithoutUserNestedInput
+  practiceEvents?: Prisma.PracticeEventUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutKnowledgeChatSessionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailVerified?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutUserNestedInput
+  practiceSessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutUserNestedInput
+  practiceAnswers?: Prisma.PracticeAnswerUncheckedUpdateManyWithoutUserNestedInput
+  wrongQuestions?: Prisma.WrongQuestionUncheckedUpdateManyWithoutUserNestedInput
+  statsSnapshots?: Prisma.UserStatsSnapshotUncheckedUpdateManyWithoutUserNestedInput
+  tagStats?: Prisma.UserTagStatsUncheckedUpdateManyWithoutUserNestedInput
+  agentRecommendations?: Prisma.AgentRecommendationUncheckedUpdateManyWithoutUserNestedInput
+  agentTutorMessages?: Prisma.AgentTutorMessageUncheckedUpdateManyWithoutUserNestedInput
+  mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedUpdateManyWithoutUserNestedInput
+  agentFeedback?: Prisma.AgentFeedbackUncheckedUpdateManyWithoutUserNestedInput
+  importJobs?: Prisma.ImportJobUncheckedUpdateManyWithoutUserNestedInput
+  examGoal?: Prisma.UserExamGoalUncheckedUpdateOneWithoutUserNestedInput
+  practiceEvents?: Prisma.PracticeEventUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -2173,6 +2771,8 @@ export type UserCountOutputType = {
   mistakeReviews: number
   agentFeedback: number
   importJobs: number
+  knowledgeChatSessions: number
+  practiceEvents: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2189,6 +2789,8 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   mistakeReviews?: boolean | UserCountOutputTypeCountMistakeReviewsArgs
   agentFeedback?: boolean | UserCountOutputTypeCountAgentFeedbackArgs
   importJobs?: boolean | UserCountOutputTypeCountImportJobsArgs
+  knowledgeChatSessions?: boolean | UserCountOutputTypeCountKnowledgeChatSessionsArgs
+  practiceEvents?: boolean | UserCountOutputTypeCountPracticeEventsArgs
 }
 
 /**
@@ -2292,6 +2894,20 @@ export type UserCountOutputTypeCountImportJobsArgs<ExtArgs extends runtime.Types
   where?: Prisma.ImportJobWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountKnowledgeChatSessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.KnowledgeChatSessionWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountPracticeEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PracticeEventWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -2316,6 +2932,9 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   mistakeReviews?: boolean | Prisma.User$mistakeReviewsArgs<ExtArgs>
   agentFeedback?: boolean | Prisma.User$agentFeedbackArgs<ExtArgs>
   importJobs?: boolean | Prisma.User$importJobsArgs<ExtArgs>
+  knowledgeChatSessions?: boolean | Prisma.User$knowledgeChatSessionsArgs<ExtArgs>
+  examGoal?: boolean | Prisma.User$examGoalArgs<ExtArgs>
+  practiceEvents?: boolean | Prisma.User$practiceEventsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -2348,6 +2967,9 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   mistakeReviews?: boolean | Prisma.User$mistakeReviewsArgs<ExtArgs>
   agentFeedback?: boolean | Prisma.User$agentFeedbackArgs<ExtArgs>
   importJobs?: boolean | Prisma.User$importJobsArgs<ExtArgs>
+  knowledgeChatSessions?: boolean | Prisma.User$knowledgeChatSessionsArgs<ExtArgs>
+  examGoal?: boolean | Prisma.User$examGoalArgs<ExtArgs>
+  practiceEvents?: boolean | Prisma.User$practiceEventsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -2367,6 +2989,9 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     mistakeReviews: Prisma.$QuestionMistakeReviewPayload<ExtArgs>[]
     agentFeedback: Prisma.$AgentFeedbackPayload<ExtArgs>[]
     importJobs: Prisma.$ImportJobPayload<ExtArgs>[]
+    knowledgeChatSessions: Prisma.$KnowledgeChatSessionPayload<ExtArgs>[]
+    examGoal: Prisma.$UserExamGoalPayload<ExtArgs> | null
+    practiceEvents: Prisma.$PracticeEventPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2731,6 +3356,9 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   mistakeReviews<T extends Prisma.User$mistakeReviewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$mistakeReviewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuestionMistakeReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   agentFeedback<T extends Prisma.User$agentFeedbackArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$agentFeedbackArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AgentFeedbackPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   importJobs<T extends Prisma.User$importJobsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$importJobsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ImportJobPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  knowledgeChatSessions<T extends Prisma.User$knowledgeChatSessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$knowledgeChatSessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$KnowledgeChatSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  examGoal<T extends Prisma.User$examGoalArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$examGoalArgs<ExtArgs>>): Prisma.Prisma__UserExamGoalClient<runtime.Types.Result.GetResult<Prisma.$UserExamGoalPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  practiceEvents<T extends Prisma.User$practiceEventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$practiceEventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PracticeEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3426,6 +4054,73 @@ export type User$importJobsArgs<ExtArgs extends runtime.Types.Extensions.Interna
   take?: number
   skip?: number
   distinct?: Prisma.ImportJobScalarFieldEnum | Prisma.ImportJobScalarFieldEnum[]
+}
+
+/**
+ * User.knowledgeChatSessions
+ */
+export type User$knowledgeChatSessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the KnowledgeChatSession
+   */
+  select?: Prisma.KnowledgeChatSessionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the KnowledgeChatSession
+   */
+  omit?: Prisma.KnowledgeChatSessionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.KnowledgeChatSessionInclude<ExtArgs> | null
+  where?: Prisma.KnowledgeChatSessionWhereInput
+  orderBy?: Prisma.KnowledgeChatSessionOrderByWithRelationInput | Prisma.KnowledgeChatSessionOrderByWithRelationInput[]
+  cursor?: Prisma.KnowledgeChatSessionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.KnowledgeChatSessionScalarFieldEnum | Prisma.KnowledgeChatSessionScalarFieldEnum[]
+}
+
+/**
+ * User.examGoal
+ */
+export type User$examGoalArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the UserExamGoal
+   */
+  select?: Prisma.UserExamGoalSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the UserExamGoal
+   */
+  omit?: Prisma.UserExamGoalOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserExamGoalInclude<ExtArgs> | null
+  where?: Prisma.UserExamGoalWhereInput
+}
+
+/**
+ * User.practiceEvents
+ */
+export type User$practiceEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PracticeEvent
+   */
+  select?: Prisma.PracticeEventSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PracticeEvent
+   */
+  omit?: Prisma.PracticeEventOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PracticeEventInclude<ExtArgs> | null
+  where?: Prisma.PracticeEventWhereInput
+  orderBy?: Prisma.PracticeEventOrderByWithRelationInput | Prisma.PracticeEventOrderByWithRelationInput[]
+  cursor?: Prisma.PracticeEventWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PracticeEventScalarFieldEnum | Prisma.PracticeEventScalarFieldEnum[]
 }
 
 /**

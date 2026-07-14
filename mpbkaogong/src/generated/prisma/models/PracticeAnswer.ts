@@ -44,6 +44,7 @@ export type PracticeAnswerMinAggregateOutputType = {
   answer: string | null
   isCorrect: boolean | null
   timeSpentSeconds: number | null
+  decisionNote: string | null
   sortOrder: number | null
   answeredAt: Date | null
   createdAt: Date | null
@@ -58,6 +59,7 @@ export type PracticeAnswerMaxAggregateOutputType = {
   answer: string | null
   isCorrect: boolean | null
   timeSpentSeconds: number | null
+  decisionNote: string | null
   sortOrder: number | null
   answeredAt: Date | null
   createdAt: Date | null
@@ -72,6 +74,7 @@ export type PracticeAnswerCountAggregateOutputType = {
   answer: number
   isCorrect: number
   timeSpentSeconds: number
+  decisionNote: number
   sortOrder: number
   answeredAt: number
   createdAt: number
@@ -98,6 +101,7 @@ export type PracticeAnswerMinAggregateInputType = {
   answer?: true
   isCorrect?: true
   timeSpentSeconds?: true
+  decisionNote?: true
   sortOrder?: true
   answeredAt?: true
   createdAt?: true
@@ -112,6 +116,7 @@ export type PracticeAnswerMaxAggregateInputType = {
   answer?: true
   isCorrect?: true
   timeSpentSeconds?: true
+  decisionNote?: true
   sortOrder?: true
   answeredAt?: true
   createdAt?: true
@@ -126,6 +131,7 @@ export type PracticeAnswerCountAggregateInputType = {
   answer?: true
   isCorrect?: true
   timeSpentSeconds?: true
+  decisionNote?: true
   sortOrder?: true
   answeredAt?: true
   createdAt?: true
@@ -227,6 +233,7 @@ export type PracticeAnswerGroupByOutputType = {
   answer: string | null
   isCorrect: boolean | null
   timeSpentSeconds: number
+  decisionNote: string | null
   sortOrder: number
   answeredAt: Date | null
   createdAt: Date
@@ -264,6 +271,7 @@ export type PracticeAnswerWhereInput = {
   answer?: Prisma.StringNullableFilter<"PracticeAnswer"> | string | null
   isCorrect?: Prisma.BoolNullableFilter<"PracticeAnswer"> | boolean | null
   timeSpentSeconds?: Prisma.IntFilter<"PracticeAnswer"> | number
+  decisionNote?: Prisma.StringNullableFilter<"PracticeAnswer"> | string | null
   sortOrder?: Prisma.IntFilter<"PracticeAnswer"> | number
   answeredAt?: Prisma.DateTimeNullableFilter<"PracticeAnswer"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"PracticeAnswer"> | Date | string
@@ -283,6 +291,7 @@ export type PracticeAnswerOrderByWithRelationInput = {
   answer?: Prisma.SortOrderInput | Prisma.SortOrder
   isCorrect?: Prisma.SortOrderInput | Prisma.SortOrder
   timeSpentSeconds?: Prisma.SortOrder
+  decisionNote?: Prisma.SortOrderInput | Prisma.SortOrder
   sortOrder?: Prisma.SortOrder
   answeredAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -307,6 +316,7 @@ export type PracticeAnswerWhereUniqueInput = Prisma.AtLeast<{
   answer?: Prisma.StringNullableFilter<"PracticeAnswer"> | string | null
   isCorrect?: Prisma.BoolNullableFilter<"PracticeAnswer"> | boolean | null
   timeSpentSeconds?: Prisma.IntFilter<"PracticeAnswer"> | number
+  decisionNote?: Prisma.StringNullableFilter<"PracticeAnswer"> | string | null
   sortOrder?: Prisma.IntFilter<"PracticeAnswer"> | number
   answeredAt?: Prisma.DateTimeNullableFilter<"PracticeAnswer"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"PracticeAnswer"> | Date | string
@@ -326,6 +336,7 @@ export type PracticeAnswerOrderByWithAggregationInput = {
   answer?: Prisma.SortOrderInput | Prisma.SortOrder
   isCorrect?: Prisma.SortOrderInput | Prisma.SortOrder
   timeSpentSeconds?: Prisma.SortOrder
+  decisionNote?: Prisma.SortOrderInput | Prisma.SortOrder
   sortOrder?: Prisma.SortOrder
   answeredAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -348,6 +359,7 @@ export type PracticeAnswerScalarWhereWithAggregatesInput = {
   answer?: Prisma.StringNullableWithAggregatesFilter<"PracticeAnswer"> | string | null
   isCorrect?: Prisma.BoolNullableWithAggregatesFilter<"PracticeAnswer"> | boolean | null
   timeSpentSeconds?: Prisma.IntWithAggregatesFilter<"PracticeAnswer"> | number
+  decisionNote?: Prisma.StringNullableWithAggregatesFilter<"PracticeAnswer"> | string | null
   sortOrder?: Prisma.IntWithAggregatesFilter<"PracticeAnswer"> | number
   answeredAt?: Prisma.DateTimeNullableWithAggregatesFilter<"PracticeAnswer"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"PracticeAnswer"> | Date | string
@@ -359,6 +371,7 @@ export type PracticeAnswerCreateInput = {
   answer?: string | null
   isCorrect?: boolean | null
   timeSpentSeconds?: number
+  decisionNote?: string | null
   sortOrder: number
   answeredAt?: Date | string | null
   createdAt?: Date | string
@@ -378,6 +391,7 @@ export type PracticeAnswerUncheckedCreateInput = {
   answer?: string | null
   isCorrect?: boolean | null
   timeSpentSeconds?: number
+  decisionNote?: string | null
   sortOrder: number
   answeredAt?: Date | string | null
   createdAt?: Date | string
@@ -391,6 +405,7 @@ export type PracticeAnswerUpdateInput = {
   answer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isCorrect?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   timeSpentSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  decisionNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   answeredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -410,6 +425,7 @@ export type PracticeAnswerUncheckedUpdateInput = {
   answer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isCorrect?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   timeSpentSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  decisionNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   answeredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -426,6 +442,7 @@ export type PracticeAnswerCreateManyInput = {
   answer?: string | null
   isCorrect?: boolean | null
   timeSpentSeconds?: number
+  decisionNote?: string | null
   sortOrder: number
   answeredAt?: Date | string | null
   createdAt?: Date | string
@@ -437,6 +454,7 @@ export type PracticeAnswerUpdateManyMutationInput = {
   answer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isCorrect?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   timeSpentSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  decisionNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   answeredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -451,6 +469,7 @@ export type PracticeAnswerUncheckedUpdateManyInput = {
   answer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isCorrect?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   timeSpentSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  decisionNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   answeredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -486,6 +505,7 @@ export type PracticeAnswerCountOrderByAggregateInput = {
   answer?: Prisma.SortOrder
   isCorrect?: Prisma.SortOrder
   timeSpentSeconds?: Prisma.SortOrder
+  decisionNote?: Prisma.SortOrder
   sortOrder?: Prisma.SortOrder
   answeredAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -505,6 +525,7 @@ export type PracticeAnswerMaxOrderByAggregateInput = {
   answer?: Prisma.SortOrder
   isCorrect?: Prisma.SortOrder
   timeSpentSeconds?: Prisma.SortOrder
+  decisionNote?: Prisma.SortOrder
   sortOrder?: Prisma.SortOrder
   answeredAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -519,6 +540,7 @@ export type PracticeAnswerMinOrderByAggregateInput = {
   answer?: Prisma.SortOrder
   isCorrect?: Prisma.SortOrder
   timeSpentSeconds?: Prisma.SortOrder
+  decisionNote?: Prisma.SortOrder
   sortOrder?: Prisma.SortOrder
   answeredAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -702,6 +724,7 @@ export type PracticeAnswerCreateWithoutUserInput = {
   answer?: string | null
   isCorrect?: boolean | null
   timeSpentSeconds?: number
+  decisionNote?: string | null
   sortOrder: number
   answeredAt?: Date | string | null
   createdAt?: Date | string
@@ -719,6 +742,7 @@ export type PracticeAnswerUncheckedCreateWithoutUserInput = {
   answer?: string | null
   isCorrect?: boolean | null
   timeSpentSeconds?: number
+  decisionNote?: string | null
   sortOrder: number
   answeredAt?: Date | string | null
   createdAt?: Date | string
@@ -764,6 +788,7 @@ export type PracticeAnswerScalarWhereInput = {
   answer?: Prisma.StringNullableFilter<"PracticeAnswer"> | string | null
   isCorrect?: Prisma.BoolNullableFilter<"PracticeAnswer"> | boolean | null
   timeSpentSeconds?: Prisma.IntFilter<"PracticeAnswer"> | number
+  decisionNote?: Prisma.StringNullableFilter<"PracticeAnswer"> | string | null
   sortOrder?: Prisma.IntFilter<"PracticeAnswer"> | number
   answeredAt?: Prisma.DateTimeNullableFilter<"PracticeAnswer"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"PracticeAnswer"> | Date | string
@@ -775,6 +800,7 @@ export type PracticeAnswerCreateWithoutQuestionInput = {
   answer?: string | null
   isCorrect?: boolean | null
   timeSpentSeconds?: number
+  decisionNote?: string | null
   sortOrder: number
   answeredAt?: Date | string | null
   createdAt?: Date | string
@@ -792,6 +818,7 @@ export type PracticeAnswerUncheckedCreateWithoutQuestionInput = {
   answer?: string | null
   isCorrect?: boolean | null
   timeSpentSeconds?: number
+  decisionNote?: string | null
   sortOrder: number
   answeredAt?: Date | string | null
   createdAt?: Date | string
@@ -831,6 +858,7 @@ export type PracticeAnswerCreateWithoutSessionInput = {
   answer?: string | null
   isCorrect?: boolean | null
   timeSpentSeconds?: number
+  decisionNote?: string | null
   sortOrder: number
   answeredAt?: Date | string | null
   createdAt?: Date | string
@@ -848,6 +876,7 @@ export type PracticeAnswerUncheckedCreateWithoutSessionInput = {
   answer?: string | null
   isCorrect?: boolean | null
   timeSpentSeconds?: number
+  decisionNote?: string | null
   sortOrder: number
   answeredAt?: Date | string | null
   createdAt?: Date | string
@@ -887,6 +916,7 @@ export type PracticeAnswerCreateWithoutWrongSourcesInput = {
   answer?: string | null
   isCorrect?: boolean | null
   timeSpentSeconds?: number
+  decisionNote?: string | null
   sortOrder: number
   answeredAt?: Date | string | null
   createdAt?: Date | string
@@ -905,6 +935,7 @@ export type PracticeAnswerUncheckedCreateWithoutWrongSourcesInput = {
   answer?: string | null
   isCorrect?: boolean | null
   timeSpentSeconds?: number
+  decisionNote?: string | null
   sortOrder: number
   answeredAt?: Date | string | null
   createdAt?: Date | string
@@ -933,6 +964,7 @@ export type PracticeAnswerUpdateWithoutWrongSourcesInput = {
   answer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isCorrect?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   timeSpentSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  decisionNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   answeredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -951,6 +983,7 @@ export type PracticeAnswerUncheckedUpdateWithoutWrongSourcesInput = {
   answer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isCorrect?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   timeSpentSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  decisionNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   answeredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -963,6 +996,7 @@ export type PracticeAnswerCreateWithoutMistakeReviewsInput = {
   answer?: string | null
   isCorrect?: boolean | null
   timeSpentSeconds?: number
+  decisionNote?: string | null
   sortOrder: number
   answeredAt?: Date | string | null
   createdAt?: Date | string
@@ -981,6 +1015,7 @@ export type PracticeAnswerUncheckedCreateWithoutMistakeReviewsInput = {
   answer?: string | null
   isCorrect?: boolean | null
   timeSpentSeconds?: number
+  decisionNote?: string | null
   sortOrder: number
   answeredAt?: Date | string | null
   createdAt?: Date | string
@@ -1009,6 +1044,7 @@ export type PracticeAnswerUpdateWithoutMistakeReviewsInput = {
   answer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isCorrect?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   timeSpentSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  decisionNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   answeredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1027,6 +1063,7 @@ export type PracticeAnswerUncheckedUpdateWithoutMistakeReviewsInput = {
   answer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isCorrect?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   timeSpentSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  decisionNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   answeredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1041,6 +1078,7 @@ export type PracticeAnswerCreateManyUserInput = {
   answer?: string | null
   isCorrect?: boolean | null
   timeSpentSeconds?: number
+  decisionNote?: string | null
   sortOrder: number
   answeredAt?: Date | string | null
   createdAt?: Date | string
@@ -1052,6 +1090,7 @@ export type PracticeAnswerUpdateWithoutUserInput = {
   answer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isCorrect?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   timeSpentSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  decisionNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   answeredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1069,6 +1108,7 @@ export type PracticeAnswerUncheckedUpdateWithoutUserInput = {
   answer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isCorrect?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   timeSpentSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  decisionNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   answeredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1084,6 +1124,7 @@ export type PracticeAnswerUncheckedUpdateManyWithoutUserInput = {
   answer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isCorrect?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   timeSpentSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  decisionNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   answeredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1097,6 +1138,7 @@ export type PracticeAnswerCreateManyQuestionInput = {
   answer?: string | null
   isCorrect?: boolean | null
   timeSpentSeconds?: number
+  decisionNote?: string | null
   sortOrder: number
   answeredAt?: Date | string | null
   createdAt?: Date | string
@@ -1108,6 +1150,7 @@ export type PracticeAnswerUpdateWithoutQuestionInput = {
   answer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isCorrect?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   timeSpentSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  decisionNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   answeredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1125,6 +1168,7 @@ export type PracticeAnswerUncheckedUpdateWithoutQuestionInput = {
   answer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isCorrect?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   timeSpentSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  decisionNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   answeredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1140,6 +1184,7 @@ export type PracticeAnswerUncheckedUpdateManyWithoutQuestionInput = {
   answer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isCorrect?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   timeSpentSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  decisionNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   answeredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1153,6 +1198,7 @@ export type PracticeAnswerCreateManySessionInput = {
   answer?: string | null
   isCorrect?: boolean | null
   timeSpentSeconds?: number
+  decisionNote?: string | null
   sortOrder: number
   answeredAt?: Date | string | null
   createdAt?: Date | string
@@ -1164,6 +1210,7 @@ export type PracticeAnswerUpdateWithoutSessionInput = {
   answer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isCorrect?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   timeSpentSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  decisionNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   answeredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1181,6 +1228,7 @@ export type PracticeAnswerUncheckedUpdateWithoutSessionInput = {
   answer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isCorrect?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   timeSpentSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  decisionNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   answeredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1196,6 +1244,7 @@ export type PracticeAnswerUncheckedUpdateManyWithoutSessionInput = {
   answer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isCorrect?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   timeSpentSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  decisionNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   answeredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1250,6 +1299,7 @@ export type PracticeAnswerSelect<ExtArgs extends runtime.Types.Extensions.Intern
   answer?: boolean
   isCorrect?: boolean
   timeSpentSeconds?: boolean
+  decisionNote?: boolean
   sortOrder?: boolean
   answeredAt?: boolean
   createdAt?: boolean
@@ -1272,13 +1322,14 @@ export type PracticeAnswerSelectScalar = {
   answer?: boolean
   isCorrect?: boolean
   timeSpentSeconds?: boolean
+  decisionNote?: boolean
   sortOrder?: boolean
   answeredAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type PracticeAnswerOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "sessionId" | "userId" | "questionId" | "answer" | "isCorrect" | "timeSpentSeconds" | "sortOrder" | "answeredAt" | "createdAt" | "updatedAt", ExtArgs["result"]["practiceAnswer"]>
+export type PracticeAnswerOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "sessionId" | "userId" | "questionId" | "answer" | "isCorrect" | "timeSpentSeconds" | "decisionNote" | "sortOrder" | "answeredAt" | "createdAt" | "updatedAt", ExtArgs["result"]["practiceAnswer"]>
 export type PracticeAnswerInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   session?: boolean | Prisma.PracticeSessionDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -1305,6 +1356,7 @@ export type $PracticeAnswerPayload<ExtArgs extends runtime.Types.Extensions.Inte
     answer: string | null
     isCorrect: boolean | null
     timeSpentSeconds: number
+    decisionNote: string | null
     sortOrder: number
     answeredAt: Date | null
     createdAt: Date
@@ -1690,6 +1742,7 @@ export interface PracticeAnswerFieldRefs {
   readonly answer: Prisma.FieldRef<"PracticeAnswer", 'String'>
   readonly isCorrect: Prisma.FieldRef<"PracticeAnswer", 'Boolean'>
   readonly timeSpentSeconds: Prisma.FieldRef<"PracticeAnswer", 'Int'>
+  readonly decisionNote: Prisma.FieldRef<"PracticeAnswer", 'String'>
   readonly sortOrder: Prisma.FieldRef<"PracticeAnswer", 'Int'>
   readonly answeredAt: Prisma.FieldRef<"PracticeAnswer", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"PracticeAnswer", 'DateTime'>

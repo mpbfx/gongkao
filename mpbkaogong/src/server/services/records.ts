@@ -30,6 +30,9 @@ function toRecordListItem(session: {
   wrongCount: number;
   unansweredCount: number;
   elapsedSeconds: number;
+  score: unknown;
+  maxScore: unknown;
+  purpose: string;
   accuracy: unknown;
   submittedAt: Date | null;
   createdAt: Date;
@@ -45,6 +48,9 @@ function toRecordListItem(session: {
     unansweredCount: session.unansweredCount,
     accuracy: decimalToString(session.accuracy),
     elapsedSeconds: session.elapsedSeconds,
+    score: decimalToString(session.score),
+    maxScore: decimalToString(session.maxScore),
+    purpose: session.purpose,
     submittedAt: session.submittedAt?.toISOString() ?? null,
     createdAt: session.createdAt.toISOString(),
   };
@@ -78,6 +84,9 @@ export async function listPracticeRecords(user: AuthenticatedUser, query: Record
         wrongCount: true,
         unansweredCount: true,
         elapsedSeconds: true,
+        score: true,
+        maxScore: true,
+        purpose: true,
         accuracy: true,
         submittedAt: true,
         createdAt: true,

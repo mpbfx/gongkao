@@ -45,6 +45,7 @@ const paperInputSchema = z.object({
   province: z.string().trim().optional(),
   examType: z.string().trim().optional(),
   difficultyScore: z.coerce.number().min(0).max(9.9).optional(),
+  durationSeconds: z.coerce.number().int().min(600).max(18_000).optional(),
   isVipOnly: z.boolean().default(false),
   isActive: z.boolean().default(true),
   questions: z.array(paperQuestionInputSchema).min(1, "试卷至少需要 1 道题"),
@@ -160,6 +161,9 @@ export function paperInputFromFormData(formData: FormData) {
     province: nullable(String(formData.get("province") ?? "")),
     examType: nullable(String(formData.get("examType") ?? "")),
     difficultyScore: nullable(String(formData.get("difficultyScore") ?? "")) ?? undefined,
+    durationSeconds: nullable(String(formData.get("durationMinutes") ?? ""))
+      ? Number(formData.get("durationMinutes")) * 60
+      : undefined,
     isVipOnly: checkbox(formData, "isVipOnly"),
     isActive: checkbox(formData, "isActive"),
     questions: parsePaperQuestionText(String(formData.get("questionsText") ?? "")),
@@ -430,6 +434,7 @@ export async function createAdminPaper(input: ReturnType<typeof paperInputFromFo
       province: input.province,
       examType: input.examType,
       difficultyScore: input.difficultyScore,
+      durationSeconds: input.durationSeconds,
       isVipOnly: input.isVipOnly,
       isActive: input.isActive,
       questions: {
@@ -459,6 +464,7 @@ export async function updateAdminPaper(
         province: input.province,
         examType: input.examType,
         difficultyScore: input.difficultyScore,
+        durationSeconds: input.durationSeconds,
         isVipOnly: input.isVipOnly,
         isActive: input.isActive,
         questions: {

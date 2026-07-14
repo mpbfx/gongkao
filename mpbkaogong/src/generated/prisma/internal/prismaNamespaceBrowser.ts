@@ -66,15 +66,21 @@ export const ModelName = {
   DailyPracticeQuestion: 'DailyPracticeQuestion',
   PracticeSession: 'PracticeSession',
   PracticeAnswer: 'PracticeAnswer',
+  PracticeEvent: 'PracticeEvent',
   WrongQuestion: 'WrongQuestion',
   UserStatsSnapshot: 'UserStatsSnapshot',
   UserTagStats: 'UserTagStats',
+  UserExamGoal: 'UserExamGoal',
   AgentConfig: 'AgentConfig',
   AgentRecommendation: 'AgentRecommendation',
   AgentTutorMessage: 'AgentTutorMessage',
   QuestionMistakeReview: 'QuestionMistakeReview',
   AgentFeedback: 'AgentFeedback',
-  ImportJob: 'ImportJob'
+  ImportJob: 'ImportJob',
+  KnowledgeSource: 'KnowledgeSource',
+  KnowledgeChunk: 'KnowledgeChunk',
+  KnowledgeChatSession: 'KnowledgeChatSession',
+  KnowledgeChatMessage: 'KnowledgeChatMessage'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -167,6 +173,11 @@ export const QuestionTagScalarFieldEnum = {
   sortOrder: 'sortOrder',
   isMaterialOnly: 'isMaterialOnly',
   isActive: 'isActive',
+  depth: 'depth',
+  path: 'path',
+  isLeaf: 'isLeaf',
+  taxonomySource: 'taxonomySource',
+  taxonomyVersion: 'taxonomyVersion',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -230,6 +241,7 @@ export const PaperScalarFieldEnum = {
   province: 'province',
   examType: 'examType',
   difficultyScore: 'difficultyScore',
+  durationSeconds: 'durationSeconds',
   isVipOnly: 'isVipOnly',
   isActive: 'isActive',
   createdAt: 'createdAt',
@@ -281,6 +293,8 @@ export const PracticeSessionScalarFieldEnum = {
   userId: 'userId',
   mode: 'mode',
   status: 'status',
+  purpose: 'purpose',
+  timingMode: 'timingMode',
   title: 'title',
   paperId: 'paperId',
   sourceTagIdsJson: 'sourceTagIdsJson',
@@ -291,7 +305,13 @@ export const PracticeSessionScalarFieldEnum = {
   wrongCount: 'wrongCount',
   unansweredCount: 'unansweredCount',
   elapsedSeconds: 'elapsedSeconds',
+  timeLimitSeconds: 'timeLimitSeconds',
+  pauseCount: 'pauseCount',
+  pausedSeconds: 'pausedSeconds',
   accuracy: 'accuracy',
+  score: 'score',
+  maxScore: 'maxScore',
+  reflectionText: 'reflectionText',
   submittedAt: 'submittedAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -308,6 +328,7 @@ export const PracticeAnswerScalarFieldEnum = {
   answer: 'answer',
   isCorrect: 'isCorrect',
   timeSpentSeconds: 'timeSpentSeconds',
+  decisionNote: 'decisionNote',
   sortOrder: 'sortOrder',
   answeredAt: 'answeredAt',
   createdAt: 'createdAt',
@@ -315,6 +336,20 @@ export const PracticeAnswerScalarFieldEnum = {
 } as const
 
 export type PracticeAnswerScalarFieldEnum = (typeof PracticeAnswerScalarFieldEnum)[keyof typeof PracticeAnswerScalarFieldEnum]
+
+
+export const PracticeEventScalarFieldEnum = {
+  id: 'id',
+  sessionId: 'sessionId',
+  userId: 'userId',
+  questionId: 'questionId',
+  type: 'type',
+  payloadJson: 'payloadJson',
+  occurredAt: 'occurredAt',
+  createdAt: 'createdAt'
+} as const
+
+export type PracticeEventScalarFieldEnum = (typeof PracticeEventScalarFieldEnum)[keyof typeof PracticeEventScalarFieldEnum]
 
 
 export const WrongQuestionScalarFieldEnum = {
@@ -357,10 +392,27 @@ export const UserTagStatsScalarFieldEnum = {
   wrongCount: 'wrongCount',
   accuracy: 'accuracy',
   lastPracticedAt: 'lastPracticedAt',
+  foundationStatus: 'foundationStatus',
+  foundationRoundCount: 'foundationRoundCount',
+  lastRoundCorrect: 'lastRoundCorrect',
+  bestRoundCorrect: 'bestRoundCorrect',
+  passedAt: 'passedAt',
   updatedAt: 'updatedAt'
 } as const
 
 export type UserTagStatsScalarFieldEnum = (typeof UserTagStatsScalarFieldEnum)[keyof typeof UserTagStatsScalarFieldEnum]
+
+
+export const UserExamGoalScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  targetPaperId: 'targetPaperId',
+  baselineSessionId: 'baselineSessionId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type UserExamGoalScalarFieldEnum = (typeof UserExamGoalScalarFieldEnum)[keyof typeof UserExamGoalScalarFieldEnum]
 
 
 export const AgentConfigScalarFieldEnum = {
@@ -462,6 +514,70 @@ export const ImportJobScalarFieldEnum = {
 export type ImportJobScalarFieldEnum = (typeof ImportJobScalarFieldEnum)[keyof typeof ImportJobScalarFieldEnum]
 
 
+export const KnowledgeSourceScalarFieldEnum = {
+  id: 'id',
+  type: 'type',
+  title: 'title',
+  bvid: 'bvid',
+  partNo: 'partNo',
+  sourceFile: 'sourceFile',
+  contentHash: 'contentHash',
+  durationMs: 'durationMs',
+  status: 'status',
+  lastError: 'lastError',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type KnowledgeSourceScalarFieldEnum = (typeof KnowledgeSourceScalarFieldEnum)[keyof typeof KnowledgeSourceScalarFieldEnum]
+
+
+export const KnowledgeChunkScalarFieldEnum = {
+  id: 'id',
+  sourceId: 'sourceId',
+  chunkNo: 'chunkNo',
+  startMs: 'startMs',
+  endMs: 'endMs',
+  rawText: 'rawText',
+  cleanText: 'cleanText',
+  keywords: 'keywords',
+  category: 'category',
+  tagId: 'tagId',
+  contentHash: 'contentHash',
+  vectorPointId: 'vectorPointId',
+  indexStatus: 'indexStatus',
+  indexError: 'indexError',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type KnowledgeChunkScalarFieldEnum = (typeof KnowledgeChunkScalarFieldEnum)[keyof typeof KnowledgeChunkScalarFieldEnum]
+
+
+export const KnowledgeChatSessionScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  title: 'title',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type KnowledgeChatSessionScalarFieldEnum = (typeof KnowledgeChatSessionScalarFieldEnum)[keyof typeof KnowledgeChatSessionScalarFieldEnum]
+
+
+export const KnowledgeChatMessageScalarFieldEnum = {
+  id: 'id',
+  sessionId: 'sessionId',
+  role: 'role',
+  content: 'content',
+  citationsJson: 'citationsJson',
+  metadataJson: 'metadataJson',
+  createdAt: 'createdAt'
+} as const
+
+export type KnowledgeChatMessageScalarFieldEnum = (typeof KnowledgeChatMessageScalarFieldEnum)[keyof typeof KnowledgeChatMessageScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -551,7 +667,10 @@ export const QuestionTagOrderByRelevanceFieldEnum = {
   id: 'id',
   name: 'name',
   slug: 'slug',
-  parentId: 'parentId'
+  parentId: 'parentId',
+  path: 'path',
+  taxonomySource: 'taxonomySource',
+  taxonomyVersion: 'taxonomyVersion'
 } as const
 
 export type QuestionTagOrderByRelevanceFieldEnum = (typeof QuestionTagOrderByRelevanceFieldEnum)[keyof typeof QuestionTagOrderByRelevanceFieldEnum]
@@ -653,7 +772,8 @@ export const PracticeSessionOrderByRelevanceFieldEnum = {
   id: 'id',
   userId: 'userId',
   title: 'title',
-  paperId: 'paperId'
+  paperId: 'paperId',
+  reflectionText: 'reflectionText'
 } as const
 
 export type PracticeSessionOrderByRelevanceFieldEnum = (typeof PracticeSessionOrderByRelevanceFieldEnum)[keyof typeof PracticeSessionOrderByRelevanceFieldEnum]
@@ -664,10 +784,22 @@ export const PracticeAnswerOrderByRelevanceFieldEnum = {
   sessionId: 'sessionId',
   userId: 'userId',
   questionId: 'questionId',
-  answer: 'answer'
+  answer: 'answer',
+  decisionNote: 'decisionNote'
 } as const
 
 export type PracticeAnswerOrderByRelevanceFieldEnum = (typeof PracticeAnswerOrderByRelevanceFieldEnum)[keyof typeof PracticeAnswerOrderByRelevanceFieldEnum]
+
+
+export const PracticeEventOrderByRelevanceFieldEnum = {
+  id: 'id',
+  sessionId: 'sessionId',
+  userId: 'userId',
+  questionId: 'questionId',
+  type: 'type'
+} as const
+
+export type PracticeEventOrderByRelevanceFieldEnum = (typeof PracticeEventOrderByRelevanceFieldEnum)[keyof typeof PracticeEventOrderByRelevanceFieldEnum]
 
 
 export const WrongQuestionOrderByRelevanceFieldEnum = {
@@ -696,6 +828,16 @@ export const UserTagStatsOrderByRelevanceFieldEnum = {
 } as const
 
 export type UserTagStatsOrderByRelevanceFieldEnum = (typeof UserTagStatsOrderByRelevanceFieldEnum)[keyof typeof UserTagStatsOrderByRelevanceFieldEnum]
+
+
+export const UserExamGoalOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  targetPaperId: 'targetPaperId',
+  baselineSessionId: 'baselineSessionId'
+} as const
+
+export type UserExamGoalOrderByRelevanceFieldEnum = (typeof UserExamGoalOrderByRelevanceFieldEnum)[keyof typeof UserExamGoalOrderByRelevanceFieldEnum]
 
 
 export const AgentConfigOrderByRelevanceFieldEnum = {
@@ -772,4 +914,54 @@ export const ImportJobOrderByRelevanceFieldEnum = {
 } as const
 
 export type ImportJobOrderByRelevanceFieldEnum = (typeof ImportJobOrderByRelevanceFieldEnum)[keyof typeof ImportJobOrderByRelevanceFieldEnum]
+
+
+export const KnowledgeSourceOrderByRelevanceFieldEnum = {
+  id: 'id',
+  type: 'type',
+  title: 'title',
+  bvid: 'bvid',
+  sourceFile: 'sourceFile',
+  contentHash: 'contentHash',
+  status: 'status',
+  lastError: 'lastError'
+} as const
+
+export type KnowledgeSourceOrderByRelevanceFieldEnum = (typeof KnowledgeSourceOrderByRelevanceFieldEnum)[keyof typeof KnowledgeSourceOrderByRelevanceFieldEnum]
+
+
+export const KnowledgeChunkOrderByRelevanceFieldEnum = {
+  id: 'id',
+  sourceId: 'sourceId',
+  rawText: 'rawText',
+  cleanText: 'cleanText',
+  keywords: 'keywords',
+  category: 'category',
+  tagId: 'tagId',
+  contentHash: 'contentHash',
+  vectorPointId: 'vectorPointId',
+  indexStatus: 'indexStatus',
+  indexError: 'indexError'
+} as const
+
+export type KnowledgeChunkOrderByRelevanceFieldEnum = (typeof KnowledgeChunkOrderByRelevanceFieldEnum)[keyof typeof KnowledgeChunkOrderByRelevanceFieldEnum]
+
+
+export const KnowledgeChatSessionOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  title: 'title'
+} as const
+
+export type KnowledgeChatSessionOrderByRelevanceFieldEnum = (typeof KnowledgeChatSessionOrderByRelevanceFieldEnum)[keyof typeof KnowledgeChatSessionOrderByRelevanceFieldEnum]
+
+
+export const KnowledgeChatMessageOrderByRelevanceFieldEnum = {
+  id: 'id',
+  sessionId: 'sessionId',
+  role: 'role',
+  content: 'content'
+} as const
+
+export type KnowledgeChatMessageOrderByRelevanceFieldEnum = (typeof KnowledgeChatMessageOrderByRelevanceFieldEnum)[keyof typeof KnowledgeChatMessageOrderByRelevanceFieldEnum]
 

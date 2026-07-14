@@ -142,7 +142,7 @@ export function SpecialPracticeBuilder({ tags }: { tags: TagNode[] }) {
       const response = await fetch("/api/practice/sessions/special", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ mode: "SPECIAL", reqs: [{ tagId: selected.id, num: count }] }),
+        body: JSON.stringify({ protocol: "CUSTOM", tagId: selected.id, count }),
       });
       const payload = (await response.json()) as ApiResponse<{ id: string }>;
 

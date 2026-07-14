@@ -2,6 +2,7 @@
 
 import {
   BookMarked,
+  BookOpenText,
   CheckCircle2,
   ChevronRight,
   Clock3,
@@ -234,6 +235,12 @@ function WrongQuestionPane({
           <span className="truncate text-muted-foreground">{group.tagName}</span>
         </div>
         <div className="flex shrink-0 items-center gap-2 text-xs text-muted-foreground">
+          <Link
+            href={`/knowledge?questionId=${encodeURIComponent(item.questionId)}${group.tagId ? `&tagId=${encodeURIComponent(group.tagId)}` : ""}${item.lastAnswer?.sessionId ? `&sessionId=${encodeURIComponent(item.lastAnswer.sessionId)}` : ""}`}
+            className={cn(buttonVariants({ variant: "ghost", size: "sm" }), "h-7")}
+          >
+            <BookOpenText data-icon="inline-start" />对应课程
+          </Link>
           <span className="hidden items-center gap-1 sm:inline-flex">
             <Clock3 className="size-3.5" aria-hidden="true" />
             {formatDate(item.lastWrongAt)}
@@ -353,7 +360,7 @@ function WrongQueuePane({
                 ) : (
                   <BookMarked data-icon="inline-start" />
                 )}
-                重练 {Math.min(10, flatItems.length)} 题
+                重练 {Math.min(30, flatItems.length)} 题
               </Button>
             ) : null}
           </div>
@@ -562,7 +569,7 @@ export function WrongReviewWorkspace({
     );
   }
 
-  const sessionCount = Math.min(10, query.tagId ? flatItems.length : data.summary.unresolvedCount);
+  const sessionCount = Math.min(30, query.tagId ? flatItems.length : data.summary.unresolvedCount);
 
   return (
     <div className="wrong-editorial-workspace relative min-w-0 xl:h-[calc(100dvh-1.5rem)]">
