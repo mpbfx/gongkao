@@ -615,9 +615,15 @@
       border-radius: 0;
     }
 
-    .student-shell-v2 .practice-question-paper {
+    .student-shell-v2 .practice-question-paper,
+    .student-shell-v2 .practice-answer-sheet-panel {
       border-width: 1px;
+      background-color: #fffefa;
       background-image: repeating-linear-gradient(0deg, transparent 0 31px, rgb(23 34 56 / 0.025) 31px 32px);
+    }
+
+    .student-shell-v2 .practice-answer-sheet-panel {
+      box-shadow: 0 12px 30px rgb(23 34 56 / 0.08);
     }
 
     .student-shell-v2 .practice-result-overview {
@@ -713,7 +719,6 @@
 
     .student-shell-v2 .practice-workspace aside [data-slot="card"] {
       min-height: 0;
-      box-shadow: none;
     }
 
   }
