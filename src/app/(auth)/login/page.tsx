@@ -35,6 +35,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
   const params = await searchParams;
   const callbackUrl = safeCallbackUrl(params?.callbackUrl);
   const hasCredentialsError = params?.error === "CredentialsSignin";
+  const hasServiceError = params?.error === "ServiceUnavailable";
 
   async function loginAction(formData: FormData) {
     "use server";
@@ -47,7 +48,10 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
       });
     } catch (error) {
       if (error instanceof AuthError) {
-        redirect(`/login?error=CredentialsSignin&callbackUrl=${encodeURIComponent(callbackUrl)}`);
+        const errorCode = error.type === "CredentialsSignin"
+          ? "CredentialsSignin"
+          : "ServiceUnavailable";
+        redirect(`/login?error=${errorCode}&callbackUrl=${encodeURIComponent(callbackUrl)}`);
       }
 
       throw error;
@@ -91,11 +95,15 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
         <form action={loginAction}>
           <div className="py-6">
             <FieldGroup>
-              {hasCredentialsError ? (
+              {hasCredentialsError || hasServiceError ? (
                 <Alert variant="destructive">
                   <AlertCircle aria-hidden="true" />
-                  <AlertTitle>登录失败</AlertTitle>
-                  <AlertDescription>邮箱或密码不正确。</AlertDescription>
+                  <AlertTitle>{hasServiceError ? "登录服务异常" : "登录失败"}</AlertTitle>
+                  <AlertDescription>
+                    {hasServiceError
+                      ? "数据库连接异常，请启动数据库服务后重试。"
+                      : "邮箱或密码不正确。"}
+                  </AlertDescription>
                 </Alert>
               ) : null}
 
