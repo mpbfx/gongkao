@@ -37,6 +37,17 @@ Commit titles must use `<type>: <中文简短信息>`, without scope, terminal p
 
 Never commit `.env.local`, credentials, API keys, or production data. Review generated Prisma migrations before committing them.
 
+## Fast Development & Lessons Learned
+
+- 优先快速交付：先定位最小改动面并完成代码，再运行与改动直接相关的定向测试，最后集中执行一次完整的 lint、typecheck、test 和 build，避免在开发过程中反复运行全量验证。
+- 不重复造轮子。实现新能力前先搜索项目现有组件、hooks、工具函数和依赖，再评估成熟、维护活跃、许可证适用的开源方案；已有能力可组合解决时，不新增自制框架、通用基础设施或重复组件。只有简单局部逻辑明显比引入依赖更小、更稳定时才直接实现。
+- 开始任务前先检查 `node_modules` 完整性、Node/npm 可用性和磁盘剩余空间。依赖目录缺失或磁盘空间紧张时，先处理环境，再进入全量验证。
+- 依赖安装应直接放到空间充足的磁盘。需要隔离验证时，在同一磁盘创建完整项目副本并安装依赖；不要逐包修补残缺的 `node_modules`。
+- Next.js Turbopack 要求项目和 `node_modules` 位于可接受的同一文件系统根中。不要使用指向其他磁盘的 `node_modules` junction/symlink 进行生产构建；改用同盘完整验证副本。
+- 遇到依赖安装、磁盘耗尽、构建工具限制或其他明显返工点时，立即调整策略，不在低收益路径上持续试错。
+- 每次任务出现新的阻塞、返工或可复用经验，都要在任务结束前将简短、通用、可执行的结论补充到本节。不要记录密钥、个人路径、临时日志或只适用于一次运行的细节。
+- 每次完成一组经过验证的代码改动后，立即按本仓库提交规范创建一个范围清晰的 commit，并 push 到当前远程分支。不要把无关改动混入同一提交；push 出现问题时保留本地提交并明确报告原因。
+
 ## Training-Flow Implementation Guidelines
 
 The student product is a deterministic training system, not a collection of loosely connected quiz pages. Preserve the flow from exam goal, benchmark, leaf-type foundation practice, review, timed retest, and wrong-question practice.
