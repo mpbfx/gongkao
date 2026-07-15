@@ -4,6 +4,7 @@ import type { AuthenticatedUser } from "@/lib/auth/guards";
 import { prisma } from "@/lib/db/prisma";
 import { MembershipRequiredError, NotFoundError } from "@/server/services/errors";
 import { hasActiveMembership } from "@/server/services/membership";
+import { assertPracticeQuestionsAccessible } from "@/server/services/practice-question-policy";
 import {
   emptyStringToUndefined,
   getPagination,
@@ -138,12 +139,13 @@ export async function getPaperDetail(paperId: string, user: AuthenticatedUser) {
     throw new NotFoundError("试卷不存在");
   }
 
-  const requiresMembership =
-    paper.isVipOnly || paper.questions.some((paperQuestion) => paperQuestion.question.isVipOnly);
-
-  if (requiresMembership && !(await hasActiveMembership(user.id, user.role))) {
+  if (paper.isVipOnly && !(await hasActiveMembership(user.id, user.role))) {
     throw new MembershipRequiredError("该试卷需要会员权限");
   }
+  await assertPracticeQuestionsAccessible(
+    user,
+    paper.questions.map((paperQuestion) => paperQuestion.question)
+  );
 
   return {
     id: paper.id,

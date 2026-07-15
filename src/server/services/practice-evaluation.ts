@@ -73,7 +73,7 @@ export function evaluatePracticeAnswers(
       questionId: question.questionId,
       answer: isAnswered ? answer : null,
       correctAnswer,
-      isCorrect: isAnswered ? isCorrect : false,
+      isCorrect: isAnswered ? isCorrect : null,
       timeSpentSeconds: submitted?.timeSpentSeconds ?? 0,
       earnedScore,
       maxScore: safeScore,

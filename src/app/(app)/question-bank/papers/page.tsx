@@ -107,7 +107,13 @@ export default async function PapersPage({ searchParams }: PapersPageProps) {
             {hasActiveFilters ? <Link href="/question-bank/papers" className="text-sm text-primary hover:underline">清除筛选</Link> : null}
           </div>
           <FilterPopover label="筛选试卷" activeCount={[query.year, query.province, query.examType].filter(Boolean).length}>
-            <PaperFilterForm query={query} filters={data.filters} vertical idPrefix="popover" />
+            <PaperFilterForm
+              key={`${query.year ?? "all"}-${query.province ?? "all"}-${query.examType ?? "all"}`}
+              query={query}
+              filters={data.filters}
+              vertical
+              idPrefix="popover"
+            />
           </FilterPopover>
         </div>
 

@@ -6,6 +6,9 @@ import { prisma } from "@/lib/db/prisma";
 import { BusinessError, ConflictError, MembershipRequiredError, NotFoundError } from "@/server/services/errors";
 import { hasActiveMembership } from "@/server/services/membership";
 import { evaluateFoundationRound, evaluatePracticeAnswers } from "@/server/services/practice-evaluation";
+import { getPracticeDeadline, normalizeSubmittedTiming } from "@/server/services/practice-timing";
+import { assertPracticeQuestionsAccessible } from "@/server/services/practice-question-policy";
+import { validateSubmittedQuestionIds } from "@/server/services/practice-submission";
 import { toPaperModel } from "@/server/services/papers";
 import {
   decimalToString,
@@ -159,6 +162,12 @@ export function sessionSummary(session: {
   createdAt: Date;
   paperId?: string | null;
 }) {
+  const deadline = getPracticeDeadline({
+    createdAt: session.createdAt,
+    timingMode: session.timingMode ?? "UNTYPED",
+    timeLimitSeconds: session.timeLimitSeconds,
+  });
+
   return {
     id: session.id,
     title: session.title,
@@ -173,6 +182,8 @@ export function sessionSummary(session: {
     unansweredCount: session.unansweredCount,
     elapsedSeconds: session.elapsedSeconds,
     timeLimitSeconds: session.timeLimitSeconds ?? null,
+    deadlineAt: deadline?.toISOString() ?? null,
+    serverNow: new Date().toISOString(),
     pauseCount: session.pauseCount ?? 0,
     pausedSeconds: session.pausedSeconds ?? 0,
     score: decimalToString(session.score),
@@ -327,12 +338,13 @@ export async function createPaperPracticeSession(
     throw new NotFoundError("试卷不存在");
   }
 
-  const requiresMembership =
-    paper.isVipOnly || paper.questions.some((paperQuestion) => paperQuestion.question.isVipOnly);
-
-  if (requiresMembership && !(await hasActiveMembership(user.id, user.role))) {
+  if (paper.isVipOnly && !(await hasActiveMembership(user.id, user.role))) {
     throw new MembershipRequiredError("该试卷需要会员权限");
   }
+  await assertPracticeQuestionsAccessible(
+    user,
+    paper.questions.map((paperQuestion) => paperQuestion.question)
+  );
 
   const timeLimitSeconds = input.timingMode === "UNTYPED"
     ? null
@@ -468,7 +480,21 @@ export async function submitPracticeSession(
       throw new ConflictError("该练习已提交，不能重复提交");
     }
 
+    const claimed = await tx.practiceSession.updateMany({
+      where: {
+        id: session.id,
+        userId: user.id,
+        status: "IN_PROGRESS",
+      },
+      data: { status: "SUBMITTED" },
+    });
+    if (claimed.count !== 1) {
+      throw new ConflictError("该练习已提交，不能重复提交");
+    }
+
     const sessionQuestionIds = new Set(session.answers.map((answer) => answer.questionId));
+    const submittedQuestionIds = input.answers.map((answer) => answer.questionId);
+    validateSubmittedQuestionIds({ sessionQuestionIds, submittedQuestionIds });
     if (input.events.some((event) => event.questionId && !sessionQuestionIds.has(event.questionId))) {
       throw new ConflictError("行为记录包含本练习之外的题目");
     }
@@ -571,8 +597,8 @@ export async function submitPracticeSession(
         wrongCount: 0,
       };
       group.answeredCount += answer.answer ? 1 : 0;
-      group.correctCount += answer.answer && answer.isCorrect ? 1 : 0;
-      group.wrongCount += answer.answer && !answer.isCorrect ? 1 : 0;
+      group.correctCount += answer.answer && answer.isCorrect === true ? 1 : 0;
+      group.wrongCount += answer.answer && answer.isCorrect === false ? 1 : 0;
       tagRounds.set(answer.tagId, group);
     }
 
@@ -629,7 +655,7 @@ export async function submitPracticeSession(
           return null;
         }
 
-        if (!answer.isCorrect) {
+        if (answer.isCorrect === false) {
           return tx.wrongQuestion.upsert({
             where: {
               userId_questionId: {
@@ -668,6 +694,15 @@ export async function submitPracticeSession(
       })
     );
 
+    const timing = normalizeSubmittedTiming({
+      createdAt: session.createdAt,
+      timingMode: session.timingMode,
+      timeLimitSeconds: session.timeLimitSeconds,
+      elapsedSeconds: input.elapsedSeconds,
+      pauseCount: input.pauseCount,
+      pausedSeconds: input.pausedSeconds,
+      now,
+    });
     const updatedSession = await tx.practiceSession.update({
       where: { id: session.id },
       data: {
@@ -677,9 +712,9 @@ export async function submitPracticeSession(
         wrongCount,
         unansweredCount,
         accuracy,
-        elapsedSeconds: input.elapsedSeconds,
-        pauseCount: input.pauseCount,
-        pausedSeconds: input.pausedSeconds,
+        elapsedSeconds: timing.elapsedSeconds,
+        pauseCount: timing.pauseCount,
+        pausedSeconds: timing.pausedSeconds,
         score,
         maxScore,
         submittedAt: now,

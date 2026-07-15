@@ -113,6 +113,8 @@ type PracticeSessionView = {
   unansweredCount: number;
   elapsedSeconds: number;
   timeLimitSeconds: number | null;
+  deadlineAt: string | null;
+  serverNow: string;
   pauseCount: number;
   pausedSeconds: number;
   score: string | null;
@@ -141,7 +143,7 @@ type SubmitResult = {
     questionId: string;
     answer: string | null;
     correctAnswer: string;
-    isCorrect: boolean;
+    isCorrect: boolean | null;
     timeSpentSeconds: number;
     decisionNote?: string | null;
     analysisHtml?: string | null;
@@ -220,6 +222,8 @@ export function PracticeRunner({
   const timer = usePracticeTimer({
     initialElapsedSeconds: initialSession.elapsedSeconds,
     timeLimitSeconds: initialSession.timeLimitSeconds,
+    deadlineAt: initialSession.deadlineAt,
+    serverNow: initialSession.serverNow,
     timingMode: initialSession.timingMode,
     disabled: isResultMode || timeExpired,
     onActiveSecond: () => {
@@ -495,7 +499,7 @@ export function PracticeRunner({
       return "correct";
     }
 
-    if (result?.isCorrect === false) {
+    if (isAnswered && result?.isCorrect === false) {
       return "wrong";
     }
 

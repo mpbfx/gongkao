@@ -5,6 +5,7 @@ import { prisma } from "@/lib/db/prisma";
 import { BusinessError, NotFoundError } from "@/server/services/errors";
 import { createQuestionPracticeSession } from "@/server/services/practice";
 import { createFoundationPracticeSession } from "@/server/services/foundation-training";
+import { getPracticeQuestionWhere } from "@/server/services/practice-question-policy";
 import { listActiveTagsFlat } from "@/server/services/tags";
 
 export const createSpecialSessionSchema = z.preprocess(
@@ -88,13 +89,13 @@ export async function createSpecialPracticeSession(
 
   const descendantsByTag = descendantIdsByTag(tags);
   const selectedQuestionIds = new Set<string>();
+  const questionWhere = await getPracticeQuestionWhere(user, input.difficulty);
 
   for (const req of reqs) {
     const tagIds = Array.from(descendantsByTag.get(req.tagId) ?? new Set([req.tagId]));
     const candidates = await prisma.question.findMany({
       where: {
-        isActive: true,
-        deletedAt: null,
+        ...questionWhere,
         tagId: { in: tagIds },
       },
       include: {
@@ -118,6 +119,7 @@ export async function createSpecialPracticeSession(
     await prisma.question.findMany({
       where: {
         id: { in: Array.from(selectedQuestionIds) },
+        ...questionWhere,
       },
       include: {
         material: { select: { id: true, title: true, contentHtml: true } },

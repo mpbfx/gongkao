@@ -2,6 +2,7 @@ import type { AuthenticatedUser } from "@/lib/auth/guards";
 import { prisma } from "@/lib/db/prisma";
 import { BusinessError, NotFoundError } from "@/server/services/errors";
 import { createQuestionPracticeSession } from "@/server/services/practice";
+import { getPracticeQuestionWhere } from "@/server/services/practice-question-policy";
 import { listActiveTagsTree, type TagTreeNode } from "@/server/services/tags";
 
 const FOUNDATION_COUNT = 15;
@@ -18,26 +19,44 @@ function flattenLeaves(nodes: TagTreeNode[]) {
 
 export async function getFoundationProgress(user: AuthenticatedUser) {
   const leaves = flattenLeaves(await listActiveTagsTree()).filter((tag) => !tag.isMaterialOnly);
-  const stats = await prisma.userTagStats.findMany({
-    where: { userId: user.id, tagId: { in: leaves.map((tag) => tag.id) } },
-    select: {
-      tagId: true,
-      foundationStatus: true,
-      foundationRoundCount: true,
-      lastRoundCorrect: true,
-      bestRoundCorrect: true,
-      passedAt: true,
-    },
-  });
+  const questionWhere = await getPracticeQuestionWhere(user);
+  const leafIds = leaves.map((tag) => tag.id);
+  const [stats, questionGroups] = await Promise.all([
+    prisma.userTagStats.findMany({
+      where: { userId: user.id, tagId: { in: leafIds } },
+      select: {
+        tagId: true,
+        foundationStatus: true,
+        foundationRoundCount: true,
+        lastRoundCorrect: true,
+        bestRoundCorrect: true,
+        passedAt: true,
+      },
+    }),
+    prisma.question.groupBy({
+      by: ["tagId"],
+      where: {
+        ...questionWhere,
+        tagId: { in: leafIds },
+      },
+      _count: { _all: true },
+    }),
+  ]);
   const statsByTagId = new Map(stats.map((item) => [item.tagId, item]));
+  const questionCountByTagId = new Map(
+    questionGroups.flatMap((group) =>
+      group.tagId ? [[group.tagId, group._count._all] as const] : []
+    )
+  );
   const items = leaves.map((tag) => {
     const item = statsByTagId.get(tag.id);
-    const trainable = tag.questionCount >= FOUNDATION_COUNT;
+    const questionCount = questionCountByTagId.get(tag.id) ?? 0;
+    const trainable = questionCount >= FOUNDATION_COUNT;
     return {
       tagId: tag.id,
       name: tag.name,
       path: tag.path ?? tag.name,
-      questionCount: tag.questionCount,
+      questionCount,
       trainable,
       status: trainable ? (item?.foundationStatus ?? "NOT_STARTED") : "INSUFFICIENT",
       roundCount: item?.foundationRoundCount ?? 0,
@@ -67,8 +86,9 @@ export async function createFoundationPracticeSession(user: AuthenticatedUser, t
   });
   if (!tag) throw new NotFoundError("叶子题型不存在");
 
+  const questionWhere = await getPracticeQuestionWhere(user);
   const questions = await prisma.question.findMany({
-    where: { tagId, isActive: true, deletedAt: null },
+    where: { tagId, ...questionWhere },
     include: {
       material: { select: { id: true, title: true, contentHtml: true } },
       tag: { select: { id: true, name: true } },

@@ -31,7 +31,10 @@ const modeFilters = [
   { label: "全部", value: "" },
   { label: "真题", value: "PAPER" },
   { label: "专项", value: "SPECIAL" },
+  { label: "每日", value: "DAILY" },
   { label: "错题", value: "WRONG" },
+  { label: "背题", value: "MEMORIZE" },
+  { label: "回看", value: "REVIEW" },
 ];
 
 const modeLabels: Record<string, string> = {
@@ -72,7 +75,7 @@ function formatDate(value: string | null) {
   }).format(new Date(value));
 }
 
-function buildRecordsHref(mode: string | undefined, page: number) {
+function buildRecordsHref(mode: string | undefined, page: number, pageSize?: number) {
   const params = new URLSearchParams();
 
   if (mode) {
@@ -81,6 +84,10 @@ function buildRecordsHref(mode: string | undefined, page: number) {
 
   if (page > 1) {
     params.set("page", String(page));
+  }
+
+  if (pageSize) {
+    params.set("pageSize", String(pageSize));
   }
 
   const query = params.toString();
@@ -132,7 +139,7 @@ export default async function RecordsPage({ searchParams }: RecordsPageProps) {
               return (
                 <Link
                   key={filter.label}
-                  href={buildRecordsHref(filter.value || undefined, 1)}
+                  href={buildRecordsHref(filter.value || undefined, 1, query.pageSize)}
                   aria-current={isActive ? "page" : undefined}
                   className={cn(
                     buttonVariants({ variant: isActive ? "default" : "outline", size: "sm" }),
@@ -233,7 +240,7 @@ export default async function RecordsPage({ searchParams }: RecordsPageProps) {
         {data.pagination.totalPages > 1 ? (
           <div className="flex items-center justify-between gap-3">
             <Link
-              href={buildRecordsHref(query.mode, Math.max(1, data.pagination.page - 1))}
+              href={buildRecordsHref(query.mode, Math.max(1, data.pagination.page - 1), query.pageSize)}
               className={cn(
                 buttonVariants({ variant: "outline" }),
                 data.pagination.page <= 1 && "pointer-events-none opacity-50"
@@ -245,7 +252,7 @@ export default async function RecordsPage({ searchParams }: RecordsPageProps) {
               第 {data.pagination.page} / {data.pagination.totalPages} 页
             </span>
             <Link
-              href={buildRecordsHref(query.mode, Math.min(data.pagination.totalPages, data.pagination.page + 1))}
+              href={buildRecordsHref(query.mode, Math.min(data.pagination.totalPages, data.pagination.page + 1), query.pageSize)}
               className={cn(
                 buttonVariants({ variant: "outline" }),
                 data.pagination.page >= data.pagination.totalPages && "pointer-events-none opacity-50"

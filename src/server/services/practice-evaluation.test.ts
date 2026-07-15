@@ -29,6 +29,11 @@ describe("practice evaluation", () => {
       maxScore: 6,
     });
     expect(result.sections[0]).toMatchObject({ name: "言语", score: 2, maxScore: 3 });
+    expect(result.answers[2]).toMatchObject({
+      questionId: "q3",
+      answer: null,
+      isCorrect: null,
+    });
   });
 
   it("passes a foundation round at nine correct answers", () => {

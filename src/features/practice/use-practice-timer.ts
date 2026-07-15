@@ -5,6 +5,8 @@ import { useEffect, useRef, useState } from "react";
 export function usePracticeTimer({
   initialElapsedSeconds,
   timeLimitSeconds,
+  deadlineAt,
+  serverNow,
   timingMode,
   disabled,
   onActiveSecond,
@@ -12,12 +14,18 @@ export function usePracticeTimer({
 }: {
   initialElapsedSeconds: number;
   timeLimitSeconds?: number | null;
+  deadlineAt?: string | null;
+  serverNow?: string | null;
   timingMode: string;
   disabled: boolean;
   onActiveSecond: () => void;
   onExpire: (elapsedSeconds: number) => void;
 }) {
+  const serverOffsetMs = useRef(0);
   const [elapsedSeconds, setElapsedSeconds] = useState(initialElapsedSeconds);
+  const [clockReady, setClockReady] = useState(
+    timingMode !== "STRICT" || !timeLimitSeconds || !deadlineAt
+  );
   const [isPaused, setIsPaused] = useState(false);
   const [pauseCount, setPauseCount] = useState(0);
   const [pausedSeconds, setPausedSeconds] = useState(0);
@@ -31,14 +39,63 @@ export function usePracticeTimer({
   }, [onActiveSecond, onExpire]);
 
   useEffect(() => {
-    if (disabled) return;
+    if (timingMode !== "STRICT" || !timeLimitSeconds || !deadlineAt) {
+      return;
+    }
+
+    const initializationTimer = window.setTimeout(() => {
+      serverOffsetMs.current = serverNow
+        ? new Date(serverNow).getTime() - Date.now()
+        : 0;
+      const deadlineMs = new Date(deadlineAt).getTime();
+      const serverElapsed = Math.max(
+        0,
+        Math.floor(
+          (Date.now() + serverOffsetMs.current - (deadlineMs - timeLimitSeconds * 1000)) / 1000
+        )
+      );
+      setElapsedSeconds((seconds) =>
+        Math.min(timeLimitSeconds, Math.max(seconds, serverElapsed))
+      );
+      setClockReady(true);
+    }, 0);
+
+    return () => window.clearTimeout(initializationTimer);
+  }, [deadlineAt, serverNow, timeLimitSeconds, timingMode]);
+
+  useEffect(() => {
+    if (
+      disabled ||
+      !clockReady ||
+      !timeLimitSeconds ||
+      elapsedSeconds < timeLimitSeconds ||
+      expiredRef.current
+    ) {
+      return;
+    }
+
+    expiredRef.current = true;
+    window.setTimeout(() => expireRef.current(elapsedSeconds), 0);
+  }, [clockReady, disabled, elapsedSeconds, timeLimitSeconds]);
+
+  useEffect(() => {
+    if (disabled || !clockReady) return;
     const timer = window.setInterval(() => {
       if (isPaused) {
         setPausedSeconds((seconds) => seconds + 1);
         return;
       }
       setElapsedSeconds((seconds) => {
-        const next = seconds + 1;
+        const strictElapsed = timingMode === "STRICT" && timeLimitSeconds && deadlineAt
+          ? Math.max(
+              0,
+              Math.floor(
+                (Date.now() + serverOffsetMs.current -
+                  (new Date(deadlineAt).getTime() - timeLimitSeconds * 1000)) / 1000
+              )
+            )
+          : null;
+        const next = strictElapsed === null ? seconds + 1 : Math.max(seconds + 1, strictElapsed);
         activeSecondRef.current();
         if (timeLimitSeconds && next >= timeLimitSeconds && !expiredRef.current) {
           expiredRef.current = true;
@@ -48,7 +105,7 @@ export function usePracticeTimer({
       });
     }, 1000);
     return () => window.clearInterval(timer);
-  }, [disabled, isPaused, timeLimitSeconds]);
+  }, [clockReady, deadlineAt, disabled, isPaused, timeLimitSeconds, timingMode]);
 
   function togglePause() {
     if (disabled || timingMode === "STRICT") return;

@@ -1,4 +1,4 @@
-import { Check, X } from "lucide-react";
+import { Check, Minus, X } from "lucide-react";
 
 import { RichHtml } from "@/components/question/rich-html";
 import { Card, CardContent } from "@/components/ui/card";
@@ -82,6 +82,7 @@ export function PracticeResultAnalysisPanel({
   className?: string;
 }) {
   const isPositive = isMemorizeMode || isCorrect === true;
+  const isUnanswered = !isMemorizeMode && !(answer ?? "").trim();
 
   return (
     <Card className={cn("practice-analysis-panel min-w-0", className)}>
@@ -89,14 +90,20 @@ export function PracticeResultAnalysisPanel({
         <div
           className={cn(
             "border-y border-current/25 px-1 py-3",
-            isPositive ? "text-success" : "text-destructive"
+            isPositive ? "text-success" : isUnanswered ? "text-muted-foreground" : "text-destructive"
           )}
         >
           <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-sm font-semibold">
             <span className="grid size-6 place-items-center rounded-full border border-current/25 bg-background/60">
-              {isPositive ? <Check className="size-3.5" aria-hidden="true" /> : <X className="size-3.5" aria-hidden="true" />}
+              {isPositive ? (
+                <Check className="size-3.5" aria-hidden="true" />
+              ) : isUnanswered ? (
+                <Minus className="size-3.5" aria-hidden="true" />
+              ) : (
+                <X className="size-3.5" aria-hidden="true" />
+              )}
             </span>
-            {isMemorizeMode ? "背题解析" : isCorrect ? "本题正确" : "本题未答对"}
+            {isMemorizeMode ? "背题解析" : isUnanswered ? "本题未作答" : isCorrect ? "本题正确" : "本题错误"}
             <span className="text-muted-foreground">·</span>
             <span className="text-foreground">正确答案 <strong className="student-heading ml-1 text-lg">{correctAnswer || "暂无"}</strong></span>
             {!isMemorizeMode ? <span className="text-foreground">我的答案 <strong className="student-heading ml-1 text-lg">{answer || "未作答"}</strong></span> : null}

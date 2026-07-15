@@ -4,6 +4,7 @@ import type { AuthenticatedUser } from "@/lib/auth/guards";
 import { prisma } from "@/lib/db/prisma";
 import { BusinessError, NotFoundError } from "@/server/services/errors";
 import { createQuestionPracticeSession } from "@/server/services/practice";
+import { assertPracticeQuestionsAccessible } from "@/server/services/practice-question-policy";
 
 export const createDailySessionSchema = z.object({
   date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),
@@ -124,6 +125,11 @@ export async function createDailyPracticeSession(
   if (daily.practice.questions.length === 0) {
     throw new BusinessError("每日一练暂无题目");
   }
+
+  await assertPracticeQuestionsAccessible(
+    user,
+    daily.practice.questions.map((item) => item.question)
+  );
 
   return createQuestionPracticeSession({
     user,
