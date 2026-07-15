@@ -265,6 +265,11 @@ function TutorChat({
 
       <div className="shrink-0 border-t px-2.5 py-1.5">
         <Suggestions>
+          <Suggestion
+            disabled={isGenerating}
+            suggestion="/knowledge 资料分析题速算"
+            onClick={(suggestion) => setPrompt(suggestion)}
+          />
           {suggestedPrompts.slice(0, 3).map((item) => (
             <Suggestion
               disabled={isGenerating}

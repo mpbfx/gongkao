@@ -6,6 +6,7 @@ import { createTutorAgent } from "@/server/agent/tutor/runtime/create-tutor-agen
 import { tutorRuntimeLimits } from "@/server/agent/tutor/runtime/runtime-limits";
 import type { TutorStreamEvent } from "@/server/agent/tutor/schemas/tutor-schemas";
 import type { TutorMistakeReview } from "@/server/agent/tutor/schemas/tutor-schemas";
+import type { KnowledgeSearchResult } from "@/server/knowledge/types";
 
 export class TutorRuntimeError extends Error {
   constructor(
@@ -54,6 +55,7 @@ export async function runTutorAgent({
   emit = () => undefined,
   streamFn,
   enableKnowledge = true,
+  forcedKnowledge,
   requireReview = true,
 }: {
   userId: string;
@@ -64,6 +66,7 @@ export async function runTutorAgent({
   emit?: Emit;
   streamFn?: StreamFn;
   enableKnowledge?: boolean;
+  forcedKnowledge?: KnowledgeSearchResult[];
   requireReview?: boolean;
 }) {
   if (signal?.aborted) throw new TutorRuntimeError("讲解已取消。", "cancelled");
@@ -74,6 +77,7 @@ export async function runTutorAgent({
     messages,
     streamFn,
     enableKnowledge,
+    forcedKnowledge,
     requireReview,
   });
   let timedOut = false;
@@ -137,7 +141,10 @@ export async function runTutorAgent({
     },
     durationMs: Date.now() - startedAt,
     turns: counters.turns,
-    toolNames: [...counters.toolNames],
+    toolNames: [
+      ...(forcedKnowledge !== undefined ? ["search_course_knowledge"] : []),
+      ...counters.toolNames,
+    ],
     totalTokens: totalTokens(agent.state.messages.slice(messages.length)),
     model: agent.state.model.id,
   };

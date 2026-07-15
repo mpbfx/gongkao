@@ -14,6 +14,7 @@ import {
   createSubmitMistakeReviewTool,
   type ReviewSubmission,
 } from "@/server/agent/tutor/tools/submit-mistake-review";
+import type { KnowledgeSearchResult } from "@/server/knowledge/types";
 
 export type TutorRuntimeCounters = {
   turns: number;
@@ -37,6 +38,7 @@ export function createTutorAgent({
   messages,
   streamFn,
   enableKnowledge = true,
+  forcedKnowledge,
   requireReview = true,
 }: {
   userId: string;
@@ -44,6 +46,7 @@ export function createTutorAgent({
   messages: AgentMessage[];
   streamFn?: StreamFn;
   enableKnowledge?: boolean;
+  forcedKnowledge?: KnowledgeSearchResult[];
   requireReview?: boolean;
 }) {
   const reviewSubmission: ReviewSubmission = {};
@@ -57,7 +60,11 @@ export function createTutorAgent({
   if (requireReview) tools.push(createSubmitMistakeReviewTool(context, reviewSubmission));
   const options: AgentOptions = {
     initialState: {
-      systemPrompt: buildTutorSystemPrompt(context, { requireReview }),
+      systemPrompt: buildTutorSystemPrompt(context, {
+        requireReview,
+        enableKnowledge,
+        forcedKnowledge,
+      }),
       model: createTutorModel(),
       thinkingLevel: "off",
       tools,
