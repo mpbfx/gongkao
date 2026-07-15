@@ -58,9 +58,17 @@ class PracticeOfflineDatabase extends Dexie {
 }
 
 let database: PracticeOfflineDatabase | null = null;
+let storageUnavailable = false;
+
+function disableStorage(error: unknown) {
+  storageUnavailable = true;
+  database?.close();
+  database = null;
+  console.warn("练习草稿的本机存储暂时不可用。", error);
+}
 
 function getDatabase() {
-  if (typeof window === "undefined") {
+  if (typeof window === "undefined" || storageUnavailable) {
     return null;
   }
 
@@ -69,7 +77,18 @@ function getDatabase() {
 }
 
 export async function getPracticeDraft(sessionId: string) {
-  return getDatabase()?.practiceDrafts.get(sessionId) ?? null;
+  const db = getDatabase();
+
+  if (!db) {
+    return null;
+  }
+
+  try {
+    return await db.practiceDrafts.get(sessionId);
+  } catch (error) {
+    disableStorage(error);
+    return null;
+  }
 }
 
 export async function savePracticeDraft(draft: Omit<PracticeDraft, "updatedAt">) {
@@ -79,12 +98,26 @@ export async function savePracticeDraft(draft: Omit<PracticeDraft, "updatedAt">)
     return;
   }
 
-  await db.practiceDrafts.put({
-    ...draft,
-    updatedAt: new Date().toISOString(),
-  });
+  try {
+    await db.practiceDrafts.put({
+      ...draft,
+      updatedAt: new Date().toISOString(),
+    });
+  } catch (error) {
+    disableStorage(error);
+  }
 }
 
 export async function clearPracticeDraft(sessionId: string) {
-  await getDatabase()?.practiceDrafts.delete(sessionId);
+  const db = getDatabase();
+
+  if (!db) {
+    return;
+  }
+
+  try {
+    await db.practiceDrafts.delete(sessionId);
+  } catch (error) {
+    disableStorage(error);
+  }
 }
