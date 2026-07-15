@@ -121,7 +121,10 @@ export function AppShellFrame({
       </aside>
 
       <AppHeaderContext.Provider value={headerContextValue}>
-        <div className="flex min-h-dvh flex-col transition-[padding] duration-200 lg:pl-[var(--app-sidebar-width)]">
+        <div className={cn(
+          "flex min-h-dvh flex-col transition-[padding] duration-200 lg:pl-[var(--app-sidebar-width)]",
+          isPracticeFocus && "lg:h-dvh lg:min-h-0 lg:overflow-hidden"
+        )}>
           <header className={cn("student-topbar sticky top-0 z-30 border-b bg-background/95 backdrop-blur", !isPracticeFocus && "lg:hidden", isPracticeFocus && "practice-focus-topbar")}>
             <div className="flex h-14 items-center justify-between px-4 md:px-6 lg:h-[4.25rem] lg:px-9">
               <div className="flex min-w-0 items-center gap-2">
