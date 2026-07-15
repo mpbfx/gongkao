@@ -5,6 +5,7 @@ import {
   ArrowRight,
   BookMarked,
   Check,
+  Clock3,
   ChevronLeft,
   ChevronRight,
   Grid3X3,
@@ -562,10 +563,46 @@ export function PracticeRunner({
     appHeader?.setHeader({
       title: cleanLearningTitle(initialSession.title),
       subtitle: headerSubtitle,
+      actions: !isResultMode ? (
+        <div className="practice-topbar-actions flex items-center gap-1.5">
+          <span className="hidden border-r border-foreground/15 pr-3 text-xs font-medium tabular-nums text-muted-foreground lg:inline">
+            {currentIndex + 1} / {questions.length}
+          </span>
+          <span className="hidden items-center gap-1.5 border-r border-foreground/15 pr-3 text-xs text-muted-foreground xl:inline-flex">
+            <Clock3 className="size-3.5" aria-hidden="true" />
+            <span className="font-mono font-medium tabular-nums text-foreground">{actionBarSecondaryText}</span>
+          </span>
+          <Button type="button" variant="ghost" size="sm" className="hidden h-8 lg:inline-flex" disabled={currentIndex === 0 || isPracticePaused} onClick={() => goToQuestion(currentIndex - 1)}>
+            <ChevronLeft data-icon="inline-start" />上一题
+          </Button>
+          <Button type="button" variant="ghost" size="sm" className="hidden h-8 lg:inline-flex" disabled={currentIndex === questions.length - 1 || isPracticePaused} onClick={() => goToQuestion(currentIndex + 1)}>
+            下一题<ChevronRight data-icon="inline-end" />
+          </Button>
+          {initialSession.timingMode !== "STRICT" ? (
+            <Button type="button" variant="ghost" size="sm" className="hidden h-8 xl:inline-flex" onClick={togglePause}>
+              {isPracticePaused ? <Play data-icon="inline-start" /> : <Pause data-icon="inline-start" />}
+              {isPracticePaused ? "继续" : "暂停"}
+            </Button>
+          ) : null}
+          <Button type="button" variant="ghost" size="sm" className="hidden h-8 xl:inline-flex" onClick={() => setShowDraftCanvas(true)}>
+            <PencilLine data-icon="inline-start" />草稿
+          </Button>
+        </div>
+      ) : undefined,
     });
 
     return () => appHeader?.setHeader(null);
-  }, [appHeader, headerSubtitle, initialSession.title]);
+  }, [
+    actionBarSecondaryText,
+    appHeader,
+    currentIndex,
+    headerSubtitle,
+    initialSession.title,
+    initialSession.timingMode,
+    isPracticePaused,
+    isResultMode,
+    questions.length,
+  ]);
 
   useEffect(() => {
     function updateOnlineState() {
@@ -975,7 +1012,7 @@ export function PracticeRunner({
             </div>
 
             {!isResultMode ? (
-              <div className="flex items-center justify-between gap-3 border-t border-foreground/20 pt-4">
+              <div className="flex items-center justify-between gap-3 border-t border-foreground/20 pt-4 lg:hidden">
                 <Button
                   type="button"
                   variant="outline"
@@ -1062,29 +1099,9 @@ export function PracticeRunner({
             <MessageSquare data-icon="inline-start" />围绕本题问助教
           </Button>
         ) : null}
-        {!isResultMode ? (
-          <div className="hidden items-center justify-between gap-2 border-y border-foreground/25 py-2 lg:flex">
-            <div className="min-w-0">
-              <div className="text-xs text-muted-foreground">{actionBarPrimaryText}</div>
-              <div className="mt-0.5 font-mono text-sm font-medium tabular-nums">{actionBarSecondaryText}</div>
-            </div>
-            <div className="flex shrink-0 items-center gap-1">
-              {initialSession.timingMode !== "STRICT" ? (
-                <Button type="button" variant="ghost" size="sm" className="h-8" onClick={togglePause}>
-                  {isPracticePaused ? <Play data-icon="inline-start" /> : <Pause data-icon="inline-start" />}
-                  {isPracticePaused ? "继续" : "暂停"}
-                </Button>
-              ) : null}
-              <Button type="button" variant="ghost" size="sm" className="h-8" onClick={() => setShowDraftCanvas(true)}>
-                <PencilLine data-icon="inline-start" />草稿
-              </Button>
-            </div>
-          </div>
-        ) : null}
-
         <Card
           className={cn(
-            "hidden lg:flex lg:min-h-0 lg:flex-col",
+            "practice-answer-sheet-panel hidden lg:flex lg:min-h-0 lg:flex-col",
             isResultMode ? "lg:max-h-[21rem] lg:flex-none" : "lg:flex-1"
           )}
         >
