@@ -1,13 +1,11 @@
-# OS / editor
+﻿# OS / editor
 .DS_Store
 .idea/
 .vscode/
 
-# Dependencies
+# Dependencies and generated artifacts
 node_modules/
 **/node_modules/
-
-# Build and cache artifacts
 .cache/
 .next/
 out/
@@ -27,11 +25,11 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-# Editor swap files
-*.swp
-
 # Local environment and secrets
 .env
 .env.*
 !.env.example
 **/.deployment-credentials
+
+# Local scraper authentication state
+tools/saduck-scraper/**/storage-state.json

@@ -2,11 +2,11 @@
 
 ## Project Structure & Module Organization
 
-The primary application lives in `mpbkaogong/`, a Next.js App Router project. Routes and API handlers are under `src/app/`; reusable UI is in `src/components/`; domain code is grouped in `src/features/`; shared utilities belong in `src/lib/`; and server-only policies, repositories, services, and agent workflows live in `src/server/`. Prisma schema, migrations, and seed data are in `prisma/`, while static assets are in `public/`. Scraping and import utilities are isolated in `tools/saduck-scraper/`. `CLIProxyAPI/` is a Git submodule with its own `AGENTS.md`; follow that guide when changing it.
+The repository root is a Next.js App Router application. Routes and API handlers are under `src/app/`; reusable UI is in `src/components/`; domain code is grouped in `src/features/`; shared utilities belong in `src/lib/`; and server-only policies, repositories, services, and agent workflows live in `src/server/`. Prisma schema, migrations, and seed data are in `prisma/`, while static assets are in `public/`. Scraping and import utilities are isolated in `tools/saduck-scraper/`.
 
 ## Build, Test, and Development Commands
 
-Run application commands from `mpbkaogong/`:
+Run application commands from the repository root:
 
 - `npm install` installs the locked Node dependencies (Node `20.19+` is required).
 - `npm run dev` starts the local Next.js development server.
@@ -28,14 +28,14 @@ Vitest uses the Node environment and discovers `src/**/*.test.ts`. Place tests b
 
 ## Commit & Pull Request Guidelines
 
-Recent commits use short, imperative summaries such as `Compress tutor composer` and `Fix wrong-question sheet backdrop on desktop`. Keep each commit scoped to one coherent change. Pull requests should explain the problem and solution, note schema or environment changes, link relevant issues, and include screenshots for visible UI changes. Report the commands used to verify the change.
+Commit titles must use `<type>: <中文简短信息>`, without scope, terminal punctuation, or English prose. Use only `feat`, `fix`, `refactor`, `docs`, `chore`, or `test`, selected by the actual change. Merge commits use `chore: 合并 PR #编号`. Keep each commit scoped to one coherent change. Pull requests should explain the problem and solution, note schema or environment changes, link relevant issues, and include screenshots for visible UI changes. Report the commands used to verify the change.
 
 - Pull request title and body must be written in clear, natural Chinese. Keep technical identifiers, file paths, commands, branch names, and API names in their original form.
 - Pull request descriptions should use Chinese headings to summarize the changes, motivation, data/configuration impact, validation commands, and any follow-up work.
 
 ## Security & Configuration
 
-Never commit `.env.local`, credentials, API keys, or production data. Review generated Prisma migrations before committing them. Treat changes to `CLIProxyAPI/` as submodule pointer updates and document the referenced upstream revision.
+Never commit `.env.local`, credentials, API keys, or production data. Review generated Prisma migrations before committing them.
 
 ## Training-Flow Implementation Guidelines
 
