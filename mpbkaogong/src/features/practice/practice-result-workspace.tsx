@@ -45,6 +45,7 @@ export function PracticeResultWorkspace({
         reviewMode={reviewMode}
         currentIndex={currentIndex}
         totalCount={totalCount}
+        className="lg:hidden"
       />
 
       <div className="flex min-h-0 flex-1">

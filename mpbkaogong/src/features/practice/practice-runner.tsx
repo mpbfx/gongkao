@@ -563,7 +563,32 @@ export function PracticeRunner({
     appHeader?.setHeader({
       title: cleanLearningTitle(initialSession.title),
       subtitle: headerSubtitle,
-      actions: !isResultMode ? (
+      actions: isResultMode && resultSummary ? (
+        <dl className="practice-result-topbar-summary hidden items-center divide-x divide-foreground/15 lg:flex">
+          {resultSummary.maxScore ? (
+            <div className="px-3 text-center">
+              <dt className="text-[0.65rem] text-muted-foreground">得分</dt>
+              <dd className="student-heading text-base font-semibold tabular-nums text-primary">{resultSummary.score ?? "0"}/{resultSummary.maxScore}</dd>
+            </div>
+          ) : null}
+          <div className="px-3 text-center">
+            <dt className="text-[0.65rem] text-muted-foreground">正确</dt>
+            <dd className="student-heading text-base font-semibold tabular-nums text-success">{resultSummary.correctCount}</dd>
+          </div>
+          <div className="px-3 text-center">
+            <dt className="text-[0.65rem] text-muted-foreground">错误</dt>
+            <dd className="student-heading text-base font-semibold tabular-nums text-destructive">{resultSummary.wrongCount}</dd>
+          </div>
+          <div className="px-3 text-center">
+            <dt className="text-[0.65rem] text-muted-foreground">未答</dt>
+            <dd className="student-heading text-base font-semibold tabular-nums">{resultSummary.unansweredCount}</dd>
+          </div>
+          <div className="hidden px-3 text-center 2xl:block">
+            <dt className="text-[0.65rem] text-muted-foreground">用时</dt>
+            <dd className="student-heading text-base font-semibold tabular-nums">{formatSeconds(resultSummary.elapsedSeconds)}</dd>
+          </div>
+        </dl>
+      ) : !isResultMode ? (
         <div className="practice-topbar-actions flex items-center gap-1.5">
           <span className="hidden border-r border-foreground/15 pr-3 text-xs font-medium tabular-nums text-muted-foreground lg:inline">
             {currentIndex + 1} / {questions.length}
