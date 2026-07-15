@@ -28,7 +28,7 @@ Vitest uses the Node environment and discovers `src/**/*.test.ts`. Place tests b
 
 ## Commit & Pull Request Guidelines
 
-Recent commits use short, imperative summaries such as `Compress tutor composer` and `Fix wrong-question sheet backdrop on desktop`. Keep each commit scoped to one coherent change. Pull requests should explain the problem and solution, note schema or environment changes, link relevant issues, and include screenshots for visible UI changes. Report the commands used to verify the change.
+Commit titles must use `<type>: <中文简短信息>`, without scope, terminal punctuation, or English prose. Use only `feat`, `fix`, `refactor`, `docs`, `chore`, or `test`, selected by the actual change. Merge commits use `chore: 合并 PR #编号`. Keep each commit scoped to one coherent change. Pull requests should explain the problem and solution, note schema or environment changes, link relevant issues, and include screenshots for visible UI changes. Report the commands used to verify the change.
 
 - Pull request title and body must be written in clear, natural Chinese. Keep technical identifiers, file paths, commands, branch names, and API names in their original form.
 - Pull request descriptions should use Chinese headings to summarize the changes, motivation, data/configuration impact, validation commands, and any follow-up work.
