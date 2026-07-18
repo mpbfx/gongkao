@@ -106,7 +106,6 @@ model User {
   agentFeedback         AgentFeedback[]
   importJobs            ImportJob[]
   knowledgeChatSessions KnowledgeChatSession[]
-  examGoal              UserExamGoal?
   practiceEvents        PracticeEvent[]
 }
 
@@ -275,7 +274,6 @@ model Paper {
 
   questions PaperQuestion[]
   sessions  PracticeSession[]
-  examGoals UserExamGoal[]
 
   @@index([year])
   @@index([province])
@@ -362,7 +360,6 @@ model PracticeSession {
   startedAgentRecommendations AgentRecommendation[]   @relation("AgentRecommendationStarted")
   agentTutorMessages          AgentTutorMessage[]
   mistakeReviews              QuestionMistakeReview[]
-  baselineForGoal             UserExamGoal?           @relation("GoalBaselineSession")
   events                      PracticeEvent[]
 
   @@index([userId])
@@ -485,21 +482,6 @@ model UserTagStats {
   @@index([tagId])
   @@index([accuracy])
   @@index([lastPracticedAt])
-}
-
-model UserExamGoal {
-  id                String   @id @default(cuid())
-  userId            String   @unique
-  targetPaperId     String
-  baselineSessionId String?  @unique
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
-
-  user            User             @relation(fields: [userId], references: [id], onDelete: Cascade)
-  targetPaper     Paper            @relation(fields: [targetPaperId], references: [id])
-  baselineSession PracticeSession? @relation("GoalBaselineSession", fields: [baselineSessionId], references: [id], onDelete: SetNull)
-
-  @@index([targetPaperId])
 }
 
 model AgentConfig {

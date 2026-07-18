@@ -70,7 +70,6 @@ export const ModelName = {
   WrongQuestion: 'WrongQuestion',
   UserStatsSnapshot: 'UserStatsSnapshot',
   UserTagStats: 'UserTagStats',
-  UserExamGoal: 'UserExamGoal',
   AgentConfig: 'AgentConfig',
   AgentRecommendation: 'AgentRecommendation',
   AgentTutorMessage: 'AgentTutorMessage',
@@ -401,18 +400,6 @@ export const UserTagStatsScalarFieldEnum = {
 } as const
 
 export type UserTagStatsScalarFieldEnum = (typeof UserTagStatsScalarFieldEnum)[keyof typeof UserTagStatsScalarFieldEnum]
-
-
-export const UserExamGoalScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  targetPaperId: 'targetPaperId',
-  baselineSessionId: 'baselineSessionId',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type UserExamGoalScalarFieldEnum = (typeof UserExamGoalScalarFieldEnum)[keyof typeof UserExamGoalScalarFieldEnum]
 
 
 export const AgentConfigScalarFieldEnum = {
@@ -828,16 +815,6 @@ export const UserTagStatsOrderByRelevanceFieldEnum = {
 } as const
 
 export type UserTagStatsOrderByRelevanceFieldEnum = (typeof UserTagStatsOrderByRelevanceFieldEnum)[keyof typeof UserTagStatsOrderByRelevanceFieldEnum]
-
-
-export const UserExamGoalOrderByRelevanceFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  targetPaperId: 'targetPaperId',
-  baselineSessionId: 'baselineSessionId'
-} as const
-
-export type UserExamGoalOrderByRelevanceFieldEnum = (typeof UserExamGoalOrderByRelevanceFieldEnum)[keyof typeof UserExamGoalOrderByRelevanceFieldEnum]
 
 
 export const AgentConfigOrderByRelevanceFieldEnum = {

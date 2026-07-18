@@ -431,7 +431,6 @@ export type PracticeSessionWhereInput = {
   startedAgentRecommendations?: Prisma.AgentRecommendationListRelationFilter
   agentTutorMessages?: Prisma.AgentTutorMessageListRelationFilter
   mistakeReviews?: Prisma.QuestionMistakeReviewListRelationFilter
-  baselineForGoal?: Prisma.XOR<Prisma.UserExamGoalNullableScalarRelationFilter, Prisma.UserExamGoalWhereInput> | null
   events?: Prisma.PracticeEventListRelationFilter
 }
 
@@ -469,7 +468,6 @@ export type PracticeSessionOrderByWithRelationInput = {
   startedAgentRecommendations?: Prisma.AgentRecommendationOrderByRelationAggregateInput
   agentTutorMessages?: Prisma.AgentTutorMessageOrderByRelationAggregateInput
   mistakeReviews?: Prisma.QuestionMistakeReviewOrderByRelationAggregateInput
-  baselineForGoal?: Prisma.UserExamGoalOrderByWithRelationInput
   events?: Prisma.PracticeEventOrderByRelationAggregateInput
   _relevance?: Prisma.PracticeSessionOrderByRelevanceInput
 }
@@ -511,7 +509,6 @@ export type PracticeSessionWhereUniqueInput = Prisma.AtLeast<{
   startedAgentRecommendations?: Prisma.AgentRecommendationListRelationFilter
   agentTutorMessages?: Prisma.AgentTutorMessageListRelationFilter
   mistakeReviews?: Prisma.QuestionMistakeReviewListRelationFilter
-  baselineForGoal?: Prisma.XOR<Prisma.UserExamGoalNullableScalarRelationFilter, Prisma.UserExamGoalWhereInput> | null
   events?: Prisma.PracticeEventListRelationFilter
 }, "id">
 
@@ -613,7 +610,6 @@ export type PracticeSessionCreateInput = {
   startedAgentRecommendations?: Prisma.AgentRecommendationCreateNestedManyWithoutStartedSessionInput
   agentTutorMessages?: Prisma.AgentTutorMessageCreateNestedManyWithoutSessionInput
   mistakeReviews?: Prisma.QuestionMistakeReviewCreateNestedManyWithoutSessionInput
-  baselineForGoal?: Prisma.UserExamGoalCreateNestedOneWithoutBaselineSessionInput
   events?: Prisma.PracticeEventCreateNestedManyWithoutSessionInput
 }
 
@@ -649,7 +645,6 @@ export type PracticeSessionUncheckedCreateInput = {
   startedAgentRecommendations?: Prisma.AgentRecommendationUncheckedCreateNestedManyWithoutStartedSessionInput
   agentTutorMessages?: Prisma.AgentTutorMessageUncheckedCreateNestedManyWithoutSessionInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedCreateNestedManyWithoutSessionInput
-  baselineForGoal?: Prisma.UserExamGoalUncheckedCreateNestedOneWithoutBaselineSessionInput
   events?: Prisma.PracticeEventUncheckedCreateNestedManyWithoutSessionInput
 }
 
@@ -685,7 +680,6 @@ export type PracticeSessionUpdateInput = {
   startedAgentRecommendations?: Prisma.AgentRecommendationUpdateManyWithoutStartedSessionNestedInput
   agentTutorMessages?: Prisma.AgentTutorMessageUpdateManyWithoutSessionNestedInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUpdateManyWithoutSessionNestedInput
-  baselineForGoal?: Prisma.UserExamGoalUpdateOneWithoutBaselineSessionNestedInput
   events?: Prisma.PracticeEventUpdateManyWithoutSessionNestedInput
 }
 
@@ -721,7 +715,6 @@ export type PracticeSessionUncheckedUpdateInput = {
   startedAgentRecommendations?: Prisma.AgentRecommendationUncheckedUpdateManyWithoutStartedSessionNestedInput
   agentTutorMessages?: Prisma.AgentTutorMessageUncheckedUpdateManyWithoutSessionNestedInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedUpdateManyWithoutSessionNestedInput
-  baselineForGoal?: Prisma.UserExamGoalUncheckedUpdateOneWithoutBaselineSessionNestedInput
   events?: Prisma.PracticeEventUncheckedUpdateManyWithoutSessionNestedInput
 }
 
@@ -1083,22 +1076,6 @@ export type PracticeSessionUpdateOneRequiredWithoutEventsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.PracticeSessionUpdateToOneWithWhereWithoutEventsInput, Prisma.PracticeSessionUpdateWithoutEventsInput>, Prisma.PracticeSessionUncheckedUpdateWithoutEventsInput>
 }
 
-export type PracticeSessionCreateNestedOneWithoutBaselineForGoalInput = {
-  create?: Prisma.XOR<Prisma.PracticeSessionCreateWithoutBaselineForGoalInput, Prisma.PracticeSessionUncheckedCreateWithoutBaselineForGoalInput>
-  connectOrCreate?: Prisma.PracticeSessionCreateOrConnectWithoutBaselineForGoalInput
-  connect?: Prisma.PracticeSessionWhereUniqueInput
-}
-
-export type PracticeSessionUpdateOneWithoutBaselineForGoalNestedInput = {
-  create?: Prisma.XOR<Prisma.PracticeSessionCreateWithoutBaselineForGoalInput, Prisma.PracticeSessionUncheckedCreateWithoutBaselineForGoalInput>
-  connectOrCreate?: Prisma.PracticeSessionCreateOrConnectWithoutBaselineForGoalInput
-  upsert?: Prisma.PracticeSessionUpsertWithoutBaselineForGoalInput
-  disconnect?: Prisma.PracticeSessionWhereInput | boolean
-  delete?: Prisma.PracticeSessionWhereInput | boolean
-  connect?: Prisma.PracticeSessionWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.PracticeSessionUpdateToOneWithWhereWithoutBaselineForGoalInput, Prisma.PracticeSessionUpdateWithoutBaselineForGoalInput>, Prisma.PracticeSessionUncheckedUpdateWithoutBaselineForGoalInput>
-}
-
 export type PracticeSessionCreateNestedOneWithoutSourceAgentRecommendationsInput = {
   create?: Prisma.XOR<Prisma.PracticeSessionCreateWithoutSourceAgentRecommendationsInput, Prisma.PracticeSessionUncheckedCreateWithoutSourceAgentRecommendationsInput>
   connectOrCreate?: Prisma.PracticeSessionCreateOrConnectWithoutSourceAgentRecommendationsInput
@@ -1194,7 +1171,6 @@ export type PracticeSessionCreateWithoutUserInput = {
   startedAgentRecommendations?: Prisma.AgentRecommendationCreateNestedManyWithoutStartedSessionInput
   agentTutorMessages?: Prisma.AgentTutorMessageCreateNestedManyWithoutSessionInput
   mistakeReviews?: Prisma.QuestionMistakeReviewCreateNestedManyWithoutSessionInput
-  baselineForGoal?: Prisma.UserExamGoalCreateNestedOneWithoutBaselineSessionInput
   events?: Prisma.PracticeEventCreateNestedManyWithoutSessionInput
 }
 
@@ -1229,7 +1205,6 @@ export type PracticeSessionUncheckedCreateWithoutUserInput = {
   startedAgentRecommendations?: Prisma.AgentRecommendationUncheckedCreateNestedManyWithoutStartedSessionInput
   agentTutorMessages?: Prisma.AgentTutorMessageUncheckedCreateNestedManyWithoutSessionInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedCreateNestedManyWithoutSessionInput
-  baselineForGoal?: Prisma.UserExamGoalUncheckedCreateNestedOneWithoutBaselineSessionInput
   events?: Prisma.PracticeEventUncheckedCreateNestedManyWithoutSessionInput
 }
 
@@ -1322,7 +1297,6 @@ export type PracticeSessionCreateWithoutPaperInput = {
   startedAgentRecommendations?: Prisma.AgentRecommendationCreateNestedManyWithoutStartedSessionInput
   agentTutorMessages?: Prisma.AgentTutorMessageCreateNestedManyWithoutSessionInput
   mistakeReviews?: Prisma.QuestionMistakeReviewCreateNestedManyWithoutSessionInput
-  baselineForGoal?: Prisma.UserExamGoalCreateNestedOneWithoutBaselineSessionInput
   events?: Prisma.PracticeEventCreateNestedManyWithoutSessionInput
 }
 
@@ -1357,7 +1331,6 @@ export type PracticeSessionUncheckedCreateWithoutPaperInput = {
   startedAgentRecommendations?: Prisma.AgentRecommendationUncheckedCreateNestedManyWithoutStartedSessionInput
   agentTutorMessages?: Prisma.AgentTutorMessageUncheckedCreateNestedManyWithoutSessionInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedCreateNestedManyWithoutSessionInput
-  baselineForGoal?: Prisma.UserExamGoalUncheckedCreateNestedOneWithoutBaselineSessionInput
   events?: Prisma.PracticeEventUncheckedCreateNestedManyWithoutSessionInput
 }
 
@@ -1418,7 +1391,6 @@ export type PracticeSessionCreateWithoutAnswersInput = {
   startedAgentRecommendations?: Prisma.AgentRecommendationCreateNestedManyWithoutStartedSessionInput
   agentTutorMessages?: Prisma.AgentTutorMessageCreateNestedManyWithoutSessionInput
   mistakeReviews?: Prisma.QuestionMistakeReviewCreateNestedManyWithoutSessionInput
-  baselineForGoal?: Prisma.UserExamGoalCreateNestedOneWithoutBaselineSessionInput
   events?: Prisma.PracticeEventCreateNestedManyWithoutSessionInput
 }
 
@@ -1453,7 +1425,6 @@ export type PracticeSessionUncheckedCreateWithoutAnswersInput = {
   startedAgentRecommendations?: Prisma.AgentRecommendationUncheckedCreateNestedManyWithoutStartedSessionInput
   agentTutorMessages?: Prisma.AgentTutorMessageUncheckedCreateNestedManyWithoutSessionInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedCreateNestedManyWithoutSessionInput
-  baselineForGoal?: Prisma.UserExamGoalUncheckedCreateNestedOneWithoutBaselineSessionInput
   events?: Prisma.PracticeEventUncheckedCreateNestedManyWithoutSessionInput
 }
 
@@ -1504,7 +1475,6 @@ export type PracticeSessionUpdateWithoutAnswersInput = {
   startedAgentRecommendations?: Prisma.AgentRecommendationUpdateManyWithoutStartedSessionNestedInput
   agentTutorMessages?: Prisma.AgentTutorMessageUpdateManyWithoutSessionNestedInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUpdateManyWithoutSessionNestedInput
-  baselineForGoal?: Prisma.UserExamGoalUpdateOneWithoutBaselineSessionNestedInput
   events?: Prisma.PracticeEventUpdateManyWithoutSessionNestedInput
 }
 
@@ -1539,7 +1509,6 @@ export type PracticeSessionUncheckedUpdateWithoutAnswersInput = {
   startedAgentRecommendations?: Prisma.AgentRecommendationUncheckedUpdateManyWithoutStartedSessionNestedInput
   agentTutorMessages?: Prisma.AgentTutorMessageUncheckedUpdateManyWithoutSessionNestedInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedUpdateManyWithoutSessionNestedInput
-  baselineForGoal?: Prisma.UserExamGoalUncheckedUpdateOneWithoutBaselineSessionNestedInput
   events?: Prisma.PracticeEventUncheckedUpdateManyWithoutSessionNestedInput
 }
 
@@ -1575,7 +1544,6 @@ export type PracticeSessionCreateWithoutEventsInput = {
   startedAgentRecommendations?: Prisma.AgentRecommendationCreateNestedManyWithoutStartedSessionInput
   agentTutorMessages?: Prisma.AgentTutorMessageCreateNestedManyWithoutSessionInput
   mistakeReviews?: Prisma.QuestionMistakeReviewCreateNestedManyWithoutSessionInput
-  baselineForGoal?: Prisma.UserExamGoalCreateNestedOneWithoutBaselineSessionInput
 }
 
 export type PracticeSessionUncheckedCreateWithoutEventsInput = {
@@ -1610,7 +1578,6 @@ export type PracticeSessionUncheckedCreateWithoutEventsInput = {
   startedAgentRecommendations?: Prisma.AgentRecommendationUncheckedCreateNestedManyWithoutStartedSessionInput
   agentTutorMessages?: Prisma.AgentTutorMessageUncheckedCreateNestedManyWithoutSessionInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedCreateNestedManyWithoutSessionInput
-  baselineForGoal?: Prisma.UserExamGoalUncheckedCreateNestedOneWithoutBaselineSessionInput
 }
 
 export type PracticeSessionCreateOrConnectWithoutEventsInput = {
@@ -1661,7 +1628,6 @@ export type PracticeSessionUpdateWithoutEventsInput = {
   startedAgentRecommendations?: Prisma.AgentRecommendationUpdateManyWithoutStartedSessionNestedInput
   agentTutorMessages?: Prisma.AgentTutorMessageUpdateManyWithoutSessionNestedInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUpdateManyWithoutSessionNestedInput
-  baselineForGoal?: Prisma.UserExamGoalUpdateOneWithoutBaselineSessionNestedInput
 }
 
 export type PracticeSessionUncheckedUpdateWithoutEventsInput = {
@@ -1696,163 +1662,6 @@ export type PracticeSessionUncheckedUpdateWithoutEventsInput = {
   startedAgentRecommendations?: Prisma.AgentRecommendationUncheckedUpdateManyWithoutStartedSessionNestedInput
   agentTutorMessages?: Prisma.AgentTutorMessageUncheckedUpdateManyWithoutSessionNestedInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedUpdateManyWithoutSessionNestedInput
-  baselineForGoal?: Prisma.UserExamGoalUncheckedUpdateOneWithoutBaselineSessionNestedInput
-}
-
-export type PracticeSessionCreateWithoutBaselineForGoalInput = {
-  id?: string
-  mode: $Enums.PracticeMode
-  status?: $Enums.PracticeStatus
-  purpose?: $Enums.PracticePurpose
-  timingMode?: $Enums.PracticeTimingMode
-  title: string
-  sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  difficulty?: $Enums.Difficulty | null
-  totalCount?: number
-  answeredCount?: number
-  correctCount?: number
-  wrongCount?: number
-  unansweredCount?: number
-  elapsedSeconds?: number
-  timeLimitSeconds?: number | null
-  pauseCount?: number
-  pausedSeconds?: number
-  accuracy?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  score?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  maxScore?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  reflectionText?: string | null
-  submittedAt?: Date | string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutPracticeSessionsInput
-  paper?: Prisma.PaperCreateNestedOneWithoutSessionsInput
-  answers?: Prisma.PracticeAnswerCreateNestedManyWithoutSessionInput
-  sourceAgentRecommendations?: Prisma.AgentRecommendationCreateNestedManyWithoutSourceSessionInput
-  startedAgentRecommendations?: Prisma.AgentRecommendationCreateNestedManyWithoutStartedSessionInput
-  agentTutorMessages?: Prisma.AgentTutorMessageCreateNestedManyWithoutSessionInput
-  mistakeReviews?: Prisma.QuestionMistakeReviewCreateNestedManyWithoutSessionInput
-  events?: Prisma.PracticeEventCreateNestedManyWithoutSessionInput
-}
-
-export type PracticeSessionUncheckedCreateWithoutBaselineForGoalInput = {
-  id?: string
-  userId: string
-  mode: $Enums.PracticeMode
-  status?: $Enums.PracticeStatus
-  purpose?: $Enums.PracticePurpose
-  timingMode?: $Enums.PracticeTimingMode
-  title: string
-  paperId?: string | null
-  sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  difficulty?: $Enums.Difficulty | null
-  totalCount?: number
-  answeredCount?: number
-  correctCount?: number
-  wrongCount?: number
-  unansweredCount?: number
-  elapsedSeconds?: number
-  timeLimitSeconds?: number | null
-  pauseCount?: number
-  pausedSeconds?: number
-  accuracy?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  score?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  maxScore?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  reflectionText?: string | null
-  submittedAt?: Date | string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  answers?: Prisma.PracticeAnswerUncheckedCreateNestedManyWithoutSessionInput
-  sourceAgentRecommendations?: Prisma.AgentRecommendationUncheckedCreateNestedManyWithoutSourceSessionInput
-  startedAgentRecommendations?: Prisma.AgentRecommendationUncheckedCreateNestedManyWithoutStartedSessionInput
-  agentTutorMessages?: Prisma.AgentTutorMessageUncheckedCreateNestedManyWithoutSessionInput
-  mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedCreateNestedManyWithoutSessionInput
-  events?: Prisma.PracticeEventUncheckedCreateNestedManyWithoutSessionInput
-}
-
-export type PracticeSessionCreateOrConnectWithoutBaselineForGoalInput = {
-  where: Prisma.PracticeSessionWhereUniqueInput
-  create: Prisma.XOR<Prisma.PracticeSessionCreateWithoutBaselineForGoalInput, Prisma.PracticeSessionUncheckedCreateWithoutBaselineForGoalInput>
-}
-
-export type PracticeSessionUpsertWithoutBaselineForGoalInput = {
-  update: Prisma.XOR<Prisma.PracticeSessionUpdateWithoutBaselineForGoalInput, Prisma.PracticeSessionUncheckedUpdateWithoutBaselineForGoalInput>
-  create: Prisma.XOR<Prisma.PracticeSessionCreateWithoutBaselineForGoalInput, Prisma.PracticeSessionUncheckedCreateWithoutBaselineForGoalInput>
-  where?: Prisma.PracticeSessionWhereInput
-}
-
-export type PracticeSessionUpdateToOneWithWhereWithoutBaselineForGoalInput = {
-  where?: Prisma.PracticeSessionWhereInput
-  data: Prisma.XOR<Prisma.PracticeSessionUpdateWithoutBaselineForGoalInput, Prisma.PracticeSessionUncheckedUpdateWithoutBaselineForGoalInput>
-}
-
-export type PracticeSessionUpdateWithoutBaselineForGoalInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  mode?: Prisma.EnumPracticeModeFieldUpdateOperationsInput | $Enums.PracticeMode
-  status?: Prisma.EnumPracticeStatusFieldUpdateOperationsInput | $Enums.PracticeStatus
-  purpose?: Prisma.EnumPracticePurposeFieldUpdateOperationsInput | $Enums.PracticePurpose
-  timingMode?: Prisma.EnumPracticeTimingModeFieldUpdateOperationsInput | $Enums.PracticeTimingMode
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  difficulty?: Prisma.NullableEnumDifficultyFieldUpdateOperationsInput | $Enums.Difficulty | null
-  totalCount?: Prisma.IntFieldUpdateOperationsInput | number
-  answeredCount?: Prisma.IntFieldUpdateOperationsInput | number
-  correctCount?: Prisma.IntFieldUpdateOperationsInput | number
-  wrongCount?: Prisma.IntFieldUpdateOperationsInput | number
-  unansweredCount?: Prisma.IntFieldUpdateOperationsInput | number
-  elapsedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
-  timeLimitSeconds?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  pauseCount?: Prisma.IntFieldUpdateOperationsInput | number
-  pausedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
-  accuracy?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  score?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  maxScore?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  reflectionText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutPracticeSessionsNestedInput
-  paper?: Prisma.PaperUpdateOneWithoutSessionsNestedInput
-  answers?: Prisma.PracticeAnswerUpdateManyWithoutSessionNestedInput
-  sourceAgentRecommendations?: Prisma.AgentRecommendationUpdateManyWithoutSourceSessionNestedInput
-  startedAgentRecommendations?: Prisma.AgentRecommendationUpdateManyWithoutStartedSessionNestedInput
-  agentTutorMessages?: Prisma.AgentTutorMessageUpdateManyWithoutSessionNestedInput
-  mistakeReviews?: Prisma.QuestionMistakeReviewUpdateManyWithoutSessionNestedInput
-  events?: Prisma.PracticeEventUpdateManyWithoutSessionNestedInput
-}
-
-export type PracticeSessionUncheckedUpdateWithoutBaselineForGoalInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  mode?: Prisma.EnumPracticeModeFieldUpdateOperationsInput | $Enums.PracticeMode
-  status?: Prisma.EnumPracticeStatusFieldUpdateOperationsInput | $Enums.PracticeStatus
-  purpose?: Prisma.EnumPracticePurposeFieldUpdateOperationsInput | $Enums.PracticePurpose
-  timingMode?: Prisma.EnumPracticeTimingModeFieldUpdateOperationsInput | $Enums.PracticeTimingMode
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  paperId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sourceTagIdsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  difficulty?: Prisma.NullableEnumDifficultyFieldUpdateOperationsInput | $Enums.Difficulty | null
-  totalCount?: Prisma.IntFieldUpdateOperationsInput | number
-  answeredCount?: Prisma.IntFieldUpdateOperationsInput | number
-  correctCount?: Prisma.IntFieldUpdateOperationsInput | number
-  wrongCount?: Prisma.IntFieldUpdateOperationsInput | number
-  unansweredCount?: Prisma.IntFieldUpdateOperationsInput | number
-  elapsedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
-  timeLimitSeconds?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  pauseCount?: Prisma.IntFieldUpdateOperationsInput | number
-  pausedSeconds?: Prisma.IntFieldUpdateOperationsInput | number
-  accuracy?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  score?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  maxScore?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  reflectionText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  answers?: Prisma.PracticeAnswerUncheckedUpdateManyWithoutSessionNestedInput
-  sourceAgentRecommendations?: Prisma.AgentRecommendationUncheckedUpdateManyWithoutSourceSessionNestedInput
-  startedAgentRecommendations?: Prisma.AgentRecommendationUncheckedUpdateManyWithoutStartedSessionNestedInput
-  agentTutorMessages?: Prisma.AgentTutorMessageUncheckedUpdateManyWithoutSessionNestedInput
-  mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedUpdateManyWithoutSessionNestedInput
-  events?: Prisma.PracticeEventUncheckedUpdateManyWithoutSessionNestedInput
 }
 
 export type PracticeSessionCreateWithoutSourceAgentRecommendationsInput = {
@@ -1886,7 +1695,6 @@ export type PracticeSessionCreateWithoutSourceAgentRecommendationsInput = {
   startedAgentRecommendations?: Prisma.AgentRecommendationCreateNestedManyWithoutStartedSessionInput
   agentTutorMessages?: Prisma.AgentTutorMessageCreateNestedManyWithoutSessionInput
   mistakeReviews?: Prisma.QuestionMistakeReviewCreateNestedManyWithoutSessionInput
-  baselineForGoal?: Prisma.UserExamGoalCreateNestedOneWithoutBaselineSessionInput
   events?: Prisma.PracticeEventCreateNestedManyWithoutSessionInput
 }
 
@@ -1921,7 +1729,6 @@ export type PracticeSessionUncheckedCreateWithoutSourceAgentRecommendationsInput
   startedAgentRecommendations?: Prisma.AgentRecommendationUncheckedCreateNestedManyWithoutStartedSessionInput
   agentTutorMessages?: Prisma.AgentTutorMessageUncheckedCreateNestedManyWithoutSessionInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedCreateNestedManyWithoutSessionInput
-  baselineForGoal?: Prisma.UserExamGoalUncheckedCreateNestedOneWithoutBaselineSessionInput
   events?: Prisma.PracticeEventUncheckedCreateNestedManyWithoutSessionInput
 }
 
@@ -1961,7 +1768,6 @@ export type PracticeSessionCreateWithoutStartedAgentRecommendationsInput = {
   sourceAgentRecommendations?: Prisma.AgentRecommendationCreateNestedManyWithoutSourceSessionInput
   agentTutorMessages?: Prisma.AgentTutorMessageCreateNestedManyWithoutSessionInput
   mistakeReviews?: Prisma.QuestionMistakeReviewCreateNestedManyWithoutSessionInput
-  baselineForGoal?: Prisma.UserExamGoalCreateNestedOneWithoutBaselineSessionInput
   events?: Prisma.PracticeEventCreateNestedManyWithoutSessionInput
 }
 
@@ -1996,7 +1802,6 @@ export type PracticeSessionUncheckedCreateWithoutStartedAgentRecommendationsInpu
   sourceAgentRecommendations?: Prisma.AgentRecommendationUncheckedCreateNestedManyWithoutSourceSessionInput
   agentTutorMessages?: Prisma.AgentTutorMessageUncheckedCreateNestedManyWithoutSessionInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedCreateNestedManyWithoutSessionInput
-  baselineForGoal?: Prisma.UserExamGoalUncheckedCreateNestedOneWithoutBaselineSessionInput
   events?: Prisma.PracticeEventUncheckedCreateNestedManyWithoutSessionInput
 }
 
@@ -2047,7 +1852,6 @@ export type PracticeSessionUpdateWithoutSourceAgentRecommendationsInput = {
   startedAgentRecommendations?: Prisma.AgentRecommendationUpdateManyWithoutStartedSessionNestedInput
   agentTutorMessages?: Prisma.AgentTutorMessageUpdateManyWithoutSessionNestedInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUpdateManyWithoutSessionNestedInput
-  baselineForGoal?: Prisma.UserExamGoalUpdateOneWithoutBaselineSessionNestedInput
   events?: Prisma.PracticeEventUpdateManyWithoutSessionNestedInput
 }
 
@@ -2082,7 +1886,6 @@ export type PracticeSessionUncheckedUpdateWithoutSourceAgentRecommendationsInput
   startedAgentRecommendations?: Prisma.AgentRecommendationUncheckedUpdateManyWithoutStartedSessionNestedInput
   agentTutorMessages?: Prisma.AgentTutorMessageUncheckedUpdateManyWithoutSessionNestedInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedUpdateManyWithoutSessionNestedInput
-  baselineForGoal?: Prisma.UserExamGoalUncheckedUpdateOneWithoutBaselineSessionNestedInput
   events?: Prisma.PracticeEventUncheckedUpdateManyWithoutSessionNestedInput
 }
 
@@ -2128,7 +1931,6 @@ export type PracticeSessionUpdateWithoutStartedAgentRecommendationsInput = {
   sourceAgentRecommendations?: Prisma.AgentRecommendationUpdateManyWithoutSourceSessionNestedInput
   agentTutorMessages?: Prisma.AgentTutorMessageUpdateManyWithoutSessionNestedInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUpdateManyWithoutSessionNestedInput
-  baselineForGoal?: Prisma.UserExamGoalUpdateOneWithoutBaselineSessionNestedInput
   events?: Prisma.PracticeEventUpdateManyWithoutSessionNestedInput
 }
 
@@ -2163,7 +1965,6 @@ export type PracticeSessionUncheckedUpdateWithoutStartedAgentRecommendationsInpu
   sourceAgentRecommendations?: Prisma.AgentRecommendationUncheckedUpdateManyWithoutSourceSessionNestedInput
   agentTutorMessages?: Prisma.AgentTutorMessageUncheckedUpdateManyWithoutSessionNestedInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedUpdateManyWithoutSessionNestedInput
-  baselineForGoal?: Prisma.UserExamGoalUncheckedUpdateOneWithoutBaselineSessionNestedInput
   events?: Prisma.PracticeEventUncheckedUpdateManyWithoutSessionNestedInput
 }
 
@@ -2198,7 +1999,6 @@ export type PracticeSessionCreateWithoutAgentTutorMessagesInput = {
   sourceAgentRecommendations?: Prisma.AgentRecommendationCreateNestedManyWithoutSourceSessionInput
   startedAgentRecommendations?: Prisma.AgentRecommendationCreateNestedManyWithoutStartedSessionInput
   mistakeReviews?: Prisma.QuestionMistakeReviewCreateNestedManyWithoutSessionInput
-  baselineForGoal?: Prisma.UserExamGoalCreateNestedOneWithoutBaselineSessionInput
   events?: Prisma.PracticeEventCreateNestedManyWithoutSessionInput
 }
 
@@ -2233,7 +2033,6 @@ export type PracticeSessionUncheckedCreateWithoutAgentTutorMessagesInput = {
   sourceAgentRecommendations?: Prisma.AgentRecommendationUncheckedCreateNestedManyWithoutSourceSessionInput
   startedAgentRecommendations?: Prisma.AgentRecommendationUncheckedCreateNestedManyWithoutStartedSessionInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedCreateNestedManyWithoutSessionInput
-  baselineForGoal?: Prisma.UserExamGoalUncheckedCreateNestedOneWithoutBaselineSessionInput
   events?: Prisma.PracticeEventUncheckedCreateNestedManyWithoutSessionInput
 }
 
@@ -2284,7 +2083,6 @@ export type PracticeSessionUpdateWithoutAgentTutorMessagesInput = {
   sourceAgentRecommendations?: Prisma.AgentRecommendationUpdateManyWithoutSourceSessionNestedInput
   startedAgentRecommendations?: Prisma.AgentRecommendationUpdateManyWithoutStartedSessionNestedInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUpdateManyWithoutSessionNestedInput
-  baselineForGoal?: Prisma.UserExamGoalUpdateOneWithoutBaselineSessionNestedInput
   events?: Prisma.PracticeEventUpdateManyWithoutSessionNestedInput
 }
 
@@ -2319,7 +2117,6 @@ export type PracticeSessionUncheckedUpdateWithoutAgentTutorMessagesInput = {
   sourceAgentRecommendations?: Prisma.AgentRecommendationUncheckedUpdateManyWithoutSourceSessionNestedInput
   startedAgentRecommendations?: Prisma.AgentRecommendationUncheckedUpdateManyWithoutStartedSessionNestedInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedUpdateManyWithoutSessionNestedInput
-  baselineForGoal?: Prisma.UserExamGoalUncheckedUpdateOneWithoutBaselineSessionNestedInput
   events?: Prisma.PracticeEventUncheckedUpdateManyWithoutSessionNestedInput
 }
 
@@ -2354,7 +2151,6 @@ export type PracticeSessionCreateWithoutMistakeReviewsInput = {
   sourceAgentRecommendations?: Prisma.AgentRecommendationCreateNestedManyWithoutSourceSessionInput
   startedAgentRecommendations?: Prisma.AgentRecommendationCreateNestedManyWithoutStartedSessionInput
   agentTutorMessages?: Prisma.AgentTutorMessageCreateNestedManyWithoutSessionInput
-  baselineForGoal?: Prisma.UserExamGoalCreateNestedOneWithoutBaselineSessionInput
   events?: Prisma.PracticeEventCreateNestedManyWithoutSessionInput
 }
 
@@ -2389,7 +2185,6 @@ export type PracticeSessionUncheckedCreateWithoutMistakeReviewsInput = {
   sourceAgentRecommendations?: Prisma.AgentRecommendationUncheckedCreateNestedManyWithoutSourceSessionInput
   startedAgentRecommendations?: Prisma.AgentRecommendationUncheckedCreateNestedManyWithoutStartedSessionInput
   agentTutorMessages?: Prisma.AgentTutorMessageUncheckedCreateNestedManyWithoutSessionInput
-  baselineForGoal?: Prisma.UserExamGoalUncheckedCreateNestedOneWithoutBaselineSessionInput
   events?: Prisma.PracticeEventUncheckedCreateNestedManyWithoutSessionInput
 }
 
@@ -2440,7 +2235,6 @@ export type PracticeSessionUpdateWithoutMistakeReviewsInput = {
   sourceAgentRecommendations?: Prisma.AgentRecommendationUpdateManyWithoutSourceSessionNestedInput
   startedAgentRecommendations?: Prisma.AgentRecommendationUpdateManyWithoutStartedSessionNestedInput
   agentTutorMessages?: Prisma.AgentTutorMessageUpdateManyWithoutSessionNestedInput
-  baselineForGoal?: Prisma.UserExamGoalUpdateOneWithoutBaselineSessionNestedInput
   events?: Prisma.PracticeEventUpdateManyWithoutSessionNestedInput
 }
 
@@ -2475,7 +2269,6 @@ export type PracticeSessionUncheckedUpdateWithoutMistakeReviewsInput = {
   sourceAgentRecommendations?: Prisma.AgentRecommendationUncheckedUpdateManyWithoutSourceSessionNestedInput
   startedAgentRecommendations?: Prisma.AgentRecommendationUncheckedUpdateManyWithoutStartedSessionNestedInput
   agentTutorMessages?: Prisma.AgentTutorMessageUncheckedUpdateManyWithoutSessionNestedInput
-  baselineForGoal?: Prisma.UserExamGoalUncheckedUpdateOneWithoutBaselineSessionNestedInput
   events?: Prisma.PracticeEventUncheckedUpdateManyWithoutSessionNestedInput
 }
 
@@ -2538,7 +2331,6 @@ export type PracticeSessionUpdateWithoutUserInput = {
   startedAgentRecommendations?: Prisma.AgentRecommendationUpdateManyWithoutStartedSessionNestedInput
   agentTutorMessages?: Prisma.AgentTutorMessageUpdateManyWithoutSessionNestedInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUpdateManyWithoutSessionNestedInput
-  baselineForGoal?: Prisma.UserExamGoalUpdateOneWithoutBaselineSessionNestedInput
   events?: Prisma.PracticeEventUpdateManyWithoutSessionNestedInput
 }
 
@@ -2573,7 +2365,6 @@ export type PracticeSessionUncheckedUpdateWithoutUserInput = {
   startedAgentRecommendations?: Prisma.AgentRecommendationUncheckedUpdateManyWithoutStartedSessionNestedInput
   agentTutorMessages?: Prisma.AgentTutorMessageUncheckedUpdateManyWithoutSessionNestedInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedUpdateManyWithoutSessionNestedInput
-  baselineForGoal?: Prisma.UserExamGoalUncheckedUpdateOneWithoutBaselineSessionNestedInput
   events?: Prisma.PracticeEventUncheckedUpdateManyWithoutSessionNestedInput
 }
 
@@ -2664,7 +2455,6 @@ export type PracticeSessionUpdateWithoutPaperInput = {
   startedAgentRecommendations?: Prisma.AgentRecommendationUpdateManyWithoutStartedSessionNestedInput
   agentTutorMessages?: Prisma.AgentTutorMessageUpdateManyWithoutSessionNestedInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUpdateManyWithoutSessionNestedInput
-  baselineForGoal?: Prisma.UserExamGoalUpdateOneWithoutBaselineSessionNestedInput
   events?: Prisma.PracticeEventUpdateManyWithoutSessionNestedInput
 }
 
@@ -2699,7 +2489,6 @@ export type PracticeSessionUncheckedUpdateWithoutPaperInput = {
   startedAgentRecommendations?: Prisma.AgentRecommendationUncheckedUpdateManyWithoutStartedSessionNestedInput
   agentTutorMessages?: Prisma.AgentTutorMessageUncheckedUpdateManyWithoutSessionNestedInput
   mistakeReviews?: Prisma.QuestionMistakeReviewUncheckedUpdateManyWithoutSessionNestedInput
-  baselineForGoal?: Prisma.UserExamGoalUncheckedUpdateOneWithoutBaselineSessionNestedInput
   events?: Prisma.PracticeEventUncheckedUpdateManyWithoutSessionNestedInput
 }
 
@@ -2841,7 +2630,6 @@ export type PracticeSessionSelect<ExtArgs extends runtime.Types.Extensions.Inter
   startedAgentRecommendations?: boolean | Prisma.PracticeSession$startedAgentRecommendationsArgs<ExtArgs>
   agentTutorMessages?: boolean | Prisma.PracticeSession$agentTutorMessagesArgs<ExtArgs>
   mistakeReviews?: boolean | Prisma.PracticeSession$mistakeReviewsArgs<ExtArgs>
-  baselineForGoal?: boolean | Prisma.PracticeSession$baselineForGoalArgs<ExtArgs>
   events?: boolean | Prisma.PracticeSession$eventsArgs<ExtArgs>
   _count?: boolean | Prisma.PracticeSessionCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["practiceSession"]>
@@ -2886,7 +2674,6 @@ export type PracticeSessionInclude<ExtArgs extends runtime.Types.Extensions.Inte
   startedAgentRecommendations?: boolean | Prisma.PracticeSession$startedAgentRecommendationsArgs<ExtArgs>
   agentTutorMessages?: boolean | Prisma.PracticeSession$agentTutorMessagesArgs<ExtArgs>
   mistakeReviews?: boolean | Prisma.PracticeSession$mistakeReviewsArgs<ExtArgs>
-  baselineForGoal?: boolean | Prisma.PracticeSession$baselineForGoalArgs<ExtArgs>
   events?: boolean | Prisma.PracticeSession$eventsArgs<ExtArgs>
   _count?: boolean | Prisma.PracticeSessionCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -2901,7 +2688,6 @@ export type $PracticeSessionPayload<ExtArgs extends runtime.Types.Extensions.Int
     startedAgentRecommendations: Prisma.$AgentRecommendationPayload<ExtArgs>[]
     agentTutorMessages: Prisma.$AgentTutorMessagePayload<ExtArgs>[]
     mistakeReviews: Prisma.$QuestionMistakeReviewPayload<ExtArgs>[]
-    baselineForGoal: Prisma.$UserExamGoalPayload<ExtArgs> | null
     events: Prisma.$PracticeEventPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -3278,7 +3064,6 @@ export interface Prisma__PracticeSessionClient<T, Null = never, ExtArgs extends 
   startedAgentRecommendations<T extends Prisma.PracticeSession$startedAgentRecommendationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PracticeSession$startedAgentRecommendationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AgentRecommendationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   agentTutorMessages<T extends Prisma.PracticeSession$agentTutorMessagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PracticeSession$agentTutorMessagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AgentTutorMessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   mistakeReviews<T extends Prisma.PracticeSession$mistakeReviewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PracticeSession$mistakeReviewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuestionMistakeReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  baselineForGoal<T extends Prisma.PracticeSession$baselineForGoalArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PracticeSession$baselineForGoalArgs<ExtArgs>>): Prisma.Prisma__UserExamGoalClient<runtime.Types.Result.GetResult<Prisma.$UserExamGoalPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   events<T extends Prisma.PracticeSession$eventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PracticeSession$eventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PracticeEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -3819,25 +3604,6 @@ export type PracticeSession$mistakeReviewsArgs<ExtArgs extends runtime.Types.Ext
   take?: number
   skip?: number
   distinct?: Prisma.QuestionMistakeReviewScalarFieldEnum | Prisma.QuestionMistakeReviewScalarFieldEnum[]
-}
-
-/**
- * PracticeSession.baselineForGoal
- */
-export type PracticeSession$baselineForGoalArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the UserExamGoal
-   */
-  select?: Prisma.UserExamGoalSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the UserExamGoal
-   */
-  omit?: Prisma.UserExamGoalOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.UserExamGoalInclude<ExtArgs> | null
-  where?: Prisma.UserExamGoalWhereInput
 }
 
 /**

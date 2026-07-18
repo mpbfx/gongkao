@@ -22,8 +22,8 @@ import {
 } from "@/features/learning/learning-situation-charts";
 import { requireUser } from "@/lib/auth/guards";
 import { cn } from "@/lib/utils";
+import { getBaselineTrainingState } from "@/server/services/baseline-training";
 import { getLearningSituation } from "@/server/services/learning-situation";
-import { getExamGoal } from "@/server/services/exam-goals";
 import { getFoundationProgress } from "@/server/services/foundation-training";
 import { getNextTrainingAction } from "@/server/services/training-plan";
 
@@ -81,9 +81,9 @@ export default async function DashboardPage() {
 
   if (!user) redirect("/login?callbackUrl=/dashboard");
 
-  const [situation, examGoal, foundation, nextAction] = await Promise.all([
+  const [situation, baseline, foundation, nextAction] = await Promise.all([
     getLearningSituation(user),
-    getExamGoal(user),
+    getBaselineTrainingState(user),
     getFoundationProgress(user),
     getNextTrainingAction(user),
   ]);
@@ -109,12 +109,12 @@ export default async function DashboardPage() {
 
         <section className="grid border-y-2 border-foreground bg-card/45 lg:grid-cols-[minmax(0,1fr)_14rem_14rem_auto]">
           <div className="border-b border-foreground/20 p-3.5 lg:border-b-0 lg:border-r">
-            <div className="text-[0.65rem] tracking-[0.18em] text-muted-foreground">当前目标</div>
-            <div className="student-heading mt-1 text-lg font-semibold">{examGoal?.targetPaper.title ?? "尚未设置目标考试"}</div>
+            <div className="text-[0.65rem] tracking-[0.18em] text-muted-foreground">下一步训练</div>
+            <div className="student-heading mt-1 text-lg font-semibold">{nextAction.title}</div>
           </div>
           <div className="border-b border-foreground/20 p-3.5 lg:border-b-0 lg:border-r">
             <div className="text-[0.65rem] tracking-[0.18em] text-muted-foreground">基准成绩</div>
-            <div className="student-heading mt-1 text-lg font-semibold">{examGoal?.baselineSession ? `${examGoal.baselineSession.score ?? "0"}/${examGoal.baselineSession.maxScore ?? "0"} 分` : "待完成"}</div>
+            <div className="student-heading mt-1 text-lg font-semibold">{baseline.submitted ? `${baseline.submitted.score ?? "0"}/${baseline.submitted.maxScore ?? "0"} 分` : "可选"}</div>
           </div>
           <div className="border-b border-foreground/20 p-3.5 lg:border-b-0 lg:border-r">
             <div className="text-[0.65rem] tracking-[0.18em] text-muted-foreground">筑基进度</div>

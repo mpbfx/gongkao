@@ -1,5 +1,6 @@
 import type { AuthenticatedUser } from "@/lib/auth/guards";
 import { prisma } from "@/lib/db/prisma";
+import { submittedBaselineOrderBy } from "@/server/services/baseline-training";
 import { NotFoundError } from "@/server/services/errors";
 import { decimalToString } from "@/server/services/questions";
 
@@ -73,24 +74,19 @@ const sessionInclude = {
 };
 
 export async function getPracticeComparison(user: AuthenticatedUser, sessionId: string) {
-  const [current, goal] = await Promise.all([
+  const [current, baseline] = await Promise.all([
     prisma.practiceSession.findFirst({
       where: { id: sessionId, userId: user.id, status: "SUBMITTED" },
       include: sessionInclude,
     }),
-    prisma.userExamGoal.findUnique({
-      where: { userId: user.id },
-      select: { baselineSessionId: true },
+    prisma.practiceSession.findFirst({
+      where: { userId: user.id, purpose: "BASELINE", status: "SUBMITTED" },
+      orderBy: submittedBaselineOrderBy,
+      include: sessionInclude,
     }),
   ]);
   if (!current) throw new NotFoundError("练习记录不存在");
-  if (!goal?.baselineSessionId || goal.baselineSessionId === current.id) return null;
-
-  const baseline = await prisma.practiceSession.findFirst({
-    where: { id: goal.baselineSessionId, userId: user.id, status: "SUBMITTED" },
-    include: sessionInclude,
-  });
-  if (!baseline) return null;
+  if (!baseline || baseline.id === current.id) return null;
 
   const baselineSections = buildSectionMap(baseline);
   const currentSections = buildSectionMap(current);

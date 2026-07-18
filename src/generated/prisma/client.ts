@@ -137,11 +137,6 @@ export type UserStatsSnapshot = Prisma.UserStatsSnapshotModel
  */
 export type UserTagStats = Prisma.UserTagStatsModel
 /**
- * Model UserExamGoal
- * 
- */
-export type UserExamGoal = Prisma.UserExamGoalModel
-/**
  * Model AgentConfig
  * 
  */

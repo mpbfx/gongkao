@@ -45,19 +45,20 @@ Never commit `.env.local`, credentials, API keys, or production data. Review gen
 - 依赖安装应直接放到空间充足的磁盘。需要隔离验证时，在同一磁盘创建完整项目副本并安装依赖；不要逐包修补残缺的 `node_modules`。
 - Next.js Turbopack 要求项目和 `node_modules` 位于可接受的同一文件系统根中。不要使用指向其他磁盘的 `node_modules` junction/symlink 进行生产构建；改用同盘完整验证副本。
 - 遇到依赖安装、磁盘耗尽、构建工具限制或其他明显返工点时，立即调整策略，不在低收益路径上持续试错。
+- 执行数据库迁移前先确认开发数据库端口可连接；数据库未启动时，先完成 schema 格式化、校验和客户端生成，并将迁移应用作为明确的环境待办。
 - 每次任务出现新的阻塞、返工或可复用经验，都要在任务结束前将简短、通用、可执行的结论补充到本节。不要记录密钥、个人路径、临时日志或只适用于一次运行的细节。
 - 每次完成一组经过验证的代码改动后，立即按本仓库提交规范创建一个范围清晰的 commit，并 push 到当前远程分支。不要把无关改动混入同一提交；push 出现问题时保留本地提交并明确报告原因。
 
 ## Training-Flow Implementation Guidelines
 
-The student product is a deterministic training system, not a collection of loosely connected quiz pages. Preserve the flow from exam goal, benchmark, leaf-type foundation practice, review, timed retest, and wrong-question practice.
+The student product is a deterministic training system, not a collection of loosely connected quiz pages. Preserve the flow from optional benchmark, leaf-type foundation practice, review, timed retest, and wrong-question practice.
 
 ### Domain boundaries
 
 - Keep question source and learning intent separate. `PracticeMode` describes where questions come from; `PracticePurpose` describes why the session exists. Do not overload one field with both meanings.
 - Keep scoring, foundation-pass rules, next-action selection, and comparison calculations in small pure functions. Pages and client components should render service results rather than reimplement business rules.
 - Treat the server as authoritative for scores, correctness, mastery, wrong-question state, and tag statistics. Client calculations are display-only.
-- Give each workflow one clear owner: exam-goal services select benchmarks, practice services create and submit sessions, foundation services select leaf questions, and comparison services compare submitted papers.
+- Give each workflow one clear owner: baseline services identify the initial benchmark, practice services create and submit sessions, foundation services select leaf questions, and comparison services compare submitted papers.
 
 ### KISS and coupling control
 
@@ -90,7 +91,7 @@ The student product is a deterministic training system, not a collection of loos
 
 ### Verification expectations
 
-- Add boundary tests for pure rules, especially 8/15 versus 9/15, weighted-score fallback, benchmark matching, and comparison deltas.
+- Add boundary tests for pure rules, especially 8/15 versus 9/15, weighted-score fallback, initial-baseline selection, and comparison deltas.
 - Add service tests for transactionally updated answers, events, wrong questions, and tag statistics, including repeated-submission protection.
 - After schema changes, run Prisma validation and generation, apply the development migration, then run `npm run lint`, `npm run typecheck`, `npm test`, and `npm run build`.
 - Verify timed, offline, result-comparison, foundation, and wrong-review flows at mobile width and at 1280px and 1440px desktop widths.

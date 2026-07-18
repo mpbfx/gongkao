@@ -1,27 +1,21 @@
 import type { AuthenticatedUser } from "@/lib/auth/guards";
 import { prisma } from "@/lib/db/prisma";
-import { getExamGoal } from "@/server/services/exam-goals";
+import { getBaselineTrainingState } from "@/server/services/baseline-training";
 import { getFoundationProgress } from "@/server/services/foundation-training";
 
 export async function getNextTrainingAction(user: AuthenticatedUser) {
-  const goal = await getExamGoal(user);
-  if (!goal) {
-    return {
-      stage: "SET_GOAL" as const,
-      title: "先明确目标考试",
-      description: "选择地区、年份和考试类型，系统将据此安排基准测试。",
-      href: "/exam-goal",
-      label: "设置目标考试",
-    };
-  }
-  if (!goal.baselineSession) {
-    const paper = goal.recommendedBaseline;
+  const baseline = await getBaselineTrainingState(user);
+  if (!baseline.submitted) {
     return {
       stage: "BASELINE" as const,
-      title: goal.inProgressBaseline ? "继续基准测试" : "完成第一次 benchmark",
-      description: paper ? `建议使用 ${paper.title} 建立初始基准。` : "从现有真题中选择一套作为基准测试。",
-      href: goal.inProgressBaseline ? `/practice/${goal.inProgressBaseline.id}` : "/exam-goal",
-      label: goal.inProgressBaseline ? "继续答题" : "开始基准测试",
+      title: baseline.inProgress ? "继续基准测试" : "用一套真题摸清当前水平",
+      description: baseline.inProgress
+        ? `继续完成 ${baseline.inProgress.title}。`
+        : "从现有真题中选择一套作为基准测试，也可以直接进入专项训练。",
+      href: baseline.inProgress
+        ? `/practice/${baseline.inProgress.id}`
+        : "/question-bank/papers?purpose=BASELINE",
+      label: baseline.inProgress ? "继续答题" : "选择基准试卷",
     };
   }
 

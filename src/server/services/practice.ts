@@ -721,13 +721,6 @@ export async function submitPracticeSession(
       },
     });
 
-    if (session.purpose === "BASELINE") {
-      await tx.userExamGoal.updateMany({
-        where: { userId: user.id, baselineSessionId: null },
-        data: { baselineSessionId: session.id },
-      });
-    }
-
     return {
       session: updatedSession,
       answers: answerRows,

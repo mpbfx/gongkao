@@ -290,7 +290,6 @@ export type PaperWhereInput = {
   deletedAt?: Prisma.DateTimeNullableFilter<"Paper"> | Date | string | null
   questions?: Prisma.PaperQuestionListRelationFilter
   sessions?: Prisma.PracticeSessionListRelationFilter
-  examGoals?: Prisma.UserExamGoalListRelationFilter
 }
 
 export type PaperOrderByWithRelationInput = {
@@ -309,7 +308,6 @@ export type PaperOrderByWithRelationInput = {
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   questions?: Prisma.PaperQuestionOrderByRelationAggregateInput
   sessions?: Prisma.PracticeSessionOrderByRelationAggregateInput
-  examGoals?: Prisma.UserExamGoalOrderByRelationAggregateInput
   _relevance?: Prisma.PaperOrderByRelevanceInput
 }
 
@@ -332,7 +330,6 @@ export type PaperWhereUniqueInput = Prisma.AtLeast<{
   deletedAt?: Prisma.DateTimeNullableFilter<"Paper"> | Date | string | null
   questions?: Prisma.PaperQuestionListRelationFilter
   sessions?: Prisma.PracticeSessionListRelationFilter
-  examGoals?: Prisma.UserExamGoalListRelationFilter
 }, "id" | "slug">
 
 export type PaperOrderByWithAggregationInput = {
@@ -391,7 +388,6 @@ export type PaperCreateInput = {
   deletedAt?: Date | string | null
   questions?: Prisma.PaperQuestionCreateNestedManyWithoutPaperInput
   sessions?: Prisma.PracticeSessionCreateNestedManyWithoutPaperInput
-  examGoals?: Prisma.UserExamGoalCreateNestedManyWithoutTargetPaperInput
 }
 
 export type PaperUncheckedCreateInput = {
@@ -410,7 +406,6 @@ export type PaperUncheckedCreateInput = {
   deletedAt?: Date | string | null
   questions?: Prisma.PaperQuestionUncheckedCreateNestedManyWithoutPaperInput
   sessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutPaperInput
-  examGoals?: Prisma.UserExamGoalUncheckedCreateNestedManyWithoutTargetPaperInput
 }
 
 export type PaperUpdateInput = {
@@ -429,7 +424,6 @@ export type PaperUpdateInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   questions?: Prisma.PaperQuestionUpdateManyWithoutPaperNestedInput
   sessions?: Prisma.PracticeSessionUpdateManyWithoutPaperNestedInput
-  examGoals?: Prisma.UserExamGoalUpdateManyWithoutTargetPaperNestedInput
 }
 
 export type PaperUncheckedUpdateInput = {
@@ -448,7 +442,6 @@ export type PaperUncheckedUpdateInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   questions?: Prisma.PaperQuestionUncheckedUpdateManyWithoutPaperNestedInput
   sessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutPaperNestedInput
-  examGoals?: Prisma.UserExamGoalUncheckedUpdateManyWithoutTargetPaperNestedInput
 }
 
 export type PaperCreateManyInput = {
@@ -605,20 +598,6 @@ export type PaperUpdateOneWithoutSessionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.PaperUpdateToOneWithWhereWithoutSessionsInput, Prisma.PaperUpdateWithoutSessionsInput>, Prisma.PaperUncheckedUpdateWithoutSessionsInput>
 }
 
-export type PaperCreateNestedOneWithoutExamGoalsInput = {
-  create?: Prisma.XOR<Prisma.PaperCreateWithoutExamGoalsInput, Prisma.PaperUncheckedCreateWithoutExamGoalsInput>
-  connectOrCreate?: Prisma.PaperCreateOrConnectWithoutExamGoalsInput
-  connect?: Prisma.PaperWhereUniqueInput
-}
-
-export type PaperUpdateOneRequiredWithoutExamGoalsNestedInput = {
-  create?: Prisma.XOR<Prisma.PaperCreateWithoutExamGoalsInput, Prisma.PaperUncheckedCreateWithoutExamGoalsInput>
-  connectOrCreate?: Prisma.PaperCreateOrConnectWithoutExamGoalsInput
-  upsert?: Prisma.PaperUpsertWithoutExamGoalsInput
-  connect?: Prisma.PaperWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.PaperUpdateToOneWithWhereWithoutExamGoalsInput, Prisma.PaperUpdateWithoutExamGoalsInput>, Prisma.PaperUncheckedUpdateWithoutExamGoalsInput>
-}
-
 export type PaperCreateWithoutQuestionsInput = {
   id?: string
   title: string
@@ -634,7 +613,6 @@ export type PaperCreateWithoutQuestionsInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   sessions?: Prisma.PracticeSessionCreateNestedManyWithoutPaperInput
-  examGoals?: Prisma.UserExamGoalCreateNestedManyWithoutTargetPaperInput
 }
 
 export type PaperUncheckedCreateWithoutQuestionsInput = {
@@ -652,7 +630,6 @@ export type PaperUncheckedCreateWithoutQuestionsInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   sessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutPaperInput
-  examGoals?: Prisma.UserExamGoalUncheckedCreateNestedManyWithoutTargetPaperInput
 }
 
 export type PaperCreateOrConnectWithoutQuestionsInput = {
@@ -686,7 +663,6 @@ export type PaperUpdateWithoutQuestionsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sessions?: Prisma.PracticeSessionUpdateManyWithoutPaperNestedInput
-  examGoals?: Prisma.UserExamGoalUpdateManyWithoutTargetPaperNestedInput
 }
 
 export type PaperUncheckedUpdateWithoutQuestionsInput = {
@@ -704,7 +680,6 @@ export type PaperUncheckedUpdateWithoutQuestionsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutPaperNestedInput
-  examGoals?: Prisma.UserExamGoalUncheckedUpdateManyWithoutTargetPaperNestedInput
 }
 
 export type PaperCreateWithoutSessionsInput = {
@@ -722,7 +697,6 @@ export type PaperCreateWithoutSessionsInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   questions?: Prisma.PaperQuestionCreateNestedManyWithoutPaperInput
-  examGoals?: Prisma.UserExamGoalCreateNestedManyWithoutTargetPaperInput
 }
 
 export type PaperUncheckedCreateWithoutSessionsInput = {
@@ -740,7 +714,6 @@ export type PaperUncheckedCreateWithoutSessionsInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   questions?: Prisma.PaperQuestionUncheckedCreateNestedManyWithoutPaperInput
-  examGoals?: Prisma.UserExamGoalUncheckedCreateNestedManyWithoutTargetPaperInput
 }
 
 export type PaperCreateOrConnectWithoutSessionsInput = {
@@ -774,7 +747,6 @@ export type PaperUpdateWithoutSessionsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   questions?: Prisma.PaperQuestionUpdateManyWithoutPaperNestedInput
-  examGoals?: Prisma.UserExamGoalUpdateManyWithoutTargetPaperNestedInput
 }
 
 export type PaperUncheckedUpdateWithoutSessionsInput = {
@@ -792,95 +764,6 @@ export type PaperUncheckedUpdateWithoutSessionsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   questions?: Prisma.PaperQuestionUncheckedUpdateManyWithoutPaperNestedInput
-  examGoals?: Prisma.UserExamGoalUncheckedUpdateManyWithoutTargetPaperNestedInput
-}
-
-export type PaperCreateWithoutExamGoalsInput = {
-  id?: string
-  title: string
-  slug: string
-  year?: number | null
-  province?: string | null
-  examType?: string | null
-  difficultyScore?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  durationSeconds?: number | null
-  isVipOnly?: boolean
-  isActive?: boolean
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  deletedAt?: Date | string | null
-  questions?: Prisma.PaperQuestionCreateNestedManyWithoutPaperInput
-  sessions?: Prisma.PracticeSessionCreateNestedManyWithoutPaperInput
-}
-
-export type PaperUncheckedCreateWithoutExamGoalsInput = {
-  id?: string
-  title: string
-  slug: string
-  year?: number | null
-  province?: string | null
-  examType?: string | null
-  difficultyScore?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  durationSeconds?: number | null
-  isVipOnly?: boolean
-  isActive?: boolean
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  deletedAt?: Date | string | null
-  questions?: Prisma.PaperQuestionUncheckedCreateNestedManyWithoutPaperInput
-  sessions?: Prisma.PracticeSessionUncheckedCreateNestedManyWithoutPaperInput
-}
-
-export type PaperCreateOrConnectWithoutExamGoalsInput = {
-  where: Prisma.PaperWhereUniqueInput
-  create: Prisma.XOR<Prisma.PaperCreateWithoutExamGoalsInput, Prisma.PaperUncheckedCreateWithoutExamGoalsInput>
-}
-
-export type PaperUpsertWithoutExamGoalsInput = {
-  update: Prisma.XOR<Prisma.PaperUpdateWithoutExamGoalsInput, Prisma.PaperUncheckedUpdateWithoutExamGoalsInput>
-  create: Prisma.XOR<Prisma.PaperCreateWithoutExamGoalsInput, Prisma.PaperUncheckedCreateWithoutExamGoalsInput>
-  where?: Prisma.PaperWhereInput
-}
-
-export type PaperUpdateToOneWithWhereWithoutExamGoalsInput = {
-  where?: Prisma.PaperWhereInput
-  data: Prisma.XOR<Prisma.PaperUpdateWithoutExamGoalsInput, Prisma.PaperUncheckedUpdateWithoutExamGoalsInput>
-}
-
-export type PaperUpdateWithoutExamGoalsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
-  year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  examType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  difficultyScore?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  durationSeconds?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  isVipOnly?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  questions?: Prisma.PaperQuestionUpdateManyWithoutPaperNestedInput
-  sessions?: Prisma.PracticeSessionUpdateManyWithoutPaperNestedInput
-}
-
-export type PaperUncheckedUpdateWithoutExamGoalsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
-  year?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  examType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  difficultyScore?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  durationSeconds?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  isVipOnly?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  questions?: Prisma.PaperQuestionUncheckedUpdateManyWithoutPaperNestedInput
-  sessions?: Prisma.PracticeSessionUncheckedUpdateManyWithoutPaperNestedInput
 }
 
 
@@ -891,13 +774,11 @@ export type PaperUncheckedUpdateWithoutExamGoalsInput = {
 export type PaperCountOutputType = {
   questions: number
   sessions: number
-  examGoals: number
 }
 
 export type PaperCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   questions?: boolean | PaperCountOutputTypeCountQuestionsArgs
   sessions?: boolean | PaperCountOutputTypeCountSessionsArgs
-  examGoals?: boolean | PaperCountOutputTypeCountExamGoalsArgs
 }
 
 /**
@@ -924,13 +805,6 @@ export type PaperCountOutputTypeCountSessionsArgs<ExtArgs extends runtime.Types.
   where?: Prisma.PracticeSessionWhereInput
 }
 
-/**
- * PaperCountOutputType without action
- */
-export type PaperCountOutputTypeCountExamGoalsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.UserExamGoalWhereInput
-}
-
 
 export type PaperSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -948,7 +822,6 @@ export type PaperSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   deletedAt?: boolean
   questions?: boolean | Prisma.Paper$questionsArgs<ExtArgs>
   sessions?: boolean | Prisma.Paper$sessionsArgs<ExtArgs>
-  examGoals?: boolean | Prisma.Paper$examGoalsArgs<ExtArgs>
   _count?: boolean | Prisma.PaperCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["paper"]>
 
@@ -974,7 +847,6 @@ export type PaperOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = ru
 export type PaperInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   questions?: boolean | Prisma.Paper$questionsArgs<ExtArgs>
   sessions?: boolean | Prisma.Paper$sessionsArgs<ExtArgs>
-  examGoals?: boolean | Prisma.Paper$examGoalsArgs<ExtArgs>
   _count?: boolean | Prisma.PaperCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -983,7 +855,6 @@ export type $PaperPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   objects: {
     questions: Prisma.$PaperQuestionPayload<ExtArgs>[]
     sessions: Prisma.$PracticeSessionPayload<ExtArgs>[]
-    examGoals: Prisma.$UserExamGoalPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1341,7 +1212,6 @@ export interface Prisma__PaperClient<T, Null = never, ExtArgs extends runtime.Ty
   readonly [Symbol.toStringTag]: "PrismaPromise"
   questions<T extends Prisma.Paper$questionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Paper$questionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaperQuestionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   sessions<T extends Prisma.Paper$sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Paper$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PracticeSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  examGoals<T extends Prisma.Paper$examGoalsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Paper$examGoalsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserExamGoalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1777,30 +1647,6 @@ export type Paper$sessionsArgs<ExtArgs extends runtime.Types.Extensions.Internal
   take?: number
   skip?: number
   distinct?: Prisma.PracticeSessionScalarFieldEnum | Prisma.PracticeSessionScalarFieldEnum[]
-}
-
-/**
- * Paper.examGoals
- */
-export type Paper$examGoalsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the UserExamGoal
-   */
-  select?: Prisma.UserExamGoalSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the UserExamGoal
-   */
-  omit?: Prisma.UserExamGoalOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.UserExamGoalInclude<ExtArgs> | null
-  where?: Prisma.UserExamGoalWhereInput
-  orderBy?: Prisma.UserExamGoalOrderByWithRelationInput | Prisma.UserExamGoalOrderByWithRelationInput[]
-  cursor?: Prisma.UserExamGoalWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.UserExamGoalScalarFieldEnum | Prisma.UserExamGoalScalarFieldEnum[]
 }
 
 /**

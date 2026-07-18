@@ -403,7 +403,6 @@ export const ModelName = {
   WrongQuestion: 'WrongQuestion',
   UserStatsSnapshot: 'UserStatsSnapshot',
   UserTagStats: 'UserTagStats',
-  UserExamGoal: 'UserExamGoal',
   AgentConfig: 'AgentConfig',
   AgentRecommendation: 'AgentRecommendation',
   AgentTutorMessage: 'AgentTutorMessage',
@@ -429,7 +428,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "account" | "session" | "verificationToken" | "membership" | "questionTag" | "material" | "question" | "questionOption" | "paper" | "paperQuestion" | "dailyPractice" | "dailyPracticeQuestion" | "practiceSession" | "practiceAnswer" | "practiceEvent" | "wrongQuestion" | "userStatsSnapshot" | "userTagStats" | "userExamGoal" | "agentConfig" | "agentRecommendation" | "agentTutorMessage" | "questionMistakeReview" | "agentFeedback" | "importJob" | "knowledgeSource" | "knowledgeChunk" | "knowledgeChatSession" | "knowledgeChatMessage"
+    modelProps: "user" | "account" | "session" | "verificationToken" | "membership" | "questionTag" | "material" | "question" | "questionOption" | "paper" | "paperQuestion" | "dailyPractice" | "dailyPracticeQuestion" | "practiceSession" | "practiceAnswer" | "practiceEvent" | "wrongQuestion" | "userStatsSnapshot" | "userTagStats" | "agentConfig" | "agentRecommendation" | "agentTutorMessage" | "questionMistakeReview" | "agentFeedback" | "importJob" | "knowledgeSource" | "knowledgeChunk" | "knowledgeChatSession" | "knowledgeChatMessage"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1687,72 +1686,6 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    UserExamGoal: {
-      payload: Prisma.$UserExamGoalPayload<ExtArgs>
-      fields: Prisma.UserExamGoalFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.UserExamGoalFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserExamGoalPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.UserExamGoalFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserExamGoalPayload>
-        }
-        findFirst: {
-          args: Prisma.UserExamGoalFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserExamGoalPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.UserExamGoalFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserExamGoalPayload>
-        }
-        findMany: {
-          args: Prisma.UserExamGoalFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserExamGoalPayload>[]
-        }
-        create: {
-          args: Prisma.UserExamGoalCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserExamGoalPayload>
-        }
-        createMany: {
-          args: Prisma.UserExamGoalCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        delete: {
-          args: Prisma.UserExamGoalDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserExamGoalPayload>
-        }
-        update: {
-          args: Prisma.UserExamGoalUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserExamGoalPayload>
-        }
-        deleteMany: {
-          args: Prisma.UserExamGoalDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.UserExamGoalUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        upsert: {
-          args: Prisma.UserExamGoalUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserExamGoalPayload>
-        }
-        aggregate: {
-          args: Prisma.UserExamGoalAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateUserExamGoal>
-        }
-        groupBy: {
-          args: Prisma.UserExamGoalGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.UserExamGoalGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.UserExamGoalCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.UserExamGoalCountAggregateOutputType> | number
-        }
-      }
-    }
     AgentConfig: {
       payload: Prisma.$AgentConfigPayload<ExtArgs>
       fields: Prisma.AgentConfigFieldRefs
@@ -2756,18 +2689,6 @@ export const UserTagStatsScalarFieldEnum = {
 export type UserTagStatsScalarFieldEnum = (typeof UserTagStatsScalarFieldEnum)[keyof typeof UserTagStatsScalarFieldEnum]
 
 
-export const UserExamGoalScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  targetPaperId: 'targetPaperId',
-  baselineSessionId: 'baselineSessionId',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type UserExamGoalScalarFieldEnum = (typeof UserExamGoalScalarFieldEnum)[keyof typeof UserExamGoalScalarFieldEnum]
-
-
 export const AgentConfigScalarFieldEnum = {
   id: 'id',
   key: 'key',
@@ -3183,16 +3104,6 @@ export const UserTagStatsOrderByRelevanceFieldEnum = {
 export type UserTagStatsOrderByRelevanceFieldEnum = (typeof UserTagStatsOrderByRelevanceFieldEnum)[keyof typeof UserTagStatsOrderByRelevanceFieldEnum]
 
 
-export const UserExamGoalOrderByRelevanceFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  targetPaperId: 'targetPaperId',
-  baselineSessionId: 'baselineSessionId'
-} as const
-
-export type UserExamGoalOrderByRelevanceFieldEnum = (typeof UserExamGoalOrderByRelevanceFieldEnum)[keyof typeof UserExamGoalOrderByRelevanceFieldEnum]
-
-
 export const AgentConfigOrderByRelevanceFieldEnum = {
   id: 'id',
   key: 'key',
@@ -3579,7 +3490,6 @@ export type GlobalOmitConfig = {
   wrongQuestion?: Prisma.WrongQuestionOmit
   userStatsSnapshot?: Prisma.UserStatsSnapshotOmit
   userTagStats?: Prisma.UserTagStatsOmit
-  userExamGoal?: Prisma.UserExamGoalOmit
   agentConfig?: Prisma.AgentConfigOmit
   agentRecommendation?: Prisma.AgentRecommendationOmit
   agentTutorMessage?: Prisma.AgentTutorMessageOmit
