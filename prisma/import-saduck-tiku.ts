@@ -3,6 +3,7 @@ import { readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 
 import { prisma } from "../src/lib/db/prisma";
+import { normalizeQuestionTagTaxonomy } from "../src/server/services/question-tag-taxonomy-maintenance";
 
 type SaduckTag = {
   id: string;
@@ -504,13 +505,15 @@ async function main() {
     console.log(`Imported ${file}: ${relations.length} questions linked`);
   }
 
+  const taxonomy = await normalizeQuestionTagTaxonomy();
+
   await prisma.importJob.update({
     where: { id: job.id },
     data: {
       status: errors.length > 0 ? "PARTIAL" : "SUCCESS",
       successRows,
       failedRows: errors.length,
-      errorJson: errors.length > 0 ? errors.slice(0, 200) : undefined,
+      errorJson: { errors: errors.slice(0, 200), taxonomy },
     },
   });
 
@@ -521,6 +524,7 @@ async function main() {
         paperFiles: paperFiles.length,
         successRows,
         failedRows: errors.length,
+        taxonomy,
       },
       null,
       2
