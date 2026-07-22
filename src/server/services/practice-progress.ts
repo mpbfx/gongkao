@@ -21,3 +21,25 @@ export function normalizePracticeProgressAnswers(
     };
   });
 }
+
+export function getPreviouslyGradedQuestionIds(metadata: unknown) {
+  if (!metadata || typeof metadata !== "object" || Array.isArray(metadata)) {
+    return new Set<string>();
+  }
+
+  const reopenedSubmission = (metadata as Record<string, unknown>).reopenedSubmission;
+  if (
+    !reopenedSubmission ||
+    typeof reopenedSubmission !== "object" ||
+    Array.isArray(reopenedSubmission)
+  ) {
+    return new Set<string>();
+  }
+
+  const questionIds = (reopenedSubmission as Record<string, unknown>).gradedQuestionIds;
+  return new Set(
+    Array.isArray(questionIds)
+      ? questionIds.filter((questionId): questionId is string => typeof questionId === "string")
+      : []
+  );
+}

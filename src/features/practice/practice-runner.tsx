@@ -63,6 +63,7 @@ import { PracticeResultWorkspace } from "@/features/practice/practice-result-wor
 import { PracticeReflectionPanel } from "@/features/practice/practice-reflection-panel";
 import {
   formatPracticeClock as formatSeconds,
+  getInitialPracticeQuestionIndex,
   normalizePracticeAnswer as normalizeAnswer,
   optionStateLabel,
 } from "@/features/practice/practice-view-utils";
@@ -175,7 +176,9 @@ export function PracticeRunner({
   initialSession: PracticeSessionView;
   reviewMode?: boolean;
 }) {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(() =>
+    getInitialPracticeQuestionIndex(initialSession.status, initialSession.userAnswers)
+  );
   const [answers, setAnswers] = useState<Record<string, string>>(() =>
     Object.fromEntries(
       initialSession.userAnswers

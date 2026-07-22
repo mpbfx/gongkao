@@ -115,13 +115,13 @@ export function PaperStartButton({
     Math.max(10, Math.round((durationSeconds ?? 7200) / 60) - (purpose === "TIME_PRESSURE" ? 10 : 0))
   );
 
-  async function startPractice() {
+  async function startPractice(continueFromSessionId?: string) {
     if (activeSession) {
       router.push(`/practice/${activeSession.id}`);
       return;
     }
 
-    if (timed && (minutes < 10 || minutes > 300)) {
+    if (!continueFromSessionId && timed && (minutes < 10 || minutes > 300)) {
       setErrorMessage("练习时长需要在10到300分钟之间。");
       return;
     }
@@ -134,10 +134,11 @@ export function PaperStartButton({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           paperId,
+          continueFromSessionId,
           mode: "PAPER",
-          purpose,
-          timingMode: timed ? timingMode : "UNTYPED",
-          timeLimitSeconds: timed ? minutes * 60 : null,
+          purpose: continueFromSessionId ? "PRACTICE" : purpose,
+          timingMode: continueFromSessionId ? "UNTYPED" : timed ? timingMode : "UNTYPED",
+          timeLimitSeconds: continueFromSessionId ? null : timed ? minutes * 60 : null,
         }),
       });
       const payload = (await response.json()) as ApiResponse<CreateSessionResponse>;
@@ -174,24 +175,41 @@ export function PaperStartButton({
         <Button
           type="button"
           className={className}
-          onClick={() => router.push(`/practice/${submittedSession.id}?review=1`)}
+          disabled={isPending}
+          onClick={() =>
+            isComplete
+              ? router.push(`/practice/${submittedSession.id}?review=1`)
+              : void startPractice(submittedSession.id)
+          }
         >
-          <Eye data-icon="inline-start" />
-          查看结果
+          {isPending ? (
+            <LoaderCircle data-icon="inline-start" className="animate-spin" />
+          ) : isComplete ? (
+            <Eye data-icon="inline-start" />
+          ) : (
+            <Play data-icon="inline-start" />
+          )}
+          {isPending ? "正在恢复" : isComplete ? "查看结果" : "继续作答"}
         </Button>
         <Button
           type="button"
           variant="outline"
           className={className}
           disabled={isPending}
-          onClick={startAgain}
+          onClick={() =>
+            isComplete
+              ? startAgain()
+              : router.push(`/practice/${submittedSession.id}?review=1`)
+          }
         >
-          {isPending ? (
+          {isPending && isComplete ? (
             <LoaderCircle data-icon="inline-start" className="animate-spin" />
-          ) : (
+          ) : isComplete ? (
             <RotateCcw data-icon="inline-start" />
+          ) : (
+            <Eye data-icon="inline-start" />
           )}
-          {isPending ? "正在创建" : "再练一次"}
+          {isPending && isComplete ? "正在创建" : isComplete ? "再练一次" : "查看上次结果"}
         </Button>
         <p className="col-span-2 text-xs text-muted-foreground lg:col-span-1 lg:text-right">
           {isComplete ? "已完成" : "上次已提交"} {submittedSession.answeredCount}/

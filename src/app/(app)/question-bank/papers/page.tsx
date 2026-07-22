@@ -167,7 +167,7 @@ export default async function PapersPage({ searchParams }: PapersPageProps) {
                           requestedPurpose,
                           benchmarkPaperId === paper.id
                         )
-                      ) ?? null}
+                      ) ?? paper.activeSessions[0] ?? null}
                       submittedSession={paper.submittedSessions.find(
                         (session) => session.purpose === getPaperPurpose(
                           requestedPurpose,

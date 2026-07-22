@@ -1,6 +1,9 @@
 import { describe, expect, it } from "vitest";
 
-import { normalizePracticeProgressAnswers } from "@/server/services/practice-progress";
+import {
+  getPreviouslyGradedQuestionIds,
+  normalizePracticeProgressAnswers,
+} from "@/server/services/practice-progress";
 
 describe("normalizePracticeProgressAnswers", () => {
   it("normalizes partial answer progress without grading it", () => {
@@ -28,5 +31,19 @@ describe("normalizePracticeProgressAnswers", () => {
         decisionNote: null,
       },
     ]);
+  });
+});
+
+describe("getPreviouslyGradedQuestionIds", () => {
+  it("reads the answers already counted before a submitted session was reopened", () => {
+    expect(
+      Array.from(
+        getPreviouslyGradedQuestionIds({
+          reopenedSubmission: {
+            gradedQuestionIds: ["question-1", "question-2", 3],
+          },
+        })
+      )
+    ).toEqual(["question-1", "question-2"]);
   });
 });

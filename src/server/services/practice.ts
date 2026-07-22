@@ -6,7 +6,10 @@ import { prisma } from "@/lib/db/prisma";
 import { BusinessError, ConflictError, MembershipRequiredError, NotFoundError } from "@/server/services/errors";
 import { hasActiveMembership } from "@/server/services/membership";
 import { evaluateFoundationRound, evaluatePracticeAnswers } from "@/server/services/practice-evaluation";
-import { normalizePracticeProgressAnswers } from "@/server/services/practice-progress";
+import {
+  getPreviouslyGradedQuestionIds,
+  normalizePracticeProgressAnswers,
+} from "@/server/services/practice-progress";
 import { getPracticeDeadline, normalizeSubmittedTiming } from "@/server/services/practice-timing";
 import { assertPracticeQuestionsAccessible } from "@/server/services/practice-question-policy";
 import { validateSubmittedQuestionIds } from "@/server/services/practice-submission";
@@ -38,6 +41,7 @@ const practiceEventTypeSchema = z.enum([
 
 export const createPaperSessionSchema = z.object({
   paperId: z.string().min(1),
+  continueFromSessionId: z.string().min(1).optional(),
   mode: z.literal("PAPER").optional(),
   purpose: practicePurposeSchema.exclude(["FOUNDATION", "WRONG_REVIEW"]).default("PRACTICE"),
   timingMode: practiceTimingModeSchema.default("UNTYPED"),
@@ -307,7 +311,7 @@ export async function createPaperPracticeSession(
   user: AuthenticatedUser,
   input: CreatePaperSessionInput
 ) {
-  if (input.purpose === "BASELINE") {
+  if (input.purpose === "BASELINE" && !input.continueFromSessionId) {
     const existing = await prisma.practiceSession.findFirst({
       where: { userId: user.id, purpose: "BASELINE", status: "IN_PROGRESS" },
       select: { id: true },
@@ -350,6 +354,69 @@ export async function createPaperPracticeSession(
     user,
     paper.questions.map((paperQuestion) => paperQuestion.question)
   );
+
+  if (input.continueFromSessionId) {
+    const continuationSource = await prisma.practiceSession.findFirst({
+      where: {
+        id: input.continueFromSessionId,
+        userId: user.id,
+        paperId: paper.id,
+        mode: "PAPER",
+        status: "SUBMITTED",
+      },
+      select: {
+        id: true,
+        answeredCount: true,
+        totalCount: true,
+        submittedAt: true,
+        answers: {
+          where: { answer: { not: null } },
+          select: { questionId: true },
+        },
+      },
+    });
+    if (!continuationSource) {
+      throw new NotFoundError("未找到可继续的历史练习");
+    }
+    if (continuationSource.answeredCount >= continuationSource.totalCount) {
+      throw new ConflictError("这套试卷已经全部作答，可选择再练一次");
+    }
+
+    await prisma.$transaction(async (tx) => {
+      await tx.practiceSession.updateMany({
+        where: {
+          userId: user.id,
+          paperId: paper.id,
+          mode: "PAPER",
+          status: "IN_PROGRESS",
+          id: { not: continuationSource.id },
+        },
+        data: { status: "ABANDONED" },
+      });
+      await tx.practiceSession.update({
+        where: { id: continuationSource.id },
+        data: {
+          status: "IN_PROGRESS",
+          timingMode: "UNTYPED",
+          timeLimitSeconds: null,
+          submittedAt: null,
+          sourceTagIdsJson: {
+            reopenedSubmission: {
+              submittedAt: continuationSource.submittedAt?.toISOString() ?? null,
+              gradedQuestionIds: continuationSource.answers.map(
+                (answer) => answer.questionId
+              ),
+            },
+          },
+        },
+      });
+    });
+
+    return {
+      ...(await getPracticeSessionDetail(user, continuationSource.id)),
+      resumed: true,
+    };
+  }
 
   const timeLimitSeconds = input.timingMode === "UNTYPED"
     ? null
@@ -625,6 +692,9 @@ export async function submitPracticeSession(
         analysisHtml: normalizeRichHtml(answerRow.question.analysisHtml),
       };
     });
+    const previouslyGradedQuestionIds = getPreviouslyGradedQuestionIds(
+      session.sourceTagIdsJson
+    );
     const {
       totalCount,
       answeredCount,
@@ -686,6 +756,7 @@ export async function submitPracticeSession(
       { answeredCount: number; correctCount: number; wrongCount: number }
     >();
     for (const answer of answerRows) {
+      if (previouslyGradedQuestionIds.has(answer.questionId)) continue;
       if (!answer.tagId) continue;
       const group = tagRounds.get(answer.tagId) ?? {
         answeredCount: 0,
@@ -746,6 +817,10 @@ export async function submitPracticeSession(
     await Promise.all(
       savedAnswers.map((savedAnswer, index) => {
         const answer = answerRows[index];
+
+        if (previouslyGradedQuestionIds.has(answer.questionId)) {
+          return null;
+        }
 
         if (!answer.answer) {
           return null;
