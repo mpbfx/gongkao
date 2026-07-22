@@ -1,6 +1,6 @@
 "use client";
 
-import { Clock3, LoaderCircle, Play } from "lucide-react";
+import { Clock3, Eye, LoaderCircle, Play, RotateCcw } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -24,9 +24,65 @@ type ApiResponse<T> =
 type CreateSessionResponse = { id: string };
 type PaperPurpose = "PRACTICE" | "BASELINE" | "MOCK" | "TIME_PRESSURE";
 
+function PaperTimingDialog({
+  open,
+  onOpenChange,
+  paperId,
+  purpose,
+  timingMode,
+  onTimingModeChange,
+  minutes,
+  onMinutesChange,
+  errorMessage,
+  isPending,
+  onStart,
+}: {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  paperId: string;
+  purpose: PaperPurpose;
+  timingMode: "STRICT" | "FLEXIBLE";
+  onTimingModeChange: (mode: "STRICT" | "FLEXIBLE") => void;
+  minutes: number;
+  onMinutesChange: (minutes: number) => void;
+  errorMessage: string | null;
+  isPending: boolean;
+  onStart: () => void;
+}) {
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>{purpose === "BASELINE" ? "设置基准测试" : "设置限时练习"}</DialogTitle>
+          <DialogDescription>严格模拟不开放暂停；普通限时会记录暂停次数与暂停时长。</DialogDescription>
+        </DialogHeader>
+        <DialogBody className="space-y-5">
+          <div className="grid grid-cols-2 gap-2">
+            <Button type="button" variant={timingMode === "STRICT" ? "default" : "outline"} onClick={() => onTimingModeChange("STRICT")}>严格模拟</Button>
+            <Button type="button" variant={timingMode === "FLEXIBLE" ? "default" : "outline"} onClick={() => onTimingModeChange("FLEXIBLE")}>普通限时</Button>
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor={`paper-minutes-${paperId}`}>本次时长（分钟）</Label>
+            <Input id={`paper-minutes-${paperId}`} type="number" min={10} max={300} value={minutes} onChange={(event) => onMinutesChange(Number(event.target.value))} />
+          </div>
+          {errorMessage ? <p className="text-sm text-destructive">{errorMessage}</p> : null}
+        </DialogBody>
+        <DialogFooter>
+          <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>取消</Button>
+          <Button type="button" disabled={isPending} onClick={onStart}>
+            {isPending ? <LoaderCircle className="animate-spin" data-icon="inline-start" /> : <Play data-icon="inline-start" />}
+            开始答题
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
 export function PaperStartButton({
   paperId,
   activeSession,
+  submittedSession,
   className,
   variant = "default",
   purpose = "PRACTICE",
@@ -38,6 +94,11 @@ export function PaperStartButton({
     answeredCount: number;
     totalCount: number;
     elapsedSeconds: number;
+  } | null;
+  submittedSession?: {
+    id: string;
+    answeredCount: number;
+    totalCount: number;
   } | null;
   className?: string;
   variant?: "default" | "outline" | "secondary";
@@ -96,6 +157,64 @@ export function PaperStartButton({
     }
   }
 
+  function startAgain() {
+    if (timed) {
+      setDialogOpen(true);
+      return;
+    }
+
+    void startPractice();
+  }
+
+  if (submittedSession && !activeSession) {
+    const isComplete = submittedSession.answeredCount >= submittedSession.totalCount;
+
+    return (
+      <div className="grid grid-cols-2 gap-2 lg:grid-cols-1">
+        <Button
+          type="button"
+          className={className}
+          onClick={() => router.push(`/practice/${submittedSession.id}?review=1`)}
+        >
+          <Eye data-icon="inline-start" />
+          查看结果
+        </Button>
+        <Button
+          type="button"
+          variant="outline"
+          className={className}
+          disabled={isPending}
+          onClick={startAgain}
+        >
+          {isPending ? (
+            <LoaderCircle data-icon="inline-start" className="animate-spin" />
+          ) : (
+            <RotateCcw data-icon="inline-start" />
+          )}
+          {isPending ? "正在创建" : "再练一次"}
+        </Button>
+        <p className="col-span-2 text-xs text-muted-foreground lg:col-span-1 lg:text-right">
+          {isComplete ? "已完成" : "上次已提交"} {submittedSession.answeredCount}/
+          {submittedSession.totalCount}
+        </p>
+
+        <PaperTimingDialog
+          open={dialogOpen}
+          onOpenChange={setDialogOpen}
+          paperId={paperId}
+          purpose={purpose}
+          timingMode={timingMode}
+          onTimingModeChange={setTimingMode}
+          minutes={minutes}
+          onMinutesChange={setMinutes}
+          errorMessage={errorMessage}
+          isPending={isPending}
+          onStart={() => void startPractice()}
+        />
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col gap-2">
       <Button
@@ -115,32 +234,19 @@ export function PaperStartButton({
       ) : null}
       {errorMessage ? <p className="text-sm text-destructive">{errorMessage}</p> : null}
 
-      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>{purpose === "BASELINE" ? "设置基准测试" : "设置限时练习"}</DialogTitle>
-            <DialogDescription>严格模拟不开放暂停；普通限时会记录暂停次数与暂停时长。</DialogDescription>
-          </DialogHeader>
-          <DialogBody className="space-y-5">
-            <div className="grid grid-cols-2 gap-2">
-              <Button type="button" variant={timingMode === "STRICT" ? "default" : "outline"} onClick={() => setTimingMode("STRICT")}>严格模拟</Button>
-              <Button type="button" variant={timingMode === "FLEXIBLE" ? "default" : "outline"} onClick={() => setTimingMode("FLEXIBLE")}>普通限时</Button>
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor={`paper-minutes-${paperId}`}>本次时长（分钟）</Label>
-              <Input id={`paper-minutes-${paperId}`} type="number" min={10} max={300} value={minutes} onChange={(event) => setMinutes(Number(event.target.value))} />
-            </div>
-            {errorMessage ? <p className="text-sm text-destructive">{errorMessage}</p> : null}
-          </DialogBody>
-          <DialogFooter>
-            <Button type="button" variant="outline" onClick={() => setDialogOpen(false)}>取消</Button>
-            <Button type="button" disabled={isPending} onClick={() => void startPractice()}>
-              {isPending ? <LoaderCircle className="animate-spin" data-icon="inline-start" /> : <Play data-icon="inline-start" />}
-              开始答题
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
+      <PaperTimingDialog
+        open={dialogOpen}
+        onOpenChange={setDialogOpen}
+        paperId={paperId}
+        purpose={purpose}
+        timingMode={timingMode}
+        onTimingModeChange={setTimingMode}
+        minutes={minutes}
+        onMinutesChange={setMinutes}
+        errorMessage={errorMessage}
+        isPending={isPending}
+        onStart={() => void startPractice()}
+      />
     </div>
   );
 }

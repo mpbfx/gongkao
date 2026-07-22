@@ -20,6 +20,41 @@ export const paperListQuerySchema = paginationQuerySchema.extend({
 
 export type PaperListQuery = z.infer<typeof paperListQuerySchema>;
 
+type PaperSessionListRow = {
+  id: string;
+  status: string;
+  purpose: string;
+  submittedAt: Date | null;
+  updatedAt: Date;
+};
+
+export function toPaperSessionLists<T extends PaperSessionListRow>(sessions: T[]) {
+  return {
+    activeSessions: sessions
+      .filter((session) => session.status === "IN_PROGRESS")
+      .map((session) => ({
+        ...session,
+        submittedAt: null,
+        updatedAt: session.updatedAt.toISOString(),
+      })),
+    submittedSessions: sessions
+      .filter(
+        (session, index) =>
+          session.status === "SUBMITTED" &&
+          sessions.findIndex(
+            (candidate) =>
+              candidate.status === "SUBMITTED" &&
+              candidate.purpose === session.purpose
+          ) === index
+      )
+      .map((session) => ({
+        ...session,
+        submittedAt: session.submittedAt?.toISOString() ?? null,
+        updatedAt: session.updatedAt.toISOString(),
+      })),
+  };
+}
+
 export function toPaperModel(
   paperQuestions: Array<{
     sortOrder: number;
@@ -70,15 +105,21 @@ export async function listPapers(query: PaperListQuery, userId?: string) {
         },
         sessions: userId
           ? {
-              where: { userId, mode: "PAPER", status: "IN_PROGRESS" },
+              where: {
+                userId,
+                mode: "PAPER",
+                status: { in: ["IN_PROGRESS", "SUBMITTED"] },
+              },
               orderBy: { updatedAt: "desc" },
               select: {
                 id: true,
+                status: true,
                 purpose: true,
                 timingMode: true,
                 answeredCount: true,
                 totalCount: true,
                 elapsedSeconds: true,
+                submittedAt: true,
                 updatedAt: true,
               },
             }
@@ -117,10 +158,7 @@ export async function listPapers(query: PaperListQuery, userId?: string) {
       durationSeconds: paper.durationSeconds,
       questionCount: paper._count.questions,
       isVipOnly: paper.isVipOnly,
-      activeSessions: (paper.sessions ?? []).map((session) => ({
-        ...session,
-        updatedAt: session.updatedAt.toISOString(),
-      })),
+      ...toPaperSessionLists(paper.sessions ?? []),
     })),
     pagination: getPagination(query.page, query.pageSize, total),
     filters: {
