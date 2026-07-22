@@ -99,7 +99,7 @@ export function PageHeader({
           <h1
             className={cn(
               "student-heading font-semibold tracking-tight text-foreground",
-              compact ? "text-xl md:text-2xl" : "text-2xl md:text-3xl lg:max-w-5xl lg:text-[2.65rem] lg:leading-[1.08]"
+              compact ? "text-xl md:text-2xl" : "text-2xl md:text-[1.85rem] lg:max-w-5xl lg:leading-[1.15]"
             )}
           >
             {title}
@@ -144,7 +144,7 @@ export function TrainingHero({
             {eyebrow ? <span className="text-xs font-medium text-muted-foreground">{eyebrow}</span> : null}
             {badge ? <Badge variant={badgeVariant}>{badge}</Badge> : null}
           </div>
-          <h2 className="student-heading text-xl font-semibold tracking-tight text-foreground md:text-2xl lg:max-w-4xl lg:text-[2.65rem] lg:leading-[1.12]">{title}</h2>
+          <h2 className="student-heading text-xl font-semibold tracking-tight text-foreground md:text-2xl lg:max-w-4xl lg:text-[1.85rem] lg:leading-[1.18]">{title}</h2>
           {description ? <div className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">{description}</div> : null}
         </div>
         {actions ? <div className="flex flex-wrap items-center gap-2 md:justify-end">{actions}</div> : null}
@@ -260,7 +260,7 @@ export function StatCard({
               {value}
             </CardTitle>
           </div>
-          <div className={cn("grid size-9 shrink-0 place-items-center rounded-lg", toneClassNames[tone])}>
+          <div className={cn("grid size-9 shrink-0 place-items-center border border-current/15", toneClassNames[tone])}>
             <Icon aria-hidden="true" />
           </div>
         </div>
@@ -290,7 +290,7 @@ export function ActionCard({
   tone?: Tone;
 }) {
   const icon = (
-    <div className={cn("grid size-10 shrink-0 place-items-center rounded-lg", toneClassNames[tone])}>
+    <div className={cn("grid size-10 shrink-0 place-items-center border border-current/15", toneClassNames[tone])}>
       <Icon aria-hidden="true" />
     </div>
   );
@@ -334,7 +334,7 @@ export function EmptyState({
   return (
     <div className="editorial-empty border-y border-dashed border-foreground/45 bg-card/50">
       <CardContent className="flex flex-col items-center gap-4 py-10 text-center">
-        <div className="grid size-12 place-items-center rounded-lg bg-secondary text-secondary-foreground">
+        <div className="grid size-12 place-items-center border border-foreground/20 bg-secondary text-secondary-foreground">
           <Icon aria-hidden="true" />
         </div>
         <div className="flex max-w-md flex-col gap-1">

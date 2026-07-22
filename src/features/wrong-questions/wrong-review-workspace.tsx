@@ -147,7 +147,7 @@ function WrongQuestionReview({ item }: { item: WrongQuestionDTO }) {
             >
               <span
                 className={cn(
-                  "grid size-6 shrink-0 place-items-center rounded-full border text-xs font-semibold",
+                  "grid size-6 shrink-0 place-items-center border text-xs font-semibold",
                   isCorrect && "border-success/40 text-success",
                   isMine && !isCorrect && "border-destructive/40 text-destructive"
                 )}

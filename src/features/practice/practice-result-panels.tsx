@@ -41,7 +41,7 @@ export function PracticeResultOverview({
   className?: string;
 }) {
   return (
-    <section className={cn("practice-result-overview flex min-h-14 shrink-0 flex-wrap items-center border-b border-foreground/25 bg-[#f8f4eb] px-4 text-sm lg:h-14 lg:flex-nowrap lg:px-6", className)}>
+    <section className={cn("practice-result-overview flex min-h-14 shrink-0 flex-wrap items-center border-b border-foreground/25 bg-card px-4 text-sm lg:h-14 lg:flex-nowrap lg:px-6", className)}>
       <div className="flex min-w-48 items-center gap-3 border-r border-foreground/20 pr-5">
         <span className={cn("size-2 rounded-full", reviewMode ? "bg-success" : "bg-primary")} />
         <span className="font-semibold">{reviewMode ? "历史回看" : "提交完成"}</span>

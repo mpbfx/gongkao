@@ -181,9 +181,13 @@
    */
   .student-shell,
   .student-auth {
-    --background: #f4f0e8;
+    --paper-desk: #f4f0e8;
+    --paper-surface: #fbf8f1;
+    --paper-sheet: #fffefa;
+    --paper-rule: rgb(23 34 56 / 0.22);
+    --background: var(--paper-desk);
     --foreground: #172238;
-    --card: #fbf8f1;
+    --card: var(--paper-surface);
     --card-foreground: #172238;
     --popover: #fffdf8;
     --popover-foreground: #172238;
@@ -219,11 +223,14 @@
     --sidebar-border: rgb(244 240 232 / 0.14);
     --sidebar-ring: #e8795b;
     --student-heading-font: "Songti SC", "STSong", "SimSun", ui-serif, serif;
+    --radius: 0.15rem;
     background-color: var(--background);
-    background-image:
-      radial-gradient(circle at 18% 12%, rgb(255 255 255 / 0.72), transparent 31rem),
-      repeating-linear-gradient(0deg, rgb(23 34 56 / 0.018) 0 1px, transparent 1px 4px);
-    background-size: auto, auto;
+    /* Single light ruled-paper texture; no stacked radial + noise. */
+    background-image: repeating-linear-gradient(
+      0deg,
+      rgb(23 34 56 / 0.014) 0 1px,
+      transparent 1px 5px
+    );
   }
 
   .student-shell .student-heading,
@@ -235,32 +242,60 @@
 
   .student-shell .student-topbar {
     border-color: rgb(23 34 56 / 0.16);
-    background-color: rgb(244 240 232 / 0.92);
+    background-color: rgb(244 240 232 / 0.94);
     box-shadow: 0 1px 0 rgb(255 255 255 / 0.65) inset;
   }
 
   .student-shell-v2 {
-    --radius: 0.2rem;
+    --radius: 0.15rem;
+  }
+
+  /*
+   * Skin shadcn primitives inside the student shell so pages do not need
+   * per-route rounded-none / shadow-none patches.
+   */
+  .student-shell-v2 [data-slot="card"],
+  .student-shell-v2 [data-slot="button"],
+  .student-shell-v2 [data-slot="input"],
+  .student-shell-v2 [data-slot="textarea"],
+  .student-auth [data-slot="card"],
+  .student-auth [data-slot="button"],
+  .student-auth [data-slot="input"] {
+    border-radius: var(--radius);
+  }
+
+  .student-shell-v2 [data-slot="badge"],
+  .student-auth [data-slot="badge"] {
+    border-radius: var(--radius);
   }
 
   .student-shell-v2 [data-slot="card"] {
-    border-color: rgb(23 34 56 / 0.34);
-    background-color: rgb(251 248 241 / 0.64);
+    border-color: rgb(23 34 56 / 0.28);
+    background-color: rgb(251 248 241 / 0.88);
+    box-shadow: none;
   }
 
   .student-shell-v2 [data-slot="button"] {
     font-weight: 600;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.02em;
+    box-shadow: none;
+  }
+
+  .student-shell-v2 [data-slot="button"][data-variant="default"],
+  .student-shell-v2 a[data-slot="button"].bg-primary {
+    box-shadow: none;
   }
 
   .student-shell-v2 input,
   .student-shell-v2 select,
-  .student-shell-v2 textarea {
-    background-color: rgb(255 253 248 / 0.66);
+  .student-shell-v2 textarea,
+  .student-shell-v2 [data-slot="input"] {
+    background-color: rgb(255 253 248 / 0.86);
+    border-radius: var(--radius);
   }
 
   .student-practice-focus {
-    --background: #ecebe6;
+    --background: var(--paper-desk);
   }
 
   /* Dialog portals mount below <body>, outside .student-shell. Re-apply the
@@ -331,12 +366,11 @@
   @media (min-width: 64rem) {
     .student-shell:not(.student-shell-v2) [data-slot="card"],
     .student-auth [data-slot="card"] {
-      box-shadow: 0 12px 30px rgb(23 34 56 / 0.065), 0 1px 0 rgb(255 255 255 / 0.72) inset;
+      box-shadow: none;
     }
 
     .student-shell .student-brand-mark {
       border: 1px solid rgb(255 250 243 / 0.24);
-      box-shadow: 0 0 0 3px rgb(214 90 58 / 0.12);
     }
 
     .student-shell main,
@@ -344,48 +378,31 @@
       isolation: isolate;
     }
 
-    .student-shell-v2 {
-      min-width: 64rem;
-    }
-
-    .student-shell-v2::before,
-    .student-auth::before {
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      pointer-events: none;
-      content: "";
-      opacity: 0.32;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.13'/%3E%3C/svg%3E");
-    }
-
     .student-shell-v2 .student-spine {
-      box-shadow: 8px 0 24px rgb(23 34 56 / 0.18), inset -1px 0 rgb(255 255 255 / 0.08);
-      background-image:
-        linear-gradient(90deg, rgb(255 255 255 / 0.05), transparent 9%, transparent 91%, rgb(0 0 0 / 0.2)),
-        repeating-linear-gradient(0deg, transparent 0 3px, rgb(255 255 255 / 0.012) 3px 4px);
+      box-shadow: 4px 0 16px rgb(23 34 56 / 0.12);
+      background-image: linear-gradient(
+        90deg,
+        rgb(255 255 255 / 0.04),
+        transparent 12%,
+        transparent 90%,
+        rgb(0 0 0 / 0.12)
+      );
     }
 
     .student-shell-v2 .student-spine-brand {
       color: #fff8e9;
-      background: linear-gradient(145deg, #e04d2c, #b93121);
-      box-shadow: inset 0 -12px 24px rgb(87 20 10 / 0.22), 0 1px rgb(255 255 255 / 0.16);
+      background: #c8462e;
+      box-shadow: inset 0 -1px 0 rgb(0 0 0 / 0.12);
     }
 
     .student-shell-v2 .student-spine-brand .student-heading {
       white-space: nowrap;
-      font-size: 1.28rem;
-      letter-spacing: 0.035em;
+      font-size: 1.05rem;
+      letter-spacing: 0.04em;
     }
 
-    .student-shell-v2 .student-spine-brand::before {
-      position: absolute;
-      inset-block: 0;
-      left: 0.55rem;
-      width: 1px;
-      content: "";
-      background: rgb(255 255 255 / 0.32);
-      box-shadow: 3px 0 rgb(92 21 12 / 0.28);
+    .student-shell-v2 .student-spine-link.is-active {
+      background: rgb(31 57 60 / 0.72);
     }
 
     .student-shell-v2 .student-spine-link.is-active::after {
@@ -396,32 +413,33 @@
       height: 0;
       content: "";
       transform: translateY(-50%);
-      border-top: 0.55rem solid transparent;
-      border-bottom: 0.55rem solid transparent;
-      border-right: 0.55rem solid var(--background);
+      border-top: 0.4rem solid transparent;
+      border-bottom: 0.4rem solid transparent;
+      border-right: 0.4rem solid var(--background);
     }
 
     .student-shell-v2 .student-sidebar-user .student-user-menu {
-      flex-direction: column;
-      align-items: stretch;
-      gap: 0.55rem;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.4rem;
     }
 
     .student-shell-v2 .student-sidebar-user .student-user-menu > a {
-      width: 100%;
-      justify-content: center;
+      width: auto;
       border-color: rgb(244 240 232 / 0.22);
       color: var(--sidebar-foreground);
     }
 
     .student-shell-v2 .student-sidebar-user .student-user-menu > [data-slot="avatar"] {
-      margin-inline: auto;
+      margin-inline: 0;
     }
 
     .student-shell-v2 .student-sidebar-user .student-user-menu > span {
-      max-width: 100%;
-      text-align: center;
-      color: rgb(247 241 231 / 0.7);
+      max-width: 7.5rem;
+      text-align: left;
+      color: rgb(247 241 231 / 0.72);
       font-size: 0.72rem;
     }
 
@@ -435,55 +453,26 @@
 
     .student-shell-v2 .student-topbar {
       border-color: rgb(23 34 56 / 0.16);
-      background: rgb(244 240 232 / 0.82);
+      background: rgb(244 240 232 / 0.92);
     }
 
     .student-shell-v2 .student-page {
       position: relative;
     }
 
-    .student-shell-v2 .student-page::before {
-      position: absolute;
-      top: 1.2rem;
-      right: 2.25rem;
-      width: 4.5rem;
-      height: 4.5rem;
-      z-index: -1;
-      content: "";
-      opacity: 0.07;
-      border: 2px solid var(--primary);
-      border-radius: 50%;
-      box-shadow: inset 0 0 0 0.4rem var(--background), inset 0 0 0 0.5rem var(--primary);
-      transform: rotate(-12deg);
-    }
-
     .student-shell-v2 .editorial-page-header::after {
       position: absolute;
       bottom: -0.42rem;
       left: 0;
-      width: 5rem;
-      height: 0.18rem;
+      width: 4rem;
+      height: 0.14rem;
       content: "";
       background: var(--primary);
     }
 
     .student-shell-v2 .editorial-hero {
       position: relative;
-      box-shadow: 0 18px 42px rgb(42 34 24 / 0.07);
-      background-image: linear-gradient(118deg, rgb(255 255 255 / 0.62), transparent 58%);
-    }
-
-    .student-shell-v2 .editorial-hero::after {
-      position: absolute;
-      right: 2rem;
-      bottom: -2.5rem;
-      width: 8rem;
-      height: 8rem;
-      content: "";
-      opacity: 0.08;
-      border: 3px double var(--primary);
-      border-radius: 50%;
-      transform: rotate(-14deg);
+      background-image: linear-gradient(118deg, rgb(255 255 255 / 0.45), transparent 58%);
     }
 
     .student-shell-v2 [data-slot="card"] {
@@ -503,13 +492,13 @@
     .student-shell-v2 .practice-workspace {
       max-width: none;
       padding: 1rem 1.25rem 1.5rem;
-      background: #ecebe6;
+      background: var(--paper-desk);
     }
 
     .student-shell-v2 .practice-workspace [data-slot="card"] {
-      background: #fffefa;
-      border-color: rgb(23 34 56 / 0.14);
-      box-shadow: 0 12px 30px rgb(23 34 56 / 0.08);
+      background: var(--paper-sheet);
+      border-color: rgb(23 34 56 / 0.16);
+      box-shadow: none;
     }
 
     .student-shell-v2 .special-editorial-workspace > div,
@@ -618,18 +607,26 @@
     .student-shell-v2 .practice-question-paper,
     .student-shell-v2 .practice-answer-sheet-panel {
       border-width: 1px;
-      background-color: #fffefa;
-      background-image: repeating-linear-gradient(0deg, transparent 0 31px, rgb(23 34 56 / 0.025) 31px 32px);
+      background-color: var(--paper-sheet);
+      background-image: repeating-linear-gradient(
+        0deg,
+        transparent 0 31px,
+        rgb(23 34 56 / 0.02) 31px 32px
+      );
     }
 
     .student-shell-v2 .practice-answer-sheet-panel {
-      box-shadow: 0 12px 30px rgb(23 34 56 / 0.08);
+      box-shadow: none;
+    }
+
+    .student-shell-v2 .practice-option-row {
+      border-radius: 0;
     }
 
     .student-shell-v2 .practice-result-overview {
       border-width: 0 0 1px;
       border-color: rgb(23 34 56 / 0.28);
-      background: #f8f4eb;
+      background: var(--paper-surface);
       box-shadow: none;
     }
 
@@ -647,38 +644,28 @@
       border-radius: 0;
     }
 
-    .student-shell-v2 .practice-analysis-panel::after {
-      position: absolute;
-      top: 1.4rem;
-      right: 1.2rem;
-      content: "校准";
-      color: var(--primary);
-      font-family: var(--student-heading-font);
-      font-size: 1rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      opacity: 0.5;
-      transform: rotate(-8deg);
-    }
-
     .student-shell-v2 .practice-result-workbench {
-      background-image: repeating-linear-gradient(0deg, transparent 0 3px, rgb(23 34 56 / 0.012) 3px 4px);
+      background-image: none;
     }
 
     .student-shell-v2 .practice-review-question {
-      background-image: repeating-linear-gradient(0deg, transparent 0 31px, rgb(23 34 56 / 0.022) 31px 32px);
+      background-image: repeating-linear-gradient(
+        0deg,
+        transparent 0 31px,
+        rgb(23 34 56 / 0.018) 31px 32px
+      );
     }
 
     .student-shell-v2 .practice-pane-handle {
       position: fixed;
       top: 50%;
-      width: 0.45rem;
-      height: 2.8rem;
-      margin-left: -0.25rem;
-      border: 1px solid rgb(23 34 56 / 0.25);
-      border-radius: 999px;
-      background: #f8f4eb;
-      box-shadow: 0 2px 6px rgb(23 34 56 / 0.08);
+      width: 0.35rem;
+      height: 2.4rem;
+      margin-left: -0.2rem;
+      border: 1px solid rgb(23 34 56 / 0.22);
+      border-radius: var(--radius);
+      background: var(--paper-surface);
+      box-shadow: none;
     }
 
     .student-shell-v2 .practice-tutor-workbench > section {
@@ -687,7 +674,7 @@
 
     .student-shell-v2 .practice-tutor-workbench > section > div:first-child {
       height: 3rem;
-      background: #f8f4eb;
+      background: var(--paper-surface);
       padding-inline: 1rem;
     }
 
@@ -702,7 +689,7 @@
     }
 
     .student-shell-v2 .practice-tutor-workbench label {
-      background: #f4efe5;
+      background: var(--paper-desk);
     }
 
     .student-shell-v2 .practice-tutor-workbench textarea {

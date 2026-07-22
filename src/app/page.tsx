@@ -36,7 +36,7 @@ export default async function Home() {
                 <span>{user ? "今日训练" : "公考之路 · 精准到分"}</span>
                 <span className="h-px w-12 bg-primary" />
               </div>
-              <h1 className="student-heading mt-5 max-w-3xl text-[2.8rem] font-semibold leading-[1.08] tracking-[-0.04em] md:text-[4rem]">
+              <h1 className="student-heading mt-5 max-w-3xl text-[2.2rem] font-semibold leading-[1.12] tracking-[-0.03em] md:text-[2.75rem]">
                 {user ? overview?.primaryAction.title ?? dailyPractice?.title ?? "从一套真题开始今天的训练" : "把每一次练习，都校准到提分上"}
               </h1>
               <p className="mt-5 max-w-2xl text-base leading-8 text-muted-foreground">

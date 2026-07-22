@@ -77,7 +77,7 @@ export function FoundationTrainingPanel({
     <section className="border-y-2 border-foreground bg-card/35">
       <header className="grid gap-4 border-b border-foreground/25 p-5 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
         <div>
-          <div className="text-xs font-semibold tracking-[0.2em] text-primary">FOUNDATION / 叶子题型筑基</div>
+          <div className="text-xs font-semibold tracking-[0.12em] text-primary">叶子题型筑基</div>
           <h2 className="student-heading mt-2 text-2xl font-semibold">每类15题，答对9题即通过</h2>
           <p className="mt-2 text-sm text-muted-foreground">系统按知识点顺序推进，优先抽取未做题和历史错题。</p>
         </div>

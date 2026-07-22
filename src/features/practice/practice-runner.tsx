@@ -66,6 +66,7 @@ import {
   getInitialPracticeQuestionIndex,
   normalizePracticeAnswer as normalizeAnswer,
   optionStateLabel,
+  practiceOptionButtonClassName,
 } from "@/features/practice/practice-view-utils";
 import { usePracticeTimer } from "@/features/practice/use-practice-timer";
 import { usePracticeEventLog } from "@/features/practice/use-practice-event-log";
@@ -1061,7 +1062,7 @@ export function PracticeRunner({
               </div>
             ) : null}
             {question.materialHtml ? (
-              <div className="rounded-lg bg-muted p-3">
+              <div className="border-l-2 border-info/45 bg-muted/35 px-3 py-3">
                 {question.material?.title ? (
                   <div className="mb-2 text-sm font-medium">{question.material.title}</div>
                 ) : null}
@@ -1071,7 +1072,7 @@ export function PracticeRunner({
 
             <RichHtml html={question.titleHtml} className="text-base leading-7" />
 
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col">
               {question.options.map((option) => {
                 const state = optionState(option.value);
                 const stateLabel = optionStateLabel(state);
@@ -1082,23 +1083,25 @@ export function PracticeRunner({
                     type="button"
                     disabled={isResultMode || isPracticePaused || timeExpired}
                     aria-pressed={state === "selected"}
-                    className={cn(
-                      "flex min-h-12 w-full items-start gap-3 rounded-lg border bg-card px-3 py-3 text-left text-sm transition-colors",
-                      "focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none",
-                      state === "selected" && "border-primary bg-primary/10 text-foreground shadow-[inset_3px_0_0_var(--primary)]",
-                      state === "correct" && "border-success bg-success/10 text-success",
-                      state === "wrong" && "border-destructive bg-destructive/10 text-destructive",
-                      isResultMode && "disabled:opacity-100",
-                      isPracticePaused && "opacity-40"
-                    )}
+                    className={practiceOptionButtonClassName(state, {
+                      isResultMode,
+                      isPracticePaused,
+                    })}
                     onClick={() => updateAnswer(option.value)}
                   >
-                    <span className="grid size-6 shrink-0 place-items-center rounded-full border text-xs font-medium">
+                    <span
+                      className={cn(
+                        "grid size-6 shrink-0 place-items-center border text-xs font-semibold",
+                        state === "selected" && "border-primary bg-primary text-primary-foreground",
+                        state === "correct" && "border-success bg-success text-success-foreground",
+                        state === "wrong" && "border-destructive bg-destructive text-white"
+                      )}
+                    >
                       {option.label}
                     </span>
                     <RichHtml html={option.contentHtml} className="flex-1 leading-6" />
                     {stateLabel ? (
-                      <span className="shrink-0 rounded-full border bg-background px-2 py-0.5 text-xs text-foreground">
+                      <span className="shrink-0 border border-foreground/20 bg-background px-2 py-0.5 text-xs text-foreground">
                         {stateLabel}
                       </span>
                     ) : null}

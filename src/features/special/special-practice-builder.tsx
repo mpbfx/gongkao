@@ -40,15 +40,22 @@ function TagTree({
   level?: number;
 }) {
   return (
-    <div className="flex flex-col gap-2">
+    <div className={cn("flex flex-col", level === 0 && "border border-foreground/25")}>
       {tags.map((tag) => {
         const hasChildren = tag.children.length > 0;
         const isExpanded = forceExpanded || expanded.has(tag.id);
         const isSelected = selectedId === tag.id;
 
         return (
-          <div key={tag.id} className={cn("flex flex-col gap-2", level > 0 && "pl-4")}>
-            <div className="flex items-center gap-2 border bg-card p-2">
+          <div key={tag.id} className="flex flex-col">
+            <div
+              className={cn(
+                "flex items-center gap-1 border-b border-foreground/15 last:border-b-0",
+                level > 0 && "bg-muted/15",
+                isSelected && "bg-primary/8 shadow-[inset_3px_0_0_var(--primary)]"
+              )}
+              style={level > 0 ? { paddingLeft: `${level * 0.75}rem` } : undefined}
+            >
               {hasChildren ? (
                 <button
                   type="button"
@@ -65,10 +72,9 @@ function TagTree({
                 type="button"
                 disabled={hasChildren || tag.questionCount === 0}
                 className={cn(
-                  "flex min-h-11 min-w-0 flex-1 items-center gap-3 px-2 text-left focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none",
+                  "flex min-h-11 min-w-0 flex-1 items-center gap-3 px-2 py-2 text-left focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none",
                   hasChildren && "cursor-default",
-                  !hasChildren && "hover:bg-muted/60",
-                  isSelected && "bg-primary/10",
+                  !hasChildren && "hover:bg-muted/40",
                   tag.questionCount === 0 && "opacity-45"
                 )}
                 aria-pressed={hasChildren ? undefined : isSelected}
