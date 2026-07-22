@@ -6,6 +6,7 @@ import { prisma } from "@/lib/db/prisma";
 import { BusinessError, ConflictError, MembershipRequiredError, NotFoundError } from "@/server/services/errors";
 import { hasActiveMembership } from "@/server/services/membership";
 import { evaluateFoundationRound, evaluatePracticeAnswers } from "@/server/services/practice-evaluation";
+import { normalizePracticeProgressAnswers } from "@/server/services/practice-progress";
 import { getPracticeDeadline, normalizeSubmittedTiming } from "@/server/services/practice-timing";
 import { assertPracticeQuestionsAccessible } from "@/server/services/practice-question-policy";
 import { validateSubmittedQuestionIds } from "@/server/services/practice-submission";
@@ -69,6 +70,8 @@ export const submitSessionSchema = z.object({
     .max(5000)
     .default([]),
 });
+
+export const saveSessionProgressSchema = submitSessionSchema.omit({ events: true });
 
 export type SubmitSessionInput = z.infer<typeof submitSessionSchema>;
 export type CreatePaperSessionInput = z.infer<typeof createPaperSessionSchema>;
@@ -160,6 +163,7 @@ export function sessionSummary(session: {
   accuracy?: unknown;
   submittedAt?: Date | null;
   createdAt: Date;
+  updatedAt: Date;
   paperId?: string | null;
 }) {
   const deadline = getPracticeDeadline({
@@ -192,6 +196,7 @@ export function sessionSummary(session: {
     accuracy: decimalToString(session.accuracy),
     submittedAt: session.submittedAt?.toISOString() ?? null,
     createdAt: session.createdAt.toISOString(),
+    updatedAt: session.updatedAt.toISOString(),
     paperId: session.paperId ?? null,
   };
 }
@@ -353,6 +358,24 @@ export async function createPaperPracticeSession(
     throw new BusinessError("该试卷尚未配置时限，请先设置本次练习时长");
   }
 
+  const activeSession = await prisma.practiceSession.findFirst({
+    where: {
+      userId: user.id,
+      paperId: paper.id,
+      mode: "PAPER",
+      purpose: input.purpose,
+      status: "IN_PROGRESS",
+    },
+    orderBy: { updatedAt: "desc" },
+    select: { id: true },
+  });
+  if (activeSession) {
+    return {
+      ...(await getPracticeSessionDetail(user, activeSession.id)),
+      resumed: true,
+    };
+  }
+
   const session = await prisma.practiceSession.create({
     data: {
       userId: user.id,
@@ -380,6 +403,7 @@ export async function createPaperPracticeSession(
 
   return {
     ...sessionSummary(session),
+    resumed: false,
     model: toPaperModel(paper.questions),
     questions: paper.questions.map((paperQuestion) => ({
       sortOrder: paperQuestion.sortOrder,
@@ -389,6 +413,78 @@ export async function createPaperPracticeSession(
     })),
     userAnswers: [],
   };
+}
+
+export async function savePracticeSessionProgress(
+  user: AuthenticatedUser,
+  sessionId: string,
+  input: z.infer<typeof saveSessionProgressSchema>
+) {
+  const now = new Date();
+
+  return prisma.$transaction(async (tx) => {
+    const session = await tx.practiceSession.findFirst({
+      where: { id: sessionId, userId: user.id },
+      include: {
+        answers: { select: { questionId: true } },
+      },
+    });
+    if (!session) throw new NotFoundError("练习不存在");
+    if (session.status !== "IN_PROGRESS") {
+      throw new ConflictError("该练习已提交，不能继续保存");
+    }
+
+    const sessionQuestionIds = new Set(session.answers.map((answer) => answer.questionId));
+    if (input.answers.some((answer) => !sessionQuestionIds.has(answer.questionId))) {
+      throw new ConflictError("进度包含本练习之外的题目");
+    }
+    const changedAnswers = normalizePracticeProgressAnswers(input.answers);
+
+    await Promise.all(
+      changedAnswers.map((answer) =>
+        tx.practiceAnswer.update({
+          where: {
+            sessionId_questionId: {
+              sessionId: session.id,
+              questionId: answer.questionId,
+            },
+          },
+          data: {
+            answer: answer.answer,
+            isCorrect: null,
+            timeSpentSeconds: answer.timeSpentSeconds,
+            decisionNote: answer.decisionNote,
+            answeredAt: answer.answer ? now : null,
+          },
+        })
+      )
+    );
+
+    const answeredCount = await tx.practiceAnswer.count({
+      where: { sessionId: session.id, answer: { not: null } },
+    });
+    const updated = await tx.practiceSession.updateMany({
+      where: { id: session.id, userId: user.id, status: "IN_PROGRESS" },
+      data: {
+        answeredCount,
+        unansweredCount: session.totalCount - answeredCount,
+        elapsedSeconds: input.elapsedSeconds,
+        pauseCount: input.pauseCount,
+        pausedSeconds: input.pausedSeconds,
+      },
+    });
+    if (updated.count !== 1) {
+      throw new ConflictError("该练习已提交，不能继续保存");
+    }
+
+    return {
+      sessionId: session.id,
+      answeredCount,
+      unansweredCount: session.totalCount - answeredCount,
+      elapsedSeconds: input.elapsedSeconds,
+      updatedAt: now.toISOString(),
+    };
+  });
 }
 
 export async function getPracticeSessionDetail(user: AuthenticatedUser, sessionId: string) {

@@ -49,7 +49,7 @@ export function toPaperModel(
   return Array.from(sections.values());
 }
 
-export async function listPapers(query: PaperListQuery) {
+export async function listPapers(query: PaperListQuery, userId?: string) {
   const where = {
     isActive: true,
     deletedAt: null,
@@ -68,6 +68,21 @@ export async function listPapers(query: PaperListQuery) {
         _count: {
           select: { questions: true },
         },
+        sessions: userId
+          ? {
+              where: { userId, mode: "PAPER", status: "IN_PROGRESS" },
+              orderBy: { updatedAt: "desc" },
+              select: {
+                id: true,
+                purpose: true,
+                timingMode: true,
+                answeredCount: true,
+                totalCount: true,
+                elapsedSeconds: true,
+                updatedAt: true,
+              },
+            }
+          : false,
       },
     }),
     prisma.paper.count({ where }),
@@ -102,6 +117,10 @@ export async function listPapers(query: PaperListQuery) {
       durationSeconds: paper.durationSeconds,
       questionCount: paper._count.questions,
       isVipOnly: paper.isVipOnly,
+      activeSessions: (paper.sessions ?? []).map((session) => ({
+        ...session,
+        updatedAt: session.updatedAt.toISOString(),
+      })),
     })),
     pagination: getPagination(query.page, query.pageSize, total),
     filters: {

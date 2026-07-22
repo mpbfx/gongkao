@@ -26,12 +26,19 @@ type PaperPurpose = "PRACTICE" | "BASELINE" | "MOCK" | "TIME_PRESSURE";
 
 export function PaperStartButton({
   paperId,
+  activeSession,
   className,
   variant = "default",
   purpose = "PRACTICE",
   durationSeconds,
 }: {
   paperId: string;
+  activeSession?: {
+    id: string;
+    answeredCount: number;
+    totalCount: number;
+    elapsedSeconds: number;
+  } | null;
   className?: string;
   variant?: "default" | "outline" | "secondary";
   purpose?: PaperPurpose;
@@ -48,6 +55,11 @@ export function PaperStartButton({
   );
 
   async function startPractice() {
+    if (activeSession) {
+      router.push(`/practice/${activeSession.id}`);
+      return;
+    }
+
     if (timed && (minutes < 10 || minutes > 300)) {
       setErrorMessage("练习时长需要在10到300分钟之间。");
       return;
@@ -91,11 +103,16 @@ export function PaperStartButton({
         variant={variant}
         className={className}
         disabled={isPending}
-        onClick={() => timed ? setDialogOpen(true) : void startPractice()}
+        onClick={() => activeSession ? void startPractice() : timed ? setDialogOpen(true) : void startPractice()}
       >
         {isPending ? <LoaderCircle data-icon="inline-start" className="animate-spin" /> : timed ? <Clock3 data-icon="inline-start" /> : <Play data-icon="inline-start" />}
-        {isPending ? "正在创建" : purpose === "BASELINE" ? "开始 benchmark" : purpose === "MOCK" ? "开始限时模拟" : purpose === "TIME_PRESSURE" ? "开始减时模拟" : "开始练习"}
+        {isPending ? "正在创建" : activeSession ? "继续作答" : purpose === "BASELINE" ? "开始 benchmark" : purpose === "MOCK" ? "开始限时模拟" : purpose === "TIME_PRESSURE" ? "开始减时模拟" : "开始练习"}
       </Button>
+      {activeSession ? (
+        <p className="text-xs text-muted-foreground lg:text-right">
+          已答 {activeSession.answeredCount}/{activeSession.totalCount}
+        </p>
+      ) : null}
       {errorMessage ? <p className="text-sm text-destructive">{errorMessage}</p> : null}
 
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
