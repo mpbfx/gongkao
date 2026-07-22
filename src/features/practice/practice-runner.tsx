@@ -19,7 +19,7 @@ import {
   WifiOff,
 } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useEffectEvent, useMemo, useState } from "react";
 
 import { useAppHeader } from "@/components/layout/app-header-context";
 import { DraftCanvas } from "@/components/practice/draft-canvas";
@@ -397,6 +397,47 @@ export function PracticeRunner({
     setShowAnswerSheet(false);
     setCurrentIndex(targetIndex);
   }
+
+  const handleQuestionNavigation = useEffectEvent((event: KeyboardEvent) => {
+    if (
+      event.defaultPrevented ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.altKey ||
+      event.shiftKey ||
+      isPracticePaused ||
+      isSubmitting ||
+      showSubmitDialog ||
+      showDraftCanvas ||
+      showAnswerSheet ||
+      showTutor ||
+      showDecisionNote ||
+      showTools
+    ) {
+      return;
+    }
+
+    const target = event.target;
+    if (
+      target instanceof HTMLElement &&
+      (target.isContentEditable || target.closest("input, textarea, select, [contenteditable='true']"))
+    ) {
+      return;
+    }
+
+    if (event.key === "ArrowLeft" && currentIndex > 0) {
+      event.preventDefault();
+      goToQuestion(currentIndex - 1);
+    } else if (event.key === "ArrowRight" && currentIndex < questions.length - 1) {
+      event.preventDefault();
+      goToQuestion(currentIndex + 1);
+    }
+  });
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleQuestionNavigation);
+    return () => window.removeEventListener("keydown", handleQuestionNavigation);
+  }, []);
 
   function togglePause() {
     if (isResultMode || initialSession.timingMode === "STRICT") return;

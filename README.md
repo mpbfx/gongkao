@@ -28,6 +28,22 @@
 
 ## 快速开始
 
+### Codex 一键启动
+
+本地已准备好 `.env.local` 后，可让 Codex 或终端执行：
+
+```bash
+./scripts/codex-start.sh
+```
+
+也可以使用 `pnpm codex:start`。脚本会检查 Node、Docker、磁盘与依赖，启动 MariaDB，生成 Prisma Client，应用已有迁移，并从 `3002` 开始选择可用端口。启动时会监听 `0.0.0.0`，自动识别主网卡 IPv4 并将 Auth.js 地址配置为局域网访问地址，因此同一局域网内的设备可以正常登录和练习。知识库检索需要 Qdrant 时使用 `./scripts/codex-start.sh --with-qdrant`；需要先快进远程最新代码时使用 `./scripts/codex-start.sh --update`。
+
+如果需要固定域名或手动指定访问地址，可使用：
+
+```bash
+CODEX_AUTH_URL=http://172.25.13.76:3002 pnpm codex:start
+```
+
 ### 1. 准备环境
 
 - Node.js `20.19+`

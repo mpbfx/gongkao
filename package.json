@@ -7,7 +7,8 @@
     "node": "^20.19 || ^22.12 || >=24"
   },
   "scripts": {
-    "dev": "next dev",
+    "codex:start": "bash scripts/codex-start.sh",
+    "dev": "next dev --webpack",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",

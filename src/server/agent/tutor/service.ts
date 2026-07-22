@@ -26,8 +26,13 @@ async function executeTutorTurn(input: TutorInput, emit: Emit, signal?: AbortSig
   const context = await loadTutorQuestionContext(input);
   const history = await loadConversationMessages(input.user.id, input.questionId, input.sessionId);
   const command = parseTutorCommand(input.prompt);
-  if (command.type === "knowledge" && !command.query) {
-    throw new BusinessError("请输入知识库检索内容，例如：/knowledge 资料分析题速算");
+  const knowledgeQuery = input.mode === "knowledge"
+    ? input.prompt.trim()
+    : command.type === "knowledge"
+      ? command.query
+      : null;
+  if (knowledgeQuery !== null && !knowledgeQuery) {
+    throw new BusinessError("请输入要检索的课程知识。");
   }
   const turnId = randomUUID();
   const userMessage = await beginTutorTurn({
@@ -40,11 +45,16 @@ async function executeTutorTurn(input: TutorInput, emit: Emit, signal?: AbortSig
 
   try {
     let forcedKnowledge: KnowledgeSearchResult[] | undefined;
-    if (command.type === "knowledge") {
+    if (knowledgeQuery !== null) {
       await emit({ type: "status", phase: "tool", label: "正在检索课程知识" });
       try {
+        const recentUserPrompts = history
+          .filter((message) => message.role === "user" && typeof message.content === "string")
+          .slice(-3)
+          .map((message) => message.content)
+          .join("\n");
         forcedKnowledge = await searchCourseKnowledge({
-          query: command.query,
+          query: recentUserPrompts ? `${knowledgeQuery}\n相关追问上下文：${recentUserPrompts}` : knowledgeQuery,
           limit: 3,
           questionTagName: context.tagName,
           questionText: context.title,
@@ -57,12 +67,13 @@ async function executeTutorTurn(input: TutorInput, emit: Emit, signal?: AbortSig
       userId: input.user.id,
       context,
       messages: history,
-      prompt: command.type === "knowledge" ? command.query : command.prompt,
+      prompt: knowledgeQuery ?? (command.type === "chat" ? command.prompt : input.prompt.trim()),
       signal,
       emit,
       requireReview: false,
       enableKnowledge: false,
       forcedKnowledge,
+      knowledgeOnly: input.mode === "knowledge",
     });
     const assistantMessage = await persistTutorChatSuccess({
       userId: input.user.id,

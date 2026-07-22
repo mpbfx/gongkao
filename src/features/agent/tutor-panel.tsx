@@ -2,7 +2,7 @@
 
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport } from "ai";
-import { Bot, LoaderCircle, MessageSquare, PanelRight, RotateCcw } from "lucide-react";
+import { BookOpenText, Bot, LoaderCircle, MessageSquare, PanelRight, RotateCcw } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 
 import {
@@ -35,6 +35,7 @@ import {
 import {
   prepareTutorRequest,
   type TutorHistoryResponse,
+  type TutorRequestMode,
   type TutorUIMessage,
 } from "@/features/agent/tutor-ui-message";
 import { normalizeLatexDelimiters } from "@/lib/markdown/normalize-latex";
@@ -109,6 +110,7 @@ function TutorChat({
     const query = params.toString();
     return `/api/agent/tutor/questions/${questionId}${query ? `?${query}` : ""}`;
   }, [questionId, sessionId]);
+  const [mode, setMode] = useState<TutorRequestMode>("chat");
   const transport = useMemo(
     () =>
       new DefaultChatTransport<TutorUIMessage>({
@@ -118,10 +120,11 @@ function TutorChat({
             messages,
             operation: trigger === "regenerate-message" ? "regenerate" : "submit",
             sessionId,
+            mode,
           }),
         }),
       }),
-    [questionId, sessionId]
+    [mode, questionId, sessionId]
   );
   const [prompt, setPrompt] = useState("");
   const [suggestedPrompts, setSuggestedPrompts] = useState(defaultPrompts);
@@ -189,9 +192,10 @@ function TutorChat({
     if (!nextPrompt || isGenerating) return;
     clearError();
     setHistoryError(null);
-    setActivity("正在理解你的问题");
+    setActivity(mode === "knowledge" ? "正在检索课程知识" : "正在理解你的问题");
     setPrompt("");
     await sendMessage({ text: nextPrompt });
+    setMode("chat");
   }
 
   async function stopGeneration() {
@@ -263,25 +267,46 @@ function TutorChat({
         <ConversationScrollButton />
       </Conversation>
 
-      <div className="shrink-0 border-t px-2.5 py-1.5">
-        <Suggestions>
-          <Suggestion
-            disabled={isGenerating}
-            suggestion="/knowledge 资料分析题速算"
-            onClick={(suggestion) => setPrompt(suggestion)}
-          />
-          {suggestedPrompts.slice(0, 3).map((item) => (
-            <Suggestion
-              disabled={isGenerating}
-              key={item}
-              suggestion={item}
-              onClick={(suggestion) => void submit(suggestion)}
-            />
-          ))}
-        </Suggestions>
-      </div>
+      {mode === "chat" ? (
+        <div className="shrink-0 border-t px-2.5 py-1.5">
+          <Suggestions>
+            {suggestedPrompts.slice(0, 3).map((item) => (
+              <Suggestion
+                disabled={isGenerating}
+                key={item}
+                suggestion={item}
+                onClick={(suggestion) => void submit(suggestion)}
+              />
+            ))}
+          </Suggestions>
+        </div>
+      ) : null}
 
       <div className="shrink-0 border-t bg-muted/25 p-2.5">
+        <div className="mb-2 flex items-center gap-1" aria-label="助教回答模式">
+          <Button
+            type="button"
+            variant={mode === "chat" ? "secondary" : "ghost"}
+            size="sm"
+            aria-pressed={mode === "chat"}
+            disabled={isGenerating}
+            onClick={() => setMode("chat")}
+          >
+            <MessageSquare data-icon="inline-start" />
+            讲解本题
+          </Button>
+          <Button
+            type="button"
+            variant={mode === "knowledge" ? "secondary" : "ghost"}
+            size="sm"
+            aria-pressed={mode === "knowledge"}
+            disabled={isGenerating}
+            onClick={() => setMode("knowledge")}
+          >
+            <BookOpenText data-icon="inline-start" />
+            课程库
+          </Button>
+        </div>
         <PromptInput onSubmit={({ text }) => submit(text)}>
           <PromptInputBody>
             <PromptInputTextarea
@@ -289,6 +314,7 @@ function TutorChat({
               disabled={isGenerating}
               onChange={(event) => setPrompt(event.target.value)}
               aria-label="继续追问"
+              placeholder={mode === "knowledge" ? "输入要检索的课程知识" : "继续追问这道题"}
             />
           </PromptInputBody>
           <PromptInputFooter>

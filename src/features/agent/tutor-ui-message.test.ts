@@ -17,16 +17,18 @@ describe("prepareTutorRequest", () => {
         messages: [message("u1", "user", "第一次"), message("a1", "assistant", "回答"), message("u2", "user", "  追问  ")],
         operation: "submit",
         sessionId: "session-1",
+        mode: "knowledge",
       })
-    ).toEqual({ sessionId: "session-1", prompt: "追问", operation: "submit" });
+    ).toEqual({ sessionId: "session-1", prompt: "追问", operation: "submit", mode: "knowledge" });
   });
 
   it("uses the existing last user message for regenerate without duplicating it", () => {
     const messages = [message("u1", "user", "请重新解释"), message("a1", "assistant", "旧回答")];
 
-    expect(prepareTutorRequest({ messages, operation: "regenerate" })).toEqual({
+    expect(prepareTutorRequest({ messages, operation: "regenerate", mode: "chat" })).toEqual({
       prompt: "请重新解释",
       operation: "regenerate",
+      mode: "chat",
     });
     expect(messages).toHaveLength(2);
   });

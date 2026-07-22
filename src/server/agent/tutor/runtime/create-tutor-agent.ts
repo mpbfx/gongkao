@@ -40,6 +40,7 @@ export function createTutorAgent({
   enableKnowledge = true,
   forcedKnowledge,
   requireReview = true,
+  knowledgeOnly = false,
 }: {
   userId: string;
   context: TutorQuestionContext;
@@ -48,22 +49,26 @@ export function createTutorAgent({
   enableKnowledge?: boolean;
   forcedKnowledge?: KnowledgeSearchResult[];
   requireReview?: boolean;
+  knowledgeOnly?: boolean;
 }) {
   const reviewSubmission: ReviewSubmission = {};
   const counters: TutorRuntimeCounters = { turns: 0, toolCalls: 0, toolNames: new Set() };
-  const tools = [
-    createLearnerPatternsTool(userId, context),
-    createPreviousReviewsTool(userId, context),
-    createRelatedQuestionsTool(context),
-  ];
-  if (enableKnowledge) tools.push(createCourseKnowledgeTool(context));
-  if (requireReview) tools.push(createSubmitMistakeReviewTool(context, reviewSubmission));
+  const tools = knowledgeOnly
+    ? []
+    : [
+        createLearnerPatternsTool(userId, context),
+        createPreviousReviewsTool(userId, context),
+        createRelatedQuestionsTool(context),
+      ];
+  if (!knowledgeOnly && enableKnowledge) tools.push(createCourseKnowledgeTool(context));
+  if (!knowledgeOnly && requireReview) tools.push(createSubmitMistakeReviewTool(context, reviewSubmission));
   const options: AgentOptions = {
     initialState: {
       systemPrompt: buildTutorSystemPrompt(context, {
         requireReview,
         enableKnowledge,
         forcedKnowledge,
+        knowledgeOnly,
       }),
       model: createTutorModel(),
       thinkingLevel: "off",
