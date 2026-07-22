@@ -19,7 +19,7 @@ import {
   WifiOff,
 } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useEffectEvent, useMemo, useState } from "react";
 
 import { useAppHeader } from "@/components/layout/app-header-context";
 import { DraftCanvas } from "@/components/practice/draft-canvas";
@@ -63,11 +63,13 @@ import { PracticeResultWorkspace } from "@/features/practice/practice-result-wor
 import { PracticeReflectionPanel } from "@/features/practice/practice-reflection-panel";
 import {
   formatPracticeClock as formatSeconds,
+  getInitialPracticeQuestionIndex,
   normalizePracticeAnswer as normalizeAnswer,
   optionStateLabel,
 } from "@/features/practice/practice-view-utils";
 import { usePracticeTimer } from "@/features/practice/use-practice-timer";
 import { usePracticeEventLog } from "@/features/practice/use-practice-event-log";
+import { usePracticeProgressSync } from "@/features/practice/use-practice-progress-sync";
 
 type PracticeQuestion = {
   id: string;
@@ -115,6 +117,7 @@ type PracticeSessionView = {
   timeLimitSeconds: number | null;
   deadlineAt: string | null;
   serverNow: string;
+  updatedAt: string;
   pauseCount: number;
   pausedSeconds: number;
   score: string | null;
@@ -173,7 +176,9 @@ export function PracticeRunner({
   initialSession: PracticeSessionView;
   reviewMode?: boolean;
 }) {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(() =>
+    getInitialPracticeQuestionIndex(initialSession.status, initialSession.userAnswers)
+  );
   const [answers, setAnswers] = useState<Record<string, string>>(() =>
     Object.fromEntries(
       initialSession.userAnswers
@@ -200,6 +205,7 @@ export function PracticeRunner({
   const [submitResult, setSubmitResult] = useState<SubmitResult | null>(null);
   const [isDraftReady, setIsDraftReady] = useState(false);
   const [hasPendingSubmit, setHasPendingSubmit] = useState(false);
+  const [progressSyncError, setProgressSyncError] = useState<string | null>(null);
   const [scratchByQuestionId, setScratchByQuestionId] = useState<Record<string, PracticeScratchDraft>>({});
   const [showAnswerSheet, setShowAnswerSheet] = useState(false);
   const [showTutor, setShowTutor] = useState(false);
@@ -252,6 +258,20 @@ export function PracticeRunner({
     setPausedSeconds,
   } = timer;
   const isPracticePaused = !isResultMode && timer.isPaused;
+  usePracticeProgressSync({
+    sessionId: initialSession.id,
+    enabled: isDraftReady && !isResultMode && !isSubmitting,
+    isOnline,
+    initialAnswers: initialSession.userAnswers,
+    questionIds: questions.map((item) => item.id),
+    answers,
+    timeSpentByQuestionId,
+    decisionNotesByQuestionId,
+    elapsedSeconds,
+    pauseCount,
+    pausedSeconds,
+    onError: setProgressSyncError,
+  });
   const currentScratch = scratchByQuestionId[question.id] ?? null;
   const resultByQuestionId = useMemo(() => {
     const map = new Map<
@@ -377,6 +397,47 @@ export function PracticeRunner({
     setShowAnswerSheet(false);
     setCurrentIndex(targetIndex);
   }
+
+  const handleQuestionNavigation = useEffectEvent((event: KeyboardEvent) => {
+    if (
+      event.defaultPrevented ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.altKey ||
+      event.shiftKey ||
+      isPracticePaused ||
+      isSubmitting ||
+      showSubmitDialog ||
+      showDraftCanvas ||
+      showAnswerSheet ||
+      showTutor ||
+      showDecisionNote ||
+      showTools
+    ) {
+      return;
+    }
+
+    const target = event.target;
+    if (
+      target instanceof HTMLElement &&
+      (target.isContentEditable || target.closest("input, textarea, select, [contenteditable='true']"))
+    ) {
+      return;
+    }
+
+    if (event.key === "ArrowLeft" && currentIndex > 0) {
+      event.preventDefault();
+      goToQuestion(currentIndex - 1);
+    } else if (event.key === "ArrowRight" && currentIndex < questions.length - 1) {
+      event.preventDefault();
+      goToQuestion(currentIndex + 1);
+    }
+  });
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleQuestionNavigation);
+    return () => window.removeEventListener("keydown", handleQuestionNavigation);
+  }, []);
 
   function togglePause() {
     if (isResultMode || initialSession.timingMode === "STRICT") return;
@@ -676,20 +737,22 @@ export function PracticeRunner({
           Object.entries(draft.timeSpentByQuestionId).filter(([questionId]) => questionIds.has(questionId))
         );
 
-        setAnswers(restoredAnswers);
-        setTimeSpentByQuestionId(restoredTimeSpent);
-        setDecisionNotesByQuestionId(
-          Object.fromEntries(
-            Object.entries(draft.decisionNotesByQuestionId ?? {}).filter(([questionId]) => questionIds.has(questionId))
-          )
-        );
-        setPauseCount(draft.pauseCount ?? 0);
-        setPausedSeconds(draft.pausedSeconds ?? 0);
-        setEvents(draft.events ?? []);
-        setTimeExpired(Boolean(draft.timeExpired));
-        setCurrentIndex(Math.min(Math.max(draft.currentIndex, 0), Math.max(questions.length - 1, 0)));
-        setElapsedSeconds(draft.elapsedSeconds);
-        setHasPendingSubmit(Boolean(draft.pendingSubmit));
+        if (new Date(draft.updatedAt).getTime() > new Date(initialSession.updatedAt).getTime()) {
+          setAnswers(restoredAnswers);
+          setTimeSpentByQuestionId(restoredTimeSpent);
+          setDecisionNotesByQuestionId(
+            Object.fromEntries(
+              Object.entries(draft.decisionNotesByQuestionId ?? {}).filter(([questionId]) => questionIds.has(questionId))
+            )
+          );
+          setPauseCount(draft.pauseCount ?? 0);
+          setPausedSeconds(draft.pausedSeconds ?? 0);
+          setEvents(draft.events ?? []);
+          setTimeExpired(Boolean(draft.timeExpired));
+          setCurrentIndex(Math.min(Math.max(draft.currentIndex, 0), Math.max(questions.length - 1, 0)));
+          setElapsedSeconds(draft.elapsedSeconds);
+          setHasPendingSubmit(Boolean(draft.pendingSubmit));
+        }
       }
 
       setIsDraftReady(true);
@@ -700,7 +763,7 @@ export function PracticeRunner({
     return () => {
       cancelled = true;
     };
-  }, [initialSession.id, isResultMode, questions, setElapsedSeconds, setEvents, setPauseCount, setPausedSeconds]);
+  }, [initialSession.id, initialSession.updatedAt, isResultMode, questions, setElapsedSeconds, setEvents, setPauseCount, setPausedSeconds]);
 
   useEffect(() => {
     if (!isDraftReady || isResultMode) {
@@ -917,15 +980,19 @@ export function PracticeRunner({
           : "lg:grid-cols-[minmax(0,1fr)_320px]"
       )}
     >
-      {!isResultMode && (!isOnline || hasPendingSubmit) ? (
+      {!isResultMode && (!isOnline || hasPendingSubmit || progressSyncError) ? (
         <div className="lg:col-span-2">
           <Alert variant={!isOnline ? "warning" : "info"}>
             {!isOnline ? <WifiOff aria-hidden="true" /> : <Check aria-hidden="true" />}
-            <AlertTitle>{!isOnline ? "网络不稳定" : "提交草稿已保留"}</AlertTitle>
+            <AlertTitle>
+              {!isOnline ? "网络不稳定" : hasPendingSubmit ? "提交草稿已保留" : "进度同步失败"}
+            </AlertTitle>
             <AlertDescription>
               {!isOnline
                 ? "当前答案会继续保存到本地，网络恢复后可再次提交。"
-                : "上次提交没有完成，答案和提交草稿仍在本地，可直接重试提交。"}
+                : hasPendingSubmit
+                  ? "上次提交没有完成，答案和提交草稿仍在本地，可直接重试提交。"
+                  : progressSyncError}
             </AlertDescription>
           </Alert>
         </div>

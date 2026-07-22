@@ -18,6 +18,17 @@ export function normalizePracticeAnswer(answer?: string | null) {
     .join(",");
 }
 
+export function getInitialPracticeQuestionIndex(
+  status: string,
+  answers: Array<{ answer?: string | null }>
+) {
+  if (status !== "IN_PROGRESS") return 0;
+  const firstUnansweredIndex = answers.findIndex(
+    (answer) => !normalizePracticeAnswer(answer.answer)
+  );
+  return firstUnansweredIndex >= 0 ? firstUnansweredIndex : 0;
+}
+
 export function formatPracticeClock(seconds: number) {
   const minutes = Math.floor(seconds / 60);
   const rest = seconds % 60;

@@ -6,6 +6,7 @@ export const tutorRequestSchema = z.object({
   sessionId: z.string().min(1).optional(),
   prompt: z.string().trim().min(1).max(500),
   operation: z.enum(["submit", "regenerate"]).default("submit"),
+  mode: z.enum(["chat", "knowledge"]).default("chat"),
 });
 
 export const tutorMistakeReviewSchema = z.object({

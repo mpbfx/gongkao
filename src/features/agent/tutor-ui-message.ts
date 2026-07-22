@@ -40,6 +40,8 @@ export type TutorHistoryResponse = {
   suggestedPrompts: string[];
 };
 
+export type TutorRequestMode = "chat" | "knowledge";
+
 export function tutorMessageText(message: TutorUIMessage) {
   return message.parts
     .filter((part): part is Extract<(typeof message.parts)[number], { type: "text" }> => part.type === "text")
@@ -52,10 +54,12 @@ export function prepareTutorRequest({
   messages,
   operation,
   sessionId,
+  mode,
 }: {
   messages: TutorUIMessage[];
   operation: "submit" | "regenerate";
   sessionId?: string;
+  mode: TutorRequestMode;
 }) {
   const userMessage = [...messages].reverse().find((message) => message.role === "user");
   const prompt = userMessage ? tutorMessageText(userMessage) : "";
@@ -64,5 +68,6 @@ export function prepareTutorRequest({
     ...(sessionId ? { sessionId } : {}),
     prompt,
     operation,
+    mode,
   };
 }

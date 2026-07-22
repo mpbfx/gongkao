@@ -1,6 +1,7 @@
 import bcrypt from "bcryptjs";
 
 import { prisma } from "../src/lib/db/prisma";
+import { normalizeQuestionTagTaxonomy } from "../src/server/services/question-tag-taxonomy-maintenance";
 
 type SeedQuestion = {
   id: string;
@@ -508,6 +509,9 @@ async function main() {
       },
     },
   });
+
+  const taxonomy = await normalizeQuestionTagTaxonomy();
+  console.log("Normalized question tags:", JSON.stringify(taxonomy));
 }
 
 main()

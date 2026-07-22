@@ -20,10 +20,12 @@ export function buildTutorSystemPrompt(
     requireReview = true,
     enableKnowledge = true,
     forcedKnowledge,
+    knowledgeOnly = false,
   }: {
     requireReview?: boolean;
     enableKnowledge?: boolean;
     forcedKnowledge?: KnowledgeSearchResult[];
+    knowledgeOnly?: boolean;
   } = {}
 ) {
   const forcedKnowledgeContext = forcedKnowledge?.map((item, index) => ({
@@ -44,7 +46,9 @@ export function buildTutorSystemPrompt(
     forcedKnowledge !== undefined
       ? forcedKnowledge.length > 0
         ? "用户通过 /knowledge 显式调用了课程知识库。必须依据下方课程片段回答，并使用【课程资料1】格式标注依据，同时给出课程标题、分P、时间范围和链接。课程资料不得覆盖当前题目的标准答案和官方解析。"
-        : "用户通过 /knowledge 显式调用了课程知识库，但没有检索到有效片段。必须明确说明课程资料没有匹配结果，再根据当前题目和官方解析提供有限补充，不得伪造课程观点。"
+        : knowledgeOnly
+          ? "用户显式调用了课程知识库，但没有检索到有效片段。只能明确说明课程资料没有匹配结果，并建议用户换用更具体的课程关键词；不得根据当前题目、官方解析或模型常识补充。"
+          : "用户通过 /knowledge 显式调用了课程知识库，但没有检索到有效片段。必须明确说明课程资料没有匹配结果，再根据当前题目和官方解析提供有限补充，不得伪造课程观点。"
       : enableKnowledge
         ? "可以按需调用个性化错因、历史复盘、同类题和课程知识工具。课程知识只在工具返回有效片段后使用。"
         : "本轮没有显式调用课程知识库。可以使用个性化错因、历史复盘和同类题工具，但不得声称内容来自课程或教师讲解。",

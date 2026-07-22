@@ -57,6 +57,7 @@ export async function runTutorAgent({
   enableKnowledge = true,
   forcedKnowledge,
   requireReview = true,
+  knowledgeOnly = false,
 }: {
   userId: string;
   context: TutorQuestionContext;
@@ -68,6 +69,7 @@ export async function runTutorAgent({
   enableKnowledge?: boolean;
   forcedKnowledge?: KnowledgeSearchResult[];
   requireReview?: boolean;
+  knowledgeOnly?: boolean;
 }) {
   if (signal?.aborted) throw new TutorRuntimeError("讲解已取消。", "cancelled");
   const startedAt = Date.now();
@@ -79,6 +81,7 @@ export async function runTutorAgent({
     enableKnowledge,
     forcedKnowledge,
     requireReview,
+    knowledgeOnly,
   });
   let timedOut = false;
   let limited = false;
@@ -91,7 +94,7 @@ export async function runTutorAgent({
   if (signal?.aborted) agent.abort();
 
   const unsubscribe = agent.subscribe(async (event) => {
-    await handleAgentEvent(event, emit, () => reviewSubmission.value, requireReview, () => {
+    await handleAgentEvent(event, emit, () => reviewSubmission.value, requireReview, knowledgeOnly && forcedKnowledge?.length === 0, () => {
       counters.turns += 1;
       if (counters.turns > tutorRuntimeLimits.maxTurns) {
         limited = true;
@@ -121,7 +124,12 @@ export async function runTutorAgent({
   }
 
   const finalMessage = finalAssistant(agent.state.messages);
-  const answer = finalMessage ? assistantText(finalMessage) : "";
+  const answer = knowledgeOnly && forcedKnowledge?.length === 0
+    ? "当前课程资料中没有检索到与本次问题匹配的内容，请尝试换用更具体的题型、知识点或课程关键词。"
+    : finalMessage ? assistantText(finalMessage) : "";
+  if (knowledgeOnly && forcedKnowledge?.length === 0) {
+    await emit({ type: "token", content: answer });
+  }
   if (!answer || (requireReview && !reviewSubmission.value)) {
     throw new TutorRuntimeError(
       requireReview ? "模型没有生成完整回答和结构化复盘。" : "模型没有生成完整回答。",
@@ -155,6 +163,7 @@ async function handleAgentEvent(
   emit: Emit,
   getReview: () => TutorMistakeReview | undefined,
   requireReview: boolean,
+  suppressAnswer: boolean,
   onTurn: () => void
 ) {
   if (event.type === "turn_start") {
@@ -164,6 +173,7 @@ async function handleAgentEvent(
   if (
     event.type === "message_update"
     && event.assistantMessageEvent.type === "text_delta"
+    && !suppressAnswer
     && (!requireReview || getReview())
   ) {
     await emit({ type: "token", content: event.assistantMessageEvent.delta });

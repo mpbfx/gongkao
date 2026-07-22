@@ -7,7 +7,8 @@
     "node": "^20.19 || ^22.12 || >=24"
   },
   "scripts": {
-    "dev": "next dev",
+    "codex:start": "bash scripts/codex-start.sh",
+    "dev": "next dev --webpack",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
@@ -21,7 +22,8 @@
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "prisma:studio": "prisma studio",
-    "prisma:seed": "prisma db seed"
+    "prisma:seed": "prisma db seed",
+    "prisma:normalize-tags": "tsx prisma/normalize-question-tags.ts"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
@@ -57,6 +59,7 @@
     "p-limit": "^7.3.0",
     "react": "19.2.4",
     "react-dom": "19.2.4",
+    "react-resizable-panels": "^4.12.2",
     "shadcn": "^4.7.0",
     "streamdown": "^2.5.0",
     "srt-parser-2": "^1.2.3",

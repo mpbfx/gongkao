@@ -8,6 +8,7 @@ export type TutorInput = {
   questionId: string;
   sessionId?: string;
   prompt: string;
+  mode?: "chat" | "knowledge";
 };
 
 export type TutorQuestionContext = {

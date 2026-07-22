@@ -33,4 +33,31 @@ describe("Tutor system prompt", () => {
     expect(prompt).toContain("必须且只能成功调用一次 submit_mistake_review");
     expect(prompt).toContain("行内公式用 $...$");
   });
+
+  it("keeps an explicit empty course search grounded", () => {
+    const prompt = buildTutorSystemPrompt({
+      questionId: "q1",
+      practiceAnswerId: null,
+      title: "题干",
+      material: "",
+      options: [],
+      correctAnswer: "A",
+      analysis: "解析",
+      userAnswer: "B",
+      tagId: null,
+      tagName: null,
+      questionType: "SINGLE",
+      difficulty: "UNKNOWN",
+      source: null,
+      wrongCount: 1,
+      timeSpentSeconds: null,
+      sessionAverageTimeSeconds: null,
+      userAverageTimeSeconds: null,
+      tagAverageTimeSeconds: null,
+      hasOfficialAnalysis: true,
+      hasImageContent: false,
+    } satisfies TutorQuestionContext, { forcedKnowledge: [], knowledgeOnly: true, requireReview: false });
+
+    expect(prompt).toContain("不得根据当前题目、官方解析或模型常识补充");
+  });
 });

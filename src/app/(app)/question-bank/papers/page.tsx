@@ -17,6 +17,7 @@ import {
 import { FilterPopover } from "@/components/student/interaction-overlays";
 import { PaperStartButton } from "@/features/papers/paper-start-button";
 import { PaperFilterForm } from "@/features/papers/paper-filter-form";
+import { getCurrentUser } from "@/lib/auth/guards";
 import { cn } from "@/lib/utils";
 import { listPapers, paperListQuerySchema } from "@/server/services/papers";
 
@@ -26,6 +27,13 @@ type PapersPageProps = {
 
 function firstValue(value: string | string[] | undefined) {
   return Array.isArray(value) ? value[0] : value;
+}
+
+function getPaperPurpose(requestedPurpose: string | undefined, isBenchmark: boolean) {
+  if (isBenchmark || requestedPurpose === "BASELINE") return "BASELINE" as const;
+  if (requestedPurpose === "MOCK") return "MOCK" as const;
+  if (requestedPurpose === "TIME_PRESSURE") return "TIME_PRESSURE" as const;
+  return "PRACTICE" as const;
 }
 
 function buildHref({
@@ -80,7 +88,8 @@ export default async function PapersPage({ searchParams }: PapersPageProps) {
     pageSize: rawPageSize ?? 12,
   });
   const query = parsed.success ? parsed.data : { page: 1, pageSize: 12 };
-  const data = await listPapers(query);
+  const user = await getCurrentUser();
+  const data = await listPapers(query, user?.id);
   const hasActiveFilters = Boolean(query.year || query.province || query.examType);
 
   return (
@@ -153,19 +162,21 @@ export default async function PapersPage({ searchParams }: PapersPageProps) {
                   <div className="grid gap-2 lg:grid-cols-1 lg:justify-items-end">
                     <PaperStartButton
                       paperId={paper.id}
+                      activeSession={paper.activeSessions.find(
+                        (session) => session.purpose === getPaperPurpose(
+                          requestedPurpose,
+                          benchmarkPaperId === paper.id
+                        )
+                      ) ?? paper.activeSessions[0] ?? null}
+                      submittedSession={paper.submittedSessions.find(
+                        (session) => session.purpose === getPaperPurpose(
+                          requestedPurpose,
+                          benchmarkPaperId === paper.id
+                        )
+                      ) ?? paper.submittedSessions[0] ?? null}
                       className="w-full lg:w-auto"
                       durationSeconds={paper.durationSeconds}
-                      purpose={
-                        benchmarkPaperId === paper.id
-                          ? "BASELINE"
-                          : requestedPurpose === "BASELINE"
-                            ? "BASELINE"
-                          : requestedPurpose === "MOCK"
-                            ? "MOCK"
-                            : requestedPurpose === "TIME_PRESSURE"
-                              ? "TIME_PRESSURE"
-                              : "PRACTICE"
-                      }
+                      purpose={getPaperPurpose(requestedPurpose, benchmarkPaperId === paper.id)}
                     />
                   </div>
                 </div>
