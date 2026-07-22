@@ -85,9 +85,9 @@ export function AppShellFrame({
           isPracticeFocus && "lg:hidden"
         )}
       >
-        <div className="student-spine-brand relative flex h-[4.5rem] shrink-0 flex-col justify-center px-4">
-          <span className="student-heading whitespace-nowrap text-base font-semibold leading-none tracking-[0.04em]">备考编辑部</span>
-          <span className="mt-1.5 text-[0.65rem] tracking-[0.14em] text-sidebar-foreground/70">公考提分</span>
+        <div className="student-spine-brand relative flex h-[7.25rem] shrink-0 flex-col justify-center px-5">
+          <span className="student-heading whitespace-nowrap text-[1.2rem] font-semibold leading-none tracking-[0.02em]">备考编辑部</span>
+          <span className="mt-2 text-[0.62rem] tracking-[0.34em] text-sidebar-foreground/70">公考提分研究院</span>
         </div>
         <nav className="flex flex-1 flex-col">
           {navItems.map((item) => {
@@ -100,21 +100,21 @@ export function AppShellFrame({
                 href={item.href}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "student-spine-link group relative flex min-h-12 items-center gap-2.5 border-b border-sidebar-border px-4 text-sidebar-foreground/70 transition-colors hover:bg-sidebar-accent/45 hover:text-sidebar-foreground focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sidebar-ring focus-visible:outline-none",
+                  "student-spine-link group relative flex min-h-[5.35rem] items-center gap-3 border-b border-sidebar-border px-5 text-sidebar-foreground/68 transition-colors hover:bg-sidebar-accent/45 hover:text-sidebar-foreground focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sidebar-ring focus-visible:outline-none",
                   active && "is-active bg-sidebar-accent/58 text-sidebar-foreground"
                 )}
               >
-                <span className="w-6 shrink-0 font-mono text-xs font-medium tabular-nums text-sidebar-foreground/40 group-[.is-active]:text-primary">{item.number}</span>
-                <span className="student-heading min-w-0 flex-1 text-sm font-semibold tracking-[0.04em]">{item.label}</span>
-                <Icon className="size-3.5 shrink-0 opacity-35 transition-opacity group-hover:opacity-70 group-[.is-active]:opacity-80" aria-hidden="true" />
+                <span className="font-mono text-[1.4rem] font-light tabular-nums text-sidebar-foreground/42 group-[.is-active]:text-primary">{item.number}</span>
+                <span className="student-heading text-[0.98rem] font-semibold tracking-[0.08em]">{item.label}</span>
+                <Icon className="absolute bottom-2.5 right-3 size-3.5 opacity-0 transition-opacity group-hover:opacity-45 group-[.is-active]:opacity-55" aria-hidden="true" />
               </Link>
             );
           })}
         </nav>
-        <div className="student-spine-footer border-t border-sidebar-border px-4 py-3">
-          <span className="block text-[0.65rem] tracking-[0.12em] text-sidebar-foreground/45">训练卷宗</span>
-          <span className="student-heading mt-1 block text-xs tracking-[0.04em] text-sidebar-foreground/75">持续校准</span>
-          <div className="student-sidebar-user mt-3 border-t border-sidebar-border pt-3">
+        <div className="student-spine-footer border-t border-sidebar-border px-4 py-4">
+          <span className="block text-[0.6rem] tracking-[0.28em] text-sidebar-foreground/45">STUDY FILE</span>
+          <span className="student-heading mt-1.5 block text-sm tracking-[0.08em]">训练记录 · 持续校准</span>
+          <div className="student-sidebar-user mt-4 border-t border-sidebar-border pt-4">
             {userMenu}
           </div>
         </div>
@@ -138,8 +138,8 @@ export function AppShellFrame({
                     <span>返回首页</span>
                   </Link>
                 ) : null}
-                <div className="grid size-8 place-items-center border border-primary/30 bg-primary text-sm font-semibold text-primary-foreground lg:hidden">
-                  编
+                <div className="grid size-8 place-items-center rounded-lg bg-primary text-sm text-primary-foreground lg:hidden">
+                  题
                 </div>
                 <div className="flex min-w-0 flex-col">
                   <span className="student-heading truncate font-medium leading-tight lg:text-[0.98rem] lg:tracking-[0.08em]">{header?.title ?? defaultHeader?.title ?? "备考编辑部"}</span>

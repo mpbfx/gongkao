@@ -34,13 +34,12 @@ describe("student editorial skin contract", () => {
     expect(globalsCss).not.toMatch(/\.practice-workspace\s*\{[^}]*#ecebe6/);
   });
 
-  it("compacts the student spine and drops English file-shelf chrome", () => {
-    expect(shellFrame).toContain('min-h-12');
-    expect(shellFrame).toContain("h-[4.5rem]");
-    expect(shellFrame).toContain("训练卷宗");
-    expect(shellFrame).not.toContain("STUDY FILE");
-    expect(shellFrame).not.toContain("min-h-[5.35rem]");
-    expect(shellFrame).not.toContain("h-[7.25rem]");
+  it("keeps the original editorial spine density and brand block", () => {
+    expect(shellFrame).toContain("min-h-[5.35rem]");
+    expect(shellFrame).toContain("h-[7.25rem]");
+    expect(shellFrame).toContain("STUDY FILE");
+    expect(shellFrame).toContain("公考提分研究院");
+    expect(globalsCss).toContain("linear-gradient(145deg, #e04d2c, #b93121)");
   });
 
   it("ships practice options through the paper-list class helper", () => {
