@@ -31,6 +31,11 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+} from "@/components/ui/resizable";
 import { TutorPanel } from "@/features/agent/tutor-panel";
 import type {
   MistakeInsights,
@@ -337,7 +342,7 @@ function WrongQueuePane({
   }
 
   return (
-    <section className="flex min-h-0 min-w-0 flex-col border-b bg-card xl:border-b-0 xl:border-r" aria-labelledby="wrong-queue-title">
+    <section className="flex h-full min-h-0 min-w-0 flex-col border-b bg-card xl:border-b-0 xl:border-r" aria-labelledby="wrong-queue-title">
       <div className="shrink-0 border-b bg-muted/28">
         <div className="flex h-9 items-center justify-between gap-2 border-b px-3">
           <div className="min-w-0">
@@ -620,29 +625,80 @@ export function WrongReviewWorkspace({
         </div>
       ) : null}
 
-      <div className="min-w-0 overflow-hidden border bg-card shadow-sm xl:grid xl:h-full xl:grid-cols-[18rem_minmax(0,1fr)_21rem] 2xl:grid-cols-[19rem_minmax(0,1fr)_24rem]">
-        <WrongQueuePane
-          flatItems={flatItems}
-          highRepeatCount={highRepeatCount}
-          insights={insights}
-          isStarting={isStarting}
-          knowledgeFilters={knowledgeFilters}
-          onSelect={selectQuestion}
-          onStart={() => startWrongSession({ tagId: query.tagId, count: sessionCount })}
-          query={query}
-          selectedId={selected?.item.id ?? ""}
-        />
+      <div className="min-w-0 overflow-hidden border bg-card shadow-sm xl:h-full">
+        <div className="xl:hidden">
+          <WrongQueuePane
+            flatItems={flatItems}
+            highRepeatCount={highRepeatCount}
+            insights={insights}
+            isStarting={isStarting}
+            knowledgeFilters={knowledgeFilters}
+            onSelect={selectQuestion}
+            onStart={() => startWrongSession({ tagId: query.tagId, count: sessionCount })}
+            query={query}
+            selectedId={selected?.item.id ?? ""}
+          />
+        </div>
 
         {selected ? (
-          <div className="hidden min-h-0 min-w-0 xl:contents">
-            <WrongQuestionPane
-              selected={selected}
-              isRestoring={restoringId === selected.item.id}
-              onRestore={restoreWrongQuestion}
-              onOpenTutor={openTutor}
-              scrollRef={detailScrollRef}
-            />
-            <WrongTutorPane item={selected.item} />
+          <div className="hidden h-full min-h-0 xl:block">
+            <ResizablePanelGroup
+              id="wrong-review-workspace"
+              orientation="horizontal"
+              className="h-full"
+              resizeTargetMinimumSize={{ coarse: 28, fine: 12 }}
+            >
+              <ResizablePanel
+                id="wrong-review-queue"
+                defaultSize="24%"
+                minSize="14rem"
+                maxSize="32rem"
+                className="h-full"
+              >
+                <WrongQueuePane
+                  flatItems={flatItems}
+                  highRepeatCount={highRepeatCount}
+                  insights={insights}
+                  isStarting={isStarting}
+                  knowledgeFilters={knowledgeFilters}
+                  onSelect={selectQuestion}
+                  onStart={() => startWrongSession({ tagId: query.tagId, count: sessionCount })}
+                  query={query}
+                  selectedId={selected.item.id}
+                />
+              </ResizablePanel>
+              <ResizableHandle
+                aria-label="调整错题列表和题目解析的宽度"
+                className="z-10 bg-foreground/20 transition-colors hover:bg-primary focus-visible:bg-primary"
+              />
+              <ResizablePanel
+                id="wrong-review-question"
+                defaultSize="46%"
+                minSize="30rem"
+                className="h-full"
+              >
+                <WrongQuestionPane
+                  selected={selected}
+                  isRestoring={restoringId === selected.item.id}
+                  onRestore={restoreWrongQuestion}
+                  onOpenTutor={openTutor}
+                  scrollRef={detailScrollRef}
+                />
+              </ResizablePanel>
+              <ResizableHandle
+                aria-label="调整题目解析和讲题助教的宽度"
+                className="z-10 bg-foreground/20 transition-colors hover:bg-primary focus-visible:bg-primary"
+              />
+              <ResizablePanel
+                id="wrong-review-tutor"
+                defaultSize="30%"
+                minSize="20rem"
+                maxSize="40rem"
+                className="h-full"
+              >
+                <WrongTutorPane item={selected.item} />
+              </ResizablePanel>
+            </ResizablePanelGroup>
           </div>
         ) : null}
       </div>
