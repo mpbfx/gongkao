@@ -958,30 +958,11 @@
 }
 
 
-/* Wrong-book mastery feedback — compact editorial toast */
-@keyframes wrong-mastery-enter {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-.wrong-mastery-celebration {
-  animation: wrong-mastery-enter 0.16s ease-out;
-}
-
+/* Wrong-book mastery button */
 .wrong-mastery-button {
   justify-content: center;
 }
 
 .wrong-mastery-button:active {
   transform: none !important;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .wrong-mastery-celebration {
-    animation: none !important;
-  }
 }

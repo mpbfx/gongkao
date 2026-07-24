@@ -5,20 +5,13 @@ import { useState, useTransition } from "react";
 
 import type { ApiResponse, WrongQuestionDTO } from "@/features/wrong-questions/wrong-review-types";
 
-export type MasteredCelebration = {
-  item: WrongQuestionDTO;
-  tagName?: string | null;
-  remainingCount: number;
-};
-
 export function useWrongReviewActions() {
   const router = useRouter();
-  const [isRefreshing, startRefreshTransition] = useTransition();
+  const [, startRefreshTransition] = useTransition();
   const [isStarting, setIsStarting] = useState(false);
   const [resolvingId, setResolvingId] = useState<string | null>(null);
   const [restoringId, setRestoringId] = useState<string | null>(null);
   const [restoredItem, setRestoredItem] = useState<WrongQuestionDTO | null>(null);
-  const [masteredCelebration, setMasteredCelebration] = useState<MasteredCelebration | null>(null);
   const [actionError, setActionError] = useState<string | null>(null);
 
   function softRefresh() {
@@ -53,10 +46,7 @@ export function useWrongReviewActions() {
     }
   }
 
-  async function resolveWrongQuestion(
-    item: WrongQuestionDTO,
-    options?: { tagName?: string | null; remainingCount?: number }
-  ) {
+  async function resolveWrongQuestion(item: WrongQuestionDTO) {
     if (item.resolvedAt || resolvingId === item.id) {
       return false;
     }
@@ -74,13 +64,6 @@ export function useWrongReviewActions() {
         return false;
       }
 
-      setMasteredCelebration({
-        item,
-        tagName: options?.tagName,
-        remainingCount: Math.max(0, options?.remainingCount ?? 0),
-      });
-      // Do not refresh immediately — wait until the toast is dismissed so the
-      // three-pane workspace does not reflow under the click.
       return true;
     } catch {
       setActionError("标记已掌握失败，请稍后重试。");
@@ -93,7 +76,6 @@ export function useWrongReviewActions() {
   async function restoreWrongQuestion(item: WrongQuestionDTO) {
     setRestoringId(item.id);
     setActionError(null);
-    setMasteredCelebration(null);
 
     try {
       const response = await fetch(`/api/wrong-questions/${item.id}/restore`, { method: "POST" });
@@ -139,25 +121,17 @@ export function useWrongReviewActions() {
     }
   }
 
-  function clearMasteredCelebration() {
-    setMasteredCelebration(null);
-    softRefresh();
-  }
-
   return {
     actionError,
     clearActionError: () => setActionError(null),
-    clearMasteredCelebration,
     clearRestoredItem: () => setRestoredItem(null),
-    isRefreshing,
     isStarting,
-    masteredCelebration,
     resolveWrongQuestion,
     restoredItem,
     restoringId,
-    restoringOrResolvingId: restoringId ?? resolvingId,
     resolvingId,
     restoreWrongQuestion,
+    softRefresh,
     startWrongSession,
     undoRestore,
   };
