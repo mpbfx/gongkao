@@ -118,7 +118,14 @@ async function loadFromSession(input: TutorInput) {
   });
 
   if (!answer) throw new NotFoundError("题目不存在或无权限");
-  if (answer.session.status !== "SUBMITTED" && answer.session.mode !== "MEMORIZE") {
+
+  const sessionOpenForTutor =
+    answer.session.status === "SUBMITTED" || answer.session.mode === "MEMORIZE";
+  // Sessions reopened via "continue paper" stay IN_PROGRESS but keep graded answers.
+  // Allow tutor for any already-graded answer so wrong-book review still works.
+  const answerAlreadyGraded = answer.isCorrect !== null;
+
+  if (!sessionOpenForTutor && !answerAlreadyGraded) {
     throw new BusinessError("未提交练习不开放讲题助教");
   }
 
@@ -162,6 +169,23 @@ async function loadFromWrongQuestion(input: TutorInput) {
   } satisfies TutorQuestionContext;
 }
 
-export function loadTutorQuestionContext(input: TutorInput) {
-  return input.sessionId ? loadFromSession(input) : loadFromWrongQuestion(input);
+export async function loadTutorQuestionContext(input: TutorInput) {
+  if (!input.sessionId) {
+    return loadFromWrongQuestion(input);
+  }
+
+  try {
+    return await loadFromSession(input);
+  } catch (error) {
+    // Wrong-book and history may still carry a sessionId after the paper was reopened.
+    // Fall back to the active wrong-question record so review stays available.
+    if (error instanceof NotFoundError || error instanceof BusinessError) {
+      try {
+        return await loadFromWrongQuestion(input);
+      } catch {
+        throw error;
+      }
+    }
+    throw error;
+  }
 }

@@ -125,11 +125,16 @@ export async function streamQuestionWithTutor(input: TutorInput, emit: Emit, sig
       error instanceof TutorModelUnavailableError ||
       (error instanceof TutorRuntimeError && (error.kind === "provider" || error.kind === "invalid_result"))
     ) {
-      await emit({ type: "degraded", reason: "AI 模型暂时不可用，本次没有生成模板替代答案。" });
+      await emit({ type: "degraded", reason: "AI 模型暂时不可用，请稍后重试。" });
       return;
     }
 
     if (error instanceof TutorRuntimeError && error.kind === "limit") {
+      await emit({ type: "error", message: error.message });
+      return;
+    }
+
+    if (error instanceof BusinessError) {
       await emit({ type: "error", message: error.message });
       return;
     }

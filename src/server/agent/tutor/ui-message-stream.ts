@@ -115,7 +115,10 @@ export function createTutorUIMessageResponse(input: TutorInput, signal: AbortSig
         state.finished = true;
       }
     },
-    onError: () => "讲题助教暂时不可用，请稍后重试。",
+    onError: (error) =>
+      error instanceof Error && error.message.trim()
+        ? error.message
+        : "讲题助教暂时不可用，请稍后重试。",
   });
 
   return createUIMessageStreamResponse({ stream });
