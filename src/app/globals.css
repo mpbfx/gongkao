@@ -962,16 +962,22 @@
 @keyframes wrong-mastery-enter {
   0% {
     opacity: 0;
-    transform: translateY(-0.25rem);
   }
   100% {
     opacity: 1;
-    transform: translateY(0);
   }
 }
 
 .wrong-mastery-celebration {
-  animation: wrong-mastery-enter 0.18s ease-out;
+  animation: wrong-mastery-enter 0.16s ease-out;
+}
+
+.wrong-mastery-button {
+  justify-content: center;
+}
+
+.wrong-mastery-button:active {
+  transform: none !important;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useTransition } from "react";
 
 import type { ApiResponse, WrongQuestionDTO } from "@/features/wrong-questions/wrong-review-types";
 
@@ -13,12 +13,19 @@ export type MasteredCelebration = {
 
 export function useWrongReviewActions() {
   const router = useRouter();
+  const [isRefreshing, startRefreshTransition] = useTransition();
   const [isStarting, setIsStarting] = useState(false);
   const [resolvingId, setResolvingId] = useState<string | null>(null);
   const [restoringId, setRestoringId] = useState<string | null>(null);
   const [restoredItem, setRestoredItem] = useState<WrongQuestionDTO | null>(null);
   const [masteredCelebration, setMasteredCelebration] = useState<MasteredCelebration | null>(null);
   const [actionError, setActionError] = useState<string | null>(null);
+
+  function softRefresh() {
+    startRefreshTransition(() => {
+      router.refresh();
+    });
+  }
 
   async function startWrongSession(input: { tagId?: string | null; count: number }) {
     setIsStarting(true);
@@ -72,7 +79,8 @@ export function useWrongReviewActions() {
         tagName: options?.tagName,
         remainingCount: Math.max(0, options?.remainingCount ?? 0),
       });
-      router.refresh();
+      // Do not refresh immediately — wait until the toast is dismissed so the
+      // three-pane workspace does not reflow under the click.
       return true;
     } catch {
       setActionError("标记已掌握失败，请稍后重试。");
@@ -97,7 +105,7 @@ export function useWrongReviewActions() {
       }
 
       setRestoredItem(item);
-      router.refresh();
+      softRefresh();
     } catch {
       setActionError("恢复错题失败，请稍后重试。");
     } finally {
@@ -123,7 +131,7 @@ export function useWrongReviewActions() {
       }
 
       setRestoredItem(null);
-      router.refresh();
+      softRefresh();
     } catch {
       setActionError("撤销恢复失败，请稍后重试。");
     } finally {
@@ -131,11 +139,17 @@ export function useWrongReviewActions() {
     }
   }
 
+  function clearMasteredCelebration() {
+    setMasteredCelebration(null);
+    softRefresh();
+  }
+
   return {
     actionError,
     clearActionError: () => setActionError(null),
-    clearMasteredCelebration: () => setMasteredCelebration(null),
+    clearMasteredCelebration,
     clearRestoredItem: () => setRestoredItem(null),
+    isRefreshing,
     isStarting,
     masteredCelebration,
     resolveWrongQuestion,

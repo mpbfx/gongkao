@@ -270,7 +270,7 @@ function WrongQuestionPane({
               type="button"
               variant="ghost"
               size="sm"
-              className="h-7"
+              className="h-7 min-w-[4.75rem]"
               disabled={isBusy}
               onClick={() => onRestore(item)}
             >
@@ -285,7 +285,7 @@ function WrongQuestionPane({
             <Button
               type="button"
               size="sm"
-              className="wrong-mastery-button h-7 px-2.5 text-xs font-semibold"
+              className="wrong-mastery-button h-7 min-w-[4.75rem] px-2.5 text-xs font-semibold active:translate-y-0"
               disabled={isBusy}
               aria-label="标记本题为已掌握"
               onClick={() => void onResolve(item, group.tagName)}
@@ -295,7 +295,7 @@ function WrongQuestionPane({
               ) : (
                 <CheckCircle2 data-icon="inline-start" />
               )}
-              {isBusy ? "标记中" : "已掌握"}
+              已掌握
             </Button>
           )}
         </div>
@@ -557,10 +557,39 @@ export function WrongReviewWorkspace({
   insights: MistakeInsights;
   query: { tagId?: string; includeResolved: boolean; questionId?: string };
 }) {
-  const flatItems = useMemo(
+  const sourceItems = useMemo(
     () => data.groups.flatMap((group) => group.items.map((item) => ({ item, group }))),
     [data.groups]
   );
+  // Keep recently mastered cards out of the queue until server refresh arrives,
+  // so selection/list don't thrash while the toast is visible.
+  const [optimisticResolvedIds, setOptimisticResolvedIds] = useState<string[]>([]);
+  const flatItems = useMemo(() => {
+    if (optimisticResolvedIds.length === 0) {
+      return sourceItems;
+    }
+    const resolved = new Set(
+      optimisticResolvedIds.filter((id) =>
+        sourceItems.some(({ item }) => item.id === id && !item.resolvedAt)
+      )
+    );
+    if (resolved.size === 0) {
+      return sourceItems;
+    }
+    // Mark as resolved in place — do not remove from the queue on click (avoids layout shake).
+    return sourceItems.map((entry) =>
+      resolved.has(entry.item.id)
+        ? {
+            ...entry,
+            item: {
+              ...entry.item,
+              resolvedAt: entry.item.resolvedAt ?? new Date().toISOString(),
+            },
+          }
+        : entry
+    );
+  }, [optimisticResolvedIds, sourceItems]);
+
   const initialSelectedId = flatItems.some(({ item }) => item.id === query.questionId)
     ? (query.questionId ?? "")
     : (flatItems[0]?.item.id ?? "");
@@ -603,6 +632,7 @@ export function WrongReviewWorkspace({
     const remainingBefore = flatItems.filter(
       ({ item: current }) => !current.resolvedAt && current.id !== item.id
     ).length;
+
     const ok = await resolveWrongQuestion(item, {
       tagName,
       remainingCount: remainingBefore,
@@ -611,24 +641,34 @@ export function WrongReviewWorkspace({
       return;
     }
 
-    // Prefer the next unresolved card so mastery feels like clearing a hand.
-    const currentIndex = flatItems.findIndex(({ item: current }) => current.id === item.id);
-    const next =
-      flatItems.slice(currentIndex + 1).find(({ item: current }) => !current.resolvedAt && current.id !== item.id) ??
-      flatItems.find(({ item: current }) => !current.resolvedAt && current.id !== item.id) ??
-      null;
-    if (next) {
-      setSelectedId(next.item.id);
-      updateQuestionUrl(next.item.id, "replace");
-      detailScrollRef.current?.scrollTo({ top: 0 });
-    }
+    // Only mark success state here. Defer list/selection changes to continueAfterMastery
+    // so the click does not reflow the three-pane workspace.
+    setOptimisticResolvedIds((current) => (current.includes(item.id) ? current : [...current, item.id]));
   }
 
   function continueAfterMastery() {
-    clearMasteredCelebration();
-    if (remainingUnresolved <= 0) {
+    const masteredId = masteredCelebration?.item.id;
+    if (masteredId) {
+      // Prefer the next unresolved card after the mastered one.
+      const currentIndex = flatItems.findIndex(({ item }) => item.id === masteredId);
+      const next =
+        flatItems
+          .slice(currentIndex + 1)
+          .find(({ item }) => item.id !== masteredId && !item.resolvedAt) ??
+        flatItems.find(({ item }) => item.id !== masteredId && !item.resolvedAt) ??
+        null;
+      if (next) {
+        setSelectedId(next.item.id);
+        updateQuestionUrl(next.item.id, "replace");
+      } else {
+        setSelectedId("");
+        updateQuestionUrl(null, "replace");
+        setMobileOpen(false);
+      }
+    } else if (remainingUnresolved <= 0) {
       setMobileOpen(false);
     }
+    clearMasteredCelebration();
   }
 
   useEffect(() => {
@@ -824,7 +864,7 @@ export function WrongReviewWorkspace({
         open={Boolean(masteredCelebration)}
         tagName={masteredCelebration?.tagName}
         remainingCount={masteredCelebration?.remainingCount ?? remainingUnresolved}
-        onClose={clearMasteredCelebration}
+        onClose={continueAfterMastery}
         onContinue={continueAfterMastery}
       />
 
@@ -882,7 +922,7 @@ export function WrongReviewWorkspace({
                 <Button
                   type="button"
                   size="sm"
-                  className="wrong-mastery-button h-9 min-w-0 flex-1 text-sm font-semibold"
+                  className="wrong-mastery-button h-9 min-w-0 flex-1 text-sm font-semibold active:translate-y-0"
                   disabled={busyId === selected.item.id}
                   onClick={() => void handleResolve(selected.item, selected.group.tagName)}
                 >
@@ -891,7 +931,7 @@ export function WrongReviewWorkspace({
                   ) : (
                     <CheckCircle2 data-icon="inline-start" />
                   )}
-                  {busyId === selected.item.id ? "标记中" : "已掌握"}
+                  已掌握
                 </Button>
               ) : null}
               <DialogClose className="h-9 min-w-0 flex-1 border-border bg-card text-sm font-medium hover:bg-secondary">
