@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  ArrowRight,
   BookMarked,
   BookOpenText,
   CheckCircle2,
@@ -11,6 +12,7 @@ import {
   LoaderCircle,
   MessageSquare,
   RotateCcw,
+  Sparkles,
   Target,
   Undo2,
 } from "lucide-react";
@@ -221,18 +223,21 @@ function WrongQuestionReview({ item }: { item: WrongQuestionDTO }) {
 
 function WrongQuestionPane({
   selected,
-  isRestoring,
+  isBusy,
   onRestore,
+  onResolve,
   onOpenTutor,
   scrollRef,
 }: {
   selected: FlatWrongQuestion;
-  isRestoring: boolean;
+  isBusy: boolean;
   onRestore: (item: WrongQuestionDTO) => void;
+  onResolve: (item: WrongQuestionDTO, tagName: string) => void;
   onOpenTutor?: () => void;
   scrollRef?: React.RefObject<HTMLDivElement | null>;
 }) {
   const { item, group } = selected;
+  const isResolved = Boolean(item.resolvedAt);
 
   return (
     <section className="flex h-full min-h-0 min-w-0 flex-col bg-background" aria-labelledby="wrong-question-pane-title">
@@ -258,32 +263,160 @@ function WrongQuestionPane({
             <Clock3 className="size-3.5" aria-hidden="true" />
             {formatDate(item.lastWrongAt)}
           </span>
-          <Badge variant={item.resolvedAt ? "success" : item.wrongCount >= 2 ? "warning" : "outline"}>
+          <Badge variant={isResolved ? "success" : item.wrongCount >= 2 ? "warning" : "outline"}>
             错 {item.wrongCount} 次
           </Badge>
-          {item.resolvedAt ? (
+          {isResolved ? (
             <Button
               type="button"
               variant="ghost"
               size="sm"
               className="h-7"
-              disabled={isRestoring}
+              disabled={isBusy}
               onClick={() => onRestore(item)}
             >
-              {isRestoring ? (
+              {isBusy ? (
                 <LoaderCircle className="animate-spin" data-icon="inline-start" />
               ) : (
                 <RotateCcw data-icon="inline-start" />
               )}
               恢复
             </Button>
-          ) : null}
+          ) : (
+            <Button
+              type="button"
+              size="sm"
+              className="wrong-mastery-button h-8 min-w-24 border border-foreground/70 bg-success px-3 text-xs font-semibold text-success-foreground shadow-none hover:bg-success/90"
+              disabled={isBusy}
+              aria-label="标记本题为已掌握"
+              onClick={() => void onResolve(item, group.tagName)}
+            >
+              {isBusy ? (
+                <LoaderCircle className="animate-spin" data-icon="inline-start" />
+              ) : (
+                <CheckCircle2 data-icon="inline-start" />
+              )}
+              {isBusy ? "标记中" : "已掌握"}
+            </Button>
+          )}
         </div>
       </div>
+
+      {!isResolved ? (
+        <div className="wrong-mastery-bar shrink-0 border-b border-foreground/20 bg-card/70 px-3 py-3">
+          <div className="flex flex-wrap items-center justify-between gap-3 border border-foreground/25 bg-muted/25 px-3 py-2.5">
+            <div className="min-w-0">
+              <div className="flex items-center gap-2 text-[0.68rem] font-semibold tracking-[0.18em] text-primary">
+                <Sparkles className="size-3.5" aria-hidden="true" />
+                复盘完成
+              </div>
+              <p className="mt-1 text-xs leading-5 text-muted-foreground">
+                {group.tagName}
+                {" · "}
+                确认掌握后移入历史错题，可随时恢复
+              </p>
+            </div>
+            <Button
+              type="button"
+              size="sm"
+              disabled={isBusy}
+              aria-label="标记本题为已掌握"
+              className="wrong-mastery-button h-10 min-w-[8.75rem] border border-foreground/80 bg-success px-4 text-sm font-semibold text-success-foreground shadow-none hover:bg-success/90"
+              onClick={() => void onResolve(item, group.tagName)}
+            >
+              {isBusy ? (
+                <LoaderCircle className="animate-spin" data-icon="inline-start" />
+              ) : (
+                <CheckCircle2 data-icon="inline-start" />
+              )}
+              {isBusy ? "标记中" : "确认已掌握"}
+            </Button>
+          </div>
+        </div>
+      ) : (
+        <div className="shrink-0 border-b border-success/25 bg-success/8 px-3 py-2">
+          <div className="flex items-center gap-2 text-xs font-medium text-success">
+            <CheckCircle2 className="size-3.5" aria-hidden="true" />
+            本题已掌握 · 可在历史错题中找回
+          </div>
+        </div>
+      )}
+
       <div ref={scrollRef} className="min-h-0 flex-1 overflow-y-auto overscroll-contain">
         <WrongQuestionReview item={item} />
       </div>
     </section>
+  );
+}
+
+function MasteryCelebration({
+  open,
+  tagName,
+  wrongCount,
+  remainingCount,
+  onClose,
+  onContinue,
+}: {
+  open: boolean;
+  tagName?: string | null;
+  wrongCount: number;
+  remainingCount: number;
+  onClose: () => void;
+  onContinue: () => void;
+}) {
+  if (!open) {
+    return null;
+  }
+
+  return (
+    <div
+      className="wrong-mastery-celebration fixed inset-0 z-50 grid place-items-center bg-foreground/45 p-4 backdrop-blur-[1px]"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="wrong-mastery-title"
+      onClick={onClose}
+    >
+      <div
+        className="wrong-mastery-card relative w-full max-w-md overflow-hidden border-y-2 border-foreground bg-card p-0 text-foreground shadow-[0_18px_40px_rgb(23_34_56/0.18)]"
+        onClick={(event) => event.stopPropagation()}
+      >
+        <div className="border-b border-foreground/20 bg-success/10 px-5 py-4">
+          <div className="flex items-center justify-between gap-3">
+            <span className="text-[0.68rem] font-semibold tracking-[0.18em] text-success">复盘归档</span>
+            <Badge variant="success">错 {wrongCount} 次 · 已清</Badge>
+          </div>
+          <h2 id="wrong-mastery-title" className="student-heading mt-3 flex items-center gap-2 text-2xl font-semibold tracking-tight">
+            <CheckCircle2 className="size-6 text-success" aria-hidden="true" />
+            已掌握
+          </h2>
+          <p className="mt-2 text-sm leading-6 text-muted-foreground">
+            {tagName ? `${tagName} 这道题已移入历史错题。` : "这道题已移入历史错题。"}
+            {remainingCount > 0 ? ` 还剩 ${remainingCount} 道待复盘。` : " 当前没有更多待复盘错题。"}
+          </p>
+        </div>
+
+        <div className="grid grid-cols-2 divide-x border-b border-foreground/15">
+          <div className="px-5 py-3">
+            <div className="text-[0.65rem] tracking-[0.16em] text-muted-foreground">本轮状态</div>
+            <div className="student-heading mt-1 text-lg font-semibold text-success">已归档</div>
+          </div>
+          <div className="px-5 py-3">
+            <div className="text-[0.65rem] tracking-[0.16em] text-muted-foreground">待复盘</div>
+            <div className="student-heading mt-1 font-mono text-lg font-semibold tabular-nums">{remainingCount}</div>
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-2 p-4 sm:flex-row">
+          <Button type="button" className="h-11 flex-1" onClick={onContinue}>
+            <ArrowRight data-icon="inline-start" />
+            {remainingCount > 0 ? "继续下一题" : "返回待复盘"}
+          </Button>
+          <Button type="button" variant="outline" className="h-11 flex-1" onClick={onClose}>
+            先留在这里
+          </Button>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -509,14 +642,56 @@ export function WrongReviewWorkspace({
   const {
     actionError,
     clearActionError,
+    clearMasteredCelebration,
     clearRestoredItem,
     isStarting,
+    masteredCelebration,
+    resolveWrongQuestion,
     restoredItem,
     restoringId,
+    resolvingId,
     restoreWrongQuestion,
     startWrongSession,
     undoRestore,
   } = useWrongReviewActions();
+
+  const busyId = restoringId ?? resolvingId;
+  const remainingUnresolved = Math.max(
+    0,
+    data.summary.unresolvedCount - (masteredCelebration ? 1 : 0)
+  );
+
+  async function handleResolve(item: WrongQuestionDTO, tagName: string) {
+    const remainingBefore = flatItems.filter(
+      ({ item: current }) => !current.resolvedAt && current.id !== item.id
+    ).length;
+    const ok = await resolveWrongQuestion(item, {
+      tagName,
+      remainingCount: remainingBefore,
+    });
+    if (!ok) {
+      return;
+    }
+
+    // Prefer the next unresolved card so mastery feels like clearing a hand.
+    const currentIndex = flatItems.findIndex(({ item: current }) => current.id === item.id);
+    const next =
+      flatItems.slice(currentIndex + 1).find(({ item: current }) => !current.resolvedAt && current.id !== item.id) ??
+      flatItems.find(({ item: current }) => !current.resolvedAt && current.id !== item.id) ??
+      null;
+    if (next) {
+      setSelectedId(next.item.id);
+      updateQuestionUrl(next.item.id, "replace");
+      detailScrollRef.current?.scrollTo({ top: 0 });
+    }
+  }
+
+  function continueAfterMastery() {
+    clearMasteredCelebration();
+    if (remainingUnresolved <= 0) {
+      setMobileOpen(false);
+    }
+  }
 
   useEffect(() => {
     function handlePopState() {
@@ -682,8 +857,9 @@ export function WrongReviewWorkspace({
               >
                 <WrongQuestionPane
                   selected={selected}
-                  isRestoring={restoringId === selected.item.id}
+                  isBusy={busyId === selected.item.id}
                   onRestore={restoreWrongQuestion}
+                  onResolve={handleResolve}
                   onOpenTutor={openTutor}
                   scrollRef={detailScrollRef}
                 />
@@ -705,6 +881,15 @@ export function WrongReviewWorkspace({
           </div>
         ) : null}
       </div>
+
+      <MasteryCelebration
+        open={Boolean(masteredCelebration)}
+        tagName={masteredCelebration?.tagName}
+        wrongCount={masteredCelebration?.item.wrongCount ?? 1}
+        remainingCount={masteredCelebration?.remainingCount ?? remainingUnresolved}
+        onClose={clearMasteredCelebration}
+        onContinue={continueAfterMastery}
+      />
 
       <Dialog
         open={mobileOpen}
@@ -743,8 +928,9 @@ export function WrongReviewWorkspace({
             <DialogBody className="min-h-0 flex-1 overflow-hidden p-0">
               <WrongQuestionPane
                 selected={selected}
-                isRestoring={restoringId === selected.item.id}
+                isBusy={busyId === selected.item.id}
                 onRestore={restoreWrongQuestion}
+                onResolve={handleResolve}
               />
             </DialogBody>
           ) : null}
@@ -753,7 +939,22 @@ export function WrongReviewWorkspace({
               <WrongTutorPane item={selected.item} />
             </DialogBody>
           ) : null}
-          <div className="shrink-0 border-t bg-muted/35 p-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))]">
+          <div className="shrink-0 space-y-2 border-t bg-muted/35 p-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))]">
+            {selected && !selected.item.resolvedAt ? (
+              <Button
+                type="button"
+                className="wrong-mastery-button h-12 w-full border border-foreground/80 bg-success text-base font-semibold text-success-foreground shadow-none hover:bg-success/90"
+                disabled={busyId === selected.item.id}
+                onClick={() => void handleResolve(selected.item, selected.group.tagName)}
+              >
+                {busyId === selected.item.id ? (
+                  <LoaderCircle className="animate-spin" data-icon="inline-start" />
+                ) : (
+                  <CheckCircle2 data-icon="inline-start" />
+                )}
+                {busyId === selected.item.id ? "标记中" : "确认已掌握"}
+              </Button>
+            ) : null}
             <DialogClose className="w-full border-border bg-card text-sm font-medium hover:bg-secondary">
               收起详情
             </DialogClose>

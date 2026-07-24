@@ -956,3 +956,44 @@
     border-radius: 0;
   }
 }
+
+
+/* Wrong-book mastery feedback — editorial, not game-chrome */
+@keyframes wrong-mastery-enter {
+  0% {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.wrong-mastery-celebration {
+  animation: wrong-mastery-enter 0.22s ease-out;
+}
+
+.wrong-mastery-card {
+  animation: wrong-mastery-enter 0.28s ease-out;
+}
+
+.wrong-mastery-button:not(:disabled):active {
+  transform: translateY(1px);
+}
+
+.student-shell-v2 .wrong-mastery-bar {
+  background: rgb(251 248 241 / 0.72);
+}
+
+.student-shell-v2 .wrong-mastery-card {
+  border-radius: 0;
+  background: var(--paper-surface, #fffdf8);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wrong-mastery-celebration,
+  .wrong-mastery-card {
+    animation: none !important;
+  }
+}
