@@ -557,6 +557,10 @@ export function WrongReviewWorkspace({
   }
 
   function closeMobileDetail() {
+    // Close immediately so Dialog open prop does not fight history.back().
+    setMobileOpen(false);
+    setMobileTab("review");
+
     if (mobileHistoryEntryRef.current) {
       mobileHistoryEntryRef.current = false;
       window.history.back();
@@ -564,7 +568,6 @@ export function WrongReviewWorkspace({
     }
 
     updateQuestionUrl(null, "replace");
-    setMobileOpen(false);
   }
 
   function openTutor() {

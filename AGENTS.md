@@ -48,6 +48,8 @@ Never commit `.env.local`, credentials, API keys, or production data. Review gen
 - 执行数据库迁移前先确认开发数据库端口可连接；数据库未启动时，先完成 schema 格式化、校验和客户端生成，并将迁移应用作为明确的环境待办。
 - 每次任务出现新的阻塞、返工或可复用经验，都要在任务结束前将简短、通用、可执行的结论补充到本节。不要记录密钥、个人路径、临时日志或只适用于一次运行的细节。
 - 每次完成一组经过验证的代码改动后，立即按本仓库提交规范创建一个范围清晰的 commit，并 push 到当前远程分支。不要把无关改动混入同一提交；push 出现问题时保留本地提交并明确报告原因。
+- `useChat` 的 `stop` 等回调身份不稳定，不要放进 `useEffect` 依赖；用 ref 保存最新实例，避免历史加载 effect 在流式输出中途反复中断。
+- 受控 Dialog 关闭时先同步 `open=false`，再处理 `history.back()`，避免 open 状态与浏览器历史互相打架导致弹层关不掉。
 
 ## Training-Flow Implementation Guidelines
 

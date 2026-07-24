@@ -3,7 +3,7 @@
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport } from "ai";
 import { BookOpenText, ExternalLink, History, LoaderCircle, MessageSquarePlus, Trash2 } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import { Conversation, ConversationContent, ConversationEmptyState, ConversationScrollButton } from "@/components/ai-elements/conversation";
 import { Message, MessageContent, MessageResponse } from "@/components/ai-elements/message";
@@ -84,12 +84,15 @@ function KnowledgeChat({ sessionId, onSessionUpdated, initialPrompt = "", header
     },
   });
   const generating = status === "submitted" || status === "streaming";
+  const stopRef = useRef(stop);
+
+  useEffect(() => {
+    stopRef.current = stop;
+  }, [stop]);
 
   useEffect(() => {
     const controller = new AbortController();
     async function load() {
-      setLoading(true);
-      setLoadError(null);
       try {
         const response = await fetch(`/api/agent/knowledge/sessions/${sessionId}`, { signal: controller.signal });
         const payload = await response.json() as ApiResponse<KnowledgeSessionDetail>;
@@ -104,9 +107,10 @@ function KnowledgeChat({ sessionId, onSessionUpdated, initialPrompt = "", header
     void load();
     return () => {
       controller.abort();
-      void stop();
+      // Avoid depending on `stop` identity — unstable refs re-run this effect mid-stream.
+      void stopRef.current();
     };
-  }, [sessionId, setMessages, stop]);
+  }, [sessionId, setMessages]);
 
   async function submit(text: string) {
     const next = text.trim();
@@ -172,6 +176,7 @@ export function KnowledgeWorkspace({ initialSessions, initialPrompt }: { initial
   const [selectedId, setSelectedId] = useState(initialSessions[0]?.id ?? null);
   const [busy, setBusy] = useState(false);
   const [historyOpen, setHistoryOpen] = useState(false);
+  const [workspaceError, setWorkspaceError] = useState<string | null>(null);
 
   async function refreshSessions() {
     const response = await fetch("/api/agent/knowledge/sessions");
@@ -181,6 +186,7 @@ export function KnowledgeWorkspace({ initialSessions, initialPrompt }: { initial
 
   async function createSession() {
     setBusy(true);
+    setWorkspaceError(null);
     try {
       const response = await fetch("/api/agent/knowledge/sessions", {
         method: "POST",
@@ -188,19 +194,33 @@ export function KnowledgeWorkspace({ initialSessions, initialPrompt }: { initial
         body: "{}",
       });
       const payload = await response.json() as ApiResponse<KnowledgeSessionSummary>;
-      if (!response.ok || !payload.ok) return;
+      if (!response.ok || !payload.ok) {
+        setWorkspaceError(payload.ok ? "新建问答失败，请稍后重试。" : payload.error.message);
+        return;
+      }
       setSessions((current) => [payload.data, ...current]);
       setSelectedId(payload.data.id);
+    } catch {
+      setWorkspaceError("新建问答失败，请稍后重试。");
     } finally {
       setBusy(false);
     }
   }
 
   async function removeSession(id: string) {
-    await fetch(`/api/agent/knowledge/sessions/${id}`, { method: "DELETE" });
-    const remaining = sessions.filter((item) => item.id !== id);
-    setSessions(remaining);
-    if (selectedId === id) setSelectedId(remaining[0]?.id ?? null);
+    setWorkspaceError(null);
+    try {
+      const response = await fetch(`/api/agent/knowledge/sessions/${id}`, { method: "DELETE" });
+      if (!response.ok) {
+        setWorkspaceError("删除问答失败，请稍后重试。");
+        return;
+      }
+      const remaining = sessions.filter((item) => item.id !== id);
+      setSessions(remaining);
+      if (selectedId === id) setSelectedId(remaining[0]?.id ?? null);
+    } catch {
+      setWorkspaceError("删除问答失败，请稍后重试。");
+    }
   }
 
   const sessionList = (
@@ -236,11 +256,27 @@ export function KnowledgeWorkspace({ initialSessions, initialPrompt }: { initial
 
   return (
     <div className="flex h-[calc(100dvh-10.5rem)] min-h-[34rem] flex-col overflow-hidden lg:h-[calc(100dvh-8rem)] lg:min-h-0">
+      {workspaceError ? (
+        <div className="shrink-0 border-b border-destructive/30 bg-destructive/5 px-4 py-2 text-sm text-destructive" role="alert">
+          {workspaceError}
+        </div>
+      ) : null}
       {selectedId ? (
         <KnowledgeChat key={`${selectedId}:${initialPrompt ?? ""}`} sessionId={selectedId} initialPrompt={initialPrompt} onSessionUpdated={() => void refreshSessions()} headerAction={historyButton} />
       ) : (
         <section className="grid min-h-[30rem] place-items-center border-y border-foreground/35 bg-card/35 p-6 text-center">
-          <div><BookOpenText className="mx-auto size-8 text-primary" /><h2 className="mt-3 font-semibold">新建课程知识问答</h2><p className="mt-1 text-sm text-muted-foreground">回答会附上课程分P和视频时间位置。</p><div className="mt-4 flex justify-center gap-2"><Button onClick={() => void createSession()}>新建问答</Button>{historyButton}</div></div>
+          <div>
+            <BookOpenText className="mx-auto size-8 text-primary" />
+            <h2 className="mt-3 font-semibold">新建课程知识问答</h2>
+            <p className="mt-1 text-sm text-muted-foreground">回答会附上课程分P和视频时间位置。</p>
+            <div className="mt-4 flex justify-center gap-2">
+              <Button onClick={() => void createSession()} disabled={busy}>
+                {busy ? <LoaderCircle className="animate-spin" data-icon="inline-start" /> : null}
+                新建问答
+              </Button>
+              {historyButton}
+            </div>
+          </div>
         </section>
       )}
       <ResponsiveDrawer open={historyOpen} onOpenChange={setHistoryOpen} title="问答记录" description="选择一个会话继续追问。">

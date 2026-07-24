@@ -3,7 +3,7 @@
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport } from "ai";
 import { BookOpenText, Bot, LoaderCircle, MessageSquare, PanelRight, RotateCcw } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import {
   Conversation,
@@ -156,6 +156,11 @@ function TutorChat({
     },
   });
   const isGenerating = status === "submitted" || status === "streaming";
+  const stopRef = useRef(stop);
+
+  useEffect(() => {
+    stopRef.current = stop;
+  }, [stop]);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -183,9 +188,10 @@ function TutorChat({
     void loadHistory();
     return () => {
       controller.abort();
-      void stop();
+      // Avoid depending on `stop` identity — unstable refs re-run this effect mid-stream.
+      void stopRef.current();
     };
-  }, [historyUrl, setMessages, stop]);
+  }, [historyUrl, setMessages]);
 
   async function submit(text: string) {
     const nextPrompt = text.trim();

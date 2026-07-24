@@ -32,6 +32,12 @@ describe("practice view utilities", () => {
       ])
     ).toBe(2);
     expect(getInitialPracticeQuestionIndex("SUBMITTED", [{ answer: null }])).toBe(0);
+    expect(
+      getInitialPracticeQuestionIndex("IN_PROGRESS", [
+        { answer: "A" },
+        { answer: "B" },
+      ])
+    ).toBe(1);
   });
 
   it("renders practice options as paper list rows instead of soft cards", () => {

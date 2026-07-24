@@ -216,6 +216,7 @@ export function PracticeRunner({
   const [isOnline, setIsOnline] = useState(() =>
     typeof window === "undefined" ? true : window.navigator.onLine
   );
+  const pendingSubmitRetriedRef = useRef(false);
   const appHeader = useAppHeader();
 
   const questions = initialSession.questions;
@@ -499,6 +500,26 @@ export function PracticeRunner({
     }
   }
 
+  const retryPendingSubmit = useEffectEvent(() => {
+    void submitPractice();
+  });
+
+  useEffect(() => {
+    if (
+      !isDraftReady ||
+      !isOnline ||
+      !hasPendingSubmit ||
+      isResultMode ||
+      isSubmitting ||
+      pendingSubmitRetriedRef.current
+    ) {
+      return;
+    }
+
+    pendingSubmitRetriedRef.current = true;
+    retryPendingSubmit();
+  }, [hasPendingSubmit, isDraftReady, isOnline, isResultMode, isSubmitting]);
+
   function optionState(value: string) {
     const selected = normalizeAnswer(isResultMode ? currentResult?.answer : answers[question.id])
       .split(",")
@@ -703,7 +724,11 @@ export function PracticeRunner({
 
   useEffect(() => {
     function updateOnlineState() {
-      setIsOnline(window.navigator.onLine);
+      const online = window.navigator.onLine;
+      if (!online) {
+        pendingSubmitRetriedRef.current = false;
+      }
+      setIsOnline(online);
     }
 
     window.addEventListener("online", updateOnlineState);

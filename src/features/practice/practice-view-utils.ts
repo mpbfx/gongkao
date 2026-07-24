@@ -22,11 +22,12 @@ export function getInitialPracticeQuestionIndex(
   status: string,
   answers: Array<{ answer?: string | null }>
 ) {
-  if (status !== "IN_PROGRESS") return 0;
+  if (status !== "IN_PROGRESS" || answers.length === 0) return 0;
   const firstUnansweredIndex = answers.findIndex(
     (answer) => !normalizePracticeAnswer(answer.answer)
   );
-  return firstUnansweredIndex >= 0 ? firstUnansweredIndex : 0;
+  // All answered: stay on the last question so resume does not jump back to #1.
+  return firstUnansweredIndex >= 0 ? firstUnansweredIndex : answers.length - 1;
 }
 
 export function formatPracticeClock(seconds: number) {
