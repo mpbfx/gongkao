@@ -2,7 +2,7 @@
 
 import { cjk } from "@streamdown/cjk";
 import { code } from "@streamdown/code";
-import { math } from "@streamdown/math";
+import { createMathPlugin } from "@streamdown/math";
 import type { UIMessage } from "ai";
 import type { ComponentProps, HTMLAttributes } from "react";
 import { memo } from "react";
@@ -43,7 +43,14 @@ export function MessageContent({ className, ...props }: HTMLAttributes<HTMLDivEl
 }
 
 export type MessageResponseProps = ComponentProps<typeof Streamdown>;
-const streamdownPlugins = { cjk, code, math };
+
+// Tutor/knowledge replies commonly use $...$ for inline math (e.g. $\rightarrow$, $15$).
+// Streamdown's default math plugin leaves single-dollar math as plain text.
+const streamdownPlugins = {
+  cjk,
+  code,
+  math: createMathPlugin({ singleDollarTextMath: true }),
+};
 
 export const MessageResponse = memo(
   ({ className, ...props }: MessageResponseProps) => (
