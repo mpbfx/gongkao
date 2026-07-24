@@ -958,11 +958,11 @@
 }
 
 
-/* Wrong-book mastery feedback — editorial, not game-chrome */
+/* Wrong-book mastery feedback — compact editorial toast */
 @keyframes wrong-mastery-enter {
   0% {
     opacity: 0;
-    transform: translateY(0.5rem);
+    transform: translateY(-0.25rem);
   }
   100% {
     opacity: 1;
@@ -971,29 +971,11 @@
 }
 
 .wrong-mastery-celebration {
-  animation: wrong-mastery-enter 0.22s ease-out;
-}
-
-.wrong-mastery-card {
-  animation: wrong-mastery-enter 0.28s ease-out;
-}
-
-.wrong-mastery-button:not(:disabled):active {
-  transform: translateY(1px);
-}
-
-.student-shell-v2 .wrong-mastery-bar {
-  background: rgb(251 248 241 / 0.72);
-}
-
-.student-shell-v2 .wrong-mastery-card {
-  border-radius: 0;
-  background: var(--paper-surface, #fffdf8);
+  animation: wrong-mastery-enter 0.18s ease-out;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .wrong-mastery-celebration,
-  .wrong-mastery-card {
+  .wrong-mastery-celebration {
     animation: none !important;
   }
 }
