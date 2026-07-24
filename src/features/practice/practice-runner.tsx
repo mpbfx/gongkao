@@ -19,7 +19,7 @@ import {
   WifiOff,
 } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useEffectEvent, useMemo, useState } from "react";
+import { useEffect, useEffectEvent, useMemo, useRef, useState } from "react";
 
 import { useAppHeader } from "@/components/layout/app-header-context";
 import { DraftCanvas } from "@/components/practice/draft-canvas";
@@ -226,26 +226,32 @@ export function PracticeRunner({
   const unansweredCount = Math.max(0, questions.length - answeredCount);
   const isResultMode = initialSession.status === "SUBMITTED" || isMemorizeMode || Boolean(submitResult);
   const { events, setEvents, record, recordVisit } = usePracticeEventLog(question.id);
+  const activeQuestionIdRef = useRef(question.id);
+  activeQuestionIdRef.current = question.id;
   const timer = usePracticeTimer({
     initialElapsedSeconds: initialSession.elapsedSeconds,
+    initialPauseCount: initialSession.pauseCount,
+    initialPausedSeconds: initialSession.pausedSeconds,
     timeLimitSeconds: initialSession.timeLimitSeconds,
     deadlineAt: initialSession.deadlineAt,
     serverNow: initialSession.serverNow,
     timingMode: initialSession.timingMode,
     disabled: isResultMode || timeExpired,
     onActiveSecond: () => {
+      const questionId = activeQuestionIdRef.current;
       setTimeSpentByQuestionId((current) => ({
         ...current,
-        [question.id]: (current[question.id] ?? 0) + 1,
+        [questionId]: (current[questionId] ?? 0) + 1,
       }));
     },
     onExpire: (expiredElapsedSeconds) => {
+      const questionId = activeQuestionIdRef.current;
       const expiryEvent: PracticeEventDraft = {
         type: "TIME_EXPIRED",
-        questionId: question.id,
+        questionId,
         occurredAt: new Date().toISOString(),
       };
-      record({ type: "TIME_EXPIRED", questionId: question.id });
+      record({ type: "TIME_EXPIRED", questionId });
       setTimeExpired(true);
       void submitPractice(expiredElapsedSeconds, [...events, expiryEvent]);
     },

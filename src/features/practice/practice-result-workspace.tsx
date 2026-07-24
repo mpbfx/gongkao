@@ -48,8 +48,8 @@ export function PracticeResultWorkspace({
         className="lg:hidden"
       />
 
-      <div className="flex min-h-0 flex-1">
-        <section className="flex min-w-0 flex-1 flex-col border-r border-foreground/20 bg-[#faf8f2]">
+      <div className="flex min-h-0 flex-1 flex-col lg:flex-row">
+        <section className="flex min-h-0 min-w-0 flex-1 flex-col border-b border-foreground/20 bg-card/70 lg:border-b-0 lg:border-r">
           <div className="flex h-12 shrink-0 items-end border-b border-foreground/20 px-3">
             {[
               { key: "review" as const, label: "题目卷面" },
@@ -72,7 +72,7 @@ export function PracticeResultWorkspace({
           <div className="min-h-0 flex-1 overflow-hidden">
             {tab === "review" ? (
               <div className="grid h-full min-h-0 lg:grid-cols-[minmax(0,1.08fr)_minmax(22rem,0.92fr)]">
-                <div className="min-h-0 overflow-y-auto border-r border-foreground/20">{questionPane}</div>
+                <div className="min-h-0 overflow-y-auto border-b border-foreground/20 lg:border-b-0 lg:border-r">{questionPane}</div>
                 <div className="relative min-h-0 overflow-y-auto">{analysisPane}<span className="practice-pane-handle" aria-hidden="true" /></div>
               </div>
             ) : null}
@@ -80,7 +80,7 @@ export function PracticeResultWorkspace({
           </div>
         </section>
 
-        <aside className="practice-tutor-workbench flex min-h-[32rem] w-full flex-col border-t border-foreground/20 bg-[#fbf9f4] lg:min-h-0 lg:w-[36%] lg:min-w-[25rem] lg:max-w-[38rem] lg:border-t-0">
+        <aside className="practice-tutor-workbench flex min-h-[24rem] w-full shrink-0 flex-col border-t border-foreground/20 bg-muted/30 lg:min-h-0 lg:w-[36%] lg:min-w-[25rem] lg:max-w-[38rem] lg:border-t-0">
           {tutorPane}
         </aside>
       </div>

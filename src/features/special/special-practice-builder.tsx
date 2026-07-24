@@ -149,7 +149,7 @@ export function SpecialPracticeBuilder({ tags }: { tags: TagNode[] }) {
       const response = await fetch("/api/practice/sessions/special", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ protocol: "CUSTOM", tagId: selected.id, count }),
+        body: JSON.stringify({ protocol: "CUSTOM", tagId: selected.id, count: actualCount }),
       });
       const payload = (await response.json()) as ApiResponse<{ id: string }>;
 
@@ -199,42 +199,74 @@ export function SpecialPracticeBuilder({ tags }: { tags: TagNode[] }) {
   ) : null;
 
   return (
-    <section className="special-editorial-workspace mx-auto w-full max-w-6xl overflow-hidden border-y-2 border-foreground bg-card/45">
-      <header className="border-b border-foreground/35 px-4 py-4 md:px-6">
-        <h2 className="student-heading text-xl font-semibold">选择知识点</h2>
-        <p className="mt-1 text-sm text-muted-foreground">每次练习一个叶子知识点，题量不超过当前库存。</p>
+    <section className="special-editorial-workspace w-full overflow-hidden border-y-2 border-foreground bg-card/45">
+      <header className="border-b border-foreground/35 px-4 py-4 md:px-5">
+        <h2 className="student-heading text-xl font-semibold">自由组卷</h2>
+        <p className="mt-1 text-sm text-muted-foreground">每次选一个叶子知识点，题量不超过当前库存。</p>
       </header>
-      <div className="grid lg:grid-cols-[minmax(0,1fr)_20rem]">
-        <div className="min-w-0 p-4 md:p-6">
+      <div className="grid lg:grid-cols-[minmax(0,1fr)_17rem]">
+        <div className="min-w-0 p-4 md:p-5">
           <label className="mb-4 block">
             <span className="sr-only">搜索知识点</span>
             <div className="relative">
               <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
-              <Input value={searchQuery} onChange={(event) => setSearchQuery(event.target.value)} className="pl-9 pr-11" placeholder="搜索知识点" type="search" />
+              <Input
+                value={searchQuery}
+                onChange={(event) => setSearchQuery(event.target.value)}
+                className="pl-9 pr-11"
+                placeholder="搜索知识点"
+                type="search"
+              />
               {searchQuery ? (
-                <button type="button" className="absolute right-1 top-1/2 grid size-9 -translate-y-1/2 place-items-center text-muted-foreground hover:text-foreground" aria-label="清空搜索" onClick={() => setSearchQuery("")}>
+                <button
+                  type="button"
+                  className="absolute right-1 top-1/2 grid size-9 -translate-y-1/2 place-items-center text-muted-foreground hover:text-foreground"
+                  aria-label="清空搜索"
+                  onClick={() => setSearchQuery("")}
+                >
                   <X className="size-4" />
                 </button>
               ) : null}
             </div>
           </label>
 
-          <div className="max-h-[34rem] overflow-y-auto pr-1">
+          <div className="max-h-[32rem] overflow-y-auto pr-1">
             {visibleTags.length > 0 ? (
-              <TagTree tags={visibleTags} selectedId={selected?.id} expanded={expanded} forceExpanded={Boolean(normalizedSearch)} onSelect={selectTag} onToggleExpand={toggleExpand} />
+              <TagTree
+                tags={visibleTags}
+                selectedId={selected?.id}
+                expanded={expanded}
+                forceExpanded={Boolean(normalizedSearch)}
+                onSelect={selectTag}
+                onToggleExpand={toggleExpand}
+              />
             ) : (
-              <div className="border border-dashed p-8 text-center text-sm text-muted-foreground">没有匹配的知识点。</div>
+              <div className="border border-dashed p-8 text-center text-sm text-muted-foreground">
+                没有匹配的知识点。
+              </div>
             )}
           </div>
         </div>
 
-        <aside className="hidden border-l border-foreground/30 bg-muted/20 p-6 lg:block">
-          <span className="mb-4 block text-xs font-semibold text-muted-foreground">本次训练</span>
-          {trainingSetup ?? <div className="border border-dashed p-5 text-sm leading-6 text-muted-foreground">选择一个具体知识点后设置题量。</div>}
+        <aside className="hidden border-l border-foreground/30 bg-muted/20 p-5 lg:block">
+          <span className="mb-4 block text-xs font-semibold tracking-[0.12em] text-muted-foreground">
+            本次训练
+          </span>
+          {trainingSetup ?? (
+            <div className="border border-dashed border-foreground/25 p-4 text-sm leading-6 text-muted-foreground">
+              选择一个具体知识点后设置题量。
+            </div>
+          )}
         </aside>
       </div>
 
-      <BottomSheet open={mobileConfigOpen && Boolean(selected)} onOpenChange={setMobileConfigOpen} title="本次训练" description="确认知识点和题量后开始练习。" className="lg:hidden">
+      <BottomSheet
+        open={mobileConfigOpen && Boolean(selected)}
+        onOpenChange={setMobileConfigOpen}
+        title="本次训练"
+        description="确认知识点和题量后开始练习。"
+        className="lg:hidden"
+      >
         <div className="p-4">{trainingSetup}</div>
       </BottomSheet>
     </section>

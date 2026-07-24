@@ -6,14 +6,6 @@ import { AppShell } from "@/components/layout/app-shell";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
   EmptyState,
   PageHeader,
   StudentPage,
@@ -131,7 +123,7 @@ export default async function RecordsPage({ searchParams }: RecordsPageProps) {
           }
         />
 
-        <section className="flex flex-col gap-3 border-y border-foreground/35 py-3 md:flex-row md:items-center md:justify-between">
+        <section className="flex flex-col gap-3 border-y border-foreground/40 bg-card/25 py-3 md:flex-row md:items-center md:justify-between">
           <div className="flex gap-2 overflow-x-auto pb-1">
             {modeFilters.map((filter) => {
               const isActive = (query.mode ?? "") === filter.value;
@@ -151,79 +143,70 @@ export default async function RecordsPage({ searchParams }: RecordsPageProps) {
               );
             })}
           </div>
-          <span className="shrink-0 text-xs text-muted-foreground">第 {data.pagination.page} / {data.pagination.totalPages} 页</span>
+          <span className="shrink-0 text-xs text-muted-foreground">
+            第 {data.pagination.page} / {data.pagination.totalPages} 页
+          </span>
         </section>
 
         {data.items.length > 0 ? (
-          <>
-          <section className="hidden overflow-hidden rounded-xl border bg-card shadow-xs lg:block">
-            <div className="grid grid-cols-[minmax(320px,1.5fr)_180px_140px_120px_150px_110px] border-b bg-foreground px-5 py-3 text-xs font-medium text-background">
-              <span>练习名称</span>
+          <section className="overflow-hidden border-y-2 border-foreground bg-card/35">
+            <div className="hidden grid-cols-[minmax(0,1.6fr)_8rem_6rem_5.5rem_6.5rem_7rem] border-b border-foreground/30 px-4 py-3 text-xs font-semibold tracking-[0.1em] text-muted-foreground lg:grid">
+              <span>练习</span>
               <span>完成时间</span>
-              <span>完成题数</span>
+              <span>题量</span>
               <span>正确率</span>
               <span>用时</span>
               <span className="text-right">操作</span>
             </div>
             {data.items.map((record) => (
-              <div
+              <article
                 key={record.id}
-                className="grid grid-cols-[minmax(320px,1.5fr)_180px_140px_120px_150px_110px] items-center border-b px-5 py-4 last:border-b-0"
+                className="grid gap-3 border-b border-foreground/15 px-4 py-4 last:border-b-0 lg:grid-cols-[minmax(0,1.6fr)_8rem_6rem_5.5rem_6.5rem_7rem] lg:items-center"
               >
                 <div className="min-w-0">
-                  <div className="truncate font-medium">{cleanLearningTitle(record.title)}</div>
-                  <div className="mt-1 text-xs text-muted-foreground">{modeLabels[record.mode] ?? record.mode}</div>
+                  <h2 className="truncate font-semibold">{cleanLearningTitle(record.title)}</h2>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    {modeLabels[record.mode] ?? record.mode}
+                    <span className="lg:hidden"> · {formatDate(record.submittedAt)}</span>
+                  </p>
+                  <p className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-xs text-muted-foreground lg:hidden">
+                    <span>
+                      已答 <strong className="font-mono text-foreground">{record.answeredCount}/{record.totalCount}</strong>
+                    </span>
+                    <span>
+                      正确 <strong className="font-mono text-success">{record.correctCount}</strong>
+                    </span>
+                    <span>
+                      错误 <strong className="font-mono text-destructive">{record.wrongCount}</strong>
+                    </span>
+                    <span>
+                      用时 <strong className="font-mono text-foreground">{formatDuration(record.elapsedSeconds)}</strong>
+                    </span>
+                  </p>
                 </div>
-                <span className="text-sm text-muted-foreground">{formatDate(record.submittedAt)}</span>
-                <span className="font-mono text-sm tabular-nums">{record.answeredCount}/{record.totalCount}</span>
+                <span className="hidden text-sm text-muted-foreground lg:block">{formatDate(record.submittedAt)}</span>
+                <span className="hidden font-mono text-sm tabular-nums lg:block">
+                  {record.answeredCount}/{record.totalCount}
+                </span>
                 <Badge className="w-fit" variant={Number(record.accuracy ?? 0) >= 70 ? "success" : "warning"}>
                   {record.accuracy ?? "0.00"}%
                 </Badge>
-                <span className="font-mono text-sm tabular-nums">{formatDuration(record.elapsedSeconds)}</span>
+                <span className="hidden font-mono text-sm tabular-nums lg:block">
+                  {formatDuration(record.elapsedSeconds)}
+                </span>
                 <Link
                   href={`/practice/${record.id}?review=1`}
-                  className={cn(buttonVariants({ variant: "outline", size: "sm" }), "justify-self-end")}
+                  className={cn(
+                    buttonVariants({ variant: "outline", size: "sm" }),
+                    "w-full justify-between lg:w-auto lg:justify-self-end"
+                  )}
                 >
                   回看解析
                   <ArrowRight data-icon="inline-end" />
                 </Link>
-              </div>
+              </article>
             ))}
           </section>
-
-          <section className="flex flex-col gap-3 lg:hidden">
-            {data.items.map((record) => (
-              <Card key={record.id} className="lg:rounded-none lg:border-0 lg:border-b lg:bg-transparent lg:shadow-none lg:last:border-b-0">
-                <CardHeader className="lg:pb-0">
-                  <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
-                    <div className="flex min-w-0 flex-col gap-1">
-                      <CardTitle className="truncate">{cleanLearningTitle(record.title)}</CardTitle>
-                      <CardDescription>
-                        {modeLabels[record.mode] ?? record.mode} · {formatDate(record.submittedAt)}
-                      </CardDescription>
-                    </div>
-                    <Badge variant={Number(record.accuracy ?? 0) >= 70 ? "success" : "warning"}>{record.accuracy ?? "0.00"}%</Badge>
-                  </div>
-                </CardHeader>
-                <CardContent className="flex flex-wrap gap-x-4 gap-y-1 border-t pt-3 text-sm text-muted-foreground">
-                  <span>已答 <strong className="font-mono text-foreground">{record.answeredCount}/{record.totalCount}</strong></span>
-                  <span>正确 <strong className="font-mono text-success">{record.correctCount}</strong></span>
-                  <span>错误 <strong className="font-mono text-destructive">{record.wrongCount}</strong></span>
-                  <span>用时 <strong className="font-mono text-foreground">{formatDuration(record.elapsedSeconds)}</strong></span>
-                </CardContent>
-                <CardFooter className="lg:border-t-0 lg:bg-transparent lg:pt-0">
-                  <Link
-                    href={`/practice/${record.id}?review=1`}
-                    className={cn(buttonVariants({ variant: "outline" }), "w-full justify-between md:w-auto")}
-                  >
-                    回看解析
-                    <ArrowRight data-icon="inline-end" />
-                  </Link>
-                </CardFooter>
-              </Card>
-            ))}
-          </section>
-          </>
         ) : (
           <EmptyState
             icon={FileText}

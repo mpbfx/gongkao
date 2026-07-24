@@ -207,8 +207,15 @@ export function MetricStrip({
   className?: string;
   compact?: boolean;
 }) {
+  const columnClass =
+    items.length <= 2
+      ? "sm:grid-cols-2"
+      : items.length === 3
+        ? "sm:grid-cols-3"
+        : "sm:grid-cols-2 lg:grid-cols-4";
+
   return (
-    <section className={cn("editorial-ledger grid overflow-hidden border-y-2 border-foreground bg-transparent sm:grid-cols-2 lg:grid-cols-4", className)}>
+    <section className={cn("editorial-ledger grid overflow-hidden border-y-2 border-foreground bg-card/40", columnClass, className)}>
       {items.map((item) => {
         const Icon = item.icon;
 
@@ -216,8 +223,8 @@ export function MetricStrip({
           <div
             key={item.label}
             className={cn(
-              "flex min-w-0 items-start border-b border-foreground/30 last:border-b-0 sm:[&:nth-child(2n)]:border-l lg:border-b-0 lg:border-l lg:first:border-l-0 sm:[&:nth-last-child(-n+2)]:border-b-0",
-              compact ? "gap-2 p-3" : "gap-3 p-4 lg:px-6 lg:py-6"
+              "flex min-w-0 items-start border-b border-foreground/25 last:border-b-0 sm:border-b-0 sm:border-l sm:first:border-l-0",
+              compact ? "gap-2 p-3.5" : "gap-3 p-4 lg:px-5 lg:py-5"
             )}
           >
             {Icon ? (
@@ -227,13 +234,127 @@ export function MetricStrip({
             ) : null}
             <div className="min-w-0">
               <div className="text-xs font-medium text-muted-foreground">{item.label}</div>
-              <div className={cn("student-heading mt-0.5 font-semibold tabular-nums text-foreground", compact ? "text-xl" : "text-3xl")}>{item.value}</div>
+              <div className={cn("student-heading mt-0.5 font-semibold tabular-nums text-foreground", compact ? "text-xl" : "text-2xl lg:text-3xl")}>{item.value}</div>
               {item.description && !compact ? <div className="mt-1 text-xs leading-5 text-muted-foreground">{item.description}</div> : null}
             </div>
           </div>
         );
       })}
     </section>
+  );
+}
+
+/** Full-width editorial section with ink rules instead of floating cards. */
+export function EditorialSection({
+  title,
+  description,
+  action,
+  children,
+  className,
+  bodyClassName,
+}: {
+  title?: string;
+  description?: React.ReactNode;
+  action?: React.ReactNode;
+  children: React.ReactNode;
+  className?: string;
+  bodyClassName?: string;
+}) {
+  return (
+    <section className={cn("editorial-section border-y border-foreground/40 bg-card/30", className)}>
+      {title ? (
+        <header className="flex flex-wrap items-end justify-between gap-3 border-b border-foreground/25 px-4 py-3 lg:px-5">
+          <div className="min-w-0">
+            <h2 className="student-heading text-lg font-semibold tracking-tight">{title}</h2>
+            {description ? <div className="mt-1 text-sm text-muted-foreground">{description}</div> : null}
+          </div>
+          {action ? <div className="shrink-0">{action}</div> : null}
+        </header>
+      ) : null}
+      <div className={cn(bodyClassName)}>{children}</div>
+    </section>
+  );
+}
+
+/** Shared ledger row used by papers / records / home recent lists. */
+export function LedgerRow({
+  href,
+  leading,
+  title,
+  meta,
+  trailing,
+  className,
+}: {
+  href?: string;
+  leading?: React.ReactNode;
+  title: React.ReactNode;
+  meta?: React.ReactNode;
+  trailing?: React.ReactNode;
+  className?: string;
+}) {
+  const content = (
+    <>
+      {leading ? <div className="min-w-0 shrink-0">{leading}</div> : null}
+      <div className="min-w-0 flex-1">
+        <div className="font-medium text-foreground">{title}</div>
+        {meta ? <div className="mt-1 text-xs text-muted-foreground">{meta}</div> : null}
+      </div>
+      {trailing ? <div className="flex shrink-0 items-center gap-2">{trailing}</div> : null}
+    </>
+  );
+
+  const rowClass = cn(
+    "editorial-ledger-row flex min-h-16 items-center gap-3 border-b border-foreground/15 px-4 py-3.5 last:border-b-0 transition-colors",
+    href && "hover:bg-primary/[0.04] focus-visible:bg-primary/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring",
+    className
+  );
+
+  if (href) {
+    return (
+      <Link href={href} className={rowClass}>
+        {content}
+      </Link>
+    );
+  }
+
+  return <div className={rowClass}>{content}</div>;
+}
+
+export function QuickLinkGrid({
+  items,
+  className,
+}: {
+  items: Array<{
+    href: string;
+    title: string;
+    description: string;
+    label?: string;
+    tone?: Tone | "primary";
+  }>;
+  className?: string;
+}) {
+  return (
+    <div className={cn("grid gap-0 border border-foreground/30 sm:grid-cols-2", className)}>
+      {items.map((item) => (
+        <Link
+          key={item.href + item.title}
+          href={item.href}
+          className={cn(
+            "group flex min-h-[7.5rem] flex-col justify-between border-b border-foreground/15 p-4 transition-colors last:border-b-0 hover:bg-primary/[0.05] sm:border-r sm:odd:border-r sm:[&:nth-child(2n)]:border-r-0 sm:[&:nth-last-child(-n+2)]:border-b-0",
+            item.tone === "warning" && "bg-warning/5",
+            item.tone === "primary" && "bg-primary/[0.04]"
+          )}
+        >
+          <div>
+            <div className="student-heading text-base font-semibold group-hover:text-primary">{item.title}</div>
+            <p className="mt-1.5 text-sm leading-6 text-muted-foreground">{item.description}</p>
+          </div>
+          <span className="mt-4 text-xs font-semibold tracking-[0.12em] text-primary">
+            {item.label ?? "进入"} →
+          </span>
+        </Link>
+      ))}
+    </div>
   );
 }
 

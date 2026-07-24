@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react";
 
 export function usePracticeTimer({
   initialElapsedSeconds,
+  initialPauseCount = 0,
+  initialPausedSeconds = 0,
   timeLimitSeconds,
   deadlineAt,
   serverNow,
@@ -13,6 +15,8 @@ export function usePracticeTimer({
   onExpire,
 }: {
   initialElapsedSeconds: number;
+  initialPauseCount?: number;
+  initialPausedSeconds?: number;
   timeLimitSeconds?: number | null;
   deadlineAt?: string | null;
   serverNow?: string | null;
@@ -27,8 +31,8 @@ export function usePracticeTimer({
     timingMode !== "STRICT" || !timeLimitSeconds || !deadlineAt
   );
   const [isPaused, setIsPaused] = useState(false);
-  const [pauseCount, setPauseCount] = useState(0);
-  const [pausedSeconds, setPausedSeconds] = useState(0);
+  const [pauseCount, setPauseCount] = useState(Math.max(0, initialPauseCount));
+  const [pausedSeconds, setPausedSeconds] = useState(Math.max(0, initialPausedSeconds));
   const expiredRef = useRef(false);
   const activeSecondRef = useRef(onActiveSecond);
   const expireRef = useRef(onExpire);

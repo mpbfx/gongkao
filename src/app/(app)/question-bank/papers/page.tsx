@@ -1,14 +1,9 @@
-import { ArrowRight, FileSearch, Gauge, MapPin } from "lucide-react";
+import { ArrowRight, FileSearch, Gauge } from "lucide-react";
 import Link from "next/link";
 
 import { AppShell } from "@/components/layout/app-shell";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
-import {
-  Card,
-  CardDescription,
-  CardTitle,
-} from "@/components/ui/card";
 import {
   EmptyState,
   PageHeader,
@@ -107,13 +102,17 @@ export default async function PapersPage({ searchParams }: PapersPageProps) {
           }
         />
 
-        <div className="flex min-h-11 flex-wrap items-center justify-between gap-3 border-y border-foreground/35 py-2">
-          <div className="flex flex-wrap items-center gap-2">
+        <div className="flex min-h-12 flex-wrap items-center justify-between gap-3 border-y border-foreground/40 bg-card/30 px-1 py-2.5">
+          <div className="flex flex-wrap items-center gap-2 px-2">
             {query.year ? <Badge variant="info">{query.year} 年</Badge> : null}
             {query.province ? <Badge variant="outline">{query.province}</Badge> : null}
             {query.examType ? <Badge variant="outline">{query.examType}</Badge> : null}
             {!hasActiveFilters ? <span className="text-sm text-muted-foreground">显示全部试卷</span> : null}
-            {hasActiveFilters ? <Link href="/question-bank/papers" className="text-sm text-primary hover:underline">清除筛选</Link> : null}
+            {hasActiveFilters ? (
+              <Link href="/question-bank/papers" className="text-sm text-primary hover:underline">
+                清除筛选
+              </Link>
+            ) : null}
           </div>
           <FilterPopover label="筛选试卷" activeCount={[query.year, query.province, query.examType].filter(Boolean).length}>
             <PaperFilterForm
@@ -127,61 +126,70 @@ export default async function PapersPage({ searchParams }: PapersPageProps) {
         </div>
 
         {data.items.length > 0 ? (
-          <section className="flex flex-col border-t-2 border-foreground lg:gap-0">
-            <div className="hidden grid-cols-[8.5rem_minmax(0,1fr)_5rem_6rem_10rem] border-b border-foreground/35 px-4 py-3 text-xs font-semibold tracking-[0.12em] text-muted-foreground lg:grid">
-              <span>试卷编号</span><span>试卷名称</span><span>题量</span><span>难度</span><span className="text-right">操作</span>
+          <section className="overflow-hidden border-y-2 border-foreground bg-card/35">
+            <div className="hidden grid-cols-[7.5rem_minmax(0,1fr)_4.5rem_5rem_9rem] border-b border-foreground/30 px-4 py-3 text-xs font-semibold tracking-[0.1em] text-muted-foreground lg:grid">
+              <span>编号</span>
+              <span>试卷</span>
+              <span>题量</span>
+              <span>难度</span>
+              <span className="text-right">操作</span>
             </div>
-            {data.items.map((paper) => (
-              <Card id={`paper-${paper.id}`} key={paper.id} className="scroll-mt-24 gap-0 lg:rounded-none lg:border-0 lg:border-b lg:border-foreground/22 lg:bg-transparent lg:shadow-none lg:last:border-b-0">
-                <div className="grid gap-4 p-4 lg:grid-cols-[8.5rem_minmax(0,1fr)_5rem_6rem_10rem] lg:items-center lg:px-4 lg:py-4">
-                  <div className="hidden student-heading text-2xl font-semibold tabular-nums lg:block">{paper.year ?? "----"}-{String(paper.id).slice(-3).toUpperCase()}</div>
+            {data.items.map((paper) => {
+              const purpose = getPaperPurpose(requestedPurpose, benchmarkPaperId === paper.id);
+              const meta = [
+                paper.year ? String(paper.year) : null,
+                paper.province,
+                paper.examType,
+                paper.isVipOnly ? "会员" : null,
+              ]
+                .filter(Boolean)
+                .join(" · ");
+
+              return (
+                <article
+                  id={`paper-${paper.id}`}
+                  key={paper.id}
+                  className="scroll-mt-24 grid gap-3 border-b border-foreground/15 px-4 py-4 last:border-b-0 lg:grid-cols-[7.5rem_minmax(0,1fr)_4.5rem_5rem_9rem] lg:items-center lg:gap-4"
+                >
+                  <div className="student-heading text-xl font-semibold tabular-nums text-foreground/85 lg:text-2xl">
+                    {paper.year ?? "----"}-{String(paper.id).slice(-3).toUpperCase()}
+                  </div>
                   <div className="min-w-0">
-                    <div className="mb-2 flex flex-wrap items-center gap-2">
-                      {paper.year ? <Badge variant="info">{paper.year}</Badge> : null}
-                      {paper.province ? (
-                        <Badge variant="outline">
-                          <MapPin data-icon="inline-start" />
-                          {paper.province}
-                        </Badge>
-                      ) : null}
-                      {paper.examType ? <Badge variant="outline">{paper.examType}</Badge> : null}
-                      {paper.isVipOnly ? <Badge>会员</Badge> : null}
-                    </div>
-                    <CardTitle className="line-clamp-2 text-base md:text-lg lg:font-semibold">{paper.title}</CardTitle>
-                    <CardDescription className="mt-2 lg:hidden">{paper.questionCount} 题 · 难度 {paper.difficultyScore ?? "未评级"}</CardDescription>
+                    <h2 className="line-clamp-2 text-base font-semibold leading-6 md:text-[1.05rem]">{paper.title}</h2>
+                    <p className="mt-1 text-xs text-muted-foreground">
+                      {meta || "未标注来源"}
+                      <span className="lg:hidden">
+                        {" "}
+                        · {paper.questionCount} 题 · 难度 {paper.difficultyScore ?? "未评级"}
+                      </span>
+                    </p>
                   </div>
-                  <div className="hidden font-mono text-sm tabular-nums lg:block">
-                    {paper.questionCount} 题
+                  <div className="hidden font-mono text-sm tabular-nums lg:block">{paper.questionCount}</div>
+                  <div className="hidden items-center gap-1 text-sm font-medium lg:inline-flex">
+                    <Gauge className="size-3.5 text-warning" aria-hidden="true" />
+                    {paper.difficultyScore ?? "—"}
                   </div>
-                  <div className="hidden lg:block">
-                    <div className="inline-flex items-center gap-1 text-sm font-medium">
-                      <Gauge className="size-3.5 text-warning" aria-hidden="true" />
-                      {paper.difficultyScore ?? "未评级"}
-                    </div>
-                  </div>
-                  <div className="grid gap-2 lg:grid-cols-1 lg:justify-items-end">
+                  <div className="lg:justify-self-end">
                     <PaperStartButton
                       paperId={paper.id}
-                      activeSession={paper.activeSessions.find(
-                        (session) => session.purpose === getPaperPurpose(
-                          requestedPurpose,
-                          benchmarkPaperId === paper.id
-                        )
-                      ) ?? paper.activeSessions[0] ?? null}
-                      submittedSession={paper.submittedSessions.find(
-                        (session) => session.purpose === getPaperPurpose(
-                          requestedPurpose,
-                          benchmarkPaperId === paper.id
-                        )
-                      ) ?? paper.submittedSessions[0] ?? null}
+                      activeSession={
+                        paper.activeSessions.find((session) => session.purpose === purpose)
+                        ?? paper.activeSessions[0]
+                        ?? null
+                      }
+                      submittedSession={
+                        paper.submittedSessions.find((session) => session.purpose === purpose)
+                        ?? paper.submittedSessions[0]
+                        ?? null
+                      }
                       className="w-full lg:w-auto"
                       durationSeconds={paper.durationSeconds}
-                      purpose={getPaperPurpose(requestedPurpose, benchmarkPaperId === paper.id)}
+                      purpose={purpose}
                     />
                   </div>
-                </div>
-              </Card>
-            ))}
+                </article>
+              );
+            })}
           </section>
         ) : (
           <EmptyState

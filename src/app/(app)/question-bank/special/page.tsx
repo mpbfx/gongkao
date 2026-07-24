@@ -25,7 +25,9 @@ export default async function SpecialPracticePage({
   }
 
   const rawParams = await searchParams;
-  const foundationTag = Array.isArray(rawParams?.foundation) ? rawParams?.foundation[0] : rawParams?.foundation;
+  const foundationTag = Array.isArray(rawParams?.foundation)
+    ? rawParams?.foundation[0]
+    : rawParams?.foundation;
   const [tags, dailyPractice, foundation] = await Promise.all([
     listActiveTagsTree(),
     getTodayDailyPractice(user).catch(() => null),
@@ -34,24 +36,38 @@ export default async function SpecialPracticePage({
 
   return (
     <AppShell>
-      <StudentPage layout="wide" className="special-editorial-page">
+      <StudentPage layout="wide" className="special-editorial-page gap-6">
         <PageHeader
+          eyebrow="专项提分"
           title="专项练习"
-          summary={<span>选择一个知识点和本次题量</span>}
-          secondaryActions={<DailyPracticeAction dailyPractice={dailyPractice} className="w-full md:w-auto" />}
+          description="自由组卷按知识点突破；叶子筑基按 15 题一轮推进基础通过线。"
+          summary={<span>筑基进度 {foundation.passedCount}/{foundation.totalCount}</span>}
+          secondaryActions={
+            <DailyPracticeAction dailyPractice={dailyPractice} className="w-full md:w-auto" />
+          }
         />
 
-        <section>
-          <SpecialPracticeBuilder tags={tags} />
-        </section>
+        <section className="grid gap-6 xl:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
+          <div className="min-w-0">
+            <SpecialPracticeBuilder tags={tags} />
+          </div>
 
-        <details open={Boolean(foundationTag)} className="group border-y border-foreground/40 bg-card/25">
-          <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between px-4 font-medium focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none">
-            叶子类型筑基
-            <span className="text-xs text-muted-foreground">{foundation.passedCount}/{foundation.totalCount} 已通过</span>
-          </summary>
-          <div className="border-t p-4"><FoundationTrainingPanel progress={foundation} initialTagId={foundationTag} /></div>
-        </details>
+          <section
+            id="foundation"
+            className="min-w-0 border-y-2 border-foreground bg-card/40 xl:border-y-0 xl:border-l xl:border-foreground/30 xl:pl-6"
+          >
+            <div className="mb-4 flex items-end justify-between gap-3 border-b border-foreground/25 pb-3 xl:border-b-0 xl:pb-0">
+              <div>
+                <div className="text-xs font-semibold tracking-[0.14em] text-primary">叶子类型筑基</div>
+                <h2 className="student-heading mt-1 text-xl font-semibold">按题型打通 9/15</h2>
+              </div>
+              <span className="text-sm text-muted-foreground">
+                {foundation.passedCount}/{foundation.totalCount} 已通过
+              </span>
+            </div>
+            <FoundationTrainingPanel progress={foundation} initialTagId={foundationTag} />
+          </section>
+        </section>
       </StudentPage>
     </AppShell>
   );
