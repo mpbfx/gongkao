@@ -1,6 +1,7 @@
 "use client";
 
 import { Bookmark, LoaderCircle, TriangleAlert } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 import type {
@@ -27,27 +28,30 @@ export function SaveAgentNoteButton({
   disabled?: boolean;
   compact?: boolean;
 }) {
+  const router = useRouter();
   const [reference, setReference] = useState(initialReference?.trashed ? undefined : initialReference);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   async function toggle() {
     if (!messageId || busy) return;
+    if (reference) {
+      router.push(`/notes/${reference.id}`);
+      return;
+    }
     setBusy(true);
     setError(null);
     try {
-      const response = reference
-        ? await fetch(`/api/agent/notes/${reference.id}`, { method: "DELETE" })
-        : await fetch("/api/agent/notes", {
-            method: "POST",
-            headers: { "content-type": "application/json" },
-            body: JSON.stringify({ source, messageId }),
-          });
+      const response = await fetch("/api/agent/notes", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ source, messageId }),
+      });
       const payload = (await response.json()) as ApiResponse<AgentNoteReference>;
       if (!response.ok || !payload.ok) {
         throw new Error(payload.ok ? "收藏操作失败。" : payload.error.message);
       }
-      setReference(reference ? undefined : payload.data);
+      setReference(payload.data);
     } catch (reason) {
       setError(reason instanceof Error ? reason.message : "收藏操作失败。");
     } finally {
@@ -57,11 +61,11 @@ export function SaveAgentNoteButton({
 
   const generatedState =
     reference?.status === "FAILED"
-      ? "归纳失败，可在学习笔记中重试"
+      ? "已收藏 · 整理遇到问题"
       : reference?.status === "READY"
-        ? "已收藏并完成归纳"
+        ? "查看笔记"
         : reference
-          ? "已收藏，正在归纳"
+          ? "已收藏 · 正在整理"
           : "收藏为学习笔记";
 
   return (
@@ -86,13 +90,8 @@ export function SaveAgentNoteButton({
             aria-hidden="true"
           />
         )}
-        {reference ? "已收藏" : "收藏"}
+        {reference ? generatedState : "收藏"}
       </Button>
-      {reference && reference.status !== "READY" ? (
-        <span className={cn("text-[0.68rem]", reference.status === "FAILED" ? "text-destructive" : "text-muted-foreground")}>
-          {reference.status === "FAILED" ? "归纳失败" : "正在归纳"}
-        </span>
-      ) : null}
       {error ? <span className="text-[0.68rem] text-destructive" role="alert">{error}</span> : null}
       <span className="sr-only" aria-live="polite">{error ?? generatedState}</span>
     </div>
