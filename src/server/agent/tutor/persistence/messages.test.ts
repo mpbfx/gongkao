@@ -8,6 +8,10 @@ vi.mock("@/lib/db/prisma", () => ({
   },
 }));
 
+vi.mock("@/server/agent/notes/service", () => ({
+  getAgentNoteReferences: vi.fn().mockResolvedValue(new Map()),
+}));
+
 import { getTutorHistory } from "@/server/agent/tutor/persistence/messages";
 
 describe("getTutorHistory", () => {

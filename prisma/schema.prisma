@@ -68,6 +68,23 @@ enum MembershipStatus {
   CANCELLED
 }
 
+enum AgentNoteSource {
+  TUTOR
+  KNOWLEDGE
+}
+
+enum AgentNoteStatus {
+  PENDING
+  PROCESSING
+  READY
+  FAILED
+}
+
+enum AgentNoteTagAttachedBy {
+  AI
+  HUMAN
+}
+
 enum MistakeCause {
   READING_MISS
   CONCEPT_GAP
@@ -107,6 +124,7 @@ model User {
   importJobs            ImportJob[]
   knowledgeChatSessions KnowledgeChatSession[]
   practiceEvents        PracticeEvent[]
+  agentNotes            AgentNote[]
 }
 
 model Account {
@@ -188,6 +206,7 @@ model QuestionTag {
   tagStats        UserTagStats[]
   mistakeReviews  QuestionMistakeReview[]
   knowledgeChunks KnowledgeChunk[]
+  agentNoteTags   AgentNoteTag[]
 
   @@index([parentId])
   @@index([isActive])
@@ -538,6 +557,7 @@ model AgentTutorMessage {
   question       Question                @relation(fields: [questionId], references: [id])
   session        PracticeSession?        @relation(fields: [sessionId], references: [id])
   mistakeReviews QuestionMistakeReview[]
+  agentNote      AgentNote?
 
   @@index([userId])
   @@index([questionId])
@@ -690,7 +710,55 @@ model KnowledgeChatMessage {
   metadataJson  Json?
   createdAt     DateTime @default(now())
 
-  session KnowledgeChatSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  session   KnowledgeChatSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  agentNote AgentNote?
 
   @@index([sessionId, createdAt])
+}
+
+model AgentNote {
+  id                    String          @id @default(cuid())
+  userId                String
+  source                AgentNoteSource
+  tutorMessageId        String?         @unique
+  knowledgeMessageId    String?         @unique
+  originalContent       String          @db.LongText
+  originalPrompt        String?         @db.Text
+  sourceContextJson     Json?
+  citationsSnapshotJson Json?
+  aiTitle               String?
+  aiMarkdown            String?         @db.LongText
+  keyPointsJson         Json?
+  pitfallsJson          Json?
+  applicationsJson      Json?
+  userNote              String?         @db.LongText
+  status                AgentNoteStatus @default(PENDING)
+  errorMessage          String?         @db.Text
+  generationVersion     Int             @default(1)
+  generatedAt           DateTime?
+  trashedAt             DateTime?
+  createdAt             DateTime        @default(now())
+  updatedAt             DateTime        @updatedAt
+
+  user             User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tutorMessage     AgentTutorMessage?    @relation(fields: [tutorMessageId], references: [id], onDelete: SetNull)
+  knowledgeMessage KnowledgeChatMessage? @relation(fields: [knowledgeMessageId], references: [id], onDelete: SetNull)
+  tags             AgentNoteTag[]
+
+  @@index([userId, trashedAt, createdAt])
+  @@index([userId, status])
+  @@index([userId, source])
+}
+
+model AgentNoteTag {
+  noteId     String
+  tagId      String
+  attachedBy AgentNoteTagAttachedBy
+  attachedAt DateTime               @default(now())
+
+  note AgentNote   @relation(fields: [noteId], references: [id], onDelete: Cascade)
+  tag  QuestionTag @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@id([noteId, tagId])
+  @@index([tagId, noteId])
 }

@@ -531,6 +531,57 @@ export type EnumMistakeCauseWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumMistakeCauseFilter<$PrismaModel>
 }
 
+export type EnumAgentNoteSourceFilter<$PrismaModel = never> = {
+  equals?: $Enums.AgentNoteSource | Prisma.EnumAgentNoteSourceFieldRefInput<$PrismaModel>
+  in?: $Enums.AgentNoteSource[]
+  notIn?: $Enums.AgentNoteSource[]
+  not?: Prisma.NestedEnumAgentNoteSourceFilter<$PrismaModel> | $Enums.AgentNoteSource
+}
+
+export type EnumAgentNoteStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.AgentNoteStatus | Prisma.EnumAgentNoteStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.AgentNoteStatus[]
+  notIn?: $Enums.AgentNoteStatus[]
+  not?: Prisma.NestedEnumAgentNoteStatusFilter<$PrismaModel> | $Enums.AgentNoteStatus
+}
+
+export type EnumAgentNoteSourceWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.AgentNoteSource | Prisma.EnumAgentNoteSourceFieldRefInput<$PrismaModel>
+  in?: $Enums.AgentNoteSource[]
+  notIn?: $Enums.AgentNoteSource[]
+  not?: Prisma.NestedEnumAgentNoteSourceWithAggregatesFilter<$PrismaModel> | $Enums.AgentNoteSource
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumAgentNoteSourceFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumAgentNoteSourceFilter<$PrismaModel>
+}
+
+export type EnumAgentNoteStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.AgentNoteStatus | Prisma.EnumAgentNoteStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.AgentNoteStatus[]
+  notIn?: $Enums.AgentNoteStatus[]
+  not?: Prisma.NestedEnumAgentNoteStatusWithAggregatesFilter<$PrismaModel> | $Enums.AgentNoteStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumAgentNoteStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumAgentNoteStatusFilter<$PrismaModel>
+}
+
+export type EnumAgentNoteTagAttachedByFilter<$PrismaModel = never> = {
+  equals?: $Enums.AgentNoteTagAttachedBy | Prisma.EnumAgentNoteTagAttachedByFieldRefInput<$PrismaModel>
+  in?: $Enums.AgentNoteTagAttachedBy[]
+  notIn?: $Enums.AgentNoteTagAttachedBy[]
+  not?: Prisma.NestedEnumAgentNoteTagAttachedByFilter<$PrismaModel> | $Enums.AgentNoteTagAttachedBy
+}
+
+export type EnumAgentNoteTagAttachedByWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.AgentNoteTagAttachedBy | Prisma.EnumAgentNoteTagAttachedByFieldRefInput<$PrismaModel>
+  in?: $Enums.AgentNoteTagAttachedBy[]
+  notIn?: $Enums.AgentNoteTagAttachedBy[]
+  not?: Prisma.NestedEnumAgentNoteTagAttachedByWithAggregatesFilter<$PrismaModel> | $Enums.AgentNoteTagAttachedBy
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumAgentNoteTagAttachedByFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumAgentNoteTagAttachedByFilter<$PrismaModel>
+}
+
 export type NestedStringFilter<$PrismaModel = never> = {
   equals?: string | Prisma.StringFieldRefInput<$PrismaModel>
   in?: string[]
@@ -1009,6 +1060,57 @@ export type NestedEnumMistakeCauseWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumMistakeCauseFilter<$PrismaModel>
   _max?: Prisma.NestedEnumMistakeCauseFilter<$PrismaModel>
+}
+
+export type NestedEnumAgentNoteSourceFilter<$PrismaModel = never> = {
+  equals?: $Enums.AgentNoteSource | Prisma.EnumAgentNoteSourceFieldRefInput<$PrismaModel>
+  in?: $Enums.AgentNoteSource[]
+  notIn?: $Enums.AgentNoteSource[]
+  not?: Prisma.NestedEnumAgentNoteSourceFilter<$PrismaModel> | $Enums.AgentNoteSource
+}
+
+export type NestedEnumAgentNoteStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.AgentNoteStatus | Prisma.EnumAgentNoteStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.AgentNoteStatus[]
+  notIn?: $Enums.AgentNoteStatus[]
+  not?: Prisma.NestedEnumAgentNoteStatusFilter<$PrismaModel> | $Enums.AgentNoteStatus
+}
+
+export type NestedEnumAgentNoteSourceWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.AgentNoteSource | Prisma.EnumAgentNoteSourceFieldRefInput<$PrismaModel>
+  in?: $Enums.AgentNoteSource[]
+  notIn?: $Enums.AgentNoteSource[]
+  not?: Prisma.NestedEnumAgentNoteSourceWithAggregatesFilter<$PrismaModel> | $Enums.AgentNoteSource
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumAgentNoteSourceFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumAgentNoteSourceFilter<$PrismaModel>
+}
+
+export type NestedEnumAgentNoteStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.AgentNoteStatus | Prisma.EnumAgentNoteStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.AgentNoteStatus[]
+  notIn?: $Enums.AgentNoteStatus[]
+  not?: Prisma.NestedEnumAgentNoteStatusWithAggregatesFilter<$PrismaModel> | $Enums.AgentNoteStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumAgentNoteStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumAgentNoteStatusFilter<$PrismaModel>
+}
+
+export type NestedEnumAgentNoteTagAttachedByFilter<$PrismaModel = never> = {
+  equals?: $Enums.AgentNoteTagAttachedBy | Prisma.EnumAgentNoteTagAttachedByFieldRefInput<$PrismaModel>
+  in?: $Enums.AgentNoteTagAttachedBy[]
+  notIn?: $Enums.AgentNoteTagAttachedBy[]
+  not?: Prisma.NestedEnumAgentNoteTagAttachedByFilter<$PrismaModel> | $Enums.AgentNoteTagAttachedBy
+}
+
+export type NestedEnumAgentNoteTagAttachedByWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.AgentNoteTagAttachedBy | Prisma.EnumAgentNoteTagAttachedByFieldRefInput<$PrismaModel>
+  in?: $Enums.AgentNoteTagAttachedBy[]
+  notIn?: $Enums.AgentNoteTagAttachedBy[]
+  not?: Prisma.NestedEnumAgentNoteTagAttachedByWithAggregatesFilter<$PrismaModel> | $Enums.AgentNoteTagAttachedBy
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumAgentNoteTagAttachedByFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumAgentNoteTagAttachedByFilter<$PrismaModel>
 }
 
 

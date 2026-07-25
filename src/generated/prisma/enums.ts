@@ -97,6 +97,32 @@ export const MembershipStatus = {
 export type MembershipStatus = (typeof MembershipStatus)[keyof typeof MembershipStatus]
 
 
+export const AgentNoteSource = {
+  TUTOR: 'TUTOR',
+  KNOWLEDGE: 'KNOWLEDGE'
+} as const
+
+export type AgentNoteSource = (typeof AgentNoteSource)[keyof typeof AgentNoteSource]
+
+
+export const AgentNoteStatus = {
+  PENDING: 'PENDING',
+  PROCESSING: 'PROCESSING',
+  READY: 'READY',
+  FAILED: 'FAILED'
+} as const
+
+export type AgentNoteStatus = (typeof AgentNoteStatus)[keyof typeof AgentNoteStatus]
+
+
+export const AgentNoteTagAttachedBy = {
+  AI: 'AI',
+  HUMAN: 'HUMAN'
+} as const
+
+export type AgentNoteTagAttachedBy = (typeof AgentNoteTagAttachedBy)[keyof typeof AgentNoteTagAttachedBy]
+
+
 export const MistakeCause = {
   READING_MISS: 'READING_MISS',
   CONCEPT_GAP: 'CONCEPT_GAP',

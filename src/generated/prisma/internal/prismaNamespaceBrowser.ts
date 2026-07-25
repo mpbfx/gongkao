@@ -79,7 +79,9 @@ export const ModelName = {
   KnowledgeSource: 'KnowledgeSource',
   KnowledgeChunk: 'KnowledgeChunk',
   KnowledgeChatSession: 'KnowledgeChatSession',
-  KnowledgeChatMessage: 'KnowledgeChatMessage'
+  KnowledgeChatMessage: 'KnowledgeChatMessage',
+  AgentNote: 'AgentNote',
+  AgentNoteTag: 'AgentNoteTag'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -565,6 +567,44 @@ export const KnowledgeChatMessageScalarFieldEnum = {
 export type KnowledgeChatMessageScalarFieldEnum = (typeof KnowledgeChatMessageScalarFieldEnum)[keyof typeof KnowledgeChatMessageScalarFieldEnum]
 
 
+export const AgentNoteScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  source: 'source',
+  tutorMessageId: 'tutorMessageId',
+  knowledgeMessageId: 'knowledgeMessageId',
+  originalContent: 'originalContent',
+  originalPrompt: 'originalPrompt',
+  sourceContextJson: 'sourceContextJson',
+  citationsSnapshotJson: 'citationsSnapshotJson',
+  aiTitle: 'aiTitle',
+  aiMarkdown: 'aiMarkdown',
+  keyPointsJson: 'keyPointsJson',
+  pitfallsJson: 'pitfallsJson',
+  applicationsJson: 'applicationsJson',
+  userNote: 'userNote',
+  status: 'status',
+  errorMessage: 'errorMessage',
+  generationVersion: 'generationVersion',
+  generatedAt: 'generatedAt',
+  trashedAt: 'trashedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AgentNoteScalarFieldEnum = (typeof AgentNoteScalarFieldEnum)[keyof typeof AgentNoteScalarFieldEnum]
+
+
+export const AgentNoteTagScalarFieldEnum = {
+  noteId: 'noteId',
+  tagId: 'tagId',
+  attachedBy: 'attachedBy',
+  attachedAt: 'attachedAt'
+} as const
+
+export type AgentNoteTagScalarFieldEnum = (typeof AgentNoteTagScalarFieldEnum)[keyof typeof AgentNoteTagScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -941,4 +981,28 @@ export const KnowledgeChatMessageOrderByRelevanceFieldEnum = {
 } as const
 
 export type KnowledgeChatMessageOrderByRelevanceFieldEnum = (typeof KnowledgeChatMessageOrderByRelevanceFieldEnum)[keyof typeof KnowledgeChatMessageOrderByRelevanceFieldEnum]
+
+
+export const AgentNoteOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  tutorMessageId: 'tutorMessageId',
+  knowledgeMessageId: 'knowledgeMessageId',
+  originalContent: 'originalContent',
+  originalPrompt: 'originalPrompt',
+  aiTitle: 'aiTitle',
+  aiMarkdown: 'aiMarkdown',
+  userNote: 'userNote',
+  errorMessage: 'errorMessage'
+} as const
+
+export type AgentNoteOrderByRelevanceFieldEnum = (typeof AgentNoteOrderByRelevanceFieldEnum)[keyof typeof AgentNoteOrderByRelevanceFieldEnum]
+
+
+export const AgentNoteTagOrderByRelevanceFieldEnum = {
+  noteId: 'noteId',
+  tagId: 'tagId'
+} as const
+
+export type AgentNoteTagOrderByRelevanceFieldEnum = (typeof AgentNoteTagOrderByRelevanceFieldEnum)[keyof typeof AgentNoteTagOrderByRelevanceFieldEnum]
 

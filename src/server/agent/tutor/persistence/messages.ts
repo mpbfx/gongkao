@@ -1,6 +1,7 @@
 import type { Prisma } from "@/generated/prisma/client";
 import type { TutorHistoryResponse, TutorUIMessage } from "@/features/agent/tutor-ui-message";
 import { prisma } from "@/lib/db/prisma";
+import { getAgentNoteReferences } from "@/server/agent/notes/service";
 import type { TutorQuestionContext } from "@/server/agent/tutor/context/question-context";
 import { replaceLatestMistakeReview } from "@/server/agent/tutor/persistence/mistake-reviews";
 import {
@@ -162,6 +163,11 @@ export async function getTutorHistory(userId: string, questionId: string, sessio
     take: 20,
   });
   const messages = rows.reverse().filter((message) => completedOrLegacy(message.metadataJson));
+  const noteReferences = await getAgentNoteReferences(
+    userId,
+    "TUTOR",
+    messages.filter((message) => message.role === "ASSISTANT").map((message) => message.id)
+  );
   const latestAssistant = [...messages].reverse().find((message) => message.role === "ASSISTANT");
   const metadata = metadataRecord(latestAssistant?.metadataJson);
 
@@ -182,6 +188,7 @@ export async function getTutorHistory(userId: string, questionId: string, sessio
           persistedMessageId: message.id,
           ...(runtime?.runtime === "pi" ? { runtime: "pi" as const } : {}),
           ...(typeof runtime?.durationMs === "number" ? { durationMs: runtime.durationMs } : {}),
+          ...(noteReferences.get(message.id) ? { savedNote: noteReferences.get(message.id) } : {}),
         },
         parts,
       } satisfies TutorUIMessage;

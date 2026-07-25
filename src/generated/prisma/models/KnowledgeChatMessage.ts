@@ -191,6 +191,7 @@ export type KnowledgeChatMessageWhereInput = {
   metadataJson?: Prisma.JsonNullableFilter<"KnowledgeChatMessage">
   createdAt?: Prisma.DateTimeFilter<"KnowledgeChatMessage"> | Date | string
   session?: Prisma.XOR<Prisma.KnowledgeChatSessionScalarRelationFilter, Prisma.KnowledgeChatSessionWhereInput>
+  agentNote?: Prisma.XOR<Prisma.AgentNoteNullableScalarRelationFilter, Prisma.AgentNoteWhereInput> | null
 }
 
 export type KnowledgeChatMessageOrderByWithRelationInput = {
@@ -202,6 +203,7 @@ export type KnowledgeChatMessageOrderByWithRelationInput = {
   metadataJson?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   session?: Prisma.KnowledgeChatSessionOrderByWithRelationInput
+  agentNote?: Prisma.AgentNoteOrderByWithRelationInput
   _relevance?: Prisma.KnowledgeChatMessageOrderByRelevanceInput
 }
 
@@ -217,6 +219,7 @@ export type KnowledgeChatMessageWhereUniqueInput = Prisma.AtLeast<{
   metadataJson?: Prisma.JsonNullableFilter<"KnowledgeChatMessage">
   createdAt?: Prisma.DateTimeFilter<"KnowledgeChatMessage"> | Date | string
   session?: Prisma.XOR<Prisma.KnowledgeChatSessionScalarRelationFilter, Prisma.KnowledgeChatSessionWhereInput>
+  agentNote?: Prisma.XOR<Prisma.AgentNoteNullableScalarRelationFilter, Prisma.AgentNoteWhereInput> | null
 }, "id">
 
 export type KnowledgeChatMessageOrderByWithAggregationInput = {
@@ -253,6 +256,7 @@ export type KnowledgeChatMessageCreateInput = {
   metadataJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   session: Prisma.KnowledgeChatSessionCreateNestedOneWithoutMessagesInput
+  agentNote?: Prisma.AgentNoteCreateNestedOneWithoutKnowledgeMessageInput
 }
 
 export type KnowledgeChatMessageUncheckedCreateInput = {
@@ -263,6 +267,7 @@ export type KnowledgeChatMessageUncheckedCreateInput = {
   citationsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   metadataJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
+  agentNote?: Prisma.AgentNoteUncheckedCreateNestedOneWithoutKnowledgeMessageInput
 }
 
 export type KnowledgeChatMessageUpdateInput = {
@@ -273,6 +278,7 @@ export type KnowledgeChatMessageUpdateInput = {
   metadataJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   session?: Prisma.KnowledgeChatSessionUpdateOneRequiredWithoutMessagesNestedInput
+  agentNote?: Prisma.AgentNoteUpdateOneWithoutKnowledgeMessageNestedInput
 }
 
 export type KnowledgeChatMessageUncheckedUpdateInput = {
@@ -283,6 +289,7 @@ export type KnowledgeChatMessageUncheckedUpdateInput = {
   citationsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   metadataJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  agentNote?: Prisma.AgentNoteUncheckedUpdateOneWithoutKnowledgeMessageNestedInput
 }
 
 export type KnowledgeChatMessageCreateManyInput = {
@@ -356,6 +363,11 @@ export type KnowledgeChatMessageMinOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
 }
 
+export type KnowledgeChatMessageNullableScalarRelationFilter = {
+  is?: Prisma.KnowledgeChatMessageWhereInput | null
+  isNot?: Prisma.KnowledgeChatMessageWhereInput | null
+}
+
 export type KnowledgeChatMessageCreateNestedManyWithoutSessionInput = {
   create?: Prisma.XOR<Prisma.KnowledgeChatMessageCreateWithoutSessionInput, Prisma.KnowledgeChatMessageUncheckedCreateWithoutSessionInput> | Prisma.KnowledgeChatMessageCreateWithoutSessionInput[] | Prisma.KnowledgeChatMessageUncheckedCreateWithoutSessionInput[]
   connectOrCreate?: Prisma.KnowledgeChatMessageCreateOrConnectWithoutSessionInput | Prisma.KnowledgeChatMessageCreateOrConnectWithoutSessionInput[]
@@ -398,6 +410,22 @@ export type KnowledgeChatMessageUncheckedUpdateManyWithoutSessionNestedInput = {
   deleteMany?: Prisma.KnowledgeChatMessageScalarWhereInput | Prisma.KnowledgeChatMessageScalarWhereInput[]
 }
 
+export type KnowledgeChatMessageCreateNestedOneWithoutAgentNoteInput = {
+  create?: Prisma.XOR<Prisma.KnowledgeChatMessageCreateWithoutAgentNoteInput, Prisma.KnowledgeChatMessageUncheckedCreateWithoutAgentNoteInput>
+  connectOrCreate?: Prisma.KnowledgeChatMessageCreateOrConnectWithoutAgentNoteInput
+  connect?: Prisma.KnowledgeChatMessageWhereUniqueInput
+}
+
+export type KnowledgeChatMessageUpdateOneWithoutAgentNoteNestedInput = {
+  create?: Prisma.XOR<Prisma.KnowledgeChatMessageCreateWithoutAgentNoteInput, Prisma.KnowledgeChatMessageUncheckedCreateWithoutAgentNoteInput>
+  connectOrCreate?: Prisma.KnowledgeChatMessageCreateOrConnectWithoutAgentNoteInput
+  upsert?: Prisma.KnowledgeChatMessageUpsertWithoutAgentNoteInput
+  disconnect?: Prisma.KnowledgeChatMessageWhereInput | boolean
+  delete?: Prisma.KnowledgeChatMessageWhereInput | boolean
+  connect?: Prisma.KnowledgeChatMessageWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.KnowledgeChatMessageUpdateToOneWithWhereWithoutAgentNoteInput, Prisma.KnowledgeChatMessageUpdateWithoutAgentNoteInput>, Prisma.KnowledgeChatMessageUncheckedUpdateWithoutAgentNoteInput>
+}
+
 export type KnowledgeChatMessageCreateWithoutSessionInput = {
   id?: string
   role: string
@@ -405,6 +433,7 @@ export type KnowledgeChatMessageCreateWithoutSessionInput = {
   citationsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   metadataJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
+  agentNote?: Prisma.AgentNoteCreateNestedOneWithoutKnowledgeMessageInput
 }
 
 export type KnowledgeChatMessageUncheckedCreateWithoutSessionInput = {
@@ -414,6 +443,7 @@ export type KnowledgeChatMessageUncheckedCreateWithoutSessionInput = {
   citationsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   metadataJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
+  agentNote?: Prisma.AgentNoteUncheckedCreateNestedOneWithoutKnowledgeMessageInput
 }
 
 export type KnowledgeChatMessageCreateOrConnectWithoutSessionInput = {
@@ -455,6 +485,62 @@ export type KnowledgeChatMessageScalarWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"KnowledgeChatMessage"> | Date | string
 }
 
+export type KnowledgeChatMessageCreateWithoutAgentNoteInput = {
+  id?: string
+  role: string
+  content: string
+  citationsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  metadataJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  session: Prisma.KnowledgeChatSessionCreateNestedOneWithoutMessagesInput
+}
+
+export type KnowledgeChatMessageUncheckedCreateWithoutAgentNoteInput = {
+  id?: string
+  sessionId: string
+  role: string
+  content: string
+  citationsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  metadataJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+}
+
+export type KnowledgeChatMessageCreateOrConnectWithoutAgentNoteInput = {
+  where: Prisma.KnowledgeChatMessageWhereUniqueInput
+  create: Prisma.XOR<Prisma.KnowledgeChatMessageCreateWithoutAgentNoteInput, Prisma.KnowledgeChatMessageUncheckedCreateWithoutAgentNoteInput>
+}
+
+export type KnowledgeChatMessageUpsertWithoutAgentNoteInput = {
+  update: Prisma.XOR<Prisma.KnowledgeChatMessageUpdateWithoutAgentNoteInput, Prisma.KnowledgeChatMessageUncheckedUpdateWithoutAgentNoteInput>
+  create: Prisma.XOR<Prisma.KnowledgeChatMessageCreateWithoutAgentNoteInput, Prisma.KnowledgeChatMessageUncheckedCreateWithoutAgentNoteInput>
+  where?: Prisma.KnowledgeChatMessageWhereInput
+}
+
+export type KnowledgeChatMessageUpdateToOneWithWhereWithoutAgentNoteInput = {
+  where?: Prisma.KnowledgeChatMessageWhereInput
+  data: Prisma.XOR<Prisma.KnowledgeChatMessageUpdateWithoutAgentNoteInput, Prisma.KnowledgeChatMessageUncheckedUpdateWithoutAgentNoteInput>
+}
+
+export type KnowledgeChatMessageUpdateWithoutAgentNoteInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.StringFieldUpdateOperationsInput | string
+  content?: Prisma.StringFieldUpdateOperationsInput | string
+  citationsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  metadataJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  session?: Prisma.KnowledgeChatSessionUpdateOneRequiredWithoutMessagesNestedInput
+}
+
+export type KnowledgeChatMessageUncheckedUpdateWithoutAgentNoteInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  sessionId?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.StringFieldUpdateOperationsInput | string
+  content?: Prisma.StringFieldUpdateOperationsInput | string
+  citationsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  metadataJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
 export type KnowledgeChatMessageCreateManySessionInput = {
   id?: string
   role: string
@@ -471,6 +557,7 @@ export type KnowledgeChatMessageUpdateWithoutSessionInput = {
   citationsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   metadataJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  agentNote?: Prisma.AgentNoteUpdateOneWithoutKnowledgeMessageNestedInput
 }
 
 export type KnowledgeChatMessageUncheckedUpdateWithoutSessionInput = {
@@ -480,6 +567,7 @@ export type KnowledgeChatMessageUncheckedUpdateWithoutSessionInput = {
   citationsJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   metadataJson?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  agentNote?: Prisma.AgentNoteUncheckedUpdateOneWithoutKnowledgeMessageNestedInput
 }
 
 export type KnowledgeChatMessageUncheckedUpdateManyWithoutSessionInput = {
@@ -502,6 +590,7 @@ export type KnowledgeChatMessageSelect<ExtArgs extends runtime.Types.Extensions.
   metadataJson?: boolean
   createdAt?: boolean
   session?: boolean | Prisma.KnowledgeChatSessionDefaultArgs<ExtArgs>
+  agentNote?: boolean | Prisma.KnowledgeChatMessage$agentNoteArgs<ExtArgs>
 }, ExtArgs["result"]["knowledgeChatMessage"]>
 
 
@@ -519,12 +608,14 @@ export type KnowledgeChatMessageSelectScalar = {
 export type KnowledgeChatMessageOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "sessionId" | "role" | "content" | "citationsJson" | "metadataJson" | "createdAt", ExtArgs["result"]["knowledgeChatMessage"]>
 export type KnowledgeChatMessageInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   session?: boolean | Prisma.KnowledgeChatSessionDefaultArgs<ExtArgs>
+  agentNote?: boolean | Prisma.KnowledgeChatMessage$agentNoteArgs<ExtArgs>
 }
 
 export type $KnowledgeChatMessagePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "KnowledgeChatMessage"
   objects: {
     session: Prisma.$KnowledgeChatSessionPayload<ExtArgs>
+    agentNote: Prisma.$AgentNotePayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -875,6 +966,7 @@ readonly fields: KnowledgeChatMessageFieldRefs;
 export interface Prisma__KnowledgeChatMessageClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   session<T extends Prisma.KnowledgeChatSessionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.KnowledgeChatSessionDefaultArgs<ExtArgs>>): Prisma.Prisma__KnowledgeChatSessionClient<runtime.Types.Result.GetResult<Prisma.$KnowledgeChatSessionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  agentNote<T extends Prisma.KnowledgeChatMessage$agentNoteArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.KnowledgeChatMessage$agentNoteArgs<ExtArgs>>): Prisma.Prisma__AgentNoteClient<runtime.Types.Result.GetResult<Prisma.$AgentNotePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1256,6 +1348,25 @@ export type KnowledgeChatMessageDeleteManyArgs<ExtArgs extends runtime.Types.Ext
    * Limit how many KnowledgeChatMessages to delete.
    */
   limit?: number
+}
+
+/**
+ * KnowledgeChatMessage.agentNote
+ */
+export type KnowledgeChatMessage$agentNoteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AgentNote
+   */
+  select?: Prisma.AgentNoteSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AgentNote
+   */
+  omit?: Prisma.AgentNoteOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AgentNoteInclude<ExtArgs> | null
+  where?: Prisma.AgentNoteWhereInput
 }
 
 /**

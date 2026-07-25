@@ -1,0 +1,16 @@
+公考题库
+Copyright (c) 2026 gongkao contributors
+
+This project is licensed under the GNU Affero General Public License,
+version 3. See LICENSE.
+
+The Agent answer collection and automatic note design adapts ideas and
+selected implementation patterns from Karakeep:
+
+  https://github.com/karakeep-app/karakeep
+  audited commit: bc50630767079b060488d1d790b96de1e06ea6ba
+
+Karakeep is also distributed under the GNU Affero General Public License,
+version 3. Adapted areas include asynchronous enrichment status handling,
+AI-versus-human tag ownership, replacement of AI-generated tags while
+preserving human tags, and summary regeneration interactions.

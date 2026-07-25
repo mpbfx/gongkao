@@ -1,6 +1,7 @@
 import type { UIMessage } from "ai";
 import { z } from "zod";
 
+import type { AgentNoteReference } from "@/features/agent/agent-note-types";
 import { agentConfidenceSchema, mistakeCauseSchema } from "@/server/agent/shared/schemas";
 
 export const tutorActivitySchema = z.object({
@@ -25,6 +26,7 @@ export type TutorMessageMetadata = {
   persistedMessageId?: string;
   runtime?: "pi";
   durationMs?: number;
+  savedNote?: AgentNoteReference;
 };
 
 export type TutorUIData = {

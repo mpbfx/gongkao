@@ -9,7 +9,9 @@ import {
   BookOpen,
   ClipboardList,
   Home,
+  CodeXml,
   LibraryBig,
+  NotebookTabs,
 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 
@@ -28,6 +30,7 @@ const navItems = [
   { number: "04", label: "错题复盘", shortLabel: "错题", href: "/question-bank/wrong", icon: BookMarked },
   { number: "05", label: "学习情况", shortLabel: "学情", href: "/dashboard", icon: BarChart3 },
   { number: "06", label: "课程知识", shortLabel: "课程", href: "/knowledge", icon: LibraryBig },
+  { number: "07", label: "学习笔记", shortLabel: "笔记", href: "/notes", icon: NotebookTabs },
 ];
 
 export function AppShellFrame({
@@ -35,11 +38,13 @@ export function AppShellFrame({
   defaultHeader,
   userMenu,
   hideMobileNav = false,
+  sourceCodeUrl,
 }: {
   children: React.ReactNode;
   defaultHeader?: AppHeaderContent;
   userMenu: React.ReactNode;
   hideMobileNav?: boolean;
+  sourceCodeUrl?: string;
 }) {
   const pathname = usePathname();
   const isPracticeFocus = pathname.startsWith("/practice/");
@@ -89,7 +94,7 @@ export function AppShellFrame({
           <span className="student-heading whitespace-nowrap text-[1.2rem] font-semibold leading-none tracking-[0.02em]">备考编辑部</span>
           <span className="mt-2 text-[0.62rem] tracking-[0.34em] text-sidebar-foreground/70">公考提分研究院</span>
         </div>
-        <nav className="flex flex-1 flex-col">
+        <nav className="flex flex-1 flex-col overflow-y-auto">
           {navItems.map((item) => {
             const Icon = item.icon;
             const active = isActive(item.href);
@@ -117,6 +122,17 @@ export function AppShellFrame({
           <div className="student-sidebar-user mt-4 border-t border-sidebar-border pt-4">
             {userMenu}
           </div>
+          {sourceCodeUrl ? (
+            <a
+              href={sourceCodeUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-3 inline-flex items-center gap-1.5 text-[0.68rem] text-sidebar-foreground/55 hover:text-sidebar-foreground"
+            >
+              <CodeXml className="size-3.5" aria-hidden="true" />
+              查看本版本源代码
+            </a>
+          ) : null}
         </div>
       </aside>
 
@@ -149,6 +165,17 @@ export function AppShellFrame({
                 </div>
               </div>
               <div className="flex shrink-0 items-center gap-2">
+                {sourceCodeUrl ? (
+                  <a
+                    href={sourceCodeUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex size-9 items-center justify-center text-muted-foreground hover:text-foreground lg:hidden"
+                    aria-label="查看本版本源代码"
+                  >
+                    <CodeXml className="size-4" aria-hidden="true" />
+                  </a>
+                ) : null}
                 {header?.actions ?? defaultHeader?.actions ? (
                   <div className="hidden items-center gap-2 md:flex">{header?.actions ?? defaultHeader?.actions}</div>
                 ) : null}
@@ -163,7 +190,7 @@ export function AppShellFrame({
 
           {!hideMobileNav ? (
             <nav className="fixed inset-x-0 bottom-0 z-30 border-t bg-background/95 pb-[env(safe-area-inset-bottom)] shadow-[0_-8px_24px_rgb(15_23_42/0.08)] backdrop-blur lg:hidden">
-              <div className="grid h-16 grid-cols-6">
+              <div className="grid h-16 grid-cols-7">
                 {mobileNavItems.map((item) => {
                   const Icon = item.icon;
                   const active = isActive(item.href);

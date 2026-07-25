@@ -162,3 +162,13 @@ export type KnowledgeChatSession = Prisma.KnowledgeChatSessionModel
  * 
  */
 export type KnowledgeChatMessage = Prisma.KnowledgeChatMessageModel
+/**
+ * Model AgentNote
+ * 
+ */
+export type AgentNote = Prisma.AgentNoteModel
+/**
+ * Model AgentNoteTag
+ * 
+ */
+export type AgentNoteTag = Prisma.AgentNoteTagModel

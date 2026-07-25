@@ -14,6 +14,7 @@
 - **结果与错题复盘**：展示答案解析、训练对比、错题恢复、重练与错因报告。
 - **学习情况**：基于服务端统计展示正确率、薄弱知识点与下一步训练建议。
 - **知识助教**：围绕当前题目和课程知识库进行追问，支持流式回复与结构化错因记录。
+- **学习笔记**：收藏讲题或课程问答，使用后台任务自动生成结构化学习卡、Markdown 与知识标签。
 - **PWA 支持**：提供安装入口与本地草稿存储，弱网场景下保留未提交内容。
 
 ## 技术栈
@@ -22,7 +23,7 @@
 | --- | --- |
 | Web | Next.js 16、React 19、TypeScript、Tailwind CSS |
 | UI | Base UI、shadcn 风格组件、Lucide、ECharts |
-| 数据 | Prisma 7、MariaDB |
+| 数据 | Prisma 7、MariaDB、Redis、BullMQ |
 | 助教与检索 | AI SDK、OpenAI 兼容接口、Qdrant |
 | 测试 | Vitest |
 
@@ -47,7 +48,7 @@ CODEX_AUTH_URL=http://172.25.13.76:3002 pnpm codex:start
 ### 1. 准备环境
 
 - Node.js `20.19+`
-- Docker 与 Docker Compose（用于 MariaDB；知识库检索启用时同时启动 Qdrant）
+- Docker 与 Docker Compose（用于 MariaDB 和 Redis；知识库检索启用时同时启动 Qdrant）
 
 ```bash
 git clone https://github.com/mpbfx/gongkao.git
@@ -65,6 +66,8 @@ npm install
 DATABASE_URL="mysql://root:password@127.0.0.1:3306/gongkao_question_bank"
 AUTH_SECRET="请替换为随机密钥"
 AUTH_URL="http://localhost:3000"
+REDIS_URL="redis://127.0.0.1:6379"
+SOURCE_CODE_URL="https://github.com/your-org/your-repo"
 ```
 
 如需启用助教，在同一文件中补充 `OPENAI_API_KEY`、`OPENAI_MODEL`；如需启用课程知识检索，再配置 Qdrant 与嵌入模型相关变量。
@@ -105,6 +108,9 @@ npm run knowledge:import
 npm run knowledge:resume
 npm run knowledge:reindex
 npm run knowledge:eval
+
+# Agent 收藏笔记后台归纳
+npm run worker:notes
 ```
 
 ## 项目结构
@@ -128,6 +134,8 @@ docs/            # 产品、架构与数据设计文档
 | --- | --- |
 | `DATABASE_URL` | MariaDB 连接地址 |
 | `AUTH_SECRET` / `AUTH_URL` | 登录会话与站点地址 |
+| `REDIS_URL` | 学习笔记后台归纳队列 |
+| `SOURCE_CODE_URL` | 页面展示的当前部署版本完整源代码地址 |
 | `OPENAI_*` | 助教模型与兼容 API 配置 |
 | `TUTOR_AUTO_REVIEW_*` | 提交后的自动错因分析 |
 | `QDRANT_*` | 课程知识库检索服务 |
@@ -141,3 +149,9 @@ docs/            # 产品、架构与数据设计文档
 - 题目优先选择未做过的题，其次是历史错题，再次是最久未练习的题。
 - 分数、正确性、掌握状态、错题状态与统计均由服务端统一计算和持久化。
 - 严格计时到期后锁定答案；灵活计时记录暂停次数与暂停时长；离线草稿在浏览器恢复后可继续提交。
+
+## 许可证与致谢
+
+本项目采用 [GNU Affero General Public License v3.0](LICENSE)。通过网络向用户提供服务时，必须同时提供与运行版本对应的完整源代码；部署前请正确配置 `SOURCE_CODE_URL`。
+
+Agent 回答收藏与自动笔记功能参考并改编自 [Karakeep](https://github.com/karakeep-app/karakeep) commit `bc50630767079b060488d1d790b96de1e06ea6ba` 的相关设计与实现模式，详情见 [NOTICE](NOTICE)。

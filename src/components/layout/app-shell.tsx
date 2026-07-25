@@ -57,7 +57,12 @@ export async function AppShell({
   );
 
   return (
-    <AppShellFrame defaultHeader={header} userMenu={userMenu} hideMobileNav={hideMobileNav}>
+    <AppShellFrame
+      defaultHeader={header}
+      userMenu={userMenu}
+      hideMobileNav={hideMobileNav}
+      sourceCodeUrl={process.env.SOURCE_CODE_URL}
+    >
       {children}
     </AppShellFrame>
   );

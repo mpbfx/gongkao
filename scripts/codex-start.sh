@@ -153,6 +153,14 @@ else
   wait_for_port 3306 "MariaDB"
 fi
 
+if port_is_open 6379; then
+  log "using the existing Redis service on port 6379"
+else
+  log "starting Redis for Agent note enrichment"
+  docker compose -f docker-compose.dev.yml up -d redis
+  wait_for_port 6379 "Redis"
+fi
+
 if grep -Eq '^QDRANT_URL=.+$' .env.local; then
   with_qdrant=true
 fi
@@ -170,6 +178,8 @@ fi
 dependencies_ready() {
   [[ -x node_modules/.bin/next ]] &&
     [[ -x node_modules/.bin/prisma ]] &&
+    [[ -d node_modules/bullmq ]] &&
+    [[ -d node_modules/ioredis ]] &&
     [[ -d node_modules/@qdrant/js-client-rest ]] &&
     [[ -d node_modules/@tailwindcss/postcss ]]
 }

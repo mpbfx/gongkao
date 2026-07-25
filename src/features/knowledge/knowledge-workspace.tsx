@@ -12,6 +12,7 @@ import { ResponsiveDrawer } from "@/components/student/interaction-overlays";
 import { Button } from "@/components/ui/button";
 import type { KnowledgeSessionDetail, KnowledgeSessionSummary, KnowledgeUIMessage } from "@/features/agent/knowledge-ui-message";
 import { prepareKnowledgeRequest } from "@/features/agent/knowledge-ui-message";
+import { SaveAgentNoteButton } from "@/features/agent/save-agent-note-button";
 import { normalizeLatexDelimiters } from "@/lib/markdown/normalize-latex";
 import { cn } from "@/lib/utils";
 
@@ -149,6 +150,14 @@ function KnowledgeChat({ sessionId, onSessionUpdated, initialPrompt = "", header
                   ) : <p className="whitespace-pre-wrap leading-6" key={`${message.id}-${index}`}>{part.text}</p>
                 )}
                 {message.role === "assistant" ? <MessageCitations message={message} /> : null}
+                {message.role === "assistant" ? (
+                  <SaveAgentNoteButton
+                    source="KNOWLEDGE"
+                    messageId={message.metadata?.persistedMessageId}
+                    initialReference={message.metadata?.savedNote}
+                    disabled={generating && message.id === messages.at(-1)?.id}
+                  />
+                ) : null}
               </MessageContent>
             </Message>
           ))}
@@ -171,9 +180,17 @@ function KnowledgeChat({ sessionId, onSessionUpdated, initialPrompt = "", header
   );
 }
 
-export function KnowledgeWorkspace({ initialSessions, initialPrompt }: { initialSessions: KnowledgeSessionSummary[]; initialPrompt?: string }) {
+export function KnowledgeWorkspace({
+  initialSessions,
+  initialPrompt,
+  initialSessionId,
+}: {
+  initialSessions: KnowledgeSessionSummary[];
+  initialPrompt?: string;
+  initialSessionId?: string;
+}) {
   const [sessions, setSessions] = useState(initialSessions);
-  const [selectedId, setSelectedId] = useState(initialSessions[0]?.id ?? null);
+  const [selectedId, setSelectedId] = useState(initialSessionId ?? initialSessions[0]?.id ?? null);
   const [busy, setBusy] = useState(false);
   const [historyOpen, setHistoryOpen] = useState(false);
   const [workspaceError, setWorkspaceError] = useState<string | null>(null);

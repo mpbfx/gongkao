@@ -38,6 +38,7 @@ import {
   type TutorRequestMode,
   type TutorUIMessage,
 } from "@/features/agent/tutor-ui-message";
+import { SaveAgentNoteButton } from "@/features/agent/save-agent-note-button";
 import { normalizeLatexDelimiters } from "@/lib/markdown/normalize-latex";
 import { cn } from "@/lib/utils";
 
@@ -75,6 +76,15 @@ function TutorMessageList({ messages, streaming }: { messages: TutorUIMessage[];
           }
           return null;
         })}
+        {message.role === "assistant" ? (
+          <SaveAgentNoteButton
+            source="TUTOR"
+            messageId={message.metadata?.persistedMessageId}
+            initialReference={message.metadata?.savedNote}
+            disabled={streaming && messageIndex === messages.length - 1}
+            compact
+          />
+        ) : null}
       </MessageContent>
     </Message>
   ));

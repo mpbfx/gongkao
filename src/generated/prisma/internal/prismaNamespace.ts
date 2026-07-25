@@ -412,7 +412,9 @@ export const ModelName = {
   KnowledgeSource: 'KnowledgeSource',
   KnowledgeChunk: 'KnowledgeChunk',
   KnowledgeChatSession: 'KnowledgeChatSession',
-  KnowledgeChatMessage: 'KnowledgeChatMessage'
+  KnowledgeChatMessage: 'KnowledgeChatMessage',
+  AgentNote: 'AgentNote',
+  AgentNoteTag: 'AgentNoteTag'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -428,7 +430,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "account" | "session" | "verificationToken" | "membership" | "questionTag" | "material" | "question" | "questionOption" | "paper" | "paperQuestion" | "dailyPractice" | "dailyPracticeQuestion" | "practiceSession" | "practiceAnswer" | "practiceEvent" | "wrongQuestion" | "userStatsSnapshot" | "userTagStats" | "agentConfig" | "agentRecommendation" | "agentTutorMessage" | "questionMistakeReview" | "agentFeedback" | "importJob" | "knowledgeSource" | "knowledgeChunk" | "knowledgeChatSession" | "knowledgeChatMessage"
+    modelProps: "user" | "account" | "session" | "verificationToken" | "membership" | "questionTag" | "material" | "question" | "questionOption" | "paper" | "paperQuestion" | "dailyPractice" | "dailyPracticeQuestion" | "practiceSession" | "practiceAnswer" | "practiceEvent" | "wrongQuestion" | "userStatsSnapshot" | "userTagStats" | "agentConfig" | "agentRecommendation" | "agentTutorMessage" | "questionMistakeReview" | "agentFeedback" | "importJob" | "knowledgeSource" | "knowledgeChunk" | "knowledgeChatSession" | "knowledgeChatMessage" | "agentNote" | "agentNoteTag"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2346,6 +2348,138 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    AgentNote: {
+      payload: Prisma.$AgentNotePayload<ExtArgs>
+      fields: Prisma.AgentNoteFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AgentNoteFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentNotePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AgentNoteFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentNotePayload>
+        }
+        findFirst: {
+          args: Prisma.AgentNoteFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentNotePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AgentNoteFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentNotePayload>
+        }
+        findMany: {
+          args: Prisma.AgentNoteFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentNotePayload>[]
+        }
+        create: {
+          args: Prisma.AgentNoteCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentNotePayload>
+        }
+        createMany: {
+          args: Prisma.AgentNoteCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.AgentNoteDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentNotePayload>
+        }
+        update: {
+          args: Prisma.AgentNoteUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentNotePayload>
+        }
+        deleteMany: {
+          args: Prisma.AgentNoteDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AgentNoteUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.AgentNoteUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentNotePayload>
+        }
+        aggregate: {
+          args: Prisma.AgentNoteAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAgentNote>
+        }
+        groupBy: {
+          args: Prisma.AgentNoteGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AgentNoteGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AgentNoteCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AgentNoteCountAggregateOutputType> | number
+        }
+      }
+    }
+    AgentNoteTag: {
+      payload: Prisma.$AgentNoteTagPayload<ExtArgs>
+      fields: Prisma.AgentNoteTagFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AgentNoteTagFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentNoteTagPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AgentNoteTagFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentNoteTagPayload>
+        }
+        findFirst: {
+          args: Prisma.AgentNoteTagFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentNoteTagPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AgentNoteTagFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentNoteTagPayload>
+        }
+        findMany: {
+          args: Prisma.AgentNoteTagFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentNoteTagPayload>[]
+        }
+        create: {
+          args: Prisma.AgentNoteTagCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentNoteTagPayload>
+        }
+        createMany: {
+          args: Prisma.AgentNoteTagCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.AgentNoteTagDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentNoteTagPayload>
+        }
+        update: {
+          args: Prisma.AgentNoteTagUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentNoteTagPayload>
+        }
+        deleteMany: {
+          args: Prisma.AgentNoteTagDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AgentNoteTagUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.AgentNoteTagUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AgentNoteTagPayload>
+        }
+        aggregate: {
+          args: Prisma.AgentNoteTagAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAgentNoteTag>
+        }
+        groupBy: {
+          args: Prisma.AgentNoteTagGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AgentNoteTagGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AgentNoteTagCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AgentNoteTagCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -2852,6 +2986,44 @@ export const KnowledgeChatMessageScalarFieldEnum = {
 export type KnowledgeChatMessageScalarFieldEnum = (typeof KnowledgeChatMessageScalarFieldEnum)[keyof typeof KnowledgeChatMessageScalarFieldEnum]
 
 
+export const AgentNoteScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  source: 'source',
+  tutorMessageId: 'tutorMessageId',
+  knowledgeMessageId: 'knowledgeMessageId',
+  originalContent: 'originalContent',
+  originalPrompt: 'originalPrompt',
+  sourceContextJson: 'sourceContextJson',
+  citationsSnapshotJson: 'citationsSnapshotJson',
+  aiTitle: 'aiTitle',
+  aiMarkdown: 'aiMarkdown',
+  keyPointsJson: 'keyPointsJson',
+  pitfallsJson: 'pitfallsJson',
+  applicationsJson: 'applicationsJson',
+  userNote: 'userNote',
+  status: 'status',
+  errorMessage: 'errorMessage',
+  generationVersion: 'generationVersion',
+  generatedAt: 'generatedAt',
+  trashedAt: 'trashedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AgentNoteScalarFieldEnum = (typeof AgentNoteScalarFieldEnum)[keyof typeof AgentNoteScalarFieldEnum]
+
+
+export const AgentNoteTagScalarFieldEnum = {
+  noteId: 'noteId',
+  tagId: 'tagId',
+  attachedBy: 'attachedBy',
+  attachedAt: 'attachedAt'
+} as const
+
+export type AgentNoteTagScalarFieldEnum = (typeof AgentNoteTagScalarFieldEnum)[keyof typeof AgentNoteTagScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -3230,6 +3402,30 @@ export const KnowledgeChatMessageOrderByRelevanceFieldEnum = {
 export type KnowledgeChatMessageOrderByRelevanceFieldEnum = (typeof KnowledgeChatMessageOrderByRelevanceFieldEnum)[keyof typeof KnowledgeChatMessageOrderByRelevanceFieldEnum]
 
 
+export const AgentNoteOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  tutorMessageId: 'tutorMessageId',
+  knowledgeMessageId: 'knowledgeMessageId',
+  originalContent: 'originalContent',
+  originalPrompt: 'originalPrompt',
+  aiTitle: 'aiTitle',
+  aiMarkdown: 'aiMarkdown',
+  userNote: 'userNote',
+  errorMessage: 'errorMessage'
+} as const
+
+export type AgentNoteOrderByRelevanceFieldEnum = (typeof AgentNoteOrderByRelevanceFieldEnum)[keyof typeof AgentNoteOrderByRelevanceFieldEnum]
+
+
+export const AgentNoteTagOrderByRelevanceFieldEnum = {
+  noteId: 'noteId',
+  tagId: 'tagId'
+} as const
+
+export type AgentNoteTagOrderByRelevanceFieldEnum = (typeof AgentNoteTagOrderByRelevanceFieldEnum)[keyof typeof AgentNoteTagOrderByRelevanceFieldEnum]
+
+
 
 /**
  * Field references
@@ -3352,6 +3548,27 @@ export type EnumFoundationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<
  * Reference to a field of type 'MistakeCause'
  */
 export type EnumMistakeCauseFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MistakeCause'>
+    
+
+
+/**
+ * Reference to a field of type 'AgentNoteSource'
+ */
+export type EnumAgentNoteSourceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AgentNoteSource'>
+    
+
+
+/**
+ * Reference to a field of type 'AgentNoteStatus'
+ */
+export type EnumAgentNoteStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AgentNoteStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'AgentNoteTagAttachedBy'
+ */
+export type EnumAgentNoteTagAttachedByFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AgentNoteTagAttachedBy'>
     
 
 
@@ -3500,6 +3717,8 @@ export type GlobalOmitConfig = {
   knowledgeChunk?: Prisma.KnowledgeChunkOmit
   knowledgeChatSession?: Prisma.KnowledgeChatSessionOmit
   knowledgeChatMessage?: Prisma.KnowledgeChatMessageOmit
+  agentNote?: Prisma.AgentNoteOmit
+  agentNoteTag?: Prisma.AgentNoteTagOmit
 }
 
 /* Types for Logging */

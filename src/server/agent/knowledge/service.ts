@@ -9,6 +9,7 @@ import {
 } from "@/features/agent/knowledge-ui-message";
 import type { AuthenticatedUser } from "@/lib/auth/guards";
 import { prisma } from "@/lib/db/prisma";
+import { getAgentNoteReferences } from "@/server/agent/notes/service";
 import { loadKnowledgeConversation } from "@/server/agent/knowledge/context";
 import { runKnowledgeAgent } from "@/server/agent/knowledge/runtime";
 import type { KnowledgeStreamEvent } from "@/server/agent/knowledge/schemas";
@@ -56,6 +57,11 @@ export async function getKnowledgeSession(user: AuthenticatedUser, sessionId: st
     include: { messages: { orderBy: { createdAt: "asc" } } },
   });
   if (!session) throw new NotFoundError("知识问答会话不存在。");
+  const noteReferences = await getAgentNoteReferences(
+    user.id,
+    "KNOWLEDGE",
+    session.messages.filter((message) => message.role === "ASSISTANT").map((message) => message.id)
+  );
   const messages = session.messages
     .filter((message) => jsonRecord(message.metadataJson)?.status !== "pending")
     .map((message): KnowledgeUIMessage => {
@@ -69,6 +75,7 @@ export async function getKnowledgeSession(user: AuthenticatedUser, sessionId: st
           createdAt: message.createdAt.toISOString(),
           persistedMessageId: message.id,
           ...(typeof metadata?.durationMs === "number" ? { durationMs: metadata.durationMs } : {}),
+          ...(noteReferences.get(message.id) ? { savedNote: noteReferences.get(message.id) } : {}),
         },
         parts: [
           { type: "text", text: message.content },

@@ -1,6 +1,8 @@
 import type { UIMessage } from "ai";
 import { z } from "zod";
 
+import type { AgentNoteReference } from "@/features/agent/agent-note-types";
+
 export const knowledgeCitationSchema = z.object({
   chunkId: z.string(),
   sourceId: z.string(),
@@ -15,7 +17,7 @@ export const knowledgeCitationSchema = z.object({
 });
 
 export type KnowledgeUIMessage = UIMessage<
-  { createdAt?: string; persistedMessageId?: string; durationMs?: number },
+  { createdAt?: string; persistedMessageId?: string; durationMs?: number; savedNote?: AgentNoteReference },
   {
     activity: { label: string };
     citations: { items: z.infer<typeof knowledgeCitationSchema>[] };

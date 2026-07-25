@@ -12,6 +12,7 @@ export default async function KnowledgePage({ searchParams }: { searchParams?: P
   if (!user) redirect("/login?callbackUrl=/knowledge");
   const rawParams = await searchParams;
   const questionId = Array.isArray(rawParams?.questionId) ? rawParams?.questionId[0] : rawParams?.questionId;
+  const requestedSessionId = Array.isArray(rawParams?.sessionId) ? rawParams?.sessionId[0] : rawParams?.sessionId;
   const [sessions, initialPrompt] = await Promise.all([
     listKnowledgeSessions(user),
     buildQuestionKnowledgePrompt(user, questionId),
@@ -25,7 +26,11 @@ export default async function KnowledgePage({ searchParams }: { searchParams?: P
           title="课程知识问答"
           summary={<span>回答依据已导入课程字幕，并保留视频定位</span>}
         />
-        <KnowledgeWorkspace initialSessions={sessions} initialPrompt={initialPrompt} />
+        <KnowledgeWorkspace
+          initialSessions={sessions}
+          initialPrompt={initialPrompt}
+          initialSessionId={sessions.some((session) => session.id === requestedSessionId) ? requestedSessionId : undefined}
+        />
       </StudentPage>
     </AppShell>
   );

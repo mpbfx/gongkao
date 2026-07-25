@@ -16,7 +16,7 @@ function getAllowedDevOrigins() {
 
 const nextConfig: NextConfig = {
   allowedDevOrigins: getAllowedDevOrigins(),
-  serverExternalPackages: ["@mariozechner/pi-agent-core", "@mariozechner/pi-ai"],
+  serverExternalPackages: ["@mariozechner/pi-agent-core", "@mariozechner/pi-ai", "bullmq", "ioredis"],
   turbopack: {
     root: import.meta.dirname,
   },

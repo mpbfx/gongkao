@@ -151,7 +151,7 @@ export async function generateStructuredResponse<T extends z.ZodType>({
   return result.data;
 }
 
-async function generateStructuredResponseWithStatus<T extends z.ZodType>({
+export async function generateStructuredResponseWithStatus<T extends z.ZodType>({
   schema,
   name,
   instructions,
