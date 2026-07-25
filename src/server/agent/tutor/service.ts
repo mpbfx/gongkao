@@ -125,7 +125,17 @@ export async function streamQuestionWithTutor(input: TutorInput, emit: Emit, sig
       error instanceof TutorModelUnavailableError ||
       (error instanceof TutorRuntimeError && (error.kind === "provider" || error.kind === "invalid_result"))
     ) {
-      await emit({ type: "degraded", reason: "AI 模型暂时不可用，请稍后重试。" });
+      const raw = error instanceof Error ? error.message : "";
+      const cooled =
+        /cool(?:ing)?\s*down|model_cooldown|rate\s*limit|429|quota| overloaded| upstream_error/i.test(raw);
+      await emit({
+        type: "degraded",
+        reason: cooled
+          ? "上游模型额度正在冷却，请稍后再试，或换一个可用模型。"
+          : raw.trim()
+            ? `AI 模型暂时不可用：${raw.slice(0, 160)}`
+            : "AI 模型暂时不可用，请稍后重试。",
+      });
       return;
     }
 
