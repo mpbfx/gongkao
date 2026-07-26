@@ -20,3 +20,13 @@ export async function hasActiveMembership(userId: string, role: AppUserRole = "U
 
   return count > 0;
 }
+
+/** 只拿得到 userId 的调用方（如 Agent 工具）用这个入口，自行补齐角色。 */
+export async function hasActiveMembershipForUser(userId: string) {
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+    select: { role: true },
+  });
+
+  return hasActiveMembership(userId, (user?.role as AppUserRole) ?? "USER");
+}

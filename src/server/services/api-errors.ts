@@ -2,6 +2,7 @@ import { ZodError } from "zod";
 
 import { apiError } from "@/lib/api/response";
 import { ForbiddenError, UnauthorizedError } from "@/lib/auth/guards";
+import { RateLimitedError } from "@/server/rate-limit/limiter";
 import {
   BadRequestError,
   BusinessError,
@@ -49,6 +50,12 @@ export function apiErrorFromUnknown(error: unknown) {
 
   if (error instanceof BusinessError) {
     return apiError("BUSINESS_ERROR", error.message, 422, error.details);
+  }
+
+  if (error instanceof RateLimitedError) {
+    return apiError("RATE_LIMITED", error.message, 429, null, {
+      "Retry-After": String(error.retryAfterSeconds),
+    });
   }
 
   if (error instanceof ServiceUnavailableError) {

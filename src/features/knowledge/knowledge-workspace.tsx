@@ -10,6 +10,7 @@ import { Message, MessageContent, MessageResponse } from "@/components/ai-elemen
 import { PromptInput, PromptInputBody, PromptInputFooter, PromptInputSubmit, PromptInputTextarea } from "@/components/ai-elements/prompt-input";
 import { ResponsiveDrawer } from "@/components/student/interaction-overlays";
 import { Button } from "@/components/ui/button";
+import { agentChatFetch } from "@/features/agent/agent-chat-fetch";
 import type { KnowledgeSessionDetail, KnowledgeSessionSummary, KnowledgeUIMessage } from "@/features/agent/knowledge-ui-message";
 import { prepareKnowledgeRequest } from "@/features/agent/knowledge-ui-message";
 import { SaveAgentNoteButton } from "@/features/agent/save-agent-note-button";
@@ -63,6 +64,7 @@ function KnowledgeChat({ sessionId, onSessionUpdated, initialPrompt = "", header
   const transport = useMemo(
     () => new DefaultChatTransport<KnowledgeUIMessage>({
       api: `/api/agent/knowledge/sessions/${sessionId}/messages`,
+      fetch: agentChatFetch,
       prepareSendMessagesRequest: ({ messages, trigger }) => ({
         body: prepareKnowledgeRequest(messages, trigger === "regenerate-message" ? "regenerate" : "submit"),
       }),

@@ -1,5 +1,6 @@
 import { apiOk } from "@/lib/api/response";
 import { requireUser } from "@/lib/auth/guards";
+import { assertAgentChatQuota } from "@/server/agent/shared/quota";
 import {
   getQuestionTutorHistory,
 } from "@/server/agent/tutor/service";
@@ -31,6 +32,8 @@ export async function POST(request: Request, context: RouteContext) {
     const user = await requireUser();
     const { questionId } = await context.params;
     const body = tutorRequestSchema.parse(await request.json());
+
+    await assertAgentChatQuota(user);
 
     return createTutorUIMessageResponse({ user, questionId, ...body }, request.signal);
   } catch (error) {

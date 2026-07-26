@@ -4,6 +4,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 
 import { signIn } from "@/lib/auth";
+import { RateLimitedError } from "@/server/rate-limit/limiter";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
@@ -23,6 +24,16 @@ type LoginPageProps = {
   }>;
 };
 
+/**
+ * authorize 抛出的限流错误会被 next-auth 包装成 CallbackRouteError，
+ * 原始错误挂在 cause.err 上。
+ */
+function isRateLimitedAuthError(error: AuthError) {
+  const cause = error.cause as { err?: unknown } | undefined;
+
+  return cause?.err instanceof RateLimitedError;
+}
+
 function safeCallbackUrl(callbackUrl?: string) {
   if (!callbackUrl || !callbackUrl.startsWith("/") || callbackUrl.startsWith("//")) {
     return "/";
@@ -36,6 +47,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
   const callbackUrl = safeCallbackUrl(params?.callbackUrl);
   const hasCredentialsError = params?.error === "CredentialsSignin";
   const hasServiceError = params?.error === "ServiceUnavailable";
+  const hasRateLimitError = params?.error === "RateLimited";
 
   async function loginAction(formData: FormData) {
     "use server";
@@ -50,7 +62,9 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
       if (error instanceof AuthError) {
         const errorCode = error.type === "CredentialsSignin"
           ? "CredentialsSignin"
-          : "ServiceUnavailable";
+          : isRateLimitedAuthError(error)
+            ? "RateLimited"
+            : "ServiceUnavailable";
         redirect(`/login?error=${errorCode}&callbackUrl=${encodeURIComponent(callbackUrl)}`);
       }
 
@@ -92,14 +106,22 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
         <form action={loginAction}>
           <div className="py-6">
             <FieldGroup>
-              {hasCredentialsError || hasServiceError ? (
+              {hasCredentialsError || hasServiceError || hasRateLimitError ? (
                 <Alert variant="destructive">
                   <AlertCircle aria-hidden="true" />
-                  <AlertTitle>{hasServiceError ? "登录服务异常" : "登录失败"}</AlertTitle>
+                  <AlertTitle>
+                    {hasRateLimitError
+                      ? "尝试过于频繁"
+                      : hasServiceError
+                        ? "登录服务异常"
+                        : "登录失败"}
+                  </AlertTitle>
                   <AlertDescription>
-                    {hasServiceError
-                      ? "数据库连接异常，请启动数据库服务后重试。"
-                      : "邮箱或密码不正确。"}
+                    {hasRateLimitError
+                      ? "登录失败次数过多，请稍后再试。"
+                      : hasServiceError
+                        ? "数据库连接异常，请启动数据库服务后重试。"
+                        : "邮箱或密码不正确。"}
                   </AlertDescription>
                 </Alert>
               ) : null}

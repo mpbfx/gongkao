@@ -38,6 +38,7 @@ import {
   type TutorRequestMode,
   type TutorUIMessage,
 } from "@/features/agent/tutor-ui-message";
+import { agentChatFetch } from "@/features/agent/agent-chat-fetch";
 import { SaveAgentNoteButton } from "@/features/agent/save-agent-note-button";
 import { normalizeLatexDelimiters } from "@/lib/markdown/normalize-latex";
 import { cn } from "@/lib/utils";
@@ -125,6 +126,7 @@ function TutorChat({
     () =>
       new DefaultChatTransport<TutorUIMessage>({
         api: `/api/agent/tutor/questions/${questionId}`,
+        fetch: agentChatFetch,
         prepareSendMessagesRequest: ({ messages, trigger }) => ({
           body: prepareTutorRequest({
             messages,

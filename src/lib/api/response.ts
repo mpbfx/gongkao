@@ -25,7 +25,8 @@ export function apiError(
   code: ApiErrorCode,
   message: string,
   status: number,
-  details: unknown = null
+  details: unknown = null,
+  headers?: HeadersInit
 ) {
   return NextResponse.json(
     {
@@ -37,6 +38,6 @@ export function apiError(
         details,
       },
     },
-    { status }
+    { status, headers }
   );
 }

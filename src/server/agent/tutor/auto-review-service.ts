@@ -1,5 +1,6 @@
 import type { AuthenticatedUser } from "@/lib/auth/guards";
 import { prisma } from "@/lib/db/prisma";
+import { tryConsumeAutoReviewQuota } from "@/server/agent/shared/quota";
 import { loadTutorQuestionContext } from "@/server/agent/tutor/context/question-context";
 import { replaceLatestMistakeReview } from "@/server/agent/tutor/persistence/mistake-reviews";
 import { automaticReviewPrompt } from "@/server/agent/tutor/prompts/tutor-system-prompt";
@@ -55,8 +56,21 @@ export async function autoAnalyzeSubmittedSessionMistakes(
     .slice(0, Math.max(0, maxQuestions));
   let analyzed = 0;
   let failed = 0;
+  let throttled = 0;
 
   for (const answer of candidates) {
+    // 每道题单独计量：这段逻辑跑在 after() 里、客户端无需等待，
+    // 反复「建练习→全答错→提交」即可放大成上游调用洪峰。
+    if (!(await tryConsumeAutoReviewQuota(user.id))) {
+      throttled = candidates.length - analyzed - failed;
+      console.warn("Auto mistake review skipped by daily quota", {
+        userId: user.id,
+        sessionId,
+        throttled,
+      });
+      break;
+    }
+
     try {
       await analyzeQuestion(user, sessionId, answer.questionId);
       analyzed += 1;
@@ -66,5 +80,10 @@ export async function autoAnalyzeSubmittedSessionMistakes(
     }
   }
 
-  return { analyzed, skipped: wrongAnswers.length - candidates.length, failed };
+  return {
+    analyzed,
+    skipped: wrongAnswers.length - candidates.length,
+    failed,
+    throttled,
+  };
 }

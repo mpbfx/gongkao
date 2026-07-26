@@ -7,11 +7,16 @@ import { prisma } from "@/lib/db/prisma";
 import type { TutorQuestionContext } from "@/server/agent/tutor/context/question-context";
 import { stripHtml, truncateText } from "@/server/agent/shared/text";
 import { throwIfAborted, toolText } from "@/server/agent/tutor/tools/tool-utils";
+import { hasActiveMembershipForUser } from "@/server/services/membership";
+import { buildPracticeQuestionWhere } from "@/server/services/practice-question-rules";
 
 const parameters = Type.Object({ limit: Type.Optional(Type.Integer({ minimum: 1, maximum: 3 })) });
 const inputSchema = z.object({ limit: z.number().int().min(1).max(3).default(2) });
 
-export function createRelatedQuestionsTool(context: TutorQuestionContext): AgentTool<typeof parameters> {
+export function createRelatedQuestionsTool(
+  userId: string,
+  context: TutorQuestionContext
+): AgentTool<typeof parameters> {
   return {
     name: "search_related_questions",
     label: "检索同类题",
@@ -25,13 +30,16 @@ export function createRelatedQuestionsTool(context: TutorQuestionContext): Agent
         return { content: [{ type: "text", text: "当前题没有知识点标签，无法检索同类题。" }], details: { count: 0 } };
       }
 
+      // 工具会把题干、正确答案与解析交给模型转述给学员，
+      // 因此必须套用与刷题一致的会员可见性规则，否则等于绕过付费门槛。
+      const hasMembership = await hasActiveMembershipForUser(userId);
+
       const questions = await prisma.question.findMany({
         where: {
+          ...buildPracticeQuestionWhere({ hasMembership }),
           id: { not: context.questionId },
           tagId: context.tagId,
           type: context.questionType as QuestionType,
-          isActive: true,
-          deletedAt: null,
         },
         orderBy: { createdAt: "desc" },
         take: input.limit,

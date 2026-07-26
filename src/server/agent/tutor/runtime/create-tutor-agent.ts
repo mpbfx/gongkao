@@ -58,7 +58,7 @@ export function createTutorAgent({
     : [
         createLearnerPatternsTool(userId, context),
         createPreviousReviewsTool(userId, context),
-        createRelatedQuestionsTool(context),
+        createRelatedQuestionsTool(userId, context),
       ];
   if (!knowledgeOnly && enableKnowledge) tools.push(createCourseKnowledgeTool(context));
   if (!knowledgeOnly && requireReview) tools.push(createSubmitMistakeReviewTool(context, reviewSubmission));

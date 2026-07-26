@@ -5,6 +5,22 @@ import Credentials from "next-auth/providers/credentials";
 import { z } from "zod";
 
 import { prisma } from "@/lib/db/prisma";
+import { enforceRateLimit, resetRateLimit } from "@/server/rate-limit/limiter";
+import { loginAttemptRules } from "@/server/rate-limit/policies";
+
+/** 同时按邮箱与来源 IP 计量，单独用任一维度都容易被绕开。 */
+function loginRateLimitSubjects(email: string, request: unknown) {
+  const subjects = [`email:${email}`];
+  const headers = (request as { headers?: Headers } | undefined)?.headers;
+  const forwardedFor = headers?.get?.("x-forwarded-for");
+  const ip = forwardedFor?.split(",")[0]?.trim() || headers?.get?.("x-real-ip")?.trim();
+
+  if (ip) {
+    subjects.push(`ip:${ip}`);
+  }
+
+  return subjects;
+}
 
 const credentialsSchema = z.object({
   email: z.string().email().trim().toLowerCase(),
@@ -30,11 +46,20 @@ export const authConfig = {
         email: { label: "邮箱", type: "email" },
         password: { label: "密码", type: "password" },
       },
-      async authorize(credentials) {
+      async authorize(credentials, request) {
         const parsed = credentialsSchema.safeParse(credentials);
 
         if (!parsed.success) {
           return null;
+        }
+
+        // 限流放在 authorize 里而不是登录 Server Action 里：
+        // /api/auth/callback/credentials 是公开端点，攻击者会绕过页面直接打它。
+        const rules = loginAttemptRules();
+        const subjects = loginRateLimitSubjects(parsed.data.email, request);
+
+        for (const subject of subjects) {
+          await enforceRateLimit("login", subject, rules);
         }
 
         const user = await prisma.user.findUnique({
@@ -55,6 +80,11 @@ export const authConfig = {
         if (!user || !user.passwordHash || !isValidPassword) {
           return null;
         }
+
+        // 验证通过即清零，把语义从「N 次尝试」变成「连续失败 N 次」。
+        await Promise.all(
+          subjects.map((subject) => resetRateLimit("login", subject, rules))
+        );
 
         return {
           id: user.id,

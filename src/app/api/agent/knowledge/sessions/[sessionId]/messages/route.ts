@@ -1,4 +1,5 @@
 import { requireUser } from "@/lib/auth/guards";
+import { assertAgentChatQuota } from "@/server/agent/shared/quota";
 import { knowledgeMessageRequestSchema } from "@/server/agent/knowledge/schemas";
 import { createKnowledgeUIMessageResponse } from "@/server/agent/knowledge/ui-message-stream";
 import { apiErrorFromUnknown } from "@/server/services/api-errors";
@@ -10,6 +11,9 @@ export async function POST(request: Request, context: RouteContext) {
     const user = await requireUser();
     const { sessionId } = await context.params;
     const body = knowledgeMessageRequestSchema.parse(await request.json());
+
+    await assertAgentChatQuota(user);
+
     return createKnowledgeUIMessageResponse({ user, sessionId, prompt: body.prompt }, request.signal);
   } catch (error) {
     return apiErrorFromUnknown(error);
