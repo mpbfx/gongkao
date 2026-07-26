@@ -5,6 +5,14 @@ import type { AuthenticatedUser } from "@/lib/auth/guards";
 import { prisma } from "@/lib/db/prisma";
 import { BusinessError, ConflictError, MembershipRequiredError, NotFoundError } from "@/server/services/errors";
 import { hasActiveMembership } from "@/server/services/membership";
+import {
+  buildPracticeAnswerUpdate,
+  buildTagStatsUpdate,
+  buildWrongQuestionResolve,
+  buildWrongQuestionUpdate,
+  chunk,
+  runWithWriteConflictRetry,
+} from "@/server/services/practice-batch-writes";
 import { evaluateFoundationRound, evaluatePracticeAnswers } from "@/server/services/practice-evaluation";
 import {
   getPreviouslyGradedQuestionIds,
@@ -505,7 +513,11 @@ export async function savePracticeSessionProgress(
     if (input.answers.some((answer) => !sessionQuestionIds.has(answer.questionId))) {
       throw new ConflictError("进度包含本练习之外的题目");
     }
-    const changedAnswers = normalizePracticeProgressAnswers(input.answers);
+    // 重开会话里上一轮已判分的题不接受改动，与提交时的锁定保持一致。
+    const lockedQuestionIds = getPreviouslyGradedQuestionIds(session.sourceTagIdsJson);
+    const changedAnswers = normalizePracticeProgressAnswers(
+      input.answers.filter((answer) => !lockedQuestionIds.has(answer.questionId))
+    );
 
     await Promise.all(
       changedAnswers.map((answer) =>
@@ -606,13 +618,20 @@ export async function getPracticeSessionDetail(user: AuthenticatedUser, sessionI
   };
 }
 
+/**
+ * 提交是最关键的用户动作，不能被 Prisma 默认的 5 秒事务超时误伤：
+ * 写已经折叠成个位数条语句，这里再留足余量兜底数据库抖动。
+ */
+const submitTransactionOptions = { timeout: 30_000, maxWait: 10_000 };
+
 export async function submitPracticeSession(
   user: AuthenticatedUser,
   sessionId: string,
   input: SubmitSessionInput
 ) {
   const now = new Date();
-  const submitted = await prisma.$transaction(async (tx) => {
+  const submitted = await runWithWriteConflictRetry(() =>
+    prisma.$transaction(async (tx) => {
     const session = await tx.practiceSession.findFirst({
       where: {
         id: sessionId,
@@ -663,6 +682,33 @@ export async function submitPracticeSession(
     }
 
     const answerMap = new Map(input.answers.map((answer) => [answer.questionId, answer]));
+    const previouslyGradedQuestionIds = getPreviouslyGradedQuestionIds(
+      session.sourceTagIdsJson
+    );
+    // 重开的试卷会话里，上一轮已判分的题沿用历史作答：
+    // 否则学员看过答案后重开，改答案即可刷高成绩。
+    const effectiveAnswers = session.answers.map((answerRow) => {
+      if (previouslyGradedQuestionIds.has(answerRow.questionId)) {
+        return {
+          questionId: answerRow.questionId,
+          answer: answerRow.answer,
+          timeSpentSeconds: answerRow.timeSpentSeconds,
+          decisionNote: answerRow.decisionNote,
+        };
+      }
+
+      const submitted = answerMap.get(answerRow.questionId);
+
+      return {
+        questionId: answerRow.questionId,
+        answer: submitted?.answer ?? null,
+        timeSpentSeconds: submitted?.timeSpentSeconds ?? 0,
+        decisionNote: submitted?.decisionNote?.trim() || null,
+      };
+    });
+    const effectiveByQuestionId = new Map(
+      effectiveAnswers.map((answer) => [answer.questionId, answer])
+    );
     const evaluation = evaluatePracticeAnswers(
       session.answers.map((answerRow) => {
         const paperQuestion = session.paperId
@@ -675,26 +721,23 @@ export async function submitPracticeSession(
           sectionName: paperQuestion?.sectionName ?? answerRow.question.tag?.name ?? "综合",
         };
       }),
-      input.answers
+      effectiveAnswers
     );
     const evaluatedByQuestionId = new Map(
       evaluation.answers.map((answer) => [answer.questionId, answer])
     );
     const answerRows = session.answers.map((answerRow) => {
-      const submittedAnswer = answerMap.get(answerRow.questionId);
       const evaluated = evaluatedByQuestionId.get(answerRow.questionId);
       if (!evaluated) throw new ConflictError("练习题目评分失败");
       return {
         ...evaluated,
+        answerId: answerRow.id,
         tagId: answerRow.question.tagId,
         sortOrder: answerRow.sortOrder,
-        decisionNote: submittedAnswer?.decisionNote?.trim() || null,
+        decisionNote: effectiveByQuestionId.get(answerRow.questionId)?.decisionNote ?? null,
         analysisHtml: normalizeRichHtml(answerRow.question.analysisHtml),
       };
     });
-    const previouslyGradedQuestionIds = getPreviouslyGradedQuestionIds(
-      session.sourceTagIdsJson
-    );
     const {
       totalCount,
       answeredCount,
@@ -706,37 +749,24 @@ export async function submitPracticeSession(
       maxScore,
     } = evaluation;
 
-    const savedAnswers = await Promise.all(
-      answerRows.map((answer) =>
-        tx.practiceAnswer.upsert({
-          where: {
-            sessionId_questionId: {
-              sessionId: session.id,
-              questionId: answer.questionId,
-            },
-          },
-          update: {
-            answer: answer.answer,
-            isCorrect: answer.isCorrect,
-            timeSpentSeconds: answer.timeSpentSeconds,
-            decisionNote: answer.decisionNote,
-            answeredAt: answer.answer ? now : null,
-            sortOrder: answer.sortOrder,
-          },
-          create: {
-            sessionId: session.id,
-            userId: user.id,
+    // 作答行在建会话时已全部创建，这里按分片一条语句更新，
+    // 不再逐题 upsert（135 题实测可省下六百多条 SQL）。
+    for (const part of chunk(answerRows)) {
+      await tx.$executeRaw(
+        buildPracticeAnswerUpdate(
+          session.id,
+          part.map((answer) => ({
             questionId: answer.questionId,
             answer: answer.answer,
             isCorrect: answer.isCorrect,
             timeSpentSeconds: answer.timeSpentSeconds,
             decisionNote: answer.decisionNote,
             answeredAt: answer.answer ? now : null,
-            sortOrder: answer.sortOrder,
-          },
-        })
-      )
-    );
+          })),
+          now
+        )
+      );
+    }
 
     if (input.events.length > 0) {
       await tx.practiceEvent.createMany({
@@ -769,101 +799,79 @@ export async function submitPracticeSession(
       tagRounds.set(answer.tagId, group);
     }
 
-    for (const [tagId, round] of tagRounds) {
-      const previous = await tx.userTagStats.findUnique({
-        where: { userId_tagId: { userId: user.id, tagId } },
-      });
-      const nextAnswered = (previous?.answeredCount ?? 0) + round.answeredCount;
-      const nextCorrect = (previous?.correctCount ?? 0) + round.correctCount;
-      const foundation = session.purpose === "FOUNDATION"
-        ? evaluateFoundationRound({ totalCount, correctCount: round.correctCount })
-        : null;
-      const foundationData = foundation
-        ? {
-            foundationStatus: foundation.passed ? ("PASSED" as const) : ("TRAINING" as const),
-            foundationRoundCount: (previous?.foundationRoundCount ?? 0) + 1,
-            lastRoundCorrect: round.correctCount,
-            bestRoundCorrect: Math.max(previous?.bestRoundCorrect ?? 0, round.correctCount),
-            passedAt: foundation.passed ? (previous?.passedAt ?? now) : previous?.passedAt,
-          }
-        : {};
+    if (tagRounds.size > 0) {
+      // 按 tagId 排序：并发提交以相同顺序申请行锁，显著降低死锁概率。
+      const statsWrites = Array.from(tagRounds, ([tagId, round]) => ({
+        tagId,
+        ...round,
+        foundation:
+          session.purpose === "FOUNDATION"
+            ? {
+                passed: evaluateFoundationRound({
+                  totalCount,
+                  correctCount: round.correctCount,
+                }).passed,
+                roundCorrect: round.correctCount,
+              }
+            : null,
+      })).toSorted((first, second) => first.tagId.localeCompare(second.tagId));
 
-      await tx.userTagStats.upsert({
-        where: { userId_tagId: { userId: user.id, tagId } },
-        update: {
-          answeredCount: nextAnswered,
-          correctCount: nextCorrect,
-          wrongCount: (previous?.wrongCount ?? 0) + round.wrongCount,
-          accuracy: nextAnswered > 0 ? Number(((nextCorrect / nextAnswered) * 100).toFixed(2)) : null,
-          lastPracticedAt: now,
-          ...foundationData,
-        },
-        create: {
-          userId: user.id,
-          tagId,
-          answeredCount: round.answeredCount,
-          correctCount: round.correctCount,
-          wrongCount: round.wrongCount,
-          accuracy:
-            round.answeredCount > 0
-              ? Number(((round.correctCount / round.answeredCount) * 100).toFixed(2))
-              : null,
-          lastPracticedAt: now,
-          ...foundationData,
-        },
+      // 先用零值占位保证行存在，再统一走增量更新：
+      // 「先查后建」在并发提交下会同时判定为不存在并撞唯一约束。
+      await tx.userTagStats.createMany({
+        data: statsWrites.map((stats) => ({ userId: user.id, tagId: stats.tagId })),
+        skipDuplicates: true,
       });
+
+      for (const part of chunk(statsWrites)) {
+        await tx.$executeRaw(buildTagStatsUpdate(user.id, part, now));
+      }
     }
 
-    await Promise.all(
-      savedAnswers.map((savedAnswer, index) => {
-        const answer = answerRows[index];
+    const gradedAnswers = answerRows.filter(
+      (answer) => answer.answer && !previouslyGradedQuestionIds.has(answer.questionId)
+    );
+    // 同样按 questionId 排序，保证并发提交的加锁顺序一致。
+    const wrongAnswers = gradedAnswers
+      .filter((answer) => answer.isCorrect === false)
+      .toSorted((first, second) => first.questionId.localeCompare(second.questionId));
+    const correctQuestionIds = gradedAnswers
+      .filter((answer) => answer.isCorrect === true)
+      .map((answer) => answer.questionId)
+      .toSorted((first, second) => first.localeCompare(second));
 
-        if (previouslyGradedQuestionIds.has(answer.questionId)) {
-          return null;
-        }
+    if (wrongAnswers.length > 0) {
+      // 与标签统计同理：零值占位 + 增量更新，避免并发下的唯一约束冲突。
+      await tx.wrongQuestion.createMany({
+        data: wrongAnswers.map((answer) => ({
+          userId: user.id,
+          questionId: answer.questionId,
+          tagId: answer.tagId,
+          wrongCount: 0,
+          lastWrongAt: now,
+        })),
+        skipDuplicates: true,
+      });
 
-        if (!answer.answer) {
-          return null;
-        }
-
-        if (answer.isCorrect === false) {
-          return tx.wrongQuestion.upsert({
-            where: {
-              userId_questionId: {
-                userId: user.id,
-                questionId: answer.questionId,
-              },
-            },
-            update: {
-              wrongCount: { increment: 1 },
-              lastWrongAt: now,
-              lastPracticeAnswerId: savedAnswer.id,
-              tagId: answer.tagId,
-              resolvedAt: null,
-            },
-            create: {
-              userId: user.id,
+      for (const part of chunk(wrongAnswers)) {
+        await tx.$executeRaw(
+          buildWrongQuestionUpdate(
+            user.id,
+            part.map((answer) => ({
               questionId: answer.questionId,
               tagId: answer.tagId,
-              lastPracticeAnswerId: savedAnswer.id,
-              lastWrongAt: now,
-            },
-          });
-        }
+              lastPracticeAnswerId: answer.answerId,
+            })),
+            now
+          )
+        );
+      }
+    }
 
-        return tx.wrongQuestion.updateMany({
-          where: {
-            userId: user.id,
-            questionId: answer.questionId,
-            resolvedAt: null,
-          },
-          data: {
-            resolvedAt: now,
-            lastPracticeAnswerId: savedAnswer.id,
-          },
-        });
-      })
-    );
+    // 本次答对即视为掌握，一条语句批量移出错题本。
+    for (const part of chunk(correctQuestionIds)) {
+      await tx.$executeRaw(buildWrongQuestionResolve(user.id, session.id, part, now));
+    }
 
     const timing = normalizeSubmittedTiming({
       createdAt: session.createdAt,
@@ -892,12 +900,13 @@ export async function submitPracticeSession(
       },
     });
 
-    return {
-      session: updatedSession,
-      answers: answerRows,
-      sections: evaluation.sections,
-    };
-  });
+      return {
+        session: updatedSession,
+        answers: answerRows,
+        sections: evaluation.sections,
+      };
+    }, submitTransactionOptions)
+  );
 
   return {
     sessionId: submitted.session.id,
