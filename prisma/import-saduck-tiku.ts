@@ -3,6 +3,7 @@ import { readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 
 import { prisma } from "../src/lib/db/prisma";
+import { sanitizeRichHtml } from "../src/server/content/rich-html";
 import { normalizeQuestionTagTaxonomy } from "../src/server/services/question-tag-taxonomy-maintenance";
 
 type SaduckTag = {
@@ -334,7 +335,26 @@ async function ensureFallbackTag(name: string, tagIdByName: Map<string, string>)
   return id;
 }
 
-async function upsertQuestion(question: SaduckQuestion, questionId: string, tagIdByName: Map<string, string>) {
+/** 抓取内容是不可信 HTML，入库前必须走与管理端相同的白名单消毒。 */
+function sanitizeQuestionHtml(question: SaduckQuestion): SaduckQuestion {
+  return {
+    ...question,
+    titleHtml: sanitizeRichHtml(question.titleHtml) ?? undefined,
+    analysisHtml: sanitizeRichHtml(question.analysisHtml) ?? undefined,
+    materialHtml: sanitizeRichHtml(question.materialHtml) ?? undefined,
+    options: question.options?.map((option) => ({
+      ...option,
+      text: sanitizeRichHtml(option.text) ?? undefined,
+    })),
+  };
+}
+
+async function upsertQuestion(
+  rawQuestion: SaduckQuestion,
+  questionId: string,
+  tagIdByName: Map<string, string>
+) {
+  const question = sanitizeQuestionHtml(rawQuestion);
   const tagId = question.tag ? await ensureFallbackTag(question.tag, tagIdByName) : undefined;
   const materialId = question.materialHtml ? questionId.replace("saduck_q_", "saduck_material_") : undefined;
 

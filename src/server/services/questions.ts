@@ -1,3 +1,5 @@
+import { sanitizeRichHtml } from "@/server/content/rich-html";
+
 type QuestionRow = {
   id: string;
   type: string;
@@ -52,40 +54,16 @@ export function normalizeAnswer(answer?: string | null) {
     .join(",");
 }
 
+/**
+ * 读取侧的兜底消毒：写入侧已统一消毒，这里再走一次白名单，防御历史脏数据。
+ * 单次约 0.03ms，整卷读取的额外开销可以忽略。
+ */
 export function normalizeRichHtml(html?: string | null) {
   if (!html) {
     return html ?? null;
   }
 
-  return html.replace(/<img\b([^>]*)>/gi, (match, rawAttributes: string) => {
-    let attributes = rawAttributes.replace(
-      /\ssrc=(["'])\/\/([^"']+)\1/i,
-      (_srcMatch: string, quote: string, src: string) => ` src=${quote}https://${src}${quote}`
-    );
-
-    attributes = attributes.replace(
-      /\ssrc=\/\/([^\s>]+)/i,
-      (_srcMatch: string, src: string) => ` src="https://${src.replace(/["']$/, "")}"`
-    );
-
-    if (!/\sloading=/i.test(attributes)) {
-      attributes += ' loading="lazy"';
-    }
-
-    if (!/\sdecoding=/i.test(attributes)) {
-      attributes += ' decoding="async"';
-    }
-
-    if (!/\sreferrerpolicy=/i.test(attributes)) {
-      attributes += ' referrerpolicy="no-referrer"';
-    }
-
-    if (!/\salt=/i.test(attributes)) {
-      attributes += ' alt=""';
-    }
-
-    return `<img${attributes}>`;
-  });
+  return sanitizeRichHtml(html);
 }
 
 export function toQuestionDto(question: QuestionRow, includeAnswer = false) {

@@ -2,6 +2,7 @@ import { z } from "zod";
 
 import type { AuthenticatedUser } from "@/lib/auth/guards";
 import { prisma } from "@/lib/db/prisma";
+import { richHtmlToPlainText, toRichHtml } from "@/server/content/rich-html";
 import { BadRequestError, NotFoundError } from "@/server/services/errors";
 import {
   emptyStringToUndefined,
@@ -65,27 +66,8 @@ function checkbox(formData: FormData, name: string) {
   return formData.getAll(name).some((value) => value === "on" || value === "true");
 }
 
-function stripTags(html: string) {
-  return html.replace(/<[^>]*>/g, "").trim();
-}
-
-function sanitizeHtml(html: string) {
-  return html
-    .replace(/<script[\s\S]*?>[\s\S]*?<\/script>/gi, "")
-    .replace(/\son\w+="[^"]*"/gi, "")
-    .replace(/\son\w+='[^']*'/gi, "")
-    .replace(/javascript:/gi, "");
-}
-
-function toHtml(value: string) {
-  const sanitized = sanitizeHtml(value.trim());
-
-  if (/<[a-z][\s\S]*>/i.test(sanitized)) {
-    return sanitized;
-  }
-
-  return `<p>${sanitized}</p>`;
-}
+const stripTags = richHtmlToPlainText;
+const toHtml = toRichHtml;
 
 function slugify(value: string) {
   const slug = value
